@@ -1,0 +1,429 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - process.git 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - process.git 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>process.git 库模块帮助文档</h1>
+
+<p><a id="process"></a></p>
+
+<h2>process 成员列表</h2>
+
+<p><a id="process.git"></a></p>
+
+<h3>process.git(&quot;字符串参数&quot;)</h3>
+
+<p>创建 Git 工具。<br>
+参数 @1指定工作目录，省略则传入 &quot;/&quot; （应用程序根目录）。<br>
+如果系统未安装 Git 时将下载并安装 Git,<br>
+<a href="javascript:if(confirm('https://git-scm.com/download/win  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='https://git-scm.com/download/win'" tppabs="https://git-scm.com/download/win">git安装程序</a></p>
+
+<p><a id="process.git"></a></p>
+
+<h3>process.git()</h3>
+
+<p><a href="#processGitObject">返回对象:processGitObject</a></p>
+
+<p><a id="process.git"></a></p>
+
+<h2>process.git 成员列表</h2>
+
+<p><a id="process.git.getInstallPath"></a></p>
+
+<h3>process.git.getInstallPath()</h3>
+
+<p>获取 git.exe 安装路径。<br>
+可选用参数@1 指定未找到 git.exe 是否允许自动安装</p>
+
+<p><a id="process.git.install"></a></p>
+
+<h3>process.git.install()</h3>
+
+<p>安装 Git for Windows</p>
+
+<p><a id="processGitObject"></a></p>
+
+<h2>processGitObject 成员列表</h2>
+
+<p><a id="processGitObject.add"></a></p>
+
+<h3>processGitObject.add(&quot;字符串参数&quot;)</h3>
+
+<p>指定要添加到暂存区的文件名目录,<br>
+文件名中可使用*通配符,  </p>
+
+<p>暂存区(Stage)也称索引区(Index)<br>
+Index(Stage)是一个列表，用于记录有我们需要跟踪的所有文件</p>
+
+<p><a id="processGitObject.addAll"></a></p>
+
+<h3>processGitObject.addAll()</h3>
+
+<p>保存添加所有新增、修改、删除文件操作,<br>
+可远在参数中指定目录</p>
+
+<p><a id="processGitObject.addNoAll"></a></p>
+
+<h3>processGitObject.addNoAll()</h3>
+
+<p>保存添加所有修改、新增文件操作，<br>
+不包括删除文件,可远在参数中指定目录</p>
+
+<p><a id="processGitObject.addUpdate"></a></p>
+
+<h3>processGitObject.addUpdate()</h3>
+
+<p>保存添加所有修改、删除文件操作,<br>
+不包括新增文件,可远在参数中指定目录</p>
+
+<p><a id="processGitObject.branch"></a></p>
+
+<h3>processGitObject.branch(&quot;--set-upstream-to=origin/master&quot;,&quot;master&quot;)</h3>
+
+<p>手动建立本地分支与远程分支的追踪关系  </p>
+
+<p>如果当前分支与远程分支存在追踪关系,pull可省略远程分支名</p>
+
+<p><a id="processGitObject.branch"></a></p>
+
+<h3>processGitObject.branch(&quot;-d&quot;,&quot;branch&quot;)</h3>
+
+<p>删除指定分支,<br>
+参数@1改为大写&quot;-D&quot;则强行删除未合并的分支</p>
+
+<p><a id="processGitObject.branch"></a></p>
+
+<h3>processGitObject.branch(&quot;branch&quot;)</h3>
+
+<p>创建新分支,但不会切换过去</p>
+
+<p><a id="processGitObject.branch"></a></p>
+
+<h3>processGitObject.branch()</h3>
+
+<p>列出所有分支,前面是*号的为当前分支</p>
+
+<p><a id="processGitObject.checkout"></a></p>
+
+<h3>processGitObject.checkout(&quot;--&quot;,&quot;.&quot;)</h3>
+
+<p>撤消本地所有修改,<br>
+为避免提交ID与文件路径同名冲突,请在参数@1中指定&quot;--&quot;</p>
+
+<p><a id="processGitObject.checkout"></a></p>
+
+<h3>processGitObject.checkout(&quot;--&quot;,filename)</h3>
+
+<p>用暂存区中指定文件来覆盖工作区中的对应文件,<br>
+为避免提交ID与文件路径同名冲突,请在参数@1中指定&quot;--&quot;</p>
+
+<p><a id="processGitObject.checkout"></a></p>
+
+<h3>processGitObject.checkout(&quot;-b&quot;,branch)</h3>
+
+<p>创建并切换到branch分支</p>
+
+<p><a id="processGitObject.checkout"></a></p>
+
+<h3>processGitObject.checkout(&quot;HEAD&quot;,filename)</h3>
+
+<p>直接用HEAD覆盖工作区<br>
+相当于git reset HEAD + git checkout -- filename</p>
+
+<p><a id="processGitObject.checkout"></a></p>
+
+<h3>processGitObject.checkout(branch)</h3>
+
+<p>更新HEAD以指向branch分支，以及用branch指向的树更新暂存区和工作区</p>
+
+<p><a id="processGitObject.clean"></a></p>
+
+<h3>processGitObject.clean(&quot;-xdf&quot;)</h3>
+
+<p>删除当前目录下没有被track过的文件或目录<br>
+不管是否是.gitignore文件指定的文件或目录</p>
+
+<p><a id="processGitObject.clone"></a></p>
+
+<h3>processGitObject.clone(&quot;字符串参数&quot;)</h3>
+
+<p>克隆远程仓库</p>
+
+<p><a id="processGitObject.cmd"></a></p>
+
+<h3>processGitObject.cmd()</h3>
+
+<p>指定一个或多个git启动参数,<br>
+进程执行完成并关闭后,返回标准输出,以及错误输出<br>
+<a href="javascript:if(confirm('https://git-scm.com/docs  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='https://git-scm.com/docs'" tppabs="https://git-scm.com/docs">git指令文档</a></p>
+
+<p><a id="processGitObject.commit"></a></p>
+
+<h3>processGitObject.commit()</h3>
+
+<p>提交暂存区更改到本地版本库,<br>
+必须在参数中使用一个字符串参数指定更改日志</p>
+
+<p><a id="processGitObject.diff"></a></p>
+
+<h3>processGitObject.diff(&quot;--cached&quot;)</h3>
+
+<p>返回暂存区和版本库的差异</p>
+
+<p><a id="processGitObject.diff"></a></p>
+
+<h3>processGitObject.diff(&quot;HEAD&quot;)</h3>
+
+<p>返回工作区和版本库的差异</p>
+
+<p><a id="processGitObject.diff"></a></p>
+
+<h3>processGitObject.diff()</h3>
+
+<p>返回工作区和暂存区的差异</p>
+
+<p><a id="processGitObject.fetch"></a></p>
+
+<h3>processGitObject.fetch(&quot;origin&quot;,&quot;master&quot;)</h3>
+
+<p>取回远程仓库origin的master分支,<br>
+但不会自动与本地分支合并</p>
+
+<p><a id="processGitObject.globalUser"></a></p>
+
+<h3>processGitObject.globalUser(用户名,邮箱)</h3>
+
+<p>设置全局用户名、邮件</p>
+
+<p><a id="processGitObject.ignore"></a></p>
+
+<h3>processGitObject.ignore()</h3>
+
+<p>在参数中使用字符串指定忽略文件.gitignore的内容<br>
+<a href="javascript:if(confirm('https://github.com/github/gitignore  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='https://github.com/github/gitignore'" tppabs="https://github.com/github/gitignore">忽略文件模板</a></p>
+
+<p><a id="processGitObject.init"></a></p>
+
+<h3>processGitObject.init()</h3>
+
+<p>创建版本库</p>
+
+<p><a id="processGitObject.log"></a></p>
+
+<h3>processGitObject.log()</h3>
+
+<p>查看提交历史</p>
+
+<p><a id="processGitObject.logger"></a></p>
+
+<h3>processGitObject.logger</h3>
+
+<p>指定进程管道的默认回显对象<br>
+该对象必须有log或write成员函数用于输出回</p>
+
+<p><a id="processGitObject.merge"></a></p>
+
+<h3>processGitObject.merge(branch)</h3>
+
+<p>合并指定分支</p>
+
+<p><a id="processGitObject.open"></a></p>
+
+<h3>processGitObject.open()</h3>
+
+<p>指定一个或多个git启动参数,返回process对象</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/process/_.html  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/process/_.html#processObject'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/process/_.html#processObject">返回对象:processObject</a></p>
+
+<p><a id="processGitObject.popen"></a></p>
+
+<h3>processGitObject.popen()</h3>
+
+<p>指定一个或多个git启动参数,<br>
+返回process.popen对象,  </p>
+
+<p>不显示git控制台窗口，<br>
+并可通过返回的进程管道读写进程输入输出</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html#processPopenObject'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html#processPopenObject">返回对象:processPopenObject</a></p>
+
+<p><a id="processGitObject.pull"></a></p>
+
+<h3>processGitObject.pull(&quot;origin&quot;,&quot;dev:master&quot;)</h3>
+
+<p>取回远程仓库的dev分支,<br>
+并与本地master分支合并<br>
+如果与当前分支合并,冒号后面部分可以省略,<br>
+如果当前分支与远程分支存在追踪关系,可省略远程分支名</p>
+
+<p><a id="processGitObject.pull"></a></p>
+
+<h3>processGitObject.pull()</h3>
+
+<p>如果当前分支只有一个远程追踪分支,<br>
+可省略参数直接取回该分支</p>
+
+<p><a id="processGitObject.push"></a></p>
+
+<h3>processGitObject.push(&quot;origin&quot;,&quot;master&quot;)</h3>
+
+<p>推送master分支到远程仓库origin,<br>
+在这之前应当先将文件更改add到暂存区,<br>
+然后在commit到本地版本库,  </p>
+
+<p>可用remoteAdd函数添加远程仓库地址,<br>
+首次推送时可增加&quot;-u&quot;参数</p>
+
+<p><a id="processGitObject.push"></a></p>
+
+<h3>processGitObject.push(&quot;origin,&quot;tagName&quot;)</h3>
+
+<p>推送tagName指定的标签到远程仓库origin,</p>
+
+<p><a id="processGitObject.rebase"></a></p>
+
+<h3>processGitObject.rebase()</h3>
+
+<p>变基操作</p>
+
+<p><a id="processGitObject.remote"></a></p>
+
+<h3>processGitObject.remote(&quot;-v&quot;)</h3>
+
+<p>查看远程仓库的信息</p>
+
+<p><a id="processGitObject.remote"></a></p>
+
+<h3>processGitObject.remote(&quot;add&quot;,&quot;origin&quot;,&quot;字符串参数&quot;)</h3>
+
+<p>添加远程仓库关联,<br>
+参数@1指定名称,参数@2指定过程仓库地址</p>
+
+<p><a id="processGitObject.remote"></a></p>
+
+<h3>processGitObject.remote(&quot;rm&quot;,&quot;origin&quot;)</h3>
+
+<p>删除远程仓库关联</p>
+
+<p><a id="processGitObject.reset"></a></p>
+
+<h3>processGitObject.reset(&quot;--hard&quot;,&quot;HEAD~1&quot;)</h3>
+
+<p>回退到上一个版本,并放弃之后的版本历史以及所有更改,<br>
+HEAD指针、暂存区、工作区都回到上次的提交状态<br>
+可以修改参数中的数字指定回退的版本数,也可以直接指定版本ID</p>
+
+<p><a id="processGitObject.reset"></a></p>
+
+<h3>processGitObject.reset(&quot;HEAD&quot;)</h3>
+
+<p>撤消对暂存区的更改并重新放回工作区,<br>
+可增加一个参数指定文件或目录</p>
+
+<p><a id="processGitObject.resetAndClean"></a></p>
+
+<h3>processGitObject.resetAndClean()</h3>
+
+<p>清空工作目录中所有未提交的内容<br>
+删除当前目录下所有没有跟踪过的文件<br>
+工作目录和缓存区恢复最近一次commit时的状态</p>
+
+<p><a id="processGitObject.resetPush"></a></p>
+
+<h3>processGitObject.resetPush(commitId)</h3>
+
+<p>远程仓库强制回退到指定的提交ID</p>
+
+<p><a id="processGitObject.revert"></a></p>
+
+<h3>processGitObject.revert(&quot;HEAD~1&quot;)</h3>
+
+<p>回退到上一个版本,<br>
+可生成一次新的提交,版本历史是不会被破坏,<br>
+可以修改参数中的数字指定回退的版本数,也可以直接指定版本ID</p>
+
+<p><a id="processGitObject.rm"></a></p>
+
+<h3>processGitObject.rm(&quot;-r&quot;,&quot;字符串参数&quot;)</h3>
+
+<p>自版本库和暂存区删除文件,<br>
+&quot;-r&quot; 参数允许递归删除目录下的文件</p>
+
+<p><a id="processGitObject.setHttpProxy"></a></p>
+
+<h3>processGitObject.setHttpProxy(代理服务器地址)</h3>
+
+<p>设置 HTTP/HTTPS 代理，<br>
+参数 @1 示例: &quot;socks5://127.0.0.1:10801&quot;，<br>
+设为 null 清除代理</p>
+
+<p><a id="processGitObject.show"></a></p>
+
+<h3>processGitObject.show()</h3>
+
+<p>显示相关信息</p>
+
+<p><a id="processGitObject.stash"></a></p>
+
+<h3>processGitObject.stash(&quot;list&quot;)</h3>
+
+<p>列出备份的工作现场</p>
+
+<p><a id="processGitObject.stash"></a></p>
+
+<h3>processGitObject.stash(&quot;pop&quot;)</h3>
+
+<p>使用备份的工作现场恢复工作区,<br>
+并删除备份的工作现场</p>
+
+<p><a id="processGitObject.stash"></a></p>
+
+<h3>processGitObject.stash()</h3>
+
+<p>备份工作现场</p>
+
+<p><a id="processGitObject.status"></a></p>
+
+<h3>processGitObject.status()</h3>
+
+<p>显示工作目录和暂存区的状态</p>
+
+<p><a id="processGitObject.tag"></a></p>
+
+<h3>processGitObject.tag(&quot;-d&quot;,&quot;tagName&quot;)</h3>
+
+<p>删除标签</p>
+
+<p><a id="processGitObject.tag"></a></p>
+
+<h3>processGitObject.tag(&quot;tagName&quot;)</h3>
+
+<p>设置标签</p>
+
+<p><a id="processGitObject.tag"></a></p>
+
+<h3>processGitObject.tag()</h3>
+
+<p>列出所有标签</p>
+
+<p><a id="processGitObject.user"></a></p>
+
+<h3>processGitObject.user(用户名,邮箱)</h3>
+
+<p>设置用户名、邮件<br>
+不指定参数查看用户名、邮箱</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/process/git/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/process/git/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/process/git/_.md">Markdown 格式</a></p>
+
+</body> 
+</html>

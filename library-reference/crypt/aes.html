@@ -1,0 +1,242 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - crypt.aes 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - crypt.aes 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>crypt.aes 库模块帮助文档</h1>
+
+<p><a id="crypt"></a></p>
+
+<h2>crypt 成员列表</h2>
+
+<p><a id="crypt.aes"></a></p>
+
+<h3>crypt.aes</h3>
+
+<p>AES加密算法支持库,默认加密模式 CBC,填充模式PKCS7,<br>
+注意PKCS5与PKCS7填充规则一样,PKCS5填充1到8字节,PKCS7填充1到255字节,<br>
+而AES数据块分组为16字节也就是128位,指定PKCS5实际使用的也是PKCS7,<br>
+<a href="javascript:if(confirm('http://bbs.aardio.com/forum.php?mod=viewthread&tid=13818  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://bbs.aardio.com/forum.php?mod=viewthread&tid=13818'" tppabs="http://bbs.aardio.com/forum.php?mod=viewthread&tid=13818">各编程语言兼容的AES兼容写法参考</a>  </p>
+
+<p>演示代码:  </p>
+
+<pre><code class="aardio language-aardio">import crypt.aes;  
+var aes = crypt.aes();  
+
+//设置密钥  
+aes.setPassword(&quot;12345678&quot;);  
+
+//加密  
+var sstr = aes.encrypt(&quot;Test String&quot;);  
+
+//解密  
+var str = aes.decrypt(sstr);  
+</code></pre>
+
+<p><a id="crypt.aes"></a></p>
+
+<h3>crypt.aes()</h3>
+
+<p>返回AES加密容器,<br>
+可选使用一个字符串参数指定密钥向量<br>
+如果要与其他编程语言有相同加解密结果,建议不要设置该参数  </p>
+
+<p><a href="#crypyAesObject">返回对象:crypyAesObject</a></p>
+
+<p><a id="crypyAesObject"></a></p>
+
+<h2>crypyAesObject 成员列表</h2>
+
+<p><a id="crypyAesObject.allocBuffer"></a></p>
+
+<h3>crypyAesObject.allocBuffer</h3>
+
+<p>分配加解密需要用到的 buffer。</p>
+
+<p><a id="crypyAesObject.allocBuffer"></a></p>
+
+<h3>crypyAesObject.allocBuffer(大小,块大小)</h3>
+
+<p>分配加解密需要用到的 buffer。<br>
+如果不手动分配，程序将会自动按需分配 buffer。<br>
+参数 @2 可选，可用对象的blockSize属性指定默认块大小。</p>
+
+<p><a id="crypyAesObject.blockSize"></a></p>
+
+<h3>crypyAesObject.blockSize</h3>
+
+<p>加密填充的块大小，默认为 16</p>
+
+<p><a id="crypyAesObject.buffer"></a></p>
+
+<h3>crypyAesObject.buffer</h3>
+
+<p>加解密时暂存输入输出数据的缓冲区。<br>
+只能通过调用 allocBuffer 函数分配此缓冲区。<br>
+或者由加解密函数自动分配此缓冲区。  </p>
+
+<p>如果未分配缓冲区，或缓冲区大小不够。<br>
+加解密时会重新调用 allocBuffer 函数分配到合适大小。   </p>
+
+<p>一般不应直接访问此属性。</p>
+
+<p><a id="crypyAesObject.decrypt"></a></p>
+
+<h3>crypyAesObject.decrypt</h3>
+
+<p>解密数据</p>
+
+<p><a id="crypyAesObject.decrypt"></a></p>
+
+<h3>crypyAesObject.decrypt(输入数据,是否已输入全部数据,哈希对象,选项)</h3>
+
+<p>参数 @1 指定字符串或 buffer。<br>
+除第一个参数以外，其他参数都是可选参数。<br>
+分块解密时，参数 @2 必须为 flase 且参数 @1 的长度必须是块大小的倍数。<br>
+成功返回解密文本,失败返回空,<br>
+可使用..lasterr()函数获取错误信息</p>
+
+<p><a id="crypyAesObject.decrypt"></a></p>
+
+<h3>crypyAesObject.decrypt(输入缓冲区,输入数据大小,哈希对象,选项)</h3>
+
+<p>参数 @1 指定 buffer 或字符串。<br>
+如果参数 @2 指定的数值小于缓冲区据总长度，解密结束。<br>
+可使用 -1 表示解密结束，且输入数据大小等于缓冲区大小。<br>
+其他参数可忽略不用管。  </p>
+
+<p>成功返回存放解密结果的缓冲区，返回值 2 为解密长度。<br>
+需要分块解密的算法，例如 RSA 算法返回的解密结果为字符串。<br>
+失败返回 null, 错误信息,错误代码。  </p>
+
+<p>用法可参考 decryptFile 函数源码。</p>
+
+<p><a id="crypyAesObject.decryptFile"></a></p>
+
+<h3>crypyAesObject.decryptFile</h3>
+
+<p>解密文件</p>
+
+<p><a id="crypyAesObject.decryptFile"></a></p>
+
+<h3>crypyAesObject.decryptFile(输入文件,输出文件,缓冲区大小,进度回调函数,哈希对象,选项)</h3>
+
+<p>参数 @1 指定要解密的文件。参数 @2 指定要保存解密结果的文件。<br>
+文件参数都可以指定文件路径、文件对象（兼容 io.file,fsys.file,fsys.stream）。<br>
+可选用参数 @3 指定分块加密的字节长度，默认为 1MB。<br>
+指定字节长度时会自动调整到对齐块大小，参数不需要考虑对齐。<br>
+可选指定进度回调函数，回调参数 @1,@2 分别为输入文件总长度、已读取长度。<br>
+其他调用参数（哈希对象，选项）一般不必指定。  </p>
+
+<p>函数执行成功返回 true，失败返回 null,错误信息。</p>
+
+<p><a id="crypyAesObject.encrypt"></a></p>
+
+<h3>crypyAesObject.encrypt</h3>
+
+<p>加密数据</p>
+
+<p><a id="crypyAesObject.encrypt"></a></p>
+
+<h3>crypyAesObject.encrypt(输入数据,是否已输入全部数据,哈希对象,选项)</h3>
+
+<p>参数 @1 指定字符串或 buffer。<br>
+除第一个参数以外，其他参数都是可选参数。<br>
+分块加密时，参数 @2 必须为 flase 且参数 @1 的长度必须是块大小的倍数。<br>
+成功返回加密文本,失败返回空,<br>
+可使用..lasterr()函数获取错误信息</p>
+
+<p><a id="crypyAesObject.encrypt"></a></p>
+
+<h3>crypyAesObject.encrypt(输入缓冲区,输入数据大小,哈希对象,选项)</h3>
+
+<p>参数 @1 指定 buffer 或字符串。<br>
+如果参数 @2 指定的数值小于缓冲区据总长度，加密结束。<br>
+可使用 -1 表示解密结束，且输入数据大小等于缓冲区大小。<br>
+其他参数可忽略不用管。  </p>
+
+<p>成功返回存放加密结果的缓冲区，返回值 2 为解密长度。<br>
+需要分块解密的算法，例如 RSA 算法返回的解密结果为字符串。<br>
+失败返回 null, 错误信息,错误代码。  </p>
+
+<p>用法可参考 encryptFile 函数源码。</p>
+
+<p><a id="crypyAesObject.encryptFile"></a></p>
+
+<h3>crypyAesObject.encryptFile</h3>
+
+<p>加密文件</p>
+
+<p><a id="crypyAesObject.encryptFile"></a></p>
+
+<h3>crypyAesObject.encryptFile(输入文件,输出文件,缓冲区大小,进度回调函数,哈希对象,选项)</h3>
+
+<p>参数 @1 指定要加密的文件。参数 @2 指定要保存加密结果的文件。<br>
+文件参数都可以指定文件路径、文件对象（兼容 io.file,fsys.file,fsys.stream）。<br>
+可选用参数 @3 指定分块加密的字节长度，默认为 1MB。<br>
+指定字节长度时会自动调整到对齐块大小，参数不需要考虑对齐。<br>
+可选指定进度回调函数，回调参数 @1,@2 分别为输入文件总长度、已读取长度。<br>
+其他调用参数（哈希对象，选项）一般不必指定。  </p>
+
+<p>函数执行成功返回 true，失败返回 null,错误信息。</p>
+
+<p><a id="crypyAesObject.hasKey"></a></p>
+
+<h3>crypyAesObject.hasKey()</h3>
+
+<p>检测是否已设置密钥</p>
+
+<p><a id="crypyAesObject.setInitVector"></a></p>
+
+<h3>crypyAesObject.setInitVector(字符串向量,选项)</h3>
+
+<p>设置初始化向量,成功返回true,<br>
+参数2可选</p>
+
+<p><a id="crypyAesObject.setKeyParam"></a></p>
+
+<h3>crypyAesObject.setKeyParam(类型,数据值,选项)</h3>
+
+<p>设置加密参数<br>
+数据值可以是结构体,字符串，或 buffer 对象，<br>
+如果数据值一个数值参数,则转换为表示32位整型数值地址的结构体指针<br>
+成功返回true,失败请使用 ..lasterr()获取错误信息</p>
+
+<p><a id="crypyAesObject.setKeyParamMode"></a></p>
+
+<h3>crypyAesObject.setKeyParamMode(_CRYPT_MODE)</h3>
+
+<p>设置加密模式<br>
+成功返回true,失败请使用 ..lasterr()获取错误信息</p>
+
+<p><a id="crypyAesObject.setKeyParamPadding"></a></p>
+
+<h3>crypyAesObject.setKeyParamPadding(_PKCS5_PADDIN)</h3>
+
+<p>设置加密填充方式,<br>
+PKCS7填充模式请指定 _PKCS5_PADDIN,<br>
+成功返回true,失败请使用 ..lasterr()获取错误信息</p>
+
+<p><a id="crypyAesObject.setPassword"></a></p>
+
+<h3>crypyAesObject.setPassword(&quot;密钥&quot;,选项)</h3>
+
+<p>支持128位(16字节)、192位(24字节) 和 256位(32字节)密钥<br>
+如果密钥长度不足指定位数自动填充<code>&#39;\0&#39;</code>到最适合的密钥长度,<br>
+超过24字节使用使用MD5算法创建转换为24位密钥,<br>
+参数@2不需要指定</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/crypt/aes.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/crypt/aes.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/crypt/aes.md">Markdown 格式</a></p>
+
+</body> 
+</html>

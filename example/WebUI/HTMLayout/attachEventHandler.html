@@ -1,0 +1,77 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 节点绑定事件'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 节点绑定事件</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 节点绑定事件</h1><pre><code class="aardio language-aardio">//绑定事件
+import win.ui;
+/*DSG{{*/
+winform = win.form(text=&quot;节点绑定事件&quot;;right=599;bottom=399;)
+winform.add()
+/*}}*/
+
+import web.layout;
+
+//参数 @1 指定嵌入网页的窗口（可以是 winform 或 static,custom 等控件对象）
+wbLayout = web.layout(winform);
+
+wbLayout.html = /**
+&lt;!doctype html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;style type=&quot;text/css&quot;&gt;
+    html,body{ height:100%; margin:0; } 
+    body widget { size:*; }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;widget #dd type=&quot;tree&quot; treelines&gt;
+    &lt;option expanded &gt;Metals
+      &lt;option&gt;Alkaline Metals
+        &lt;option&gt;Lithium &lt;code&gt;Li&lt;/code&gt;&lt;/option&gt;
+        &lt;option&gt;Sodium &lt;code&gt;Na&lt;/code&gt;&lt;/option&gt;
+        &lt;option&gt;Potassium &lt;code&gt;K&lt;/code&gt;&lt;/option&gt;
+      &lt;/option&gt;
+      &lt;option expanded&gt;Transition Metals
+        &lt;option&gt;Scandium &lt;code&gt;Sc&lt;/code&gt;&lt;/option&gt;
+        &lt;option&gt;Titanium &lt;code&gt;Ti&lt;/code&gt;&lt;/option&gt;
+        &lt;option&gt;Vanadium &lt;code&gt;V&lt;/code&gt;&lt;/option&gt;
+      &lt;/option&gt;
+    &lt;/option&gt;
+    &lt;option expanded&gt;Halogens
+        &lt;option&gt;Fluorine &lt;code&gt;F&lt;/code&gt;&lt;/option&gt;
+        &lt;option&gt;Chlorine &lt;code&gt;Cl&lt;/code&gt;&lt;/option&gt;
+        &lt;option&gt;Bromine &lt;code&gt;Br&lt;/code&gt;&lt;/option&gt;
+    &lt;/option&gt;
+  &lt;/widget&gt; 
+&lt;/body&gt;
+&lt;/html&gt;
+**/
+
+var layoutEle = wbLayout.getEle(&quot;dd&quot;)
+layoutEle.onSelectSelectionChanged = function (ltTarget,ltOwner,reason,behaviorParams) {
+    var ltOption = ..web.layout.element( behaviorParams.he );
+
+    winform.text = ( ltOption.state.expanded ? &quot;选中(展开) &quot; : &quot;选中 &quot; )++ ltOption.innerText
+}
+
+//调用此函数启用事件函数
+layoutEle.attachEventHandler();
+
+winform.show() 
+win.loopMessage(); 
+
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/WebUI/HTMLayout/attachEventHandler.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/WebUI/HTMLayout/attachEventHandler.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/WebUI/HTMLayout/attachEventHandler.md">Markdown 格式</a>
+</body> 
+</html>

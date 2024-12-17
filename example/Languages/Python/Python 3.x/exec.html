@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - aardio 执行 Python 代码'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - aardio 执行 Python 代码</title> 
+<link rel="stylesheet" href="../../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 执行 Python 代码</h1><pre><code class="aardio language-aardio">//aardio 执行 Python 代码
+import console.int;
+import py3; 
+
+py3.main.testData = &quot;可以这样预先指定 Python 全局变量&quot;;
+
+//Python 代码，注意 Python 对空格有严格要求，乱按空格报错不是 bug。 
+var pyCode = /** 
+def getList(a,b):  
+    return [a,b,testData] # 返回列表
+    #return a,b,testData # Python 多返回值实际是返回一个 tuple
+**/
+
+/*
+执行 Python3 的代码，
+如果参数 pyCode 为类似 &quot;/res/py.aardio&quot; 这样的 aardio 代码路径，
+则支持模板语法： https://www.aardio.com/zh-cn/doc/language-reference/templating/syntax.html
+*/
+py3.exec( pyCode ) 
+
+//从 py3.main 模块调用 Python 代码定义的函数 
+var pyList = py3.main.getList(12,23);
+
+//list 或 tuple 可用下标访问，Python 对象起始索引为 0，aardio 数组起始索引为 1。
+var num = pyList[0];
+
+//可以如下遍历 pyObject 对象。
+for( pyItem in pyList.each() ){
+    console.log(pyItem) //基础类型已转换为纯 aardio 值，其他为 py2.object
+}
+
+//pyObject 支持 table.eachIndex 创建的迭代器
+for i,pyItem in table.eachIndex(pyList){
+    console.log( i,pyItem ) //基础类型已转换为纯 aardio 值，其他为 py2.object
+}
+
+//转换为纯 aardio 值
+var list = pyList.parseValue()
+
+console.dump(list);  
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/Python/Python 3.x/exec.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/Python/Python 3.x/exec.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Languages/Python/Python 3.x/exec.md">Markdown 格式</a>
+</body> 
+</html>

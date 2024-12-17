@@ -1,0 +1,349 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - builtin.string 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - builtin.string 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>builtin.string 库模块帮助文档</h1>
+
+<p><a id="string"></a></p>
+
+<h2>string 成员列表</h2>
+
+<p><a id="string.cmpMatch"></a></p>
+
+<h3>string.cmpMatch( ,&quot;字符串参数&quot; )</h3>
+
+<p>使用完全匹配比较字符串，忽略大小写，相同返回 true。<br>
+否则使用模式匹配搜索子串，忽略大小写，找到返回 true。<br>
+改用 string.indexOf 函数可禁用模式匹配查找子串。</p>
+
+<p><a id="string.concatUtf16"></a></p>
+
+<h3>string.concatUtf16(str,...)</h3>
+
+<p>将所有参数转换为 UTF-16 字符串并连接后返回。<br>
+参数可以是数值，字符串，UTF-16 编码字符串。<br>
+忽略 null 值参数</p>
+
+<p><a id="string.crlf"></a></p>
+
+<h3>string.crlf(字符串,回车换行,合并空行数)</h3>
+
+<p>自动调用 tostring 函数转换传入参数 @1 为字符串。<br>
+此函数格式化参数 @1 的回车换行或单独的回车换行符为参数 @2 指定的换行标记。<br>
+参数 @2 默认为 &#39;\r<br>
+&#39;，如果改为为 &#39;<br>
+&#39; 则格式化为单个换行符。<br>
+可选用参数 @3 指定合并空行后保留的空行数，省略则不合并。  </p>
+
+<p>注意字符串字面值解析换行的规则:<br>
+双引号或反引号内字符串只有换行没有回车,<br>
+单引号内字符串解析时忽略所有回车换号,<br>
+使用/*块注释*/包含字符串则总是将换行规范解析为回车换行组合</p>
+
+<p><a id="string.each"></a></p>
+
+<h3>string.each</h3>
+
+<p>创建适用于 for in 语句的迭代器,<br>
+用于分行匹配字符串,<br>
+可将返回迭代器传入 table.array 生成数组</p>
+
+<p><a id="string.each"></a></p>
+
+<h3>string.each(字符串,模式串,行分隔符)</h3>
+
+<p>必须使用参数@2指定模式串,<br>
+查找模式串中可用圆括号创建捕获分组自定义迭代器返回值个数,<br>
+行分隔符支持模式匹配语法,可省略</p>
+
+<p><a id="string.expand"></a></p>
+
+<h3>string.expand</h3>
+
+<p>重复替换直到找不到匹配,<br>
+可用于展开字符串中的环境变量</p>
+
+<p><a id="string.expand"></a></p>
+
+<h3>string.expand(字符串,查找模式串,替换函数)</h3>
+
+<p>在字符串中重复执行替换操作,<br>
+直到参数@2指定的模式串找不到匹配,<br>
+省略参数@2,@3则默认展开百分号包含的进程环境变量<br>
+可用于展开文件路径中的环境变量<br>
+注意即使替换函数返回null,此函数仍然会替换为空串,<br>
+如果替换结果为空字符串,此函数返回 null</p>
+
+<p><a id="string.fromCharCode"></a></p>
+
+<h3>string.fromCharCode()</h3>
+
+<p>使用1个或多个 Unicode 编码值转换为 UTF-8 字符串<br>
+参数可以指定1个或多个Unicode编码数值,可指定大于0x10000的编码,<br>
+不可直接传入数组作为参数</p>
+
+<p><a id="string.getenv"></a></p>
+
+<h3>string.getenv(&quot;变量名&quot;)</h3>
+
+<p>读取当前进程环境变量<br>
+成功返回字符串,失败返回 null</p>
+
+<p><a id="string.gfind"></a></p>
+
+<h3>string.gfind(字符串,模式串,开始位置)</h3>
+
+<pre><code class="aardio language-aardio">for i,j,group1  in string.gfind( /*查找字符串*/,&quot;(.)&quot;) { 
+
+}
+</code></pre>
+
+<p><a id="string.isUtf8"></a></p>
+
+<h3>string.isUtf8()</h3>
+
+<p>快速检测字符串是否包含UTF8编码<br>
+空字符串返回null</p>
+
+<p><a id="string.lines"></a></p>
+
+<h3>string.lines</h3>
+
+<p>创建用于for in 语句的迭代器按行拆分字符串。<br>
+可用模式串自定义行分隔符，此函数与 string.splitEx 函数使用相同的拆分规则。  </p>
+
+<p>可将返回迭代器传入 table.array 生成数组。<br>
+按行读取文件请使用 io.lines 函数。</p>
+
+<p><a id="string.lines"></a></p>
+
+<h3>string.lines(字符串,行分隔符,列分隔符,最大列数)</h3>
+
+<p>按行拆分参数 @1 传入的字符串，传入 null 或空串字符串忽略不操作。<br>
+可选用参数 @2 自定义行分隔符，支持模式匹配语法。<br>
+可选用参数 @3 自定义列分隔符，支持模式匹配语法。   </p>
+
+<p>所有分隔符模式串可用括号创建捕获组，首个捕获组如下处理：  </p>
+
+<ul>
+<li>模式串尾部有 $ 符号，则捕获组放到上个拆分结果尾部。<br></li>
+<li>模式串头部有 ^ 符号，则捕获组放到下个拆分结果头部。<br></li>
+<li>模式串头部有^ 符号尾部有 $ 号则捕获组本身拆分为一个单位。<br>
+如果返回行分隔符，则迭代器的第 2 个循环变量为 true。<br></li>
+</ul>
+
+<p>可选用参数 @4 限定最大拆分列数目。  </p>
+
+<p>如果不指定列分隔符则循环返回字符串，否则返回列数组。</p>
+
+<p><a id="string.loadcode"></a></p>
+
+<h3>string.loadcode</h3>
+
+<p>加载并执行 aardio 代码或文件,返回 HTML 模板输出的 HTML 代码<br>
+如果当前应用未定义 response 对象,请使用 print 函数替代。<br>
+此函数也可以用于非 HTML 格式的任意字符串模板，<br>
+但非 HTML 格式的字符串开始部分必须是 aardio 模板标记</p>
+
+<p><a id="string.loadcode"></a></p>
+
+<h3>string.loadcode(&quot;代码文件&quot;,...)</h3>
+
+<p>加载并执行 aardio 代码或文件,<br>
+返回 HTML 模板输出的 HTML 代码,失败返回空值,错误信息。<br>
+参数@1,与 loadcode 函数相同,其他参数作为模板参数传给被调用的文件,<br>
+在被调用文件的函数外部可使用 owner 参数获取首个模板参数,<br>
+也可以使用...获取多个模板参数</p>
+
+<p><a id="string.map"></a></p>
+
+<h3>string.map</h3>
+
+<p>搜索并返回搜索结果数组,<br>
+并调用映射函数转换数组中的每个匹配结果为新的值,  </p>
+
+<p>注意如果模式串中使用括号指定了多个分组,<br>
+映射函数会有多个对应的回调参数</p>
+
+<p><a id="string.map"></a></p>
+
+<h3>string.map(字符串,模式,映射函数)</h3>
+
+<p>参数@1指定要查找的字符串,<br>
+参数@2可以指定模式串,或包含多个表达式的数组,<br>
+省略则默认为<code>[-\d]+</code>,并且参数@3的默认值会被更换为tonumber<br>
+可选用参数@3指定映射函数,  </p>
+
+<p>返回值为匹配的字符串数组,如果有多个捕获分组则返回二维数组<br>
+如果参数@2不是数组而是表,则返回相同结构的表,<br>
+每个键对应的值更新为参数表中同名键指定的模式串的匹配结果。</p>
+
+<p><a id="string.matches"></a></p>
+
+<h3>string.matches(&quot;字符串&quot;,&quot;模式串&quot;)</h3>
+
+<p>全局匹配并将匹配结果返回为数组<br>
+每次匹配成功的多个返回值存为成员数组<br>
+即使没有匹配到任何结果,也会返回一个空数组</p>
+
+<p><a id="string.reduce"></a></p>
+
+<h3>string.reduce</h3>
+
+<p>使用string.match依次匹配多个模式串,逐步缩减并返回最终匹配结果</p>
+
+<p><a id="string.reduce"></a></p>
+
+<h3>string.reduce(字符串,模式,...)</h3>
+
+<p>参数@1指定要查找的字符串,<br>
+参数@2开始指定一个或多个模式串,<br>
+使用前面一个的匹配结果作为后面一次匹配的条件,<br>
+逐步缩减并返回最终匹配结果,<br>
+也可以在参数@2中使用一个数组指定多个模式串</p>
+
+<p><a id="string.removeBom"></a></p>
+
+<h3>string.removeBom(字符串)</h3>
+
+<p>如果字符串开始为UTF8 BOM，则返回移除该 BOM 的字符串。<br>
+如果字符串开始为 UTF-16 BOM,则移除 BOM 并返回转换为 UTF-8 编码的字符串,<br>
+否则直接返回参数</p>
+
+<p><a id="string.replaceUnmatched"></a></p>
+
+<h3>string.replaceUnmatched</h3>
+
+<p>在一个或多个与指定模式不匹配的部分进行替换</p>
+
+<p><a id="string.replaceUnmatched"></a></p>
+
+<h3>string.replaceUnmatched(源字符串,替换模式串,替换对象,排除模式串1,排除模式串2...)</h3>
+
+<p>在源字符串中保留与一个或多个排除模式串匹配的部分，<br>
+然后对剩余的部分进行单独替换。  </p>
+
+<p>&quot;替换模式串&quot;,&quot;替换对象&quot;等参数与 string.replace 函数要求一致，<br>
+&quot;替换对象&quot;可以是新的字符串、替换表或替换函数。<br>
+可以指定一个或任意多个&quot;排除模式串&quot;。<br>
+函数返回替换后的字符串与替换次数。</p>
+
+<p><a id="string.repline"></a></p>
+
+<h3>string.repline</h3>
+
+<p>按行替换字符串,返回替换后的字符串,<br>
+此函数仅返回替换后的新字符串,只有一个返回值</p>
+
+<p><a id="string.repline"></a></p>
+
+<h3>string.repline(源字符串,模式串,替换串,替换次数)</h3>
+
+<p>模式串用于匹配所有的单行文本,<br>
+替换串与 string.replace 用法相同<br>
+替换次数指的也是每一行内部进行替换的最大次数,不指定则不限制</p>
+
+<p><a id="string.repline"></a></p>
+
+<h3>string.repline(源字符串,模式串,替换函数,替换次数)</h3>
+
+<p>模式串用于匹配所有的单行文本,<br>
+替换函数与 string.replace 用法相同<br>
+,<br>
+替换次数指的也是每一行内部进行替换的最大次数,不指定则不限制</p>
+
+<p><a id="string.repline"></a></p>
+
+<h3>string.repline(源字符串,模式串,替换表,替换次数)</h3>
+
+<p>模式串用于匹配所有的单行文本,<br>
+替换表与 string.replace 用法相同<br>
+,<br>
+替换次数指的也是每一行内部进行替换的最大次数,不指定则不限制</p>
+
+<p><a id="string.search"></a></p>
+
+<h3>string.search(回调函数,字符串,模式串,...)</h3>
+
+<p>模式匹配搜索.  </p>
+
+<p>可以指定1个或多个模式串,<br>
+此函数使用前面表达式的结果作为后面表达式的查询字符串,<br>
+每一个模式串都支持全局搜索并可以返回多个匹配结果,<br>
+最后一个表达式的匹配结果作为参数回调参数@1指定的函数.  </p>
+
+<p>每一个模式串参数都可以使用函数或 lambda表达式替代,<br>
+用于作为筛选器筛选上次的匹配结果,筛选器可以返回新的字符串,<br>
+返回非字符串类型则用于指定是否保留上次的匹配结果,  </p>
+
+<p>如果参数@1是一个数组,则将匹配结果添加到该数组,如果有多个捕获分组则返回二维数组,<br>
+如果参数@1是数组则返回该数组,否则函数无返回值</p>
+
+<p><a id="string.setenv"></a></p>
+
+<h3>string.setenv(&quot;变量名&quot;,&quot;变量值&quot;)</h3>
+
+<p>设置当前进程环境变量<br>
+参数@2为 null 或省略则删除参数@1指定的环境变量</p>
+
+<p><a id="string.splitEx"></a></p>
+
+<h3>string.splitEx</h3>
+
+<p>使用模式匹配语法拆分字符串，返回拆分后的字符串数组。<br>
+此函数与 string.lines 迭代器使用相同的拆分规则。</p>
+
+<p><a id="string.splitEx"></a></p>
+
+<h3>string.splitEx(字符串,分隔符模式串,最大拆分次数,开始位置)</h3>
+
+<p>使用模式匹配语法拆分字符串，返回拆分后的字符串数组。<br>
+参数 @1 传入 null 值或空字符串返回空数组。  </p>
+
+<p>分隔符模式串可用括号创建捕获组，首个捕获组如下处理：  </p>
+
+<ul>
+<li>模式串尾部有 $ 符号，则捕获组放到上个拆分结果尾部。<br></li>
+<li>模式串头部有 ^ 符号，则捕获组放到下个拆分结果头部。<br></li>
+<li>模式串头部有^ 符号尾部有 $ 号则捕获组本身添加到返回数组中。<br></li>
+</ul>
+
+<p>省略分隔符模式则按行拆分，<br>
+兼容回车、换行、回车换行等不同换行风格，空行不合并。  </p>
+
+<p>最大拆分次数可省略（不限次数），分隔符单独加入拆分结果时拆分次数会对齐为奇数。<br>
+开始位置以字节为单位，省略则默认从开始拆分。</p>
+
+<p><a id="string.table"></a></p>
+
+<h3>string.table</h3>
+
+<p>解析以行为单位的字符串属性表。<br>
+类似功能的 string.list 支持用引号包含跨行的字段值，<br>
+但 string.table 仅将引号作为字面值处理。</p>
+
+<p><a id="string.table"></a></p>
+
+<h3>string.table(字符串,键值分隔模式,行分隔模式,行首注释符)</h3>
+
+<p>解析以行为单位的字符串属性表。<br>
+除参数@1 以外其他所有参数都可以省略。<br>
+键值分隔模式默认为 &quot;\s*[:=]\s*&quot;，也就是忽略前后空白的冒号或等号。<br>
+行分隔符默认兼容回车换行、换行、单回车等行分隔符。<br>
+默认不指定行首注释符，该参数仅支持字节码，例如 &#39;#&#39;#。</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/builtin/string.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/builtin/string.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/builtin/string.md">Markdown 格式</a></p>
+
+</body> 
+</html>

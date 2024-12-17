@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - fsys.caseSensitivity 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - fsys.caseSensitivity 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>fsys.caseSensitivity 库模块帮助文档</h1>
+
+<p><a id="fsys.caseSensitivity"></a></p>
+
+<h2>fsys.caseSensitivity 成员列表</h2>
+
+<p>用于获取或设置指定目录下路径是否分区大小写</p>
+
+<p><a id="fsys.caseSensitivity.get"></a></p>
+
+<h3>fsys.caseSensitivity.get(dirPath)</h3>
+
+<p>指定目录下路径是否分区大小写,<br>
+@dirPath 参数指定目录路径  </p>
+
+<p>区分大小写返回 true，不区分返回 false，<br>
+发生错误返回 null,错误代码<br>
+错误代码参考 错误代码参考 <a href="javascript:if(confirm('https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-erref/596a1078-e883-4972-9bbc-49e60bebca55  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-erref/596a1078-e883-4972-9bbc-49e60bebca55'" tppabs="https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-erref/596a1078-e883-4972-9bbc-49e60bebca55">https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-erref/596a1078-e883-4972-9bbc-49e60bebca55</a></p>
+
+<p><a id="fsys.caseSensitivity.get"></a></p>
+
+<h3>fsys.caseSensitivity.get(dirPath,enabled)</h3>
+
+<p>设置指定目录下路径是否分区大小写,<br>
+@dirPath 参数指定目录路径,@enabled 指定是否区分大小写  </p>
+
+<p>成功返回 true,发生错误返回 null,错误代码。<br>
+常见错误代码：<br>
+0xC0000022 进程需要管理权限<br>
+0xC000000D 参数错误<br>
+0xC00000BB 不支持，需要安装 WSL（Windows Subsystem for Linux）</p>
+
+<p><a id="fsys.caseSensitivity.getName"></a></p>
+
+<h3>fsys.caseSensitivity.getName()</h3>
+
+<p>获取参数@1指定路径的大小写敏感的文件名。<br>
+参数支持文件搜索通配符（与 fsys.enum 相同）。<br>
+此函数不需要系统安装 WSL</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/fsys/caseSensitivity.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/fsys/caseSensitivity.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/fsys/caseSensitivity.md">Markdown 格式</a></p>
+
+</body> 
+</html>

@@ -1,0 +1,60 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - julia.value 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - julia.value 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>julia.value 库模块帮助文档</h1>
+
+<p><a id="julia.value"></a></p>
+
+<h2>julia.value 成员列表</h2>
+
+<p><a id="julia.value.build"></a></p>
+
+<h3>julia.value.build()</h3>
+
+<p>将参数传入的 aardio 对象转换为 Julia 对象,<br>
+传入指针类型时，不作任何转换</p>
+
+<p><a id="julia.value.importType"></a></p>
+
+<h3>julia.value.importType(&quot;字符串参数&quot;)</h3>
+
+<p>导入并返回 Julia 类型对象指针，例如 importType(&quot;any_type&quot;)</p>
+
+<p><a id="julia.value.parse"></a></p>
+
+<h3>julia.value.parse()</h3>
+
+<p>将参数传入的 Julia 对象原始指针转换为 aardio 对象,<br>
+参数传入指针时必须是 Julia 对象原始指针,非指针类型参数直接返回,<br>
+无法转换的对象直接返回原指针</p>
+
+<p><a id="julia.value.topointer"></a></p>
+
+<h3>julia.value.topointer()</h3>
+
+<p>取出 Julia 对象指针指向的指针值,<br>
+返回的已经是普通内存指针，不能再作为 Julia 对象指针使用</p>
+
+<p><a id="julia.value.typeof"></a></p>
+
+<h3>julia.value.typeof()</h3>
+
+<p>返回 Julia 对象指针的数据类型,返回值为字符串,<br>
+如果传入参数不是指针，返回 null</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/julia/value.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/julia/value.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/julia/value.md">Markdown 格式</a></p>
+
+</body> 
+</html>

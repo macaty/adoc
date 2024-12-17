@@ -1,0 +1,149 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - gdip.imageAttributes 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - gdip.imageAttributes 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>gdip.imageAttributes 库模块帮助文档</h1>
+
+<p><a id="gdip"></a></p>
+
+<h2>gdip 成员列表</h2>
+
+<p><a id="gdip.imageAttributes"></a></p>
+
+<h3>gdip.imageAttributes</h3>
+
+<p>图像显示属性控制</p>
+
+<p><a id="gdip.imageAttributes"></a></p>
+
+<h3>gdip.imageAttributes()</h3>
+
+<p>创建图像显示属性控制对象  </p>
+
+<p><a href="#gdipImgattrObject">返回对象:gdipImgattrObject</a></p>
+
+<p><a id="gdipImgattrObject"></a></p>
+
+<h2>gdipImgattrObject 成员列表</h2>
+
+<p><a id="gdipImgattrObject.dispose"></a></p>
+
+<h3>gdipImgattrObject.dispose()</h3>
+
+<p>释放对象，<br>
+内存回收时会自动调用此函数，<br>
+重复调用此函数将自动忽略</p>
+
+<p><a id="gdipImgattrObject.reset"></a></p>
+
+<h3>gdipImgattrObject.reset(adjustType)</h3>
+
+<p>清除所有设置,adjustType为可选参数</p>
+
+<p><a id="gdipImgattrObject.setAlphaMatrix"></a></p>
+
+<h3>gdipImgattrObject.setAlphaMatrix()</h3>
+
+<p>设置透明度调色矩阵,<br>
+参数使用表示百分比的小数，例如0.5为Alpha分量调整至50%</p>
+
+<p><a id="gdipImgattrObject.setColor"></a></p>
+
+<h3>gdipImgattrObject.setColor(color)</h3>
+
+<p>替换所有非完全透明的颜色，\参数 @color 指定 RGBA 格式的颜色数值</p>
+
+<p><a id="gdipImgattrObject.setColorKey"></a></p>
+
+<h3>gdipImgattrObject.setColorKey(clr1,clr2,adjustType)</h3>
+
+<p>参数@1指定透明色,<br>
+可选使用参数@2指定另一个透明色以确定透明色范围,<br>
+参数@3可选使用_gdipColorAdjustType前缀的常量指定选项</p>
+
+<p><a id="gdipImgattrObject.setColorMatrix"></a></p>
+
+<h3>gdipImgattrObject.setColorMatrix(colorMatrix,grayMatrix,adjustType)</h3>
+
+<pre><code class="aardio language-aardio">gdipImgattrObject.setColorMatrix({
+    1;0;0;0;0;
+    0;1;0;0;0;
+    0;0;1;0;0;
+    0;0;0;1;0;
+    0;0;0;0;1/*colorMatrix为null取消调色矩阵  
+grayMatrix可省略,设为false时忽略灰度,也可以指定一个灰度矩阵  
+adjustType使用_GdipColorAdjustType 前缀的常量指定,省略则默认为0*/
+})
+</code></pre>
+
+<p><a id="gdipImgattrObject.setGamma"></a></p>
+
+<h3>gdipImgattrObject.setGamma</h3>
+
+<p>设置伽马值</p>
+
+<p><a id="gdipImgattrObject.setGamma"></a></p>
+
+<h3>gdipImgattrObject.setGamma(gamma,adjustType)</h3>
+
+<p>参数 @gamma 指定伽马值。<br>
+如果不指定伽马值（null 值）则清除伽马值。  </p>
+
+<p>adjustType 使用 _GdipColorAdjustType 前缀的常量指定，省略则默认为 0。</p>
+
+<p><a id="gdipImgattrObject.setNegativeMatrix"></a></p>
+
+<h3>gdipImgattrObject.setNegativeMatrix()</h3>
+
+<p>设置反相调色矩阵</p>
+
+<p><a id="gdipImgattrObject.setRemapTable"></a></p>
+
+<h3>gdipImgattrObject.setRemapTable(colorMap,adjustType)</h3>
+
+<pre><code class="aardio language-aardio">gdipImgattrObject.setRemapTable({
+    0xFF00FFFF;0xFFFF0000/*ccolorMap为null取消颜色映射表  
+颜色映射表包含成对的颜色值数组,每一对颜色值使用后面的颜色替换前面的颜色,  
+adjustType使用_GdipColorAdjustType前缀的常量指定,省略则默认为0*/
+})
+</code></pre>
+
+<p><a id="gdipImgattrObject.setRgba"></a></p>
+
+<h3>gdipImgattrObject.setRgba(r,g,b,a)</h3>
+
+<p>设置r,g,b,a分量的变化比例,<br>
+参数使用表示百分比的小数，例如0.5表示对应分量调整至50%,<br>
+所有参数可选，默认值都是1</p>
+
+<p><a id="gdipImgattrObject.setThreshold"></a></p>
+
+<h3>gdipImgattrObject.setThreshold</h3>
+
+<p>设置阈值</p>
+
+<p><a id="gdipImgattrObject.setThreshold"></a></p>
+
+<h3>gdipImgattrObject.setThreshold(threshold,adjustType)</h3>
+
+<p>参数 @threshold 指定阈值。<br>
+如果不指定阈值（null 值）则清除阈值。  </p>
+
+<p>阈值是一个介于 0 到 1 之间的值，该值指定每个颜色分量的截止点。<br>
+adjustType 使用 _GdipColorAdjustType 前缀的常量指定，省略则默认为 0。</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/gdip/imageAttributes.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/gdip/imageAttributes.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/gdip/imageAttributes.md">Markdown 格式</a></p>
+
+</body> 
+</html>

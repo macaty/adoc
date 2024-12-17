@@ -1,0 +1,199 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - builtin.io 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - builtin.io 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>builtin.io 库模块帮助文档</h1>
+
+<p><a id="::Shell32"></a></p>
+
+<h2>::Shell32 成员列表</h2>
+
+<p><a id="::Shell32.?"></a></p>
+
+<h3>::Shell32.?</h3>
+
+<p>可不用声明直接在此输入函数名并调用API函数  </p>
+
+<p>一、传入参数规则：<br>
+1、null参数不可省略<br>
+2、32位整数类型，小于32位的整数、以及枚举类型都可以直接在API参数中写数值。<br>
+3、对于任何数值类型的指针（输出参数）一律使用结构体表示，例如double * v 表示为{ double v }<br>
+4、数组使用结构体表示<br>
+5、所有结构体传给API的都是指针地址，都是输出参数并增加返回值  </p>
+
+<p>二、返回值规则：<br>
+1、返回值默认为int类型<br>
+2、可以使用[API尾标]改变返回值为其他类型  </p>
+
+<p>三、所有可用的【API尾标】:<br>
+::Shell32.ApiNameW() 切换到Unicode版本，字符串UTF8-UTF16双向转换<br>
+::Shell32.ApiNameA() 切换到ANSI版本,字符串不作任何转换<br>
+::Shell32.ApiNameL() 返回值为64位LONG类型<br>
+::Shell32.ApiNameP() 返回值为指针类型<br>
+::Shell32.ApiNameD() 返回值为double浮点数<br>
+::Shell32.ApiNameF() 返回值为float浮点数<br>
+::Shell32.ApiNameB() 返回值为C++中的8位bool类型<br>
+注意【尾标】前必须是小写字母</p>
+
+<p><a id="::Shell32.Control_RunDLL"></a></p>
+
+<h3>::Shell32.Control_RunDLL(hwnd,hinst,cmdLine,cmdShow)</h3>
+
+<p>可用于启动控制面板命令,<br>
+hwnd可指定为0,hinst 可指定为 _HINSTANSE,<br>
+cmdLine 指定启动参数,cmdShow 指定为1即可,<br>
+也可以通过process.rundll 运行此函数,<br>
+或通过 process.control 直接执行控制面板命令</p>
+
+<p><a id="::Shell32.SHChangeNotify"></a></p>
+
+<h3>::Shell32.SHChangeNotify(_SHCNE,0,0,0)</h3>
+
+<p>通知操作系统外壳刷新,例如刷新桌面图标等<br>
+参数依次为@eventId,@flags,@item1,@item2<br>
+参数@flags的值为5时函数名必须加上 W 尾标，即 ::Shell32.SHChangeNotifyW</p>
+
+<p><a id="::Shell32.ShellExecute"></a></p>
+
+<h3>::Shell32.ShellExecute(hwnd,operation,path,param,workDir,cmdShow)</h3>
+
+<p>执行 path 指定的程序,<br>
+第一个参数为数值格式的句柄,<br>
+最后一个参数为数值,指定为1即可,其他参数都是字符串,<br>
+详细用法请参考该 API 文档,<br>
+注意省略的参数也要指定 null 值,<br>
+非声明式调用 API 不能减少参数个数,<br>
+raw.execute 函数提供类似功能，但所有参数都可以省略。<br>
+process.execute 函数也提供类似功能</p>
+
+<p><a id="::Shell32.api("字符串参数","void"></a></p>
+
+<h3>::Shell32.api(&quot;字符串参数&quot;,&quot;void()&quot; )</h3>
+
+<p>声明Kernel32 API函数</p>
+
+<p><a id="io"></a></p>
+
+<h2>io 成员列表</h2>
+
+<p><a id="io.appData"></a></p>
+
+<h3>io.appData</h3>
+
+<p>获取  %LocalAppData% 目录下的绝对路径。<br>
+可选使用指定需要存入的数据</p>
+
+<p><a id="io.appData"></a></p>
+
+<h3>io.appData(path,data)</h3>
+
+<p>将@path指定的相对路径转换为系统 %LocalAppData% 目录下的绝对路径,<br>
+可选使用 @data 指定需要存入的数据,<br>
+存入文件与目标文件长度不同或 PE 时间戳不同则允许替换旧文件,<br>
+指定 @data 参数后如果无法创建文件返回null,<br>
+最后返回转换所得的完整路径</p>
+
+<p><a id="io.curDir"></a></p>
+
+<h3>io.curDir</h3>
+
+<p>获取或修改当前目录</p>
+
+<p><a id="io.curDir"></a></p>
+
+<h3>io.curDir()</h3>
+
+<p>无参数获取当前目录</p>
+
+<p><a id="io.curDir"></a></p>
+
+<h3>io.curDir(dir)</h3>
+
+<p>将 @dir 参数指定的目录路径转换为完整路径并设为当前目录<br>
+成功返回 true</p>
+
+<p><a id="io.getSize"></a></p>
+
+<h3>io.getSize()</h3>
+
+<p>获取参数@1指定路径的文件字节长度,<br>
+返回数值</p>
+
+<p><a id="io.getSpecial"></a></p>
+
+<h3>io.getSpecial(_CSIDL)</h3>
+
+<p>获取特殊文件夹,<br>
+参数@1使用 _CSIDL 开头的常量指定特殊文件夹的 CSIDL,<br>
+不指定参数@1则默认值为 _CSIDL_DESKTOP,<br>
+可选增加任意个拼接到目录后的子路径参数<br>
+这个函数与fsys.getSpecial函数用法接近,<br>
+但支持不定个数子路径参数, 不支持返回PIDL  </p>
+
+<p>fsys.knownFolder 可用于获取更多已知的特殊文件夹</p>
+
+<p><a id="io.specialData"></a></p>
+
+<h3>io.specialData(path,data,csidl)</h3>
+
+<p>将 @path 指定的相对路径转换为特殊文件夹下的绝对路径,<br>
+可选使用 @data 指定需要存入的数据,<br>
+存入文件与目标文件长度不同或 PE 时间戳不同则允许替换旧文件,<br>
+指定 @data 参数后如果无法创建文件返回null,<br>
+参数@csidl 使用 _CSIDL 开头的常量指定特殊文件夹的 CSIDL,<br>
+不指定@csidl 则默认值为 _CSIDL_DESKTOP,<br>
+最后返回转换所得的完整路径</p>
+
+<p><a id="io.tmpname"></a></p>
+
+<h3>io.tmpname</h3>
+
+<p>生成系统临时文件目录下的临时文件路径</p>
+
+<p><a id="io.tmpname"></a></p>
+
+<h3>io.tmpname(prefix,ext)</h3>
+
+<p>生成临时文件路径，<br>
+可选用 @prefix 参数指定前缀名，<br>
+可选用 @ext 参数指定后缀名，后缀名应包含点</p>
+
+<p><a id="io.updateData"></a></p>
+
+<h3>io.updateData</h3>
+
+<p>更新指定文件的数据</p>
+
+<p><a id="io.updateData"></a></p>
+
+<h3>io.updateData(data,path,...)</h3>
+
+<p>更新指定 @path 指定路径的文件为 @data 指定的数据。<br>
+如果添加更多参数，则首先调用 io.joinpath 拼接到 @path 后面。<br>
+存入文件与目标文件长度不同或 PE 时间戳不同则允许替换旧文件。<br>
+替换失败返回 null，否则返回文件路径</p>
+
+<h3>全局常量</h3>
+
+<p><a id="::Shell32"></a></p>
+
+<h3>::Shell32</h3>
+
+<p>默认已加载的Shell32.dll模块对象（参考标准库：peload.io），<br>
+提供Windows系统外壳 API</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/builtin/io.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/builtin/io.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/builtin/io.md">Markdown 格式</a></p>
+
+</body> 
+</html>

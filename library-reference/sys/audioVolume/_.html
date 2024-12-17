@@ -1,0 +1,96 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - sys.audioVolume 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - sys.audioVolume 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>sys.audioVolume 库模块帮助文档</h1>
+
+<p><a id="sys"></a></p>
+
+<h2>sys 成员列表</h2>
+
+<p><a id="sys.audioVolume"></a></p>
+
+<h3>sys.audioVolume</h3>
+
+<p>系统音量控制</p>
+
+<p><a id="sys.audioVolume"></a></p>
+
+<h3>sys.audioVolume()</h3>
+
+<p>创建音量控制对象  </p>
+
+<p><a href="#SysAudioVolumeObject">返回对象:SysAudioVolumeObject</a></p>
+
+<p><a id="AudioMeterInfomationObject"></a></p>
+
+<h2>AudioMeterInfomationObject 成员列表</h2>
+
+<p><a id="AudioMeterInfomationObject.getChannelsPeakValues"></a></p>
+
+<h3>AudioMeterInfomationObject.getChannelsPeakValues(count)</h3>
+
+<p>返回@count参数指定数目声道的音量数组,<br>
+音量最小值为0,最大值为1,<br>
+参数必须与实际的声道数一致,<br>
+可省略参数自动获取声道数</p>
+
+<p><a id="AudioMeterInfomationObject.getMeteringChannelCount"></a></p>
+
+<h3>AudioMeterInfomationObject.getMeteringChannelCount()</h3>
+
+<p>返回声道数</p>
+
+<p><a id="AudioMeterInfomationObject.getPeakValue"></a></p>
+
+<h3>AudioMeterInfomationObject.getPeakValue()</h3>
+
+<p>得到实时主音量百分比,<br>
+最小值为0,最大值为1</p>
+
+<p><a id="AudioMeterInfomationObject.queryHardwareSupport"></a></p>
+
+<h3>AudioMeterInfomationObject.queryHardwareSupport()</h3>
+
+<p>是否硬件支持</p>
+
+<p><a id="SysAudioVolumeObject"></a></p>
+
+<h2>SysAudioVolumeObject 成员列表</h2>
+
+<p><a id="SysAudioVolumeObject.getMeterInfomation"></a></p>
+
+<h3>SysAudioVolumeObject.getMeterInfomation()</h3>
+
+<p>获取实时音量信息  </p>
+
+<p><a href="#AudioMeterInfomationObject">返回对象:AudioMeterInfomationObject</a></p>
+
+<p><a id="SysAudioVolumeObject.mute"></a></p>
+
+<h3>SysAudioVolumeObject.mute</h3>
+
+<p>获取或设置是否静音</p>
+
+<p><a id="SysAudioVolumeObject.volume"></a></p>
+
+<h3>SysAudioVolumeObject.volume</h3>
+
+<p>获取或设置系统音量,<br>
+最小值为0,最大值为100</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/sys/audioVolume/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/sys/audioVolume/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/sys/audioVolume/_.md">Markdown 格式</a></p>
+
+</body> 
+</html>

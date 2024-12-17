@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - golang.slice 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - golang.slice 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>golang.slice 库模块帮助文档</h1>
+
+<p><a id="golang"></a></p>
+
+<h2>golang 成员列表</h2>
+
+<p><a id="golang.slice"></a></p>
+
+<h3>golang.slice()</h3>
+
+<p>创建 Go 切片。<br>
+参数@1可用结构体指定原生数组，数组字段名必须为 value。<br>
+Go 函数的参数类型必须声明为相同原生类型的数组指针。  </p>
+
+<p>自 Go 调用返回以后，建议立即访问 value 字段获取 Go 返回的数组。<br>
+因为 Go 的内存回收器稍后会回收 Go 数组的内存（至少在调用结束那一刻并不会立即回收）。<br>
+转换以后此对象的内部指针即安全地指向 aardio 分配的内存。<br>
+只要正确使用，go.slice 不会造成内存泄漏。  </p>
+
+<p>如果不需要在 Go 中修改数组，则 value 字段总是指向  aardio 分配的内存。</p>
+
+<p><a href="#GoSliceObject">返回对象:GoSliceObject</a></p>
+
+<p><a id="GoSliceObject"></a></p>
+
+<h2>GoSliceObject 成员列表</h2>
+
+<p><a id="GoSliceObject.value"></a></p>
+
+<h3>GoSliceObject.value</h3>
+
+<p>返回或设置原生数组的值</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/golang/slice.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/golang/slice.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/golang/slice.md">Markdown 格式</a></p>
+
+</body> 
+</html>

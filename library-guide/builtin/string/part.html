@@ -1,0 +1,235 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - 拆分合并'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - 拆分合并</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>拆分合并</h1>
+
+<p>请参考：<a href="../../../language-reference/datatype/datatype.html#varstring" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/datatype/datatype.html#varstring">数据类型 - 字符串</a> <a href="../../../language-reference/operator/concat.html" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/operator/concat.html">字符串连接操作符</a></p>
+
+<h2>截取字符串</h2>
+
+<ol>
+<li><p>string.slice</p>
+
+<p>原型：</p>
+
+<p><code>substr = string.slice(str,i,j=-1,chars=false );</code>  </p>
+
+<p>说明：</p>
+
+<p>从字符串中截取从位置i到位置j的字符串，j为可选参数。<br>
+如果i,j为负数，则从右侧倒数计数(-1表示字符串最后一个字符)。 如果i,j没有指定一个有效的截取范围，则返回一个空字符串(而不是null);  </p>
+
+<p>最后一个参数 @chars 是可选参数,默认为 false,<br>
+该参数影响计数方式,如果为 false 则按字节计数，汉字有多个字节(注意UTF-8是变长编码) 。如果为 true , 则按字符计数,一个汉字计为一个字符.  </p>
+
+<p>示例：</p>
+
+<pre><code class="aardio language-aardio">import console;
+console.log(string.slice(&quot;abcdefg&quot;,-5,-4) )
+</code></pre></li>
+<li><p>string.left</p>
+
+<p>原型：</p>
+
+<p><code>substr = string.left(str,n,chars=false);</code></p>
+
+<p>说明：</p>
+
+<p>在字符串左侧截取n个字符,如果n没有指定一个有效的截取范围，<br>
+则返回一个空字符串(而不是null);  </p>
+
+<p>参数chars如果为false则按字节计数,一个汉字有多个字节.<br>
+如果为true,则按字符计数,一个汉字计为一个字符.  </p></li>
+<li><p>string.right</p>
+
+<p>原型：</p>
+
+<p>substr = string.right(str,n,chars=false);  </p>
+
+<p>说明：</p>
+
+<p>在字符串右侧截取 n 个字符,如果 n 没有指定一个有效的截取范围，则返回一个空字符串(而不是null);  </p>
+
+<p>参数 chars 如果为false则按字节计数,一个汉字有多个字节.<br>
+如果为true,则按字符计数,一个汉字计为一个字符.</p></li>
+</ol>
+
+<h2>清除字符串首尾字符</h2>
+
+<ol>
+<li><p>string.trim</p>
+
+<p>原型：</p>
+
+<p><code>substr = string.trim(str\[,space\]);</code></p>
+
+<p>说明：</p>
+
+<p>去掉字符串首尾指定字符，可以指定单个字符，或一组需要在首尾去掉的字符组成的字符串。  如果省略space参数，则清除所有空白字符，包含空格(&#39; &#39;)、制表符(&#39;\t&#39;)、回车(&#39;\r&#39;)、换行(&#39;\n&#39;)、垂直制表符(&#39;\v&#39;)或翻页(&#39;\f&#39;) 等。</p></li>
+<li><p>string.trimleft</p>
+
+<p>原型：</p>
+
+<p><code>substr = string.trimleft(str\[,space\]);</code> </p>
+
+<p>说明：</p>
+
+<p>去掉字符串开始的指定字符，可以指定单个字符，或一组需要在首尾去掉的字符组成的字符串。<br>
+如果省略space参数，则清除所有空白字符，包含空格(&#39; &#39;)、制表符(&#39;\t&#39;)、CR(&#39;\r&#39;)、换行(&#39;\n&#39;)、垂直制表符(&#39;\v&#39;)或翻页(&#39;\f&#39;) 等。</p></li>
+<li><p>string.trimright</p>
+
+<p>原型：</p>
+
+<p><code>substr = string.trimright(str\[,space\]);</code></p>
+
+<p>说明：</p>
+
+<p>去掉字符串尾部的指定字符，可以指定单个字符，或一组需要在首尾去掉的字符组成的字符串。<br>
+如果省略space参数，则清除所有空白字符，包含空格(&#39; &#39;)、制表符(&#39;\t&#39;)、CR(&#39;\r&#39;)、换行(&#39;\n&#39;)、垂直制表符(&#39;\v&#39;)或翻页(&#39;\f&#39;) 等。</p></li>
+</ol>
+
+<h2>拼接字符串</h2>
+
+<p>原型：</p>
+
+<p><code>string.concat(str,str2[,...])</code></p>
+
+<p>说明：</p>
+
+<p>拼接字符串，与 ++ 连接操作符不同的是:<br>
+string.concat会忽略null值,而使用++操作符连接null空值时会抛出异常。<br>
+如果无参数,或所有参数为null,string.concat返回null.  </p>
+
+<p>如果需要连接多个字符串，而允许其中有null参数,<br>
+可以使用string.concat替代连接操作符</p>
+
+<h2>拆分字符串数组 <a id="split" href="#split">&#x23;</a></h2>
+
+<p>原型：</p>
+
+<p><code>string.split(str,separator,maxLength)</code></p>
+
+<p>拆分字符串并返回<a href="../../../language-reference/datatype/table/_.html#array" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/datatype/table/_.html#array">数组</a>。</p>
+
+<p>说明：</p>
+
+<p>str 参数指定要拆分的字符串。<br>
+separator 参数可使用字节码或字符串指定分隔符。<br>
+maxLength 则用于限定反回数组的最大长度，默认不指定则不限制返回数组长度。  </p>
+
+<ol>
+<li><p>按单字符拆分  </p>
+
+<p>separator 参数为置于单引号中的单个字符，这是速度最快的拆分方法  </p>
+
+<p>示例：</p>
+
+<pre><code class="aardio language-aardio">import console;
+
+var str = &quot;123ab456ab789ab&quot;;
+var t = string.split(str,&#39;a&#39;); //使用单个分隔字符拆分字符串
+
+console.log(table.unpack(t) );
+</code></pre></li>
+<li><p>按多个分隔字符(分隔串)拆分 </p>
+
+<p>separator 参数为包含多个分隔字符的普通字符串，分隔符与分隔符之间返回空元素  </p>
+
+<p>示例：</p>
+
+<pre><code class="aardio language-aardio">import console;
+
+str = &quot;123ab456ab789ab&quot;;
+t = string.split(str,&quot;ab&quot;); //使用分隔串&quot;ab&quot;拆分字符串
+
+console.log( #t ); //数组长度为6
+console.log(table.unpack(t) );
+</code></pre></li>
+<li><p>按字符串拆分</p>
+
+<p>separator 参数为普通字符串，此字符串被包含在<code>&lt;&gt;</code>括号内，作为一个独立整体的分隔标记. 注意，虽然 <code>&lt;&gt;</code> 在这里的语义与模式匹配语法相同，但 string.split 并不支持其他模式语法。  </p>
+
+<p>示例：</p>
+
+<pre><code class="aardio language-aardio">import console;
+
+str = &quot;123ab456ab789ab&quot;;
+t = string.split(str,&quot;&lt;ab&gt;&quot;); //使用完整字符串&quot;ab&quot;为分隔符拆分
+
+console.log( #t ); //数组长度为3
+console.log(table.unpack(t) );
+</code></pre></li>
+</ol>
+
+<h2>使用模式匹配拆分字符串数组 <a id="splitEx" href="#splitEx">&#x23;</a></h2>
+
+<p>原型：</p>
+
+<p><code>string.splitEx(str,separator,maxLength,position)</code></p>
+
+<p>使用<a href="patterns.html" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/builtin/string/patterns.html">模式匹配</a>拆分字符串并返回<a href="../../../language-reference/datatype/table/_.html#array" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/datatype/table/_.html#array">数组</a>。</p>
+
+<p>说明：</p>
+
+<ul>
+<li>参数 str 指定要拆分的字符串，传入 null 值或空字符串返回空数组。<br></li>
+<li><p>separator 使用模式匹配指定文本分隔符。</p>
+
+<p>省略分隔符模式则默认按行拆分，兼容回车、换行、回车换行等不同换行风格，空行不合并。</p>
+
+<p>分隔符模式串可用括号创建捕获组，首个捕获组如下处理：</p>
+
+<ul>
+<li>模式串尾部有 $ 符号，则捕获组放到上个拆分结果尾部。</li>
+<li>模式串头部有 ^ 符号，则捕获组放到下个拆分结果头部。</li>
+<li>模式串头部有 ^ 符号并且尾部有 $ 符号，则捕获组作为单独的拆分结果添加到返回数组中。如果将分隔符加入拆分结果，则每次拆分至少会增加 2 个拆分元素，如果同时指定了限定返回数组长度的 maxLength 参数则会自动对齐为奇数。</li>
+</ul></li>
+<li><p>maxLength 则用于限定返回数组的最大长度，默认不指定则不限制返回数组长度。  </p></li>
+<li><p>position 指定允许字符最早出现的位置 ，以字节为单位 。不指定此参数则不作限制，默认从开始拆分。</p></li>
+</ul>
+
+<p>string.lines 封装了 string.splitEx 函数并提供了一个用于 <a href="../../../language-reference/statements/iterator.html" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/statements/iterator.html">for in</a> 语句的迭代器，主要增加了以下功能：</p>
+
+<ul>
+<li>除了可以指定行分隔符，还可以选择指定列分隔符以进行二次拆分。</li>
+<li>当模式串模式串头部有 <code>^</code> 符号并且尾部有 <code>$</code> 符号时，捕获组会作为单独的拆分结果由迭代器返回为第一个循环变量，此时迭代器返回的第二个循环变量为 true 以表明这是一个分模式串头部有 <code>^</code> 符号并且尾部有 <code>$</code> 符号， 则捕获组将由迭代器返回为单独的拆分结果，紧随其后的第二个返回值为 true 以表明该拆分结果是一个分隔符。调用代码格式为  <code>for line,isSeparator in string.lines(str,&quot;^(分隔符)$&quot;){ }</code> 这个特性被用于实现文本分句的 <a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/string/  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/string/'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/string/">string.sentences 库</a> 。</li>
+</ul>
+
+<p>参考： <a href="parsing.html#lines" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/builtin/string/parsing.html#lines">文本解析函数 string.lines</a></p>
+
+<h2>字符串数组合并</h2>
+
+<p>原型：</p>
+
+<p>string.join(tab,sep)</p>
+
+<p>说明：</p>
+
+<p>将一个字符串数组(<a href="../../../language-reference/datatype/table/_.html" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/datatype/table/_.html">table对象</a>）以sep指字的分隔标记合并为一个字符串</p>
+
+<p>示例：</p>
+
+<pre><code class="aardio language-aardio">import console;
+
+tab = {&quot;ab&quot;;&quot;cd&quot;;&quot;efg&quot;}
+str = string.join(tab,&quot;分隔符&quot;);
+
+console.log( str );
+</code></pre>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-guide/builtin/string/part.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-guide/builtin/string/part.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/builtin/string/part.md">Markdown 格式</a></p>
+
+</body> 
+</html>

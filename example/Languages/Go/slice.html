@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - aardio 调用 Go 语言 - 切片'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - aardio 调用 Go 语言 - 切片</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 调用 Go 语言 - 切片</h1><pre><code class="aardio language-aardio">//aardio 调用 Go 语言 - 切片
+import golang;
+var go = golang();   
+go.main = /**********
+package main 
+
+import &quot;C&quot;  
+import &quot;sort&quot; 
+
+//export TestSlice
+func TestSlice(vals *[]int) {
+
+    //操作 aardio 传过来的切片对象（ golang.slice 对象）。 
+    sort.Ints(*vals)
+}
+
+func main() {} 
+**********/ 
+go.buildShared(&quot;/.go/TestSlice.go&quot;);
+
+//------------------下面调用 DLL-----------------------
+
+import console.int; 
+var goDll = raw.loadDll(&quot;/.go/TestSlice.dll&quot;,,&quot;cdecl&quot;);
+
+//创建 Go 切片
+import golang.slice; 
+var slice = golang.slice({
+
+    //指定原生数组，字段名必须为 value，[]表示动态长度
+    int value[] = {23,1,22} //动态数组不能为空数组
+})
+
+//调用 Go 函数 
+goDll.TestSlice(slice);
+
+/*
+如果 Go 代码里修改了切片。
+那么在调用后应尽快访问一次 value 字段 ，
+golang.slice 内部就会重新指向 aardio 分配的内存。
+*/
+var items = slice.value 
+
+//返回的值是一个普通 aardio 数组。
+console.dumpJson(items)
+
+//slice 也可以直接转换为 JSON
+console.dumpJson(slice)
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/Go/slice.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/Go/slice.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Languages/Go/slice.md">Markdown 格式</a>
+</body> 
+</html>

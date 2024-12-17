@@ -1,0 +1,450 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - win.reg 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - win.reg 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>win.reg 库模块帮助文档</h1>
+
+<p><a id="win"></a></p>
+
+<h2>win 成员列表</h2>
+
+<p><a id="win.reg"></a></p>
+
+<h3>win.reg()</h3>
+
+<p><a href="#winRegObject">返回对象:winRegObject</a></p>
+
+<p><a id="win.reg"></a></p>
+
+<h3>win.reg(path)</h3>
+
+<p>打开或创建注册表路径，<br>
+@path 参数指定注册表路径。  </p>
+
+<p>此函数还有其他可选参数，一般不必指定</p>
+
+<p><a id="win.reg"></a></p>
+
+<h3>win.reg(path,true)</h3>
+
+<p>仅打开已存在的注册表路径，<br>
+@path 参数指定注册表路径。  </p>
+
+<p>此函数还有其他可选参数，一般不必指定</p>
+
+<p><a id="win.regReader"></a></p>
+
+<h3>win.regReader(&quot;HKEY_CURRENT_USER&quot;)</h3>
+
+<p>仅仅以只读模式打开存在的注册表路径,如果不存在返回null<br>
+此函数显式指定只读权限速度较快</p>
+
+<p><a id="win.regReader"></a></p>
+
+<h3>win.regReader()</h3>
+
+<p><a href="#winRegObject">返回对象:winRegObject</a></p>
+
+<p><a id="win.regReaderWow64"></a></p>
+
+<h3>win.regReaderWow64(&quot;HKEY_LOCAL_MACHINE&quot;)</h3>
+
+<p>在64位系统中访问64位注册表,<br>
+32位系统作用与 win.regReader 相同,<br>
+仅仅以只读模式打开存在的注册表路径,如果不存在返回nulll<br>
+此函数显式指定只读权限速度较快</p>
+
+<p><a id="win.regReaderWow64"></a></p>
+
+<h3>win.regReaderWow64()</h3>
+
+<p><a href="#winRegObject">返回对象:winRegObject</a></p>
+
+<p><a id="win.regWow32"></a></p>
+
+<h3>win.regWow32(&quot;HKEY_LOCAL_MACHINE&quot;)</h3>
+
+<p>打开已存在或创建新的注册表路径,<br>
+在64位系统中访问32位注册表,<br>
+32位系统下作用与 win.reg 相同</p>
+
+<p><a id="win.regWow32"></a></p>
+
+<h3>win.regWow32(&quot;HKEY_LOCAL_MACHINE&quot;,true)</h3>
+
+<p>仅仅打开存在的注册表路径,<br>
+在64位系统中访问32位注册表,<br>
+32位系统下作用与 win.reg 相同,<br>
+如果不存在返回null</p>
+
+<p><a id="win.regWow32"></a></p>
+
+<h3>win.regWow32()</h3>
+
+<p><a href="#winRegObject">返回对象:winRegObject</a></p>
+
+<p><a id="win.regWow64"></a></p>
+
+<h3>win.regWow64(&quot;HKEY_LOCAL_MACHINE&quot;)</h3>
+
+<p>打开已存在或创建新的注册表路径,<br>
+在64位系统中访问64位注册表,<br>
+32位系统下作用与 win.reg 相同</p>
+
+<p><a id="win.regWow64"></a></p>
+
+<h3>win.regWow64(&quot;HKEY_LOCAL_MACHINE&quot;,true)</h3>
+
+<p>仅仅打开存在的注册表路径,<br>
+在64位系统中访问64位注册表,<br>
+32位系统下作用与 win.reg 相同,<br>
+如果不存在返回null</p>
+
+<p><a id="win.regWow64"></a></p>
+
+<h3>win.regWow64()</h3>
+
+<p><a href="#winRegObject">返回对象:winRegObject</a></p>
+
+<p><a id="win.reg"></a></p>
+
+<h2>win.reg 成员列表</h2>
+
+<p>注册表操作</p>
+
+<p>打开或创建注册表路径</p>
+
+<p><a id="win.reg.overrideClasses"></a></p>
+
+<h3>win.reg.overrideClasses(runas,proc)</h3>
+
+<pre><code class="aardio language-aardio">win.reg.overrideClasses(false,  
+    function(){  
+        /*重定向HKEY_CLASSES_ROOT到HKEY_CURRENT_USER\Software\Classes*/  
+    }  
+)
+</code></pre>
+
+<p><a id="win.reg.overridePredefinedKey"></a></p>
+
+<h3>win.reg.overridePredefinedKey(&quot;根键&quot;,&quot;重定向键&quot;,回调函数)</h3>
+
+<pre><code class="aardio language-aardio">win.reg.overridePredefinedKey(&quot;HKEY_CLASSES_ROOT&quot;,&quot;HKEY_CURRENT_USER\Software\Classes&quot;,  
+    function(){  
+        /*注册表已成功重定向*/  
+    }  
+);
+</code></pre>
+
+<p><a id="win.reg.query"></a></p>
+
+<h3>win.reg.query</h3>
+
+<p>直接读取注册表路径的指定值</p>
+
+<p><a id="win.reg.query"></a></p>
+
+<h3>win.reg.query(path,valueName)</h3>
+
+<p>返回 @path 参数指定的注册表路径下<br>
+ @valueName 指定名字的值,失败返回 null</p>
+
+<p><a id="win.reg.queryWow64"></a></p>
+
+<h3>win.reg.queryWow64</h3>
+
+<p>直接读取注册表路径的指定值,<br>
+在64位系统访问64位注册表,兼容 32 位系统</p>
+
+<p><a id="win.reg.queryWow64"></a></p>
+
+<h3>win.reg.queryWow64(path,valueName)</h3>
+
+<p>返回 @path 参数指定的注册表路径下<br>
+@valueName 指定名字的值,失败返回 null<br>
+在64位系统访问64位注册表,兼容 32 位系统</p>
+
+<p><a id="winRegObject"></a></p>
+
+<h2>winRegObject 成员列表</h2>
+
+<p><a id="winRegObject.close"></a></p>
+
+<h3>winRegObject.close()</h3>
+
+<p>关闭注册表对象</p>
+
+<p><a id="winRegObject.delKey"></a></p>
+
+<h3>winRegObject.delKey(&quot;字符串参数&quot;)</h3>
+
+<p>删除不包含子项的键</p>
+
+<p><a id="winRegObject.delKeyTree"></a></p>
+
+<h3>winRegObject.delKeyTree(&quot;字符串参数&quot;)</h3>
+
+<p>删除包含子项的键,<br>
+请慎用以避免删除重要的注册表键</p>
+
+<p><a id="winRegObject.delValue"></a></p>
+
+<h3>winRegObject.delValue(&quot;字符串参数&quot;)</h3>
+
+<p>删除值，<br>
+参数 @1 指定值名称（null 或 空串表示默认值）。</p>
+
+<p><a id="winRegObject.eachKey"></a></p>
+
+<h3>winRegObject.eachKey</h3>
+
+<pre><code class="aardio language-aardio">for(name,writeTime in reg.eachKey() ){
+    var subKey = reg.open(name); 
+    /*name 为子键名,  
+writeTime 为 ::FILETIME 结构体,  
+可用 fsys.time 解析*/
+    subKey.close()
+}
+</code></pre>
+
+<p><a id="winRegObject.eachValue"></a></p>
+
+<h3>winRegObject.eachValue</h3>
+
+<pre><code class="aardio language-aardio">for(name,value,t in reg.eachValue()) {
+
+}
+</code></pre>
+
+<p><a id="winRegObject.enumKey"></a></p>
+
+<h3>winRegObject.enumKey</h3>
+
+<pre><code class="aardio language-aardio">winRegObject.enumKey(  
+
+    function(  
+        subKey, /*这是某个子节点(win.reg对象)*/  
+        keyname/*这是reg子节点的一个子项的名字*/  
+    ){    
+        if( subKey.delKey(keyname)  )  
+            io.print(&quot;删除&quot; + keyname + &quot;成功&quot;)   
+    }    
+)
+</code></pre>
+
+<p><a id="winRegObject.keys"></a></p>
+
+<h3>winRegObject.keys()</h3>
+
+<p>获取所有子键的键名</p>
+
+<p><a id="winRegObject.load"></a></p>
+
+<h3>winRegObject.load(&quot;/backup&quot;)</h3>
+
+<p>从文件导入到注册表</p>
+
+<p><a id="winRegObject.open"></a></p>
+
+<h3>winRegObject.open(&quot;字符串参数&quot;)</h3>
+
+<p>打开已存在或创建新的子路径,<br>
+返回新的win.reg对象,</p>
+
+<p><a id="winRegObject.open"></a></p>
+
+<h3>winRegObject.open(&quot;字符串参数&quot;,true)</h3>
+
+<p>仅仅打开已存在的子路径,<br>
+返回新的win.reg对象,<br>
+如果不存在返回null</p>
+
+<p><a id="winRegObject.open"></a></p>
+
+<h3>winRegObject.open()</h3>
+
+<p><a href="#winRegObject">返回对象:winRegObject</a></p>
+
+<p><a id="winRegObject.path"></a></p>
+
+<h3>winRegObject.path</h3>
+
+<p>注册表路径</p>
+
+<p><a id="winRegObject.queryTable"></a></p>
+
+<h3>winRegObject.queryTable(names,...)</h3>
+
+<p>遍历当前注册表项的所有子项,<br>
+获取 @names 指定名称的所有值,<br>
+@names 可以是名称数组,也可以是多个字符串参数,<br>
+返回值是表,表的键为子项名称，值为包含各子项名值对的表,<br>
+如果子项第一个值名称对应的值为 null 则忽略该项,<br>
+失败返回 null</p>
+
+<p><a id="winRegObject.queryValue"></a></p>
+
+<h3>winRegObject.queryValue(&quot;字符串参数&quot;)</h3>
+
+<p>查询值，<br>
+参数 @1 指定值名称（null 或 空串表示默认值）。<br>
+成功返回值1为查询到的数据值，返回值2为一个表示值类型的数值，<br>
+自动识别类型:<br>
+REG_SZ,REG_EXPAND_SZ 类型返回字符串,<br>
+REG_EXPAND_SZ 字符串可用 string.expand 函数展开,<br>
+REG_MULTE_SZ 类型返回字符串数组，<br>
+REG_BINARY类型返回buffer对象,REG_DWORD类型返回数值，<br>
+REG_QWORD类型返回math.size64对象表示的64位无符号长整数，<br>
+REG_DWORD，REG_DWORD_BIG_ENDIAN类型返回数值</p>
+
+<p><a id="winRegObject.queryValueTable"></a></p>
+
+<h3>winRegObject.queryValueTable</h3>
+
+<p>返回表，包含当前键的指定名值对</p>
+
+<p><a id="winRegObject.queryValueTable"></a></p>
+
+<h3>winRegObject.queryValueTable()</h3>
+
+<p>返回表，包含当前键的所有名值对</p>
+
+<p><a id="winRegObject.queryValueTable"></a></p>
+
+<h3>winRegObject.queryValueTable(default)</h3>
+
+<p>参数 @default 指定默认值<br>
+在参数 @1 中填入当前键的所有名值对<br>
+返回参数 @1</p>
+
+<p><a id="winRegObject.queryValueTable"></a></p>
+
+<h3>winRegObject.queryValueTable(names,...)</h3>
+
+<p>返回表，包含当前键的指定名值对<br>
+@names 参数可以是一个要查询的值名称数组,<br>
+也可以是用于指定查询值名称的一个或多个字符串参数,<br>
+第一个值名称指定的值为 null 则返回 null,</p>
+
+<p><a id="winRegObject.renameKey"></a></p>
+
+<h3>winRegObject.renameKey(&quot;字符串参数&quot;)</h3>
+
+<p>重命名当前打开的键<br>
+参数只要写新的键名就可以,不要在参数中写包含反斜杠的注册表路径</p>
+
+<p><a id="winRegObject.save"></a></p>
+
+<h3>winRegObject.save(&quot;/backup&quot;)</h3>
+
+<p>导出注册表到文件</p>
+
+<p><a id="winRegObject.setBinValue"></a></p>
+
+<h3>winRegObject.setBinValue(name,vlaue)</h3>
+
+<p>设置二进制值，<br>
+参数 @1 指定值名称（null 或 空串表示默认值），<br>
+参数 @2 指定要存储的值</p>
+
+<p><a id="winRegObject.setDwValue"></a></p>
+
+<h3>winRegObject.setDwValue(name,vlaue)</h3>
+
+<p>设置32位数值,<br>
+参数 @1 指定值名称（null 或 空串表示默认值），<br>
+参数 @2 指定要存储的值</p>
+
+<p><a id="winRegObject.setDwValueBigEndian"></a></p>
+
+<h3>winRegObject.setDwValueBigEndian(name,vlaue)</h3>
+
+<p>设置大端序 32 位数值，<br>
+参数 @1 指定值名称（null 或 空串表示默认值），<br>
+参数 @2 指定要存储的值</p>
+
+<p><a id="winRegObject.setExpandValue"></a></p>
+
+<h3>winRegObject.setExpandValue(name,vlaue)</h3>
+
+<p>设置含环境变量的字符串值,<br>
+参数 @1 指定值名称（null 或 空串表示默认值），<br>
+参数 @2 指定要存储的值</p>
+
+<p><a id="winRegObject.setMultiSzValue"></a></p>
+
+<h3>winRegObject.setMultiSzValue(name,vlaue)</h3>
+
+<p>设置复合字符串值，<br>
+参数 @1 指定值名称（null 或 空串表示默认值），<br>
+参数 @2 可用字符串数组指定要存储的值，<br>
+也可以用多个参数传递多个字符串值</p>
+
+<p><a id="winRegObject.setQwValue"></a></p>
+
+<h3>winRegObject.setQwValue(name,vlaue)</h3>
+
+<p>设置64位数值,<br>
+参数 @1 指定值名称（null 或 空串表示默认值），<br>
+参数 @2 支持 math.size64 对象表示的 64 位长整数或普通数值</p>
+
+<p><a id="winRegObject.setSzValue"></a></p>
+
+<h3>winRegObject.setSzValue(name,vlaue)</h3>
+
+<p>设置字符串值,<br>
+参数 @1 指定值名称（null 或 空串表示默认值），<br>
+参数 @2 指定要存储的值</p>
+
+<p><a id="winRegObject.setValue"></a></p>
+
+<h3>winRegObject.setValue(name,vlaue)</h3>
+
+<p>设置注册表值，自动设置类型，<br>
+参数 @1 指定值名称（null 或 空串表示默认值），<br>
+参数 @2 指定要存储的值</p>
+
+<h3>自动完成常量</h3>
+
+<p>_REG_BINARY=3<br>
+_REG_CREATED_NEW_KEY=1<br>
+_REG_DWORD=4<br>
+_REG_DWORD_BIG_ENDIAN=5<br>
+_REG_DWORD_LITTLE_ENDIAN=4<br>
+_REG_EXPAND_SZ=2<br>
+_REG_FULL_RESOURCE_DESCRIPTOR=9<br>
+_REG_LINK=6<br>
+_REG_MULTI_SZ=7<br>
+_REG_NONE=0<br>
+_REG_NOTIFY_CHANGE_ATTRIBUTES=2<br>
+_REG_NOTIFY_CHANGE_LAST_SET=4<br>
+_REG_NOTIFY_CHANGE_NAME=1<br>
+_REG_NOTIFY_CHANGE_SECURITY=8<br>
+_REG_OPENED_EXISTING_KEY=2<br>
+_REG_OPTION_BACKUP_RESTORE=4<br>
+_REG_OPTION_CREATE_LINK=2<br>
+_REG_OPTION_NON_VOLATILE=0<br>
+_REG_OPTION_RESERVED=0<br>
+_REG_OPTION_VOLATILE=1<br>
+_REG_QWORD=0xB<br>
+_REG_REFRESH_HIVE=2<br>
+_REG_RESOURCE_LIST=8<br>
+_REG_RESOURCE_REQUIREMENTS_LIST=0xA<br>
+_REG_SZ=1<br>
+_REG_WHOLE_HIVE_VOLATILE=1  </p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/reg.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/reg.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/reg.md">Markdown 格式</a></p>
+
+</body> 
+</html>

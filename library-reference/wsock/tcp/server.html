@@ -1,0 +1,134 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - wsock.tcp.server 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - wsock.tcp.server 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>wsock.tcp.server 库模块帮助文档</h1>
+
+<p><a id="wsock.tcp.server"></a></p>
+
+<h2>wsock.tcp.server 成员列表</h2>
+
+<p>TCP服务端</p>
+
+<p><a id="wsock.tcp.server.closeById"></a></p>
+
+<h3>wsock.tcp.server.closeById(serverId)</h3>
+
+<p>参数指定wsock.tcp.server对象的ID属性<br>
+关闭指定ID的服务器</p>
+
+<p><a id="wsock.tcp.server.getFreePort"></a></p>
+
+<h3>wsock.tcp.server.getFreePort(ip,...)</h3>
+
+<p>获取空闲TCP服务端口，<br>
+IP参数需要与实际创建服务器使用的IP参数完全一致，<br>
+可选在参数中使用数值数组或任意个数值参数指定优先测试的端口号，<br>
+如果没有找到参数指定的空闲凋口,则自动分配空闲端口，<br>
+动态分配空闲端口为49152到65535之间的值，<br>
+XP系统则为 1025到5000之间的值，<br>
+命令行输入 netsh int ipv4 show dynamicport tcp 看动态端口范围，<br>
+安装 Hyper-V 会导致动态起始端口变为 1024 导致常用端口冲突</p>
+
+<p><a id="wsock.tcp.server.isFreePort"></a></p>
+
+<h3>wsock.tcp.server.isFreePort(port,ip)</h3>
+
+<p>检查参数指定的端口号是否空闲<br>
+如果不写IP，则默认设为&quot;0.0.0.0&quot;</p>
+
+<p><a id="WsockTcpServerObject"></a></p>
+
+<h2>WsockTcpServerObject 成员列表</h2>
+
+<p><a id="WsockTcpServerObject._serverAddress"></a></p>
+
+<h3>WsockTcpServerObject._serverAddress</h3>
+
+<p>服务端监听地址  </p>
+
+<p><a href="#sockaddrInObject">返回对象:sockaddrInObject</a></p>
+
+<p><a id="WsockTcpServerObject.beforeClose"></a></p>
+
+<h3>WsockTcpServerObject.beforeClose()</h3>
+
+<pre><code class="aardio language-aardio">WsockTcpServerObject.beforeClose = function(){
+    /*服务器关闭前调用此函数*/
+}
+</code></pre>
+
+<p><a id="WsockTcpServerObject.close"></a></p>
+
+<h3>WsockTcpServerObject.close()</h3>
+
+<p>关闭 TCP 服务端</p>
+
+<p><a id="WsockTcpServerObject.forever"></a></p>
+
+<h3>WsockTcpServerObject.forever(回调函数)</h3>
+
+<pre><code class="aardio language-aardio">WsockTcpServerObject.forever(  
+    function(acceptSocket){  
+        var request = wsock.tcp.client(,acceptSocket)  
+    }  
+)
+</code></pre>
+
+<p><a id="WsockTcpServerObject.getLocalIp"></a></p>
+
+<h3>WsockTcpServerObject.getLocalIp()</h3>
+
+<p>返回当前绑定的IP,端口号</p>
+
+<p><a id="WsockTcpServerObject.id"></a></p>
+
+<h3>WsockTcpServerObject.id</h3>
+
+<p>服务器唯一ID,字符串</p>
+
+<p><a id="WsockTcpServerObject.listen"></a></p>
+
+<h3>WsockTcpServerObject.listen(请求队列大小)</h3>
+
+<p>监听绑定的 IP 端口</p>
+
+<p><a id="wsock.tcp"></a></p>
+
+<h2>wsock.tcp 成员列表</h2>
+
+<p><a id="wsock.tcp.server"></a></p>
+
+<h3>wsock.tcp.server()</h3>
+
+<p><a href="#WsockTcpServerObject">返回对象:WsockTcpServerObject</a></p>
+
+<p><a id="wsock.tcp.server"></a></p>
+
+<h3>wsock.tcp.server(IP,端口,请求队列大小)</h3>
+
+<p>创建TCP服务端,所有参数可选,  </p>
+
+<p>如果不写IP，则默认设为&quot;0.0.0.0&quot;也即监听本机所有IP,访问此服务端也不限制IP<br>
+限制仅本机可以访问建议写127.0.0.1  </p>
+
+<p>端口为0或省略则自动查找1025以后的空闲端口<br>
+注意0-1023为系统通用服务保留端口,<br>
+1024-49151为用户服务端口,其中大约%9已由IANA注册分配<br>
+49152-65535为私有或动态分配的临时端口</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/wsock/tcp/server.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/wsock/tcp/server.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/wsock/tcp/server.md">Markdown 格式</a></p>
+
+</body> 
+</html>

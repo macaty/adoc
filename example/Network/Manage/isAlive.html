@@ -1,0 +1,79 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 检测网络状态'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 检测网络状态</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 检测网络状态</h1><pre><code class="aardio language-aardio">//断网检测
+import fonts.fontAwesome;
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;检测网络状态&quot;;right=759;bottom=469;bgcolor=16777215;max=false)
+winform.add(
+btnOpenNetworkConnections={cls=&quot;button&quot;;text=&quot;打开网络连接&quot;;left=226;top=339;right=463;bottom=398;bgcolor=16777215;note=&quot;打开 控制面板 / 网卡列表&quot;;z=3};
+lbStatus={cls=&quot;plus&quot;;left=249;top=57;right=678;bottom=98;align=&quot;left&quot;;font=LOGFONT(h=-19);transparent=1;z=2};
+plusNetworkStatus={cls=&quot;plus&quot;;text=&quot;网络已连接&quot;;left=66;top=57;right=242;bottom=98;align=&quot;left&quot;;color=32768;disabled=1;font=LOGFONT(h=-19);iconStyle={align=&quot;left&quot;;font=LOGFONT(h=-27;name=&#39;FontAwesome&#39;);padding={left=9}};iconText=&#39;\uF205&#39;;textPadding={left=49};z=1}
+)
+/*}}*/
+
+import wsock.networkChange;
+wsock.networkChange.wait(winform).onNetworkChanged = function(){
+
+    //网络状态变更触发此回调
+    winform.plusNetworkStatus.checked = wsock.tcp.client.test();
+
+    winform.lbStatus.disabledText = {&quot;✶&quot;;&quot;✸&quot;;&quot;✹&quot;;&quot;✺&quot;;&quot;✹&quot;;&quot;✷&quot;;text=&#39; &#39;}
+    winform.lbStatus.onNetworkChanged();
+}
+
+import inet.ras;
+import win.debounce;
+winform.lbStatus.onNetworkChanged = win.debounce( function(){
+    winform.lbStatus.disabledText = null;
+
+    /*
+    win.debounce 可以避免短时间内不必要地连续调用此函数。
+    也可以延时调用 inet.ras.isAlive 以获取刷新后的状态。
+    */
+    var wan,lan = inet.ras.isAlive(); 
+    if( lan ) winform.lbStatus.text = &quot;已有网卡建立了局域网连接&quot;;
+    else if( wan ) winform.lbStatus.text = &quot;已有网卡建立了广域网连接&quot;;
+    else winform.lbStatus.text = &quot;没有联网&quot;;    
+},1000);
+
+winform.plusNetworkStatus.skin({
+    text=&quot;网络已断开&quot;; 
+    color = {
+        default = 0xFFFF0000; 
+        disabled = 0xFFFF0000;  
+    };
+
+    checked = {
+        text = &quot;网络已连接&quot;;
+        color = {
+            default = 0xFF008000; 
+        };  
+    }
+});
+
+import process;
+winform.btnOpenNetworkConnections.oncommand = function(id,event){   
+    process.explore(&quot;shell:::{7007ACC7-3202-11D1-AAD2-00805FC1270E}&quot;);
+}
+
+winform.onNetworkChanged();
+winform.show();
+win.loopMessage();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Network/Manage/isAlive.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Network/Manage/isAlive.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Network/Manage/isAlive.md">Markdown 格式</a>
+</body> 
+</html>

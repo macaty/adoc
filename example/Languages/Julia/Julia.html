@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 快速入门'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 快速入门</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 快速入门</h1><pre><code class="aardio language-aardio">//快速入门
+import console; 
+import julia; 
+
+//调用 Julia 函数
+var ret = julia.sqrt(2);
+
+//导入 Julia 模块
+julia.using(&quot;Base64&quot;);
+
+//调用 Julia 函数
+var data = julia.Base64.base64encode(&quot;测试一下&quot;);
+
+//转换 Julia 数据类型
+var buf = julia.value.build(raw.buffer(&quot;abc&quot;));
+
+//显示类型名
+console.log(julia.typeof(buf));
+
+//制造代码错误
+julia.eval(&quot;a = b(&quot;) 
+
+//查看 Julia 代码错误信息
+console.log(julia.lasterr());
+
+console.pause();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/Julia/Julia.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/Julia/Julia.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Languages/Julia/Julia.md">Markdown 格式</a>
+</body> 
+</html>

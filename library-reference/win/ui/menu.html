@@ -1,0 +1,961 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - win.ui.menu 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - win.ui.menu 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>win.ui.menu 库模块帮助文档</h1>
+
+<p><a id="win.ui.menu"></a></p>
+
+<h2>win.ui.menu 成员列表</h2>
+
+<p>菜单支持库</p>
+
+<p>创建窗口菜单<br>
+需要先调用 import win.ui.menu，不然发布后会报错。<br>
+开发环境下运行，为了加快启动速度，不会百分百排除所有没有引用的库</p>
+
+<p><a id="win.ui.menu._handle2menu"></a></p>
+
+<h3>win.ui.menu._handle2menu</h3>
+
+<p>句柄到菜单对象映射表</p>
+
+<p><a id="win.ui.menu.findByHandle"></a></p>
+
+<h3>win.ui.menu.findByHandle()</h3>
+
+<p><a href="#menuObject">返回对象:menuObject</a></p>
+
+<p><a id="win.ui.menu.findByHandle"></a></p>
+
+<h3>win.ui.menu.findByHandle(菜单句柄)</h3>
+
+<p>查找菜单对象</p>
+
+<p><a id="win.ui.menu.onDrawItem"></a></p>
+
+<h3>win.ui.menu.onDrawItem</h3>
+
+<pre><code class="aardio language-aardio">win.ui.menu.onDrawItem = function(drawItem,dpiScaleX,dpiScaleY){
+
+    return 1; 
+}
+</code></pre>
+
+<p><a id="win.ui.menu.onMeasureItem"></a></p>
+
+<h3>win.ui.menu.onMeasureItem</h3>
+
+<pre><code class="aardio language-aardio">win.ui.menu.onMeasureItem = function(measureItem,dpiScaleX,dpiScaleY){ 
+    measureItem.itemWidth = 80;  
+    measureItem.itemHeight = ::GetSystemMetrics(0xF/*_SM_CYMENU*/);
+}
+</code></pre>
+
+<p><a id="menuObject"></a></p>
+
+<h2>menuObject 成员列表</h2>
+
+<p><a id="menuObject.add"></a></p>
+
+<h3>menuObject.add(&quot;标题&quot;,回调函数)</h3>
+
+<pre><code class="aardio language-aardio">menuObject.add(&quot;菜单标题&quot;,function(){  
+    /*点击菜单项的回调函数，  
+注意添加菜单项以后 add 函数返回菜单命令ID*/  
+
+})
+</code></pre>
+
+<p><a id="menuObject.add"></a></p>
+
+<h3>menuObject.add(&quot;标题&quot;,子菜单)</h3>
+
+<p>添加子菜单<br>
+返回添加的子菜单</p>
+
+<p><a id="menuObject.add"></a></p>
+
+<h3>menuObject.add()</h3>
+
+<p>添加分隔线</p>
+
+<p><a id="menuObject.add"></a></p>
+
+<h3>menuObject.add(参数表)</h3>
+
+<pre><code class="aardio language-aardio">menuObject.add(  
+    text = &quot;标题&quot;;  
+    bitmap = &quot;位图句柄或路径、或图像数据,可选参数&quot;;  
+    bitmapCheckd = &quot;选中位图句柄或路径、或图像数据,可选参数&quot;;  
+    proc = function(id){  
+        /*点击菜单项的回调函数，  
+注意添加菜单项以后 add 函数返回菜单命令ID*/  
+    };  
+    id = 可选参数;  
+    flag = 可选参数;  
+);
+</code></pre>
+
+<p><a id="menuObject.addTable"></a></p>
+
+<h3>menuObject.addTable</h3>
+
+<pre><code class="aardio language-aardio">menuObject.addTable( {  
+    { &quot;菜单文本&quot;;  function(id){  
+        /*菜单事件回调函数*/  
+    } }; { /*分隔线*/ }  
+    { &quot;退出程序&quot;; function(id){    
+        winform.close()   
+    } };  
+} )
+</code></pre>
+
+<p><a id="menuObject.check"></a></p>
+
+<h3>menuObject.check</h3>
+
+<p>勾选或取消勾选菜单项</p>
+
+<p><a id="menuObject.check"></a></p>
+
+<h3>menuObject.check(菜单项命令ID,是否选中,0/*_MF_BYCOMMAND*/)</h3>
+
+<p>勾选或取消勾选菜单项，参数@2默认为 true，<br>
+如果参数@3为0/*_MF_BYCOMMAND*/则参数@1为菜单命令ID</p>
+
+<p><a id="menuObject.check"></a></p>
+
+<h3>menuObject.check(菜单项序号,是否选中)</h3>
+
+<p>勾选或取消勾选菜单项，参数@2默认为 true</p>
+
+<p><a id="menuObject.checked"></a></p>
+
+<h3>menuObject.checked</h3>
+
+<p>返回菜单项是否选中状态</p>
+
+<p><a id="menuObject.checked"></a></p>
+
+<h3>menuObject.checked(菜单项命令ID,0/*_MF_BYCOMMAND*/)</h3>
+
+<p>返回菜单项是否选中状态e，<br>
+如果参数@2为0/*_MF_BYCOMMAND*/则参数@1为菜单命令ID</p>
+
+<p><a id="menuObject.checked"></a></p>
+
+<h3>menuObject.checked(菜单项序号)</h3>
+
+<p>返回菜单项是否选中状态</p>
+
+<p><a id="menuObject.click"></a></p>
+
+<h3>menuObject.click(菜单项命令ID,0/*_MF_BYCOMMAND*/)</h3>
+
+<p>模拟点击指定命令ID的菜单项</p>
+
+<p><a id="menuObject.click"></a></p>
+
+<h3>menuObject.click(菜单项序号)</h3>
+
+<p>模拟点击指定位置菜单项</p>
+
+<p><a id="menuObject.close"></a></p>
+
+<h3>menuObject.close()</h3>
+
+<p>关闭菜单</p>
+
+<p><a id="menuObject.count"></a></p>
+
+<h3>menuObject.count()</h3>
+
+<p>返回菜单子项数目</p>
+
+<p><a id="menuObject.delete"></a></p>
+
+<h3>menuObject.delete</h3>
+
+<p>删除指定位置菜单项</p>
+
+<p><a id="menuObject.delete"></a></p>
+
+<h3>menuObject.delete(菜单项命令ID,0/*_MF_BYCOMMAND*/)</h3>
+
+<p>移除指定命令ID的菜单项<br>
+被移除的如果是子菜单则销毁,不可重用</p>
+
+<p><a id="menuObject.delete"></a></p>
+
+<h3>menuObject.delete(菜单项序号)</h3>
+
+<p>删除指定位置菜单项<br>
+被移除的如果是子菜单则销毁,不可重用</p>
+
+<p><a id="menuObject.enable"></a></p>
+
+<h3>menuObject.enable</h3>
+
+<p>启用或禁用菜单项</p>
+
+<p><a id="menuObject.enable"></a></p>
+
+<h3>menuObject.enable(菜单项命令ID,是否启用,0/*_MF_BYCOMMAND*/)</h3>
+
+<p>启用或禁用菜单项，参数@2默认为 true，<br>
+如果参数@3为0/*_MF_BYCOMMAND*/则参数@1为菜单命令ID</p>
+
+<p><a id="menuObject.enable"></a></p>
+
+<h3>menuObject.enable(菜单项序号,是否启用)</h3>
+
+<p>启用或禁用菜单项，参数@2默认为 true</p>
+
+<p><a id="menuObject.getId"></a></p>
+
+<h3>menuObject.getId</h3>
+
+<p>根据指定位置序号返回菜单项的命令ID</p>
+
+<p><a id="menuObject.getId"></a></p>
+
+<h3>menuObject.getId(菜单项序号)</h3>
+
+<p>根据指定位置序号返回菜单项的命令ID</p>
+
+<p><a id="menuObject.getPos"></a></p>
+
+<h3>menuObject.getPos</h3>
+
+<p>根据菜单项的命令ID返回菜单位置序号</p>
+
+<p><a id="menuObject.getPos"></a></p>
+
+<h3>menuObject.getPos(菜单项命令I)</h3>
+
+<p>根据菜单项的命令ID返回菜单位置序号</p>
+
+<p><a id="menuObject.getString"></a></p>
+
+<h3>menuObject.getString</h3>
+
+<p>返回菜单项文本</p>
+
+<p><a id="menuObject.getString"></a></p>
+
+<h3>menuObject.getString(菜单项命令ID,0/*_MF_BYCOMMAND*/)</h3>
+
+<p>返回菜单项文本，<br>
+如果参数@2为0/*_MF_BYCOMMAND*/则参数@1为菜单命令ID</p>
+
+<p><a id="menuObject.getString"></a></p>
+
+<h3>menuObject.getString(菜单项序号)</h3>
+
+<p>返回菜单项文本</p>
+
+<p><a id="menuObject.handle"></a></p>
+
+<h3>menuObject.handle</h3>
+
+<p>菜单句柄</p>
+
+<p><a id="menuObject.insert"></a></p>
+
+<h3>menuObject.insert( 1 )</h3>
+
+<p>在指定位置插入分隔线</p>
+
+<p><a id="menuObject.insert"></a></p>
+
+<h3>menuObject.insert(位置,标题,回调函数)</h3>
+
+<pre><code class="aardio language-aardio">menuObject.insert(1,&quot;菜单标题&quot;,function(){  
+    /*点击菜单项的回调函数，  
+注意添加菜单项以后 insert 函数返回菜单命令ID*/  
+
+})
+</code></pre>
+
+<p><a id="menuObject.insert"></a></p>
+
+<h3>menuObject.insert(参数表)</h3>
+
+<pre><code class="aardio language-aardio">menuObject.insert(  
+    position = 1;  
+    text = &quot;标题&quot;;  
+    bitmap = &quot;位图句柄或路径、或图像数据,可选参数&quot;;  
+    bitmapCheckd = &quot;选中位图句柄或路径、或图像数据,可选参数&quot;;  
+    proc = function(id){  
+        /*点击菜单项的回调函数，  
+注意添加菜单项以后 add 函数返回菜单命令ID*/  
+    };  
+    id = 可选参数;  
+    flag = 可选参数;  
+);
+</code></pre>
+
+<p><a id="menuObject.onMenuItemClick"></a></p>
+
+<h3>menuObject.onMenuItemClick</h3>
+
+<pre><code class="aardio language-aardio">menuObject.onMenuItemClick = function(id){
+    menuFile.selId = id;/*指定默认菜单回调函数*/
+}
+</code></pre>
+
+<p><a id="menuObject.ownerDraw"></a></p>
+
+<h3>menuObject.ownerDraw</h3>
+
+<p>启用自绘<br>
+系统菜单自绘没多大意义,建议使用弹出窗口模拟菜单即可</p>
+
+<p><a id="menuObject.redraw"></a></p>
+
+<h3>menuObject.redraw()</h3>
+
+<p>重绘菜单</p>
+
+<p><a id="menuObject.remove"></a></p>
+
+<h3>menuObject.remove</h3>
+
+<p>移除指定位置菜单项</p>
+
+<p><a id="menuObject.remove"></a></p>
+
+<h3>menuObject.remove(菜单项命令ID,0/*_MF_BYCOMMAND*/)</h3>
+
+<p>移除指定命令ID的菜单项<br>
+被移除的如果是子菜单并不销毁,可重用</p>
+
+<p><a id="menuObject.remove"></a></p>
+
+<h3>menuObject.remove(菜单项序号)</h3>
+
+<p>移除指定位置菜单项<br>
+被移除的如果是子菜单并不销毁,可重用</p>
+
+<p><a id="menuObject.reset"></a></p>
+
+<h3>menuObject.reset</h3>
+
+<p>重设菜单回调函数</p>
+
+<p><a id="menuObject.reset"></a></p>
+
+<h3>menuObject.reset(新的回调函数,菜单ID,0/*_MF_BYCOMMAND*/)</h3>
+
+<p>重设菜单回调函数</p>
+
+<p><a id="menuObject.reset"></a></p>
+
+<h3>menuObject.reset(新的回调函数,菜单位置)</h3>
+
+<p>重设菜单回调函数</p>
+
+<p><a id="menuObject.selId"></a></p>
+
+<h3>menuObject.selId</h3>
+
+<p>获取或修改当前选中项命令ID,单选模式</p>
+
+<p><a id="menuObject.selIndex"></a></p>
+
+<h3>menuObject.selIndex</h3>
+
+<p>获取或修改当前选中项索引,单选模式</p>
+
+<p><a id="menuObject.selText"></a></p>
+
+<h3>menuObject.selText</h3>
+
+<p>获取或修改当前选中项文本,单选模式</p>
+
+<p><a id="menuObject.setBitmap"></a></p>
+
+<h3>menuObject.setBitmap</h3>
+
+<p>设置菜单项位图</p>
+
+<p><a id="menuObject.setBitmap"></a></p>
+
+<h3>menuObject.setBitmap(菜单项命令ID,位图,选中位图,0/*_MF_BYCOMMAND*/)</h3>
+
+<p>设置菜单项位图,<br>
+选中位图为可选参数,<br>
+图像可以是句柄指针,也可以是图像文件路径或数据，<br>
+如果参数@4为0/*_MF_BYCOMMAND*/则参数@1为菜单命令ID</p>
+
+<p><a id="menuObject.setBitmap"></a></p>
+
+<h3>menuObject.setBitmap(菜单项序号,位图,选中位图)</h3>
+
+<p>设置菜单项位图,<br>
+选中位图为可选参数,<br>
+图像可以是句柄指针,也可以是图像文件路径或数据</p>
+
+<p><a id="menuObject.setString"></a></p>
+
+<h3>menuObject.setString</h3>
+
+<p>设置菜单项文本</p>
+
+<p><a id="menuObject.setString"></a></p>
+
+<h3>menuObject.setString(菜单项命令ID,字符串,0/*_MF_BYCOMMAND*/)</h3>
+
+<p>设置菜单项文本，<br>
+如果参数@3为0/*_MF_BYCOMMAND*/则参数@1为菜单命令ID</p>
+
+<p><a id="menuObject.setString"></a></p>
+
+<h3>menuObject.setString(菜单项序号,字符串)</h3>
+
+<p>设置菜单项文本</p>
+
+<p><a id="menuObject.subMenu"></a></p>
+
+<h3>menuObject.subMenu()</h3>
+
+<p><a href="#popmenuObject">返回对象:popmenuObject</a></p>
+
+<p><a id="menuObject.subMenu"></a></p>
+
+<h3>menuObject.subMenu(1)</h3>
+
+<p>返回指定位置子菜单</p>
+
+<p><a id="popmenuObject"></a></p>
+
+<h2>popmenuObject 成员列表</h2>
+
+<p><a id="popmenuObject.add"></a></p>
+
+<h3>popmenuObject.add(&quot;标题&quot;,回调函数)</h3>
+
+<pre><code class="aardio language-aardio">popmenuObject.add(&quot;菜单标题&quot;,function(){  
+    /*点击菜单项的回调函数，  
+注意添加菜单项以后 add 函数返回菜单命令ID*/  
+
+})
+</code></pre>
+
+<p><a id="popmenuObject.add"></a></p>
+
+<h3>popmenuObject.add(&quot;标题&quot;,子菜单)</h3>
+
+<p>添加子菜单<br>
+返回添加的子菜单</p>
+
+<p><a id="popmenuObject.add"></a></p>
+
+<h3>popmenuObject.add()</h3>
+
+<p>添加分隔线</p>
+
+<p><a id="popmenuObject.add"></a></p>
+
+<h3>popmenuObject.add(参数表)</h3>
+
+<pre><code class="aardio language-aardio">popmenuObject.add(  
+    text = &quot;标题&quot;;  
+    bitmap = &quot;位图句柄或路径、或图像数据,可选参数&quot;;  
+    bitmapCheckd = &quot;选中位图句柄或路径、或图像数据,可选参数&quot;;  
+    proc = function(id){  
+        /*点击菜单项的回调函数，  
+注意添加菜单项以后 add 函数返回菜单命令ID*/  
+    };  
+    id = 可选参数;  
+    flag = 可选参数;  
+);
+</code></pre>
+
+<p><a id="popmenuObject.addTable"></a></p>
+
+<h3>popmenuObject.addTable</h3>
+
+<pre><code class="aardio language-aardio">popmenuObject.addTable( {  
+    { &quot;菜单文本&quot;;  function(id){  
+        /*菜单事件回调函数*/  
+    } }; { /*分隔线*/ }  
+    { &quot;退出程序&quot;; function(id){    
+        winform.close()   
+    } };  
+} )
+</code></pre>
+
+<p><a id="popmenuObject.check"></a></p>
+
+<h3>popmenuObject.check</h3>
+
+<p>勾选或取消勾选菜单项</p>
+
+<p><a id="popmenuObject.check"></a></p>
+
+<h3>popmenuObject.check(菜单项命令ID,是否选中,0/*_MF_BYCOMMAND*/)</h3>
+
+<p>勾选或取消勾选菜单项，参数@2默认为 true，<br>
+如果参数@3为0/*_MF_BYCOMMAND*/则参数@1为菜单命令ID</p>
+
+<p><a id="popmenuObject.check"></a></p>
+
+<h3>popmenuObject.check(菜单项序号,是否选中)</h3>
+
+<p>勾选或取消勾选菜单项，参数@2默认为 true</p>
+
+<p><a id="popmenuObject.checked"></a></p>
+
+<h3>popmenuObject.checked</h3>
+
+<p>返回菜单项是否选中状态</p>
+
+<p><a id="popmenuObject.checked"></a></p>
+
+<h3>popmenuObject.checked(菜单项命令ID,0/*_MF_BYCOMMAND*/)</h3>
+
+<p>返回菜单项是否选中状态e，<br>
+如果参数@2为0/*_MF_BYCOMMAND*/则参数@1为菜单命令ID</p>
+
+<p><a id="popmenuObject.checked"></a></p>
+
+<h3>popmenuObject.checked(菜单项序号)</h3>
+
+<p>返回菜单项是否选中状态</p>
+
+<p><a id="popmenuObject.click"></a></p>
+
+<h3>popmenuObject.click(菜单项命令ID,0/*_MF_BYCOMMAND*/)</h3>
+
+<p>模拟点击指定命令ID的菜单项</p>
+
+<p><a id="popmenuObject.click"></a></p>
+
+<h3>popmenuObject.click(菜单项序号)</h3>
+
+<p>模拟点击指定位置菜单项</p>
+
+<p><a id="popmenuObject.close"></a></p>
+
+<h3>popmenuObject.close()</h3>
+
+<p>关闭菜单</p>
+
+<p><a id="popmenuObject.count"></a></p>
+
+<h3>popmenuObject.count()</h3>
+
+<p>返回菜单子项数目</p>
+
+<p><a id="popmenuObject.delete"></a></p>
+
+<h3>popmenuObject.delete</h3>
+
+<p>删除指定位置菜单项</p>
+
+<p><a id="popmenuObject.delete"></a></p>
+
+<h3>popmenuObject.delete(菜单项命令ID,0/*_MF_BYCOMMAND*/)</h3>
+
+<p>移除指定命令ID的菜单项<br>
+被移除的如果是子菜单则销毁,不可重用</p>
+
+<p><a id="popmenuObject.delete"></a></p>
+
+<h3>popmenuObject.delete(菜单项序号)</h3>
+
+<p>删除指定位置菜单项<br>
+被移除的如果是子菜单则销毁,不可重用</p>
+
+<p><a id="popmenuObject.enable"></a></p>
+
+<h3>popmenuObject.enable</h3>
+
+<p>启用或禁用菜单项</p>
+
+<p><a id="popmenuObject.enable"></a></p>
+
+<h3>popmenuObject.enable(菜单项命令ID,是否启用,0/*_MF_BYCOMMAND*/)</h3>
+
+<p>启用或禁用菜单项，参数@2默认为 true，<br>
+如果参数@3为0/*_MF_BYCOMMAND*/则参数@1为菜单命令ID</p>
+
+<p><a id="popmenuObject.enable"></a></p>
+
+<h3>popmenuObject.enable(菜单项序号,是否启用)</h3>
+
+<p>启用或禁用菜单项，参数@2默认为 true</p>
+
+<p><a id="popmenuObject.fireId"></a></p>
+
+<h3>popmenuObject.fireId(id,hwnd)</h3>
+
+<p>调用菜单回调函数<br>
+可选指定接收命令的窗体句柄<br>
+可添加任意个附加参数</p>
+
+<p><a id="popmenuObject.getId"></a></p>
+
+<h3>popmenuObject.getId</h3>
+
+<p>根据指定位置序号返回菜单项的命令ID</p>
+
+<p><a id="popmenuObject.getId"></a></p>
+
+<h3>popmenuObject.getId(菜单项序号)</h3>
+
+<p>根据指定位置序号返回菜单项的命令ID</p>
+
+<p><a id="popmenuObject.getPos"></a></p>
+
+<h3>popmenuObject.getPos</h3>
+
+<p>根据菜单项的命令ID返回菜单位置序号</p>
+
+<p><a id="popmenuObject.getPos"></a></p>
+
+<h3>popmenuObject.getPos(菜单项命令I)</h3>
+
+<p>根据菜单项的命令ID返回菜单位置序号</p>
+
+<p><a id="popmenuObject.getString"></a></p>
+
+<h3>popmenuObject.getString</h3>
+
+<p>返回菜单项文本</p>
+
+<p><a id="popmenuObject.getString"></a></p>
+
+<h3>popmenuObject.getString(菜单项命令ID,0/*_MF_BYCOMMAND*/)</h3>
+
+<p>返回菜单项文本，<br>
+如果参数@2为0/*_MF_BYCOMMAND*/则参数@1为菜单命令ID</p>
+
+<p><a id="popmenuObject.getString"></a></p>
+
+<h3>popmenuObject.getString(菜单项序号)</h3>
+
+<p>返回菜单项文本</p>
+
+<p><a id="popmenuObject.handle"></a></p>
+
+<h3>popmenuObject.handle</h3>
+
+<p>菜单句柄</p>
+
+<p><a id="popmenuObject.insert"></a></p>
+
+<h3>popmenuObject.insert( 1 )</h3>
+
+<p>在指定位置插入分隔线</p>
+
+<p><a id="popmenuObject.insert"></a></p>
+
+<h3>popmenuObject.insert(位置,标题,回调函数)</h3>
+
+<pre><code class="aardio language-aardio">popmenuObject.insert(1,&quot;菜单标题&quot;,function(){  
+    /*点击菜单项的回调函数，  
+注意添加菜单项以后 insert 函数返回菜单命令ID*/  
+
+})
+</code></pre>
+
+<p><a id="popmenuObject.insert"></a></p>
+
+<h3>popmenuObject.insert(参数表)</h3>
+
+<pre><code class="aardio language-aardio">popmenuObject.insert(  
+    position = 1;  
+    text = &quot;标题&quot;;  
+    bitmap = &quot;位图句柄或路径、或图像数据,可选参数&quot;;  
+    bitmapCheckd = &quot;选中位图句柄或路径、或图像数据,可选参数&quot;;  
+    proc = function(id){  
+        /*点击菜单项的回调函数，  
+注意添加菜单项以后 add 函数返回菜单命令ID*/  
+    };  
+    id = 可选参数;  
+    flag = 可选参数;  
+);
+</code></pre>
+
+<p><a id="popmenuObject.onMenuItemClick"></a></p>
+
+<h3>popmenuObject.onMenuItemClick</h3>
+
+<pre><code class="aardio language-aardio">popmenuObject.onMenuItemClick = function(id){
+    menuFile.selId = id;/*指定默认菜单回调函数*/
+}
+</code></pre>
+
+<p><a id="popmenuObject.ownerDraw"></a></p>
+
+<h3>popmenuObject.ownerDraw</h3>
+
+<p>启用自绘<br>
+系统菜单自绘没多大意义,建议使用弹出窗口模拟菜单即可</p>
+
+<p><a id="popmenuObject.popId"></a></p>
+
+<h3>popmenuObject.popId</h3>
+
+<p>弹出菜单并返回用户点选ID</p>
+
+<p><a id="popmenuObject.popId"></a></p>
+
+<h3>popmenuObject.popId(x坐标,y坐标,是否屏幕坐标,选项)</h3>
+
+<p>弹出菜单<br>
+并返回用户点选ID<br>
+未选择或发生错误则返回零,<br>
+如果不指定坐标,则自动获取鼠标当前位置,<br>
+可选用参数@4指定 <em>TPM</em> 前缀的选项,<br>
+例如 _TPM_BOTTOMALIGN 指定坐标 y 指定菜单底部位置</p>
+
+<p><a id="popmenuObject.popup"></a></p>
+
+<h3>popmenuObject.popup</h3>
+
+<p>弹出菜单</p>
+
+<p><a id="popmenuObject.popup"></a></p>
+
+<h3>popmenuObject.popup(x坐标,y坐标,是否屏幕坐标,选项)</h3>
+
+<p>弹出菜单<br>
+如果不指定坐标,则自动获取鼠标当前位置,<br>
+可选用参数@4指定 <em>TPM</em> 前缀的选项,<br>
+例如 _TPM_BOTTOMALIGN 指定坐标 y 指定菜单底部位置</p>
+
+<p><a id="popmenuObject.remove"></a></p>
+
+<h3>popmenuObject.remove</h3>
+
+<p>移除指定位置菜单项</p>
+
+<p><a id="popmenuObject.remove"></a></p>
+
+<h3>popmenuObject.remove(菜单项命令ID,0/*_MF_BYCOMMAND*/)</h3>
+
+<p>移除指定命令ID的菜单项<br>
+被移除的如果是子菜单并不销毁,可重用</p>
+
+<p><a id="popmenuObject.remove"></a></p>
+
+<h3>popmenuObject.remove(菜单项序号)</h3>
+
+<p>移除指定位置菜单项<br>
+被移除的如果是子菜单并不销毁,可重用</p>
+
+<p><a id="popmenuObject.reset"></a></p>
+
+<h3>popmenuObject.reset</h3>
+
+<p>重设菜单回调函数</p>
+
+<p><a id="popmenuObject.reset"></a></p>
+
+<h3>popmenuObject.reset(新的回调函数,菜单ID,0/*_MF_BYCOMMAND*/)</h3>
+
+<p>重设菜单回调函数</p>
+
+<p><a id="popmenuObject.reset"></a></p>
+
+<h3>popmenuObject.reset(新的回调函数,菜单位置)</h3>
+
+<p>重设菜单回调函数</p>
+
+<p><a id="popmenuObject.selId"></a></p>
+
+<h3>popmenuObject.selId</h3>
+
+<p>获取或修改当前选中项命令ID,单选模式</p>
+
+<p><a id="popmenuObject.selIndex"></a></p>
+
+<h3>popmenuObject.selIndex</h3>
+
+<p>获取或修改当前选中项索引,单选模式</p>
+
+<p><a id="popmenuObject.selText"></a></p>
+
+<h3>popmenuObject.selText</h3>
+
+<p>获取或修改当前选中项文本,单选模式</p>
+
+<p><a id="popmenuObject.setBitmap"></a></p>
+
+<h3>popmenuObject.setBitmap</h3>
+
+<p>设置菜单项位图</p>
+
+<p><a id="popmenuObject.setBitmap"></a></p>
+
+<h3>popmenuObject.setBitmap(菜单项命令ID,位图,选中位图,0/*_MF_BYCOMMAND*/)</h3>
+
+<p>设置菜单项位图,<br>
+选中位图为可选参数,<br>
+图像可以是句柄指针,也可以是图像文件路径或数据，<br>
+如果参数@4为0/*_MF_BYCOMMAND*/则参数@1为菜单命令ID</p>
+
+<p><a id="popmenuObject.setBitmap"></a></p>
+
+<h3>popmenuObject.setBitmap(菜单项序号,位图,选中位图)</h3>
+
+<p>设置菜单项位图,<br>
+选中位图为可选参数,<br>
+图像可以是句柄指针,也可以是图像文件路径或数据</p>
+
+<p><a id="popmenuObject.setString"></a></p>
+
+<h3>popmenuObject.setString</h3>
+
+<p>设置菜单项文本</p>
+
+<p><a id="popmenuObject.setString"></a></p>
+
+<h3>popmenuObject.setString(菜单项命令ID,字符串,0/*_MF_BYCOMMAND*/)</h3>
+
+<p>设置菜单项文本，<br>
+如果参数@3为0/*_MF_BYCOMMAND*/则参数@1为菜单命令ID</p>
+
+<p><a id="popmenuObject.setString"></a></p>
+
+<h3>popmenuObject.setString(菜单项序号,字符串)</h3>
+
+<p>设置菜单项文本</p>
+
+<p><a id="popmenuObject.subMenu"></a></p>
+
+<h3>popmenuObject.subMenu()</h3>
+
+<p><a href="#popmenuObject">返回对象:popmenuObject</a></p>
+
+<p><a id="popmenuObject.subMenu"></a></p>
+
+<h3>popmenuObject.subMenu(1)</h3>
+
+<p>返回指定位置子菜单</p>
+
+<p><a id="win.ui"></a></p>
+
+<h2>win.ui 成员列表</h2>
+
+<p><a id="win.ui.getMenu"></a></p>
+
+<h3>win.ui.getMenu()</h3>
+
+<p><a href="#menuObject">返回对象:menuObject</a></p>
+
+<p><a id="win.ui.getMenu"></a></p>
+
+<h3>win.ui.getMenu(hwnd)</h3>
+
+<p>返回窗口菜单<br>
+参数@1可指定窗体对象或窗体句柄<br>
+返回的菜单对象不能添加菜单</p>
+
+<p><a id="win.ui.getSysMenu"></a></p>
+
+<h3>win.ui.getSysMenu()</h3>
+
+<p><a href="#popmenuObject">返回对象:popmenuObject</a></p>
+
+<p><a id="win.ui.getSysMenu"></a></p>
+
+<h3>win.ui.getSysMenu(winform)</h3>
+
+<p>返回系统菜单<br>
+参数@1可指定窗体对象或窗体句柄<br>
+请事先导入win.ui.menu</p>
+
+<p><a id="win.ui.getSysMenu"></a></p>
+
+<h3>win.ui.getSysMenu(winform,true)</h3>
+
+<p>返回系统菜单<br>
+并重置为缺省状态<br>
+参数@1可指定窗体对象或窗体句柄<br>
+请事先导入win.ui.menu</p>
+
+<p><a id="win.ui.menu"></a></p>
+
+<h3>win.ui.menu()</h3>
+
+<p><a href="#menuObject">返回对象:menuObject</a></p>
+
+<p><a href="#menuObject">返回对象:menuObject</a></p>
+
+<p><a id="win.ui.menu"></a></p>
+
+<h3>win.ui.menu(窗口)</h3>
+
+<p>创建窗口菜单<br>
+参数 @1 可指定窗口或控件对象，<br>
+如果参数 @1 指定控件对象则自动转换为所在的父窗口对象。<br>
+如果参数 @1 传入窗口句柄，则添加菜单项无效</p>
+
+<p><a id="win.ui.menu"></a></p>
+
+<h3>win.ui.menu(窗口,菜单句柄)</h3>
+
+<p>使用存在的菜单句柄创建菜单对象，<br>
+如果参数 @1 指定控件对象则自动转换为所在的父窗口对象。<br>
+如果参数 @1 传入窗口句柄，则添加菜单项无效</p>
+
+<p><a id="win.ui.popmenu"></a></p>
+
+<h3>win.ui.popmenu</h3>
+
+<p>创建弹出菜单<br>
+需要先调用 import win.ui.menu，不然发布后会报错。<br>
+开发环境下运行，为了加快启动速度，不会百分百排除所有没有引用的库</p>
+
+<p><a id="win.ui.popmenu"></a></p>
+
+<h3>win.ui.popmenu()</h3>
+
+<p><a href="#popmenuObject">返回对象:popmenuObject</a></p>
+
+<p><a id="win.ui.popmenu"></a></p>
+
+<h3>win.ui.popmenu(窗口)</h3>
+
+<p>创建弹出菜单，<br>
+如果参数 @1 指定控件对象则自动转换为所在的父窗口对象。<br>
+如果参数 @1 传入窗口句柄，则添加菜单项无效</p>
+
+<p><a id="win.ui.popmenu"></a></p>
+
+<h3>win.ui.popmenu(窗口,菜单句柄)</h3>
+
+<p>使用存在的菜单句柄创建弹出菜单对象，<br>
+如果参数 @1 指定控件对象则自动转换为所在的父窗口对象。<br>
+如果参数 @1 传入窗口句柄，则添加菜单项无效</p>
+
+<h3>自动完成常量</h3>
+
+<p>_MENU_ITEM_IS_SUBMENU=-1<br>
+_TPM_BOTTOMALIGN=0x20<br>
+_TPM_CENTERALIGN=0x4<br>
+_TPM_LEFTALIGN=0<br>
+_TPM_RIGHTALIGN=0x8<br>
+_TPM_TOPALIGN=0<br>
+_TPM_VCENTERALIGN=0x10  </p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/ui/menu.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/ui/menu.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/menu.md">Markdown 格式</a></p>
+
+</body> 
+</html>

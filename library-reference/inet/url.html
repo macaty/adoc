@@ -1,0 +1,333 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - inet.url 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - inet.url 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>inet.url 库模块帮助文档</h1>
+
+<p><a id="inet.url"></a></p>
+
+<h2>inet.url 成员列表</h2>
+
+<p>网址（URL）函数库。<br>
+inet.http,inet.whttp 以及所有 web.rest 客户端都已经自动导入 inet.url 。</p>
+
+<p><a id="inet.url.append"></a></p>
+
+<h3>inet.url.append</h3>
+
+<p>拼接URL</p>
+
+<p><a id="inet.url.append"></a></p>
+
+<h3>inet.url.append(url目录,url子路径,...)</h3>
+
+<p>支持不定个数参数。<br>
+第一个参数无论是否以&quot;/&quot;字符结束都认为是一个目录。</p>
+
+<p><a id="inet.url.appendExtraInfo"></a></p>
+
+<h3>inet.url.appendExtraInfo(url,附加参数)</h3>
+
+<p>在 URL 后追加参数。<br>
+参数首字符不能是问号。<br>
+参数@2也可以指定一个包含多个参数键值对的表。  </p>
+
+<p>如果 @url 参数仅指定路径而非合法 URL，<br>
+则简单添加 ? 号后拼接参数</p>
+
+<p><a id="inet.url.canonicalize"></a></p>
+
+<h3>inet.url.canonicalize(&quot;当前URL&quot;,_URL)</h3>
+
+<p>URL规范化转换<br>
+参数@3指定转换选项</p>
+
+<p><a id="inet.url.canonicalize"></a></p>
+
+<h3>inet.url.canonicalize(URL)</h3>
+
+<p>URL规范化转换<br>
+扩展和适当置换路径中包含的所有 .. 和 .</p>
+
+<p><a id="inet.url.cmp"></a></p>
+
+<h3>inet.url.cmp()</h3>
+
+<p>比较参数@1与参数@2指定的网址是否相同。<br>
+相同则返回 0 ，否则返回其他数值。<br>
+比较前进行 URL 解码，并调用 inet.url.canonicalize 规范格式，<br>
+比较时忽略大小写</p>
+
+<p><a id="inet.url.decode"></a></p>
+
+<h3>inet.url.decode(字符串,输入代码页)</h3>
+
+<p>URL解码并返回文本,失败返回空值,<br>
+参数二指定输入编码(codepage),省略自动检测输入编码<br>
+此函数返回数据转换为UTF8编码</p>
+
+<p><a id="inet.url.decodeUnicode"></a></p>
+
+<h3>inet.url.decodeUnicode(字符串)</h3>
+
+<p>解码%uXXXX或%uXX编码的字符串<br>
+失败返回空值</p>
+
+<p><a id="inet.url.encode"></a></p>
+
+<h3>inet.url.encode(字符串,输出代码页)</h3>
+
+<p>除字母数字以及-._~等非保留字符以外的字符进行URL编码,<br>
+参数二指定输出编码(codepage),默认为65001(UTF8代码页)</p>
+
+<p><a id="inet.url.encodeMbcs"></a></p>
+
+<h3>inet.url.encodeMbcs(字符串,输出代码页)</h3>
+
+<p>如果字符串包含多字节字符,<br>
+使用URL编码其中的汉字和%符号,<br>
+参数二指定输出编码(codepage),默认为65001(UTF8代码页)</p>
+
+<p><a id="inet.url.encodeUri"></a></p>
+
+<h3>inet.url.encodeUri(字符串,输出代码页)</h3>
+
+<p>URL编码,<br>
+字母数字以及 URL 非保留字符、URL 保留字符都不编码（RFC3986）,<br>
+参数二指定输出编码(codepage),默认为65001(UTF8代码页)</p>
+
+<p><a id="inet.url.getFileName"></a></p>
+
+<h3>inet.url.getFileName(网址,默认文件名)</h3>
+
+<p>获取URL中的文件名<br>
+参数2可选,默认为&quot;index.html&quot;</p>
+
+<p><a id="inet.url.getFilePath"></a></p>
+
+<h3>inet.url.getFilePath()</h3>
+
+<p>如果 URL 为 file: 协议开头，<br>
+则返回 URL 解码后的文件路径，否则返回 null。<br>
+传入 null 参数返回 null。</p>
+
+<p><a id="inet.url.getParams"></a></p>
+
+<h3>inet.url.getParams()</h3>
+
+<p>返回 URL 的参数表，参数名都转为小写。<br>
+参数 @1 指定 URL，如果不指定则直接返回 null 。<br>
+如果参数 @1 指定了参数名（忽略大小写），则返回对应的字符串值</p>
+
+<p><a id="inet.url.hashNum"></a></p>
+
+<h3>inet.url.hashNum(url)</h3>
+
+<p>返回哈希数值</p>
+
+<p><a id="inet.url.is"></a></p>
+
+<h3>inet.url.is(url,_URLIS)</h3>
+
+<p>检测URL</p>
+
+<p><a id="inet.url.joinpath"></a></p>
+
+<h3>inet.url.joinpath</h3>
+
+<p>当对于当前URL的相对路径转换为完整 URL 。<br>
+注意该函数忽略文件名,简单拼接请使用 append 函数替代</p>
+
+<p><a id="inet.url.joinpath"></a></p>
+
+<h3>inet.url.joinpath(&quot;当前URL&quot;,相对路径,_URL)</h3>
+
+<p>当对于当前 URL 的相对路径转换为完整 URL 。<br>
+相对路径如果为空则直接返回参数 @1,<br>
+可选使用参数三指定转换选项</p>
+
+<p><a id="inet.url.split"></a></p>
+
+<h3>inet.url.split()</h3>
+
+<p><a href="#inetUrlcrackObject">返回对象:inetUrlcrackObject</a></p>
+
+<p><a id="inet.url.split"></a></p>
+
+<h3>inet.url.split(输入URL)</h3>
+
+<p>拆分URL返回包含协议、路径、端口、参数等的表对象<br>
+返回的表对象可以调用 tostring 重新生成 URL<br>
+可传入空值以获取用于拼接URL的表</p>
+
+<p><a id="inet.url.splitParameters"></a></p>
+
+<h3>inet.url.splitParameters</h3>
+
+<p>拆分URL参数并返回名值对组成的表对象<br>
+名字都转换为小写,如果名字尾部有[]或[键名]则值转换为表<br>
+如果只指定名字不指定值,则值为空字符串</p>
+
+<p><a id="inet.url.splitParameters"></a></p>
+
+<h3>inet.url.splitParameters(URL参数,分隔符,输入UTF8编码,数组键名)</h3>
+
+<p>拆分URL参数并返回表对象。<br>
+分隔符支持模式语法,默认为&#39;&amp;&#39;。<br>
+如果不指定分隔符,并且首字符是?号，此函数自动移除首字符。<br>
+使用 URL 解码键值文本,参数 @3 指定解码前是否UTF8编码，不指定则自动检测。<br>
+参数 @4 可选指定一个总是返回数组值的参数名称数组，参数名尾部如果有点号加数值则自动移除。</p>
+
+<p><a id="inet.url.stringify"></a></p>
+
+<h3>inet.url.stringify(urlInfo)</h3>
+
+<pre><code class="aardio language-aardio">inet.url.stringify(  
+    scheme = &quot;https&quot;;  
+    user = &quot;&quot;;  
+    password =&quot;&quot;;  
+    host =&quot;/*使用参数表构建并返回URL字符串*/&quot;;  
+    location = &quot;&quot;;  
+    extraInfo = {  
+        name = value;  
+    };  
+)
+</code></pre>
+
+<p><a id="inet.url.stringifyParameters"></a></p>
+
+<h3>inet.url.stringifyParameters</h3>
+
+<p>将URL参数表转换为字符串</p>
+
+<p><a id="inet.url.stringifyParameters"></a></p>
+
+<h3>inet.url.stringifyParameters(参数表,输出代码页,排序函数)</h3>
+
+<p>使用&#39;=&#39;分隔键值对,使用&#39;&amp;&#39;分隔不同参数,<br>
+如果值为表,则转换为多个键值对,键名后添加[]或[子键名]。<br>
+如果值为函数则调用该函数取返回值。<br>
+所有值转换为字符串并使用 UrlEncode 编码。<br>
+参数@2指定输出编码（codepage）,默认为65001（UTF8代码页)<br>
+省略排序函数则使用默认字典序排序</p>
+
+<p><a id="inetUrlcrackObject"></a></p>
+
+<h2>inetUrlcrackObject 成员列表</h2>
+
+<p><a id="inetUrlcrackObject.extraInfo"></a></p>
+
+<h3>inetUrlcrackObject.extraInfo</h3>
+
+<p>附加参数<br>
+如果有URL参数,这里首字符会是?号<br>
+不包含#号后面的网页位置</p>
+
+<p><a id="inetUrlcrackObject.host"></a></p>
+
+<h3>inetUrlcrackObject.host</h3>
+
+<p>域名</p>
+
+<p><a id="inetUrlcrackObject.location"></a></p>
+
+<h3>inetUrlcrackObject.location</h3>
+
+<p>URL中#号后面的网页位置,不包含#号</p>
+
+<p><a id="inetUrlcrackObject.password"></a></p>
+
+<h3>inetUrlcrackObject.password</h3>
+
+<p>密码</p>
+
+<p><a id="inetUrlcrackObject.path"></a></p>
+
+<h3>inetUrlcrackObject.path</h3>
+
+<p>文件路径;</p>
+
+<p><a id="inetUrlcrackObject.port"></a></p>
+
+<h3>inetUrlcrackObject.port</h3>
+
+<p>端口</p>
+
+<p><a id="inetUrlcrackObject.scheme"></a></p>
+
+<h3>inetUrlcrackObject.scheme</h3>
+
+<p>协议，总是转换为小写</p>
+
+<p><a id="inetUrlcrackObject.schemeNum"></a></p>
+
+<h3>inetUrlcrackObject.schemeNum</h3>
+
+<p>协议（数值）。<br>
+可用值为 <em>INTERNET_SCHEME</em> 前缀的常量定义。<br>
+重新拼接 URL 时忽略此参数</p>
+
+<p><a id="inetUrlcrackObject.user"></a></p>
+
+<h3>inetUrlcrackObject.user</h3>
+
+<p>用户名</p>
+
+<h3>自动完成常量</h3>
+
+<p>_INTERNET_SCHEME_DEFAULT=0x0<br>
+_INTERNET_SCHEME_FILE=5<br>
+_INTERNET_SCHEME_FIRST=1<br>
+_INTERNET_SCHEME_FTP=1<br>
+_INTERNET_SCHEME_GOPHER=2<br>
+_INTERNET_SCHEME_HTTP=3<br>
+_INTERNET_SCHEME_HTTPS=4<br>
+_INTERNET_SCHEME_JAVASCRIPT=9<br>
+_INTERNET_SCHEME_LAST=0xB<br>
+_INTERNET_SCHEME_MAILTO=7<br>
+_INTERNET_SCHEME_NEWS=6<br>
+_INTERNET_SCHEME_PARTIAL=0xFFFFFFFE<br>
+_INTERNET_SCHEME_RES=0xB<br>
+_INTERNET_SCHEME_SOCKS=8<br>
+_INTERNET_SCHEME_UNKNOWN=0xFFFFFFFF<br>
+_INTERNET_SCHEME_VBSCRIPT=0xA<br>
+_URLIS_URL=0x0<br>
+_URL_APPLY_DEFAULT=1<br>
+_URL_APPLY_FORCEAPPLY=8<br>
+_URL_APPLY_GUESSFILE=4<br>
+_URL_APPLY_GUESSSCHEME=2<br>
+_URL_BROWSER_MODE=0x2000000<br>
+_URL_CONVERT_IF_DOSPATH=0x200000<br>
+_URL_DONT_ESCAPE_EXTRA_INFO=0x2000000<br>
+_URL_DONT_SIMPLIFY=0x8000000<br>
+_URL_DONT_UNESCAPE=0x20000<br>
+_URL_DONT_UNESCAPE_EXTRA_INFO=0x2000000<br>
+_URL_ESCAPE_AS_UTF8=0x40000<br>
+_URL_ESCAPE_PERCENT=0x1000<br>
+_URL_ESCAPE_SEGMENT_ONLY=0x2000<br>
+_URL_ESCAPE_SPACES_ONLY=0x4000000<br>
+_URL_ESCAPE_UNSAFE=0x20000000<br>
+_URL_FILE_USE_PATHURL=0x10000<br>
+_URL_INTERNAL_PATH=0x800000<br>
+_URL_NO_META=0x8000000<br>
+_URL_PARTFLAG_KEEPSCHEME=1<br>
+_URL_PLUGGABLE_PROTOCOL=0x40000000<br>
+_URL_UNESCAPE=0x10000000<br>
+_URL_UNESCAPE_HIGH_ANSI_ONLY=0x400000<br>
+_URL_WININET_COMPATIBILITY=0x80000000  </p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/inet/url.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/inet/url.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/inet/url.md">Markdown 格式</a></p>
+
+</body> 
+</html>

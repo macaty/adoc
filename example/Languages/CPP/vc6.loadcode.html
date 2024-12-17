@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio ç¼–ç¨‹è¯­è¨€èŒƒä¾‹ - è¿è¡Œ C++'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio ç¼–ç¨‹è¯­è¨€èŒƒä¾‹ - è¿è¡Œ C++</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio ç¼–ç¨‹è¯­è¨€æ–‡æ¡£é¦–é¡µ"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio æ–‡æ¡£</span></a>
+<h1>aardio èŒƒä¾‹: è¿è¡Œ C++</h1><pre><code class="aardio language-aardio">//è¿è¡Œ C++
+import vc6;
+import console; 
+
+/*
+C++ å¿«é€Ÿå…¥é—¨
+https://quickref.me/zh-CN/docs/cpp.html
+https://learnxinyminutes.com/docs/zh-cn/c++-cn
+*/
+console.showLoading(&quot; æ­£åœ¨åŠ è½½ C++ ä»£ç &quot;);
+var dll = vc6.loadcode(`
+#define _WIN32_WINNT 0x0501
+#include &lt;winsock2.h&gt; 
+#include &lt;Ws2tcpip.h&gt;
+#pragma comment(lib, &quot;ws2_32.lib&quot;)
+#include &lt;windows.h&gt; 
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt; 
+#include &lt;windows.h&gt;
+#include &lt;winuser.h&gt; 
+#include &lt;basetsd.h&gt; 
+#include &lt;basetyps.h&gt; 
+#include &lt;winbase.h&gt; 
+#include &lt;wincon.h&gt; 
+#include &lt;windef.h&gt; 
+#include &lt;windows.h&gt; 
+#include &lt;winerror.h&gt; 
+#include &lt;wingdi.h&gt; 
+#include &lt;winnls.h&gt; 
+#include &lt;winnt.h&gt; 
+#include &lt;winreg.h&gt;  
+#include &lt;winuser.h&gt; 
+#include &lt;winver.h&gt;  
+#include &lt;winioctl.h&gt; 
+#include &lt;Commctrl.h&gt; 
+#define DllExport __declspec( dllexport )
+
+extern &quot;C&quot; {
+    DllExport int __cdecl getValue() { 
+        return CTL_CODE(IOCTL_STORAGE_BASE, 0x0500, METHOD_BUFFERED, FILE_ANY_ACCESS);
+    }
+}`);
+
+//https://www.aardio.com/zh-cn/doc/library-guide/builtin/raw/directCall.html
+var value = dll.getValue();
+var str = string.format(&quot;0x%X&quot;,value);
+console.log(&quot;å·²å¤åˆ¶: &quot; + str,value);
+
+import win.clip;
+win.clip.write(str);
+
+console.pause();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/CPP/vc6.loadcode.md  \n\n¸ÃÎÄ¼şÎŞ·¨ÓÃ Teleport Ultra ÏÂÔØ, ÒòÎª Ëü²»ÔÚÏîÄ¿ÎÄ¼şÀàĞÍ¹æ·¶ÄÚ¡£  \n\nÄãÏëÔÚ·şÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/CPP/vc6.loadcode.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Languages/CPP/vc6.loadcode.md">Markdown æ ¼å¼</a>
+</body> 
+</html>

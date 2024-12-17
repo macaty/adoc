@@ -1,0 +1,297 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - string.xml 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - string.xml 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>string.xml 库模块帮助文档</h1>
+
+<p><a id="string"></a></p>
+
+<h2>string 成员列表</h2>
+
+<p><a id="string.xml"></a></p>
+
+<h3>string.xml()</h3>
+
+<p><a href="#stringXmlObject">返回对象:stringXmlObject</a></p>
+
+<p><a id="string.xml"></a></p>
+
+<h3>string.xml(xml字符串)</h3>
+
+<p>创建 XML 对象。<br>
+此对象不支持 table.tostring , console.dump 函数，不能跨线程传递。  </p>
+
+<p>严格的校验XML语法正确性不是本模块的义务和目标,<br>
+所以,此解析器尽可能兼容错误,兼容了HTML,SGML的部分规则:<br>
+1、不要求存在根标签<br>
+2、尝试自动修正不配对的标记<br>
+3、在有必要的时候尝试忽略大小写</p>
+
+<p><a id="string.xml"></a></p>
+
+<h2>string.xml 成员列表</h2>
+
+<p>简单 XML 解析器。<br>
+严格的校验 XML 语法正确性不是本模块的设计目标，<br>
+所以此解析器尽可能兼容错误，兼容了 HTML，SGML 的部分规则:  </p>
+
+<ol>
+<li>不要求存在根标签<br></li>
+<li>尝试自动修正不配对的标记<br></li>
+<li>在有必要的时候尝试忽略大小写。</li>
+</ol>
+
+<p><a id="string.xml.escape"></a></p>
+
+<h3>string.xml.escape()</h3>
+
+<p>将字符串中的 &lt; &gt; &quot; &#39; &amp; 等 XML 标记字符编码为实体字符（entity）。<br>
+如果参数为非 null 值则返回转换后的字符串。<br>
+参数只能是 null 或字符串、buffer</p>
+
+<p><a id="string.xml.ncr"></a></p>
+
+<h3>string.xml.ncr()</h3>
+
+<p>NCR 字符编码、HTML实体字符还原为 UTF8 文本</p>
+
+<p><a id="string.xml.ncrEncode"></a></p>
+
+<h3>string.xml.ncrEncode(str,pattern)</h3>
+
+<p>将字符串参数 @str 中以 @pattern 指定模式串所匹配的字符进行 NCR 编码。<br>
+参数 @pattern 可用模式匹配语法指定要编码的字符，省略则默认为 &quot;:|.&quot;。<br>
+返回编码后的字符串。</p>
+
+<p><a id="stringXmlObject"></a></p>
+
+<h2>stringXmlObject 成员列表</h2>
+
+<p><a id="stringXmlObject.?"></a></p>
+
+<h3>stringXmlObject.?</h3>
+
+<p>属性或子节点数组  </p>
+
+<p><a href="#stringXmlObject">返回对象:stringXmlObject</a></p>
+
+<p><a id="stringXmlObject.codepage"></a></p>
+
+<h3>stringXmlObject.codepage</h3>
+
+<p>源文本代码页</p>
+
+<p><a id="stringXmlObject.eachAttribute"></a></p>
+
+<h3>stringXmlObject.eachAttribute()</h3>
+
+<pre><code class="aardio language-aardio">for( k,v in stringXmlObject.eachAttribute() ){
+    /*遍历节点所有属性,k为属性名,v为属性值*/
+}
+</code></pre>
+
+<p><a id="stringXmlObject.eachChild"></a></p>
+
+<h3>stringXmlObject.eachChild()</h3>
+
+<p><a href="#stringXmlObject">返回对象:stringXmlObject</a></p>
+
+<p><a id="stringXmlObject.eachChild"></a></p>
+
+<h3>stringXmlObject.eachChild(标签名)</h3>
+
+<pre><code class="aardio language-aardio">for(index,tagName,childCount,xNode in stringXmlObject.eachChild(/*标签名，区分大小写*/) ){
+    io.print( index,tagName,childCount,xNode ) 
+}
+</code></pre>
+
+<p><a id="stringXmlObject.eachQuery"></a></p>
+
+<h3>stringXmlObject.eachQuery(查询参数表)</h3>
+
+<pre><code class="aardio language-aardio">for ele in stringXmlObject.eachQuery(tagName=&quot;img&quot;/*搜索并遍历节点对象,  
+
+参数@1指定一个表对象，  
+该参数表可包含一个或多个键值，用于匹配节点的属性值,  
+可使用tagName属性指定节点的标签名,  
+可使用parent属性指定开始查询节点的父节点，parent可以是ID或者节点对象。  
+属性值使用 string.cmpMatch函数进行比对，  
+等价于调用string.cmp函数进行忽略大小写的比较,  
+并且在失败后调用 string.match函数使用模式匹配语法进行比较  
+
+注意在匹配节点属性时有几个例外：  
+parent属性不使用模式匹配进行比对，  
+tagName,id,name属性如果匹配值不含标点则使用忽略大小写的完全比对（禁用模式匹配和部分匹配）*/){  
+
+}  
+
+[返回对象:stringXmlObject](#stringXmlObject)
+</code></pre>
+
+<p><a id="stringXmlObject.encoding"></a></p>
+
+<h3>stringXmlObject.encoding</h3>
+
+<p>源文本字符集</p>
+
+<p><a id="stringXmlObject.enumNodes"></a></p>
+
+<h3>stringXmlObject.enumNodes(枚举函数,搜索标签名)</h3>
+
+<pre><code class="aardio language-aardio">stringXmlObject.enumNodes(   
+    function(parentElement,index,tagName,childCount,xNode){   
+
+    },/*可选指定要查找的标签名（tagName），忽略大小写  
+回调函数返回非 null 值时退出枚举，并返回回调函数的所有返回值*/  
+)
+</code></pre>
+
+<p><a id="stringXmlObject.getAttribute"></a></p>
+
+<h3>stringXmlObject.getAttribute()</h3>
+
+<p>取属性值,<br>
+参数中指定属性名字,属性名忽略大小写,<br>
+如果通过下标或成员操作符直接获取属性时区分大小写的</p>
+
+<p><a id="stringXmlObject.getEle"></a></p>
+
+<h3>stringXmlObject.getEle(&quot;字符串参数&quot;)</h3>
+
+<p>获取指定id的节点对象,<br>
+参数指定节点id,忽略大小写,支持模式匹配规则</p>
+
+<p><a id="stringXmlObject.getEles"></a></p>
+
+<h3>stringXmlObject.getEles(&quot;字符串参数&quot;)</h3>
+
+<p>获取所有指定相同name的节点对象,返回数组,<br>
+即使找不到节点,也会返回空数组,<br>
+参数指定节点name,忽略大小写,支持模式匹配规则</p>
+
+<p><a id="stringXmlObject.getParent"></a></p>
+
+<h3>stringXmlObject.getParent()</h3>
+
+<p>获取父节点</p>
+
+<p><a id="stringXmlObject.innerText"></a></p>
+
+<h3>stringXmlObject.innerText()</h3>
+
+<p>返回节点内部文本或CDATA文本</p>
+
+<p><a id="stringXmlObject.innerXml"></a></p>
+
+<h3>stringXmlObject.innerXml()</h3>
+
+<p>将子节点转换XML文本,<br>
+如果参数@1为true则缩进格式化返回的xml文本,<br>
+可选在参数@2中自定义换行符</p>
+
+<p><a id="stringXmlObject.outerXml"></a></p>
+
+<h3>stringXmlObject.outerXml()</h3>
+
+<p>转换为XML文本,<br>
+如果参数@1为true则缩进格式化返回的xml文本,<br>
+可选在参数@2中自定义换行符</p>
+
+<p><a id="stringXmlObject.pushElement"></a></p>
+
+<h3>stringXmlObject.pushElement()</h3>
+
+<p><a href="#stringXmlObject">返回对象:stringXmlObject</a></p>
+
+<p><a id="stringXmlObject.pushElement"></a></p>
+
+<h3>stringXmlObject.pushElement(节点属性表)</h3>
+
+<pre><code class="aardio language-aardio">stringXmlObject.pushElement(  
+    tagName =   
+    cdata =   
+    text = /*注意text,cdata,tagName三个属性只能指定一个,  
+可选使用参数@2指定新增节点的位置,不指定则添加到子节点数组尾部,  
+返回新增的节点对象*/  
+)
+</code></pre>
+
+<p><a id="stringXmlObject.pushXml"></a></p>
+
+<h3>stringXmlObject.pushXml()</h3>
+
+<p>将字符串参数@1中指定的XML添加到当前节点的子节点,<br>
+可选用参数@2指定新节点的位置,不指定则添加到子节点数组尾部,<br>
+返回新增XML中最后一个根节点</p>
+
+<p><a href="#stringXmlObject">返回对象:stringXmlObject</a></p>
+
+<p><a id="stringXmlObject.queryEle"></a></p>
+
+<h3>stringXmlObject.queryEle(查询参数表)</h3>
+
+<p>搜索节点对象,参数@1指定一个表对象，  </p>
+
+<p>该参数表可包含一个或多个键值，用于匹配节点的属性值,<br>
+可使用tagName属性指定节点的标签名,<br>
+可使用parent属性指定开始查询节点的父节点，parent可以是ID或者节点对象。<br>
+属性值使用 string.cmpMatch函数进行比对，<br>
+等价于调用string.cmp函数进行忽略大小写的比较,<br>
+并且在失败后调用 string.match函数使用模式匹配语法进行比较  </p>
+
+<p>注意在匹配节点属性时有几个例外：<br>
+parent属性不使用模式匹配进行比对，<br>
+tagName,id,name属性如果匹配值不含标点则使用忽略大小写的完全比对（禁用模式匹配和部分匹配）</p>
+
+<p><a id="stringXmlObject.queryEles"></a></p>
+
+<h3>stringXmlObject.queryEles( 查询参数表)</h3>
+
+<p>搜索节点对象,该函数返回的是一个数组,<br>
+即使找不到节点,此函数也会返回一个空数组,  </p>
+
+<p>参数@1指定一个表对象，<br>
+该参数表可包含一个或多个键值，用于匹配节点的属性值,<br>
+可使用tagName属性指定节点的标签名,<br>
+可使用parent属性指定开始查询节点的父节点，parent可以是ID或者节点对象。<br>
+属性值使用 string.cmpMatch函数进行比对，<br>
+等价于调用string.cmp函数进行忽略大小写的比较,<br>
+并且在失败后调用 string.match函数使用模式匹配语法进行比较  </p>
+
+<p>注意在匹配节点属性时有几个例外：<br>
+parent属性不使用模式匹配进行比对，<br>
+tagName,id,name属性如果匹配值不含标点则使用忽略大小写的完全比对（禁用模式匹配和部分匹配）</p>
+
+<p><a id="stringXmlObject.queryEles"></a></p>
+
+<h3>stringXmlObject.queryEles()</h3>
+
+<p><a href="#stringXmlObject">返回对象:stringXmlObject</a></p>
+
+<p><a id="stringXmlObject.remove"></a></p>
+
+<h3>stringXmlObject.remove()</h3>
+
+<p>如果存在父节点,在父节点中移除此节点</p>
+
+<p><a id="stringXmlObject.tagName"></a></p>
+
+<h3>stringXmlObject.tagName</h3>
+
+<p>节点标签名</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/string/xml.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/string/xml.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/string/xml.md">Markdown 格式</a></p>
+
+</body> 
+</html>

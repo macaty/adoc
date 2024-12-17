@@ -1,0 +1,344 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - 格式化字符串'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - 格式化字符串</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>格式化字符串</h1>
+
+<p>请参考：<a href="../../../language-reference/datatype/datatype.html#varstring" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/datatype/datatype.html#varstring">数据类型 - 字符串</a></p>
+
+<h2>一、格式化函数</h2>
+
+<p>string.format 用来格式化字符串(按指定的规则连接字符串或其他变量并返回新的字符串) 。使用方法与 C 语言的 printf 函数类似( 实际上很多编程语言中都有类似的格式化函数 ) 。</p>
+
+<p><code>result = string.format(fm,...);</code></p>
+
+<p>第一个字符串参数 @fm 指定输出的格式，每个 <code>%</code> 符号后面是一个格式化表达式，每个格式化表达式按顺序对应后面的参数。</p>
+
+<p>所以用了 n 个格式化表达式，就必须在后面添加 n 个参数。  </p>
+
+<p>下面是一个简单的例子：</p>
+
+<pre><code class="aardio language-aardio">var int = 123;
+var str = &quot;字符串&quot;
+
+//下面的 %s 对应参数 str, %i 对应参数 int
+var result = string.format(&quot;这是字符串:&#39;%s&#39; 这是数字值 %i&quot;,str,int);
+
+//%05i表示格式化为至少五位的数字,不足在前面补 0
+var str = string.format(&quot;%05i&quot;,int); 
+</code></pre>
+
+<h2>二、格式化语法</h2>
+
+<p>格式化表达式：</p>
+
+<p><code>%[零个或多个标志][最小字段宽度][.精度]格式化代码</code></p>
+
+<blockquote>
+<p>注意: 上面的方括号 <code>[]</code> 表示可选部分。 </p>
+</blockquote>
+
+<h3>格式化代码 <a id="type" href="#type">&#x23;</a></h3>
+
+<p>代码 c<br>
+参数：数字值(number)<br>
+含义：参数被裁剪为8位字节码并作为字符进行打印。</p>
+
+<p>代码 i,d<br>
+参数：数字值(number)<br>
+含义：参数作为一个十进制整数打印。如果给出了精度而且值的位数小于精度位数，前面就用0填充。</p>
+
+<p>代码 u,o,x,X<br>
+参数：数字值(number)<br>
+含义：参数作为一个无符号数字值打印，u使用十进制，o使用八进制，x或X使用十六进制，两者的区别是x约定使用abcdef，而X约定使用ABCDEF。 %u,%o,%x,%X 等格式代码也可用于格式化 math.size64 对象（按64位无符号数值格式化 ）。</p>
+
+<p>代码 e,E<br>
+参数：数字值(number)<br>
+含义：参数根据指数形式打印。例如，6.023000e23是使用代码e，6.023000E23是使用代码E。小数点后面的位数由精度字段决定，缺省值是6。</p>
+
+<p>代码 f<br>
+参数：数字值(number)<br>
+含义：参数按照的常规浮点格式打印。精度字段决定小数点后面的位数，缺省值是6。</p>
+
+<p>代码 g,G<br>
+参数：数字值(number)<br>
+含义：参数以%f或%e（如G则%E）的格式打印，取决于它的值。如果指数大于等于-4但小于精度字段就使用%f格式，否则使用指数格式。</p>
+
+<p>代码 s<br>
+参数：字符串值(string)<br>
+含义：打印一个字符串。</p>
+
+<p>代码 q<br>
+参数：(无)<br>
+含义：打印一个字符串，并将字符串置于一对引号中，如果字符串中包含引号换行等自动添加转义符。如果要读取一个字符串传为代码。为避免用户恶意注入引号等特殊字符，可以使用%q进行格式化。</p>
+
+<p>代码 %<br>
+参数：(无)<br>
+含义：取消%转义打印一个%字符,即用%%表示本来的%。</p>
+
+<h3>格式化标志 <a id="flags" href="#flags">&#x23;</a></h3>
+
+<p>标志 <code>-</code><br>
+含义：如果在填充宽度前加上 <code>-</code> 号，则值在填充结果中左对齐（缺省情况下是右对齐）。</p>
+
+<p>标志 <code>0</code> 
+含义：当数值为右对齐时，缺省情况下是使用空格填充值左边未使用的列。这个标志表示用零填充，它可用于格式化代码 d,i,u,o,x,X,e,E,f,g 和 G 。<br>
+使用格式化代码 d,i,u,o,x 和 X 时，如果给出了精度字段，标志<code>0</code> 就被忽略。如果格式代码中出现了负号，标志<code>0</code> 也没有效果。</p>
+
+<p>标志 <code>+</code><br>
+含义：当用于一个格式化某个有符号值代码时，如果值非负，正号标志就会给它加上一个正号。如果该值为负，就像往常一样显示一个负号。在<br>
+缺省情况下，正号并不会显示。</p>
+
+<p>标志 空格<br>
+含义：只用于转换有符号值的代码。当值非负时，这个标志把一个空格添加到它开始的位置。注意这个标志和正号标志是相互排斥的，如果两个<br>
+同时给出，空格标志便被忽略。</p>
+
+<p>扩展标志 <code>#</code><br>
+含义：用于选择某些代码的另一种转换形式。  </p>
+
+<p>示例：   </p>
+
+<ul>
+<li><code>#o</code> 保证产生的值以一个零开头<br></li>
+<li><code>#x</code>,<code>#X</code> 在非零值前面加 <code>0x</code> 前缀（ <code>%#X</code> 则为 <code>0X</code>）<br></li>
+<li><code>#e</code>,<code>#E</code>,<code>#f</code> 确保结果始终包含一个小数点，即使它后面没有数字<br></li>
+<li><code>#g</code>,<code>#G</code> 和上面的 <code>#e</code>, <code>#E</code> 和 <code>#f</code> 代码相同。另外，缀尾的 0 并不从小数中去除。</li>
+</ul>
+
+<h3>字段宽度 <a id="width" href="#width">&#x23;</a></h3>
+
+<p>字段宽度是一个十进制整数，用于指定将出现在结果中的最小字符数。如果值的字符数少于字段宽度，就对它进行填充以增加长度。  </p>
+
+<h3>精度 <a id="precision" href="#precision">&#x23;</a></h3>
+
+<p>精度以一个句点开头，后面跟一个可选的十进制数。如果未给出整数，精度的缺省值为零。</p>
+
+<p>对于格式化代码为 d,i,u,o,x 或 X 的转换，精度字段指定将出现在结果中的最小的数字个数并覆盖零标志。如果转换后的值的位数小于宽度，就在它的前面插入零。如果值为零且精度也为零，则转换结果就不会产生数字。</p>
+
+<p>对于格式化代码 e,E 或 f 类型的转换，精度决定将出现在小数点之后的数字位数。</p>
+
+<p>对于格式化代码 g 和 G 的转换，它指定将出现在结果中的最大有效位数。</p>
+
+<p>格式化代码为 s 的转换，精度指定将被转换的最多的字符数。</p>
+
+<ol>
+<li>格式语法示例<br></li>
+</ol>
+
+<table><thead>
+<tr>
+<th>格式代码</th>
+<th>A</th>
+<th>ABC</th>
+<th>ABCDEFGH</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>%s</code></td>
+<td>A</td>
+<td>ABC</td>
+<td>ABCDEFGH</td>
+</tr>
+<tr>
+<td><code>%5s</code></td>
+<td>####A</td>
+<td>##ABC</td>
+<td>ABCDEFGH</td>
+</tr>
+<tr>
+<td><code>%.5s</code></td>
+<td>A</td>
+<td>ABC</td>
+<td>ABCDE</td>
+</tr>
+<tr>
+<td><code>%5.5s</code></td>
+<td>####A</td>
+<td>##ABC</td>
+<td>ABCDE</td>
+</tr>
+<tr>
+<td><code>%-5s</code></td>
+<td>A####</td>
+<td>ABC##</td>
+<td>ABCDEFGH</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th><code>格式代码</code></th>
+<th>1</th>
+<th>-12</th>
+<th>12345</th>
+<th>123456789</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>%d</code></td>
+<td>1</td>
+<td>-12</td>
+<td>12345</td>
+<td>123456789</td>
+</tr>
+<tr>
+<td><code>%6d</code></td>
+<td>#####1</td>
+<td>###-12</td>
+<td>#12345</td>
+<td>123456789</td>
+</tr>
+<tr>
+<td><code>%.4d</code></td>
+<td>0001</td>
+<td>-0012</td>
+<td>12345</td>
+<td>123456789</td>
+</tr>
+<tr>
+<td><code>%6.4d</code></td>
+<td>##0001</td>
+<td>#-0012</td>
+<td>#12345</td>
+<td>123456789</td>
+</tr>
+<tr>
+<td><code>%-4d</code></td>
+<td>1####</td>
+<td>-12#</td>
+<td>12345</td>
+<td>123456789</td>
+</tr>
+<tr>
+<td><code>%04d</code></td>
+<td>0001</td>
+<td>-012</td>
+<td>12345</td>
+<td>123456789</td>
+</tr>
+<tr>
+<td><code>%+d</code></td>
+<td>+1</td>
+<td>-12</td>
+<td>+12345</td>
+<td>+123456789</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th><code>格式代码</code></th>
+<th>1</th>
+<th>.01</th>
+<th>.00012345</th>
+<th>12345.6789</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>%f</code></td>
+<td>1.000000</td>
+<td>0.010000</td>
+<td>0.000123</td>
+<td>12345.678900</td>
+</tr>
+<tr>
+<td><code>%10.2f</code></td>
+<td>######1.00</td>
+<td>#####0.01</td>
+<td>######0.00</td>
+<td>##12345.67</td>
+</tr>
+<tr>
+<td><code>%e</code></td>
+<td>1.000000e+00</td>
+<td>1.000000e-02</td>
+<td>1.234500e-04</td>
+<td>1.234568e+04</td>
+</tr>
+<tr>
+<td><code>%.4e</code></td>
+<td>1.0000e+00</td>
+<td>1.0000e-02</td>
+<td>1.2345e-04</td>
+<td>1.2346e+04</td>
+</tr>
+<tr>
+<td><code>%g</code></td>
+<td>1</td>
+<td>0.01</td>
+<td>0.00012345</td>
+<td>12345.7</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th><code>格式代码</code></th>
+<th>6.023e23</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>%f</code></td>
+<td>60229999999999975882752.000000</td>
+</tr>
+<tr>
+<td><code>%10.2f</code></td>
+<td>60229999999999975882752.00</td>
+</tr>
+<tr>
+<td><code>%e</code></td>
+<td>6.023000e+23</td>
+</tr>
+<tr>
+<td><code>%.4e</code></td>
+<td>6.0230e+23</td>
+</tr>
+<tr>
+<td><code>%g</code></td>
+<td>6.023e+23</td>
+</tr>
+</tbody></table>
+
+<p>用上面的格式化函数可以轻松实现数字的进制转换( 请参考：<a href="../../../language-reference/datatype/number.html" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/datatype/number.html">数值与进制</a> )</p>
+
+<pre><code class="aardio language-aardio">import console; 
+
+//数字转换为二进制字符串
+str = string.format(&quot;2#%b&quot;,23 );
+console.log(str)
+
+//二进制字符串转换为数字
+n = tonumber(str,2)
+
+//数字转换为八进制字符串
+str = string.format(&quot;8#%o&quot;,23 );
+console.log(str)
+
+//八进制字符串转换为数字
+n = tonumber(str,8)
+
+//数字转换为十六进制字符串
+str = string.format(&quot;%#x&quot;,23 );
+console.log(str)
+
+//十六进制字符串转换为数字
+n = tonumber(str,16)
+
+console.pause();
+</code></pre>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-guide/builtin/string/format.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-guide/builtin/string/format.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/builtin/string/format.md">Markdown 格式</a></p>
+
+</body> 
+</html>

@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - sys.display 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - sys.display 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>sys.display 库模块帮助文档</h1>
+
+<p><a id="sys.display"></a></p>
+
+<h2>sys.display 成员列表</h2>
+
+<p>显卡函数库。<br>
+相关的库：sys.monitor, sys.display, sys.ddcci</p>
+
+<p><a id="sys.display.eachMode"></a></p>
+
+<h3>sys.display.eachMode()</h3>
+
+<p><a href="#DEVMODEDISPLAYDEVICEObject">返回对象:DEVMODEDISPLAYDEVICEObject</a></p>
+
+<p><a id="sys.display.eachMode"></a></p>
+
+<h3>sys.display.eachMode(flags,idx)</h3>
+
+<pre><code class="aardio language-aardio">for( devMode in sys.display.eachMode() ){
+    if( devMode.pelsWidth &gt; (devMode.pelsWidth &gt; devMode.pelsHeight ? 640 : 480) ){
+        /*列出显卡支持的分辨率*/
+    }
+}
+</code></pre>
+
+<p><a id="sys.display.enumAdapters"></a></p>
+
+<h3>sys.display.enumAdapters(回调函数)</h3>
+
+<pre><code class="aardio language-aardio">sys.display.enumAdapters(  
+function(info,description,driverVersion){  
+    /*枚举显卡,info为显卡信息,description为显卡名称  
+第一个显卡是默认显示  
+返回true退出枚举*/  
+})
+</code></pre>
+
+<p><a id="sys.display.getAdapter"></a></p>
+
+<h3>sys.display.getAdapter()</h3>
+
+<p>获取显卡信息  </p>
+
+<p><a href="#D3DADAPTERIDENTIFIER9Object">返回对象:D3DADAPTERIDENTIFIER9Object</a></p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/sys/display.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/sys/display.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/sys/display.md">Markdown 格式</a></p>
+
+</body> 
+</html>

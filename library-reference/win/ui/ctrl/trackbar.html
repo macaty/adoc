@@ -1,0 +1,486 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - win.ui.ctrl.trackbar 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - win.ui.ctrl.trackbar 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>win.ui.ctrl.trackbar 库模块帮助文档</h1>
+
+<p><a id="win.ui.ctrl"></a></p>
+
+<h2>win.ui.ctrl 成员列表</h2>
+
+<p><a id="win.ui.ctrl.trackbar"></a></p>
+
+<h3>win.ui.ctrl.trackbar()</h3>
+
+<p>跟踪条控件<br>
+XP 系统不支持透明背景，之后的系统都支持  </p>
+
+<p><a href="#trackbarObject">返回对象:trackbarObject</a></p>
+
+<p><a id="trackbarObject"></a></p>
+
+<h2>trackbarObject 成员列表</h2>
+
+<p><a id="trackbarObject._parentForm"></a></p>
+
+<h3>trackbarObject._parentForm</h3>
+
+<p>创建该控件的父窗口（win.form对象）,<br>
+设计时窗体容器是所有拖放在窗体上的控件的 _parentForm,  </p>
+
+<p>即使窗口移除子窗口样式、更改父子关系，或以 orphanWindow显示,<br>
+控件的 _parentForm 始终都不会改变  </p>
+
+<p><a href="../_.html#winform" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/_.html#winform">返回对象:winform</a></p>
+
+<p><a id="trackbarObject.bottom"></a></p>
+
+<h3>trackbarObject.bottom</h3>
+
+<p>底部坐标</p>
+
+<p><a id="trackbarObject.capture"></a></p>
+
+<h3>trackbarObject.capture</h3>
+
+<p>是否捕获全局鼠标消息</p>
+
+<p><a id="trackbarObject.className"></a></p>
+
+<h3>trackbarObject.className</h3>
+
+<p>运行时类名</p>
+
+<p><a id="trackbarObject.close"></a></p>
+
+<h3>trackbarObject.close()</h3>
+
+<p>关闭控件窗</p>
+
+<p><a id="trackbarObject.cls"></a></p>
+
+<h3>trackbarObject.cls</h3>
+
+<p>设计时类名</p>
+
+<p><a id="trackbarObject.disabled"></a></p>
+
+<h3>trackbarObject.disabled</h3>
+
+<p>是否禁用</p>
+
+<p><a id="trackbarObject.getClientRect"></a></p>
+
+<h3>trackbarObject.getClientRect()</h3>
+
+<p>控件客户区块位置(::RECT结构体)  </p>
+
+<p><a href="../../../global/_.html#rectObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/global/_.html#rectObject">返回对象:rectObject</a></p>
+
+<p><a id="trackbarObject.getFont"></a></p>
+
+<h3>trackbarObject.getFont()</h3>
+
+<p>控件字体(::LOGFONT结构体)  </p>
+
+<p><a href="#logfontObject">返回对象:logfontObject</a></p>
+
+<p><a id="trackbarObject.getNotifyCustomDraw"></a></p>
+
+<h3>trackbarObject.getNotifyCustomDraw()</h3>
+
+<p><a href="#NMCUSTOMDRAWObject">返回对象:NMCUSTOMDRAWObject</a></p>
+
+<p><a id="trackbarObject.getNotifyCustomDraw"></a></p>
+
+<h3>trackbarObject.getNotifyCustomDraw(code,ptr)</h3>
+
+<p>NM_CUSTOMDRAW通知消息返回NMLVCUSTOMDRAW结构体</p>
+
+<p><a id="trackbarObject.getParent"></a></p>
+
+<h3>trackbarObject.getParent()</h3>
+
+<p>返回父窗口  </p>
+
+<p><a href="static.html#staticObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/static.html#staticObject">返回对象:staticObject</a></p>
+
+<p><a id="trackbarObject.getPos"></a></p>
+
+<h3>trackbarObject.getPos()</h3>
+
+<p>返回相对坐标,宽,高<br>
+x,y,cx,cy=win.getPos(hwnd)</p>
+
+<p><a id="trackbarObject.getRect"></a></p>
+
+<h3>trackbarObject.getRect()</h3>
+
+<p>控件区块位置(::RECT结构体)</p>
+
+<p><a id="trackbarObject.getRect"></a></p>
+
+<h3>trackbarObject.getRect(true)</h3>
+
+<p>控件屏幕区块位置(::RECT结构体)</p>
+
+<p><a id="trackbarObject.height"></a></p>
+
+<h3>trackbarObject.height</h3>
+
+<p>高度</p>
+
+<p><a id="trackbarObject.hide"></a></p>
+
+<h3>trackbarObject.hide</h3>
+
+<p>控件是否隐藏</p>
+
+<p><a id="trackbarObject.hwnd"></a></p>
+
+<h3>trackbarObject.hwnd</h3>
+
+<p>控件句柄</p>
+
+<p><a id="trackbarObject.id"></a></p>
+
+<h3>trackbarObject.id</h3>
+
+<p>控件ID</p>
+
+<p><a id="trackbarObject.invalidate(/*可选使用::RECT"></a></p>
+
+<h3>trackbarObject.invalidate(/*可选使用::RECT()对象指定客户区*/)</h3>
+
+<p>使窗口绘图区无效</p>
+
+<p><a id="trackbarObject.invalidate(/*可选使用::RECT"></a></p>
+
+<h3>trackbarObject.invalidate(/*可选使用::RECT()对象指定客户区*/,0)</h3>
+
+<p>使窗口绘图区无效<br>
+不刷新背景</p>
+
+<p><a id="trackbarObject.left"></a></p>
+
+<h3>trackbarObject.left</h3>
+
+<p>左侧坐标</p>
+
+<p><a id="trackbarObject.max"></a></p>
+
+<h3>trackbarObject.max</h3>
+
+<p>最大值,注意不能大于0xFFFF,不要使用负数</p>
+
+<p><a id="trackbarObject.min"></a></p>
+
+<h3>trackbarObject.min</h3>
+
+<p>最小值,注意不能大于0xFFFF,不要使用负数</p>
+
+<p><a id="trackbarObject.modifyStyle"></a></p>
+
+<h3>trackbarObject.modifyStyle(remove,add,swpFlags)</h3>
+
+<p>修改窗口样式,所有参数都是可选参数,<br>
+@remove 用数值指定要移除的样式,可使用 <em>WS</em> 前缀的常量<br>
+@add 用数值指定要添加的样式,可使用 <em>WS</em> 前缀的常量<br>
+@swpFlags 可选用数值指定调整窗口选项,可使用 <em>SWP</em> 前缀的常量<br>
+如果指定了 @swpFlag ,则使用该参数调用::SetWindowPos<br>
+细节请参考 win.modifyStyle 函数源码</p>
+
+<p><a id="trackbarObject.modifyStyleEx"></a></p>
+
+<h3>trackbarObject.modifyStyleEx(remove,add,swpFlags)</h3>
+
+<p>修改窗口扩展样式,所有参数都是可选参数,<br>
+@remove 用数值指定要移除的样式,可使用 <em>WS_EX</em> 前缀的常量<br>
+@add 用数值指定要添加的样式,可使用 <em>WS_EX</em> 前缀的常量<br>
+@swpFlags 可选用数值指定调整窗口选项,可使用 <em>SWP</em> 前缀的常量<br>
+如果指定了 @swpFlag ,则使用该参数调用::SetWindowPos<br>
+细节请参考 win.modifyStyle 函数源码</p>
+
+<p><a id="trackbarObject.pos"></a></p>
+
+<h3>trackbarObject.pos</h3>
+
+<p>滑块当前刻度,注意不能大于0xFFFF,不要使用负数</p>
+
+<p><a id="trackbarObject.postMessage"></a></p>
+
+<h3>trackbarObject.postMessage(msg,wParam,lParam)</h3>
+
+<p>投递窗口消息到消息队列中<br>
+此函数用法请参考 ::User32.PostMessage</p>
+
+<p><a id="trackbarObject.redraw"></a></p>
+
+<h3>trackbarObject.redraw()</h3>
+
+<p>刷新</p>
+
+<p><a id="trackbarObject.right"></a></p>
+
+<h3>trackbarObject.right</h3>
+
+<p>右侧坐标</p>
+
+<p><a id="trackbarObject.sendMessage"></a></p>
+
+<h3>trackbarObject.sendMessage(msg,wParam,lParam)</h3>
+
+<p>发送窗口消息<br>
+此函数用法请参考 ::User32.SendMessage</p>
+
+<p><a id="trackbarObject.setFocus"></a></p>
+
+<h3>trackbarObject.setFocus()</h3>
+
+<p>设置焦点</p>
+
+<p><a id="trackbarObject.setFont"></a></p>
+
+<h3>trackbarObject.setFont(指定字体)</h3>
+
+<p>指定LOGFONT字体对象,或逻辑字体句柄</p>
+
+<p><a id="trackbarObject.setFont"></a></p>
+
+<h3>trackbarObject.setFont(混入字体属性)</h3>
+
+<pre><code class="aardio language-aardio">trackbarObject.setFont(point=10;name=&quot;宋体&quot;);
+</code></pre>
+
+<p><a id="trackbarObject.setFrequency"></a></p>
+
+<h3>trackbarObject.setFrequency(2)</h3>
+
+<p>刻度标记间隔<br>
+必须在样式中指定自动刻度标记</p>
+
+<p><a id="trackbarObject.setParent"></a></p>
+
+<h3>trackbarObject.setParent(控件对象)</h3>
+
+<p>改变父窗口</p>
+
+<p><a id="trackbarObject.setPos"></a></p>
+
+<h3>trackbarObject.setPos(x坐标,y坐标,宽,高,插入位置,参数)</h3>
+
+<p>调整窗口位置或排序,所有参数可选<br>
+同时指定x,y坐标则移动位置<br>
+同时指定宽高则改变大小<br>
+指定插入位置(句柄或_HWND前缀常量)则调整Z序</p>
+
+<p><a id="trackbarObject.setRange"></a></p>
+
+<h3>trackbarObject.setRange(最小刻度,最大刻度)</h3>
+
+<p>设置最大最小刻度,注意不能大于0xFFFF,不要使用负数</p>
+
+<p><a id="trackbarObject.setRect"></a></p>
+
+<h3>trackbarObject.setRect(rc)</h3>
+
+<p>设置控件区块位置(::RECT结构体)</p>
+
+<p><a id="trackbarObject.setRect"></a></p>
+
+<h3>trackbarObject.setRect(rc,true)</h3>
+
+<p>设置控件屏幕区块位置(::RECT结构体)</p>
+
+<p><a id="trackbarObject.setSel"></a></p>
+
+<h3>trackbarObject.setSel(起始刻度,结束刻度)</h3>
+
+<p>设置选区</p>
+
+<p><a id="trackbarObject.setTick"></a></p>
+
+<h3>trackbarObject.setTick(刻度)</h3>
+
+<p>显示设置刻度标记位置</p>
+
+<p><a id="trackbarObject.show"></a></p>
+
+<h3>trackbarObject.show(true)</h3>
+
+<p>显示控件</p>
+
+<p><a id="trackbarObject.theme"></a></p>
+
+<h3>trackbarObject.theme</h3>
+
+<p>外观主题,例如<br>
+winform.button.theme = &quot;Explorer&quot;<br>
+winform.button.theme = false</p>
+
+<p><a id="trackbarObject.threadCallable"></a></p>
+
+<h3>trackbarObject.threadCallable()</h3>
+
+<p>开启此控件的跨线程调用功能</p>
+
+<p><a id="trackbarObject.tooltip"></a></p>
+
+<h3>trackbarObject.tooltip</h3>
+
+<p>提示文本,只写属性,<br>
+值如果不是指针会自动调用 tostring 函数转为字符串,<br>
+可用于在 oncommand 事件中修改提示文本</p>
+
+<p><a id="trackbarObject.top"></a></p>
+
+<h3>trackbarObject.top</h3>
+
+<p>顶部坐标</p>
+
+<p><a id="trackbarObject.update"></a></p>
+
+<h3>trackbarObject.update()</h3>
+
+<p>重绘invalidate函数指定的区块</p>
+
+<p><a id="trackbarObject.width"></a></p>
+
+<h3>trackbarObject.width</h3>
+
+<p>宽度</p>
+
+<p><a id="NMCUSTOMDRAWObject"></a></p>
+
+<h2>NMCUSTOMDRAWObject 成员列表</h2>
+
+<p><a id="NMCUSTOMDRAWObject.dwDrawStage"></a></p>
+
+<h3>NMCUSTOMDRAWObject.dwDrawStage</h3>
+
+<p>绘图状态</p>
+
+<p><a id="NMCUSTOMDRAWObject.dwItemSpec"></a></p>
+
+<h3>NMCUSTOMDRAWObject.dwItemSpec</h3>
+
+<p>行序号</p>
+
+<p><a id="NMCUSTOMDRAWObject.hdc"></a></p>
+
+<h3>NMCUSTOMDRAWObject.hdc</h3>
+
+<p>设置句柄</p>
+
+<p><a id="NMCUSTOMDRAWObject.hdr"></a></p>
+
+<h3>NMCUSTOMDRAWObject.hdr</h3>
+
+<p><a href="#nmhdrObject">返回对象:nmhdrObject</a></p>
+
+<p><a id="NMCUSTOMDRAWObject.lItemlParam"></a></p>
+
+<h3>NMCUSTOMDRAWObject.lItemlParam</h3>
+
+<p>自定义数据，LPARAM 参数</p>
+
+<p><a id="NMCUSTOMDRAWObject.rc"></a></p>
+
+<h3>NMCUSTOMDRAWObject.rc</h3>
+
+<p><a href="../../../global/_.html#rectObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/global/_.html#rectObject">返回对象:rectObject</a></p>
+
+<p><a id="NMCUSTOMDRAWObject.uItemState"></a></p>
+
+<h3>NMCUSTOMDRAWObject.uItemState</h3>
+
+<p>状态值，例如 _CDIS_FOCUS</p>
+
+<p><a id="NMCUSTOMDRAWObject.update"></a></p>
+
+<h3>NMCUSTOMDRAWObject.update()</h3>
+
+<p>更新数据</p>
+
+<h3>自动完成常量</h3>
+
+<p>_CCM_GETUNICODEFORMAT=0x2006<br>
+_CCM_SETUNICODEFORMAT=0x2005<br>
+_TBM_CLEARSEL=0x413<br>
+_TBM_CLEARTICS=0x409<br>
+_TBM_GETBUDDY=0x421<br>
+_TBM_GETCHANNELRECT=0x41A<br>
+_TBM_GETLINESIZE=0x418<br>
+_TBM_GETNUMTICS=0x410<br>
+_TBM_GETPAGESIZE=0x416<br>
+_TBM_GETPOS=0x400<br>
+_TBM_GETPTICS=0x40E<br>
+_TBM_GETRANGEMAX=0x402<br>
+_TBM_GETRANGEMIN=0x401<br>
+_TBM_GETSELEND=0x412<br>
+_TBM_GETSELSTART=0x411<br>
+_TBM_GETTHUMBLENGTH=0x41C<br>
+_TBM_GETTHUMBRECT=0x419<br>
+_TBM_GETTIC=0x403<br>
+_TBM_GETTICPOS=0x40F<br>
+_TBM_GETTOOLTIPS=0x41E<br>
+_TBM_GETUNICODEFORMAT=0x2006<br>
+_TBM_SETBUDDY=0x420<br>
+_TBM_SETLINESIZE=0x417<br>
+_TBM_SETPAGESIZE=0x415<br>
+_TBM_SETPOS=0x405<br>
+_TBM_SETPOSNOTIFY=0x422<br>
+_TBM_SETRANGE=0x406<br>
+_TBM_SETRANGEMAX=0x408<br>
+_TBM_SETRANGEMIN=0x407<br>
+_TBM_SETSEL=0x40A<br>
+_TBM_SETSELEND=0x40C<br>
+_TBM_SETSELSTART=0x40B<br>
+_TBM_SETTHUMBLENGTH=0x41B<br>
+_TBM_SETTIC=0x404<br>
+_TBM_SETTICFREQ=0x414<br>
+_TBM_SETTIPSIDE=0x41F<br>
+_TBM_SETTOOLTIPS=0x41D<br>
+_TBM_SETUNICODEFORMAT=0x2005<br>
+_TBS_AUTOTICKS=0x1<br>
+_TBS_BOTH=0x8<br>
+_TBS_BOTTOM=0x0<br>
+_TBS_DOWNISLEFT=0x400<br>
+_TBS_ENABLESELRANGE=0x20<br>
+_TBS_FIXEDLENGTH=0x40<br>
+_TBS_HORZ=0x0<br>
+_TBS_LEFT=0x4<br>
+_TBS_NOTHUMB=0x80<br>
+_TBS_NOTICKS=0x10<br>
+_TBS_NOTIFYBEFOREMOVE=0x800<br>
+_TBS_REVERSED=0x200<br>
+_TBS_RIGHT=0x0<br>
+_TBS_TOOLTIPS=0x100<br>
+_TBS_TOP=0x4<br>
+_TBS_TRANSPARENTBKGND=0x1000<br>
+_TBS_VERT=0x2<br>
+_TB_BOTTOM=0x7<br>
+_TB_ENDTRACK=0x8<br>
+_TB_LINEDOWN=0x1<br>
+_TB_LINEUP=0x0<br>
+_TB_PAGEDOWN=0x3<br>
+_TB_PAGEUP=0x2<br>
+_TB_THUMBPOSITION=0x4<br>
+_TB_THUMBTRACK=0x5<br>
+_TB_TOP=0x6  </p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/trackbar.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/trackbar.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/trackbar.md">Markdown 格式</a></p>
+
+</body> 
+</html>

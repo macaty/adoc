@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - string.fuzzyMatching 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - string.fuzzyMatching 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>string.fuzzyMatching 库模块帮助文档</h1>
+
+<p><a id="string"></a></p>
+
+<h2>string 成员列表</h2>
+
+<p><a id="string.fuzzyMatching"></a></p>
+
+<h3>string.fuzzyMatching</h3>
+
+<p>模糊匹配字符串</p>
+
+<p>创建字符串模糊匹配对象</p>
+
+<p><a id="string.fuzzyMatching"></a></p>
+
+<h3>string.fuzzyMatching()</h3>
+
+<p><a href="#stringFuzzyMatchingObject">返回对象:stringFuzzyMatchingObject</a></p>
+
+<p><a id="string.fuzzyMatching"></a></p>
+
+<h3>string.fuzzyMatching(strTemplte,charPattern,method)</h3>
+
+<p>创建模糊匹配对象。<br>
+strTemplte 参数指定需要匹配的模板字符串。<br>
+charPattern 为可选参数，用模式匹配语法指定提取待比较字符的模式串。<br>
+method 为可选参数，可选指定以下算法：  </p>
+
+<ul>
+<li>fuzzyMatching 相似度算法，关注字符频率，首尾连续性敏感。<br></li>
+<li>n 此参数用数值指定比较单元字数则使用 N-gram 算法，局部连续性敏感，效果较好，速度最快。<br></li>
+<li>levenshtein 准确度高，对字符位置敏感 ，较慢。<br></li>
+<li>cos 考虑了字符频率，不关注顺序。<br></li>
+<li>jaccard 只考虑字符是否出现。</li>
+</ul>
+
+<p><a id="stringFuzzyMatchingObject"></a></p>
+
+<h2>stringFuzzyMatchingObject 成员列表</h2>
+
+<p><a id="stringFuzzyMatchingObject.find"></a></p>
+
+<h3>stringFuzzyMatchingObject.find(匹配字符串数组,最小相似度)</h3>
+
+<p>在文本数组中查找最接近的字符串<br>
+最小相似度为可选参数,默认值为 0.6,<br>
+成功则返回值@1为找到的文本,<br>
+返回值@2为相似度（小数,最大相似为1,不相似为0）,<br>
+返回值 @3 为匹配索引,<br>
+无匹配则返回 null</p>
+
+<p><a id="stringFuzzyMatchingObject.match"></a></p>
+
+<h3>stringFuzzyMatchingObject.match(匹配字符串)</h3>
+
+<p>返回文本相似度<br>
+相似度为小数,最大相似为1,不相似为0<br>
+比较规则为先比较相同字符数,<br>
+然后再自左侧或右侧查找相同的最长字符串</p>
+
+<p><a id="stringFuzzyMatchingObject.search"></a></p>
+
+<h3>stringFuzzyMatchingObject.search(字符串,最小相似度)</h3>
+
+<p>模糊检测参数传入的字符串是否包含模板字符串<br>
+最小相似度默认为 0.8</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/string/fuzzyMatching.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/string/fuzzyMatching.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/string/fuzzyMatching.md">Markdown 格式</a></p>
+
+</body> 
+</html>

@@ -1,0 +1,1263 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - string 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - string 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>string 库模块帮助文档</h1>
+
+<p><a id="string"></a></p>
+
+<h2>string 成员列表</h2>
+
+<p>字符串函数库</p>
+
+<p>字符串函数库<br>
+这是自动导入的内置库,<br>
+<a href="../../library-guide/builtin/string/matching.html" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/builtin/string/matching.html">使用手册相关文档</a></p>
+
+<p><a id="string.bytes"></a></p>
+
+<h3>string.bytes</h3>
+
+<p>将字符记数转换为字节计数</p>
+
+<p><a id="string.bytes"></a></p>
+
+<h3>string.bytes(字符串,字符数,开始位置)</h3>
+
+<p>将字符记数转换为字节计数<br>
+可选用参数@3指定开始位置，此参数以字节为单位,首字节开始为1<br>
+如果遇到不合法的UTF8编码函数返回0</p>
+
+<p><a id="string.charAt"></a></p>
+
+<h3>string.charAt</h3>
+
+<p>返回UTF8编码的文本指定位置的字符,<br>
+一个字符可能包含多个字节  </p>
+
+<p>注意UTF8属变长编码，因此每次调用此函数都需要从文本开始计算字符位置,<br>
+如果需要遍历所有字符,可使用string.split一次性拆分字符到数组,<br>
+或调用string.toUtf16转换为UTF16字符串后再处理</p>
+
+<p><a id="string.charAt"></a></p>
+
+<h3>string.charAt(字符串,字符位置)</h3>
+
+<p>省略字符位置时默认值为1,1表示第1个字符,<br>
+按字符计数而不是按字节计数,支持编码大于0x10000的字符</p>
+
+<p><a id="string.charCodeAt"></a></p>
+
+<h3>string.charCodeAt</h3>
+
+<p>返回UTF8编码的文本指定位置字符的Unicode编码,<br>
+一个字符可能包含多个字节  </p>
+
+<p>注意UTF8属变长编码，因此每次调用此函数都需要从文本开始计算字符位置,<br>
+如果需要遍历所有字符,可使用string.split一次性拆分字符到数组,<br>
+或调用string.toUtf16转换为UTF16字符串后再处理</p>
+
+<p><a id="string.charCodeAt"></a></p>
+
+<h3>string.charCodeAt(字符串,字符位置)</h3>
+
+<p>省略字符位置时默认值为1,1表示第1个字符,<br>
+按字符计数而不是按字节计数,支持编码大于0x10000的字符</p>
+
+<p><a id="string.cmp"></a></p>
+
+<h3>string.cmp(字符串,字符串2,比较长度)</h3>
+
+<p>　参数可以是字符串或 buffer<br>
+文本模式比较字符串前n个字符串大小,忽略大小写,忽略区域设置,<br>
+从第一个字符开始比较,不相等或不支持比较的数据类型返回非0值,<br>
+字符串1较大返回正数,字符串2较大返回负数<br>
+比较长度是可选参数,默认为字符串长度<br>
+仅比较纯文本,忽略<code>&#39;\0&#39;</code>以后的内容</p>
+
+<p><a id="string.cmpMatch"></a></p>
+
+<h3>string.cmpMatch( ,&quot;字符串参数&quot; )</h3>
+
+<p>使用完全匹配比较字符串，忽略大小写，相同返回 true。<br>
+否则使用模式匹配搜索子串，忽略大小写，找到返回 true。<br>
+改用 string.indexOf 函数可禁用模式匹配查找子串。</p>
+
+<p><a id="string.collate"></a></p>
+
+<h3>string.collate(字符串,字符串2)</h3>
+
+<p>比较字符串,大小写敏感,相等返回0,<br>
+字符串1较大返回正数,字符串2较大返回负数,<br>
+排序受区域影响，使用setlocale函数改变区域设置<br>
+该函数需要转换为UTF16比较，性能不及使用大于、小于等操作符直接比较字符串</p>
+
+<p><a id="string.concat"></a></p>
+
+<h3>string.concat(&#39;字符串&#39;,&#39;字符串&#39;,...)</h3>
+
+<p>拼接并返回字符串,支持任意个参数,<br>
+允许参数中有null值,所有参数为null或无参数时无返回值,<br>
+二进制模式拼接,不会被<code>&#39;\0&#39;</code>截断</p>
+
+<p><a id="string.concat"></a></p>
+
+<h3>string.concat(buffer,&#39;文本字符串&#39;,...)</h3>
+
+<p>文本模式追加字符串到 buffer,buffer 请使用 raw.buffer 函数创建，<br>
+如果需要使用二进制模式拼接字符串到 buffer，请使用 raw.concat() 函数  </p>
+
+<p>可以追加任意个数的字符串参数，字符串参数也可以是null值。<br>
+仅拼接<code>&#39;\0&#39;</code>以前的纯文本，超出 buffer长度的内容将被丢弃。</p>
+
+<p><a id="string.concatUtf16"></a></p>
+
+<h3>string.concatUtf16(str,...)</h3>
+
+<p>将所有参数转换为 UTF-16 字符串并连接后返回。<br>
+参数可以是数值，字符串，UTF-16 编码字符串。<br>
+忽略 null 值参数</p>
+
+<p><a id="string.crc32"></a></p>
+
+<h3>string.crc32(字符串,crc32,长度)</h3>
+
+<p>计算字符串的CRC32校验值<br>
+参数一也可以是 buffer,<br>
+可选使用参数@2指定前面字符串的校验值,以返回总的校验值<br>
+长度为可选参数</p>
+
+<p><a id="string.crlf"></a></p>
+
+<h3>string.crlf(字符串,回车换行,合并空行数)</h3>
+
+<p>自动调用 tostring 函数转换传入参数 @1 为字符串。<br>
+此函数格式化参数 @1 的回车换行或单独的回车换行符为参数 @2 指定的换行标记。<br>
+参数 @2 默认为 &#39;\r<br>
+&#39;，如果改为为 &#39;<br>
+&#39; 则格式化为单个换行符。<br>
+可选用参数 @3 指定合并空行后保留的空行数，省略则不合并。  </p>
+
+<p>注意字符串字面值解析换行的规则:<br>
+双引号或反引号内字符串只有换行没有回车,<br>
+单引号内字符串解析时忽略所有回车换号,<br>
+使用/*块注释*/包含字符串则总是将换行规范解析为回车换行组合</p>
+
+<p><a id="string.each"></a></p>
+
+<h3>string.each</h3>
+
+<p>创建适用于 for in 语句的迭代器,<br>
+用于分行匹配字符串,<br>
+可将返回迭代器传入 table.array 生成数组</p>
+
+<p><a id="string.each"></a></p>
+
+<h3>string.each(字符串,模式串,行分隔符)</h3>
+
+<p>必须使用参数@2指定模式串,<br>
+查找模式串中可用圆括号创建捕获分组自定义迭代器返回值个数,<br>
+行分隔符支持模式匹配语法,可省略</p>
+
+<p><a id="string.endWith"></a></p>
+
+<h3>string.endWith(&quot;字符串&quot;,&quot;结束串&quot;)</h3>
+
+<p>判断结束串是否位于字符串结束处<br>
+基于二进制模式</p>
+
+<p><a id="string.endWith"></a></p>
+
+<h3>string.endWith(&quot;字符串&quot;,&quot;结束串&quot;,true)</h3>
+
+<p>判断结束串是否位于字符串结束处。<br>
+基于文本模式,忽略大小写</p>
+
+<p><a id="string.escape"></a></p>
+
+<h3>string.escape</h3>
+
+<p>转义字符串中需要转义的字符<br>
+使用string.unescape函数可以还原转义</p>
+
+<p><a id="string.escape"></a></p>
+
+<h3>string.escape(字符串)</h3>
+
+<p>返回转义字符串，如果字符串不需要转义返回null<br>
+如果参数@1指定 buffer,即使不需要转义也会返回字符串而不是null</p>
+
+<p><a id="string.escape"></a></p>
+
+<h3>string.escape(字符串,兼容JSON,Unicode编码)</h3>
+
+<p>返回转义字符串，如果字符串不需要转义返回 null,<br>
+如果参数@1指定 buffer,即使不需要转义也会返回字符串而不是null,<br>
+如果参数@2为true，即使字符串不需要转义也会返回字符串而不是 null<br>
+兼容 JSON 时参数1 应当是 UTF8、或 UTF16 编码文本,单引号转为<code>\u0027</code>,<br>
+Unicode 编码为 true 时所有非 ASCII 字符使用 <code>\uXXXX</code>编码  </p>
+
+<p>注意即使选择了不启用 UNICODE 编码，单引号，<br>
+以及一些可能无法直接显示的 Unicode 字符仍然会进行转义</p>
+
+<p><a id="string.expand"></a></p>
+
+<h3>string.expand</h3>
+
+<p>重复替换直到找不到匹配,<br>
+可用于展开字符串中的环境变量</p>
+
+<p><a id="string.expand"></a></p>
+
+<h3>string.expand(字符串,查找模式串,替换函数)</h3>
+
+<p>在字符串中重复执行替换操作,<br>
+直到参数@2指定的模式串找不到匹配,<br>
+省略参数@2,@3则默认展开百分号包含的进程环境变量<br>
+可用于展开文件路径中的环境变量<br>
+注意即使替换函数返回null,此函数仍然会替换为空串,<br>
+如果替换结果为空字符串,此函数返回 null</p>
+
+<p><a id="string.find"></a></p>
+
+<h3>string.find</h3>
+
+<p>使用模式串在字符串中查找子串的位置，<br>
+如果有多个捕获分组,将附加为多个返回值。<br>
+如果只是查找普通查找建议使用string.indexOf函数。<br>
+类似的函数 raw.find 可以支持在内存指针中查找字符串</p>
+
+<p><a id="string.find"></a></p>
+
+<h3>string.find(&quot;字符串&quot;,&quot;@查找文本&quot;,开始位置,返回值以字符计数)</h3>
+
+<p>返回匹配结果的起始,结束位置<br>
+查找文首字符为&#39;@&#39;或&#39;@@&#39;禁用模式语法<br>
+首字等为&#39;@&#39;可选指定返回位置以字符计数<br>
+<code>@@</code>则是<code>&lt;@@...@&gt;</code>的缩写形式,忽略大小写查找</p>
+
+<p><a id="string.find"></a></p>
+
+<h3>string.find(&quot;字符串&quot;,&quot;模式&quot;,开始位置)</h3>
+
+<p>开始位置为可选参数,默认为1，必须以字节计数，<br>
+函数返回匹配结果的起始,结束位置,以及所有捕获分组</p>
+
+<p><a id="string.format"></a></p>
+
+<h3>string.format(&quot;%&quot;, )</h3>
+
+<p>首参数内每个%符号后是一个格式化字符,<br>
+每个格式化字符按对应顺序格式后续参数  </p>
+
+<p>详细用法请参考<br>
+<a href="../../library-guide/builtin/string/format.html" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/builtin/string/format.html">格式化字符串</a></p>
+
+<p><a id="string.fromCharCode"></a></p>
+
+<h3>string.fromCharCode()</h3>
+
+<p>使用1个或多个 Unicode 编码值转换为 UTF-8 字符串<br>
+参数可以指定1个或多个Unicode编码数值,可指定大于0x10000的编码,<br>
+不可直接传入数组作为参数</p>
+
+<p><a id="string.fromUtf16"></a></p>
+
+<h3>string.fromUtf16</h3>
+
+<p>将参数 @1 指定的字符串字符串自 UTF-16 编码转换为指定编码，默认转为 UTF-8，<br>
+如果参数 @1 是一个字符串，并且已存在 UTF 编码标记，<br>
+则根据 UTF 标记进行优化并避免不必要的转换或错误转换。<br>
+如果出现错误转换，请注意检查源数据是否被添加了错误的 UTF 标记</p>
+
+<p><a id="string.fromUtf16"></a></p>
+
+<h3>string.fromUtf16(字符串)</h3>
+
+<p>从 UTF-16 编码还原到 aardio 字符串默认的 UTF-8编码。<br>
+注意 aardio 中 UTF16 默认指的是 UTF16 LE，代码页为 1200</p>
+
+<p><a id="string.fromUtf16"></a></p>
+
+<h3>string.fromUtf16(字符串,目标编码)</h3>
+
+<p>从 UTF-16 编码还原到指定编码<br>
+目标编码编码参数是表示代码页的数值，省略则默认为 65001（UTF-8 代码页）。<br>
+注意aardio中Unicode指的UTF16 LE,代码页为1200<br>
+aardio字符串默认为UTF8编码</p>
+
+<p><a id="string.fromUtf16"></a></p>
+
+<h3>string.fromUtf16(字符串,目标编码,转换字符数)</h3>
+
+<p>显示定转换转换字符数参数时，<br>
+可允许第一个参数为指针、或 buffer对象，<br>
+参数@3以字符计数，即2个字节为一个单位,<br>
+目标编码参数需要指定一个表示代码页的数值，例如 65001 为 UTF-8 代码页。<br>
+字符数为 -1 表示查找<code>&#39;\u0000&#39;</code>终止符获取可打印文本长度。<br>
+字符数只能为数值。</p>
+
+<p><a id="string.fromUtf16If"></a></p>
+
+<h3>string.fromUtf16If(字符串)</h3>
+
+<p>如果是 UTF16 字符串转换到 UTF-8 代码页，否则直接返回。<br>
+使用字符串的 UTF 标记判断 UTF-16  字符串，不检测实际编码</p>
+
+<p><a id="string.fromto"></a></p>
+
+<h3>string.fromto</h3>
+
+<p>转换传入文本字符串编码并返回转换后的字符串,<br>
+此函数先调用 string.toUtf16,再调用 string.fromUtf16,<br>
+fromto 函数名源于这两个函数的前缀。</p>
+
+<p><a id="string.fromto"></a></p>
+
+<h3>string.fromto(内存指针,源编码,目标编码,转换字节数)</h3>
+
+<p>转换传入文本字符串编码并返回转换后的字符串,<br>
+编码参数请指定表示代码页的数值，例如 65001 为 UTF-8 编码的代码页。<br>
+参数 @4 为可选用一个数值指定需要转换的文本所占内存字节数,<br>
+字节数为-1时表示查找<code>&#39;\0&#39;</code>终止符自动获取长度。<br>
+指定转换字节数时,参数 @1 即可使用指针、buffer作为参数。<br>
+注意即使指定 UTF-16 代码页,参数 @4 仍然是以字节计数</p>
+
+<p><a id="string.fromto"></a></p>
+
+<h3>string.fromto(字符串,源编码,目标编码)</h3>
+
+<p>转换传入文本字符串编码并返回转换后的字符串,<br>
+编码参数请指定表示代码页的数值，例如 65001 为 UTF-8 编码的代码页。<br>
+目标编码默认为 0 ,即系统默认代码页。<br>
+源编码为可选参数,默认为 UTF-8 代码页 65001。<br>
+如果字符串已存在UTF标记，则忽略源编码参数<br>
+UTF16 LE代码页为1200,UTF 16 BE代码页为1201</p>
+
+<p><a id="string.getUtf"></a></p>
+
+<h3>string.getUtf()</h3>
+
+<p>获取字符串的UTF格式标记，返回值如下:<br>
+&amp;16 表示双字节编码的UTF-16编码<br>
+&amp;8 表示UTF-8字符串,<br>
+&amp;(8 | 1) 表示UTF-8、ANSI兼容编码,即所有字符小于0x80  </p>
+
+<p>对于空字符串,aardio忽略其UTF标记,<br>
+对于非空字符串，aardio只允许一个字符串对象在创建时初始化UTF标记为UTF16,<br>
+而其他字符串，允许在运行时修改UTF标记</p>
+
+<p><a id="string.getenv"></a></p>
+
+<h3>string.getenv(&quot;变量名&quot;)</h3>
+
+<p>读取当前进程环境变量<br>
+成功返回字符串,失败返回 null</p>
+
+<p><a id="string.gfind"></a></p>
+
+<h3>string.gfind(字符串,模式串,开始位置)</h3>
+
+<pre><code class="aardio language-aardio">for i,j,group1  in string.gfind( /*查找字符串*/,&quot;(.)&quot;) { 
+
+}
+</code></pre>
+
+<p><a id="string.gmatch"></a></p>
+
+<h3>string.gmatch(str,pattern)</h3>
+
+<pre><code class="aardio language-aardio">for m in string.gmatch( ,&quot;./*指定模式串,  
+用于在参数@1指定的字符串中循环全局搜索符合条件的字符串,  
+有几个匹配分组迭代器返回几个值,  
+注意表达式不能以^开始*/&quot;) {   
+
+}
+</code></pre>
+
+<p><a id="string.hex"></a></p>
+
+<h3>string.hex</h3>
+
+<p>以十六进制编码字符串</p>
+
+<p><a id="string.hex"></a></p>
+
+<h3>string.hex(字符串,前缀,<code>&#39;\x80&#39;</code>)</h3>
+
+<p>以十六进制编码字符串中的所有非ASCII字符 - 字节码大于等于<code>&#39;\x80&#39;</code>的字节(汉字等),<br>
+前缀可省略,默认为<code>\x</code>,</p>
+
+<p><a id="string.hex"></a></p>
+
+<h3>string.hex(字符串,前缀,忽略字符串)</h3>
+
+<p>以十六进制编码字符串,前缀可省略,默认为<code>\x</code>,<br>
+忽略字符串指定忽略不转换的字符,不指定则编码所有字节<br>
+指定了任意忽略字符，都会忽略ASCII大小写字母以及ASCII数字</p>
+
+<p><a id="string.indexAny"></a></p>
+
+<h3>string.indexAny</h3>
+
+<p>在字符串内搜索任意单字节字符。</p>
+
+<p><a id="string.indexAny"></a></p>
+
+<h3>string.indexAny(字符串,查找字符串)</h3>
+
+<p>在参数 @1 指定的字符串内查找参数 @2 指定的字符串中的任意一个单字节。<br>
+参数 @2 也可以是数值字节码。<br>
+参数@2 可包含 <code>&#39;\0&#39;</code> 或指定为 0,<code>&#39;\0&#39;#</code>。</p>
+
+<p><a id="string.indexAny"></a></p>
+
+<h3>string.indexAny(字符串,查找字符串,开始位置)</h3>
+
+<p>在参数 @1 指定的字符串内查找参数 @2 指定的字符串中的任意一个单字节，<br>
+参数 @2 也可以是数值字节码。<br>
+参数@2 可包含 <code>&#39;\0&#39;</code> 或指定为 0,<code>&#39;\0&#39;#</code>。</p>
+
+<p><a id="string.indexOf"></a></p>
+
+<h3>string.indexOf</h3>
+
+<p>纯文本搜索，<br>
+类似的函数 raw.indexOf 支持以二进制直接使用指针搜索内存</p>
+
+<p><a id="string.indexOf"></a></p>
+
+<h3>string.indexOf(&quot;字符串&quot;,&quot;查找文本&quot;)</h3>
+
+<p>返回查找文本所在起始索引，结束索引。<br>
+字符串如果包含<code>&#39;\0&#39;</code>时仅取<code>&#39;\0&#39;</code>之前的纯文本<br>
+禁用模式匹配</p>
+
+<p><a id="string.indexOf"></a></p>
+
+<h3>string.indexOf(&quot;字符串&quot;,&quot;查找文本&quot;,开始位置,结束位置)</h3>
+
+<p>返回查找文本所在起始索引,结束索引<br>
+字符串如果包含<code>&#39;\0&#39;</code>时仅取<code>&#39;\0&#39;</code>之前的纯文本<br>
+禁用模式匹配</p>
+
+<p><a id="string.isUtf16"></a></p>
+
+<h3>string.isUtf16()</h3>
+
+<p>判断参数是否标记为 UTF-16 编码的字符串。<br>
+此函数仅检测 UTF 标记，不会分析实际编码。<br>
+&#39;在 aardio 转义字符串中附加 u 后缀创建 UTF-16 编码的字符串&#39;u<br>
+有编码转换功能的函数也会自动设置 UTF 标记。<br>
+注意 UTF16 在 aardio 中特指 UTF16 LE，代码页为 1200。</p>
+
+<p><a id="string.isUtf8"></a></p>
+
+<h3>string.isUtf8()</h3>
+
+<p>快速检测字符串是否包含UTF8编码<br>
+空字符串返回null</p>
+
+<p><a id="string.join"></a></p>
+
+<h3>string.join(字符串数组,&quot;分隔字符串&quot;,开始索引,结束索引)</h3>
+
+<p>将字符串数组使用指定的分隔符合并为一个字符串。<br>
+即使传入空数组至少也会返回空字符串而非 null。<br>
+参数@1如果是包含 buffer 的数组则不应使用此函数，而应改用 raw.join 函数。<br>
+起始索引与结束索引为可选参数，可传入负数表示自数组尾部倒计数</p>
+
+<p><a id="string.lastIndexAny"></a></p>
+
+<h3>string.lastIndexAny(字符串,查找字符串)</h3>
+
+<p>自尾部向前查找参数 @2 指定的字符串中的任意一个字节。<br>
+参数 @2 也可以指定数值字节码。<br>
+参数@2 可包含 <code>&#39;\0&#39;</code> 或指定为 0,<code>&#39;\0&#39;#</code>。</p>
+
+<p><a id="string.lastIndexAny"></a></p>
+
+<h3>string.lastIndexAny(字符串,查找字符串,开始位置)</h3>
+
+<p>自尾部向前查找参数 @2 指定的字符串中的任意一个字节。<br>
+参数 @2 也可以指定数值字节码。<br>
+参数@2 可包含 <code>&#39;\0&#39;</code> 或指定为 0,<code>&#39;\0&#39;#</code>。</p>
+
+<p><a id="string.lastIndexOf"></a></p>
+
+<h3>string.lastIndexOf</h3>
+
+<p>从右侧反向搜索字符串，禁用模式匹配。<br>
+这个函数需要从尾部逐个字符反向查找，效率较低</p>
+
+<p><a id="string.lastIndexOf"></a></p>
+
+<h3>string.lastIndexOf(&quot;字符串&quot;,&quot;查找子串&quot;,搜索范围)</h3>
+
+<p>从右侧反向搜索字符串。<br>
+此函数为二进制搜索,搜索内容可包含<code>&#39;\0&#39;</code>,禁用模式匹配<br>
+搜索范围仍然是自左向右（尾部）按字节计数，负数为反向计数。<br>
+返回值仍为左向右（尾部）按字节计数。</p>
+
+<p><a id="string.left"></a></p>
+
+<h3>string.left(str,n )</h3>
+
+<p>从字符串左侧截取n个字符,<br>
+n为负数表示自左侧截取到右侧倒计数的指定字符,<br>
+按字节计数,汉字为多个字节<br>
+参数@1也可以是 buffer 对象</p>
+
+<p><a id="string.left"></a></p>
+
+<h3>string.left(str,n,true)</h3>
+
+<p>从字符串左侧截取n个字符<br>
+按字符计数,汉字为一个字符<br>
+参数@1也可以是 buffer 对象</p>
+
+<p><a id="string.len"></a></p>
+
+<h3>string.len</h3>
+
+<p>如果字符串是合法的UTF8编码，返回字符计数，否则返回0</p>
+
+<p><a id="string.len"></a></p>
+
+<h3>string.len(字符串,起始字节位置,结束字节位置)</h3>
+
+<p>如果字符串是合法的 UTF-8 编码，返回字符计数,<br>
+参数@2,@3都是可选参数,以字节而非字符为单位<br>
+起始位置默认为1<br>
+结束位置默认为-1</p>
+
+<p><a id="string.lines"></a></p>
+
+<h3>string.lines</h3>
+
+<p>创建用于for in 语句的迭代器按行拆分字符串。<br>
+可用模式串自定义行分隔符，此函数与 string.splitEx 函数使用相同的拆分规则。  </p>
+
+<p>可将返回迭代器传入 table.array 生成数组。<br>
+按行读取文件请使用 io.lines 函数。</p>
+
+<p><a id="string.lines"></a></p>
+
+<h3>string.lines(字符串,行分隔符,列分隔符,最大列数)</h3>
+
+<p>按行拆分参数 @1 传入的字符串，传入 null 或空串字符串忽略不操作。<br>
+可选用参数 @2 自定义行分隔符，支持模式匹配语法。<br>
+可选用参数 @3 自定义列分隔符，支持模式匹配语法。   </p>
+
+<p>所有分隔符模式串可用括号创建捕获组，首个捕获组如下处理：  </p>
+
+<ul>
+<li>模式串尾部有 $ 符号，则捕获组放到上个拆分结果尾部。<br></li>
+<li>模式串头部有 ^ 符号，则捕获组放到下个拆分结果头部。<br></li>
+<li>模式串头部有^ 符号尾部有 $ 号则捕获组本身拆分为一个单位。<br>
+如果返回行分隔符，则迭代器的第 2 个循环变量为 true。<br></li>
+</ul>
+
+<p>可选用参数 @4 限定最大拆分列数目。  </p>
+
+<p>如果不指定列分隔符则循环返回字符串，否则返回列数组。</p>
+
+<p><a id="string.load"></a></p>
+
+<h3>string.load</h3>
+
+<p>读取文件或内嵌资源文件,返回普通字符串<br>
+如果文件以UTF16 LE BOM开始,并且长度为2的倍数时，读入为Unicode(UTF16)字符串  </p>
+
+<p>注意，此函数以启用共享读写模式打开文件</p>
+
+<p><a id="string.load"></a></p>
+
+<h3>string.load(&quot;文件路径&quot;)</h3>
+
+<p>读取文件或内嵌资源文件,返回普通字符串  </p>
+
+<p>路径首字符可用斜杠表示应用程序根目录，用~加斜杠表示EXE根目录<br>
+如果<code>~\</code>或<code>~/</code>开头的EXE根目录路径不存在，自动转换为应用程序根目录下的路径重试</p>
+
+<p><a id="string.load"></a></p>
+
+<h3>string.load(资源名,资源类型,dll句柄)</h3>
+
+<p>读取文件或内嵌资源文件,返回普通字符串<br>
+资源名，资源类型都可以是字符串、或小于0xFFFF的数值或指针<br>
+参数三是dll句柄,默认为_HINSTANSE<br>
+除参数一以外,其他参数可选</p>
+
+<p><a id="string.loadBuffer"></a></p>
+
+<h3>string.loadBuffer</h3>
+
+<p>读取文件或内嵌资源文件,返回 buffer  </p>
+
+<p>注意，此函数以启用共享读写模式打开文件</p>
+
+<p><a id="string.loadBuffer"></a></p>
+
+<h3>string.loadBuffer(&quot;文件路径&quot;)</h3>
+
+<p>读取文件或内嵌资源文件,返回 buffer,  </p>
+
+<p>路径首字符可用斜杠表示应用程序根目录，用~加斜杠表示EXE根目录<br>
+如果<code>~\</code>或<code>~/</code>开头的EXE根目录路径不存在，自动转换为应用程序根目录下的路径重试</p>
+
+<p><a id="string.loadBuffer"></a></p>
+
+<h3>string.loadBuffer(资源名,资源类型,dll句柄)</h3>
+
+<p>读取文件或内嵌资源文件,返回 buffer,<br>
+资源名，资源类型都可以是字符串、或小于0xFFFF的数值或指针<br>
+参数三是dll句柄,默认为_HINSTANSE<br>
+除参数一以外,其他参数可选</p>
+
+<p><a id="string.loadcode"></a></p>
+
+<h3>string.loadcode</h3>
+
+<p>加载并执行 aardio 代码或文件,返回 HTML 模板输出的 HTML 代码<br>
+如果当前应用未定义 response 对象,请使用 print 函数替代。<br>
+此函数也可以用于非 HTML 格式的任意字符串模板，<br>
+但非 HTML 格式的字符串开始部分必须是 aardio 模板标记</p>
+
+<p><a id="string.loadcode"></a></p>
+
+<h3>string.loadcode(&quot;代码文件&quot;,...)</h3>
+
+<p>加载并执行 aardio 代码或文件,<br>
+返回 HTML 模板输出的 HTML 代码,失败返回空值,错误信息。<br>
+参数@1,与 loadcode 函数相同,其他参数作为模板参数传给被调用的文件,<br>
+在被调用文件的函数外部可使用 owner 参数获取首个模板参数,<br>
+也可以使用...获取多个模板参数</p>
+
+<p><a id="string.lower"></a></p>
+
+<h3>string.lower()</h3>
+
+<p>字符串转换为小写</p>
+
+<p><a id="string.map"></a></p>
+
+<h3>string.map</h3>
+
+<p>搜索并返回搜索结果数组,<br>
+并调用映射函数转换数组中的每个匹配结果为新的值,  </p>
+
+<p>注意如果模式串中使用括号指定了多个分组,<br>
+映射函数会有多个对应的回调参数</p>
+
+<p><a id="string.map"></a></p>
+
+<h3>string.map(字符串,模式,映射函数)</h3>
+
+<p>参数@1指定要查找的字符串,<br>
+参数@2可以指定模式串,或包含多个表达式的数组,<br>
+省略则默认为<code>[-\d]+</code>,并且参数@3的默认值会被更换为tonumber<br>
+可选用参数@3指定映射函数,  </p>
+
+<p>返回值为匹配的字符串数组,如果有多个捕获分组则返回二维数组<br>
+如果参数@2不是数组而是表,则返回相同结构的表,<br>
+每个键对应的值更新为参数表中同名键指定的模式串的匹配结果。</p>
+
+<p><a id="string.match"></a></p>
+
+<h3>string.match</h3>
+
+<p>使用模式串在字符串中查找子串，<br>
+类似的函数raw.match可以支持在内存指针中查找字符串</p>
+
+<p><a id="string.match"></a></p>
+
+<h3>string.match(&quot;字符串&quot;,&quot;模式串&quot;,开始位置)</h3>
+
+<p>使用模式串在字符串中查找子串，<br>
+参数@1指定目标字符串,参数@2指定查找模式串。<br>
+参数@3可选,用于指定起始位置,负数表示尾部倒计数,<br>
+返回匹配字符串,如果使用了匹配分组则返回多个对应的匹配串,<br>
+返回值的顺序对应模式串中左圆括号的开始顺序</p>
+
+<p><a id="string.matches"></a></p>
+
+<h3>string.matches(&quot;字符串&quot;,&quot;模式串&quot;)</h3>
+
+<p>全局匹配并将匹配结果返回为数组<br>
+每次匹配成功的多个返回值存为成员数组<br>
+即使没有匹配到任何结果,也会返回一个空数组</p>
+
+<p><a id="string.pack"></a></p>
+
+<h3>string.pack(chr,chr2)</h3>
+
+<p>参数为零个或多个字符的ascii码数值<br>
+str = string.pack(&#39;A&#39;#,&#39;B&#39;#,&#39;C&#39;#)<br>
+也可以是一个包含字节码的数组,例如:<br>
+string.pack( {&#39;A&#39;#,&#39;B&#39;#,&#39;C&#39;&num; } )</p>
+
+<p><a id="string.random"></a></p>
+
+<h3>string.random(len)</h3>
+
+<p>生成随机字符串（字母、数字）</p>
+
+<p><a id="string.random"></a></p>
+
+<h3>string.random(len,&quot;中文字符集&quot;)</h3>
+
+<p>生成随机字符串,并指定随机字符集</p>
+
+<p><a id="string.random"></a></p>
+
+<h3>string.random(str,str2,str3)</h3>
+
+<p>参数为多个字符串,函数随机返回其中一个字符串</p>
+
+<p><a id="string.reduce"></a></p>
+
+<h3>string.reduce</h3>
+
+<p>使用string.match依次匹配多个模式串,逐步缩减并返回最终匹配结果</p>
+
+<p><a id="string.reduce"></a></p>
+
+<h3>string.reduce(字符串,模式,...)</h3>
+
+<p>参数@1指定要查找的字符串,<br>
+参数@2开始指定一个或多个模式串,<br>
+使用前面一个的匹配结果作为后面一次匹配的条件,<br>
+逐步缩减并返回最终匹配结果,<br>
+也可以在参数@2中使用一个数组指定多个模式串</p>
+
+<p><a id="string.removeBom"></a></p>
+
+<h3>string.removeBom(字符串)</h3>
+
+<p>如果字符串开始为UTF8 BOM，则返回移除该 BOM 的字符串。<br>
+如果字符串开始为 UTF-16 BOM,则移除 BOM 并返回转换为 UTF-8 编码的字符串,<br>
+否则直接返回参数</p>
+
+<p><a id="string.repeat"></a></p>
+
+<h3>string.repeat(n)</h3>
+
+<p>创建长度为n的字符串,默认填充所有字节的字节码设为 0 。</p>
+
+<p><a id="string.repeat"></a></p>
+
+<h3>string.repeat(n,&quot; &quot;)</h3>
+
+<p>将参数2重复n次并创建新的字符串返回</p>
+
+<p><a id="string.repeat"></a></p>
+
+<h3>string.repeat(n,&#39; &#39;)</h3>
+
+<p>将参数2重复n次并创建新的字符串返回</p>
+
+<p><a id="string.replace"></a></p>
+
+<h3>string.replace</h3>
+
+<p>替换字符串,此函数不会改变原字符串,而是返回替换后的新字符串<br>
+此函数有两个返回值,第二个返回值为替换次数</p>
+
+<p><a id="string.replace"></a></p>
+
+<h3>string.replace(&quot;字符串&quot;,&quot;@查找字符串&quot;,&quot;替换字符串&quot;,替换次数)</h3>
+
+<p>禁用模式匹配替换,<br>
+在查找串中用模式匹配语法，替换字符串反斜杠也仅仅表示字面值不再表示匹配分组,<br>
+以<code>@@</code>开始则是<code>&lt;@@...@&gt;</code>的缩写形式,忽略大小写查找<br>
+替换次数省略则全局替换</p>
+
+<p><a id="string.replace"></a></p>
+
+<h3>string.replace(&quot;字符串&quot;,&quot;模式串&quot;,替换函数,替换次数)</h3>
+
+<p>使用模式匹配在字符串中查找替换<br>
+替换回调函数返回需要替换的新字符串,不返回值则保留原字符串<br>
+有几个匹配分组就有几个回调参数  </p>
+
+<p>替换次数省略则全局替换<br>
+返回值为替换后的新字符串</p>
+
+<p><a id="string.replace"></a></p>
+
+<h3>string.replace(&quot;字符串&quot;,&quot;模式串&quot;,替换字符串,替换次数)</h3>
+
+<p>使用模式匹配在字符串中查找替换<br>
+替换字符串,可使用 <code>\1</code> 至<code>\9</code>引用匹配分组,<code>\0</code>表示匹配到的完整字符  </p>
+
+<p>替换次数省略则全局替换<br>
+返回值为替换后的新字符串</p>
+
+<p><a id="string.replace"></a></p>
+
+<h3>string.replace(&quot;字符串&quot;,&quot;模式串&quot;,替换表,替换次数)</h3>
+
+<p>使用模式匹配在字符串中查找替换<br>
+替换表对象中键为匹配到的字符串,替换值可以是字符串、数值、函数、false<br>
+其中数值转换为字符串返回，false表示取消替换,<br>
+函数用于接收匹配结果并返回新字符串,有几个匹配分组就有几个回调参数</p>
+
+<p><a id="string.replaceUnmatched"></a></p>
+
+<h3>string.replaceUnmatched</h3>
+
+<p>在一个或多个与指定模式不匹配的部分进行替换</p>
+
+<p><a id="string.replaceUnmatched"></a></p>
+
+<h3>string.replaceUnmatched(源字符串,替换模式串,替换对象,排除模式串1,排除模式串2...)</h3>
+
+<p>在源字符串中保留与一个或多个排除模式串匹配的部分，<br>
+然后对剩余的部分进行单独替换。  </p>
+
+<p>&quot;替换模式串&quot;,&quot;替换对象&quot;等参数与 string.replace 函数要求一致，<br>
+&quot;替换对象&quot;可以是新的字符串、替换表或替换函数。<br>
+可以指定一个或任意多个&quot;排除模式串&quot;。<br>
+函数返回替换后的字符串与替换次数。</p>
+
+<p><a id="string.repline"></a></p>
+
+<h3>string.repline</h3>
+
+<p>按行替换字符串,返回替换后的字符串,<br>
+此函数仅返回替换后的新字符串,只有一个返回值</p>
+
+<p><a id="string.repline"></a></p>
+
+<h3>string.repline(源字符串,模式串,替换串,替换次数)</h3>
+
+<p>模式串用于匹配所有的单行文本,<br>
+替换串与 string.replace 用法相同<br>
+替换次数指的也是每一行内部进行替换的最大次数,不指定则不限制</p>
+
+<p><a id="string.repline"></a></p>
+
+<h3>string.repline(源字符串,模式串,替换函数,替换次数)</h3>
+
+<p>模式串用于匹配所有的单行文本,<br>
+替换函数与 string.replace 用法相同<br>
+,<br>
+替换次数指的也是每一行内部进行替换的最大次数,不指定则不限制</p>
+
+<p><a id="string.repline"></a></p>
+
+<h3>string.repline(源字符串,模式串,替换表,替换次数)</h3>
+
+<p>模式串用于匹配所有的单行文本,<br>
+替换表与 string.replace 用法相同<br>
+,<br>
+替换次数指的也是每一行内部进行替换的最大次数,不指定则不限制</p>
+
+<p><a id="string.reverse"></a></p>
+
+<h3>string.reverse(&#39;字符串&#39;)</h3>
+
+<p>字节序反转排列</p>
+
+<p><a id="string.reverse"></a></p>
+
+<h3>string.reverse(&#39;字符串&#39;,true)</h3>
+
+<p>将字符串倒序排列<br>
+以字符为单位,参数必须是以UTF8编码的文本字符串,<br>
+返回值同样是UTF8编码,注意aardio中文本字符串默认的编码为UTF8</p>
+
+<p><a id="string.right"></a></p>
+
+<h3>string.right(str,n )</h3>
+
+<p>从字符串右侧截取n个字符,<br>
+n为负数表示自左侧计数起始位置,并向右截取剩余字符,<br>
+按字节计数,汉字为多个字节<br>
+参数@1也可以是 buffer 对象</p>
+
+<p><a id="string.right"></a></p>
+
+<h3>string.right(str,n,true )</h3>
+
+<p>从字符串右侧截取n个字符<br>
+按字符计数,汉字为一个字符<br>
+参数@1也可以是 buffer 对象</p>
+
+<p><a id="string.save"></a></p>
+
+<h3>string.save(&quot;字符串参数&quot;, )</h3>
+
+<p>保存字符串到文件<br>
+如果父目录尚未建立，将自动创建父目录<br>
+写入文件成功返回true,否则返回false,错误信息<br>
+如果文件存在隐藏属性,可能会写入失败,错误信息返回&quot;No Error&quot;  </p>
+
+<p>注意，此函数以启用共享读写模式打开文件</p>
+
+<p><a id="string.save"></a></p>
+
+<h3>string.save(&quot;字符串参数&quot;, ,true)</h3>
+
+<p>追加字符串到文件<br>
+如果父目录尚未建立，将自动创建父目录  </p>
+
+<p>注意，此函数以启用共享读写模式打开文件</p>
+
+<p><a id="string.search"></a></p>
+
+<h3>string.search(回调函数,字符串,模式串,...)</h3>
+
+<p>模式匹配搜索.  </p>
+
+<p>可以指定1个或多个模式串,<br>
+此函数使用前面表达式的结果作为后面表达式的查询字符串,<br>
+每一个模式串都支持全局搜索并可以返回多个匹配结果,<br>
+最后一个表达式的匹配结果作为参数回调参数@1指定的函数.  </p>
+
+<p>每一个模式串参数都可以使用函数或 lambda表达式替代,<br>
+用于作为筛选器筛选上次的匹配结果,筛选器可以返回新的字符串,<br>
+返回非字符串类型则用于指定是否保留上次的匹配结果,  </p>
+
+<p>如果参数@1是一个数组,则将匹配结果添加到该数组,如果有多个捕获分组则返回二维数组,<br>
+如果参数@1是数组则返回该数组,否则函数无返回值</p>
+
+<p><a id="string.setUtf"></a></p>
+
+<h3>string.setUtf</h3>
+
+<p>设置字符串的UTF格式标记<br>
+该标记主要由aardio自动设置,一般不建议用户调用该函数  </p>
+
+<p>对于空字符串,aardio忽略其UTF标记,<br>
+对于非空字符串，aardio只允许一个字符串对象在创建时初始化UTF标记为UTF16,<br>
+而其他非UTF16字符串，允许在运行时修改UTF标记,<br>
+此函数并不会改变字符串数据，也没有返回值</p>
+
+<p><a id="string.setUtf"></a></p>
+
+<h3>string.setUtf(&quot;字符串&quot;，编码格式)</h3>
+
+<p>设置字符串的UTF格式标记，所有UTF格式标记如下:<br>
+0 表示普通字符串,<br>
+&amp;8 表示UTF-8字符串,<br>
+&amp;16 表示 UTF-16 字符串（ustring）。<br>
+&amp;(8 | 1) 表示UTF-8、ANSI兼容编码,即所有字符小于0x80  </p>
+
+<p>此函数只能用于标记除UTF16以外的编码。<br>
+不能使用此函数修改字符串的UTF标记为UTF16编码，<br>
+也不允许使用此函数修改已经标记为UTF16编码的字符串。  </p>
+
+<p>aardio会自动维护UTF16字符串的编码标记，<br>
+使用string.sliceUtf16函数也可以获取UTF16标记的字符串</p>
+
+<p><a id="string.setenv"></a></p>
+
+<h3>string.setenv(&quot;变量名&quot;,&quot;变量值&quot;)</h3>
+
+<p>设置当前进程环境变量<br>
+参数@2为 null 或省略则删除参数@1指定的环境变量</p>
+
+<p><a id="string.slice"></a></p>
+
+<h3>string.slice(str,i,j )</h3>
+
+<p>从字符串中截取位置i到j的字符串,<br>
+注意i使用1表示第一个字符,返回字符串包含j指字的最后一个字符,<br>
+按字节计数,汉字为多个字节,如果i,j为负数则从右侧倒数计数<br>
+省略参数j则默认值为截取到字符串尾部  </p>
+
+<p>参数@1也可以是 buffer 对象</p>
+
+<p><a id="string.slice"></a></p>
+
+<h3>string.slice(str,i,j,true )</h3>
+
+<p>从字符串中截取位置i开始的字符串,<br>
+注意i使用1表示第一个字符,返回字符串包含j指字的最后一个字符,<br>
+按字符计数,汉字为一个字符,如果i为负数则从右侧倒数计数<br>
+省略参数j则默认值为截取到字符串尾部,  </p>
+
+<p>参数@1也可以是 buffer 对象</p>
+
+<p><a id="string.sliceUtf16"></a></p>
+
+<h3>string.sliceUtf16</h3>
+
+<p>截取 UTF-16 字符串,<br>
+也可用于为字符串添加 UTF-16 标记</p>
+
+<p><a id="string.sliceUtf16"></a></p>
+
+<h3>string.sliceUtf16(字符串,开始位置,结束位置)</h3>
+
+<p>截取 UTF-16  字符串，也可用于将字符串 UTF 标记设置为 UTF-16 .<br>
+此函数不会修改传入字符串的 UTF 标记，但是返回非空字符串时会其 UTF 编码标记设为 UTF-16。  </p>
+
+<p>注意此函数并不是一个编码转换函数,<br>
+转换编码请使用 string.toUtf16 函数.  </p>
+
+<p>开始位置,结束位置以 UTF-16 字符单位计数（2个字节为1个单位）<br>
+可以使用负数表示自右侧倒计数单位，-1 表示最后一个字符.</p>
+
+<p><a id="string.split"></a></p>
+
+<h3>string.split</h3>
+
+<p>拆分字符串,<br>
+空字符串拆分后返回数组长度为0,<br>
+连续的分隔符中间拆分为空字符串,<br>
+改用string.splitEx函数才能使用模式语法指定连续的分隔符</p>
+
+<p><a id="string.split"></a></p>
+
+<h3>string.split(&#39;字符串&#39;)</h3>
+
+<p>不指定分隔符则按UTF8编码逐个拆分为字符数组,<br>
+返回数组,中文等多字节字符会被拆分为一个数组元素,<br>
+参数传入空字符串返回数组长度为0</p>
+
+<p><a id="string.split"></a></p>
+
+<h3>string.split(&#39;字符串&#39;,&#39;A&#39;,返回数组最大长度)</h3>
+
+<p>单字节快速拆分<br>
+返回数组,空字符串返回数组长度为0<br>
+参数@3为可选参数,不指定则拆分全部字符串</p>
+
+<p><a id="string.split"></a></p>
+
+<h3>string.split(&#39;字符串&#39;,&#39;abc&#39;,返回数组最大长度)</h3>
+
+<p>指定多个单字节分隔符,不可使用多字节分隔符,基于二进制搜索<br>
+返回数组,空字符串返回数组长度为0<br>
+参数@3为可选参数,不指定则拆分全部字符串</p>
+
+<p><a id="string.split"></a></p>
+
+<h3>string.split(&#39;字符串&#39;,<code>&#39;&lt;分隔符&gt;&#39;</code>,返回数组最大长度)</h3>
+
+<p>置于<code>&lt;&gt;</code>内的字符串作为分隔符,<br>
+返回数组,空字符串返回数组长度为0<br>
+参数@3为可选参数,不指定则拆分全部字符串</p>
+
+<p><a id="string.splitEx"></a></p>
+
+<h3>string.splitEx</h3>
+
+<p>使用模式匹配语法拆分字符串，返回拆分后的字符串数组。<br>
+此函数与 string.lines 迭代器使用相同的拆分规则。</p>
+
+<p><a id="string.splitEx"></a></p>
+
+<h3>string.splitEx(字符串,分隔符模式串,最大拆分次数,开始位置)</h3>
+
+<p>使用模式匹配语法拆分字符串，返回拆分后的字符串数组。<br>
+参数 @1 传入 null 值或空字符串返回空数组。  </p>
+
+<p>分隔符模式串可用括号创建捕获组，首个捕获组如下处理：  </p>
+
+<ul>
+<li>模式串尾部有 $ 符号，则捕获组放到上个拆分结果尾部。<br></li>
+<li>模式串头部有 ^ 符号，则捕获组放到下个拆分结果头部。<br></li>
+<li>模式串头部有^ 符号尾部有 $ 号则捕获组本身添加到返回数组中。<br></li>
+</ul>
+
+<p>省略分隔符模式则按行拆分，<br>
+兼容回车、换行、回车换行等不同换行风格，空行不合并。  </p>
+
+<p>最大拆分次数可省略（不限次数），分隔符单独加入拆分结果时拆分次数会对齐为奇数。<br>
+开始位置以字节为单位，省略则默认从开始拆分。</p>
+
+<p><a id="string.startWith"></a></p>
+
+<h3>string.startWith(&quot;字符串&quot;,&quot;开始串&quot;)</h3>
+
+<p>判断开始串是否位于字符串开始处<br>
+基于二进制模式</p>
+
+<p><a id="string.startWith"></a></p>
+
+<h3>string.startWith(&quot;字符串&quot;,&quot;开始串&quot;,true)</h3>
+
+<p>判断开始串是否位于字符串开始处。<br>
+基于文本模式,忽略大小写</p>
+
+<p><a id="string.str"></a></p>
+
+<h3>string.str</h3>
+
+<p>转换字符串为不包含<code>&#39;\0&#39;</code>的纯文本字符串,<br>
+或转换 UTF-16 字符串（ustring）为不包含<code>&#39;\u0000&#39;</code>的纯文本字符串</p>
+
+<p><a id="string.str"></a></p>
+
+<h3>string.str(字符串)</h3>
+
+<p>如果传入字符串包含 <code>&#39;\0&#39;</code>，则返回  <code>&#39;\0&#39;</code> 前面的字符串，<br>
+否则返回原字符串。  </p>
+
+<p>参数@1也可以是 buffer 对象,<br>
+如果输入参数是结构体或指针，应当改用 raw.str 函数</p>
+
+<p><a id="string.str"></a></p>
+
+<h3>string.str(字符串,true)</h3>
+
+<p>参数 @1 可传入 UTF-16 字符串（ustring）。<br>
+ UTF-16 字符串（ustring）如包含 <code>&#39;\u0000&#39;</code>，<br>
+则返回 <code>&#39;\u0000&#39;</code> 前面的 UTF-16 字符串（ustring），否则直接返回原字符串。<br>
+返回的字符串自动设置 UTF 标记为 UTF-16 。  </p>
+
+<p>如果参数 @1 是已经设置 UTF 标记为 UTF-16 的字符串（ustring），参数 @2 可以省略。<br>
+参数 @1 也可以是 buffer 对象,如果参数是结构体或指针。<br>
+应改用 raw.str 函数</p>
+
+<p><a id="string.table"></a></p>
+
+<h3>string.table</h3>
+
+<p>解析以行为单位的字符串属性表。<br>
+类似功能的 string.list 支持用引号包含跨行的字段值，<br>
+但 string.table 仅将引号作为字面值处理。</p>
+
+<p><a id="string.table"></a></p>
+
+<h3>string.table(字符串,键值分隔模式,行分隔模式,行首注释符)</h3>
+
+<p>解析以行为单位的字符串属性表。<br>
+除参数@1 以外其他所有参数都可以省略。<br>
+键值分隔模式默认为 &quot;\s*[:=]\s*&quot;，也就是忽略前后空白的冒号或等号。<br>
+行分隔符默认兼容回车换行、换行、单回车等行分隔符。<br>
+默认不指定行首注释符，该参数仅支持字节码，例如 &#39;#&#39;#。</p>
+
+<p><a id="string.toUtf16"></a></p>
+
+<h3>string.toUtf16</h3>
+
+<p>转换字符串到 UTF16 编码字符串。<br>
+如果字符串已经是 UTF-16 编码将直接返回参数。<br>
+如果转换成功将自动设置字符串的 UTF 标记以避免重复转换。<br>
+对 UTF-16 字符串使用下标操作符 <code>[]</code> 可返回 2 字节的宽字节码,<br>
+使用直接下标操作符<code>[[]]</code>会返回 2 字节的宽字符</p>
+
+<p><a id="string.toUtf16"></a></p>
+
+<h3>string.toUtf16(字符串)</h3>
+
+<p>将字符串转换从指定编码转换为 UTF16 编码<br>
+源编码默认为 UTF-8 代码页 65001</p>
+
+<p><a id="string.toUtf16"></a></p>
+
+<h3>string.toUtf16(字符串,源编码)</h3>
+
+<p>将字符串转换从指定编码转换为 UTF-16 编码。<br>
+源编码参数是表示代码页的数值，省略则默认为 65001（UTF-8 代码页）。</p>
+
+<p><a id="string.toUtf16"></a></p>
+
+<h3>string.toUtf16(字符串,源编码,转换字节数)</h3>
+
+<p>字节数为 -1 时表示查找<code>&#39;\0&#39;</code>终止符自动获取长度。<br>
+指定转换字节数时,参数 @ 即可使用指针、buffer 作为参数<br>
+注意参数 @3 始终以字节计数，而非按字符计数。<br>
+源编码参数是表示代码页的数值，例如 65001 表示 UTF-8 编码。</p>
+
+<p><a id="string.trim"></a></p>
+
+<h3>string.trim(str)</h3>
+
+<p>从字符串首尾清除所有空白字符</p>
+
+<p><a id="string.trim"></a></p>
+
+<h3>string.trim(str,&#39; &#39;)</h3>
+
+<p>从字符串首尾清除指定的一个或多个单字节字符</p>
+
+<p><a id="string.trimleft"></a></p>
+
+<h3>string.trimleft(str)</h3>
+
+<p>从字符串左侧清除所有空白字符</p>
+
+<p><a id="string.trimleft"></a></p>
+
+<h3>string.trimleft(str,&#39; &#39;)</h3>
+
+<p>从字符串左侧清除指定的一个或多个单字节字符<br>
+清除多字节字符请不要用这个函数,应改用模式匹配替换,例如<br>
+str = string.replace(str,&quot;^[中文]+&quot;,``)</p>
+
+<p><a id="string.trimright"></a></p>
+
+<h3>string.trimright(str)</h3>
+
+<p>从字符串右侧清除所有空白字符</p>
+
+<p><a id="string.trimright"></a></p>
+
+<h3>string.trimright(str,&#39; &#39;)</h3>
+
+<p>从字符串右侧清除指定的一个或多个单字节字符<br>
+清除多字节字符请不要用这个函数,应改用模式匹配替换,例如<br>
+str = string.replace(str,&quot;[中文]+$&quot;,``)</p>
+
+<p><a id="string.unescape"></a></p>
+
+<h3>string.unescape()</h3>
+
+<p>还原函数string.escape生成的转义字符串<br>
+可兼容JSON字符符转义规则,允许直接包含单引号</p>
+
+<p><a id="string.unhex"></a></p>
+
+<h3>string.unhex</h3>
+
+<p>还原使用16进制编码的字符串</p>
+
+<p><a id="string.unhex"></a></p>
+
+<h3>string.unhex(&quot;16进制编码数据&quot;,&quot;前缀&quot;)</h3>
+
+<p>还原使用16进制编码的字符串,解码失败返回null值<br>
+例如UrlEncode前缀可以指定为&quot;%&quot;,前缀可以为空字符,不指定前缀时默认为<code>\x</code><br>
+空前缀必须明确指定一个空字符串,使用空前缀不能混杂非编码字符  </p>
+
+<p>如果前缀是单个空白字符时,可以省略字符串开始的前缀(仅作为分隔符使用)</p>
+
+<p><a id="string.unpack"></a></p>
+
+<h3>string.unpack(str,i)</h3>
+
+<p>取字符串的第i个字符的ascii码数值。</p>
+
+<p><a id="string.unpack"></a></p>
+
+<h3>string.unpack(str,i,j)</h3>
+
+<p>取字符串的第i个到第j个字符的ascii码数值并返回。</p>
+
+<p><a id="string.upper"></a></p>
+
+<h3>string.upper()</h3>
+
+<p>字符串转换为大写</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/string/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/string/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/string/_.md">Markdown 格式</a></p>
+
+</body> 
+</html>

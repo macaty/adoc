@@ -1,0 +1,140 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - fsys.media 音频播放控制，显示播放进度'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - fsys.media 音频播放控制，显示播放进度</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: fsys.media 音频播放控制，显示播放进度</h1><pre><code class="aardio language-aardio">//fsys.media
+import win.ui;
+import fonts.fontAwesome;
+/*DSG{{*/
+var winform = win.form(text=&quot;fsys.media 音频播放控制，显示播放进度&quot;;right=534;bottom=84)
+winform.add(
+btnPause={cls=&quot;plus&quot;;text=&quot;暂停&quot;;left=226;top=34;right=325;bottom=62;align=&quot;left&quot;;bgcolor=-5197169;disabled=1;font=LOGFONT(h=-16);iconStyle={align=&quot;left&quot;;font=LOGFONT(h=-16;name=&#39;FontAwesome&#39;);padding={left=14;top=2}};iconText=&#39;\uF04C&#39;;notify=1;textPadding={left=35};z=3};
+btnPlay={cls=&quot;plus&quot;;text=&quot;播放&quot;;left=343;top=34;right=433;bottom=62;align=&quot;left&quot;;bgcolor=-5197169;font=LOGFONT(h=-16);iconStyle={align=&quot;left&quot;;font=LOGFONT(h=-16;name=&#39;FontAwesome&#39;);padding={left=14;top=2}};iconText=&#39;\uF04B&#39;;notify=1;textPadding={left=35};z=2};
+progress={cls=&quot;plus&quot;;left=15;top=16;right=510;bottom=20;bgcolor=6447459;forecolor=9959653;notify=1;z=1}
+)
+/*}}*/
+
+import fsys.dlg;
+import fsys.media;
+
+var mediaFile;
+winform.btnPlay.oncommand = function(id,event){
+    if(mediaFile) {
+        mediaFile.stop(); 
+        winform.progress.hide = true;
+    }
+
+    if(!winform.btnPlay.checked){
+        return;
+    }
+    winform.btnPlay.checked = false;
+
+    var path = fsys.dlg.open(&quot;*.mp3|*.mp3||&quot;);
+    if(!path) return;
+
+    mediaFile = fsys.media(path);
+    if(mediaFile) {
+        mediaFile.play(); 
+
+        winform.btnPlay.checked = true;
+        winform.btnPause.disabled = false;
+
+        winform.progress.setProgressRange(0,mediaFile.length());
+        winform.progress.progressPos = 0; 
+        winform.progress.hide = false;
+    }   
+}
+
+winform.btnPause.oncommand = function(id,event){
+    if( mediaFile ){
+        if(mediaFile.isPlaying()){
+            mediaFile.pause();
+        }
+        else {
+            mediaFile.resume();
+        }
+    } 
+}
+
+winform.setInterval( 
+    function(){ 
+        if( winform.btnPlay.checked &amp;&amp; mediaFile){ 
+            if( mediaFile.isPlaying()){
+                winform.progress.progressPos = mediaFile.position();
+            } 
+            elseif( mediaFile.isStopped() ) {
+                winform.progress.hide = true;
+                winform.btnPlay.checked = false; 
+                winform.btnPause.disabled = true;
+            }
+        } 
+    },500
+)
+
+winform.btnPause.skin({
+    background={
+        default=0x668FB2B0;
+        disabled=0xFFCCCCCC;
+        hover=0xFF928BB3
+    };
+    color={
+        default=0xFF000000;
+        disabled=0xFF6D6D6D
+    };
+    checked = {
+        iconText = &#39;\uF04B&#39;;
+        text = &quot;继续&quot;;
+        background={
+            default=0x668FB2B0;
+            disabled=0xFFCCCCCC;
+            hover=0xFF928BB3
+        };
+        color={
+            default=0xFF000000;
+            disabled=0xFF6D6D6D
+        };
+    }
+})
+
+winform.btnPlay.skin({
+    background={
+        default=0x668FB2B0;
+        disabled=0xFFCCCCCC;
+        hover=0xFF928BB3
+    };
+    color={
+        default=0xFF000000;
+        disabled=0xFF6D6D6D
+    };
+    checked = {
+        iconText = &#39;\uF04D&#39;;
+        text = &quot;停止&quot;;
+        background={
+            default=0x668FB2B0;
+            disabled=0xFFCCCCCC;
+            hover=0xFF928BB3
+        };
+        color={
+            default=0xFF000000;
+            disabled=0xFF6D6D6D
+        };
+    }
+})
+
+winform.show();
+win.loopMessage();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Media/Audio/fsys.media.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Media/Audio/fsys.media.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Media/Audio/fsys.media.md">Markdown 格式</a>
+</body> 
+</html>

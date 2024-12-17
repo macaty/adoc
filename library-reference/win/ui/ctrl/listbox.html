@@ -1,0 +1,686 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - win.ui.ctrl.listbox 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - win.ui.ctrl.listbox 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>win.ui.ctrl.listbox 库模块帮助文档</h1>
+
+<p><a id="win.ui.ctrl"></a></p>
+
+<h2>win.ui.ctrl 成员列表</h2>
+
+<p><a id="win.ui.ctrl.listbox"></a></p>
+
+<h3>win.ui.ctrl.listbox()</h3>
+
+<p>列表框<br>
+listbox 默认会自动调整高度以对齐项目行高,<br>
+在创建参数中添加 integralHeight = false 可禁止此特性  </p>
+
+<p><a href="#listboxObject">返回对象:listboxObject</a></p>
+
+<p><a id="listboxObject"></a></p>
+
+<h2>listboxObject 成员列表</h2>
+
+<p><a id="listboxObject._defWindowProc"></a></p>
+
+<h3>listboxObject._defWindowProc(hwnd,message,wParam,lParam)</h3>
+
+<p>用于在 wndproc 回调中提前调用默认消息回调函数,<br>
+所有窗口和控件定义了 wndproc 回调以后会自动创建这个函数,<br>
+调用此函数以后,wndproc 必须指定非 null 返回值,<br>
+以避免再次重复调用默认回调函数</p>
+
+<p><a id="listboxObject._parentForm"></a></p>
+
+<h3>listboxObject._parentForm</h3>
+
+<p>创建该控件的父窗口（win.form对象）,<br>
+设计时窗体容器是所有拖放在窗体上的控件的 _parentForm,  </p>
+
+<p>即使窗口移除子窗口样式、更改父子关系，或以 orphanWindow显示,<br>
+控件的 _parentForm 始终都不会改变  </p>
+
+<p><a href="../_.html#winform" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/_.html#winform">返回对象:winform</a></p>
+
+<p><a id="listboxObject.add"></a></p>
+
+<h3>listboxObject.add(请输入文本)</h3>
+
+<p>添加列表项到尾部，返回新项目索引。</p>
+
+<p><a id="listboxObject.add"></a></p>
+
+<h3>listboxObject.add(请输入文本,-1)</h3>
+
+<p>添加列表项到尾部，返回新项目索引。</p>
+
+<p><a id="listboxObject.add"></a></p>
+
+<h3>listboxObject.add(请输入文本,1)</h3>
+
+<p>添加列表项到头部，返回新项目索引。</p>
+
+<p><a id="listboxObject.addCtrl"></a></p>
+
+<h3>listboxObject.addCtrl</h3>
+
+<pre><code class="aardio language-aardio">listboxObject.addCtrl(  
+
+    edit ={ cls=&quot;edit&quot;;left=0;top=0;right=50;bottom=50;autoResize=false ;hide=1;edge=1;  }  
+)
+</code></pre>
+
+<p><a id="listboxObject.addfile"></a></p>
+
+<h3>listboxObject.addfile(请输入路径)</h3>
+
+<p>向列表框里增加一个文件(包括目录)</p>
+
+<p><a id="listboxObject.adjust"></a></p>
+
+<h3>listboxObject.adjust</h3>
+
+<pre><code class="aardio language-aardio">listboxObject.adjust = function( cx,cy,wParam ) {      
+    /*窗口缩放时会自动触发此函数。  
+cx 参数为窗口宽度,cy 参数为窗口高度,  
+wParam 参数请参考 _WM_SIZE 消息参数说明,一般不用管。  
+
+所有 win.form 创建的窗体和控件都支持此事件,  
+重复赋值只会追加而不会覆盖此事件。  
+一般不建议添加一个 wndproc 仅仅是为了处理  _WM_SIZE 消息，  
+定义 adjust 事件是更好的选择。  
+
+可主动调用此事件,省略参数时 cx,cy 参数默认设为窗口大小*/    
+};
+</code></pre>
+
+<p><a id="listboxObject.bottom"></a></p>
+
+<h3>listboxObject.bottom</h3>
+
+<p>底部坐标<br>
+注意listbox的实际高度受行高的影响<br>
+只有自绘时才能设置行高</p>
+
+<p><a id="listboxObject.capture"></a></p>
+
+<h3>listboxObject.capture</h3>
+
+<p>是否捕获全局鼠标消息</p>
+
+<p><a id="listboxObject.className"></a></p>
+
+<h3>listboxObject.className</h3>
+
+<p>运行时类名</p>
+
+<p><a id="listboxObject.clear"></a></p>
+
+<h3>listboxObject.clear()</h3>
+
+<p>清除列表框所有内容</p>
+
+<p><a id="listboxObject.clientRect"></a></p>
+
+<h3>listboxObject.clientRect</h3>
+
+<p>获取控件客户区块位置(::RECT结构体)</p>
+
+<p><a id="listboxObject.close"></a></p>
+
+<h3>listboxObject.close()</h3>
+
+<p>关闭控件窗</p>
+
+<p><a id="listboxObject.cls"></a></p>
+
+<h3>listboxObject.cls</h3>
+
+<p>设计时类名</p>
+
+<p><a id="listboxObject.count"></a></p>
+
+<h3>listboxObject.count</h3>
+
+<p>列表项数目</p>
+
+<p><a id="listboxObject.delete"></a></p>
+
+<h3>listboxObject.delete()</h3>
+
+<p>删除当前选中项</p>
+
+<p>删除指定项</p>
+
+<p><a id="listboxObject.disabled"></a></p>
+
+<h3>listboxObject.disabled</h3>
+
+<p>是否禁用</p>
+
+<p><a id="listboxObject.eachSelected"></a></p>
+
+<h3>listboxObject.eachSelected()</h3>
+
+<pre><code class="aardio language-aardio">for index,text in listboxObject.eachSelected(){
+    /*从后向前倒序遍历所有选中项,  
+迭代变量 index 为选中项序号,  
+迭代变量 text 当前行文本值*/
+}
+</code></pre>
+
+<p><a id="listboxObject.ensureVisible"></a></p>
+
+<h3>listboxObject.ensureVisible()</h3>
+
+<p>滚动视图以确定可以显示参数指定行序号的项,<br>
+不指定参数则设置当前选中焦点项</p>
+
+<p><a id="listboxObject.find"></a></p>
+
+<h3>listboxObject.find(请输入文本)</h3>
+
+<p>在列表框里查找指定的项<br>
+找不到返回0</p>
+
+<p><a id="listboxObject.findEx"></a></p>
+
+<h3>listboxObject.findEx(请输入文本)</h3>
+
+<p>精确查找指定的项<br>
+找不到返回0</p>
+
+<p><a id="listboxObject.getClientRect"></a></p>
+
+<h3>listboxObject.getClientRect()</h3>
+
+<p>控件客户区块位置(::RECT结构体)  </p>
+
+<p><a href="../../../global/_.html#rectObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/global/_.html#rectObject">返回对象:rectObject</a></p>
+
+<p><a id="listboxObject.getFont"></a></p>
+
+<h3>listboxObject.getFont()</h3>
+
+<p>控件字体(::LOGFONT结构体)  </p>
+
+<p><a href="#logfontObject">返回对象:logfontObject</a></p>
+
+<p><a id="listboxObject.getItemRect"></a></p>
+
+<h3>listboxObject.getItemRect(项索引)</h3>
+
+<p>获取指定项区块位置<br>
+返回::RECT() 结构体</p>
+
+<p><a id="listboxObject.getItemText"></a></p>
+
+<h3>listboxObject.getItemText(项索引)</h3>
+
+<p>获取指定项文本</p>
+
+<p><a id="listboxObject.getParent"></a></p>
+
+<h3>listboxObject.getParent()</h3>
+
+<p>返回父窗口  </p>
+
+<p><a href="static.html#staticObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/static.html#staticObject">返回对象:staticObject</a></p>
+
+<p><a id="listboxObject.getPos"></a></p>
+
+<h3>listboxObject.getPos()</h3>
+
+<p>返回相对坐标,宽,高<br>
+x,y,cx,cy=win.getPos(hwnd)</p>
+
+<p><a id="listboxObject.getRect"></a></p>
+
+<h3>listboxObject.getRect()</h3>
+
+<p>控件区块位置(::RECT结构体)</p>
+
+<p><a id="listboxObject.getRect"></a></p>
+
+<h3>listboxObject.getRect(true)</h3>
+
+<p>控件屏幕区块位置(::RECT结构体)</p>
+
+<p><a id="listboxObject.getSelected"></a></p>
+
+<h3>listboxObject.getSelected(1项索引)</h3>
+
+<p>是否选中</p>
+
+<p><a id="listboxObject.height"></a></p>
+
+<h3>listboxObject.height</h3>
+
+<p>高度<br>
+listbox 默认会自动调整高度以对齐项目行高,<br>
+在创建参数中添加 integralHeight = false 可禁止此特性</p>
+
+<p><a id="listboxObject.hitTest"></a></p>
+
+<h3>listboxObject.hitTest(x,y)</h3>
+
+<p>返回指定客户区坐标所在的项索引.</p>
+
+<p><a id="listboxObject.hitTest"></a></p>
+
+<h3>listboxObject.hitTest(x坐标,y坐标,是否屏幕坐标)</h3>
+
+<p>该函数返回指定坐标的句柄,参数三可省略,默认为false.<br>
+如果不指定任何参数,则自动获取当前消息坐标</p>
+
+<p><a id="listboxObject.hwnd"></a></p>
+
+<h3>listboxObject.hwnd</h3>
+
+<p>控件句柄</p>
+
+<p><a id="listboxObject.id"></a></p>
+
+<h3>listboxObject.id</h3>
+
+<p>控件ID</p>
+
+<p><a id="listboxObject.invalidate(/*可选使用::RECT"></a></p>
+
+<h3>listboxObject.invalidate(/*可选使用::RECT()对象指定客户区*/)</h3>
+
+<p>使窗口绘图区无效</p>
+
+<p><a id="listboxObject.invalidate(/*可选使用::RECT"></a></p>
+
+<h3>listboxObject.invalidate(/*可选使用::RECT()对象指定客户区*/,0)</h3>
+
+<p>使窗口绘图区无效<br>
+不刷新背景</p>
+
+<p><a id="listboxObject.items"></a></p>
+
+<h3>listboxObject.items</h3>
+
+<p>列表项集合<br>
+table对象</p>
+
+<p><a id="listboxObject.left"></a></p>
+
+<h3>listboxObject.left</h3>
+
+<p>左侧坐标</p>
+
+<p><a id="listboxObject.modifyStyle"></a></p>
+
+<h3>listboxObject.modifyStyle(remove,add,swpFlags)</h3>
+
+<p>修改窗口样式,所有参数都是可选参数,<br>
+@remove 用数值指定要移除的样式,可使用 <em>WS</em> 前缀的常量<br>
+@add 用数值指定要添加的样式,可使用 <em>WS</em> 前缀的常量<br>
+@swpFlags 可选用数值指定调整窗口选项,可使用 <em>SWP</em> 前缀的常量<br>
+如果指定了 @swpFlag ,则使用该参数调用::SetWindowPos<br>
+细节请参考 win.modifyStyle 函数源码</p>
+
+<p><a id="listboxObject.modifyStyleEx"></a></p>
+
+<h3>listboxObject.modifyStyleEx(remove,add,swpFlags)</h3>
+
+<p>修改窗口扩展样式,所有参数都是可选参数,<br>
+@remove 用数值指定要移除的样式,可使用 <em>WS_EX</em> 前缀的常量<br>
+@add 用数值指定要添加的样式,可使用 <em>WS_EX</em> 前缀的常量<br>
+@swpFlags 可选用数值指定调整窗口选项,可使用 <em>SWP</em> 前缀的常量<br>
+如果指定了 @swpFlag ,则使用该参数调用::SetWindowPos<br>
+细节请参考 win.modifyStyle 函数源码</p>
+
+<p><a id="listboxObject.onDestroy"></a></p>
+
+<h3>listboxObject.onDestroy</h3>
+
+<pre><code class="aardio language-aardio">listboxObject.onDestroy = function(){  
+    /*窗口销毁前触发*/  
+}
+</code></pre>
+
+<p><a id="listboxObject.onDoubleClickItem"></a></p>
+
+<h3>listboxObject.onDoubleClickItem()</h3>
+
+<pre><code class="aardio language-aardio">listboxObject.onDoubleClickItem = function(){
+    /*双击列表项触发此事件,  
+使使用 selIndex 获取双击的项*/
+}
+</code></pre>
+
+<p><a id="listboxObject.onDrawItem"></a></p>
+
+<h3>listboxObject.onDrawItem(drawItem)</h3>
+
+<pre><code class="aardio language-aardio">listboxObject.onDrawItem = function(drawItem){
+    /*控件属性里指定 ownerDraw 为 true 触发此事件  
+在这里自绘控件项*/  
+}
+</code></pre>
+
+<p><a id="listboxObject.onKillFocus"></a></p>
+
+<h3>listboxObject.onKillFocus()</h3>
+
+<pre><code class="aardio language-aardio">listboxObject.onKillFocus = function(){
+    /*失去焦点触发此事件*/
+}
+</code></pre>
+
+<p><a id="listboxObject.onMeasureItem"></a></p>
+
+<h3>listboxObject.onMeasureItem(measureItem,dpiScaleX,dpiScaleY)</h3>
+
+<pre><code class="aardio language-aardio">listboxObject.onMeasureItem = function(measureItem){
+    measureItem.itemHeight = 61 * dpiScaleY;  
+    /*控件属性里指定 ownerDraw 为 true 触发此事件  
+在这里配置自绘控件项参数*/
+}
+</code></pre>
+
+<p><a id="listboxObject.onSelCancel"></a></p>
+
+<h3>listboxObject.onSelCancel()</h3>
+
+<pre><code class="aardio language-aardio">listboxObject.onSelCancel = function(){
+    /*取消选项时触发此事件*/
+}
+</code></pre>
+
+<p><a id="listboxObject.onSelChange"></a></p>
+
+<h3>listboxObject.onSelChange()</h3>
+
+<pre><code class="aardio language-aardio">listboxObject.onSelChange = function(){
+    /*改变当前选项时触发此事件*/
+}
+</code></pre>
+
+<p><a id="listboxObject.onSetFocus"></a></p>
+
+<h3>listboxObject.onSetFocus()</h3>
+
+<pre><code class="aardio language-aardio">listboxObject.onSetFocus = function(){
+    /*获得焦点触发此事件*/
+}
+</code></pre>
+
+<p><a id="listboxObject.oncommand"></a></p>
+
+<h3>listboxObject.oncommand</h3>
+
+<pre><code class="aardio language-aardio">listboxObject.oncommand = function(id,event){  
+    /*命令事件触发*/  
+}
+</code></pre>
+
+<p><a id="listboxObject.onnotify"></a></p>
+
+<h3>listboxObject.onnotify</h3>
+
+<pre><code class="aardio language-aardio">listboxObject.onnotify = function(id,code,ptr){  
+    /*通知事件触发*/  
+}
+</code></pre>
+
+<p><a id="listboxObject.orphanWindow"></a></p>
+
+<h3>listboxObject.orphanWindow(transparent,hwndBuddy,borderless)</h3>
+
+<p>创建悬浮窗口。<br>
+悬浮窗口是模仿子窗口外观效果的独立窗口，父窗口可自动调整子窗口到设定位置。<br>
+可选参数 @transparent 为 true 则转换为分层透明窗口。<br>
+可选利用 @hwndBuddy 参数指定外部进程窗口句柄的并附加在内部控件上以实现相同的效果。<br>
+伙伴窗口总是会保持在悬浮窗口前面，并保持相同的大小、位置。<br>
+可重复调用此函数更换伙伴窗口，旧的伙伴窗口必须自行关闭。<br>
+可选指定 @borderless 参数 为 true 以移除 @hwndBuddy  的窗口边框。</p>
+
+<p><a id="listboxObject.postMessage"></a></p>
+
+<h3>listboxObject.postMessage(msg,wParam,lParam)</h3>
+
+<p>投递窗口消息到消息队列中<br>
+此函数用法请参考 ::User32.PostMessage</p>
+
+<p><a id="listboxObject.redraw"></a></p>
+
+<h3>listboxObject.redraw()</h3>
+
+<p>刷新</p>
+
+<p><a id="listboxObject.right"></a></p>
+
+<h3>listboxObject.right</h3>
+
+<p>右侧坐标</p>
+
+<p><a id="listboxObject.selIndex"></a></p>
+
+<h3>listboxObject.selIndex</h3>
+
+<p>获取或设置列表框当前选中项<br>
+仅在单选模式下有效,多选模式下请使用 selected 获取所有获中项</p>
+
+<p><a id="listboxObject.selText"></a></p>
+
+<h3>listboxObject.selText</h3>
+
+<p>获取当前选项的文本<br>
+或根据指定的文本查找并改变选项</p>
+
+<p><a id="listboxObject.selectRange"></a></p>
+
+<h3>listboxObject.selectRange(1,)</h3>
+
+<p>选中指定范围<br>
+如果不指定任何参数,取消选区</p>
+
+<p><a id="listboxObject.selected"></a></p>
+
+<h3>listboxObject.selected</h3>
+
+<p>所有选中项目索引的数组,<br>
+设为 null 或空表清除所有选中项</p>
+
+<p><a id="listboxObject.sendMessage"></a></p>
+
+<h3>listboxObject.sendMessage(msg,wParam,lParam)</h3>
+
+<p>发送窗口消息<br>
+此函数用法请参考 ::User32.SendMessage</p>
+
+<p><a id="listboxObject.setFocus"></a></p>
+
+<h3>listboxObject.setFocus()</h3>
+
+<p>设置焦点</p>
+
+<p><a id="listboxObject.setFont"></a></p>
+
+<h3>listboxObject.setFont(指定字体)</h3>
+
+<p>指定LOGFONT字体对象,或逻辑字体句柄</p>
+
+<p><a id="listboxObject.setFont"></a></p>
+
+<h3>listboxObject.setFont(混入字体属性)</h3>
+
+<pre><code class="aardio language-aardio">listboxObject.setFont(point=10;name=&quot;宋体&quot;);
+</code></pre>
+
+<p><a id="listboxObject.setParent"></a></p>
+
+<h3>listboxObject.setParent(控件对象)</h3>
+
+<p>改变父窗口</p>
+
+<p><a id="listboxObject.setPos"></a></p>
+
+<h3>listboxObject.setPos(x坐标,y坐标,宽,高,插入位置,参数)</h3>
+
+<p>调整窗口位置或排序,所有参数可选<br>
+同时指定x,y坐标则移动位置，同时指定宽高则改变大小，<br>
+指定插入位置（句柄或_HWND前缀常量）则调整Z序  </p>
+
+<p>listbox 默认会自动调整高度以对齐项目行高,<br>
+在创建参数中添加 integralHeight = false 可禁止此特性</p>
+
+<p><a id="listboxObject.setRect"></a></p>
+
+<h3>listboxObject.setRect(rc)</h3>
+
+<p>设置控件区块位置(::RECT结构体)</p>
+
+<p><a id="listboxObject.setRect"></a></p>
+
+<h3>listboxObject.setRect(rc,true)</h3>
+
+<p>设置控件屏幕区块位置(::RECT结构体)</p>
+
+<p><a id="listboxObject.setSelected"></a></p>
+
+<h3>listboxObject.setSelected(1项索引)</h3>
+
+<p>选中指定项,索引为0则选定全部<br>
+该函数仅在开启控件多选模式下有效<br>
+单选模式下请使用selIndex属性替代</p>
+
+<p><a id="listboxObject.setSelected"></a></p>
+
+<h3>listboxObject.setSelected(1项索引,false)</h3>
+
+<p>取消选中指定项,索引为0则取消全选</p>
+
+<p><a id="listboxObject.show"></a></p>
+
+<h3>listboxObject.show(true)</h3>
+
+<p>显示控件</p>
+
+<p><a id="listboxObject.theme"></a></p>
+
+<h3>listboxObject.theme</h3>
+
+<p>外观主题,例如<br>
+winform.button.theme = &quot;Explorer&quot;<br>
+winform.button.theme = false</p>
+
+<p><a id="listboxObject.threadCallable"></a></p>
+
+<h3>listboxObject.threadCallable()</h3>
+
+<p>开启此控件的跨线程调用功能</p>
+
+<p><a id="listboxObject.top"></a></p>
+
+<h3>listboxObject.top</h3>
+
+<p>顶部坐标</p>
+
+<p><a id="listboxObject.update"></a></p>
+
+<h3>listboxObject.update()</h3>
+
+<p>重绘invalidate函数指定的区块</p>
+
+<p><a id="listboxObject.width"></a></p>
+
+<h3>listboxObject.width</h3>
+
+<p>宽度</p>
+
+<p><a id="listboxObject.wndproc"></a></p>
+
+<h3>listboxObject.wndproc</h3>
+
+<pre><code class="aardio language-aardio">listboxObject.wndproc = function(hwnd,message,wParam,lParam){  
+    /*窗口消息回调，返回任意非null值阻止默认回调  
+wndproc重复赋值时追加函数而不是覆盖之前的回调  
+设为null添除所有消息回调函数  
+wndproc也可以是一个表,键要为处理的消息,值为对应的消息回调函数*/     
+}
+</code></pre>
+
+<h3>自动完成常量</h3>
+
+<p>_LBN_DBLCLK=0x2<br>
+_LBN_KILLFOCUS=0x5<br>
+_LBN_SELCANCEL=0x3<br>
+_LBN_SELCHANGE=0x1<br>
+_LBN_SETFOCUS=0x4<br>
+_LBS_DISABLENOSCROLL=0x1000<br>
+_LBS_EXTENDEDSEL=0x800<br>
+_LBS_HASSTRINGS=0x40<br>
+_LBS_MULTICOLUMN=0x200<br>
+_LBS_MULTIPLESEL=0x8<br>
+_LBS_NODATA=0x2000<br>
+_LBS_NOINTEGRALHEIGHT=0x100<br>
+_LBS_NOREDRAW=0x4<br>
+_LBS_NOTIFY=0x1<br>
+_LBS_OWNERDRAWFIXED=0x10<br>
+_LBS_OWNERDRAWVARIABLE=0x20<br>
+_LBS_SORT=0x2<br>
+_LBS_USETABSTOPS=0x80<br>
+_LBS_WANTKEYBOARDINPUT=0x400<br>
+_LB_ADDFILE=0x196<br>
+_LB_ADDSTRING=0x180<br>
+_LB_CTLCODE=0x0<br>
+_LB_DELETESTRING=0x182<br>
+_LB_DIR=0x18D<br>
+_LB_FINDSTRING=0x18F<br>
+_LB_FINDSTRINGEXACT=0x1A2<br>
+_LB_GETANCHORINDEX=0x19D<br>
+_LB_GETCARETINDEX=0x19F<br>
+_LB_GETCOUNT=0x18B<br>
+_LB_GETCURSEL=0x188<br>
+_LB_GETHORIZONTALEXTENT=0x193<br>
+_LB_GETITEMDATA=0x199<br>
+_LB_GETITEMHEIGHT=0x1A1<br>
+_LB_GETITEMRECT=0x198<br>
+_LB_GETLOCALE=0x1A6<br>
+_LB_GETSEL=0x187<br>
+_LB_GETSELCOUNT=0x190<br>
+_LB_GETSELITEMS=0x191<br>
+_LB_GETTEXT=0x189<br>
+_LB_GETTEXTLEN=0x18A<br>
+_LB_GETTOPINDEX=0x18E<br>
+_LB_INSERTSTRING=0x181<br>
+_LB_MSGMAX=0x1A8<br>
+_LB_OKAY=0x0<br>
+_LB_RESETCONTENT=0x184<br>
+_LB_SELECTSTRING=0x18C<br>
+_LB_SELITEMRANGE=0x19B<br>
+_LB_SELITEMRANGEEX=0x183<br>
+_LB_SETANCHORINDEX=0x19C<br>
+_LB_SETCARETINDEX=0x19E<br>
+_LB_SETCOLUMNWIDTH=0x195<br>
+_LB_SETCOUNT=0x1A7<br>
+_LB_SETCURSEL=0x186<br>
+_LB_SETHORIZONTALEXTENT=0x194<br>
+_LB_SETITEMDATA=0x19A<br>
+_LB_SETITEMHEIGHT=0x1A0<br>
+_LB_SETLOCALE=0x1A5<br>
+_LB_SETSEL=0x185<br>
+_LB_SETTABSTOPS=0x192<br>
+_LB_SETTOPINDEX=0x197  </p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/listbox.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/listbox.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/listbox.md">Markdown 格式</a></p>
+
+</body> 
+</html>

@@ -1,0 +1,55 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 可编辑列表框控件（listbox）'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 可编辑列表框控件（listbox）</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 可编辑列表框控件（listbox）</h1><pre><code class="aardio language-aardio">//可编辑列表框控件（listbox）
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;可编辑listbox演示&quot;;right=744;bottom=475)
+winform.add(
+btnAddItem={cls=&quot;button&quot;;text=&quot;添加&quot;;left=444;top=414;right=634;bottom=453;z=2};
+listbox={cls=&quot;listbox&quot;;left=41;top=15;right=703;bottom=402;edge=1;items={};z=1}
+)
+/*}}*/
+
+import win.ui.listEdit;
+var listEdit = win.ui.listEdit(winform.listbox);
+
+//编辑完成时触发此事件，newText 为新文本，selIndex 为编辑的项目索引
+listEdit.onEditChanged = function(newText,selIndex){
+
+}
+
+/*
+在列表项上双击可切换到编辑模式。
+编辑模式按 ESC 撤消，按 Enter、点击编辑框外面、编辑框失去焦点都可以完成编辑。
+*/
+winform.listbox.items = {
+  &quot;双击这里启动编辑&quot;;
+  &quot;文本框失去焦点自动完成编辑&quot;;
+  &quot;回车也可以完成编辑&quot;;
+  &quot;按ESC可以取消编辑&quot;; 
+}
+
+winform.btnAddItem.oncommand = function(id,event){
+    //不指定索引编辑当前选项，索引为 0 则增加临时项并切换到编辑模式，不输入内容则删除临时项。
+    listEdit.beginEdit(0)
+}
+
+winform.show(); 
+win.loopMessage();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Windows/Listbox/listEdit.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Windows/Listbox/listEdit.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Windows/Listbox/listEdit.md">Markdown 格式</a>
+</body> 
+</html>

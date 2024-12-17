@@ -1,0 +1,161 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - process.evb.project 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - process.evb.project 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>process.evb.project 库模块帮助文档</h1>
+
+<p><a id="process.evb"></a></p>
+
+<h2>process.evb 成员列表</h2>
+
+<p><a id="process.evb.project"></a></p>
+
+<h3>process.evb.project</h3>
+
+<p>用于自动创建 Enigma Virtual Box 独立 EXE 封包工程文件<br>
+生成的独立 EXE 默认不会在运行时释放临时文件<br>
+仅支持 32 位程序，现在知道 32 位程序香了吧！</p>
+
+<p><a id="process.evb.project"></a></p>
+
+<h3>process.evb.project()</h3>
+
+<p>创建 Enigma Virtual Box 独立 EXE 封包工程生成工具  </p>
+
+<p><a href="#processEvbProjectObject">返回对象:processEvbProjectObject</a></p>
+
+<p><a id="processEvbProjectObject"></a></p>
+
+<h2>processEvbProjectObject 成员列表</h2>
+
+<p><a id="processEvbProjectObject.addFile"></a></p>
+
+<h3>processEvbProjectObject.addFile</h3>
+
+<p>添加文件或目录</p>
+
+<p><a id="processEvbProjectObject.addFile"></a></p>
+
+<h3>processEvbProjectObject.addFile(srcPath,dstName,wildcard,proc,enumSubdir)</h3>
+
+<p>添加文件或目录<br>
+参数 @srcPath 指定要添加的文件或目录<br>
+可选参数 @dstName 指定目标目录，默认为 &quot;%DEFAULT FOLDER%&quot;<br>
+可选参数 @wildcard 在添加目录时指定通配符，默认为 &quot;*.*&quot;<br>
+可选参数 @proc 在添加目录时指定文件回调函数，用法参考此函数源码<br>
+可选参数 @enumSubdir 指定是否递归添加子目录，默认为 true</p>
+
+<p><a id="processEvbProjectObject.addSubFile"></a></p>
+
+<h3>processEvbProjectObject.addSubFile</h3>
+
+<p>添加目录下的文件，不添加目录自身</p>
+
+<p><a id="processEvbProjectObject.addSubFile"></a></p>
+
+<h3>processEvbProjectObject.addSubFile(dirPath,dstName,wildcard,proc,enumSubdir)</h3>
+
+<p>添加文件或目录<br>
+参数 @dirPath 指定要添加下级文件的目录。<br>
+可选参数 @dstName 指定目标目录，默认为 &quot;%DEFAULT FOLDER%&quot;<br>
+可选参数 @wildcard 在添加目录时指定通配符，默认为 &quot;*.*&quot;<br>
+可选参数 @proc 在添加目录时指定文件回调函数，用法参考此函数源码<br>
+可选参数 @enumSubdir 指定是否递归添加子目录，默认为 true</p>
+
+<p><a id="processEvbProjectObject.allowRunningOfVirtualExeFiles"></a></p>
+
+<h3>processEvbProjectObject.allowRunningOfVirtualExeFiles</h3>
+
+<p>允许运行虚拟可执行文件<br>
+mapExecutableWithTemporaryFile 为 true 时有效<br>
+一般没必要设置</p>
+
+<p><a id="processEvbProjectObject.compressFiles"></a></p>
+
+<h3>processEvbProjectObject.compressFiles</h3>
+
+<p>压缩文件，没必要设置</p>
+
+<p><a id="processEvbProjectObject.deleteExtractedOnExit"></a></p>
+
+<h3>processEvbProjectObject.deleteExtractedOnExit</h3>
+
+<p>是否在退出时删除释放的文件，<br>
+如果没有文件设置为释放就不用管</p>
+
+<p><a id="processEvbProjectObject.generate"></a></p>
+
+<h3>processEvbProjectObject.generate(evbPath)</h3>
+
+<p>创建 Enigma Virtual Box 独立 EXE 封包工程文件<br>
+@evbPath 参数指定输出路径  </p>
+
+<p>注意输出文件使用 UTF-8 编码，<br>
+在 Enigma Virtual Box 界面中加载时中文会乱码，<br>
+但可以正常使用 process.evb 生成独立 EXE</p>
+
+<p><a id="processEvbProjectObject.main"></a></p>
+
+<h3>processEvbProjectObject.main</h3>
+
+<p>需要封包的启动 EXE 文件路径<br>
+不指定则自动设为已添加文件中的第一个 EXE 文件</p>
+
+<p><a id="processEvbProjectObject.mapExecutableWithTemporaryFile"></a></p>
+
+<h3>processEvbProjectObject.mapExecutableWithTemporaryFile</h3>
+
+<p>使用临时文件映射可执行文件。<br>
+程序会自动清除这些临时文件，而且临时文件不包含任何实际内容</p>
+
+<p><a id="processEvbProjectObject.output"></a></p>
+
+<h3>processEvbProjectObject.output</h3>
+
+<p>生成的独立 EXE 文件</p>
+
+<p><a id="processEvbProjectObject.processesOfAnyPlatforms"></a></p>
+
+<h3>processEvbProjectObject.processesOfAnyPlatforms</h3>
+
+<p>允许32 位封包程序包含并运行 64 位 程序。</p>
+
+<p><a id="processEvbProjectObject.shareVirtualSystem"></a></p>
+
+<h3>processEvbProjectObject.shareVirtualSystem</h3>
+
+<p>将虚拟系统共享到所有子进程（即使子进程不是封包内程序）。<br>
+mapExecutableWithTemporaryFile 为 true 时有效<br>
+一般没必要设置</p>
+
+<p><a id="processEvbProjectObject.evbProject"></a></p>
+
+<h2>processEvbProjectObject.evbProject 成员列表</h2>
+
+<p><a id="processEvbProjectObject.evbProject.main"></a></p>
+
+<h3>processEvbProjectObject.evbProject.main</h3>
+
+<p>指定启动 EXE 文件路径</p>
+
+<p><a id="processEvbProjectObject.evbProject.output"></a></p>
+
+<h3>processEvbProjectObject.evbProject.output</h3>
+
+<p>指定要生成的独立 EXE 文件路径</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/process/evb/project/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/process/evb/project/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/process/evb/project/_.md">Markdown 格式</a></p>
+
+</body> 
+</html>

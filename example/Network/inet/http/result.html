@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 返回值'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 返回值</title> 
+<link rel="stylesheet" href="../../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 返回值</h1><pre><code class="aardio language-aardio">//返回值
+import console;  
+import inet.http;
+
+//创建 HTTP 对象
+var http = inet.http();
+
+//http 对象发送请求的函数基本都有 3 个返回值：响应数据,错误信息,错误代码
+var data,err,errCode = http.post( &quot;http://eu.httpbin.org/post&quot; 
+    ,&quot;username=user&amp;password=pwd&quot; );
+
+if( data ){ 
+    console.log(data);
+}
+else {
+    if( http.statusCode ){
+        //服务端返回错误信息
+        console.log( http.lastResponse(), &quot;HTTP错误代码:&quot; + http.statusCode )
+    }
+    else{
+        //本地内部错误
+        console.log( err,errCode );
+    }
+}
+
+http.close();
+console.pause();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Network/inet/http/result.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Network/inet/http/result.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Network/inet/http/result.md">Markdown 格式</a>
+</body> 
+</html>

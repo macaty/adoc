@@ -1,0 +1,96 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - zlib.zip 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - zlib.zip 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>zlib.zip 库模块帮助文档</h1>
+
+<p><a id="zlib"></a></p>
+
+<h2>zlib 成员列表</h2>
+
+<p><a id="zlib.zip"></a></p>
+
+<h3>zlib.zip()</h3>
+
+<p><a href="#zlibZipObject">返回对象:zlibZipObject</a></p>
+
+<p><a id="zlib.zip"></a></p>
+
+<h3>zlib.zip(zip路径,根目录,是否追加)</h3>
+
+<p>创建压缩文件对象。<br>
+参数二,参数三都可以省略。<br>
+如果不指定根目录，首先调用 compress 函数时将自动指定。<br>
+如果首次压缩的是目录，则该目录设为根目录，否则文件的父目录设为根目录。</p>
+
+<p><a id="zlibZipObject"></a></p>
+
+<h2>zlibZipObject 成员列表</h2>
+
+<p><a id="zlibZipObject.beginWrite"></a></p>
+
+<h3>zlibZipObject.beginWrite(文件路径,压缩密码,压缩级别)</h3>
+
+<p>开始添加压缩文件,<br>
+密码为可选参数,压缩级别可省略,默认为0</p>
+
+<p><a id="zlibZipObject.close"></a></p>
+
+<h3>zlibZipObject.close()</h3>
+
+<p>关闭对象</p>
+
+<p><a id="zlibZipObject.compress"></a></p>
+
+<h3>zlibZipObject.compress(压缩源目录,回调函数,压缩密码,压缩级别,缓冲区大小)</h3>
+
+<pre><code class="aardio language-aardio">zlibZipObject.compress( &quot;/*源目录*/&quot;,  
+    function(len,path){  
+        ..io.print( len,path )  
+    }  
+)
+</code></pre>
+
+<p><a id="zlibZipObject.endWrite"></a></p>
+
+<h3>zlibZipObject.endWrite()</h3>
+
+<p>添加压缩文件完成</p>
+
+<p><a id="zlibZipObject.writeBuffer"></a></p>
+
+<h3>zlibZipObject.writeBuffer(buffer,长度)</h3>
+
+<p>参数@1 使用 raw.buffer 函数分配的 buffer 对象,<br>
+长度可省略</p>
+
+<p><a id="zlibZipObject.writeDir"></a></p>
+
+<h3>zlibZipObject.writeDir(目录路径)</h3>
+
+<p>添加目录</p>
+
+<h3>自动完成常量</h3>
+
+<p>_ZIP_BADZIPFILE=-103<br>
+_ZIP_EOF=0<br>
+_ZIP_ERRNO=-1<br>
+_ZIP_INTERNALERROR=-104<br>
+_ZIP_OK=0<br>
+_ZIP_PARAMERROR=-102  </p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/zlib/zip.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/zlib/zip.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/zlib/zip.md">Markdown 格式</a></p>
+
+</body> 
+</html>

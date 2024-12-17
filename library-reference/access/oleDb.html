@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - access.oleDb 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - access.oleDb 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>access.oleDb 库模块帮助文档</h1>
+
+<p><a id="access.oleDb"></a></p>
+
+<h2>access.oleDb 成员列表</h2>
+
+<p>导入 access.oleDb 后，<br>
+access 库可自动检测或安装支持 <em>.xlsx,</em>.accdb 等文件的 OLEDB 驱动程序。  </p>
+
+<p>如果数据库连接参数未显式指定使用驱动 &quot;Microsoft.ACE.OLEDB.16.0&quot; ，<br>
+则默认兼容系统已安装的 &quot;Microsoft.ACE.OLEDB.12.0&quot; 驱动。<br>
+如果未安装合适的驱动，则自动安装 &quot;Microsoft.ACE.OLEDB.16.0&quot; 。</p>
+
+<p><a id="access.oleDb.exist"></a></p>
+
+<h3>access.oleDb.exist()</h3>
+
+<p>检测 Microsoft.ACE.OLEDB.16.0 驱动程序是否已安装，<br>
+成功返回驱动名 &quot;Microsoft.ACE.OLEDB.16.0 &quot;。</p>
+
+<p><a id="access.oleDb.exist"></a></p>
+
+<h3>access.oleDb.exist(true)</h3>
+
+<p>检测 Microsoft.ACE.OLEDB.16.0 驱动程序是否已安装，<br>
+成功返回驱动名 &quot;Microsoft.ACE.OLEDB.16.0 &quot;。<br>
+失败则检测 Microsoft.ACE.OLEDB.12.0 驱动程序是否已安装，<br>
+成功返回驱动名 &quot;Microsoft.ACE.OLEDB.12.0 &quot;。</p>
+
+<p><a id="access.oleDb.install"></a></p>
+
+<h3>access.oleDb.install(父窗体,允许兼容旧组件)</h3>
+
+<p>所有参数可选。<br>
+如果已安装  &quot;Microsoft.ACE.OLEDB.16.0&quot; 则返回该驱动名。<br>
+如果许兼容旧组件为 true 且系统已安装 &quot;Microsoft.ACE.OLEDB.12.0&quot; 则返回该驱动名。<br>
+否则自动下载并安装 Microsoft.ACE.OLEDB.16.0。<br>
+安装成功返回驱动名  &quot;Microsoft.ACE.OLEDB.16.0 &quot; 。<br>
+失败返回 null 。  </p>
+
+<p>安装驱动程序时需要管理权限，<br>
+在已经有管理权限的安装向导中可自动执行，<br>
+普通权限进程需要用户确认</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/access/oleDb.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/access/oleDb.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/access/oleDb.md">Markdown 格式</a></p>
+
+</body> 
+</html>

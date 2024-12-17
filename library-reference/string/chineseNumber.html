@@ -1,0 +1,142 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - string.chineseNumber 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - string.chineseNumber 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>string.chineseNumber 库模块帮助文档</h1>
+
+<p><a id="string"></a></p>
+
+<h2>string 成员列表</h2>
+
+<p><a id="string.chineseNumber"></a></p>
+
+<h3>string.chineseNumber()</h3>
+
+<p><a href="#stringChineseNumberObject">返回对象:stringChineseNumberObject</a></p>
+
+<p><a id="string.chineseNumber"></a></p>
+
+<h3>string.chineseNumber(中文数字,单位,万亿单位)</h3>
+
+<p>创建中文数值转换对象,所有参数可省略,<br>
+参数详细用法请参考库源码</p>
+
+<p><a id="stringChineseNumberObject"></a></p>
+
+<h2>stringChineseNumberObject 成员列表</h2>
+
+<p><a id="stringChineseNumberObject.date"></a></p>
+
+<h3>stringChineseNumberObject.date(时间,格式化串,语言)</h3>
+
+<p>中文化日期,<br>
+兼容 time 对象构造函数全部参数,<br>
+所有参数可省略</p>
+
+<p><a id="stringChineseNumberObject.datetime"></a></p>
+
+<h3>stringChineseNumberObject.datetime(时间,格式化串,语言)</h3>
+
+<p>中文化日期时间,<br>
+兼容 time 对象构造函数全部参数,<br>
+所有参数可省略</p>
+
+<p><a id="stringChineseNumberObject.lang"></a></p>
+
+<h3>stringChineseNumberObject.lang</h3>
+
+<p>格式化时间语言，默认自动选择 &quot;chs&quot; 或 &quot;cht&quot;</p>
+
+<p><a id="stringChineseNumberObject.minusChar"></a></p>
+
+<h3>stringChineseNumberObject.minusChar</h3>
+
+<p>简体语言默认值为&#39;负&#39;，繁体语言默认值为&#39;負&#39;</p>
+
+<p><a id="stringChineseNumberObject.money"></a></p>
+
+<h3>stringChineseNumberObject.money(数值,完整转换,简化十位)</h3>
+
+<p>数字转换为金额,<br>
+参数 @2 为 true 时允许返回零角零分,<br>
+参数 @3为 true 时简化一十为十</p>
+
+<p><a id="stringChineseNumberObject.moneyUnitChars"></a></p>
+
+<h3>stringChineseNumberObject.moneyUnitChars</h3>
+
+<p>简体语言默认值为&quot;元角分&quot;，繁体语言默认值为&quot;圓角分&quot;</p>
+
+<p><a id="stringChineseNumberObject.number"></a></p>
+
+<h3>stringChineseNumberObject.number(数值,简化十位)</h3>
+
+<p>数字转换为中文,包含单位,<br>
+参数 @1 也可以用文本指定 10 进制数值（支持大数,首字符为0时不清除）,<br>
+参数 @2 为 true 简化一十为十，参数 @1 首字符不为 0 时参数 @2 默认值为 true</p>
+
+<p><a id="stringChineseNumberObject.numberChars"></a></p>
+
+<h3>stringChineseNumberObject.numberChars</h3>
+
+<p>默认值为&#39;零一二三四五六七八九&#39;</p>
+
+<p><a id="stringChineseNumberObject.onlyChar"></a></p>
+
+<h3>stringChineseNumberObject.onlyChar</h3>
+
+<p>默认值为&quot;整&quot;</p>
+
+<p><a id="stringChineseNumberObject.pointChar"></a></p>
+
+<h3>stringChineseNumberObject.pointChar</h3>
+
+<p>简体语言默认值为&#39;点&#39;，繁体语言默认值为&#39;點&#39;</p>
+
+<p><a id="stringChineseNumberObject.replace"></a></p>
+
+<h3>stringChineseNumberObject.replace(数值)</h3>
+
+<p>数字替换为中文,不包含单位</p>
+
+<p><a id="stringChineseNumberObject.time"></a></p>
+
+<h3>stringChineseNumberObject.time(时间,格式化串,语言)</h3>
+
+<p>中文化时间,<br>
+兼容 time 对象构造函数全部参数,<br>
+所有参数可省略</p>
+
+<p><a id="stringChineseNumberObject.unitChars"></a></p>
+
+<h3>stringChineseNumberObject.unitChars</h3>
+
+<p>默认值为&#39;十百千&#39;</p>
+
+<p><a id="stringChineseNumberObject.wanUnitChars"></a></p>
+
+<h3>stringChineseNumberObject.wanUnitChars</h3>
+
+<p>简体语言默认值为&#39;万亿&#39;，繁体语言默认值为&#39;萬億&#39;</p>
+
+<p><a id="stringChineseNumberObject.wanwan"></a></p>
+
+<h3>stringChineseNumberObject.wanwan</h3>
+
+<p>大数单位万万化</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/string/chineseNumber.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/string/chineseNumber.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/string/chineseNumber.md">Markdown 格式</a></p>
+
+</body> 
+</html>

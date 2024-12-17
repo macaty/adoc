@@ -1,0 +1,406 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - win.dlg.message 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - win.dlg.message 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>win.dlg.message 库模块帮助文档</h1>
+
+<p><a id="win.dlg"></a></p>
+
+<h2>win.dlg 成员列表</h2>
+
+<p><a id="win.dlg.message"></a></p>
+
+<h3>win.dlg.message</h3>
+
+<p>简单信息提示框<br>
+导入时为当前线程所有窗口安装msgInfo,msgAsk,msgErr等msg前缀的消息框函数<br>
+此支持库主要用于演示,大家可以在此源码基础上改动为适合自己的用户库</p>
+
+<p><a id="win.dlg.message"></a></p>
+
+<h3>win.dlg.message()</h3>
+
+<p><a href="#winDlgMessageObject">返回对象:winDlgMessageObject</a></p>
+
+<p><a id="win.dlg.message"></a></p>
+
+<h3>win.dlg.message(可选指定父窗口)</h3>
+
+<p>创建简单信息提示框<br>
+可选在参数中指定父窗口对象或父窗口句柄<br>
+也可以在创建对象后使用parent属性指定,<br>
+不指定父窗口时默认取当前线程活动窗口作为父窗口</p>
+
+<p><a id="winDlgMessageFormObject"></a></p>
+
+<h2>winDlgMessageFormObject 成员列表</h2>
+
+<p><a id="winDlgMessageFormObject.beforeDestroy"></a></p>
+
+<h3>winDlgMessageFormObject.beforeDestroy</h3>
+
+<pre><code class="aardio language-aardio">winDlgMessageFormObject.beforeDestroy = function(){  
+    /*指定在窗体销毁以前执行的代码  
+早于onDestroy触发*/  
+
+}
+</code></pre>
+
+<p><a id="winDlgMessageFormObject.bgcolor"></a></p>
+
+<h3>winDlgMessageFormObject.bgcolor</h3>
+
+<p>背景颜色</p>
+
+<p><a id="winDlgMessageFormObject.btnCancel"></a></p>
+
+<h3>winDlgMessageFormObject.btnCancel</h3>
+
+<p>取消按钮  </p>
+
+<p><a href="../ui/ctrl/plus.html#uiCtrlPlusObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/plus.html#uiCtrlPlusObject">返回对象:uiCtrlPlusObject</a></p>
+
+<p><a id="winDlgMessageFormObject.btnOk"></a></p>
+
+<h3>winDlgMessageFormObject.btnOk</h3>
+
+<p>确定按钮  </p>
+
+<p><a href="../ui/ctrl/plus.html#uiCtrlPlusObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/plus.html#uiCtrlPlusObject">返回对象:uiCtrlPlusObject</a></p>
+
+<p><a id="winDlgMessageFormObject.center"></a></p>
+
+<h3>winDlgMessageFormObject.center(目标窗口句柄)</h3>
+
+<p>居中窗口,并调整以保证显示在可见范围内<br>
+目标窗口句柄如果为空则取父窗口或所有者窗口,为0表示桌面</p>
+
+<p><a id="winDlgMessageFormObject.close"></a></p>
+
+<h3>winDlgMessageFormObject.close()</h3>
+
+<p>关闭窗口</p>
+
+<p><a id="winDlgMessageFormObject.doModal"></a></p>
+
+<h3>winDlgMessageFormObject.doModal(/*请指定所有者窗口\n可省略此参数*/)</h3>
+
+<p>此函数弹出模态对话框</p>
+
+<p><a id="winDlgMessageFormObject.endModal"></a></p>
+
+<h3>winDlgMessageFormObject.endModal(请指定模态对话框返回值)</h3>
+
+<p>关闭模态对话框，<br>
+调用endModal()函数的参数会被设置为 doModal()函数的返回值。</p>
+
+<p><a id="winDlgMessageFormObject.hwnd"></a></p>
+
+<h3>winDlgMessageFormObject.hwnd</h3>
+
+<p>窗口句柄  </p>
+
+<p>句柄是一个数值，用于标识一种系统资源，如窗口、位图等等，<br>
+如果你要操作一种系统资源，必须先获得句柄。   </p>
+
+<p>句柄在aardio中通常转换为指针(pointer)类型，<br>
+而窗口句柄是个特例，onDestroy = @.onDestroy = function(){<br>
+    __/*指定在窗体销毁以前执行的代码*/  </p>
+
+<p>}</p>
+
+<p><a id="winDlgMessageFormObject.icon"></a></p>
+
+<h3>winDlgMessageFormObject.icon</h3>
+
+<p>显示文字图标的plus控件  </p>
+
+<p><a href="../ui/ctrl/plus.html#uiCtrlPlusObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/plus.html#uiCtrlPlusObject">返回对象:uiCtrlPlusObject</a></p>
+
+<p>图标控件  </p>
+
+<p><a href="../ui/ctrl/plus.html#uiCtrlPlusObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/plus.html#uiCtrlPlusObject">返回对象:uiCtrlPlusObject</a></p>
+
+<p><a id="winDlgMessageFormObject.message"></a></p>
+
+<h3>winDlgMessageFormObject.message</h3>
+
+<p>显示文本消息的plus控件  </p>
+
+<p><a href="../ui/ctrl/plus.html#uiCtrlPlusObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/plus.html#uiCtrlPlusObject">返回对象:uiCtrlPlusObject</a></p>
+
+<p><a id="winDlgMessageFormObject.onMouseClick"></a></p>
+
+<h3>winDlgMessageFormObject.onMouseClick</h3>
+
+<pre><code class="aardio language-aardio">winDlgMessageFormObject.onMouseClick = function(wParam,lParam){  
+    var x,y = win.getMessagePos(lParam);/*在窗口上单击并弹起鼠标左键触发此事件*/  
+}
+</code></pre>
+
+<p><a id="winDlgMessageFormObject.progress"></a></p>
+
+<h3>winDlgMessageFormObject.progress</h3>
+
+<p>进度条,plus控件  </p>
+
+<p><a href="../ui/ctrl/plus.html#uiCtrlPlusObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/plus.html#uiCtrlPlusObject">返回对象:uiCtrlPlusObject</a></p>
+
+<p><a id="winDlgMessageFormObject.setInterval"></a></p>
+
+<h3>winDlgMessageFormObject.setInterval(回调函数,延时毫秒数,...)</h3>
+
+<pre><code class="aardio language-aardio">winDlgMessageFormObject.setInterval(回调函数,延时毫秒数,...setInterval(   
+    function(){  
+        /*参数@1指定执行函数,参数@2指定执行间隔，  
+可选指定一个或多个回调参数，不指定回调参数则默认为:  
+ hwnd,message,timerId,tick,  
+
+如果在定时器中执行了win.delay等继续消息循环的代码，  
+在定时器退出前不会再触发同一定时器（重入）。  
+
+定时器回调函数返回数值可修改时间间隔,  
+返回false取消该定时器*/  
+    },1000   
+)
+</code></pre>
+
+<p><a id="winDlgMessageFormObject.setPos"></a></p>
+
+<h3>winDlgMessageFormObject.setPos(x坐标,y坐标,宽,高,插入位置,参数)</h3>
+
+<p>调整窗口位置或排序,所有参数可选<br>
+同时指定x,y坐标则移动位置<br>
+同时指定宽高则改变大小<br>
+指定插入位置(句柄或_HWND前缀常量)则调整Z序</p>
+
+<p><a id="winDlgMessageFormObject.setRect"></a></p>
+
+<h3>winDlgMessageFormObject.setRect(rc)</h3>
+
+<p>设置窗口区块位置(::RECT结构体)</p>
+
+<p><a id="winDlgMessageFormObject.show"></a></p>
+
+<h3>winDlgMessageFormObject.show(false)</h3>
+
+<p>隐藏窗口</p>
+
+<p><a id="winDlgMessageFormObject.show"></a></p>
+
+<h3>winDlgMessageFormObject.show(true)</h3>
+
+<p>显示窗口</p>
+
+<p><a id="winDlgMessageFormObject.text"></a></p>
+
+<h3>winDlgMessageFormObject.text</h3>
+
+<p>窗口标题</p>
+
+<p><a id="winDlgMessageFormObject.valid"></a></p>
+
+<h3>winDlgMessageFormObject.valid</h3>
+
+<p>窗口是否有效<br>
+如果用户关闭窗体则返回false</p>
+
+<p><a id="winDlgMessageObject"></a></p>
+
+<h2>winDlgMessageObject 成员列表</h2>
+
+<p><a id="winDlgMessageObject.ask"></a></p>
+
+<h3>winDlgMessageObject.ask()</h3>
+
+<p>显示询问提示框<br>
+用户按确定或回车返回true，其他返回false或null</p>
+
+<p><a id="winDlgMessageObject.bgcolor"></a></p>
+
+<h3>winDlgMessageObject.bgcolor</h3>
+
+<p>窗口背景颜色,GDI数值格式</p>
+
+<p><a id="winDlgMessageObject.buttonStyle"></a></p>
+
+<h3>winDlgMessageObject.buttonStyle</h3>
+
+<pre><code class="aardio language-aardio">winDlgMessageObject.buttonStyle = { 
+    color = {  
+        hover = 0xF0FFFFFF;
+        active = 0x30FFFFFF; 
+        default = 0x90FFFFFF;
+    } 
+    border = {
+        default = {width=0;}
+        hover = { bottom = 1;color= 0xF0FFFFFF; }
+        focus = { bottom = 1;color= 0xF0FFFFFF; }
+        active = { bottom = 1;color= 0x30FFFFFF; }
+    } 
+}
+</code></pre>
+
+<p><a id="winDlgMessageObject.cancelLabel"></a></p>
+
+<h3>winDlgMessageObject.cancelLabel</h3>
+
+<p>取消按钮文本，支持fontAwesome图标</p>
+
+<p><a id="winDlgMessageObject.create"></a></p>
+
+<h3>winDlgMessageObject.create()</h3>
+
+<p><a href="#winDlgMessageFormObject">返回对象:winDlgMessageFormObject</a></p>
+
+<p><a id="winDlgMessageObject.create"></a></p>
+
+<h3>winDlgMessageObject.create(显示信息,是否显示按钮,是否显示进度条)</h3>
+
+<p>创建信息框,返回窗体对象,<br>
+如果选择显示按钮则不会同时显示进度条<br>
+所有参数都是可选参数</p>
+
+<p><a id="winDlgMessageObject.doModal"></a></p>
+
+<h3>winDlgMessageObject.doModal(显示信息,是否显示按钮)</h3>
+
+<p>创建信息框,并显示为模态窗口</p>
+
+<p><a id="winDlgMessageObject.err"></a></p>
+
+<h3>winDlgMessageObject.err()</h3>
+
+<p>显示错误提示框,<br>
+可选使用参数@2指定延时自动关闭提示框的毫秒数</p>
+
+<p><a id="winDlgMessageObject.fadeDuration"></a></p>
+
+<h3>winDlgMessageObject.fadeDuration</h3>
+
+<p>淡出淡出动画时长</p>
+
+<p><a id="winDlgMessageObject.fadeInterval"></a></p>
+
+<h3>winDlgMessageObject.fadeInterval</h3>
+
+<p>淡出淡出动画时间间隔,设为0不显示动画</p>
+
+<p><a id="winDlgMessageObject.frown"></a></p>
+
+<h3>winDlgMessageObject.frown()</h3>
+
+<p>显示皱眉图标提示框,<br>
+可选使用参数@2指定延时自动关闭提示框的毫秒数</p>
+
+<p><a id="winDlgMessageObject.great"></a></p>
+
+<h3>winDlgMessageObject.great()</h3>
+
+<p>显示竖大拇指图标提示框,<br>
+可选使用参数@2指定延时自动关闭提示框的毫秒数</p>
+
+<p><a id="winDlgMessageObject.icon"></a></p>
+
+<h3>winDlgMessageObject.icon</h3>
+
+<p>Font Awesome字体图标,请使用_FA_前缀常量指定;</p>
+
+<p><a id="winDlgMessageObject.iconColor"></a></p>
+
+<h3>winDlgMessageObject.iconColor</h3>
+
+<p>图标颜色,GDI数值格式;</p>
+
+<p><a id="winDlgMessageObject.info"></a></p>
+
+<h3>winDlgMessageObject.info()</h3>
+
+<p>显示提示框,<br>
+可选使用参数@2指定延时自动关闭提示框的毫秒数  </p>
+
+<p>如果指定参数@3或更多参数,<br>
+则使用这些参数调用 string.format 格式化参数@1</p>
+
+<p><a id="winDlgMessageObject.ok"></a></p>
+
+<h3>winDlgMessageObject.ok()</h3>
+
+<p>显示正确提示框,<br>
+可选使用参数@2指定延时自动关闭提示框的毫秒数</p>
+
+<p><a id="winDlgMessageObject.okLabel"></a></p>
+
+<h3>winDlgMessageObject.okLabel</h3>
+
+<p>确定按钮文本，支持fontAwesome图标</p>
+
+<p><a id="winDlgMessageObject.parent"></a></p>
+
+<h3>winDlgMessageObject.parent</h3>
+
+<p>父窗口<br>
+信息框显示在父窗口中间,<br>
+并在信息框关闭前禁用父窗口</p>
+
+<p><a id="winDlgMessageObject.show"></a></p>
+
+<h3>winDlgMessageObject.show(显示信息)</h3>
+
+<p>= 创建信息框,并显示为非模态窗口</p>
+
+<p><a id="winDlgMessageObject.smile"></a></p>
+
+<h3>winDlgMessageObject.smile()</h3>
+
+<p>显示微笑图标提示框,<br>
+可选使用参数@2指定延时自动关闭提示框的毫秒数</p>
+
+<p><a id="winDlgMessageObject.sorry"></a></p>
+
+<h3>winDlgMessageObject.sorry()</h3>
+
+<p>显示倒竖大拇指图标提示框,<br>
+可选使用参数@2指定延时自动关闭提示框的毫秒数</p>
+
+<p><a id="winDlgMessageObject.textColor"></a></p>
+
+<h3>winDlgMessageObject.textColor</h3>
+
+<p>文本颜色,GDI数值格式</p>
+
+<p><a id="winDlgMessageObject.titlebarStyle"></a></p>
+
+<h3>winDlgMessageObject.titlebarStyle</h3>
+
+<pre><code class="aardio language-aardio">winDlgMessageObject.titlebarStyle = { 
+    color = { 
+        hover = 0xffffffff;
+        active = 0x33ffffff; 
+        default = 0x66ffffff; 
+    }
+}
+</code></pre>
+
+<p><a id="winDlgMessageObject.warn"></a></p>
+
+<h3>winDlgMessageObject.warn()</h3>
+
+<p>显示警告提示框,<br>
+可选使用参数@2指定延时自动关闭提示框的毫秒数</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/dlg/message.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/dlg/message.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/dlg/message.md">Markdown 格式</a></p>
+
+</body> 
+</html>

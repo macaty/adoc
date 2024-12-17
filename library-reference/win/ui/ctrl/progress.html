@@ -1,0 +1,328 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - win.ui.ctrl.progress 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - win.ui.ctrl.progress 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>win.ui.ctrl.progress 库模块帮助文档</h1>
+
+<p><a id="win.ui.ctrl"></a></p>
+
+<h2>win.ui.ctrl 成员列表</h2>
+
+<p><a id="win.ui.ctrl.progress"></a></p>
+
+<h3>win.ui.ctrl.progress</h3>
+
+<p>进度条控件</p>
+
+<p><a id="win.ui.ctrl.progress"></a></p>
+
+<h3>win.ui.ctrl.progress()</h3>
+
+<p>进度条控件  </p>
+
+<p><a href="#progressObject">返回对象:progressObject</a></p>
+
+<p><a id="progressObject"></a></p>
+
+<h2>progressObject 成员列表</h2>
+
+<p><a id="progressObject._parentForm"></a></p>
+
+<h3>progressObject._parentForm</h3>
+
+<p>创建该控件的父窗口（win.form对象）,<br>
+设计时窗体容器是所有拖放在窗体上的控件的 _parentForm,  </p>
+
+<p>即使窗口移除子窗口样式、更改父子关系，或以 orphanWindow显示,<br>
+控件的 _parentForm 始终都不会改变  </p>
+
+<p><a href="../_.html#winform" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/_.html#winform">返回对象:winform</a></p>
+
+<p><a id="progressObject.bottom"></a></p>
+
+<h3>progressObject.bottom</h3>
+
+<p>底部坐标</p>
+
+<p><a id="progressObject.capture"></a></p>
+
+<h3>progressObject.capture</h3>
+
+<p>是否捕获全局鼠标消息</p>
+
+<p><a id="progressObject.close"></a></p>
+
+<h3>progressObject.close()</h3>
+
+<p>关闭控件窗</p>
+
+<p><a id="progressObject.delta"></a></p>
+
+<h3>progressObject.delta(偏移值)</h3>
+
+<p>修改当前进度,参数指定相对于当前进度的偏移值</p>
+
+<p><a id="progressObject.disabled"></a></p>
+
+<h3>progressObject.disabled</h3>
+
+<p>是否禁用</p>
+
+<p><a id="progressObject.getClientRect"></a></p>
+
+<h3>progressObject.getClientRect()</h3>
+
+<p>控件客户区块位置(::RECT结构体)  </p>
+
+<p><a href="../../../global/_.html#rectObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/global/_.html#rectObject">返回对象:rectObject</a></p>
+
+<p><a id="progressObject.getParent"></a></p>
+
+<h3>progressObject.getParent()</h3>
+
+<p>返回父窗口  </p>
+
+<p><a href="static.html#staticObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/static.html#staticObject">返回对象:staticObject</a></p>
+
+<p><a id="progressObject.getPos"></a></p>
+
+<h3>progressObject.getPos()</h3>
+
+<p>返回相对坐标,宽,高<br>
+x,y,cx,cy=win.getPos(hwnd)</p>
+
+<p><a id="progressObject.getRect"></a></p>
+
+<h3>progressObject.getRect()</h3>
+
+<p>控件区块位置(::RECT结构体)</p>
+
+<p><a id="progressObject.getRect"></a></p>
+
+<h3>progressObject.getRect(true)</h3>
+
+<p>控件屏幕区块位置(::RECT结构体)</p>
+
+<p><a id="progressObject.height"></a></p>
+
+<h3>progressObject.height</h3>
+
+<p>高度</p>
+
+<p><a id="progressObject.hide"></a></p>
+
+<h3>progressObject.hide</h3>
+
+<p>控件是否隐藏</p>
+
+<p><a id="progressObject.hwnd"></a></p>
+
+<h3>progressObject.hwnd</h3>
+
+<p>控件句柄</p>
+
+<p><a id="progressObject.id"></a></p>
+
+<h3>progressObject.id</h3>
+
+<p>控件ID</p>
+
+<p><a id="progressObject.invalidate(/*可选使用::RECT"></a></p>
+
+<h3>progressObject.invalidate(/*可选使用::RECT()对象指定客户区*/)</h3>
+
+<p>使窗口绘图区无效</p>
+
+<p><a id="progressObject.invalidate(/*可选使用::RECT"></a></p>
+
+<h3>progressObject.invalidate(/*可选使用::RECT()对象指定客户区*/,0)</h3>
+
+<p>使窗口绘图区无效<br>
+不刷新背景</p>
+
+<p><a id="progressObject.left"></a></p>
+
+<h3>progressObject.left</h3>
+
+<p>左侧坐标</p>
+
+<p><a id="progressObject.max"></a></p>
+
+<h3>progressObject.max</h3>
+
+<p>最大值,注意不能大于0xFFFF,不要使用负数</p>
+
+<p><a id="progressObject.min"></a></p>
+
+<h3>progressObject.min</h3>
+
+<p>最小值,注意不能大于0xFFFF,不要使用负数</p>
+
+<p><a id="progressObject.modifyStyle"></a></p>
+
+<h3>progressObject.modifyStyle(remove,add,swpFlags)</h3>
+
+<p>修改窗口样式,所有参数都是可选参数,<br>
+@remove 用数值指定要移除的样式,可使用 <em>WS</em> 前缀的常量<br>
+@add 用数值指定要添加的样式,可使用 <em>WS</em> 前缀的常量<br>
+@swpFlags 可选用数值指定调整窗口选项,可使用 <em>SWP</em> 前缀的常量<br>
+如果指定了 @swpFlag ,则使用该参数调用::SetWindowPos<br>
+细节请参考 win.modifyStyle 函数源码</p>
+
+<p><a id="progressObject.modifyStyleEx"></a></p>
+
+<h3>progressObject.modifyStyleEx(remove,add,swpFlags)</h3>
+
+<p>修改窗口扩展样式,所有参数都是可选参数,<br>
+@remove 用数值指定要移除的样式,可使用 <em>WS_EX</em> 前缀的常量<br>
+@add 用数值指定要添加的样式,可使用 <em>WS_EX</em> 前缀的常量<br>
+@swpFlags 可选用数值指定调整窗口选项,可使用 <em>SWP</em> 前缀的常量<br>
+如果指定了 @swpFlag ,则使用该参数调用::SetWindowPos<br>
+细节请参考 win.modifyStyle 函数源码</p>
+
+<p><a id="progressObject.orphanWindow"></a></p>
+
+<h3>progressObject.orphanWindow()</h3>
+
+<p>使控件脱离原来的窗口,可以显示在父窗口外面,<br>
+但仍然显示在原来的位置,继续如影随形的跟随父窗口移动或改变大小,<br>
+控件原来的固定边距等参数仍然有效</p>
+
+<p><a id="progressObject.pos"></a></p>
+
+<h3>progressObject.pos</h3>
+
+<p>进度条当前值,不能大于0xFFFF,不要使用负数</p>
+
+<p><a id="progressObject.redraw"></a></p>
+
+<h3>progressObject.redraw()</h3>
+
+<p>刷新</p>
+
+<p><a id="progressObject.right"></a></p>
+
+<h3>progressObject.right</h3>
+
+<p>右侧坐标</p>
+
+<p><a id="progressObject.setFocus"></a></p>
+
+<h3>progressObject.setFocus()</h3>
+
+<p>设置焦点</p>
+
+<p><a id="progressObject.setParent"></a></p>
+
+<h3>progressObject.setParent(控件对象)</h3>
+
+<p>改变父窗口</p>
+
+<p><a id="progressObject.setPos"></a></p>
+
+<h3>progressObject.setPos(x坐标,y坐标,宽,高,插入位置,参数)</h3>
+
+<p>调整窗口位置或排序,所有参数可选<br>
+同时指定x,y坐标则移动位置<br>
+同时指定宽高则改变大小<br>
+指定插入位置(句柄或_HWND前缀常量)则调整Z序</p>
+
+<p><a id="progressObject.setRange"></a></p>
+
+<h3>progressObject.setRange(最小值,最大值)</h3>
+
+<p>设置进度条最大值,最小值<br>
+注意值不能大于0xFFFF,不要使用负数</p>
+
+<p><a id="progressObject.setRect"></a></p>
+
+<h3>progressObject.setRect(rc)</h3>
+
+<p>设置控件区块位置(::RECT结构体)</p>
+
+<p><a id="progressObject.setRect"></a></p>
+
+<h3>progressObject.setRect(rc,true)</h3>
+
+<p>设置控件屏幕区块位置(::RECT结构体)</p>
+
+<p><a id="progressObject.show"></a></p>
+
+<h3>progressObject.show(true)</h3>
+
+<p>显示控件</p>
+
+<p><a id="progressObject.startProgress"></a></p>
+
+<h3>progressObject.startProgress()</h3>
+
+<p>显示进条,并显示循环滚动进度的动画,<br>
+可选在参数中指定动画间隔时,以毫秒为单位</p>
+
+<p><a id="progressObject.step"></a></p>
+
+<h3>progressObject.step</h3>
+
+<p>设置stepIt()函数的步进增量<br>
+默认为10</p>
+
+<p><a id="progressObject.stepIt"></a></p>
+
+<h3>progressObject.stepIt()</h3>
+
+<p>进度条前进一个增量，最出最大值时设为最小值。<br>
+返回步进前位置</p>
+
+<p><a id="progressObject.stopProgress"></a></p>
+
+<h3>progressObject.stopProgress()</h3>
+
+<p>停止显示循环滚动进度动画,隐藏进度条</p>
+
+<p><a id="progressObject.theme"></a></p>
+
+<h3>progressObject.theme</h3>
+
+<p>外观主题,例如<br>
+winform.button.theme = &quot;Explorer&quot;<br>
+winform.button.theme = false</p>
+
+<p><a id="progressObject.threadCallable"></a></p>
+
+<h3>progressObject.threadCallable()</h3>
+
+<p>开启此控件的跨线程调用功能</p>
+
+<p><a id="progressObject.top"></a></p>
+
+<h3>progressObject.top</h3>
+
+<p>顶部坐标</p>
+
+<p><a id="progressObject.update"></a></p>
+
+<h3>progressObject.update()</h3>
+
+<p>重绘invalidate函数指定的区块</p>
+
+<p><a id="progressObject.width"></a></p>
+
+<h3>progressObject.width</h3>
+
+<p>宽度</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/progress.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/progress.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/progress.md">Markdown 格式</a></p>
+
+</body> 
+</html>

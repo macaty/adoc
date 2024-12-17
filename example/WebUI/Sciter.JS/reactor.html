@@ -1,0 +1,101 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - Sciter 脚本调用本地函数'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - Sciter 脚本调用本地函数</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: Sciter 脚本调用本地函数</h1><pre><code class="aardio language-aardio">//Preact
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;Sciter 脚本调用本地函数&quot;;right=1014;bottom=523;)
+winform.add()
+/*}}*/
+
+import web.sciter;
+var sciter = web.sciter( winform );
+
+sciter.external = {
+    func = function(str){ 
+         return &quot;Hello, &quot;+str+&quot;!&quot;; 
+    }
+}
+
+sciter.html = /**
+&lt;html&gt;
+&lt;head&gt; 
+    &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html;charset=UTF-8&quot;&gt;
+    &lt;script src=&quot;https://lib.baomitu.com/preact/10.5.14/preact.umd.min.js&quot;/&gt;
+    &lt;script src=&quot;https://lib.baomitu.com/preact/10.5.14/hooks.umd.min.js&quot;/&gt;
+    &lt;title&gt;Document&lt;/title&gt;
+&lt;/head&gt;
+&lt;script type=&quot;module&quot;&gt; 
+    const { h, render, Component } = preact;
+    const { useState, useEffect, useCallback } = preactHooks;
+    JSX = h;
+
+    function Counter() { 
+      const [value, setValue] = useState(0);
+      const increment = useCallback(() =&gt; {
+        setValue(value + 1);
+      }, [value]);
+
+      // https://zh-hans.reactjs.org/docs/hooks-effect.html
+      // https://preactjs.com/guide/v10/hooks/#useeffect
+      const [time, setTime] = useState(Date.now());
+
+      useEffect(() =&gt; {
+        let timer = setInterval(() =&gt; {
+          setTime(Date.now());
+        }, 1000);
+
+        return function cleanup() {
+          clearInterval(timer);
+        };
+      }, []);
+
+      return (
+        &lt;div&gt;
+          &lt;h2&gt;
+            当前时间:&lt;span&gt;{new Date(time).toLocaleTimeString()}&lt;/span&gt; 
+          &lt;/h2&gt;
+          当前计数: {value}
+          &lt;br /&gt;
+          &lt;button onClick={increment}&gt;
+            点这里增加计数，体验 React Hooks
+          &lt;/button&gt;&lt;br /&gt;
+          调用 aardio 函数 external.func(&quot;Sciter&quot;) 的返回值： { external.func(&quot;Sciter&quot;) }
+          &lt;br /&gt;&lt;br /&gt;
+现在 Sciter JS 已经可以兼容 Preact ，&lt;br /&gt;
+通过 Preact  Hooks 就可以 在 Sciter JS 里使用 React Hooks 写网页了。&lt;br /&gt;
+&lt;br /&gt;
+React hooks 简洁优雅, 大幅降低了前端开发的门槛和学习成本。&lt;br /&gt;
+只要熟悉 useState, useEffect, useCallback, useContext 等几个非常简单的 Hooks 的用法，&lt;br /&gt;
+你就可以运用自如，强烈推荐大家学习和使用。&lt;br /&gt;&lt;br /&gt;
+        &lt;/div&gt;
+      );
+    }
+
+    render(&lt;Counter /&gt;, document.getElementById(&quot;preact&quot;));
+  &lt;/script&gt;
+&lt;body &gt; 
+    &lt;div id=&quot;preact&quot;&gt;&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+**/
+
+winform.show()
+win.loopMessage();
+
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/WebUI/Sciter.JS/reactor.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/WebUI/Sciter.JS/reactor.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/WebUI/Sciter.JS/reactor.md">Markdown 格式</a>
+</body> 
+</html>

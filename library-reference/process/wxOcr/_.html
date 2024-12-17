@@ -1,0 +1,205 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - process.wxOcr 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - process.wxOcr 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>process.wxOcr 库模块帮助文档</h1>
+
+<p><details>  <summary>说明</summary>  <p></p>
+
+<p>参考源码：
+<a href="javascript:if(confirm('https://github.com/EEEEhex/QQImpl  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='https://github.com/EEEEhex/QQImpl'" tppabs="https://github.com/EEEEhex/QQImpl">https://github.com/EEEEhex/QQImpl</a></p>
+
+<p>此扩展库仅供技术研究测试，勿作任何不当用途。</p>
+
+<p>aardio 其他 OCR 扩展库：
+string.ocrLite, dotNet.ocr </p>
+
+<p></p></details></p>
+
+<p><a id="process"></a></p>
+
+<h2>process 成员列表</h2>
+
+<p><a id="process.wxOcr"></a></p>
+
+<h3>process.wxOcr</h3>
+
+<p>微信 OCR 识别库。<br>
+只能用于界面线程，不能用于控制台程序</p>
+
+<p>创建微信 OCR 识别对象。<br>
+只能用于界面线程，不能用于控制台程序</p>
+
+<p><a id="process.wxOcr"></a></p>
+
+<h3>process.wxOcr()</h3>
+
+<p><a href="#ProcessWxOcrObject">返回对象:ProcessWxOcrObject</a></p>
+
+<p><a id="process.wxOcr"></a></p>
+
+<h3>process.wxOcr(weChatDir)</h3>
+
+<p>指定包含了 WeChatOCR.exe , mmmojo.dll，mmmojo_64.dll 的目录。<br>
+如果这些文件都放在一个目录，只要指定一个参数就可以。  </p>
+
+<p>如果找不到目录返回 null。</p>
+
+<p><a id="process.wxOcr"></a></p>
+
+<h3>process.wxOcr(weChatPath,ocrPath)</h3>
+
+<p>可选用参数 @weChatPath 指定微信安装路径（包含 WeChat.exe 或者 mmmojo.dll 的目录）。<br>
+可选用参数 @ocrPath 指定 WeChatOCR.exe 路径。<br>
+一般不需要指定参数，默认会自动搜索并设置这些参数。  </p>
+
+<p>如果找不到目录返回 null  </p>
+
+<p>在成功创建对象以后，可以用 portable 函数复制 OCR 组件到指定目录。</p>
+
+<p><a id="global"></a></p>
+
+<h2>全局对象 成员列表</h2>
+
+<p><a id="mmojoOcrResponse"></a></p>
+
+<h3>mmojoOcrResponse</h3>
+
+<p>微信 OCR 识别结果， protobuf.message 对象。<br>
+可用 web.json.stringify 转换为 JSON。<br>
+可用 web.json.strip() 转换为普通表。  </p>
+
+<p><a href="#processWxOcrOcrResponseObject">返回对象:processWxOcrOcrResponseObject</a></p>
+
+<p><a id="ProcessWxOcrObject"></a></p>
+
+<h2>ProcessWxOcrObject 成员列表</h2>
+
+<p><a id="ProcessWxOcrObject.close"></a></p>
+
+<h3>ProcessWxOcrObject.close()</h3>
+
+<p>关闭 OCR 对象。<br>
+注意在没退出此对象事件回调函数前，对象还在使用时，不能直接调用 close 函数。<br>
+可以改用 winform.setTimeout 异步调用 close 函数</p>
+
+<p><a id="ProcessWxOcrObject.mmmojoDllPath"></a></p>
+
+<h3>ProcessWxOcrObject.mmmojoDllPath</h3>
+
+<p>当前使用的 mmmojo.dll 路径。</p>
+
+<p><a id="ProcessWxOcrObject.ocrPath"></a></p>
+
+<h3>ProcessWxOcrObject.ocrPath</h3>
+
+<p>当前使用的 WeChatOCR.exe 路径。</p>
+
+<p><a id="ProcessWxOcrObject.onReadPull"></a></p>
+
+<h3>ProcessWxOcrObject.onReadPull</h3>
+
+<pre><code class="aardio language-aardio">ProcessWxOcrObject.onReadPull = function(respBuffer){
+    /*忽略这里用不上*/
+}
+</code></pre>
+
+<p><a id="ProcessWxOcrObject.onReadPush"></a></p>
+
+<h3>ProcessWxOcrObject.onReadPush</h3>
+
+<pre><code class="aardio language-aardio">ProcessWxOcrObject.onReadPush = function(mmojoOcrResponse){
+    /*mmojoOcrResponse 为 process.wxOcr.OcrResponse 对象*/
+}
+</code></pre>
+
+<p><a id="ProcessWxOcrObject.onReadShared"></a></p>
+
+<h3>ProcessWxOcrObject.onReadShared</h3>
+
+<pre><code class="aardio language-aardio">ProcessWxOcrObject.onReadShared = function(respBuffer){
+    /*忽略这里用不上*/
+}
+</code></pre>
+
+<p><a id="ProcessWxOcrObject.onRemoteConnect"></a></p>
+
+<h3>ProcessWxOcrObject.onRemoteConnect</h3>
+
+<pre><code class="aardio language-aardio">ProcessWxOcrObject.onRemoteConnect = function(isConnected){
+    /*已连接*/
+}
+</code></pre>
+
+<p><a id="ProcessWxOcrObject.onRemoteDisconnect"></a></p>
+
+<h3>ProcessWxOcrObject.onRemoteDisconnect</h3>
+
+<pre><code class="aardio language-aardio">ProcessWxOcrObject.onRemoteDisconnect = function(){
+    /*已断开，忽略这里用不上*/
+}
+</code></pre>
+
+<p><a id="ProcessWxOcrObject.onRemoteMojoError"></a></p>
+
+<h3>ProcessWxOcrObject.onRemoteMojoError</h3>
+
+<pre><code class="aardio language-aardio">ProcessWxOcrObject.onRemoteMojoError = function(errorBuf,errorSize){
+    /*忽略这里用不上*/
+}
+</code></pre>
+
+<p><a id="ProcessWxOcrObject.onRemoteProcessLaunchFailed"></a></p>
+
+<h3>ProcessWxOcrObject.onRemoteProcessLaunchFailed</h3>
+
+<pre><code class="aardio language-aardio">ProcessWxOcrObject.onRemoteProcessLaunchFailed = function(errorCode){
+    /*忽略这里用不上*/
+}
+</code></pre>
+
+<p><a id="ProcessWxOcrObject.onRemoteProcessLaunched"></a></p>
+
+<h3>ProcessWxOcrObject.onRemoteProcessLaunched</h3>
+
+<pre><code class="aardio language-aardio">ProcessWxOcrObject.onRemoteProcessLaunched = function(){
+    /*忽略这里用不上*/
+}
+</code></pre>
+
+<p><a id="ProcessWxOcrObject.portable"></a></p>
+
+<h3>ProcessWxOcrObject.portable()</h3>
+
+<p>提取 OCR 组件绿化独立版到指定目录。</p>
+
+<p><a id="ProcessWxOcrObject.sendRquest"></a></p>
+
+<h3>ProcessWxOcrObject.sendRquest(files,callback)</h3>
+
+<pre><code class="aardio language-aardio">ProcessWxOcrObject.sendRquest(/*发送识别图象请求。  
+参数 @file 可指定一个或多个文件路径参数，  
+也可以传入一个包含多个文件数据的数组。  
+可选用最后一个 @callback 参数指定接收识别结果的回调函数。  
+回调函数的第一个参数为  process.wxOcr.OcrResponse 对象*/,  
+    function(mmojoOcrResponse){  
+
+    }  
+)
+</code></pre>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/process/wxOcr/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/process/wxOcr/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/process/wxOcr/_.md">Markdown 格式</a></p>
+
+</body> 
+</html>

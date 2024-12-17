@@ -1,0 +1,66 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 用 Delphi 语言为 aardio 编写控件'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 用 Delphi 语言为 aardio 编写控件</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 用 Delphi 语言为 aardio 编写控件</h1><pre><code class="aardio language-aardio">//Delphi 控件
+import win.ui;
+/*检测DLL{{*/
+if(!io.exist(&quot;\Project1.dll&quot;)){
+    import process;
+    process.exploreSelect(&quot;\Project1.dpr&quot;);
+    error(&quot;请先用 Delphi 打开此目录下的 DLL 源码工程编译生成 \Project1.dll&quot;)
+}
+/*}}*/
+
+//改为 raw.loadDll($&quot;\Project1.dll&quot;) 表示嵌入 DLL 到代码并通过内存加载
+var delphiDll = raw.loadDll(&quot;\Project1.dll&quot;);
+class win.ui.ctrl.delphiForm{
+    ctor(parent,tParam){
+        /*
+        aardio 可以免声明直接调用 API 函数（当然先声明API也是可以的，先声明可以支持更多的参数类型），
+        所有结构体(传址)、字符串、字节数组(raw.buffer)、不大于32位的整数、64位无符号整数（math.size64）
+        都可以直接作为调用参数，不需要指定类型，更可通过尾标语法指定返回值的类型以及是否对字符串进行 UTF-16 自动转换。
+
+        相关范例：「 aardio 范例 / 调用其他语言 / C语言 」
+        相关文档： https://www.aardio.com/zh-cn/doc/library-guide/builtin/raw/directCall.html
+        */
+        this.hwnd = delphiDll.CreateForm(parent.hwnd);
+    };
+    @..win.ui.ctrl.metaProperty()
+}
+/*DSG{{*/
+var winform = win.form(text=&quot;用 Delphi 语言为 aardio 编写控件&quot;;right=507;bottom=423;bgcolor=11842740)
+winform.add(
+custom={cls=&quot;delphiForm&quot;;text=&quot;嵌入 Delphi 控件&quot;;left=17;top=28;right=490;bottom=211;db=1;dl=1;dr=1;dt=1;z=1};
+edit={cls=&quot;edit&quot;;text=&quot;请先用 Delphi 打开此目录下的 DLL 源码工程编译生成 \Project1.dll&quot;;left=16;top=228;right=489;bottom=398;edge=1;multiline=1;z=2}
+)
+/*}}*/
+
+import web.json;
+winform.onTest = function(delphiStructParam){ 
+    winform.edit.print(&quot;Delphi 调用了aardio 函数,参数如下:&quot;);
+    winform.edit.print(delphiStructParam);
+    delphiStructParam.x = 90;
+
+    //可选返回修改后的结构体
+    return delphiStructParam;
+}
+winform.edit.text = &quot;&quot;;
+
+winform.show();
+win.loopMessage();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/Delphi/dll.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/Delphi/dll.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Languages/Delphi/dll.md">Markdown 格式</a>
+</body> 
+</html>

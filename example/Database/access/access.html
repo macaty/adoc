@@ -1,0 +1,82 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - access 库 - mdb 数据库'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - access 库 - mdb 数据库</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: access 库 - mdb 数据库</h1><pre><code class="aardio language-aardio">//access 库 - mdb 数据库
+//下面的代码仅使用系统组件,不需要安装 Access 软件
+
+import access;
+import console;
+
+//打开数据库,如果不存在就自动创建
+var db = access(&quot;/test.mdb&quot;) //也可以直接写数据库连接串 http://www.connectionstrings.com/excel/
+
+//创建表
+if(!db.existsTable(&quot;aardioTestDb&quot;) ){
+    /*
+    https://docs.microsoft.com/en-us/office/client-developer/access/desktop-database-reference/create-table-statement-microsoft-access-sql
+    https://docs.microsoft.com/en-us/office/client-developer/access/desktop-database-reference/sql-data-types
+    https://docs.microsoft.com/en-us/office/client-developer/access/desktop-database-reference/equivalent-ansi-sql-data-types
+    */
+    db.exec(&quot;CREATE TABLE aardioTestDb (url CHAR(30), comment CHAR(20), photo IMAGE NULL)&quot;)
+}
+
+//使用命令参数 - 参数化可避免SQL注入
+var cmd = db.createCommand( &quot;INSERT INTO aardioTestDb(url,comment,photo) VALUES(@url,@comment,@photo)&quot; );  
+
+//设置所有参数的值
+cmd.bind( 
+    url = &quot;http://www.aardio.com&quot;;
+    comment = &quot;hi!&quot;;
+    photo = raw.buffer(&quot;Buffer1&quot;) //也可用 string.loadBuffer() 加载文件
+)
+
+cmd.execute() //执行命令
+
+//增 - 调用 access.formatParameter() 格式化命名参数生成SQL语句
+db.exec( &quot;INSERT INTO aardioTestDb(url,comment) VALUES(@url,@comment)&quot;,{
+    url = &quot;http://www.aardio.com&quot;;
+    comment = &quot;字符串包含&#39;单引号&#39; 测试一下&quot;;
+
+} )
+
+//改
+db.exec(&quot;UPDATE aardioTestDb SET url=&#39;%s&#39; WHERE comment=&#39;%s&#39; &quot;,&quot;http://www.aardio.com&quot;,&quot;这是说明&quot;)
+
+//查
+for(rs,fields in db.each(&quot;SELECT * FROM aardioTestDb&quot;) ){ 
+    console.log( rs(&quot;url&quot;).value,rs(&quot;comment&quot;).value,rs(&quot;photo&quot;).value )  
+}
+
+//将查询结果转换为普通数组
+var tab = db.getTable(&quot;SELECT * FROM aardioTestDb&quot;);
+//console.dump(tab);
+
+//删 - 自动调用 string.format() 函数格式化SQL语句,简单拼接字符串应避免包含单引号
+db.exec(&quot;DELETE * FROM aardioTestDb WHERE url=&#39;%s&#39;&quot;,&quot;http://www.aardio.com&quot;);
+//注意 access 需要写 delete *, 其他数据库不写星号。
+
+//关闭数据库连接
+db.close();
+
+/*
+import access.query;
+access.query(&quot;/test.mdb&quot;);
+*/
+
+console.pause();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Database/access/access.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Database/access/access.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Database/access/access.md">Markdown 格式</a>
+</body> 
+</html>

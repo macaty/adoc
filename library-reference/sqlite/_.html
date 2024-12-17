@@ -1,0 +1,1398 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - sqlite 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - sqlite 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>sqlite 库模块帮助文档</h1>
+
+<p><a id="sqlite"></a></p>
+
+<h2>sqlite 成员列表</h2>
+
+<p>SQLite（嵌入式数据库）支持库<br>
+此支持库使用的 SQLite 组件体积较小，但并非最新版。<br>
+功能一般够用，但不支持一些 SQLite 新版才有的特性。  </p>
+
+<p>如果将 sqlite 导入语句替换为 sqlite.latest 扩展库导入语句，<br>
+则会改用新版 SQLite 组件，体积会大一些，但支持的功能更多一些。<br>
+其他代码中的 sqlite 不需要替换为 sqlite.latest  </p>
+
+<p>如果需要自定义 SQLite 版本，请参考 sqlite.latest 扩展库源码</p>
+
+<p><a id="sqlite(":memory:")"></a></p>
+
+<h3>sqlite(&quot;:memory:&quot;)</h3>
+
+<p>创建内存数据库</p>
+
+<p><a id="sqlite("\数据库路径")"></a></p>
+
+<h3>sqlite(&quot;\数据库路径&quot;)</h3>
+
+<p>参数一指定数据库路径,支持自动创建数据库文件.<br>
+第二个参数(可选参数)指定数据库密钥,sqlite.aes128或sqlite.aes256支持该参数.<br>
+第三个参数(可选参数)使用一个或多个_SQLITE_OPEN_前缀常量指定连接选项<br>
+默认启用多线程模式,多线程共用单个数据连接不安全,否则就是安全的<br>
+多线程模式可并发读,但不可同时写入</p>
+
+<p><a id="sqlite("file:数据库路径)"></a></p>
+
+<h3>sqlite(&quot;file:数据库路径)</h3>
+
+<p>使用 URI 指定数据库路径与参数。<br>
+参数@2 可选用表指定 URI 参数，或用字符串指定密钥。<br>
+也可以在参数 @1 的 URI 后面直接写参数。<br>
+文档 <a href="javascript:if(confirm('https://www.sqlite.org/uri.html  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='https://www.sqlite.org/uri.html'" tppabs="https://www.sqlite.org/uri.html">https://www.sqlite.org/uri.html</a></p>
+
+<p><a id="sqlite()"></a></p>
+
+<h3>sqlite()</h3>
+
+<p><a href="#sqliteConnObject">返回对象:sqliteConnObject</a></p>
+
+<p><a id="sqlite.ABORT"></a></p>
+
+<h3>sqlite.ABORT</h3>
+
+<p>4 //回调函数请求中止</p>
+
+<p><a id="sqlite.AUTH"></a></p>
+
+<h3>sqlite.AUTH</h3>
+
+<p>23 //认证禁止</p>
+
+<p><a id="sqlite.BUSY"></a></p>
+
+<h3>sqlite.BUSY</h3>
+
+<p>5 //数据库文件被锁定</p>
+
+<p><a id="sqlite.CANTOPEN"></a></p>
+
+<h3>sqlite.CANTOPEN</h3>
+
+<p>14 //不能打开数据库文件</p>
+
+<p><a id="sqlite.CONSTRAINT"></a></p>
+
+<h3>sqlite.CONSTRAINT</h3>
+
+<p>19 //因约束违背而中止</p>
+
+<p><a id="sqlite.CORRUPT"></a></p>
+
+<h3>sqlite.CORRUPT</h3>
+
+<p>11 //数据库文件变形</p>
+
+<p><a id="sqlite.DONE"></a></p>
+
+<h3>sqlite.DONE</h3>
+
+<p>101 //sqlite3_step()完成执行,已无数据</p>
+
+<p><a id="sqlite.EMPTY"></a></p>
+
+<h3>sqlite.EMPTY</h3>
+
+<p>16 //数据库是空的</p>
+
+<p><a id="sqlite.ERROR"></a></p>
+
+<h3>sqlite.ERROR</h3>
+
+<p>1 //SQL错误或数据库不存在</p>
+
+<p><a id="sqlite.FORMAT"></a></p>
+
+<h3>sqlite.FORMAT</h3>
+
+<p>24 //附属数据库格式错误</p>
+
+<p><a id="sqlite.FULL"></a></p>
+
+<h3>sqlite.FULL</h3>
+
+<p>13 //插入失败因为数据库满</p>
+
+<p><a id="sqlite.INTERNAL"></a></p>
+
+<h3>sqlite.INTERNAL</h3>
+
+<p>2 //SQLite内部逻辑错误(没有使用)</p>
+
+<p><a id="sqlite.INTERRUPT"></a></p>
+
+<h3>sqlite.INTERRUPT</h3>
+
+<p>9 //操作被sqlie3_interrupt()中止</p>
+
+<p><a id="sqlite.IOERR"></a></p>
+
+<h3>sqlite.IOERR</h3>
+
+<p>10 //磁盘I=O错误</p>
+
+<p><a id="sqlite.LOCKED"></a></p>
+
+<h3>sqlite.LOCKED</h3>
+
+<p>6 //数据库中的一表被锁定</p>
+
+<p><a id="sqlite.MISMATCH"></a></p>
+
+<h3>sqlite.MISMATCH</h3>
+
+<p>20 //数据类型不匹配</p>
+
+<p><a id="sqlite.MISUSE"></a></p>
+
+<h3>sqlite.MISUSE</h3>
+
+<p>21 //库使用方法不当</p>
+
+<p><a id="sqlite.NOLFS"></a></p>
+
+<h3>sqlite.NOLFS</h3>
+
+<p>22 //主机不支持库中操作系统功能</p>
+
+<p><a id="sqlite.NOMEM"></a></p>
+
+<h3>sqlite.NOMEM</h3>
+
+<p>7 //malloc()分配堆失败</p>
+
+<p><a id="sqlite.NOTADB"></a></p>
+
+<h3>sqlite.NOTADB</h3>
+
+<p>26 //打开非数据库文件</p>
+
+<p><a id="sqlite.NOTFOUND"></a></p>
+
+<h3>sqlite.NOTFOUND</h3>
+
+<p>12 //表或纪录没有找到(没有使用)</p>
+
+<p><a id="sqlite.OK"></a></p>
+
+<h3>sqlite.OK</h3>
+
+<p>0 //成功执行</p>
+
+<p><a id="sqlite.PERM"></a></p>
+
+<h3>sqlite.PERM</h3>
+
+<p>3 //访问许可禁止</p>
+
+<p><a id="sqlite.PROTOCOL"></a></p>
+
+<h3>sqlite.PROTOCOL</h3>
+
+<p>15 //数据库锁协议错误</p>
+
+<p><a id="sqlite.RANGE"></a></p>
+
+<h3>sqlite.RANGE</h3>
+
+<p>25 //sqlite3_bind()第2个参数超出范围</p>
+
+<p><a id="sqlite.READONLY"></a></p>
+
+<h3>sqlite.READONLY</h3>
+
+<p>8 //企图写只读数据库</p>
+
+<p><a id="sqlite.ROW"></a></p>
+
+<h3>sqlite.ROW</h3>
+
+<p>100 //sqlite3_step()有另一行数据就绪</p>
+
+<p><a id="sqlite.SCHEMA"></a></p>
+
+<h3>sqlite.SCHEMA</h3>
+
+<p>17 //数据库模式改变</p>
+
+<p><a id="sqlite.TOOBIG"></a></p>
+
+<h3>sqlite.TOOBIG</h3>
+
+<p>18 //单行数据过多(没有使用)</p>
+
+<p><a id="sqlite._dll"></a></p>
+
+<h3>sqlite._dll</h3>
+
+<p><a href="../raw/_.html#dllModuleObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/raw/_.html#dllModuleObject">返回对象:dllModuleObject</a></p>
+
+<p><a id="sqlite.aes128"></a></p>
+
+<h3>sqlite.aes128</h3>
+
+<p>支持AES128位数据加密版本sqlite支持库</p>
+
+<p><a id="sqlite.aes128"></a></p>
+
+<h3>sqlite.aes128(&quot;\数据库路径&quot;)</h3>
+
+<p>参数一指定数据库路径,支持自动创建数据库文件.<br>
+第二个参数(可选参数)指定数据库密钥,sqlite.aes128或sqlite.aes256支持该参数.</p>
+
+<p><a id="sqlite.aes128"></a></p>
+
+<h3>sqlite.aes128()</h3>
+
+<p><a href="#sqliteConnObject">返回对象:sqliteConnObject</a></p>
+
+<p><a id="sqlite.aes256"></a></p>
+
+<h3>sqlite.aes256</h3>
+
+<p>支持AES256位数据加密版本sqlite支持库</p>
+
+<p><a id="sqlite.aes256"></a></p>
+
+<h3>sqlite.aes256(&quot;\数据库路径&quot;)</h3>
+
+<p>参数一指定数据库路径,支持自动创建数据库文件.<br>
+第二个参数(可选参数)指定数据库密钥,sqlite.aes128或sqlite.aes256支持该参数.</p>
+
+<p><a id="sqlite.aes256"></a></p>
+
+<h3>sqlite.aes256()</h3>
+
+<p><a href="#sqliteConnObject">返回对象:sqliteConnObject</a></p>
+
+<p><a id="sqlite.assertf"></a></p>
+
+<h3>sqlite.assertf(/*调用sqlite API函数*/)</h3>
+
+<p>第一个参数是API返回的状态值<br>
+如果发生错误则抛出异常终断程序,并显示错误信息</p>
+
+<p><a id="sqlite.busy_handler"></a></p>
+
+<h3>sqlite.busy_handler</h3>
+
+<pre><code class="aardio language-aardio">dll.api(&quot;sqlite3_busy_handler&quot;,&quot;int(POINTER pDB,pointer handle,pointer)&quot;);
+</code></pre>
+
+<p><a id="sqlite.busy_timeout"></a></p>
+
+<h3>sqlite.busy_timeout</h3>
+
+<pre><code class="aardio language-aardio">dll.api(&quot;sqlite3_busy_timeout&quot;,&quot;int(POINTER pDB,int ms)&quot;);
+</code></pre>
+
+<p><a id="sqlite.changes"></a></p>
+
+<h3>sqlite.changes</h3>
+
+<pre><code class="aardio language-aardio">dll.api(&quot;sqlite3_changes&quot;,&quot;int(pointer db)&quot;);
+</code></pre>
+
+<p><a id="sqlite.checkResult"></a></p>
+
+<h3>sqlite.checkResult(failed,err,level)</h3>
+
+<p>参数一: sqlite API的第一个返回值<br>
+参数二(可选参数):sqlite返回的错误信息指针<br>
+参数三(可选参数): 抛出异常的调用级别,2为调用checkResult的函数,3为调用当前函数的函数</p>
+
+<p><a id="sqlite.close"></a></p>
+
+<h3>sqlite.close</h3>
+
+<pre><code class="aardio language-aardio">dll.api(&quot;sqlite3_close&quot;,&quot;int(pointer db)&quot;);
+</code></pre>
+
+<p><a id="sqlite.escape"></a></p>
+
+<h3>sqlite.escape()</h3>
+
+<p>转义参数指定值为用于 SQL 查询语句的参数化值</p>
+
+<p><a id="sqlite.escapeId"></a></p>
+
+<h3>sqlite.escapeId()</h3>
+
+<p>如果传入参数是文本则转换为 SQL 标识符,<br>
+返回文本首尾会添加反引号,  </p>
+
+<p>如果传入参数是表, 则格式化为 SQL 键值对并以 AND 为分隔符,<br>
+如果表中的值为数组,则格式化为 IN 语句</p>
+
+<p><a id="sqlite.exec"></a></p>
+
+<h3>sqlite.exec</h3>
+
+<pre><code class="aardio language-aardio">dll.api(&quot;sqlite3_exec&quot;,&quot;int(POINTER db,STRING sql,pointer callback,pointer callback_arg,pointer &amp;)&quot;);
+</code></pre>
+
+<p><a id="sqlite.finalize"></a></p>
+
+<h3>sqlite.finalize</h3>
+
+<pre><code class="aardio language-aardio">dll.api(&quot;sqlite3_finalize&quot;,&quot;int(POINTER stmt)&quot;);
+</code></pre>
+
+<p><a id="sqlite.format"></a></p>
+
+<h3>sqlite.format(SQL语句,格式化参数...)</h3>
+
+<p>格式化 SQL 查询语句。<br>
+所有需要格式化 SQL 语句的函数调用此函数格式化 SQL语句,<br>
+如果格式化参数不是表则调用 string.format格式化,否则按以下规则格式化:  </p>
+
+<p>SQL语句中?或??占位符使用表的数组元素格式化,<br>
+@字符开始的命名参数使用表的名值对元素格式化,<br>
+其中??格式化为标识符,其他占位符格式化为参数值。  </p>
+
+<p>字符串转为SQL安全转义字符串,buffer转为X&#39;4D7953514C&#39;格式,<br>
+数组则自动展开为列表,例如{&#39;a&#39;, &#39;b&#39;}格式化为&#39;a&#39;, &#39;b&#39;<br>
+嵌套数组则格式化为分组列表,例如{{&#39;a&#39;, &#39;b&#39;}, {&#39;c&#39;, &#39;d&#39;}} 格式化为 (&#39;a&#39;, &#39;b&#39;), (&#39;c&#39;, &#39;d&#39;)<br>
+非数组的命名表，则格式化为 SQL 键值对,默认以逗号为分隔符,<br>
+??占位符格式化 SQL 键值对则以 AND 为分隔符,并将数组值转换为IN语句</p>
+
+<p><a id="sqlite.last_insert_rowid"></a></p>
+
+<h3>sqlite.last_insert_rowid</h3>
+
+<pre><code class="aardio language-aardio">dll.api(&quot;sqlite3_last_insert_rowid&quot;,&quot;int(pointer db)&quot;);
+</code></pre>
+
+<p><a id="sqlite.lasterr"></a></p>
+
+<h3>sqlite.lasterr(db,errcode)</h3>
+
+<p>参数1:指定数据库连接句柄,<br>
+参数2:可选使用此参数指定错误代码,<br>
+返回最后一次发生错误的错误信息,以及错误代码.</p>
+
+<p><a id="sqlite.prepare"></a></p>
+
+<h3>sqlite.prepare</h3>
+
+<pre><code class="aardio language-aardio">dll.api(&quot;sqlite3_prepare&quot;,&quot;int(POINTER db,string szSql,int nByte,pointer &amp;stmt,pointer&amp; pzTail)&quot;);
+</code></pre>
+
+<p><a id="sqlite.prepare2"></a></p>
+
+<h3>sqlite.prepare2</h3>
+
+<pre><code class="aardio language-aardio">dll.api(&quot;sqlite3_prepare_v2&quot;,&quot;int(POINTER db,string szSql,int nByte,pointer &amp;stmt,pointer&amp; pzTail)&quot;);
+</code></pre>
+
+<p><a id="sqlite.reset"></a></p>
+
+<h3>sqlite.reset</h3>
+
+<pre><code class="aardio language-aardio">dll.api(&quot;sqlite3_reset&quot;,&quot;int(POINTER stmt)&quot;);
+</code></pre>
+
+<p><a id="sqlite.step"></a></p>
+
+<h3>sqlite.step</h3>
+
+<pre><code class="aardio language-aardio">dll.api(&quot;sqlite3_step&quot;,&quot;int(POINTER stmt)&quot;);
+</code></pre>
+
+<p><a id="sqlite.time"></a></p>
+
+<h3>sqlite.time(表示时间的字符串或数值)</h3>
+
+<p>参数可以是时间数值、时间字符串、或其他datetime对象<br>
+返回time对象,默认使用格式化串&quot;%Y-%m-%d %H:%M:%S&quot;</p>
+
+<p><a id="sqlite.version"></a></p>
+
+<h3>sqlite.version()</h3>
+
+<p>返回版本号数值,以及文本值</p>
+
+<p><a id="sqlite.wal_checkpoint"></a></p>
+
+<h3>sqlite.wal_checkpoint</h3>
+
+<pre><code class="aardio language-aardio">dll.api(&quot;sqlite3_wal_checkpoint&quot;,&quot;int(POINTER pDB,pointer zDb)&quot;);
+</code></pre>
+
+<p><a id="sqlite.bind"></a></p>
+
+<h2>sqlite.bind 成员列表</h2>
+
+<p><a id="sqlite.bind. blob"></a></p>
+
+<h3>sqlite.bind.    blob</h3>
+
+<pre><code class="aardio language-aardio">dll.api(&quot;sqlite3_bind_blob&quot;,&quot;int(pointer stmt, int, pointer, int n, pointer )&quot;);
+</code></pre>
+
+<p><a id="sqlite.bind.clear"></a></p>
+
+<h3>sqlite.bind.clear</h3>
+
+<pre><code class="aardio language-aardio">dll.api(&quot;sqlite3_clear_bindings&quot;,&quot;int(pointer stmt)&quot;);
+</code></pre>
+
+<p><a id="sqlite.bind.double"></a></p>
+
+<h3>sqlite.bind.double</h3>
+
+<pre><code class="aardio language-aardio">dll.api(&quot;sqlite3_bind_double&quot;,&quot;int(pointer stmt, int, double)&quot;);
+</code></pre>
+
+<p><a id="sqlite.bind.int"></a></p>
+
+<h3>sqlite.bind.int</h3>
+
+<pre><code class="aardio language-aardio">dll.api(&quot;sqlite3_bind_int&quot;,&quot;int(pointer stmt, int, int)&quot;);
+</code></pre>
+
+<p><a id="sqlite.bind.long64"></a></p>
+
+<h3>sqlite.bind.long64</h3>
+
+<pre><code class="aardio language-aardio">dll.sqlite3_bind_int64;
+</code></pre>
+
+<p><a id="sqlite.bind.parameter_index"></a></p>
+
+<h3>sqlite.bind.parameter_index</h3>
+
+<pre><code class="aardio language-aardio">dll.api(&quot;sqlite3_bind_parameter_index&quot;,&quot;int(pointer stmt, string zName)&quot;);
+</code></pre>
+
+<p><a id="sqlite.bind.text"></a></p>
+
+<h3>sqlite.bind.text</h3>
+
+<pre><code class="aardio language-aardio">dll.api(&quot;sqlite3_bind_text&quot;,&quot;int(pointer stmt, int, string, int n,pointer )&quot;);
+</code></pre>
+
+<p><a id="sqlite.bind.text16"></a></p>
+
+<h3>sqlite.bind.text16</h3>
+
+<pre><code class="aardio language-aardio">dll.api(&quot;sqlite3_bind_text16&quot;,&quot;int(pointer stmt, int,ustring, int, pointer )&quot;);
+</code></pre>
+
+<p><a id="sqlite.bind.value"></a></p>
+
+<h3>sqlite.bind.value</h3>
+
+<pre><code class="aardio language-aardio">dll.api(&quot;sqlite3_bind_value&quot;,&quot;int(pointer stmt, int, pointer)&quot;);
+</code></pre>
+
+<p><a id="sqlite.bind.zeroblob"></a></p>
+
+<h3>sqlite.bind.zeroblob</h3>
+
+<pre><code class="aardio language-aardio">dll.api(&quot;sqlite3_bind_zeroblob&quot;,&quot;int(pointer stmt, int, int n)&quot;);
+</code></pre>
+
+<p><a id="sqlite.bind.bind"></a></p>
+
+<h2>sqlite.bind.bind 成员列表</h2>
+
+<p><a id="sqlite.bind.bind.null"></a></p>
+
+<h3>sqlite.bind.bind.null</h3>
+
+<pre><code class="aardio language-aardio">dll.api(&quot;sqlite3_bind_null&quot;,&quot;int(pointer stmt, int)&quot;);
+</code></pre>
+
+<p><a id="sqlite.column"></a></p>
+
+<h2>sqlite.column 成员列表</h2>
+
+<p><a id="sqlite.column.   _blob"></a></p>
+
+<h3>sqlite.column.  _blob</h3>
+
+<pre><code class="aardio language-aardio">dll.api(&quot;sqlite3_column_blob&quot;,&quot;pointer(POINTER stmt, int iCol)&quot;);
+</code></pre>
+
+<p><a id="sqlite.column.blob"></a></p>
+
+<h3>sqlite.column.blob(stmt,iCol)</h3>
+
+<p>读取二进制数据,并返回buffer类型字节数组,<br>
+如果存储的是一个序列化后的table对象,则返回table对象.</p>
+
+<p><a id="sqlite.column.bytes"></a></p>
+
+<h3>sqlite.column.bytes</h3>
+
+<pre><code class="aardio language-aardio">dll.api(&quot;sqlite3_column_bytes&quot;,&quot;int(POINTER stmt, int iCol)&quot;);
+</code></pre>
+
+<p><a id="sqlite.column.bytes16"></a></p>
+
+<h3>sqlite.column.bytes16</h3>
+
+<pre><code class="aardio language-aardio">dll.api(&quot;sqlite3_column_bytes16&quot;,&quot;int(POINTER stmt, int iCol)&quot;);
+</code></pre>
+
+<p><a id="sqlite.column.count"></a></p>
+
+<h3>sqlite.column.count</h3>
+
+<pre><code class="aardio language-aardio">dll.api(&quot;sqlite3_column_count&quot;,&quot;int(POINTER stmt)&quot;);
+</code></pre>
+
+<p><a id="sqlite.column.double"></a></p>
+
+<h3>sqlite.column.double</h3>
+
+<pre><code class="aardio language-aardio">dll.api(&quot;sqlite3_column_double&quot;,&quot;double(POINTER stmt, int iCol)&quot;);
+</code></pre>
+
+<p><a id="sqlite.column.int"></a></p>
+
+<h3>sqlite.column.int</h3>
+
+<pre><code class="aardio language-aardio">dll.api(&quot;sqlite3_column_int64&quot;,&quot;long(POINTER stmt, int iCol)&quot;);
+</code></pre>
+
+<p><a id="sqlite.column.name"></a></p>
+
+<h3>sqlite.column.name(stmt,iCol)</h3>
+
+<p>返回字段名</p>
+
+<p><a id="sqlite.column.queryValue"></a></p>
+
+<h3>sqlite.column.queryValue(iCol)</h3>
+
+<p>返回指定列的数据,自动识别数据类型</p>
+
+<p><a id="sqlite.column.text"></a></p>
+
+<h3>sqlite.column.text(stmt,iCol)</h3>
+
+<p>返回文本,自动由UTF8转换为ANSI</p>
+
+<p><a id="sqlite.column.text16"></a></p>
+
+<h3>sqlite.column.text16</h3>
+
+<pre><code class="aardio language-aardio">dll.api(&quot;sqlite3_column_text16&quot;,&quot;pointer(POINTER stmt, int iCol)&quot;);
+</code></pre>
+
+<p><a id="sqlite.column.type"></a></p>
+
+<h3>sqlite.column.type(stmt,iCol)</h3>
+
+<p>返回类型ID,以及类型名</p>
+
+<p><a id="sqlite.column.typeName[类型ID]"></a></p>
+
+<h3>sqlite.column.typeName[类型ID]</h3>
+
+<p>根据类型ID,返回类型名</p>
+
+<p><a id="sqlite.column.value"></a></p>
+
+<h3>sqlite.column.value</h3>
+
+<pre><code class="aardio language-aardio">dll.api(&quot;sqlite3_column_value&quot;,&quot;int(POINTER stmt, int iCol)&quot;);
+</code></pre>
+
+<p><a id="sqlite.formatResult"></a></p>
+
+<h2>sqlite.formatResult 成员列表</h2>
+
+<p><a id="sqlite.formatResult.(failed,err)"></a></p>
+
+<h3>sqlite.formatResult.(failed,err)</h3>
+
+<p>参数一: sqlite API的第一个返回值<br>
+参数二(可选参数):sqlite返回的错误信息指针<br>
+对于原始Sqlite API返回的err指针,必须调用此函数转换为字符串并释放该指针</p>
+
+<p><a id="sqlite.table"></a></p>
+
+<h2>sqlite.table 成员列表</h2>
+
+<p><a id="sqlite.table.    get"></a></p>
+
+<h3>sqlite.table.   get</h3>
+
+<pre><code class="aardio language-aardio">dll.api(&quot;sqlite3_get_table&quot;,&quot;int(POINTER db,string zSql,pointer &amp;pazResult,int &amp;pnRow,int &amp;pnColumn,pointer &amp;errmsg)&quot;);
+</code></pre>
+
+<p><a id="sqlite.table.free"></a></p>
+
+<h3>sqlite.table.free</h3>
+
+<pre><code class="aardio language-aardio">dll.api(&quot;sqlite3_free_table&quot;,&quot;int(pointer azResult)&quot;)
+</code></pre>
+
+<p><a id="sqliteConnObject"></a></p>
+
+<h2>sqliteConnObject 成员列表</h2>
+
+<p><a id="sqliteConnObject.beginTrans"></a></p>
+
+<h3>sqliteConnObject.beginTrans(&quot;EXCLUSIVE&quot;)</h3>
+
+<p>开始事务<br>
+尝试获取EXCLUSIVE锁(保证没有其他连接)</p>
+
+<p><a id="sqliteConnObject.beginTrans"></a></p>
+
+<h3>sqliteConnObject.beginTrans(&quot;IMMEDIATE&quot;)</h3>
+
+<p>开始事务<br>
+尝试获取RESERVED锁(其他连接可读)</p>
+
+<p><a id="sqliteConnObject.beginTrans"></a></p>
+
+<h3>sqliteConnObject.beginTrans()</h3>
+
+<p>开始DEFERRED事务<br>
+默认不获取任何锁,直到需要锁的时候才获取锁,<br>
+开启事务以后,可使用rollbackTrans()函数撤消所有更改,<br>
+使用commitTrans()函数提交所有更改.<br>
+使用此函数可以避免sqlite为每个操作创建一个默认事务<br>
+批量操作数据库时可显著提升sqlite执行效率.</p>
+
+<p><a id="sqliteConnObject.busyHandler"></a></p>
+
+<h3>sqliteConnObject.busyHandler</h3>
+
+<pre><code class="aardio language-aardio">sqliteConnObject.busyHandler(   
+    function(strBack,count) {  
+        sleep(1);  
+        return count &lt; 1000; /*重试次数*/  
+    },strBack  
+)
+</code></pre>
+
+<p><a id="sqliteConnObject.busyTimeout"></a></p>
+
+<h3>sqliteConnObject.busyTimeout(10000)</h3>
+
+<p>数据锁定冲突时的重试时间,以毫秒为单位,成功返回true<br>
+busyHandler()函数控制重试次数,busyTimeout()函数控制重试时间<br>
+这两个函数可相互影响,设置一个必然然取消另一个</p>
+
+<p><a id="sqliteConnObject.changes"></a></p>
+
+<h3>sqliteConnObject.changes()</h3>
+
+<p>返回数据库最近一次运行exec()所改变的行数</p>
+
+<p><a id="sqliteConnObject.close"></a></p>
+
+<h3>sqliteConnObject.close()</h3>
+
+<p>关闭数据库连接<br>
+在线程结束时,此函数也会自动调用</p>
+
+<p><a id="sqliteConnObject.commitTrans"></a></p>
+
+<h3>sqliteConnObject.commitTrans()</h3>
+
+<p>提交事务</p>
+
+<p><a id="sqliteConnObject.config"></a></p>
+
+<h3>sqliteConnObject.config</h3>
+
+<p>配置数据库。<br>
+仅 sqlite.ciphers 等 sqlite 增强扩展库支持此函数。<br>
+用法参考相关扩展库文档。</p>
+
+<p><a id="sqliteConnObject.config"></a></p>
+
+<h3>sqliteConnObject.config(name,value)</h3>
+
+<p>配置数据库。<br>
+成功返回当前配置值，失败返回 -1。<br>
+@name 指定要修改的配置名，也可以指定包含多个配置名值对的表。<br>
+@value 指定配置值，不指定值则用返回当前值。</p>
+
+<p><a id="sqliteConnObject.configCipher"></a></p>
+
+<h3>sqliteConnObject.configCipher</h3>
+
+<p>配置加密算法参数。<br>
+仅 sqlite.ciphers 等 sqlite 增强扩展库支持此函数。<br>
+用法参考相关扩展库文档。</p>
+
+<p><a id="sqliteConnObject.configCipher"></a></p>
+
+<h3>sqliteConnObject.configCipher(cipherName,name,value)</h3>
+
+<p>配置加密算法参数。<br>
+成功返回当前配置值，失败返回 -1。<br>
+@cipherName 指定加密算法名称。</p>
+
+<p><a id="sqliteConnObject.db"></a></p>
+
+<h3>sqliteConnObject.db</h3>
+
+<p>当前打开的数据库连接对象</p>
+
+<p><a id="sqliteConnObject.each"></a></p>
+
+<h3>sqliteConnObject.each</h3>
+
+<pre><code class="aardio language-aardio">for 字段名,字段名2 in sqliteConnObject.each(&quot;SELECT * from [表名] ORDER BY 排序字段 DESC LIMIT 长度 OFFSET 开始位置&quot;) {
+    io.print( 字段名,字段名2 )
+}
+</code></pre>
+
+<p><a id="sqliteConnObject.each_sqlite_master"></a></p>
+
+<h3>sqliteConnObject.each_sqlite_master</h3>
+
+<pre><code class="aardio language-aardio">for Type,name,tbl_name,rootpage,sql in sqliteConnObject.each(&quot;SELECT * from [sqlite_master]&quot;) {
+    io.print( Type,name,tbl_name,rootpage,sql )
+}
+</code></pre>
+
+<p><a id="sqliteConnObject.enum"></a></p>
+
+<h3>sqliteConnObject.enum(sql,格式化参数...)</h3>
+
+<pre><code class="aardio language-aardio">sqliteConnObject.enum(sql,格式化参数...enum(   
+    /*sql*/,  
+    function(tname,tvalue){  
+        for(i=1;#tname;1){   
+            io.print(tname[i],tvalue[i])  
+        }  
+
+    }  
+)
+</code></pre>
+
+<p><a id="sqliteConnObject.exec"></a></p>
+
+<h3>sqliteConnObject.exec(&quot;字符串参数&quot;)</h3>
+
+<p>执行SQL 语句,出错则抛出异常,<br>
+可选增加一个或多个格式化参数,<br>
+格式化规则请参考 sqlite.format 函数说明,<br>
+格式化参数可以是一个表参数,用于替换SQL中占位符指定的参数,<br>
+SQL语句用@或:前缀标明的命名参数使用表的名值对成员格式化,<br>
+SQL语句中的?或??占位符使用参数表的数组成员格式化,??用于标识符或WHERE条件表</p>
+
+<p><a id="sqliteConnObject.exec_create_index"></a></p>
+
+<h3>sqliteConnObject.exec_create_index</h3>
+
+<pre><code class="aardio language-aardio">sqliteConnObject.exec(&quot;CREATE INDEX 索引名字 ON 表名字(索引字段名字)&quot;)  
+//建立索引可加快该字段查询速度.
+</code></pre>
+
+<p><a id="sqliteConnObject.exec_create_table"></a></p>
+
+<h3>sqliteConnObject.exec_create_table</h3>
+
+<pre><code class="aardio language-aardio">sqliteConnObject.exec(&quot;CREATE TABLE 表名(   
+    ID INTEGER PRIMARY KEY AUTOINCREMENT,    
+    数值字段名 INTEGER,  
+    浮点字段名 REAL,  
+    文本字段名 TEXT,  
+    二进制字段名 BLOB,   
+    非空字段名 NOT NULL DEFAULT &#39;默认值&#39;,  
+    动态类型字段名,  
+    UNIQUE (ID)   
+    );&quot;  
+)
+</code></pre>
+
+<p><a id="sqliteConnObject.exec_delete_sequence"></a></p>
+
+<h3>sqliteConnObject.exec_delete_sequence</h3>
+
+<pre><code class="aardio language-aardio">sqliteConnObject.exec(&quot;DELETE FROM sqlite_sequence WHERE name = &#39;表名&#39;&quot;)  
+//自增ID置0
+</code></pre>
+
+<p><a id="sqliteConnObject.exec_delete_table"></a></p>
+
+<h3>sqliteConnObject.exec_delete_table</h3>
+
+<pre><code class="aardio language-aardio">sqliteConnObject.exec(&quot;DELETE FROM 表名 &quot;)  
+//清空表
+</code></pre>
+
+<p><a id="sqliteConnObject.exec_drop_table"></a></p>
+
+<h3>sqliteConnObject.exec_drop_table</h3>
+
+<pre><code class="aardio language-aardio">sqliteConnObject.exec(&quot;DROP table 表名 &quot;)  
+//删除表
+</code></pre>
+
+<p><a id="sqliteConnObject.exec_free_memory"></a></p>
+
+<h3>sqliteConnObject.exec_free_memory</h3>
+
+<pre><code class="aardio language-aardio">sqliteConnObject.exec(&quot;VACUUM&quot;)//DELETE表后必须调用此语句才能释放空间
+</code></pre>
+
+<p><a id="sqliteConnObject.exec_insert"></a></p>
+
+<h3>sqliteConnObject.exec_insert</h3>
+
+<pre><code class="aardio language-aardio">sqliteConnObject.exec(&quot;INSERT INTO 表名(字段名) VALUES( 值 )&quot;)  
+//插入数据到表中
+</code></pre>
+
+<p><a id="sqliteConnObject.exec_insert_where_not_exists"></a></p>
+
+<h3>sqliteConnObject.exec_insert_where_not_exists</h3>
+
+<pre><code class="aardio language-aardio">sqliteConnObject.exec(&quot;INSERT INTO 表名(字段名) SELECT &#39;插入值&#39; WHERE NOT EXISTS(SELECT * from 表名 WHERE 条件字段名=查询值);&quot;)  
+//如果符合条件的数据不存在则插入新的数据
+</code></pre>
+
+<p><a id="sqliteConnObject.exec_journal_mode_delete"></a></p>
+
+<h3>sqliteConnObject.exec_journal_mode_delete</h3>
+
+<pre><code class="aardio language-aardio">sqliteConnObject.exec(&quot;journal_mode=DELETE;&quot;)
+</code></pre>
+
+<p><a id="sqliteConnObject.exec_journal_mode_wal"></a></p>
+
+<h3>sqliteConnObject.exec_journal_mode_wal</h3>
+
+<pre><code class="aardio language-aardio">sqliteConnObject.exec(&quot;PRAGMA journal_mode=WAL;&quot;)
+</code></pre>
+
+<p><a id="sqliteConnObject.exec_replace"></a></p>
+
+<h3>sqliteConnObject.exec_replace</h3>
+
+<pre><code class="aardio language-aardio">sqliteConnObject.exec(&quot;REPLACE INTO [表名] (字段名, 字段名2) VALUES (值, 值2)&quot;)  
+//如果该表有一个主键,那么当主键值相等的时候,该行数据不存在执行插入,存在则执行更新操作
+</code></pre>
+
+<p><a id="sqliteConnObject.exec_update"></a></p>
+
+<h3>sqliteConnObject.exec_update</h3>
+
+<pre><code class="aardio language-aardio">sqliteConnObject.exec(&quot;UPDATE 表名 SET 更新字段 = &#39;更新值&#39; WHERE 条件字段 = 条件值;&quot;);
+</code></pre>
+
+<p><a id="sqliteConnObject.existsTable"></a></p>
+
+<h3>sqliteConnObject.existsTable(&quot;字符串参数&quot;)</h3>
+
+<p>判断指定的表是否存在</p>
+
+<p><a id="sqliteConnObject.getTable"></a></p>
+
+<h3>sqliteConnObject.getTable(&quot;SELECT * FROM [表名] /*SQL 语句*/&quot;)</h3>
+
+<p>返回包含行记录组成的table数组对象,<br>
+每行是由列名、值组成的table表对象。<br>
+参数@2为可选参数:  </p>
+
+<p>如果SQL内使用@前缀指定了命名参数,则参数@2使用 table 指定参数的值<br>
+并且SQL语句中的?或??占位符将使用 sqlite.format 函数格式化为参数@2对应的值,<br>
+否则调用sqlite.format格式化??占位符为参数@2指定的值,<br>
+如果参数@2不是表，则调用 string.format 使用参数@2开始的所有参数格式化sql</p>
+
+<p><a id="sqliteConnObject.key"></a></p>
+
+<h3>sqliteConnObject.key(&quot;字符串参数&quot;)</h3>
+
+<p>输入并验证数据库密钥<br>
+成功返回true,失败返回false,错误信息,错误代码<br>
+该函数需要使用支持加密的DLL组件重新编译sqlite库</p>
+
+<p><a id="sqliteConnObject.lastInsertRowid"></a></p>
+
+<h3>sqliteConnObject.lastInsertRowid()</h3>
+
+<p>获取最后一次插入操作添加记录的ID<br>
+作用类似MSSQL的@@IDENTITY</p>
+
+<p><a id="sqliteConnObject.lasterr"></a></p>
+
+<h3>sqliteConnObject.lasterr()</h3>
+
+<p>返回最后一次发生错误的错误信息,以及错误代码</p>
+
+<p><a id="sqliteConnObject.prepare"></a></p>
+
+<h3>sqliteConnObject.prepare(&quot;SELECT * FROM [表名] WHERE 字段名=@参数值&quot;)</h3>
+
+<p>编译SQL预处理命令,<br>
+1、如果参数@2为表对象，参数表中的数组成员用于格式化 SQL 语句中的??占位符,<br>
+2、否则调用string.format格式化SQL 语句,<br>
+查询SQL示例:<br>
+&quot;SELECT * FROM [表名] WHERE 条件字段=12  ORDER BY 排序字段 DESC LIMIT 1 OFFSET 0&quot;<br>
+上面SQL语句中LIMIT n OFFSET i 指定第i条记录开始取n条记录<br>
+也可以直接写为 limit i,n</p>
+
+<p><a id="sqliteConnObject.prepare"></a></p>
+
+<h3>sqliteConnObject.prepare()</h3>
+
+<p><a href="#sqliteStmtObject">返回对象:sqliteStmtObject</a></p>
+
+<p><a id="sqliteConnObject.prepare_insert"></a></p>
+
+<h3>sqliteConnObject.prepare_insert</h3>
+
+<pre><code class="aardio language-aardio">sqliteConnObject.prepare(&quot;INSERT INTO [表名] VALUES (?1,?2,?3,?4);&quot;)  
+//创建插入数据SQL命令对象,问号表示参数,可在问号后指定索引
+</code></pre>
+
+<p><a id="sqliteConnObject.prepare_select_distinct"></a></p>
+
+<h3>sqliteConnObject.prepare_select_distinct</h3>
+
+<pre><code class="aardio language-aardio">sqliteConnObject.prepare(&quot;SELECT DISTINCT 去重字段 FROM [表名]&quot;)
+</code></pre>
+
+<p><a id="sqliteConnObject.rekey"></a></p>
+
+<h3>sqliteConnObject.rekey(&quot;字符串参数&quot;)</h3>
+
+<p>添加、清空、重设数据库密钥<br>
+成功返回true,失败返回false,错误信息,错误代码<br>
+该函数需要使用支持加密的DLL组件重新编译sqlite库</p>
+
+<p><a id="sqliteConnObject.rollbackTrans"></a></p>
+
+<h3>sqliteConnObject.rollbackTrans()</h3>
+
+<p>回滚事务,取消所有修改</p>
+
+<p><a id="sqliteConnObject.stepQuery"></a></p>
+
+<h3>sqliteConnObject.stepQuery(&quot;SELECT * FROM [表名] /*SQL 语句*/&quot;)</h3>
+
+<p>查询并返回首行数据（名值对格式）,失败返回null,状态码。<br>
+参数@2为可选参数:<br>
+如果参数@2是一个指定了SQL 查询参数值的表,<br>
+SQL 中@前缀的命名参数将由数据库绑定同名参数值,这并非调用 sqlite.format 格式化,<br>
+SQL语句中的?或??占位符将使用参数@2中的数组值调用 sqlite.format 函数格式化,<br>
+如果参数@2不是表，则调用 string.format 使用参数@2开始的所有参数格式化sql</p>
+
+<p><a id="sqliteConnObject.stepResult"></a></p>
+
+<h3>sqliteConnObject.stepResult(&quot;SELECT * FROM [表名] /*SQL 语句*/&quot;)</h3>
+
+<p>查询并返回首行数据（数组格式）,失败返回null,状态码。<br>
+参数@2为可选参数:<br>
+如果参数@2是一个指定了SQL 查询参数值的表,<br>
+SQL 中@前缀的命名参数将由数据库绑定同名参数值,这并非调用 sqlite.format 格式化,<br>
+SQL语句中的?或??占位符将使用参数@2中的数组值调用 sqlite.format 函数格式化,<br>
+如果参数@2不是表，则调用 string.format 使用参数@2开始的所有参数格式化sql</p>
+
+<p><a id="sqliteConnObject.walCheckpoint"></a></p>
+
+<h3>sqliteConnObject.walCheckpoint()</h3>
+
+<p>执行checkpoint操作时,WAL日志文件内容被写回数据库文件</p>
+
+<p><a id="sqliteStmtObject"></a></p>
+
+<h2>sqliteStmtObject 成员列表</h2>
+
+<p><a id="sqliteStmtObject.bind.blob"></a></p>
+
+<h3>sqliteStmtObject.bind.blob()</h3>
+
+<p><a href="#sqliteStmtObject">返回对象:sqliteStmtObject</a></p>
+
+<p><a id="sqliteStmtObject.bind.blob"></a></p>
+
+<h3>sqliteStmtObject.bind.blob(二进制字符串)</h3>
+
+<p>绑定一个参数,参数在SQL 语句中用问号表示<br>
+可使用第二个参数指定问号的位置<br>
+返回命令对象自身</p>
+
+<p><a id="sqliteStmtObject.bind.boolean"></a></p>
+
+<h3>sqliteStmtObject.bind.boolean()</h3>
+
+<p>将bool值转换为数值存储<br>
+false存为0,true存为1;</p>
+
+<p><a id="sqliteStmtObject.bind.buffer"></a></p>
+
+<h3>sqliteStmtObject.bind.buffer()</h3>
+
+<p>将buffer类型转换为blob类型存储</p>
+
+<p><a id="sqliteStmtObject.bind.cdata"></a></p>
+
+<h3>sqliteStmtObject.bind.cdata()</h3>
+
+<p>将cdata类型转换为blob类型存储</p>
+
+<p><a id="sqliteStmtObject.bind.clear"></a></p>
+
+<h3>sqliteStmtObject.bind.clear()</h3>
+
+<p>清除所有绑定值<br>
+成功返回0</p>
+
+<p><a id="sqliteStmtObject.bind.double"></a></p>
+
+<h3>sqliteStmtObject.bind.double()</h3>
+
+<p><a href="#sqliteStmtObject">返回对象:sqliteStmtObject</a></p>
+
+<p><a id="sqliteStmtObject.bind.double"></a></p>
+
+<h3>sqliteStmtObject.bind.double(浮点数值)</h3>
+
+<p>绑定一个参数,参数在SQL 语句中用问号表示<br>
+可使用第二个参数指定问号的位置<br>
+返回命令对象自身</p>
+
+<p><a id="sqliteStmtObject.bind.int"></a></p>
+
+<h3>sqliteStmtObject.bind.int()</h3>
+
+<p><a href="#sqliteStmtObject">返回对象:sqliteStmtObject</a></p>
+
+<p><a id="sqliteStmtObject.bind.int"></a></p>
+
+<h3>sqliteStmtObject.bind.int(数值)</h3>
+
+<p>绑定一个参数,参数在SQL 语句中用问号表示<br>
+可使用第二个参数指定问号的位置<br>
+返回命令对象自身</p>
+
+<p><a id="sqliteStmtObject.bind.long64"></a></p>
+
+<h3>sqliteStmtObject.bind.long64()</h3>
+
+<p><a href="#sqliteStmtObject">返回对象:sqliteStmtObject</a></p>
+
+<p><a id="sqliteStmtObject.bind.long64"></a></p>
+
+<h3>sqliteStmtObject.bind.long64(数值)</h3>
+
+<p>绑定一个64位参数,<br>
+支持整数值或math.size64对象,参数在SQL 语句中用问号表示<br>
+可使用第二个参数指定问号的位置<br>
+返回命令对象自身</p>
+
+<p><a id="sqliteStmtObject.bind.null"></a></p>
+
+<h3>sqliteStmtObject.bind.null()</h3>
+
+<p>绑定一个空值参数,参数在SQL 语句中用问号表示<br>
+可使用第二个参数指定问号的位置<br>
+返回命令对象自身  </p>
+
+<p><a href="#sqliteStmtObject">返回对象:sqliteStmtObject</a></p>
+
+<p><a id="sqliteStmtObject.bind.number"></a></p>
+
+<h3>sqliteStmtObject.bind.number()</h3>
+
+<p>如果是整数则调用bind.int()<br>
+是浮点数则调用bind.double;</p>
+
+<p><a id="sqliteStmtObject.bind.parameter"></a></p>
+
+<h3>sqliteStmtObject.bind.parameter</h3>
+
+<p>绑定一个动态类型SQL命令参数</p>
+
+<p><a id="sqliteStmtObject.bind.parameter"></a></p>
+
+<h3>sqliteStmtObject.bind.parameter(参数值,参数索引)</h3>
+
+<p>绑定一个命令动态类型SQL命令参数,自动绑定合适的数据类型.<br>
+参数2指定索引位置,默认为1<br>
+返回命令对象自身</p>
+
+<p><a id="sqliteStmtObject.bind.parameterAtNames"></a></p>
+
+<h3>sqliteStmtObject.bind.parameterAtNames()</h3>
+
+<p><a href="#sqliteStmtObject">返回对象:sqliteStmtObject</a></p>
+
+<p><a id="sqliteStmtObject.bind.parameterAtNames"></a></p>
+
+<h3>sqliteStmtObject.bind.parameterAtNames(参数表)</h3>
+
+<p>绑定一个表中所有键值对到相应的命名参数,<br>
+对所有键名添加&quot;@&quot;字符作为SQL参数名,<br>
+返回命令对象自身,以及成功绑定的参数数目.</p>
+
+<p><a id="sqliteStmtObject.bind.parameterByName"></a></p>
+
+<h3>sqliteStmtObject.bind.parameterByName()</h3>
+
+<p><a href="#sqliteStmtObject">返回对象:sqliteStmtObject</a></p>
+
+<p><a id="sqliteStmtObject.bind.parameterByName"></a></p>
+
+<h3>sqliteStmtObject.bind.parameterByName(参数值,&quot;@参数名&quot;)</h3>
+
+<p>绑定一个命令动态类型SQL命令参数,自动绑定合适的数据类型.<br>
+参数2指定命名参数,参数名可以&#39;@&#39;,&#39;:&#39;,&#39;$&#39;等符号作为首字符</p>
+
+<p><a id="sqliteStmtObject.bind.parameterByNames"></a></p>
+
+<h3>sqliteStmtObject.bind.parameterByNames()</h3>
+
+<p><a href="#sqliteStmtObject">返回对象:sqliteStmtObject</a></p>
+
+<p><a id="sqliteStmtObject.bind.parameterByNames"></a></p>
+
+<h3>sqliteStmtObject.bind.parameterByNames(参数表)</h3>
+
+<p>绑定一个表中所有键值对到相应的命名参数,<br>
+可使用第二个参数指定&#39;@&#39;,&#39;:&#39;,&#39;$&#39;等符号作为参数名前缀,<br>
+返回命令对象自身,以及成功绑定的参数数目.</p>
+
+<p><a id="sqliteStmtObject.bind.parameterIndex"></a></p>
+
+<h3>sqliteStmtObject.bind.parameterIndex(&quot;@参数名&quot;)</h3>
+
+<p>返回命名参数的索引值,参数名可以&#39;@&#39;,&#39;:&#39;,&#39;$&#39;等符号作为首字符,<br>
+成功返回索引,如果在SQL 语句中未找到该名字则返回0</p>
+
+<p><a id="sqliteStmtObject.bind.parameterIndex"></a></p>
+
+<h3>sqliteStmtObject.bind.parameterIndex()</h3>
+
+<p><a href="#sqliteStmtObject">返回对象:sqliteStmtObject</a></p>
+
+<p><a id="sqliteStmtObject.bind.parameters"></a></p>
+
+<h3>sqliteStmtObject.bind.parameters</h3>
+
+<p>绑定多个动态类型SQL命令参数</p>
+
+<p><a id="sqliteStmtObject.bind.parameters"></a></p>
+
+<h3>sqliteStmtObject.bind.parameters()</h3>
+
+<p><a href="#sqliteStmtObject">返回对象:sqliteStmtObject</a></p>
+
+<p><a id="sqliteStmtObject.bind.parameters"></a></p>
+
+<h3>sqliteStmtObject.bind.parameters(任意多个命令参数)</h3>
+
+<p>可以用一个数组参数或多个参数指定 SQL 命令参数,<br>
+绑定参数时将自动选择合适的数据类型,<br>
+参数位置对应SQL 语句中的问号位置<br>
+返回命令对象自身</p>
+
+<p><a id="sqliteStmtObject.bind.string"></a></p>
+
+<h3>sqliteStmtObject.bind.string()</h3>
+
+<p>存为text类型（UTF8字符串）</p>
+
+<p><a id="sqliteStmtObject.bind.table"></a></p>
+
+<h3>sqliteStmtObject.bind.table(table对象)</h3>
+
+<p>如果定义了tostring元方法,则调用并转换为文本存储,<br>
+如果是一个时间对象,则使用标准格式转换为文本存储<br>
+否则序列化为blob类型存储</p>
+
+<p><a id="sqliteStmtObject.bind.text"></a></p>
+
+<h3>sqliteStmtObject.bind.text()</h3>
+
+<p><a href="#sqliteStmtObject">返回对象:sqliteStmtObject</a></p>
+
+<p><a id="sqliteStmtObject.bind.text"></a></p>
+
+<h3>sqliteStmtObject.bind.text(普通文本)</h3>
+
+<p>绑定一个参数,参数为普通文本<br>
+转换为UTF8存入数据库</p>
+
+<p><a id="sqliteStmtObject.bind.text16"></a></p>
+
+<h3>sqliteStmtObject.bind.text16()</h3>
+
+<p><a href="#sqliteStmtObject">返回对象:sqliteStmtObject</a></p>
+
+<p><a id="sqliteStmtObject.bind.text16"></a></p>
+
+<h3>sqliteStmtObject.bind.text16(UTF16编码文本)</h3>
+
+<p>绑定一个参数,参数为UTF16文本</p>
+
+<p><a id="sqliteStmtObject.bind.utf16"></a></p>
+
+<h3>sqliteStmtObject.bind.utf16()</h3>
+
+<p><a href="#sqliteStmtObject">返回对象:sqliteStmtObject</a></p>
+
+<p><a id="sqliteStmtObject.bind.utf16"></a></p>
+
+<h3>sqliteStmtObject.bind.utf16(UTF16编码文本)</h3>
+
+<p>绑定一个参数,参数为UTF16文本</p>
+
+<p><a id="sqliteStmtObject.bind.utf8"></a></p>
+
+<h3>sqliteStmtObject.bind.utf8()</h3>
+
+<p><a href="#sqliteStmtObject">返回对象:sqliteStmtObject</a></p>
+
+<p><a id="sqliteStmtObject.bind.utf8"></a></p>
+
+<h3>sqliteStmtObject.bind.utf8(UTF8编码文本)</h3>
+
+<p>绑定一个参数,参数为UTF8文本<br>
+该函数不会转换编码</p>
+
+<p><a id="sqliteStmtObject.column.count"></a></p>
+
+<h3>sqliteStmtObject.column.count()</h3>
+
+<p>返回列数目</p>
+
+<p><a id="sqliteStmtObject.column.name"></a></p>
+
+<h3>sqliteStmtObject.column.name(iCol)</h3>
+
+<p>返回指定列名字</p>
+
+<p><a id="sqliteStmtObject.column.queryValue"></a></p>
+
+<h3>sqliteStmtObject.column.queryValue(iCol)</h3>
+
+<p>返回指定列的数据值<br>
+此函数自动识别并转换类型</p>
+
+<p><a id="sqliteStmtObject.column.type"></a></p>
+
+<h3>sqliteStmtObject.column.type(iCol)</h3>
+
+<p>返回指定列字段类型</p>
+
+<p><a id="sqliteStmtObject.each"></a></p>
+
+<h3>sqliteStmtObject.each</h3>
+
+<pre><code class="aardio language-aardio">for 字段名,字段名2 in sqliteStmtObject.each() {
+    io.print( 字段名,字段名2 )
+}
+</code></pre>
+
+<p><a id="sqliteStmtObject.finalize"></a></p>
+
+<h3>sqliteStmtObject.finalize()</h3>
+
+<p>释放预处理命令对象,<br>
+应当在不再使用此命令对象时尽早调用此函数。<br>
+如果忘记调用，回收对象时也会自动调用此函数</p>
+
+<p><a id="sqliteStmtObject.getColumns"></a></p>
+
+<h3>sqliteStmtObject.getColumns()</h3>
+
+<p>返回当前查询的列名字数组.</p>
+
+<p><a id="sqliteStmtObject.getTable"></a></p>
+
+<h3>sqliteStmtObject.getTable()</h3>
+
+<p>返回全部数据,<br>
+返回值为table数组,每行记录为一个数组元素.</p>
+
+<p><a id="sqliteStmtObject.prepare"></a></p>
+
+<h3>sqliteStmtObject.prepare(&quot;SELECT * FROM [表名] /*SQL 语句*/&quot;)</h3>
+
+<p>重新编译SQL预处理命令,<br>
+可选参数2:指定查询条件(table对象或字符串),<br>
+可选增加任意个附加sql参数.</p>
+
+<p><a id="sqliteStmtObject.prepare"></a></p>
+
+<h3>sqliteStmtObject.prepare()</h3>
+
+<p><a href="#sqliteStmtObject">返回对象:sqliteStmtObject</a></p>
+
+<p><a id="sqliteStmtObject.reset"></a></p>
+
+<h3>sqliteStmtObject.reset()</h3>
+
+<p>重置到没有执行之前的状态,已绑定的参数不会变化<br>
+执行后需要改变绑定参数时必须首先调用该函数</p>
+
+<p><a id="sqliteStmtObject.sql"></a></p>
+
+<h3>sqliteStmtObject.sql</h3>
+
+<p>SQL 指令</p>
+
+<p><a id="sqliteStmtObject.step"></a></p>
+
+<h3>sqliteStmtObject.step(可选输入命名参数)</h3>
+
+<p>执行SQL命令并向下移动一行,成功则返回值大于等于100,<br>
+如果提供命令参数表,则自动调用 reset 函数后并自动绑定参数,<br>
+参数表可以包含名值对,也可以包含匿名参数值数组</p>
+
+<p><a id="sqliteStmtObject.stepQuery"></a></p>
+
+<h3>sqliteStmtObject.stepQuery()</h3>
+
+<p>向后移动一行,并返回当前数据,失败返回null,状态码.<br>
+返回table对象,键为列名,值为当前行数据</p>
+
+<p><a id="sqliteStmtObject.stepResult"></a></p>
+
+<h3>sqliteStmtObject.stepResult()</h3>
+
+<p>向后移动一行,并返回当前数据,失败返回null,状态码.<br>
+返回数组,键为列序号,值为当前行数据</p>
+
+<h3>自动完成常量</h3>
+
+<p>_SQLITE_OPEN_AUTOPROXY=0x20<br>
+_SQLITE_OPEN_CREATE=4<br>
+_SQLITE_OPEN_DELETEONCLOSE=8<br>
+_SQLITE_OPEN_EXCLUSIVE=0x10<br>
+_SQLITE_OPEN_FULLMUTEX=0x10000<br>
+_SQLITE_OPEN_MAIN_DB=0x100<br>
+_SQLITE_OPEN_MAIN_JOURNAL=0x800<br>
+_SQLITE_OPEN_MASTER_JOURNAL=0x4000<br>
+_SQLITE_OPEN_NOMUTEX=0x8000<br>
+_SQLITE_OPEN_PRIVATECACHE=0x40000<br>
+_SQLITE_OPEN_READONLY=1<br>
+_SQLITE_OPEN_READWRITE=2<br>
+_SQLITE_OPEN_SHAREDCACHE=0x20000<br>
+_SQLITE_OPEN_SUBJOURNAL=0x2000<br>
+_SQLITE_OPEN_TEMP_DB=0x200<br>
+_SQLITE_OPEN_TEMP_JOURNAL=0x1000<br>
+_SQLITE_OPEN_TRANSIENT_DB=0x400  </p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/sqlite/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/sqlite/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/sqlite/_.md">Markdown 格式</a></p>
+
+</body> 
+</html>

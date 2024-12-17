@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - eval() 函数'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - eval() 函数</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>eval() 函数</h1>
+
+<p>eval() 函数可将字符串转换为代码执行，并返回一个或多个值</p>
+
+<ol>
+<li><p>函数原型：   </p>
+
+<p><code>返回值 = eval( codeString )</code></p></li>
+<li><p>函数说明：   </p>
+
+<p>eval() 函数可将字符串转换为代码执行，并返回一个或多个值。
+如果eval函数在执行时遇到错误,则抛出异常给调用者.  </p>
+
+<p>类似的函数是 <a href="loadcode.html" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/builtin-function/loadcode.html">loadcode</a> ，请注意区别： </p>
+
+<ul>
+<li>loadcode 并不立即执行代码，而是返回一个函数对象，加载代码失败不会抛出异常而是返回 null 与错误信息。eval 函数则会立即执行代码，如果失败 eval 会抛出异常而不是返回错误信息。</li>
+<li>loadcode 支持在参数中找定代码文件路径，eval 的参数则只能是 aardio 代码表示的表达式。</li>
+<li>loadcode 加载是函数对象，执行的是一组语句，可以在 代码中使用 return 语句返回值。
+但 eval 的参数只能是表达式，不能在代码顶层直接使用 return 语句（ 除非包装到立即执行函数内部 ）。例如：
+<code>aardio
+eval(&quot;(function(){
+ return 123
+})() &quot;)
+</code></li>
+</ul>
+
+<p>请参考：<a href="../basic-syntax.html#stat-vs-exp" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/basic-syntax.html#stat-vs-exp">表达式与语句拥区别</a></p></li>
+<li><p>调用示例：   </p>
+
+<pre><code class="aardio language-aardio">import console; 
+
+console.log( eval(&quot;1+1&quot;) ); 
+
+console.pause();
+</code></pre></li>
+</ol>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/language-reference/builtin-function/eval.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/language-reference/builtin-function/eval.md'" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/builtin-function/eval.md">Markdown 格式</a></p>
+
+</body> 
+</html>

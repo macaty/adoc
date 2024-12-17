@@ -1,0 +1,289 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - com.matlab 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - com.matlab 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>com.matlab 库模块帮助文档</h1>
+
+<p><a id="com"></a></p>
+
+<h2>com 成员列表</h2>
+
+<p><a id="com.matlab"></a></p>
+
+<h3>com.matlab</h3>
+
+<p>MATLAB 应用程序对象。</p>
+
+<p><a id="com.matlab"></a></p>
+
+<h3>com.matlab(hidden,progId)</h3>
+
+<p>创建或获取已打开的 MATLAB 应用程序对象。<br>
+@hidden 指定是否隐藏创建的窗口，如果连接到已打开的 MATLAB 应用则此选项无效。<br>
+可选用 @progId 参数中指定 ProgID。  </p>
+
+<p><a href="#comMatLabObject">返回对象:comMatLabObject</a></p>
+
+<p><a id="comMatLabObject"></a></p>
+
+<h2>comMatLabObject 成员列表</h2>
+
+<p><a id="comMatLabObject.?"></a></p>
+
+<h3>comMatLabObject.?</h3>
+
+<p>指定 MATLAB 函数名，调用 MATLAB 函数对象。<br>
+第 1 个参数指定返回值数量（无参数，或首个参数不是数值可省略，默认为 1）。</p>
+
+<p><a id="comMatLabObject.addpath"></a></p>
+
+<h3>comMatLabObject.addpath()</h3>
+
+<p>添加搜索目录。<br>
+<a href="javascript:if(confirm('https://ww2.mathworks.cn/support/search.html?q=addpath  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='https://ww2.mathworks.cn/support/search.html?q=addpath'" tppabs="https://ww2.mathworks.cn/support/search.html?q=addpath">https://ww2.mathworks.cn/support/search.html?q=addpath</a></p>
+
+<p><a id="comMatLabObject.base"></a></p>
+
+<h3>comMatLabObject.base</h3>
+
+<p>MATLAB 基础工作区。  </p>
+
+<p><a href="#comMatLabWsObject">返回对象:comMatLabWsObject</a></p>
+
+<p><a id="comMatLabObject.cd"></a></p>
+
+<h3>comMatLabObject.cd()</h3>
+
+<p>修改当前目录为参数 @1 指定的目录。<br>
+不指定参数默认切换到应用程序目录 &quot;/&quot; 。<br>
+返回旧的工作目录。</p>
+
+<p><a id="comMatLabObject.code"></a></p>
+
+<h3>comMatLabObject.code</h3>
+
+<pre><code class="aardio language-aardio">comMatLabObject.code = /******  
+/*执行 MATLAB 命令，可用模板语法在 &lt;? ?&gt; 标记内嵌入 aardio 代码或对象。*/  
+******/
+</code></pre>
+
+<p><a id="comMatLabObject.eval"></a></p>
+
+<h3>comMatLabObject.eval()</h3>
+
+<p>解析字符串参数 @1 指定的 MATLAB 表达式，返回解析结果。<br>
+也可以在下标操作符中用字符串输入表达式，可自动调用 eval 函数返回结果。</p>
+
+<p><a id="comMatLabObject.evalin"></a></p>
+
+<h3>comMatLabObject.evalin()</h3>
+
+<p>在参数 @1 指定的工作区计算表达式。</p>
+
+<p><a id="comMatLabObject.exec"></a></p>
+
+<h3>comMatLabObject.exec()</h3>
+
+<p>执行字符串命名，并返回字符串值。</p>
+
+<p><a id="comMatLabObject.figure"></a></p>
+
+<h3>comMatLabObject.figure(&#39;Name&#39;,&#39;新标题&#39;,&#39;NumberTitle&#39;,&#39;off&#39;)</h3>
+
+<p>修改窗口标题</p>
+
+<p><a id="comMatLabObject.figure"></a></p>
+
+<h3>comMatLabObject.figure(&#39;Visible&#39;, &#39;on&#39;)</h3>
+
+<p>显示绘图窗口，参数 @2 设为 &quot;off&quot; 隐藏绘图窗口。</p>
+
+<p><a id="comMatLabObject.getData"></a></p>
+
+<h3>comMatLabObject.getData()</h3>
+
+<p>自参数 @2 指定名字的工作区获取参数 @1 指定变量名的值。<br>
+返回 2 个值，分别为 矩阵的实部和虚部。</p>
+
+<p><a id="comMatLabObject.getMatrix"></a></p>
+
+<h3>comMatLabObject.getMatrix()</h3>
+
+<p>自参数 @2 指定名字的工作区获取参数 @1 指定变量名的矩阵。<br>
+返回 2 个值，分别为 矩阵的实部和虚部。</p>
+
+<p><a id="comMatLabObject.getString"></a></p>
+
+<h3>comMatLabObject.getString()</h3>
+
+<p>自参数 @2 指定名字的工作区获取参数 @1 指定变量名的字符串。<br>
+返回 2 个值，分别为 矩阵的实部和虚部。</p>
+
+<p><a id="comMatLabObject.global"></a></p>
+
+<h3>comMatLabObject.global</h3>
+
+<p>MATLAB 全局工作区。  </p>
+
+<p><a href="#comMatLabWsObject">返回对象:comMatLabWsObject</a></p>
+
+<p><a id="comMatLabObject.maximize"></a></p>
+
+<h3>comMatLabObject.maximize()</h3>
+
+<p>最大化 MATLAB 命令行窗口。</p>
+
+<p><a id="comMatLabObject.minimize"></a></p>
+
+<h3>comMatLabObject.minimize()</h3>
+
+<p>最小化 MATLAB 命令行窗口。</p>
+
+<p><a id="comMatLabObject.putData"></a></p>
+
+<h3>comMatLabObject.putData</h3>
+
+<p>将变量值存储到工作区。<br>
+也可以直接读写 base,global 属性的成员值。</p>
+
+<p><a id="comMatLabObject.putData"></a></p>
+
+<h3>comMatLabObject.putData(varname,workSpace,data)</h3>
+
+<p>将 @data 指定的变量值存储到工作区，并将其指定给变量 varname 。<br>
+要注意直接读写 base,global 工作区变量时默认为 double 类型。<br>
+而用 putData 函数写入整数时，要用 com.double 转换为 double 型。<br>
+但遵守 COM 接口默认规则 ，小数与数组默认为 double 类型。</p>
+
+<p><a id="comMatLabObject.putMatrix"></a></p>
+
+<h3>comMatLabObject.putMatrix</h3>
+
+<p>将矩阵存储到工作区</p>
+
+<p><a id="comMatLabObject.putMatrix"></a></p>
+
+<h3>comMatLabObject.putMatrix(varname,workSpace,xreal,ximag)</h3>
+
+<p>将矩阵存储到工作区，并将其指定给变量 varname。<br>
+分别将 xreal 和 ximag 用于矩阵的实部和虚部。<br>
+矩阵不能是标量或空数组，也不能大于两维。</p>
+
+<p><a id="comMatLabObject.putString"></a></p>
+
+<h3>comMatLabObject.putString</h3>
+
+<p>将字符串存储到工作区。<br>
+也可以直接读写 base,global 属性的成员值。</p>
+
+<p><a id="comMatLabObject.putString"></a></p>
+
+<h3>comMatLabObject.putString(varname,workSpace,xreal,ximag)</h3>
+
+<p>将字符串存储到工作区，并将其指定给变量 varname。<br>
+分别将 xreal 和 ximag 用于矩阵的实部和虚部。<br>
+矩阵不能是标量或空数组，也不能大于两维。</p>
+
+<p><a id="comMatLabObject.pwd"></a></p>
+
+<h3>comMatLabObject.pwd()</h3>
+
+<p>返回当前工作目录</p>
+
+<p><a id="comMatLabObject.quit"></a></p>
+
+<h3>comMatLabObject.quit()</h3>
+
+<p>关闭 MATLAB 应用程序。</p>
+
+<p><a id="comMatLabObject.visible"></a></p>
+
+<h3>comMatLabObject.visible</h3>
+
+<p>是否显示 MATLAB 命令行窗口。</p>
+
+<p><a id="comMatLabWsObject"></a></p>
+
+<h2>comMatLabWsObject 成员列表</h2>
+
+<p><a id="comMatLabWsObject.?"></a></p>
+
+<h3>comMatLabWsObject.?</h3>
+
+<p>指定 MATLAB 基础工作区变量名，读写变量值。</p>
+
+<p><a id="comMatLabWsObject.assign"></a></p>
+
+<h3>comMatLabWsObject.assign(tab)</h3>
+
+<pre><code class="aardio language-aardio">comMatLabWsObject.assign({
+    /*在参数表中定义多个名值对。  
+这些名字和值将作为变量名与变量值写入工作区。*/
+})
+</code></pre>
+
+<p><a id="comMatLabWsObject.eval"></a></p>
+
+<h3>comMatLabWsObject.eval()</h3>
+
+<p>在工作区解析字符串参数 @1 指定的 MATLAB 表达式，返回解析结果。</p>
+
+<p><a id="comMatLabWsObject.getData"></a></p>
+
+<h3>comMatLabWsObject.getData()</h3>
+
+<p>自参数 @2 指定名字的工作区获取参数 @1 指定变量名的值。<br>
+返回 2 个值，分别为 矩阵的实部和虚部。</p>
+
+<p><a id="comMatLabWsObject.getMatrix"></a></p>
+
+<h3>comMatLabWsObject.getMatrix()</h3>
+
+<p>自工作区获取参数 @1 指定变量名的矩阵。<br>
+返回 2 个值，分别为 矩阵的实部和虚部。</p>
+
+<p><a id="comMatLabWsObject.putData"></a></p>
+
+<h3>comMatLabWsObject.putData</h3>
+
+<p>将变量值存储到工作区。<br>
+也可以直接读写 base,global 属性的成员值。</p>
+
+<p><a id="comMatLabWsObject.putData"></a></p>
+
+<h3>comMatLabWsObject.putData(varname,data)</h3>
+
+<p>将 @data 指定的变量值存储到工作区，并将其指定给变量 varname 。<br>
+要注意直接读写 base,global 工作区变量时默认为 double 类型。<br>
+而用 putData 函数写入整数时，要用 com.double 转换为 double 型。<br>
+但遵守 COM 接口默认规则 ，小数与数组默认为 double 类型。</p>
+
+<p><a id="comMatLabWsObject.putMatrix"></a></p>
+
+<h3>comMatLabWsObject.putMatrix</h3>
+
+<p>将矩阵存储到工作区</p>
+
+<p><a id="comMatLabWsObject.putMatrix"></a></p>
+
+<h3>comMatLabWsObject.putMatrix(varname,xreal,ximag)</h3>
+
+<p>将矩阵存储到工作区，并将其指定给变量 varname。<br>
+分别将 xreal 和 ximag 用于矩阵的实部和虚部。<br>
+矩阵不能是标量或空数组，也不能大于两维。</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/com/matlab/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/com/matlab/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/com/matlab/_.md">Markdown 格式</a></p>
+
+</body> 
+</html>

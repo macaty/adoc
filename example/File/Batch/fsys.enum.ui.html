@@ -1,0 +1,97 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 遍历文件+界面'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 遍历文件+界面</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 遍历文件+界面</h1><pre><code class="aardio language-aardio">//遍历文件+界面
+import fonts.fontAwesome;
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;遍历文件&quot;;right=634;bottom=502;acceptfiles=1)
+winform.add(
+btnEnum={cls=&quot;button&quot;;text=&quot;遍历目录&quot;;left=310;top=451;right=516;bottom=489;db=1;dl=1;dr=1;z=6};
+btnOpenDir={cls=&quot;plus&quot;;text=&quot;选择目录&quot;;left=478;top=39;right=596;bottom=69;align=&quot;left&quot;;color=3947580;dr=1;dt=1;font=LOGFONT(h=-13);iconStyle={align=&quot;left&quot;;font=LOGFONT(h=-13;name=&#39;FontAwesome&#39;);padding={left=8}};iconText=&#39;\uF07C&#39;;notify=1;textPadding={left=25};z=8};
+chkSubDir={cls=&quot;checkbox&quot;;text=&quot;递归处理子目录&quot;;left=325;top=88;right=441;bottom=104;checked=1;dr=1;dt=1;z=7};
+editLog={cls=&quot;edit&quot;;left=41;top=123;right=588;bottom=434;db=1;dl=1;dr=1;dt=1;edge=1;hscroll=1;multiline=1;vscroll=1;z=5};
+lbDir={cls=&quot;static&quot;;text=&quot;可拖动目录本程序中:&quot;;left=41;top=17;right=206;bottom=36;dl=1;dt=1;transparent=1;z=2};
+lbExt={cls=&quot;static&quot;;text=&quot;后缀名:&quot;;left=47;top=88;right=112;bottom=107;align=&quot;right&quot;;dl=1;dt=1;transparent=1;z=4};
+txtDir={cls=&quot;edit&quot;;left=40;top=43;right=476;bottom=72;dl=1;dr=1;dt=1;edge=1;z=1};
+txtExt={cls=&quot;edit&quot;;text=&quot;*.*|*.txt&quot;;left=122;top=83;right=302;bottom=112;dl=1;dt=1;edge=1;multiline=1;z=3}
+)
+/*}}*/
+
+var enumThread = function(winform){
+
+    import fsys;
+
+    var root = winform.txtDir.text;
+    var pattern = string.split(winform.txtExt.text,&quot;|&quot;);
+    var subDir = winform.chkSubDir.checked;
+
+    fsys.enum( root,pattern,
+        function(dirname,filename,fullpath,findData){  
+            var path = fsys.path.relative(fullpath,root,false);
+
+            if(filename){ 
+                 winform.editLog.print(&quot;文件&quot;,path);
+            } 
+            else {
+                winform.editLog.print(&quot;目录&quot;,path);
+            }
+
+            if(winform.btnEnum.text != &quot;停止&quot;){
+                return false; 
+            }
+        },subDir
+    );
+
+    winform.editLog.print(&quot;已完成&quot;);
+}
+
+import fsys;
+winform.btnEnum.oncommand = function(id,event){
+    if( winform.btnEnum.text = &quot;停止&quot; ){
+        winform.btnEnum.text = &quot;遍历目录&quot;;
+        return;
+    }
+
+    if( ! fsys.isDir( winform.txtDir.text ) ){
+        return winform.txtDir.showErrorTip(&quot;请指定正确的目录&quot;,&quot;文件名批理替换程序&quot;) 
+    }
+
+    winform.btnEnum.text = &quot;停止&quot;; 
+    thread.invoke(enumThread,winform);
+}
+
+winform.onDropFiles = function(files){
+    winform.txtDir.text =  files[1];    
+}
+
+import fsys.dlg.dir;
+winform.btnOpenDir.oncommand = function(id,event){
+    winform.txtDir.text = fsys.dlg.dir(,winform,&#39;请选择要批量改名的目录&#39;)
+}
+winform.btnOpenDir.skin({
+    color={
+        active=0xFF00FF00;
+        default=0xFF3C3C3C;
+        disabled=0xFF6D6D6D;
+        hover=0xFFFF0000
+    }
+})
+winform.show();
+win.loopMessage();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/File/Batch/fsys.enum.ui.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/File/Batch/fsys.enum.ui.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/File/Batch/fsys.enum.ui.md">Markdown 格式</a>
+</body> 
+</html>

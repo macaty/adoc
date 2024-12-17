@@ -1,0 +1,384 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - dotNet.Selenium 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - dotNet.Selenium 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>dotNet.Selenium 库模块帮助文档</h1>
+
+<p><a id="dotNet"></a></p>
+
+<h2>dotNet 成员列表</h2>
+
+<p><a id="dotNet.Selenium"></a></p>
+
+<h3>dotNet.Selenium</h3>
+
+<p>导入 .NET Selenium 名字空间。<br>
+支持 .NET 4.6.1 或 Win10 1511 以及之后的版本。<br>
+请直接使用 Selenium 名字空间（ dotNet.Selenium 指向 Selenium）。</p>
+
+<p><a id="Selenium"></a></p>
+
+<h2>Selenium 成员列表</h2>
+
+<p>名字空间（ .NET ）</p>
+
+<p><a id="Selenium.?"></a></p>
+
+<h3>Selenium.?</h3>
+
+<p>.NET 名字空间、类、结构体的成员，<br>
+可访问成员名字空间、类、枚举、静态属性或字段，<br>
+导入的类可用于构造 .NET 对象，传回 .NET 则自动转为该类的 Type 对象  </p>
+
+<p><a href="../appDomain.html#dotNetNameSpaceObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/dotNet/appDomain.html#dotNetNameSpaceObject">返回对象:dotNetNameSpaceObject</a></p>
+
+<p><a id="Selenium.By"></a></p>
+
+<h3>Selenium.By</h3>
+
+<p>创建查询条件  </p>
+
+<p><a href="#netSeleniumByObject">返回对象:netSeleniumByObject</a></p>
+
+<p><a id="Selenium.CreateDefaultChromeService"></a></p>
+
+<h3>Selenium.CreateDefaultChromeService()</h3>
+
+<p>创建并返回 2 个值，<br>
+分别为 Selenium.DriverService，Selenium.DriverOptions 对象。<br>
+这两个返回值可以作为 CreateDefaultWebDriver 的参数创建 WebDriver 对象。<br>
+Selenium.DriverOptions 的 AddArgument 函数可以用于添加浏览器启动参数。<br>
+这两个返回值的有哪些接口用 ILSpy 打开扩展库目录下的 .NET 程序集就可以查看。<br>
+也可以看 Selenium .NET 的文档。  </p>
+
+<p>如果返回2个值表示已经成功找到或自动安装 Chrome 与 ChromeDriver,<br>
+Chrome 与 ChromeDriver 路径这些已经指定,不用再修改,<br>
+不指定参数@1为 true,默认排除 enable-logging 参数并隐藏控制台,<br>
+失败返回 null</p>
+
+<p><a id="Selenium.CreateDefaultWebDriver"></a></p>
+
+<h3>Selenium.CreateDefaultWebDriver</h3>
+
+<p>建议直接用这个函数创建 WebDriver 客户端<br>
+代码量少，自动兼容系统安装的 Chrome 或 Edge Chromium<br>
+没有安装会自动安装</p>
+
+<p><a id="Selenium.CreateDefaultWebDriver"></a></p>
+
+<h3>Selenium.CreateDefaultWebDriver()</h3>
+
+<p><a href="#dotNetSeleniumWebDriverObject">返回对象:dotNetSeleniumWebDriverObject</a></p>
+
+<p><a id="Selenium.CreateDefaultWebDriver"></a></p>
+
+<h3>Selenium.CreateDefaultWebDriver(args,...)</h3>
+
+<p>如果 @args 为字符串，或指定多个字符串参数，<br>
+则这些参数添加为浏览器启动参数。</p>
+
+<p><a id="Selenium.CreateDefaultWebDriver"></a></p>
+
+<h3>Selenium.CreateDefaultWebDriver(chromeService,ChromeOption)</h3>
+
+<p>不需要指定参数,<br>
+不指定参数时自动调用 Selenium.CreateDefaultChromeService 并获取返回值作为默认参数。  </p>
+
+<p>如果需要指定浏览器启动参数，可先调用 CreateDefaultChromeService 函数得到 ChromeOption，<br>
+然后调用 chromeOptions.AddArgument 添加浏览器启动参数。</p>
+
+<p><a id="Selenium.assembly"></a></p>
+
+<h3>Selenium.assembly</h3>
+
+<p>导入此 .NET 名字空间的程序集对象。  </p>
+
+<p><a href="#dotNetCrlAssemblyObject">返回对象:dotNetCrlAssemblyObject</a></p>
+
+<p><a id="Selenium.Support"></a></p>
+
+<h2>Selenium.Support 成员列表</h2>
+
+<p>名字空间（ .NET ）</p>
+
+<p><a id="Selenium.Support.?"></a></p>
+
+<h3>Selenium.Support.?</h3>
+
+<p>.NET 名字空间、类、结构体的成员，<br>
+可访问成员名字空间、类、枚举、静态属性或字段，<br>
+导入的类可用于构造 .NET 对象，传回 .NET 则自动转为该类的 Type 对象  </p>
+
+<p><a href="../appDomain.html#dotNetNameSpaceObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/dotNet/appDomain.html#dotNetNameSpaceObject">返回对象:dotNetNameSpaceObject</a></p>
+
+<p><a id="dotNetSeleniumEleObject"></a></p>
+
+<h2>dotNetSeleniumEleObject 成员列表</h2>
+
+<p><a id="dotNetSeleniumEleObject.Clear"></a></p>
+
+<h3>dotNetSeleniumEleObject.Clear()</h3>
+
+<p>清空</p>
+
+<p><a id="dotNetSeleniumEleObject.Click"></a></p>
+
+<h3>dotNetSeleniumEleObject.Click()</h3>
+
+<p>点击</p>
+
+<p><a id="dotNetSeleniumEleObject.DeselectAll"></a></p>
+
+<h3>dotNetSeleniumEleObject.DeselectAll()</h3>
+
+<p>取消选择所有节点</p>
+
+<p><a id="dotNetSeleniumEleObject.DeselectByIndex"></a></p>
+
+<h3>dotNetSeleniumEleObject.DeselectByIndex(index)</h3>
+
+<p>根据参数@1指定的索引取消选择节点</p>
+
+<p><a id="dotNetSeleniumEleObject.DeselectByText"></a></p>
+
+<h3>dotNetSeleniumEleObject.DeselectByText(Text)</h3>
+
+<p>根据参数@1指定的文本取消选择节点</p>
+
+<p><a id="dotNetSeleniumEleObject.DeselectByValue"></a></p>
+
+<h3>dotNetSeleniumEleObject.DeselectByValue(Value)</h3>
+
+<p>根据参数@1指定的 value 值取消选择节点</p>
+
+<p><a id="dotNetSeleniumEleObject.Displayed"></a></p>
+
+<h3>dotNetSeleniumEleObject.Displayed</h3>
+
+<p>是否显示</p>
+
+<p><a id="dotNetSeleniumEleObject.Enabled"></a></p>
+
+<h3>dotNetSeleniumEleObject.Enabled</h3>
+
+<p>是否可用</p>
+
+<p><a id="dotNetSeleniumEleObject.FindElement"></a></p>
+
+<h3>dotNetSeleniumEleObject.FindElement()</h3>
+
+<p>根据参数 @1 用 Selenium.By 指定的条件查找节点。</p>
+
+<p><a href="#dotNetSeleniumEleObject">返回对象:dotNetSeleniumEleObject</a></p>
+
+<p><a id="dotNetSeleniumEleObject.FindElements"></a></p>
+
+<h3>dotNetSeleniumEleObject.FindElements()</h3>
+
+<p>根据参数 @1 用 Selenium.By 指定的条件查找节点。</p>
+
+<p><a href="#dotNetSeleniumEleObject">返回对象:dotNetSeleniumEleObject</a></p>
+
+<p><a id="dotNetSeleniumEleObject.GetAttribute"></a></p>
+
+<h3>dotNetSeleniumEleObject.GetAttribute(&quot;outerHTML&quot;)</h3>
+
+<p>获取元素属性</p>
+
+<p><a id="dotNetSeleniumEleObject.IsMultiple"></a></p>
+
+<h3>dotNetSeleniumEleObject.IsMultiple</h3>
+
+<p>是否为支持多选的下拉框</p>
+
+<p><a id="dotNetSeleniumEleObject.SelectByIndex"></a></p>
+
+<h3>dotNetSeleniumEleObject.SelectByIndex()</h3>
+
+<p>根据参数@1指定的索引选择节点</p>
+
+<p><a id="dotNetSeleniumEleObject.SelectByText"></a></p>
+
+<h3>dotNetSeleniumEleObject.SelectByText(Text,partialMatch)</h3>
+
+<p>根据参数@1指定的文本选择节点,<br>
+可选用参数@2指定是否使用部分匹配</p>
+
+<p><a id="dotNetSeleniumEleObject.SelectByValue"></a></p>
+
+<h3>dotNetSeleniumEleObject.SelectByValue()</h3>
+
+<p>根据参数@1指定的 value 值选择节点</p>
+
+<p><a id="dotNetSeleniumEleObject.Selected"></a></p>
+
+<h3>dotNetSeleniumEleObject.Selected</h3>
+
+<p>是否处于勾选状态</p>
+
+<p><a id="dotNetSeleniumEleObject.SendKeys"></a></p>
+
+<h3>dotNetSeleniumEleObject.SendKeys()</h3>
+
+<p>发送参数 @1 指定的字符串</p>
+
+<p><a id="dotNetSeleniumEleObject.Size"></a></p>
+
+<h3>dotNetSeleniumEleObject.Size</h3>
+
+<p>返回元素的尺寸</p>
+
+<p><a id="dotNetSeleniumEleObject.Submit"></a></p>
+
+<h3>dotNetSeleniumEleObject.Submit()</h3>
+
+<p>提交</p>
+
+<p><a id="dotNetSeleniumEleObject.Text"></a></p>
+
+<h3>dotNetSeleniumEleObject.Text</h3>
+
+<p>返回元素的内部文本（InnerText）</p>
+
+<p><a id="dotNetSeleniumEleObject.tagName"></a></p>
+
+<h3>dotNetSeleniumEleObject.tagName</h3>
+
+<p>返回元素的标签名称</p>
+
+<p><a id="dotNetSeleniumWebDriverObject"></a></p>
+
+<h2>dotNetSeleniumWebDriverObject 成员列表</h2>
+
+<p><a id="dotNetSeleniumWebDriverObject.FindElement"></a></p>
+
+<h3>dotNetSeleniumWebDriverObject.FindElement()</h3>
+
+<p>根据参数 @1 用 Selenium.By 指定的条件查找节点。</p>
+
+<p><a href="#dotNetSeleniumEleObject">返回对象:dotNetSeleniumEleObject</a></p>
+
+<p><a id="dotNetSeleniumWebDriverObject.FindElements"></a></p>
+
+<h3>dotNetSeleniumWebDriverObject.FindElements()</h3>
+
+<p>根据参数 @1 用 Selenium.By 指定的条件查找节点。</p>
+
+<p><a href="#dotNetSeleniumEleObject">返回对象:dotNetSeleniumEleObject</a></p>
+
+<p><a id="dotNetSeleniumWebDriverObject.Manage"></a></p>
+
+<h3>dotNetSeleniumWebDriverObject.Manage()</h3>
+
+<p>返回 Selenium.IOptions 对象  </p>
+
+<p><a href="#netSeleniumIOptionsObject">返回对象:netSeleniumIOptionsObject</a></p>
+
+<p><a id="dotNetSeleniumWebDriverObject.Quit"></a></p>
+
+<h3>dotNetSeleniumWebDriverObject.Quit()</h3>
+
+<p>退出进程</p>
+
+<p><a id="dotNetSeleniumWebDriverObject.WaitEle"></a></p>
+
+<h3>dotNetSeleniumWebDriverObject.WaitEle()</h3>
+
+<p>根据参数 @1 用 Selenium.By 指定的条件查找节点。<br>
+此函数会等待指定节点创建并显示。</p>
+
+<p><a href="#dotNetSeleniumEleObject">返回对象:dotNetSeleniumEleObject</a></p>
+
+<p><a id="netSeleniumByObject"></a></p>
+
+<h2>netSeleniumByObject 成员列表</h2>
+
+<p><a id="netSeleniumByObject.ClassName"></a></p>
+
+<h3>netSeleniumByObject.ClassName()</h3>
+
+<p>以参数 @1 指定的 CSS 类名作为查询条件</p>
+
+<p><a href="#netSeleniumByObject">返回对象:netSeleniumByObject</a></p>
+
+<p><a id="netSeleniumByObject.CssSelector"></a></p>
+
+<h3>netSeleniumByObject.CssSelector()</h3>
+
+<p>以参数 @1 指定的 CSS 选择器作为查询条件</p>
+
+<p><a href="#netSeleniumByObject">返回对象:netSeleniumByObject</a></p>
+
+<p><a id="netSeleniumByObject.Id"></a></p>
+
+<h3>netSeleniumByObject.Id()</h3>
+
+<p>以参数 @1 指定的 ID 作为查询条件</p>
+
+<p><a href="#netSeleniumByObject">返回对象:netSeleniumByObject</a></p>
+
+<p><a id="netSeleniumByObject.LinkText"></a></p>
+
+<h3>netSeleniumByObject.LinkText()</h3>
+
+<p>以参数 @1 指定的链接文本作为查询条件</p>
+
+<p><a href="#netSeleniumByObject">返回对象:netSeleniumByObject</a></p>
+
+<p><a id="netSeleniumByObject.Name"></a></p>
+
+<h3>netSeleniumByObject.Name()</h3>
+
+<p>以参数 @1 指定的 name 属性作为查询条件</p>
+
+<p><a href="#netSeleniumByObject">返回对象:netSeleniumByObject</a></p>
+
+<p><a id="netSeleniumByObject.PartialLinkText"></a></p>
+
+<h3>netSeleniumByObject.PartialLinkText()</h3>
+
+<p>以参数 @1 指定的部分链接文本作为查询条件</p>
+
+<p><a href="#netSeleniumByObject">返回对象:netSeleniumByObject</a></p>
+
+<p><a id="netSeleniumByObject.TagName"></a></p>
+
+<h3>netSeleniumByObject.TagName()</h3>
+
+<p>以参数 @1 指定的标签名作为查询条件</p>
+
+<p><a href="#netSeleniumByObject">返回对象:netSeleniumByObject</a></p>
+
+<p><a id="netSeleniumByObject.XPath"></a></p>
+
+<h3>netSeleniumByObject.XPath()</h3>
+
+<p>以参数 @1 指定的 XPath 路径作为查询条件</p>
+
+<p><a href="#netSeleniumByObject">返回对象:netSeleniumByObject</a></p>
+
+<p><a id="netSeleniumIOptionsObject.Cookies"></a></p>
+
+<h2>netSeleniumIOptionsObject.Cookies 成员列表</h2>
+
+<p><a id="netSeleniumIOptionsObject.Cookies.AllCookies"></a></p>
+
+<h3>netSeleniumIOptionsObject.Cookies.AllCookies</h3>
+
+<p>返回所有 Cookies ，可用 dotNet 遍历</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/dotNet/Selenium/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/dotNet/Selenium/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/dotNet/Selenium/_.md">Markdown 格式</a></p>
+
+</body> 
+</html>

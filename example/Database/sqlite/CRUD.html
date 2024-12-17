@@ -1,0 +1,69 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - sqlite 库 - 增删改查'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - sqlite 库 - 增删改查</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: sqlite 库 - 增删改查</h1><pre><code class="aardio language-aardio">//sqlite 库 - 增删改查
+
+import sqlite
+import console;
+
+var db = sqlite(&quot;/test-sqlite.db&quot;); //创建数据库
+if( not db.existsTable(&quot;film&quot;) ){ 
+    db.exec( &quot;CREATE TABLE [film](title, length, year, starring);&quot;); //创建表
+}  
+
+//增 - 使用命名参数示例 
+var cmd = db.prepare(&quot;REPLACE INTO film VALUES (@title,@length,@year, &#39;Jodie Foster&#39;);&quot; ) 
+cmd.step(  
+    title = &quot;标题&quot;;
+    length = 4;
+    year = time.now();
+)    
+
+//删 - 执行SQL语句，支持参数化 SQL，支持数组参数
+db.exec(&quot;DELETE FROM ?? WHERE title=?;&quot;,{ &quot;film&quot;,&quot;要删除的标题&quot;} )
+
+//改 - exec 函数也可以用一个表参数指定 SQL 命名参数
+db.exec(&quot;UPDATE film SET title = @title,length=@length WHERE title = @oldTitle;&quot;,{
+    title = &quot;新的标题123&quot;;
+    length = #&quot;新的标题&quot;;
+    oldTitle = &quot;标题&quot;;
+} );
+
+//查 - 返回首行数据
+var result = db.stepQuery(&quot;SELECT * FROM [film]&quot;
+    /*
+    如果 SQL 语句没有指定命名参数，
+    则参数可使用表对象中的名值对指定可选的 WHERE 条件参数 —— 多个条件自动添加 AND 连接。
+    */
+    ,{ title = &quot;新的标题&quot;} 
+) 
+
+//查 - 遍历查询结果
+for rowid,title, length, year, starring in db.each(&quot;SELECT rowid,* FROM film&quot;) {
+    /*
+    for 语句的第一个返回值如果为 null 就会退出循环,
+    如果数据库返回的第一个字段可能为空,那么可以把 SQLite 默认就有的索引字段 rowid 放在最前面
+    */
+    console.log( rowid,title, length, year, starring  ) 
+}
+
+//删除表 
+db.exec(&quot;DROP TABLE film&quot; );
+
+console.pause();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Database/sqlite/CRUD.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Database/sqlite/CRUD.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Database/sqlite/CRUD.md">Markdown 格式</a>
+</body> 
+</html>

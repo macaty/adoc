@@ -1,0 +1,484 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - web.SocketSharp 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - web.SocketSharp 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>web.SocketSharp 库模块帮助文档</h1>
+
+<p><details>  <summary>参考文档</summary>  <p></p>
+
+<p>websocket-sharp.dll 源码
+<a href="javascript:if(confirm('https://github.com/aardio/websocket-sharp  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='https://github.com/aardio/websocket-sharp'" tppabs="https://github.com/aardio/websocket-sharp">https://github.com/aardio/websocket-sharp</a></p>
+
+<p>注意：
+使用 console.open 打开控制台可以查看 web.SocketSharp 输出的错误信息。
+</p></details></p>
+
+<p><a id="web.SocketSharp"></a></p>
+
+<h2>web.SocketSharp 成员列表</h2>
+
+<p>支持 ws,wss 的 WebSocket 组件，这是一个 .NET 组件。<br>
+仅适用于界面线程。</p>
+
+<p><a id="web.SocketSharp.Net"></a></p>
+
+<h3>web.SocketSharp.Net</h3>
+
+<p>.NET 名字空间 WebSocketSharp.Net 的别名</p>
+
+<p><a id="web.SocketSharp.WebSocket"></a></p>
+
+<h3>web.SocketSharp.WebSocket()</h3>
+
+<p>调用 WebSocketSharp 创建 WebSocket 客户端对象。<br>
+参数 @1 可指定端口号，也可指定 ws 或 wss 协议服务器地址。<br>
+返回 .NET 对象，用法请参考 dotNet 库以及范例</p>
+
+<p><a href="#wssNetClientObject">返回对象:wssNetClientObject</a></p>
+
+<p><a id="web.SocketSharp.Server"></a></p>
+
+<h2>web.SocketSharp.Server 成员列表</h2>
+
+<p><a id="web.SocketSharp.Server.HttpServer"></a></p>
+
+<h3>web.SocketSharp.Server.HttpServer()</h3>
+
+<p>调用 WebSocketSharp 创建 WebSocket + HTTP 服务端对象。<br>
+参数 @1 可指定 https 或 https 协议服务器地址。<br>
+返回 .NET 对象，用法请参考 dotNet 库以及范例。  </p>
+
+<p>注意用 console.open 打开控制台可查看 WebSocketSharp 输出的错误信息</p>
+
+<p><a href="#wssNetHttpServerObject">返回对象:wssNetHttpServerObject</a></p>
+
+<p><a id="web.SocketSharp.Server.WebSocketServer"></a></p>
+
+<h3>web.SocketSharp.Server.WebSocketServer()</h3>
+
+<p>调用 WebSocketSharp 创建 WebSocket 服务端对象。<br>
+参数 @1 可指定 ws 或 wss 协议服务器地址。<br>
+返回 .NET 对象，用法请参考 dotNet 库以及范例。  </p>
+
+<p>注意用 console.open 打开控制台可查看 WebSocketSharp 输出的错误信息</p>
+
+<p><a href="#wssNetServerObject">返回对象:wssNetServerObject</a></p>
+
+<p><a id="web.SocketSharp.WebSocketState"></a></p>
+
+<h2>web.SocketSharp.WebSocketState 成员列表</h2>
+
+<p><a id="web.SocketSharp.WebSocketState.Closed"></a></p>
+
+<h3>web.SocketSharp.WebSocketState.Closed</h3>
+
+<p>已关闭</p>
+
+<p><a id="web.SocketSharp.WebSocketState.Closing"></a></p>
+
+<h3>web.SocketSharp.WebSocketState.Closing</h3>
+
+<p>正在关闭</p>
+
+<p><a id="web.SocketSharp.WebSocketState.Connecting"></a></p>
+
+<h3>web.SocketSharp.WebSocketState.Connecting</h3>
+
+<p>正在连接</p>
+
+<p><a id="web.SocketSharp.WebSocketState.Open"></a></p>
+
+<h3>web.SocketSharp.WebSocketState.Open</h3>
+
+<p>已连接</p>
+
+<p><a id="wssNetClientObject"></a></p>
+
+<h2>wssNetClientObject 成员列表</h2>
+
+<p><a id="wssNetClientObject.Close"></a></p>
+
+<h3>wssNetClientObject.Close()</h3>
+
+<p>关闭连接。<br>
+参数 @1 可选用数值指定关闭代码，参数 @2 可选用字符串指定关闭理由</p>
+
+<p><a id="wssNetClientObject.CloseAsync"></a></p>
+
+<h3>wssNetClientObject.CloseAsync()</h3>
+
+<p>关闭连接，异步非阻塞执行。<br>
+参数 @1 可选用数值指定关闭代码，参数 @2 可选用字符串指定关闭理由</p>
+
+<p><a id="wssNetClientObject.Connect"></a></p>
+
+<h3>wssNetClientObject.Connect()</h3>
+
+<p>连接 WebSocket 服务器</p>
+
+<p><a id="wssNetClientObject.ConnectAsync"></a></p>
+
+<h3>wssNetClientObject.ConnectAsync()</h3>
+
+<p>连接 WebSocket 服务器，异步非阻塞执行</p>
+
+<p><a id="wssNetClientObject.EmitOnPing"></a></p>
+
+<h3>wssNetClientObject.EmitOnPing</h3>
+
+<p>Ping 消息是否触发 OnMessage</p>
+
+<p>OnMessage 是否处理 Ping 消息。<br>
+回调参数 e 的 e.IsPing 属性可以判断是否 Ping 消息</p>
+
+<p><a id="wssNetClientObject.EnableRedirection"></a></p>
+
+<h3>wssNetClientObject.EnableRedirection</h3>
+
+<p>是否允许重定向</p>
+
+<p><a id="wssNetClientObject.Extensions"></a></p>
+
+<h3>wssNetClientObject.Extensions</h3>
+
+<p>扩展，字符串</p>
+
+<p><a id="wssNetClientObject.Headers"></a></p>
+
+<h3>wssNetClientObject.Headers</h3>
+
+<pre><code class="aardio language-aardio">wssNetClientObject.Headers[&quot;/*指定自定义 HTTP 请求头名字，不包含冒号。  
+值必须是字符串 或 null。  
+值为 null 时可清除之前设置的自定义请求头*/&quot;] = &quot;&quot;
+</code></pre>
+
+<p><a id="wssNetClientObject.IsAlive"></a></p>
+
+<h3>wssNetClientObject.IsAlive</h3>
+
+<p>是否连接状态</p>
+
+<p><a id="wssNetClientObject.IsSecure"></a></p>
+
+<h3>wssNetClientObject.IsSecure</h3>
+
+<p>是否安全连接</p>
+
+<p><a id="wssNetClientObject.OnClose"></a></p>
+
+<h3>wssNetClientObject.OnClose</h3>
+
+<pre><code class="aardio language-aardio">wssNetClientObject.OnClose = function(sender, e){
+    /*接口已关闭。  
+e.Code 为错误码数值，e.Reason 为表示错误原因的字符串*/
+}
+</code></pre>
+
+<p><a id="wssNetClientObject.OnError"></a></p>
+
+<h3>wssNetClientObject.OnError</h3>
+
+<pre><code class="aardio language-aardio">wssNetClientObject.OnError = function(sender, e){
+    /*&quot;出错了, e.Message 为错误消息，字符串值。  
+如果错误为异常，则 e.Exception 为 System.Exception 对象*/
+
+}
+</code></pre>
+
+<p><a id="wssNetClientObject.OnMessage"></a></p>
+
+<h3>wssNetClientObject.OnMessage</h3>
+
+<pre><code class="aardio language-aardio">wssNetClientObject.OnMessage = function(sender, e){
+    /*收到消息&quot;, e.Data 为收到的字符串*/
+}
+</code></pre>
+
+<p><a id="wssNetClientObject.OnOpen"></a></p>
+
+<h3>wssNetClientObject.OnOpen</h3>
+
+<pre><code class="aardio language-aardio">wssNetClientObject.OnOpen = function(sender, e){
+    /*连接已打开*/
+}
+</code></pre>
+
+<p><a id="wssNetClientObject.Origin"></a></p>
+
+<h3>wssNetClientObject.Origin</h3>
+
+<p>Origin 请求头</p>
+
+<p><a id="wssNetClientObject.Protocol"></a></p>
+
+<h3>wssNetClientObject.Protocol</h3>
+
+<p>协议</p>
+
+<p><a id="wssNetClientObject.ReadyState"></a></p>
+
+<h3>wssNetClientObject.ReadyState</h3>
+
+<p>连接状态 web.SocketSharp.WebSocketState 枚举</p>
+
+<p><a id="wssNetClientObject.Send"></a></p>
+
+<h3>wssNetClientObject.Send()</h3>
+
+<p>发送字符串或 buffer 对象</p>
+
+<p><a id="wssNetClientObject.SendAsync"></a></p>
+
+<h3>wssNetClientObject.SendAsync(data,callback)</h3>
+
+<pre><code class="aardio language-aardio">wssNetClientObject.SendAsync(/*指定要异步发送的字符串或 buffer，  
+发送完成回调参数 @2 指定的函数*/,function(completed){  
+
+})
+</code></pre>
+
+<p><a id="wssNetClientObject.SetCookie"></a></p>
+
+<h3>wssNetClientObject.SetCookie(cookie)</h3>
+
+<p>设置 Cookie 参数为 web.SocketSharp.Net.Cookie 对象</p>
+
+<p><a id="wssNetClientObject.SetCredentials"></a></p>
+
+<h3>wssNetClientObject.SetCredentials</h3>
+
+<p>设置身份验证信息。</p>
+
+<p><a id="wssNetClientObject.SetCredentials"></a></p>
+
+<h3>wssNetClientObject.SetCredentials(username,password,preAuth)</h3>
+
+<p>设置身份验证信息。\ @nusername 指定用户名， @password 指定密码。<br>
+如果 @preAuth 为 true 则第一次请求就发送验证信息。<br>
+否则在请求失败后再发送</p>
+
+<p><a id="wssNetClientObject.SetProxy"></a></p>
+
+<h3>wssNetClientObject.SetProxy</h3>
+
+<p>设置代理服务器</p>
+
+<p><a id="wssNetClientObject.SetProxy"></a></p>
+
+<h3>wssNetClientObject.SetProxy(url,username,password)</h3>
+
+<p>设置代理服务器</p>
+
+<p><a id="wssNetClientObject.Url"></a></p>
+
+<h3>wssNetClientObject.Url</h3>
+
+<p>连接 URL，System.Uri 对象</p>
+
+<p><a id="wssNetClientObject.WaitTime"></a></p>
+
+<h3>wssNetClientObject.WaitTime</h3>
+
+<p>等待时间 System.TimeSpan 对象</p>
+
+<p><a id="wssNetClientObject.setAuthToken"></a></p>
+
+<h3>wssNetClientObject.setAuthToken(token,tokenType)</h3>
+
+<p>设置认证令牌（token）。<br>
+@token 可指定令牌，也可以指定返回令牌的网址。<br>
+@tokenType 为可选参数，默认为&quot;Bearer&quot;。<br>
+如果指定了令牌，则会添加请求头 &quot;Authorization:Bearer 令牌&quot;。<br>
+@tokenType 也可以指定为空字符串。</p>
+
+<p><a id="wssNetClientObject.SslConfiguration"></a></p>
+
+<h2>wssNetClientObject.SslConfiguration 成员列表</h2>
+
+<p><a id="wssNetClientObject.SslConfiguration.EnabledSslProtocols"></a></p>
+
+<h3>wssNetClientObject.SslConfiguration.EnabledSslProtocols</h3>
+
+<p>设置 SSL 协议版本，默认为 12288/*tls13*/ | 3072/*Tls12*/| 768/*Tls11*/ | 192/*Tls*/</p>
+
+<p><a id="wssNetHttpServerObject"></a></p>
+
+<h2>wssNetHttpServerObject 成员列表</h2>
+
+<p><a id="wssNetHttpServerObject.AddWebSocketService"></a></p>
+
+<h3>wssNetHttpServerObject.AddWebSocketService</h3>
+
+<pre><code class="aardio language-aardio">wssNetHttpServerObject.AddWebSocketService(&quot;/echo&quot;,class {  
+
+    onMessage = function(e){  
+        /*  
+        this.socket 会自动绑定为 WebSocketSharp.Server.WebSocketBehavior 实例。  
+        用法请参考 WebSocketSharp 文档。  
+
+        上面的参数 @1 指定了服务目录为 &quot;/echo&quot;。   
+        参数 @2 则需要指定一个 WebSocket 会话类。  
+        每次创建新的 WebSocket 连接时会调用类创建 WebSocket 会话实例。   
+
+        必须定义 this.onMessage 事件用于接收消息。  
+        可选定义 this.onOpen, this.onClose, this.onError 事件。  
+        这几个事件与 WebSocketSharp.Server.WebSocketBehavio 的同名事件用法相同。  
+        唯一不同的是首字母小写。  
+
+        发送消息函数：  
+        this.send() 等价于调用 this.socket.Send() 同步发送消息。  
+        this.sendAsync() 等价于调用 this.socket.SendAsync() 异步发送消息。  
+        唯一区别是首字母小写。  
+        */   
+
+        /* 同步发送消息，e.data 就是客户端发过来的消息  */   
+            this.send(e.data)  
+
+            /* 异步发送消息，成功回调参数 @2 */   
+            this.sendAsync(e.data,function(completed){  
+
+            } )  
+
+    }    
+});
+</code></pre>
+
+<p><a id="wssNetHttpServerObject.AuthenticationSchemes"></a></p>
+
+<h3>wssNetHttpServerObject.AuthenticationSchemes</h3>
+
+<p>身份验证方法，<br>
+Digest 验证设为 1，Basic 验证设为 8</p>
+
+<p><a id="wssNetHttpServerObject.DocumentRootPath"></a></p>
+
+<h3>wssNetHttpServerObject.DocumentRootPath</h3>
+
+<p>网站根目录，需要用 io.fullpath 转换为绝对路径</p>
+
+<p><a id="wssNetHttpServerObject.Start"></a></p>
+
+<h3>wssNetHttpServerObject.Start()</h3>
+
+<p>启动服务器</p>
+
+<p><a id="wssNetHttpServerObject.Stop"></a></p>
+
+<h3>wssNetHttpServerObject.Stop()</h3>
+
+<p>停止服务器</p>
+
+<p><a id="wssNetHttpServerObject.SslConfiguration"></a></p>
+
+<h2>wssNetHttpServerObject.SslConfiguration 成员列表</h2>
+
+<p>SSL 证书配置。\bwss 服务端必须指定证书，网上找个在线工具生成测试证书也行</p>
+
+<p>SSL 证书配置。\bwss 服务端必须指定证书，网上找个在线工具生成测试证书也行</p>
+
+<p><a id="wssNetHttpServerObject.SslConfiguration.ServerCertificate"></a></p>
+
+<h3>wssNetHttpServerObject.SslConfiguration.ServerCertificate</h3>
+
+<pre><code class="aardio language-aardio">wssNetHttpServerObject.SslConfiguration.ServerCertificate = System.Security.Cryptography.X509Certificates.X509Certificate2(  
+    io.fullpath(&quot;\/*指定证书路径*/.pfx&quot;), &quot;密码&quot;  
+);
+</code></pre>
+
+<pre><code class="aardio language-aardio">wssNetHttpServerObject.SslConfiguration.ServerCertificate = System.Security.Cryptography.X509Certificates.X509Certificate2(  
+    io.fullpath(&quot;\/*指定证书路径*/.pfx&quot;), &quot;密码&quot;  
+);
+</code></pre>
+
+<p><a id="wssNetServerObject"></a></p>
+
+<h2>wssNetServerObject 成员列表</h2>
+
+<p><a id="wssNetServerObject.AddWebSocketService"></a></p>
+
+<h3>wssNetServerObject.AddWebSocketService</h3>
+
+<pre><code class="aardio language-aardio">wssNetServerObject.AddWebSocketService(&quot;/echo&quot;,class {  
+
+    onMessage = function(e){  
+        /*  
+        this.socket 会自动绑定为 WebSocketSharp.Server.WebSocketBehavior 实例。  
+        用法请参考 WebSocketSharp 文档。  
+
+        上面的参数 @1 指定了服务目录为 &quot;/echo&quot;。   
+        参数 @2 则需要指定一个 WebSocket 会话类。  
+        每次创建新的 WebSocket 连接时会调用类创建 WebSocket 会话实例。   
+
+        必须定义 this.onMessage 事件用于接收消息。  
+        可选定义 this.onOpen, this.onClose, this.onError 事件。  
+        这几个事件与 WebSocketSharp.Server.WebSocketBehavio 的同名事件用法相同。  
+        唯一不同的是首字母小写。  
+
+        发送消息函数：  
+        this.send() 等价于调用 this.socket.Send() 同步发送消息。  
+        this.sendAsync() 等价于调用 this.socket.SendAsync() 异步发送消息。  
+        唯一区别是首字母小写。  
+        */   
+
+        /* 同步发送消息，e.data 就是客户端发过来的消息  */   
+            this.send(e.data)  
+
+            /* 异步发送消息，成功回调参数 @2 */   
+            this.sendAsync(e.data,function(completed){  
+
+            } )  
+
+    }    
+});
+</code></pre>
+
+<p><a id="wssNetServerObject.Start"></a></p>
+
+<h3>wssNetServerObject.Start()</h3>
+
+<p>启动服务器</p>
+
+<p><a id="wssNetServerObject.Stop"></a></p>
+
+<h3>wssNetServerObject.Stop()</h3>
+
+<p>停止服务器。<br>
+建议在窗体 onDestroy 事件中调用此函数。<br>
+不然下次启动，短时间内端口会是占用状态</p>
+
+<p><a id="wssNetServerObject.SslConfiguration"></a></p>
+
+<h2>wssNetServerObject.SslConfiguration 成员列表</h2>
+
+<p>SSL 证书配置。\bwss 服务端必须指定证书，网上找个在线工具生成测试证书也行</p>
+
+<p><a id="wssNetServerObject.SslConfiguration.EnabledSslProtocols"></a></p>
+
+<h3>wssNetServerObject.SslConfiguration.EnabledSslProtocols</h3>
+
+<p>设置 SSL 协议版本，默认为 12288/*tls13*/ | 3072/*Tls12*/| 768/*Tls11*/ | 192/*Tls*/</p>
+
+<p><a id="wssNetServerObject.SslConfiguration.ServerCertificate"></a></p>
+
+<h3>wssNetServerObject.SslConfiguration.ServerCertificate</h3>
+
+<pre><code class="aardio language-aardio">wssNetServerObject.SslConfiguration.ServerCertificate = System.Security.Cryptography.X509Certificates.X509Certificate2(  
+    io.fullpath(&quot;\/*指定证书路径*/.pfx&quot;), &quot;密码&quot;  
+);
+</code></pre>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/web/SocketSharp/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/web/SocketSharp/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/web/SocketSharp/_.md">Markdown 格式</a></p>
+
+</body> 
+</html>

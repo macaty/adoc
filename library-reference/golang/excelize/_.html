@@ -1,0 +1,98 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - golang.excelize 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - golang.excelize 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>golang.excelize 库模块帮助文档</h1>
+
+<p><a id="golang"></a></p>
+
+<h2>golang 成员列表</h2>
+
+<p><a id="golang.excelize"></a></p>
+
+<h3>golang.excelize()</h3>
+
+<p>创建 Yaegi + Excelize 脚本工具。支持 Win10 以及之后的系统。  </p>
+
+<p><a href="#GoLangExcelizeObject">返回对象:GoLangExcelizeObject</a></p>
+
+<p><a id="GoLangExcelizeObject"></a></p>
+
+<h2>GoLangExcelizeObject 成员列表</h2>
+
+<p><a id="GoLangExcelizeObject.?"></a></p>
+
+<h3>GoLangExcelizeObject.?</h3>
+
+<p>Go（Yaegi） 脚本全局对象的名字。<br>
+可在这里获取、设置值，或作为函数调用。<br>
+用下标取值不能返回函数。<br>
+只能以 .funcName() 的格式直接调用函数。</p>
+
+<p><a id="GoLangExcelizeObject.call"></a></p>
+
+<h3>GoLangExcelizeObject.call()</h3>
+
+<p>调用 Go（Yaegi） 脚本全局函数。<br>
+参数 @1 指定获取函数对象的表达式。<br>
+可添加任意个数调用参数，可返回任意个数的值。<br>
+失败会抛出异常。  </p>
+
+<p>直接调用此对象的成员函数也等价于调用 Go（Yaegi）脚本函数。</p>
+
+<p><a id="GoLangExcelizeObject.eval"></a></p>
+
+<h3>GoLangExcelizeObject.eval()</h3>
+
+<p>执行 Go（Yaegi） 脚本。<br>
+成功返回表达式结果，失败返回 null,错误信息。  </p>
+
+<p>只有执行表达式才能返回值，否则总是返回 null，<br>
+执行 main 函数时可用 Go 全局变量保存值，然后再用 eval 函数获取该变量的值。</p>
+
+<p><a id="GoLangExcelizeObject.get"></a></p>
+
+<h3>GoLangExcelizeObject.get()</h3>
+
+<p>获取 Go（Yaegi） 脚本全局变量值。<br>
+参数 @1 指定获取变量值的表达式。<br>
+也可以直接访问此对象的成员属性获取 Go（Yaegi）脚本全局变量值。</p>
+
+<p><a id="GoLangExcelizeObject.loadcode"></a></p>
+
+<h3>GoLangExcelizeObject.loadcode()</h3>
+
+<p>参数 @1 可以是 aardio 代码文件路径或模板标记开头的字符串。  </p>
+
+<p>此函数调用 string.loadcode 函数加载所有参数，<br>
+解析 aardio 模板语法 并生成 Go（Yaegi） 脚本。<br>
+然后执行 Go（Yaegi） 脚本。  </p>
+
+<p>成功返回表达式结果，失败返回 null,错误信息。  </p>
+
+<p>只有执行表达式才能返回值，否则总是返回 null，<br>
+执行 main 函数时可用 Go 全局变量保存值，然后再用 eval 函数获取该变量的值。</p>
+
+<p><a id="GoLangExcelizeObject.set"></a></p>
+
+<h3>GoLangExcelizeObject.set()</h3>
+
+<p>设置 Go（Yaegi） 脚本全局变量值。<br>
+参数 @1 指要设置变量的表达式，参数 @2 指定值。<br>
+也可以直接访问此对象的成员属性设置 Go（Yaegi）脚本全局变量值。</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/golang/excelize/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/golang/excelize/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/golang/excelize/_.md">Markdown 格式</a></p>
+
+</body> 
+</html>

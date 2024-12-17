@@ -1,0 +1,64 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - 自动上传文件 '>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - 自动上传文件 </title> 
+<link rel="stylesheet" href="../../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>自动上传文件</h1>
+
+<p>构造上传文件的表单数据较复杂,标准库提供了 web.multipartFormData 类可以自动构造上传文件表单的数据包。</p>
+
+<h2>web.multipartFormData</h2>
+
+<ol>
+<li><p>语法：   </p>
+
+<pre><code class="aardio language-aardio">import web.multipartFormData;
+var form = web.multipartFormData();
+form.add(&quot;字段名&quot;,&quot;字段值&quot;)
+form.add(&quot;上传字段名&quot;,&quot;@上传路径&quot;);
+</code></pre></li>
+<li><p>说明：   </p>
+
+<p>web.multipartFormData是一个类,创建的表单对象可以使用add(字段名,段值)函数添加上传数据，字段名指网页表单中输入控件的名字(该控件html源码中的name属性)，可添加多个字段,如果该字段的值第一个字符是&quot;@&quot;字符则上传该文件。在标准库 web.rest.client中有上传文疾糠州有用到 web.multipartFormData 可以参考一下源码。  </p></li>
+<li><p>示例： </p>
+
+<pre><code class="aardio language-aardio">import web.form;
+/*DSG{{*/
+var winform = ..win.form( text=&quot;自动上传&quot;;right=744;bottom=523 ) 
+/*}}*/
+
+var wb = web.form( winform ); //创建 Web 窗体
+winform.show(); 
+
+//构建上传数据包  
+import web.multipartFormData;
+var formData = web.multipartFormData();
+formData.add(&quot;username&quot;,&quot;用户名&quot;);
+formData.add(&quot;password&quot;,&quot;密码&quot;);
+formData.add(&quot;filename&quot;,&quot;@\main.aardio&quot;); 
+
+//上传数据
+wb.post(&quot;http://httpbin.org/post&quot;
+, formData.readAll() //上传数据包 
+, formData.contentHeader()  //要添加的HTTP头
+);
+
+//启动消息循环
+win.loopMessage();
+</code></pre></li>
+</ol>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-guide/std/web/form/upload.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-guide/std/web/form/upload.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/std/web/form/upload.md">Markdown 格式</a></p>
+
+</body> 
+</html>

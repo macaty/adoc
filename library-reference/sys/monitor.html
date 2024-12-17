@@ -1,0 +1,293 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - sys.monitor 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - sys.monitor 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>sys.monitor 库模块帮助文档</h1>
+
+<p><a id="sys.monitor"></a></p>
+
+<h2>sys.monitor 成员列表</h2>
+
+<p>显示器函数库。<br>
+相关库: com.monitor, sys.display, sys.ddcci 。</p>
+
+<p><a id="sys.monitor.changeMode"></a></p>
+
+<h3>sys.monitor.changeMode</h3>
+
+<p>修改显示器设置</p>
+
+<p><a id="sys.monitor.changeMode"></a></p>
+
+<h3>sys.monitor.changeMode(mode,flags,deviceName)</h3>
+
+<p>修改显示器设置<br>
+参数 @mode 指定 DEVMODE_DISPLAY_DEVICE 结构体，<br>
+ @mode 也可以传一个普通表，仅指定部分需要更新的结构体字段。也可以使用 sys.monitor.eachMode 获取的结构体作为参数 @mode。<br>
+省略  @mode 与 @flags 恢复默认设置。  </p>
+
+<p>@flags 可省略,该值可使用 <em>CDS</em> 前缀的常量指定,默认为 0。  </p>
+
+<p>@deviceName 指定显示器名，省略则设置默认显示器。<br>
+可用 sys.monitor.eachDevice 获取可用 deviceName<br>
+用法请参考 API 函数 ::User32.ChangeDisplaySettingsExW 的文档</p>
+
+<p><a id="sys.monitor.eachDevice"></a></p>
+
+<h3>sys.monitor.eachDevice()</h3>
+
+<p><a href="#DISPLAYDEVICEObject">返回对象:DISPLAYDEVICEObject</a></p>
+
+<p><a id="sys.monitor.eachDevice"></a></p>
+
+<h3>sys.monitor.eachDevice(flags,deviceName)</h3>
+
+<pre><code class="aardio language-aardio">for( dev in sys.monitor.eachDevice(1) ){
+    /*如果不指定参数则遍历所有显示适配器。  
+如果参数 @2 指定适配置的设备名（ eachMode 或 eachDevice 遍历返回对象的 deviceName 字段），  
+则遍历该适配器上的所有显示器设备。  
+
+如果指定了参数 @2 ，且参数 @1 值为 1，  
+则遍历返回对象的 deviceId2 字段为设备 ID。*/
+}
+</code></pre>
+
+<p><a id="sys.monitor.eachInfo"></a></p>
+
+<h3>sys.monitor.eachInfo()</h3>
+
+<p><a href="#MONITORINFOObject">返回对象:MONITORINFOObject</a></p>
+
+<p><a id="sys.monitor.eachInfo"></a></p>
+
+<h3>sys.monitor.eachInfo(hdc,rcClip)</h3>
+
+<pre><code class="aardio language-aardio">for( hMonitor,monitorInfo in sys.monitor.eachInfo() ){
+    /*用法请参考此函数源码*/
+}
+</code></pre>
+
+<p><a id="sys.monitor.eachMode"></a></p>
+
+<h3>sys.monitor.eachMode()</h3>
+
+<p><a href="#DEVMODEDISPLAYDEVICEObject">返回对象:DEVMODEDISPLAYDEVICEObject</a></p>
+
+<p><a id="sys.monitor.eachMode"></a></p>
+
+<h3>sys.monitor.eachMode(flags,deviceName)</h3>
+
+<pre><code class="aardio language-aardio">for( devMode in sys.monitor.eachMode() ){
+    if( devMode.pelsWidth &gt; (devMode.pelsWidth &gt; devMode.pelsHeight ? 640 : 480) ){
+            /*遍历显示器支持的模式，  
+所有参考可选，用法请参考此函数源码。  
+可通过 sys.monitor.eachDevice 获取可用 deviceName*/
+    }
+}
+</code></pre>
+
+<p><a id="sys.monitor.getInfo"></a></p>
+
+<h3>sys.monitor.getInfo()</h3>
+
+<p><a href="#MONITORINFOObject">返回对象:MONITORINFOObject</a></p>
+
+<p><a id="sys.monitor.getInfo"></a></p>
+
+<h3>sys.monitor.getInfo(hMonitor)</h3>
+
+<p>参数为显示设备句柄<br>
+返回显示器信息</p>
+
+<p><a id="sys.monitor.getInfoFromPoint"></a></p>
+
+<h3>sys.monitor.getInfoFromPoint()</h3>
+
+<p><a href="#MONITORINFOObject">返回对象:MONITORINFOObject</a></p>
+
+<p><a id="sys.monitor.getInfoFromPoint"></a></p>
+
+<h3>sys.monitor.getInfoFromPoint(x,y)</h3>
+
+<p>获取指定坐标所在显示器信息,\所有参数可选</p>
+
+<p><a id="sys.monitor.getInfoFromWindow"></a></p>
+
+<h3>sys.monitor.getInfoFromWindow()</h3>
+
+<p><a href="#MONITORINFOObject">返回对象:MONITORINFOObject</a></p>
+
+<p><a id="sys.monitor.getInfoFromWindow"></a></p>
+
+<h3>sys.monitor.getInfoFromWindow(窗口句柄)</h3>
+
+<p>获取窗口所在显示器信息,\所有参数可选</p>
+
+<p><a id="DEVMODEDISPLAYDEVICEObject"></a></p>
+
+<h2>DEVMODEDISPLAYDEVICEObject 成员列表</h2>
+
+<p><a id="DEVMODEDISPLAYDEVICEObject.bitsPerPel"></a></p>
+
+<h3>DEVMODEDISPLAYDEVICEObject.bitsPerPel</h3>
+
+<p>像素位宽</p>
+
+<p><a id="DEVMODEDISPLAYDEVICEObject.displayFrequency"></a></p>
+
+<h3>DEVMODEDISPLAYDEVICEObject.displayFrequency</h3>
+
+<p>刷新频率</p>
+
+<p><a id="DEVMODEDISPLAYDEVICEObject.displayOrientation"></a></p>
+
+<h3>DEVMODEDISPLAYDEVICEObject.displayOrientation</h3>
+
+<p>显示方向,参考_DMDO_ 前缀常量</p>
+
+<p><a id="DEVMODEDISPLAYDEVICEObject.pelsHeight"></a></p>
+
+<h3>DEVMODEDISPLAYDEVICEObject.pelsHeight</h3>
+
+<p>像素高度</p>
+
+<p><a id="DEVMODEDISPLAYDEVICEObject.pelsWidth"></a></p>
+
+<h3>DEVMODEDISPLAYDEVICEObject.pelsWidth</h3>
+
+<p>像素宽度</p>
+
+<p><a id="DISPLAYDEVICEObject"></a></p>
+
+<h2>DISPLAYDEVICEObject 成员列表</h2>
+
+<p><a id="DISPLAYDEVICEObject.deviceId"></a></p>
+
+<h3>DISPLAYDEVICEObject.deviceId</h3>
+
+<p>设备 ID。<br>
+典型的格式为 \.\DISPLAY#<VendorID>#<DeviceID>#<InstanceID></p>
+
+<p><a id="DISPLAYDEVICEObject.deviceId2"></a></p>
+
+<h3>DISPLAYDEVICEObject.deviceId2</h3>
+
+<p>设备 ID。<br>
+仅保留 deviceId 字段的 <VendorID> 部分。<br>
+可通用于 com.monitor 的设备 ID 参数。</p>
+
+<p><a id="DISPLAYDEVICEObject.deviceKey"></a></p>
+
+<h3>DISPLAYDEVICEObject.deviceKey</h3>
+
+<p>设备在注册表中的键路径，主要用于获取和配置设备的详细信息。</p>
+
+<p><a id="DISPLAYDEVICEObject.deviceName"></a></p>
+
+<h3>DISPLAYDEVICEObject.deviceName</h3>
+
+<p>适配器设备或监视器设备的设备名</p>
+
+<p><a id="DISPLAYDEVICEObject.deviceString"></a></p>
+
+<h3>DISPLAYDEVICEObject.deviceString</h3>
+
+<p>显示适配器或显示监视器的描述</p>
+
+<p><a id="DISPLAYDEVICEObject.stateFlags"></a></p>
+
+<h3>DISPLAYDEVICEObject.stateFlags</h3>
+
+<p>设备状态标志。<br>
+_DISPLAY_DEVICE 前缀常量数值或这些数值的组合</p>
+
+<p><a id="MONITORINFOObject"></a></p>
+
+<h2>MONITORINFOObject 成员列表</h2>
+
+<p><a id="MONITORINFOObject.deviceName"></a></p>
+
+<h3>MONITORINFOObject.deviceName</h3>
+
+<p>仅 sys.monitor.getInfoEx 或 sys.monitor.eachInfo 函数会返回该值</p>
+
+<p><a id="MONITORINFOObject.eachDevice"></a></p>
+
+<h3>MONITORINFOObject.eachDevice()</h3>
+
+<pre><code class="aardio language-aardio">for dev in MONITORINFOObject.eachDevice() {  
+    /*遍历此适配器上的所有显示器设备。   
+则遍历返回对象的 deviceId2 字段为设备 ID。*/  
+}  
+
+[返回对象:DISPLAYDEVICEObject](#DISPLAYDEVICEObject)
+</code></pre>
+
+<p><a id="MONITORINFOObject.flags"></a></p>
+
+<h3>MONITORINFOObject.flags</h3>
+
+<p>该值为1时为主显示器</p>
+
+<p><a id="MONITORINFOObject.rcMonitor"></a></p>
+
+<h3>MONITORINFOObject.rcMonitor</h3>
+
+<p>显示器的在屏幕坐标系中的矩形  </p>
+
+<p><a href="../global/_.html#rectObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/global/_.html#rectObject">返回对象:rectObject</a></p>
+
+<p><a id="MONITORINFOObject.rcWork"></a></p>
+
+<h3>MONITORINFOObject.rcWork</h3>
+
+<p>显示器的工作区域  </p>
+
+<p><a href="../global/_.html#rectObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/global/_.html#rectObject">返回对象:rectObject</a></p>
+
+<h3>自动完成常量</h3>
+
+<p>_CDS_DISABLE_UNSAFE_MODES=0x200<br>
+_CDS_ENABLE_UNSAFE_MODES=0x100<br>
+_CDS_FULLSCREEN=4<br>
+_CDS_GLOBAL=8<br>
+_CDS_NORESET=0x10000000<br>
+_CDS_RESET=0x40000000<br>
+_CDS_RESET_EX=0x20000000<br>
+_CDS_SET_PRIMARY=0x10<br>
+_CDS_TEST=2<br>
+_CDS_UPDATEREGISTRY=1<br>
+_CDS_VIDEOPARAMETERS=0x20<br>
+_DISPLAY_DEVICE_ACTIVE=1<br>
+_DISPLAY_DEVICE_MIRRORING_DRIVER=8<br>
+_DISPLAY_DEVICE_MODESPRUNED=0x8000000<br>
+_DISPLAY_DEVICE_PRIMARY_DEVICE=4<br>
+_DISPLAY_DEVICE_REMOVABLE=0x20<br>
+_DISPLAY_DEVICE_VGA_COMPATIBLE=0x10<br>
+_DMDO_180=2<br>
+_DMDO_270=3<br>
+_DMDO_90=1<br>
+_DMDO_DEFAULT=0<br>
+_EDS_RAWMODE=0x2<br>
+_ENUM_CURRENT_SETTINGS=-1<br>
+_ENUM_REGISTRY_SETTINGS=-2<br>
+_MONITORINFOF_PRIMARY=1<br>
+_MONITOR_DEFAULTTONEAREST=2<br>
+_MONITOR_DEFAULTTONULL=0<br>
+_MONITOR_DEFAULTTOPRIMARY=1  </p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/sys/monitor.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/sys/monitor.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/sys/monitor.md">Markdown 格式</a></p>
+
+</body> 
+</html>

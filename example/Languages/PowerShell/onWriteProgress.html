@@ -1,0 +1,72 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - aardio 调用 PowerShell 之进度条'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - aardio 调用 PowerShell 之进度条</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 调用 PowerShell 之进度条</h1><pre><code class="aardio language-aardio">//aardio 调用 PowerShell 之进度条
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;PowerShell 进度条&quot;;right=606;bottom=463;max=false)
+winform.add(
+button={cls=&quot;button&quot;;text=&quot;启动 PowerShell 进度条&quot;;left=28;top=385;right=194;bottom=438;z=2};
+edit={cls=&quot;edit&quot;;left=28;top=28;right=575;bottom=314;autohscroll=false;edge=1;multiline=1;vscroll=1;z=3};
+plus={cls=&quot;plus&quot;;left=29;top=327;right=575;bottom=361;align=&quot;left&quot;;bgcolor=6447459;font=LOGFONT(h=-16);forecolor=9959653;hide=1;notify=1;textPadding={left=25};z=1}
+)
+/*}}*/
+
+//设置进度区间，可自动切换到进度条显示模式
+winform.plus.setProgressRange(1,100);
+
+//io.open() //打开控制台查看线程错误信息
+winform.button.oncommand = function(id,event){
+    winform.plus.hide = false;
+    winform.button.disabledText = {&quot;✶&quot;;&quot;✸&quot;;&quot;✹&quot;;&quot;✺&quot;;&quot;✹&quot;;&quot;✷&quot;};
+
+    thread.invoke( 
+        function(winform){
+
+            import dotNet.ps;
+
+            dotNet.ps.onWrite = function(str){
+                //PowerShell 新版@str以换行结束，旧版无换行且会追加一个空字符串，winform.edit.print() 仅在需要时自动补换行。
+                if(#str) winform.edit.print(string.trimright(str));
+            }
+
+            dotNet.ps.onWriteProgress = function(sourceId,record){
+                //PowerShell 回调出错不会抛出异常，如果有需要在函数内部自行 try catch 捕获代码错误
+                winform.plus.text = record.StatusDescription;
+                winform.plus.progressPercentage = record.PercentComplete; 
+            }
+
+            dotNet.ps(`
+1..100 | ForEach-Object {
+Write-Progress -Activity &#39;Counting&#39; -Status &quot;Processing $_&quot; -PercentComplete $_
+Write-Output &quot;Processing $_ ``r``n&quot;
+Start-Sleep -Milliseconds (55-$_/2)
+            }`);    
+
+            winform.button.disabledText = null;
+            winform.plus.hide = true;
+            winform.plus.progressPercentage = 0;
+        },winform
+    )
+
+
+}
+
+winform.show() 
+win.loopMessage();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/PowerShell/onWriteProgress.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/PowerShell/onWriteProgress.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Languages/PowerShell/onWriteProgress.md">Markdown 格式</a>
+</body> 
+</html>

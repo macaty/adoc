@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 控制台程序 - 入门'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 控制台程序 - 入门</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 控制台程序 - 入门</h1><pre><code class="aardio language-aardio">//控制台程序 - 入门
+import console;
+
+console.log(&quot;console 库函数大多可以自动打开控制台&quot;)
+if(_WIN10_LATER){
+    console.log(&quot;Win10 以上系统支持按 Alt + Enter 切换全屏&quot;);
+
+    //全屏
+    console.fullscreen();
+}
+
+console.box(,,60,10,31,&quot;请输入文本:&quot; ) 
+var str = console.getText( &quot;请输入文本:&quot; )
+
+console.clearScreen ();//清屏
+var num = console.getNumber( &quot;请输入数值:&quot; ); //输入错误数值自动重试
+var arr = { str;num }
+
+//输出变量到控制台
+console.varDump( arr )
+
+//输出变量到控制台
+console.dump( arr )
+
+//以JSON格式输出变量到控制台
+console.dumpJson( arr )
+
+//将控制台窗口的文本再读到字符串中
+str = console.readOutputCharacter()
+console.log( &quot;--------------------------&quot; )
+console.log( str )
+
+for(i=1;25;1){
+    console.printf(&quot;%d -&gt; 20&quot;,i );
+    console.more( 10 ); //分页显示
+}
+
+console.pause()
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Console/console.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Console/console.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Console/console.md">Markdown 格式</a>
+</body> 
+</html>

@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 入门'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 入门</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 入门</h1><pre><code class="aardio language-aardio">//入门
+import console;
+console.showLoading(&quot; 正在下载 dm.proto&quot;);
+
+import web.rest.github;
+var proto = web.rest.github.getContent(&quot;SocialSisterYi/bilibili-API-collect/blob/master/grpc_api/bilibili/community/service/dm/v1/dm.proto&quot;)
+
+import web.rest.client;
+var http = web.rest.client();  
+var content = http.get(&quot;https://api.bilibili.com/x/v2/dm/web/seg.so&quot;,{
+  &quot;oid&quot;:&quot;36570401&quot;,&quot;pid&quot;:&quot;76459310&quot;,&quot;type&quot;:1,&quot;segment_index&quot;:1
+})
+
+//解析 proto 生成 aardio 库
+import protobuf.parser;
+protobuf.parser().parse(proto,,false);//去掉参数 @3 在工程目录下创建用户库
+
+//调用生成的 aardio 库解析弹幕
+import bilibili.community.service.dm.v1.DmSegMobileReply;
+var dmSegMobileReply = bilibili.community.service.dm.v1.DmSegMobileReply();
+dmSegMobileReply.parseFromString(content);
+
+//显示弹幕
+for(i=1;#dmSegMobileReply.elems){
+    var elem = dmSegMobileReply.elems[i];
+    console.log(elem.idStr,elem.content);
+    //console.more(1000);
+}
+
+import web.json;
+
+//不需要任何封装，所有 Protobuf 消息对象都可以直接转换为 json
+var json = web.json.stringify(dmSegMobileReply);
+
+//Protobuf 消息对象可通过 JSON 转换为纯 table 对象
+var tab = web.json.strip(dmSegMobileReply) 
+
+console.pause(true);
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Network/protobuf/QuickStart.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Network/protobuf/QuickStart.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Network/protobuf/QuickStart.md">Markdown 格式</a>
+</body> 
+</html>

@@ -1,0 +1,338 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - zlib 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - zlib 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>zlib 库模块帮助文档</h1>
+
+<p><a id="zlib"></a></p>
+
+<h2>zlib 成员列表</h2>
+
+<p>库</p>
+
+<p><a id="zlib.ZLIB_VERSION"></a></p>
+
+<h3>zlib.ZLIB_VERSION</h3>
+
+<p>zlib 版本</p>
+
+<p><a id="zlib.compress"></a></p>
+
+<h3>zlib.compress(源数据,压缩级别)</h3>
+
+<p>源数据：需要压缩的数据(字符串类型)<br>
+压缩级别最快为1,最大压缩为9,默认值为8<br>
+返回压缩后的数据,第二个返回值为压缩前数据长度</p>
+
+<p><a id="zlib.compressBound"></a></p>
+
+<h3>zlib.compressBound(源数据大小)</h3>
+
+<p>提供源数据大小，计算压缩需要的缓冲区长度</p>
+
+<p><a id="zlib.gzCompress"></a></p>
+
+<h3>zlib.gzCompress(源数据,压缩级别,压缩头格式)</h3>
+
+<p>压缩gzip数据<br>
+参数2指定压缩级别,最快速度为1,最大压缩率为9,默认为8<br>
+压缩头参数可以传入&quot;gzip&quot;,&quot;zlib&quot;,&quot;raw&quot;三种格式,&quot;raw&quot;表示不添加压缩头,<br>
+不指定参数时压缩头默认为&quot;gzip&quot;<br>
+新版不建议再用true表示&quot;gzip&quot;,false表示&quot;zlib&quot;的兼容用法  </p>
+
+<p>返回压缩后的数据,第二个返回值为压缩前数据长度</p>
+
+<p><a id="zlib.gzFile"></a></p>
+
+<h3>zlib.gzFile(&quot;/路径.gz&quot;,&quot;ab&quot;)</h3>
+
+<p>追加到gzip压缩文件</p>
+
+<p><a id="zlib.gzFile"></a></p>
+
+<h3>zlib.gzFile(&quot;/路径.gz&quot;,&quot;rb&quot;)</h3>
+
+<p>打开只读gzip压缩文件</p>
+
+<p><a id="zlib.gzFile"></a></p>
+
+<h3>zlib.gzFile(&quot;/路径.gz&quot;,&quot;wb&quot;)</h3>
+
+<p>创建只写gzip压缩文件</p>
+
+<p><a id="zlib.gzFile"></a></p>
+
+<h3>zlib.gzFile(&quot;/路径.gz&quot;,&quot;wb9&quot;)</h3>
+
+<p>创建只写gzip压缩文件<br>
+可选用一个数值指定压缩级别,最快速度为1,最大压缩率为9,默认为8</p>
+
+<p><a id="zlib.gzFile"></a></p>
+
+<h3>zlib.gzFile()</h3>
+
+<p><a href="#gzFileObject">返回对象:gzFileObject</a></p>
+
+<p><a id="zlib.gzUncompress"></a></p>
+
+<h3>zlib.gzUncompress(源数据,压缩头格式)</h3>
+
+<p>解压缩数据<br>
+压缩头参数可以传入&quot;gzip&quot;,&quot;zlib&quot;,&quot;raw&quot;三种格式,&quot;raw&quot;表示无压缩头,<br>
+不指定参数时压缩头默认为&quot;gzip&quot;<br>
+如果压缩头指定为&quot;gzip&quot;,传入数据不含gzip头时直接返回传入数据,<br>
+新版不建议再用true表示&quot;gzip&quot;,false表示&quot;zlib&quot;的兼容用法</p>
+
+<p><a id="zlib.streamReader"></a></p>
+
+<h3>zlib.streamReader()</h3>
+
+<p><a href="#zlibStreamReaderObject">返回对象:zlibStreamReaderObject</a></p>
+
+<p><a id="zlib.streamReader"></a></p>
+
+<h3>zlib.streamReader(压缩头格式,缓冲区大小)</h3>
+
+<p>创建解压内存流对象,所有参数可选<br>
+压缩头参数可以传入&quot;gzip&quot;,&quot;zlib&quot;,&quot;raw&quot;三种格式,&quot;raw&quot;表示无压缩头,<br>
+不指定参数时压缩头默认为&quot;gzip&quot;,<br>
+新版不建议再用true表示&quot;gzip&quot;,false表示&quot;zlib&quot;的兼容用法</p>
+
+<p><a id="zlib.streamWriter"></a></p>
+
+<h3>zlib.streamWriter()</h3>
+
+<p><a href="#zlibStreamWriterObject">返回对象:zlibStreamWriterObject</a></p>
+
+<p><a id="zlib.streamWriter"></a></p>
+
+<h3>zlib.streamWriter(压缩级别,压缩头格式,缓冲区大小)</h3>
+
+<p>创建压缩内存流对象,所有参数可选,<br>
+压缩级别,最快速度为1,最大压缩率为9,默认为8<br>
+压缩头参数可以传入&quot;gzip&quot;,&quot;zlib&quot;,&quot;raw&quot;三种格式,&quot;raw&quot;表示不添加压缩头,<br>
+不指定参数时压缩头默认为&quot;gzip&quot;<br>
+新版不建议再用true表示&quot;gzip&quot;,false表示&quot;zlib&quot;的兼容用法</p>
+
+<p><a id="zlib.uncompress"></a></p>
+
+<h3>zlib.uncompress(源数据)</h3>
+
+<p>源数据为 gzip 或 zlib 格式压缩数据</p>
+
+<p><a id="zlib.uncompress"></a></p>
+
+<h3>zlib.uncompress(源数据,解压后大小)</h3>
+
+<p>源数据为zlib格式压缩数据<br>
+指定解压后大小仅支持zlib格式</p>
+
+<p><a id="zlib.z_stream"></a></p>
+
+<h3>zlib.z_stream(缓冲区大小)</h3>
+
+<p>z_stream 结构体，raw.struct 对象。</p>
+
+<p><a id="gzFileObject"></a></p>
+
+<h2>gzFileObject 成员列表</h2>
+
+<p><a id="gzFileObject.close"></a></p>
+
+<h3>gzFileObject.close()</h3>
+
+<p>关闭文件</p>
+
+<p><a id="gzFileObject.read"></a></p>
+
+<h3>gzFileObject.read(-1)</h3>
+
+<p>读取到文件尾，成功返回所有解压数据。<br>
+也可指定要读取的数据长度</p>
+
+<p><a id="gzFileObject.read"></a></p>
+
+<h3>gzFileObject.read(0)</h3>
+
+<p>检测是否到文件尾</p>
+
+<p><a id="gzFileObject.read"></a></p>
+
+<h3>gzFileObject.read({int data=1234})</h3>
+
+<p>参数可以是任意结构体<br>
+解压并填充该结构体</p>
+
+<p><a id="gzFileObject.readBuffer"></a></p>
+
+<h3>gzFileObject.readBuffer(buffer,读取长度)</h3>
+
+<p>参数必须是使用 buffer 对象<br>
+长度参数可选,默认为缓冲区长度<br>
+返回成功解压的字节长度</p>
+
+<p><a id="gzFileObject.seek"></a></p>
+
+<h3>gzFileObject.seek(&quot;cur&quot;,偏移值)</h3>
+
+<p>在未压缩数据内移动指针位置,<br>
+参数2为相对于当前位置的偏移值,<br>
+返回指针位置</p>
+
+<p><a id="gzFileObject.seek"></a></p>
+
+<h3>gzFileObject.seek(&quot;set&quot;,偏移值)</h3>
+
+<p>在未压缩数据内移动指针位置,<br>
+参数2为相对于文件开始处的偏移值,<br>
+返回指针位置</p>
+
+<p><a id="gzFileObject.size"></a></p>
+
+<h3>gzFileObject.size()</h3>
+
+<p>返回未压缩数据32位长度</p>
+
+<p><a id="gzFileObject.write"></a></p>
+
+<h3>gzFileObject.write({int data=1234})</h3>
+
+<p>压缩结构体并写入到压缩文件</p>
+
+<p><a id="gzFileObject.write"></a></p>
+
+<h3>gzFileObject.write(字符串)</h3>
+
+<p>压缩并写入到压缩文件</p>
+
+<p><a id="gzFileObject.writeBuffer"></a></p>
+
+<h3>gzFileObject.writeBuffer(buffer,写入长度)</h3>
+
+<p>压缩并写入到压缩文件<br>
+参数一必须是使用 buffer 对象<br>
+长度参数可选,默认为缓冲区长度.</p>
+
+<p><a id="zlibStreamReaderObject"></a></p>
+
+<h2>zlibStreamReaderObject 成员列表</h2>
+
+<p><a id="zlibStreamReaderObject.colse"></a></p>
+
+<h3>zlibStreamReaderObject.colse()</h3>
+
+<p>完成压缩,返回剩余解压数据</p>
+
+<p><a id="zlibStreamReaderObject.getStream"></a></p>
+
+<h3>zlibStreamReaderObject.getStream()</h3>
+
+<p>返回 z_stream 结构体，不可修改返回对象。</p>
+
+<p><a id="zlibStreamReaderObject.read"></a></p>
+
+<h3>zlibStreamReaderObject.read(字符串)</h3>
+
+<p>解压并返回字符串。<br>
+也有可能返回 null 值，直到传入参数为 null 以指定压缩完成<br>
+才返回压缩后的字符串。  </p>
+
+<p>失败则第 2 个返回值为错误代码。</p>
+
+<p><a id="zlibStreamStructObject"></a></p>
+
+<h2>zlibStreamStructObject 成员列表</h2>
+
+<p><a id="zlibStreamStructObject.data_type"></a></p>
+
+<h3>zlibStreamStructObject.data_type</h3>
+
+<p>数据类型。<br>
+二进制文件为0，文本文件为 1。<br>
+不可修改该值</p>
+
+<p><a id="zlibStreamStructObject.total_in"></a></p>
+
+<h3>zlibStreamStructObject.total_in</h3>
+
+<p>总输入大小，不可修改该值。</p>
+
+<p><a id="zlibStreamStructObject.total_out"></a></p>
+
+<h3>zlibStreamStructObject.total_out</h3>
+
+<p>总输出大小，不可修改该值。</p>
+
+<p><a id="zlibStreamWriterObject"></a></p>
+
+<h2>zlibStreamWriterObject 成员列表</h2>
+
+<p><a id="zlibStreamWriterObject.colse"></a></p>
+
+<h3>zlibStreamWriterObject.colse()</h3>
+
+<p>完成压缩,并返回剩余压缩数据</p>
+
+<p><a id="zlibStreamWriterObject.getStream"></a></p>
+
+<h3>zlibStreamWriterObject.getStream()</h3>
+
+<p>返回 z_stream 结构体，不可修改返回对象。  </p>
+
+<p><a href="#zlibStreamStructObject">返回对象:zlibStreamStructObject</a></p>
+
+<p><a id="zlibStreamWriterObject.write"></a></p>
+
+<h3>zlibStreamWriterObject.write(字符串)</h3>
+
+<p>压缩并返回压缩后的字符串，<br>
+有可能返回 null 值，直到传入参数为 null 以指定压缩完成<br>
+才返回压缩后的字符串。  </p>
+
+<p>失败则第 2 个返回值为错误代码。</p>
+
+<h3>自动完成常量</h3>
+
+<p>_Z_ASCII=1<br>
+_Z_BEST_COMPRESSION=9<br>
+_Z_BEST_SPEED=1<br>
+_Z_BINARY=0<br>
+_Z_BUF_ERROR=-5<br>
+_Z_DATA_ERROR=-3<br>
+_Z_DEFAULT_COMPRESSION=-1<br>
+_Z_DEFAULT_STRATEGY=0<br>
+_Z_DEFLATED=8<br>
+_Z_ERRNO=-1<br>
+_Z_FILTERED=1<br>
+_Z_FINISH=4<br>
+_Z_FULL_FLUSH=3<br>
+_Z_HUFFMAN_ONLY=2<br>
+_Z_MAX_WBITS=15<br>
+_Z_MEM_ERROR=-4<br>
+_Z_NEED_DICT=2<br>
+_Z_NO_COMPRESSION=0<br>
+_Z_NO_FLUSH=0<br>
+_Z_NULL=0<br>
+_Z_OK=0<br>
+_Z_PARTIAL_FLUSH=1<br>
+_Z_STREAM_END=1<br>
+_Z_STREAM_ERROR=-2<br>
+_Z_SYNC_FLUSH=2<br>
+_Z_UNKNOWN=2<br>
+_Z_VERSION_ERROR=-6  </p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/zlib/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/zlib/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/zlib/_.md">Markdown 格式</a></p>
+
+</body> 
+</html>

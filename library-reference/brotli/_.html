@@ -1,0 +1,99 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - brotli 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - brotli 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>brotli 库模块帮助文档</h1>
+
+<p><a id="brotli"></a></p>
+
+<h2>brotli 成员列表</h2>
+
+<p>Google新开源压缩算法Brotli<br>
+对于0.5-1MB的小文件速度快压缩比高</p>
+
+<p><a id="brotli()"></a></p>
+
+<h3>brotli()</h3>
+
+<p><a href="#brotliObject">返回对象:brotliObject</a></p>
+
+<p><a id="brotliObject"></a></p>
+
+<h2>brotliObject 成员列表</h2>
+
+<p><a id="brotliObject.compress"></a></p>
+
+<h3>brotliObject.compress(输入字符串,质量,模式)</h3>
+
+<p>压缩并返回任意字符串,失败返回null<br>
+压缩质量0~11，质量越好速越慢<br>
+模式不必指定</p>
+
+<p><a id="brotliObject.compressFile"></a></p>
+
+<h3>brotliObject.compressFile(输入文件路径,输出文件路径,质量,模式)</h3>
+
+<p>压缩文件<br>
+压缩质量0~11，质量越好速越慢<br>
+模式不必指定</p>
+
+<p><a id="brotliObject.compressStream"></a></p>
+
+<h3>brotliObject.compressStream(输入流,输出流,质量,模式)</h3>
+
+<p>压缩<br>
+输入输出流都必须是fsys.stream对象<br>
+压缩质量0~11，质量越好速越慢<br>
+模式不必指定</p>
+
+<p><a id="brotliObject.compressUtf8"></a></p>
+
+<h3>brotliObject.compressUtf8(输入字符串,输出流,质量,模式)</h3>
+
+<p>压缩并返回UTF8编码字符串,失败返回null<br>
+压缩质量0~11，质量越好速越慢<br>
+模式不必指定</p>
+
+<p><a id="brotliObject.decompress"></a></p>
+
+<h3>brotliObject.decompress(输入字符串,缓冲区大小)</h3>
+
+<p>解压缩字符串<br>
+缓冲区大小可省略</p>
+
+<p><a id="brotliObject.decompressFile"></a></p>
+
+<h3>brotliObject.decompressFile(输入文件路径,输出文件路径,缓冲区大小)</h3>
+
+<p>解压缩文件<br>
+缓冲区大小可省略</p>
+
+<p><a id="brotliObject.decompressStream"></a></p>
+
+<h3>brotliObject.decompressStream(输入流,输出流,缓冲区大小)</h3>
+
+<p>解压缩<br>
+输入输出流都必须是fsys.stream对象<br>
+缓冲区大小可省略</p>
+
+<p><a id="brotliObject.destroy"></a></p>
+
+<h3>brotliObject.destroy()</h3>
+
+<p>释放对象</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/brotli/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/brotli/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/brotli/_.md">Markdown 格式</a></p>
+
+</body> 
+</html>

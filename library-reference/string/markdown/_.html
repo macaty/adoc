@@ -1,0 +1,180 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - string.markdown 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - string.markdown 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>string.markdown 库模块帮助文档</h1>
+
+<p><a id="string"></a></p>
+
+<h2>string 成员列表</h2>
+
+<p><a id="string.markdown"></a></p>
+
+<h3>string.markdown()</h3>
+
+<p><a href="#stringMarkdownObject">返回对象:stringMarkdownObject</a></p>
+
+<p><a id="string.markdown"></a></p>
+
+<h3>string.markdown(extensions,maxNesting,htmlOpt)</h3>
+
+<p>创建 MARKDOWN 解析器,所有参数可选</p>
+
+<p><a id="string.markdown"></a></p>
+
+<h3>string.markdown(extensions,maxNesting,htmlOpt,自定义回调函数)</h3>
+
+<pre><code class="aardio language-aardio">string.markdown(8,,,{  
+    blockcode = function(ob, text, lang, opaque){    
+        ob = string.markdown.buffer(ob);  
+        text = string.markdown.buffer(text);  
+        ob.put( tostring(text) )  
+    };   
+} );
+</code></pre>
+
+<p><a id="string.markdown"></a></p>
+
+<h2>string.markdown 成员列表</h2>
+
+<p><a id="string.markdown.buffer"></a></p>
+
+<h3>string.markdown.buffer()</h3>
+
+<p><a href="#stringMarkdownBufObject">返回对象:stringMarkdownBufObject</a></p>
+
+<p><a id="string.markdown.buffer"></a></p>
+
+<h3>string.markdown.buffer(缓冲区初始大小)</h3>
+
+<p>创建缓冲区,参数可选</p>
+
+<p><a id="stringMarkdownBufObject"></a></p>
+
+<h2>stringMarkdownBufObject 成员列表</h2>
+
+<p><a id="stringMarkdownBufObject.data"></a></p>
+
+<h3>stringMarkdownBufObject.data()</h3>
+
+<p>返回缓冲区指针</p>
+
+<p><a id="stringMarkdownBufObject.grow"></a></p>
+
+<h3>stringMarkdownBufObject.grow(增加大小)</h3>
+
+<p>增加缓冲区大小</p>
+
+<p><a id="stringMarkdownBufObject.printf"></a></p>
+
+<h3>stringMarkdownBufObject.printf(&quot;%s&quot;,其他格式化参数)</h3>
+
+<p>写放格式化字符串,<br>
+格式化语法与 string.format相同</p>
+
+<p><a id="stringMarkdownBufObject.put"></a></p>
+
+<h3>stringMarkdownBufObject.put(写入数据,长度)</h3>
+
+<p>写入数据到缓冲区,长度为可选参数</p>
+
+<p><a id="stringMarkdownBufObject.size"></a></p>
+
+<h3>stringMarkdownBufObject.size()</h3>
+
+<p>返回缓冲区数据大小</p>
+
+<p><a id="stringMarkdownBufObject.totring"></a></p>
+
+<h3>stringMarkdownBufObject.totring()</h3>
+
+<p>返回缓冲区文本</p>
+
+<p><a id="stringMarkdownObject"></a></p>
+
+<h2>stringMarkdownObject 成员列表</h2>
+
+<p><a id="stringMarkdownObject.codeBlock"></a></p>
+
+<h3>stringMarkdownObject.codeBlock(code,lang)</h3>
+
+<p>将 @code 参数指定的代码首尾加上三连反引号代码块标记。<br>
+如果代码已经包含三连反引号，则会重复首尾三连反引号直到没有冲突。<br>
+string.markdown 不支持这种嵌套的代码块，可用 renderCode 函数单独处理。<br>
+可选用 lang 参数指定编程语言名称</p>
+
+<p><a id="stringMarkdownObject.free"></a></p>
+
+<h3>stringMarkdownObject.free()</h3>
+
+<p>释放解析器对象,<br>
+该函数可在对象回收时自动调用</p>
+
+<p><a id="stringMarkdownObject.render"></a></p>
+
+<h3>stringMarkdownObject.render(markdownText)</h3>
+
+<p>解析参数 @markdownText 指定的 Markdown 文本并返回 HTML。<br>
+自动调用 tostring 函数将参数 @markdownText 转换为字符串。</p>
+
+<p><a id="stringMarkdownObject.renderCode"></a></p>
+
+<h3>stringMarkdownObject.renderCode(code,lang)</h3>
+
+<p>将代码中的三连反引号进行转义，<br>
+然后首尾加上三连反引号代码块标记并转换为 HTML。<br>
+可选用 lang 参数指定编程语言名称</p>
+
+<p><a id="stringMarkdownObject.renderFile"></a></p>
+
+<h3>stringMarkdownObject.renderFile(markdownFilePath)</h3>
+
+<p>解析参数 @markdownFilePath 指定的 Markdown 文件并返回 HTML</p>
+
+<h3>自动完成常量</h3>
+
+<p>_MD_HTML_ESCAPE=0x200<br>
+_MD_HTML_EXPAND_TABS=0x10<br>
+_MD_HTML_HARD_WRAP=0x80<br>
+_MD_HTML_SAFELINK=0x20<br>
+_MD_HTML_SKIP_HTML=1<br>
+_MD_HTML_SKIP_IMAGES=4<br>
+_MD_HTML_SKIP_LINKS=8<br>
+_MD_HTML_SKIP_STYLE=2<br>
+_MD_HTML_TAG_CLOSE=2<br>
+_MD_HTML_TAG_NONE=0<br>
+_MD_HTML_TAG_OPEN=1<br>
+_MD_HTML_TOC=0x40<br>
+_MD_HTML_USE_XHTML=0x100<br>
+_MD_MKDA_EMAIL=2<br>
+_MD_MKDA_NORMAL=1<br>
+_MD_MKDA_NOT_AUTOLINK=0<br>
+_MD_MKDEXT_AUTOLINK=8<br>
+_MD_MKDEXT_FENCED_CODE=4<br>
+_MD_MKDEXT_LAX_SPACING=0x100<br>
+_MD_MKDEXT_NO_INTRA_EMPHASIS=1<br>
+_MD_MKDEXT_SPACE_HEADERS=0x40<br>
+_MD_MKDEXT_STRIKETHROUGH=0x10<br>
+_MD_MKDEXT_SUPERSCRIPT=0x80<br>
+_MD_MKDEXT_TABLES=2<br>
+_MD_MKD_TABLE_ALIGNMASK=3<br>
+_MD_MKD_TABLE_ALIGN_CENTER=3<br>
+_MD_MKD_TABLE_ALIGN_L=1<br>
+_MD_MKD_TABLE_ALIGN_R=2<br>
+_MD_MKD_TABLE_HEADER=4  </p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/string/markdown/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/string/markdown/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/string/markdown/_.md">Markdown 格式</a></p>
+
+</body> 
+</html>

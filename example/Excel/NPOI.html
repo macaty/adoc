@@ -1,0 +1,64 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - NPOI'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - NPOI</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: NPOI</h1><pre><code class="aardio language-aardio">//NPOI
+import NPOI;
+import console.int; 
+
+/*
+用法请直接参考 .NET 代码，没太大区别
+https://github.com/nissl-lab/npoi
+https://github.com/nissl-lab/npoi-examples
+
+要求 .NET 4.7.2 以上（ Win10 1809 开始自带）。
+开源免费，携带 22 个 DLL 文件（ 全部内存加载，生成独立 EXE )。
+不依赖 Office，不需要安装 Excel，Word 。
+*/
+
+//创建工作簿
+var workbook = NPOI.XSSF.UserModel.XSSFWorkbook();
+
+//打开工作簿
+/*
+var fs = System.IO.FileStream(&quot;/test.xlsx&quot;,&quot;r+&quot;)
+var workbook = NPOI.XSSF.UserModel.XSSFWorkbook(fs);
+*/
+
+//创建工作表 
+var sheet = workbook.CreateSheet(&quot;Sheet1&quot;);
+
+//填充数据
+for (  r = 0; 4 ) {
+    var row = sheet.CreateRow(r);
+    for ( c = 0; 2 )  {
+        var cell = row.CreateCell(c);
+        if (r == 0) { 
+            cell.SetCellValue(&quot;Column&quot; + (c + 1)); 
+        }
+        else  {
+            cell.SetCellValue(&quot;R&quot;+(r + 1)+&quot;C&quot;+(c + 1));
+        }
+    }
+}
+
+//保存数据 
+workbook.Write(&quot;/test.xlsx&quot;);   
+
+import process;
+process.exploreSelect(&quot;/test.xlsx&quot;); 
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Excel/NPOI.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Excel/NPOI.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Excel/NPOI.md">Markdown 格式</a>
+</body> 
+</html>

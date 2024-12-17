@@ -1,0 +1,113 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - ReoGrid - 免费、开源、强大的 Excel 表格控件'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - ReoGrid - 免费、开源、强大的 Excel 表格控件</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: ReoGrid - 免费、开源、强大的 Excel 表格控件</h1><pre><code class="aardio language-aardio">//表格控件
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;ReoGrid - 免费、开源、强大的 Excel 表格控件&quot;;right=757;bottom=467)
+winform.add()
+/*}}*/
+
+//免费、开源、强大的 Excel 表格控件。
+//在 aardio 里用法基本跟 .NET 一样，文档: https://reogrid.net/document/
+import dotNet.ReoGrid; 
+
+//创建控件
+var grid = ReoGrid.ReoGridControl(winform);
+
+//当前工作表
+var sheet1 = grid.CurrentWorksheet;
+
+//修改数据
+sheet1.Cells[&quot;A1&quot;].Data = &quot;测试&quot;;
+
+//直接显示 aardio 表（字符串数组）
+sheet1[&quot;B2:D4&quot;] =  { 
+  { &quot;测试&quot;, &quot;测试2&quot; },
+  { &quot;测试3&quot;, &quot;测试4&quot; },
+};
+
+//设置列数据，参数（行索引、列索引，数据），注意 .NET 起始下标为 0
+sheet1.SetCellData(5, 2, &quot;hello world&quot;);
+
+//设置列数据
+sheet1[&quot;B3:C5&quot;] =  { { &#39;a&#39;, &#39;b&#39;, &#39;c&#39; }, { 1, 2, 3 }, { 4, 5, 6 } };
+
+//获取 Range（单元格集合） 对象
+var range = sheet1.Ranges[&quot;D4:I4&quot;];
+
+//设置 Range 数据
+range.Data = { &quot;Product&quot;, &quot;Unit Price&quot;, &quot;Quantity&quot;, &quot;Extended Price&quot; }; 
+
+//修改样式（背景颜色） ，参数必须是 ReoGrid.Graphics.SolidColor 对象
+range.Style.BackColor = ReoGrid.Graphics.SolidColor.Orange
+
+
+//高亮区域
+sheet1.AddHighlightRange(&quot;B2:D4&quot;);
+
+///自定义控件
+var checkboxCell = ReoGrid.CellTypes.CheckBoxCell();
+
+//响应事件，不用任何封装，aardio 自动支持。
+checkboxCell.CheckChanged = function(send,event){
+    winform.msgbox(checkboxCell.IsChecked)
+}
+sheet1[&quot;B6&quot;] = checkboxCell;
+
+//保存文件
+grid.Save(&quot;/test.xlsx&quot;);
+
+winform.show();
+win.loopMessage();
+
+//可如下快速编译 C# 函数然后调用。
+/****
+
+import dotNet.ReoGrid.Compiler; 
+var compiler = dotNet.ReoGrid.Compiler();
+
+//C# 源码
+compiler.Source = /***
+using System;  
+using unvell.ReoGrid;
+
+namespace aardio.ReoGrid{  
+    public class Util  
+    {
+        public static void TestGrid(ReoGridControl grid,string path){
+            grid.Save(path);
+        }
+    } 
+}
+***/
+
+//生成程序集
+compiler.CompileOrFail(&quot;/Grid.dll&quot;);
+
+//加载 DLL，改为 $&quot;/Grid.dll&quot; 内存加载（不需要外部 DLL文件）
+var dll = dotNet.loadFile(&quot;/Grid.dll&quot;);
+
+//导入 C# 名字空间
+var gridUtil = dll.import(&quot;aardio.ReoGrid.Util&quot;);
+
+//调用 C# 写的函数
+gridUtil.TestGrid(grid,io.fullpath(&quot;/test2.xlsx&quot;));
+
+****/
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Excel/ReoGrid.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Excel/ReoGrid.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Excel/ReoGrid.md">Markdown 格式</a>
+</body> 
+</html>

@@ -1,0 +1,456 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - builtin 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - builtin 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>builtin 库模块帮助文档</h1>
+
+<p><a id="::Kernel32"></a></p>
+
+<h2>::Kernel32 成员列表</h2>
+
+<p><a id="::Kernel32.?"></a></p>
+
+<h3>::Kernel32.?</h3>
+
+<p>可不用声明直接在此输入函数名并调用API函数  </p>
+
+<p>一、传入参数规则：<br>
+1、null参数不可省略<br>
+2、32位整数类型，小于32位的整数、以及枚举类型都可以直接在API参数中写数值。<br>
+3、对于任何数值类型的指针（输出参数）一律使用结构体表示，例如double * v 表示为{ double v }<br>
+4、数组使用结构体表示<br>
+5、所有结构体传给API的都是指针地址，都是输出参数并增加返回值  </p>
+
+<p>二、返回值规则：<br>
+1、返回值默认为int类型,可用 &gt;&gt;&gt; 0 强制转为无符号数,<br>
+2、可以使用[API尾标]改变返回值为其他类型  </p>
+
+<p>三、所有可用的【API尾标】:<br>
+::Kernel32.ApiNameW() 切换到Unicode版本，字符串UTF8-UTF16双向转换<br>
+::Kernel32.ApiNameA() 切换到ANSI版本,字符串不作任何转换<br>
+::Kernel32.ApiNameL() 返回值为64位LONG类型<br>
+::Kernel32.ApiNameP() 返回值为指针类型<br>
+::Kernel32.ApiNameD() 返回值为double浮点数<br>
+::Kernel32.ApiNameF() 返回值为float浮点数<br>
+::Kernel32.ApiNameB() 返回值为C++中的8位bool类型<br>
+注意【尾标】前必须是小写字母</p>
+
+<p><a id="::Kernel32.GetACP"></a></p>
+
+<h3>::Kernel32.GetACP()</h3>
+
+<p>返回当前ANSI代码页</p>
+
+<p><a id="::Kernel32.GetFileAttributes"></a></p>
+
+<h3>::Kernel32.GetFileAttributes()</h3>
+
+<p>获取参数 @1 指定路径的文件属性，文件不存在返回 -1。<br>
+参数 @1 应当使用 io.fullpath 转换为完整路径。  </p>
+
+<p>文件属性使用 <em>FILE_ATTRIBUTE</em> 前缀的常量表示。<br>
+使用 fsys.attrib 函数获取或修改文件属性更方便。</p>
+
+<p><a id="::Kernel32.GetSystemDefaultLCID"></a></p>
+
+<h3>::Kernel32.GetSystemDefaultLCID()</h3>
+
+<p>返回系统默认区域 ID</p>
+
+<p><a id="::Kernel32.GetThreadId"></a></p>
+
+<h3>::Kernel32.GetThreadId(线程句柄)</h3>
+
+<p>将参数 @1 指定的线程句柄转换为线程 ID 。<br>
+使用 thread.open 函数可将线程 ID 转为线程句柄。</p>
+
+<p><a id="::Kernel32.GetUserDefaultLangID"></a></p>
+
+<h3>::Kernel32.GetUserDefaultLangID()</h3>
+
+<p>返回当前用户使用的默认区域语言 ID，<br>
+这与系统设置：区域语言 / 格式 一致。<br>
+可使用 sys.locale.setUserDefault 函数修改此设置</p>
+
+<p><a id="::Kernel32.LocalFree"></a></p>
+
+<h3>::Kernel32.LocalFree(hMem)</h3>
+
+<p>一些API返回的内存句柄需要使用此函数释放，<br>
+@hMem参数指定内存句柄</p>
+
+<p><a id="::Kernel32.RtlMoveMemory"></a></p>
+
+<h3>::Kernel32.RtlMoveMemory(目标内存地址,源数据,源数据长度)</h3>
+
+<p>复制内存<br>
+此函数支持所有API兼容指针类型参数，直接操作内存请小心使用</p>
+
+<p>源数据可以是字符串、内存指针、或结构体</p>
+
+<p><a id="::Kernel32.SetDllDirectory"></a></p>
+
+<h3>::Kernel32.SetDllDirectory(&quot;DLL搜索目录&quot;)</h3>
+
+<p>设置加载DLL的默认目录</p>
+
+<p><a id="::Kernel32.SetDllDirectory"></a></p>
+
+<h3>::Kernel32.SetDllDirectory(null)</h3>
+
+<p>恢复DLL默认搜索目录</p>
+
+<p><a id="::Kernel32.SetErrorMode"></a></p>
+
+<h3>::Kernel32.SetErrorMode(0)</h3>
+
+<p>显示所有系统错误对话框</p>
+
+<p><a id="::Kernel32.api("字符串参数","void"></a></p>
+
+<h3>::Kernel32.api(&quot;字符串参数&quot;,&quot;void()&quot; )</h3>
+
+<p>声明Kernel32 API函数</p>
+
+<p><a id="::Kernel32.gethandle"></a></p>
+
+<h3>::Kernel32.gethandle()</h3>
+
+<p>返回句柄</p>
+
+<p><a id="::User32"></a></p>
+
+<h2>::User32 成员列表</h2>
+
+<p><a id="::User32.?"></a></p>
+
+<h3>::User32.?</h3>
+
+<p>可不用声明直接在此输入函数名并调用API函数  </p>
+
+<p>一、传入参数规则：<br>
+1、null参数不可省略<br>
+2、32位整数类型，小于32位的整数、以及枚举类型都可以直接在API参数中写数值。<br>
+3、对于任何数值类型的指针（输出参数）一律使用结构体表示，例如double * v 表示为{ double v }<br>
+4、数组使用结构体表示<br>
+5、所有结构体传给API的都是指针地址，都是输出参数并增加返回值  </p>
+
+<p>二、返回值规则：<br>
+1、返回值默认为int类型,可用 &gt;&gt;&gt; 0 强制转为无符号数,<br>
+2、可以使用[API尾标]改变返回值为其他类型  </p>
+
+<p>三、所有可用的【API尾标】:<br>
+::User32.ApiNameW() 切换到Unicode版本，字符串UTF8-UTF16双向转换<br>
+::User32.ApiNameA() 切换到ANSI版本,字符串不作任何转换<br>
+::User32.ApiNameL() 返回值为64位LONG类型<br>
+::User32.ApiNameP() 返回值为指针类型<br>
+::User32.ApiNameD() 返回值为double浮点数<br>
+::User32.ApiNameF() 返回值为float浮点数<br>
+::User32.ApiNameB() 返回值为C++中的8位bool类型<br>
+注意【尾标】前必须是小写字母</p>
+
+<p><a id="::User32.DestroyWindow"></a></p>
+
+<h3>::User32.DestroyWindow()</h3>
+
+<p>销毁窗口，<br>
+参数指定窗口句柄，也就是窗口对象的 hwnd 属性。<br>
+销毁窗口不会触发窗口的 onClose 事件，<br>
+但会触发 onDestroy 事件</p>
+
+<p><a id="::User32.GetCursorPos"></a></p>
+
+<h3>::User32.GetCursorPos()</h3>
+
+<p>返回鼠标当前位置,参数应当是一个::POINT结构体<br>
+成功返回非零值</p>
+
+<p><a id="::User32.GetSystemMetrics"></a></p>
+
+<h3>::User32.GetSystemMetrics()</h3>
+
+<p>返回系统系统与数值有关的设置,宽高有关的数值以像素为单位,<br>
+参数以 <em>SM</em> 前缀的常量指定要获取的设置索引</p>
+
+<p><a id="::User32.GetWindowThreadProcessId"></a></p>
+
+<h3>::User32.GetWindowThreadProcessId(hwnd,pid)</h3>
+
+<p>返回 @hwnd 参数指定窗口句柄的窗口所在线程 ID,<br>
+@pid 如果不为 null 则必须传入结构体 {addr value},<br>
+也可以改用 win.getThreadProcessId 函数</p>
+
+<p><a id="::User32.PostMessage"></a></p>
+
+<h3>::User32.PostMessage</h3>
+
+<p>通过创建目标窗口线程的消息队列发送消息给目标窗口,不等待返回，<br>
+注意消息队列等待处理的消息超过 10000 条消息时将会丢弃消息</p>
+
+<p><a id="::User32.PostMessage"></a></p>
+
+<h3>::User32.PostMessage(hwnd,message,wParam,lParam)</h3>
+
+<p>通过消息队列发送消息给目标窗口,不等待返回。<br>
+@hwnd 指定目标窗口句柄，设为 0xFFFF（65535） 则发送到所有顶层窗口。<br>
+参数@2为消息ID，一般是 <em>WM</em> 开头的常量。<br>
+一定要指定4个参数,省略参数输入null或0不可省略<br>
+注意不要在参数中包含在调用函数后可能释放的指针</p>
+
+<p><a id="::User32.SendMessage"></a></p>
+
+<h3>::User32.SendMessage</h3>
+
+<p>发送消息到目标窗口，并等待返回，<br>
+如果目标窗口卡住，可能导致不必要的等待过程</p>
+
+<p><a id="::User32.SendMessage"></a></p>
+
+<h3>::User32.SendMessage(hwnd,message,wParam,lParam)</h3>
+
+<p>发送消息到目标窗口，并等待返回。<br>
+@hwnd 指定目标窗口句柄，设为 0xFFFF（65535） 则发送到所有顶层窗口。<br>
+参数@2为消息ID，一般是 <em>WM</em> 开头的常量。<br>
+一定要指定4个参数,省略参数输入null或0不可省略</p>
+
+<p><a id="::User32.SendMessageTimeout"></a></p>
+
+<h3>::User32.SendMessageTimeout</h3>
+
+<p>发送消息到目标窗口，并可设置超时参数</p>
+
+<p><a id="::User32.SendMessageTimeout"></a></p>
+
+<h3>::User32.SendMessageTimeout(hwnd, message, wParam,lParam,flags,timeout,pRet)</h3>
+
+<p>用法请参考该 API 文档</p>
+
+<p><a id="::User32.SendNotifyMessage"></a></p>
+
+<h3>::User32.SendNotifyMessage</h3>
+
+<p>发送消息到目标窗口，<br>
+发生到调用线程创建的窗口等待窗口消息处理完消息后返回，<br>
+发生到其他线程不等待立即返回。  </p>
+
+<p>注意这个函数并非将消息发送到消息队列，<br>
+不会因为消息队列满被丢弃</p>
+
+<p><a id="::User32.SendNotifyMessage"></a></p>
+
+<h3>::User32.SendNotifyMessage(hwnd,message,wParam,lParam)</h3>
+
+<p>发送消息到目标窗口，<br>
+@hwnd 指定目标窗口句柄，设为 0xFFFF（65535） 则发送到所有顶层窗口。<br>
+参数@2为消息ID，一般是 <em>WM</em> 开头的常量。<br>
+一定要指定4个参数,省略参数输入null或0不可省略<br>
+注意不要在参数中包含在调用函数后可能释放的指针，<br>
+但对 0xFFFF 发送 _WM_SETTINGCHANGE 消息时可指定字符串参数</p>
+
+<p><a id="::User32.SetCursorPos"></a></p>
+
+<h3>::User32.SetCursorPos(x,y)</h3>
+
+<p>设置鼠标当前位置,参数指定x,y坐标<br>
+成功返回非零值</p>
+
+<p><a id="::User32.SystemParametersInfo"></a></p>
+
+<h3>::User32.SystemParametersInfo(uiAction,uiParam,pvParam,fWinIni)</h3>
+
+<p>设置或获取系统参数,<br>
+失败返回0,成功返回非零值,  </p>
+
+<p>参数@1指定 <em>SPI</em> 前缀常量,@pvParam 为指针或结构体指针,<br>
+其他参数都为无符号32位整数。参数 @4 设为 3 也即<br>
+_SPIF_UPDATEINIFILE | _SPIF_SENDWININICHANGE<br>
+用于刷新配置,读取值时参数 @4 设为 0 即可  </p>
+
+<p>这个函数的设置项非常多,细节请参考该 API 文档</p>
+
+<p><a id="::User32.api("字符串参数","void"></a></p>
+
+<h3>::User32.api(&quot;字符串参数&quot;,&quot;void()&quot; )</h3>
+
+<p>声明Kernel32 API函数</p>
+
+<h3>全局常量</h3>
+
+<p><a id="::CopyMemory(目标内存地址,源地址,源数据长度)"></a></p>
+
+<h3>::CopyMemory(目标内存地址,源地址,源数据长度)</h3>
+
+<p>复制内存<br>
+此函数调用::Kernel32.RtlMoveMemory</p>
+
+<p><a id="::CopyMemoryByStruct(目标内存地址,源结构体,源结构体长度)"></a></p>
+
+<h3>::CopyMemoryByStruct(目标内存地址,源结构体,源结构体长度)</h3>
+
+<p>复制结构体到目标内存<br>
+此函数调用::Kernel32.RtlMoveMemory</p>
+
+<p><a id="::FILETIME()"></a></p>
+
+<h3>::FILETIME()</h3>
+
+<p>FILETIME 结构体,<br>
+用于表示自 1601年1月1日 开始以 100纳秒 为间隔的数值。<br>
+100纳秒 也就是 0.0001毫秒。  </p>
+
+<p>此结构体包含 2 个 32 无符号位整数字段：dwLowDateTime,dwHighDateTime。  </p>
+
+<p>标准库 fsys.time 可创建 ::FILETIME 兼容结构体，<br>
+并且提供了更多功能</p>
+
+<p><a id="::GetLastError()"></a></p>
+
+<h3>::GetLastError()</h3>
+
+<p>返回系统错误代码</p>
+
+<p><a id="::GetModuleHandle(模块名)"></a></p>
+
+<h3>::GetModuleHandle(模块名)</h3>
+
+<p>返回动态链接库的模块句柄</p>
+
+<p><a id="::GlobalAlloc(分配选项,内存长度)"></a></p>
+
+<h3>::GlobalAlloc(分配选项,内存长度)</h3>
+
+<p>在进程堆上分配内存,<br>
+分配选项可选参数如下:  </p>
+
+<p>0x40/*_GPTR*/ 返回指针,内存数据初始化为零<br>
+0x42/*_GHND*/ 返回句柄,内存数据初始化为零,<br>
+0x0/*_GMEM_FIXED*/ 返回指针<br>
+0x2/*_GMEM_MOVEABLE*/ 返回句柄<br>
+内存句柄需要调用 ::GlobalLock 函数转换为内存指针</p>
+
+<p><a id="::GlobalFree(内存句柄)"></a></p>
+
+<h3>::GlobalFree(内存句柄)</h3>
+
+<p>释放::GlobalAlloc()分配的内存<br>
+如果成功返回null,否则返回传入句柄</p>
+
+<p><a id="::GlobalLock(内存句柄)"></a></p>
+
+<h3>::GlobalLock(内存句柄)</h3>
+
+<p>锁定::GlobalAlloc(0x2/*_GMEM_MOVEABLE*/)创建的内存句柄,<br>
+并返回内存指针指针</p>
+
+<p><a id="::GlobalReAlloc(内存句柄,新的长度,分配选项)"></a></p>
+
+<h3>::GlobalReAlloc(内存句柄,新的长度,分配选项)</h3>
+
+<p>改变GlobalAlloc函数申请的内存大小<br>
+分配选项参考 GlobalAlloc() 说明</p>
+
+<p><a id="::GlobalSize(内存句柄)"></a></p>
+
+<h3>::GlobalSize(内存句柄)</h3>
+
+<p>获取内存长度</p>
+
+<p><a id="::GlobalUnlock(内存句柄)"></a></p>
+
+<h3>::GlobalUnlock(内存句柄)</h3>
+
+<p>解锁::GlobalAlloc(0x2/*_GMEM_MOVEABLE*/)创建的内存句柄,<br>
+成功返回true</p>
+
+<p><a id="::HIBYTE"></a></p>
+
+<h3>::HIBYTE</h3>
+
+<pre><code class="aardio language-aardio">function(l) {return   (l   &gt;&gt; 8) &amp; 0xff  }
+</code></pre>
+
+<p><a id="::HIWORD"></a></p>
+
+<h3>::HIWORD</h3>
+
+<pre><code class="aardio language-aardio">function(l) {return  (l &gt;&gt; 16) &amp; 0xffff }
+</code></pre>
+
+<p><a id="::Kernel32"></a></p>
+
+<h3>::Kernel32</h3>
+
+<p>默认已加载的Kernel32.dll模块对象<br>
+Kernel32.dll是Windows内置库,提供很多常用API</p>
+
+<p><a id="::LOBYTE"></a></p>
+
+<h3>::LOBYTE</h3>
+
+<pre><code class="aardio language-aardio">function(l) {return l  &amp; 0xff }
+</code></pre>
+
+<p><a id="::LOWORD"></a></p>
+
+<h3>::LOWORD</h3>
+
+<pre><code class="aardio language-aardio">function(l) {return l &amp; 0xffff }
+</code></pre>
+
+<p><a id="::MAKELONG"></a></p>
+
+<h3>::MAKELONG</h3>
+
+<pre><code class="aardio language-aardio">function(a,b){ return ( ( (b &amp; 0xFFFF) &lt;&lt; 16) | (a &amp; 0xFFFF) ) &amp; 0xFFFFFFFF }
+</code></pre>
+
+<p><a id="::MAKEWORD"></a></p>
+
+<h3>::MAKEWORD</h3>
+
+<pre><code class="aardio language-aardio">function (a,b){ return ( ( ( b &amp; 0xFF) &lt;&lt; 8) | ( a &amp; 0xFF) ) &amp; 0xFFFF  }
+</code></pre>
+
+<p><a id="::Ntdll"></a></p>
+
+<h3>::Ntdll</h3>
+
+<p>默认已加载的系统DLL组件ntdll.dll  </p>
+
+<p><a href="../raw/_.html#dllModuleObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/raw/_.html#dllModuleObject">返回对象:dllModuleObject</a></p>
+
+<p><a id="::Ucrtbase"></a></p>
+
+<h3>::Ucrtbase</h3>
+
+<p>UCRT 运行时，<br>
+Windows 10 以及之后的系统已经自带了 UCRT。  </p>
+
+<p>加载此 DLL 的代码如下：<br>
+::Ucrtbase := ..raw.loadDll(&quot;ucrtbase.dll&quot;,,&quot;cdecl&quot;);<br>
+注意等号前必须加冒号。  </p>
+
+<p><a href="../raw/_.html#dllModuleObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/raw/_.html#dllModuleObject">返回对象:dllModuleObject</a></p>
+
+<p><a id="::User32"></a></p>
+
+<h3>::User32</h3>
+
+<p>默认已加载的User32.dll模块对象<br>
+User32.dll提供Windows用户界面相关API</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/builtin/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/builtin/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/builtin/_.md">Markdown 格式</a></p>
+
+</body> 
+</html>

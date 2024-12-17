@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - process.pscp 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - process.pscp 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>process.pscp 库模块帮助文档</h1>
+
+<p><a id="process"></a></p>
+
+<h2>process 成员列表</h2>
+
+<p><a id="process.pscp"></a></p>
+
+<h3>process.pscp( 命令行参数  )</h3>
+
+<pre><code class="aardio language-aardio">process.pscp(    
+    ,&quot;-p&quot;,&quot;-v&quot;  
+    ,&quot;-l&quot;,&quot;用户名&quot;  
+    ,&quot;-pw&quot;,&quot;密码&quot;  
+    ,&quot;-P&quot;,&quot;22&quot;,&quot;服务器IP:服务器文件路径&quot;   
+    ,io.fullpath(&quot;本地文件路径&quot;)   
+    )
+</code></pre>
+
+<p><a id="process.pscp"></a></p>
+
+<h3>process.pscp()</h3>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html#processPopenObject'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html#processPopenObject">返回对象:processPopenObject</a></p>
+
+<p><a id="process.pscp"></a></p>
+
+<h2>process.pscp 成员列表</h2>
+
+<p>使用管道调用SCP/SFTP文件传输客户端</p>
+
+<p><a id="process.pscp.download"></a></p>
+
+<h3>process.pscp.download</h3>
+
+<p>下载文件</p>
+
+<p><a id="process.pscp.download"></a></p>
+
+<h3>process.pscp.download(回显函数,远程路径,本地路径,服务器地址,密码,用户名,端口)</h3>
+
+<p>本地路径可以指定下载目录,也可以指定完整的文件路径<br>
+如果不指定回显函数则输出到控制台,如果导入了console库会打开控制台<br>
+回显函数有三个参数:全部输出,进程标准输出,进程错误输出<br>
+用户名默认为root,端口默认为22,都是可选参数</p>
+
+<p><a id="process.pscp.upload"></a></p>
+
+<h3>process.pscp.upload</h3>
+
+<p>上传文件</p>
+
+<p><a id="process.pscp.upload"></a></p>
+
+<h3>process.pscp.upload(回显函数,本地路径,远程目录,服务器地址,密码,用户名,端口)</h3>
+
+<p>远程目录路径可指定为&quot;.&quot;,即用户当前目录<br>
+如果不指定回显函数则输出到控制台,如果导入了console库会打开控制台  </p>
+
+<p>回显函数有三个参数:全部输出,进程标准输出,进程错误输出<br>
+用户名默认为root,端口默认为22,都是可选参数</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/process/pscp/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/process/pscp/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/process/pscp/_.md">Markdown 格式</a></p>
+
+</body> 
+</html>

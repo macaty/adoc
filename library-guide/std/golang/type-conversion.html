@@ -1,0 +1,242 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - Go / aardio 原生类型转换'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - Go / aardio 原生类型转换</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>Go / aardio 原生类型转换</h1>
+
+<p>aardio 可以使用 table 定义结构体(struct)，在结构体中可以定义原生类型。</p>
+
+<p>请参考：</p>
+
+<ul>
+<li><a href="../../builtin/raw/api.html" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/builtin/raw/api.html">raw 库</a> </li>
+<li><a href="../../builtin/raw/datatype.html" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/builtin/raw/datatype.html">原生数据类型</a></li>
+</ul>
+
+<h2>aardio，C 语言，cgo，Go 类型对应关系</h2>
+
+<table><thead>
+<tr>
+<th>aardio</th>
+<th>C 语言</th>
+<th>cgo</th>
+<th>Go</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>BYTE</td>
+<td>char</td>
+<td>C.char</td>
+<td>byte,bool</td>
+</tr>
+<tr>
+<td>byte</td>
+<td>singed char</td>
+<td>C.schar</td>
+<td>int8</td>
+</tr>
+<tr>
+<td>BYTE</td>
+<td>unsigned char</td>
+<td>C.uchar</td>
+<td>uint8,byte</td>
+</tr>
+<tr>
+<td>word</td>
+<td>short</td>
+<td>C.short</td>
+<td>int16</td>
+</tr>
+<tr>
+<td>WORD</td>
+<td>unsigned short</td>
+<td>C.ushort</td>
+<td>uint16</td>
+</tr>
+<tr>
+<td>int</td>
+<td>int</td>
+<td>C.int</td>
+<td>int32,rune</td>
+</tr>
+<tr>
+<td>INT</td>
+<td>unsigned int</td>
+<td>C.uint</td>
+<td>uint32</td>
+</tr>
+<tr>
+<td>int</td>
+<td>long</td>
+<td>C.long</td>
+<td>int32</td>
+</tr>
+<tr>
+<td>INT</td>
+<td>unsigned long</td>
+<td>C.ulong</td>
+<td>uint32</td>
+</tr>
+<tr>
+<td>long</td>
+<td>long long</td>
+<td>C.longlong</td>
+<td>int64</td>
+</tr>
+<tr>
+<td>LONG</td>
+<td>unsigned long long</td>
+<td>C.ulonglong</td>
+<td>uint64</td>
+</tr>
+<tr>
+<td>float</td>
+<td>float</td>
+<td>C.float</td>
+<td>float32</td>
+</tr>
+<tr>
+<td>double</td>
+<td>double</td>
+<td>C.double</td>
+<td>float64</td>
+</tr>
+<tr>
+<td>INT</td>
+<td>size_t</td>
+<td>C.size_t</td>
+<td>uint</td>
+</tr>
+<tr>
+<td>pointer</td>
+<td>void *</td>
+<td></td>
+<td>unsafe.Pointer</td>
+</tr>
+</tbody></table>
+
+<p>要特别注意 Go 的 bool 类型只有 1 个字节，相当于 aardio 中的 BYTE，而 aardio 中的 bool 类型则是 32 位 4 个字节，相当于 WinAPI 定义的 BOOL 类型。</p>
+
+<p>aardio 调用 Go 示例，首先调用 Go 编译器生成 DLL 文件： </p>
+
+<pre><code class="aardio language-aardio">//调用编译后的 DLL 不需要导入此为
+import golang;
+
+//创建 Go 编译器（ 仅仅调用编译后的 DLL 不需要 ）。 
+var go = golang();
+
+//Go 源码：与 aardio 一样默认 UTF-8 编码
+go.main = /**********
+package main
+
+import &quot;C&quot; //单独导入这句启用 CGO
+import &quot;fmt&quot; //https://pkg.go.dev/fmt
+import &quot;unsafe&quot; //https://pkg.go.dev/unsafe
+
+type MyStruct struct { 
+    Int8Field   int8
+    Int16Field  int16
+    Int32Field  int32
+    Int64Field  int64
+    UintField   uint
+    Uint8Field  uint8
+    Uint16Field uint16
+    Uint32Field uint32
+    Uint64Field uint64
+    Float32Field float32
+    Float64Field float64
+    pStr *C.char 
+}
+
+//在注释里用 export 声明为 DLL 导出函数  
+//export SetStruct
+func SetStruct(p uintptr) {  
+    // aardio 结构体转换为 Go 结构体
+    st := (*MyStruct)(unsafe.Pointer(p)) 
+    st.Int8Field = 8
+
+    //Go 用 fmt.Println 打印变量很方便，可传入多个任意类型的参数。 
+    fmt.Println( &quot;在 Go 中打印结构体：&quot;,st );
+
+    var str = C.GoString(st.pStr);
+    fmt.Printf(&quot;Go says: %s!\n&quot;, str) 
+}
+
+//初始化函数，可以重复写多个
+func init() { }
+
+//必须写个空的入口函数，实际不会执行
+func main() {} 
+**********/
+
+//上面的 go.main 会自动保存到文件，然后编译 Go 源码生成同名 DLL 文件
+go.buildShared(&quot;/.go/testStruct.go&quot;);
+</code></pre>
+
+<p>然后在 aardio 中调用上面生成的 DLL:  </p>
+
+<pre><code class="aardio language-aardio">import console.int;
+//加载 Go 编译的 DLL，注意要指定 cdecl 调用约定。 
+var goDll = raw.loadDll($&quot;/.go/testStruct.dll&quot;,,&quot;cdecl&quot;);
+//如果已经生成 DLL，用$操作符可以嵌入 DLL 到代码中实现内存加载（发布后不需要带 DLL 文件）。
+//声明结构体
+class myStruct {
+    byte Int8Field;//Go类型 int8
+    word Int16Field;//Go类型 int16
+    int32 Int32Field;//Go类型 int32
+    long64 Int64Field;//Go类型 int64 
+    BYTE Uint8Field;//Go类型 uint8
+    WORD Uint16Field;//Go类型 uint16
+    INT32 Uint32Field;//Go类型 uint32
+    LONG64 Uint64Field;//Go类型 uint64
+    float Float32Field;//Go类型 float32
+    double Float64Field;//Go类型 float64
+    string pStr = &quot;这是 aardio 字符串&quot;
+}
+
+//创建结构体
+var struct = myStruct();
+
+//调用 Go 函数，传结构体（结构体总是传址）
+goDll.SetStruct(struct); 
+
+//打印结构体
+console.dumpJson(struct);
+</code></pre>
+
+<p>调用 Go 写的 DLL 请注意：  </p>
+
+<ol>
+<li><p>加载 Go 写的 DLL 然后迅速（几秒以内）退出，Go 程序可能会崩溃。<br>
+这不是因为你写的代码有任何问题，而是 Go 需要额外启动运行时，无法应付这种快速退出的情况。<br>
+这时在后面加一句 thread.delay(2000) 就可以解决。  </p>
+
+<p>实际上除了写测试代码，一般也不会打开一个程序就在几秒内退出。<br>
+所以稍加注意一下，避免这个问题并不难。  </p>
+
+<p>只有 Go 写的 DLL 有这个问题，其他语言写的 DLL 没这种问题。  </p></li>
+<li><p>在同一个进程内， Go 写的同一个 DLL 应当只加载一次。<br>
+当然在 DLL 没有卸载前，反复调用 raw.loadDll() 只是增加引用计数，不会重复加载 DLL。  </p>
+
+<p>如果多线程内存加载同一个 Go 写的 DLL 就会加载多个不同的副本。<br>
+这时候务必在 raw.loadDll(&quot;go.dll&quot;,&quot;共享名称&quot;) 的第 2 个参数指定共享名称，以避免重复加载。  </p></li>
+<li><p>要注意在 aardio 中 DLL 不应当作为线程参数传递，实际上也没必要这样做。  </p>
+
+<p>只要用 raw.loadDll() 加载同名 DLL (或加载相同共享名称的内存 DLL) 是不会重复加载的。</p></li>
+</ol>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-guide/std/golang/type-conversion.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-guide/std/golang/type-conversion.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/std/golang/type-conversion.md">Markdown 格式</a></p>
+
+</body> 
+</html>

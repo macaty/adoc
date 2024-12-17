@@ -1,0 +1,88 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - sqlite 库 - 入门'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - sqlite 库 - 入门</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: sqlite 库 - 入门</h1><pre><code class="aardio language-aardio">//sqlite 库 - 入门
+import win.ui;
+/*DSG{{*/
+mainForm = win.form(text=&quot;sqlite 入门&quot;;right=425;bottom=498)
+mainForm.add(
+button={cls=&quot;button&quot;;text=&quot;查询&quot;;left=297;top=7;right=396;bottom=42;z=2};
+editResult={cls=&quot;edit&quot;;left=12;top=61;right=400;bottom=491;edge=1;multiline=1;z=3};
+editUser={cls=&quot;edit&quot;;text=&quot;小王&quot;;left=14;top=11;right=282;bottom=40;edge=1;multiline=1;z=1}
+)
+/*}}*/
+
+import sqlite;
+var db = sqlite(&quot;/intro2.db&quot;);//打开数据库连接,参数指定硬盘文件路径
+
+//创建数据表
+if( not db.existsTable(&quot;工作日志表&quot;) /*是否已存在指定的表*/ ) {  
+    /*
+    sqlite 可以象 MSSQL 那样将表名等标识符放在方括号里(避免表名是保留字等),
+    也可以将 MYSQL 那样将表示放在反引号里(键盘左上角波浪线下面的符号),
+    也可以按 ANSI SQL 约定放在双引号里,更可以放在单引号里。
+
+    SQL里面一般应当用单引号包含字符串( 各种数据库都支持的标准写法 )
+    双引号在 ANSI SQL 中规定用来包含表名 - 一个容易让人误解的规定,所以 MSSQL 用了中括号,而 MYSQL 用了反引号。
+    */
+    db.exec( &quot;CREATE TABLE [工作日志表]( 姓名,工作地点,时间);&quot; );
+}  
+
+//创建预处理命令,用 @ 字符作为 SQL 命名参数的前缀
+var cmd = db.prepare(&quot;INSERT INTO [工作日志表] VALUES ( @姓名,@工作地点,@时间 );&quot;)
+
+//执行命令语句,插入测试数据,并指定 SQL 命名参数
+cmd.step(
+    姓名 = &quot;小张&quot;;
+    工作地点 = &quot;北京&quot;;
+    时间 = time.now();
+); 
+
+//插入测试数据,函数唯一的表参数首尾的 { } 可以省略
+cmd.step( {
+    姓名 = &quot;小王&quot;;
+    工作地点 = &quot;上海&quot;;
+    时间 = time.now();
+} );
+
+//响应按钮事件
+mainForm.button.oncommand = function(id,event){
+
+    //查询一条数据,查询多条请改用 db.each() 或者 db.getTable() 函数
+    var result  = db.stepQuery(&quot;SELECT * FROM [工作日志表] WHERE ??&quot;,{ {
+        姓名 = mainForm.editUser.text; 
+    } } )
+    /* 
+    SQL语句中 @ 字符开始的命名参数使用参数表的名值对元素格式化,
+    SQL语句中 ? 或 ?? 占位符使用参数表的数组元素格式化, 
+
+    其中 ?? 格式化为标识符,其他占位符格式化为参数值。
+    ??占位符用于格式化的参数如果是一个表，表中的键值对以 AND 为分隔符,并将数组值转换为IN语句。
+    */
+
+    if(result){
+        mainForm.editResult.print( result.姓名 );
+        mainForm.editResult.print( result.工作地点 );
+        mainForm.editResult.print( result.时间 );
+    }
+}
+
+mainForm.show();
+win.loopMessage();
+
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Database/sqlite/Intro.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Database/sqlite/Intro.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Database/sqlite/Intro.md">Markdown 格式</a>
+</body> 
+</html>

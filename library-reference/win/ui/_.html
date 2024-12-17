@@ -1,0 +1,2172 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - win.ui 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - win.ui 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>win.ui 库模块帮助文档</h1>
+
+<p><a id="win.ui"></a></p>
+
+<h2>win.ui 成员列表</h2>
+
+<p><a id="win.ui.isForm"></a></p>
+
+<h3>win.ui.isForm()</h3>
+
+<p>检测输入参数是否win.form窗体对象</p>
+
+<p><a id="win.ui.waitCursor"></a></p>
+
+<h3>win.ui.waitCursor()</h3>
+
+<p>参数为true显示等待光标,false取消,<br>
+参数也可以仅传入一个函数,执行该函数并在执行期间显示等待光标<br>
+可选使用参数@2指定其他光标句柄</p>
+
+<p><a id="win.form"></a></p>
+
+<h2>win.form 成员列表</h2>
+
+<p>在标准库 win.ui 中定义的创建窗体的类，<br>
+此类允许被动态替换以修改默认的构造函数,<br>
+请使用 win._form 以保证能访问原始的 win.form  </p>
+
+<p>窗体对象以及窗体创建的控件对象可作为参数传入其他线程，<br>
+跨线程调用窗体对象的成员函数时将转发到创建窗口的线程执行。</p>
+
+<p><a id="win.form.loadForm"></a></p>
+
+<h3>win.form.loadForm()</h3>
+
+<p><a href="_.html#winform" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/_.html#winform">返回对象:winform</a></p>
+
+<p><a id="winform"></a></p>
+
+<h2>winform 成员列表</h2>
+
+<p><a id="winform.?"></a></p>
+
+<h3>winform.?</h3>
+
+<p>请指定窗体上的控件名称。<br>
+将创建窗体的代码置入窗体设计器生成的代码中，<br>
+自『设计视图』切找到『代码视图』，aardio 才能显示控件对象的智能提示。  </p>
+
+<p><a href="ctrl/static.html#staticObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/static.html#staticObject">返回对象:staticObject</a></p>
+
+<p><a id="winform._defClientRect"></a></p>
+
+<h3>winform._defClientRect</h3>
+
+<p>获取窗口设计时大小  </p>
+
+<p><a href="../../global/_.html#rectObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/global/_.html#rectObject">返回对象:rectObject</a></p>
+
+<p><a id="winform._defWindowProc"></a></p>
+
+<h3>winform._defWindowProc(hwnd,message,wParam,lParam)</h3>
+
+<p>调用默认消息回调函数<br>
+该返回必须是当前消息回调函数的返回值<br>
+无返回值会导致再次调用该函数</p>
+
+<p>用于在 wndproc 回调中提前调用默认窗口回调函数,<br>
+所有窗口和控件定义了 wndproc 回调以后会自动创建这个函数,<br>
+调用此函数以后,wndproc 必须指定非 null 返回值,<br>
+以避免再次重复调用默认回调函数</p>
+
+<p><a id="winform._embedObject"></a></p>
+
+<h3>winform._embedObject</h3>
+
+<p>嵌入 COM 控件的容器对象  </p>
+
+<p><a href="#embedObjectForm">返回对象:embedObjectForm</a></p>
+
+<p><a id="winform._hasBeenDestroyed"></a></p>
+
+<h3>winform._hasBeenDestroyed</h3>
+
+<p>窗体是否已销毁<br>
+请勿修改该值</p>
+
+<p><a id="winform._messageOnly"></a></p>
+
+<h3>winform._messageOnly</h3>
+
+<p>是否 message-only window</p>
+
+<p><a id="winform._parentForm"></a></p>
+
+<h3>winform._parentForm</h3>
+
+<p>创建该控件的父窗口（win.form对象）,<br>
+设计时窗体容器是所有拖放在窗体上的控件的 _parentForm,  </p>
+
+<p>即使窗口移除子窗口样式、更改父子关系，或以 orphanWindow显示,<br>
+控件的 _parentForm 始终都不会改变  </p>
+
+<p><a href="ctrl/static.html#staticObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/static.html#staticObject">返回对象:staticObject</a></p>
+
+<p>创建该控件的父窗口（win.form对象）,<br>
+设计时窗体容器是所有拖放在窗体上的控件的 _parentForm,  </p>
+
+<p>即使窗口移除子窗口样式、更改父子关系，或以 orphanWindow显示,<br>
+控件的 _parentForm 始终都不会改变  </p>
+
+<p><a href="_.html#winform" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/_.html#winform">返回对象:winform</a></p>
+
+<p><a id="winform.add"></a></p>
+
+<h3>winform.add(controlsPropertiesTable)</h3>
+
+<pre><code class="aardio language-aardio">winform.add(   
+    button = {   
+        cls=&quot;button&quot;;bottom=164;right=147;left=8;top=123;z=1;text=&quot;自定义ID控件&quot;;id=123;autoResize=false;  
+    };/*参数 @controlsPropertiesTable 中的每个键值对描述一个创建控件的参数  
+其中键为字符串时指定控件的访问名字，如果窗体存在同名成员控件或先关闭该控件。  
+如果键为数值索引则创建匿名控件，不会覆盖冲突其他控件。  
+
+返回值为创建成功的控件对象列表，返回表的键为创建控件指定的键,值为控件对象*/   
+)
+</code></pre>
+
+<p><a id="winform.adjust"></a></p>
+
+<h3>winform.adjust</h3>
+
+<pre><code class="aardio language-aardio">winform.adjust = function( cx,cy,wParam ) {    
+    /*窗口缩放后会自动触发此函数。  
+cx 参数为窗口客户区宽度,cy 参数为窗口客户区高度,  
+wParam 参数请参考 _WM_SIZE 消息参数说明,一般不用管。  
+
+所有 win.form 创建的窗体和控件都支持此事件,  
+重复赋值只会追加而不会覆盖此事件。  
+一般不建议添加一个 wndproc 仅仅是为了处理  _WM_SIZE 消息，  
+定义 adjust 事件是更好的选择。  
+
+可主动调用此事件,省略参数时 cx,cy 参数默认设为窗口大小*/    
+};
+</code></pre>
+
+<p><a id="winform.applyDisableDragFullWindow"></a></p>
+
+<h3>winform.applyDisableDragFullWindow(callback)</h3>
+
+<pre><code class="aardio language-aardio">winform.applyDisableDragFullWindow(  
+    function(disabled){  
+        /*检测窗口的disableDragFullWindow属性并回调此函数,  
+disabled为true表示临时禁用了拖动显示窗口内容*/  
+    }   
+);
+</code></pre>
+
+<p><a id="winform.atom"></a></p>
+
+<h3>winform.atom(字符串值)</h3>
+
+<pre><code class="aardio language-aardio">import win.ui.atom   
+var atom,hwndConflict = winform.atom(&quot;/*输入唯一标识字符串  
+建议使用GUID生成Globally Unique Identifier(全球唯一标识符) */&quot;);  
+if(!atom){  
+    /*为窗口设置原子值可以避免一个程序重复运行多个实例*/  
+    win.quitMessage();//程序退出  
+    return;  
+};
+</code></pre>
+
+<p><a id="winform.background"></a></p>
+
+<h3>winform.background</h3>
+
+<p>win.ui.background对象,负责绘制窗口背景,<br>
+此对象仅用于标准库内部调用,用户不应访问此对象</p>
+
+<p><a id="winform.background.getCacheBitmap"></a></p>
+
+<h3>winform.background.getCacheBitmap()</h3>
+
+<p>获取窗体背景缓存位图句柄,<br>
+请不要滥用或释放该位图句柄</p>
+
+<p><a id="winform.background.update"></a></p>
+
+<h3>winform.background.update()</h3>
+
+<p>更新背景缓存,此函数一般不应主动调用,应避免频繁调用</p>
+
+<p><a id="winform.beforeDestroy"></a></p>
+
+<h3>winform.beforeDestroy</h3>
+
+<pre><code class="aardio language-aardio">winform.beforeDestroy = function(){  
+    /*指定在窗体销毁以前执行的代码  
+早于onDestroy触发*/  
+
+}
+</code></pre>
+
+<p><a id="winform.beforeShowWindow"></a></p>
+
+<h3>winform.beforeShowWindow</h3>
+
+<pre><code class="aardio language-aardio">winform.beforeShowWindow = function(shown,status){   
+    /*窗体显示或隐藏前触发此事件  
+shown 参数指示窗体是否显示,status 参数请参考 _WM_SHOWWINDOW 消息的 lParam 参数*/  
+}
+</code></pre>
+
+<p><a id="winform.beforeSystemEndSesssion"></a></p>
+
+<h3>winform.beforeSystemEndSesssion</h3>
+
+<pre><code class="aardio language-aardio">winform.beforeSystemEndSesssion = function(){  
+    /*即将关机执行此回调，不可执行耗时操作*/  
+}
+</code></pre>
+
+<p><a id="winform.bgcolor"></a></p>
+
+<h3>winform.bgcolor</h3>
+
+<p>背景颜色</p>
+
+<p><a id="winform.bindConfig"></a></p>
+
+<h3>winform.bindConfig(配置文件,属性映射表)</h3>
+
+<pre><code class="aardio language-aardio">winform.bindConfig( config.winform,{  
+    edit = &quot;text&quot;;  
+    radiobutton = &quot;checked&quot;;  
+    checkbox = &quot;checked&quot;;  
+    combobox = &quot;selIndex&quot;;  
+    plus ={  
+        [&quot;^chk&quot;] = &quot;checked&quot;;  
+        [&quot;^edit&quot;] = &quot;text&quot;;  
+    };  
+    /*参数@1指定 fsys.config 生成的配置文件对象,  
+参数@2指定配置文件绑定控件的规则,  
+每条规则指定一个键值对,键名指定控件名或类名,值指定要绑定的属性名,  
+值如果是一个表,表中的键指定控件名模式匹配表达式,值为要绑定的属性名  
+
+如果需要保存窗体位置请先调用 win.util.savePosition  
+
+fsys.config 并非实时读写，而是将配置读入内存。  
+所以请不要多对象、多线程、多进程打开同一配置文件。  
+这会导致多份不同步的配置写入存储设备时会相互覆盖。  
+多进程可利用原子窗体、进程互斥体避免冲突，  
+多线程可通过 winform 成员函数转发到界面线程操作配置文件即可*/  
+} );
+</code></pre>
+
+<p><a id="winform.bkBottom"></a></p>
+
+<h3>winform.bkBottom</h3>
+
+<p>贴图或切图坐标:下</p>
+
+<p><a id="winform.bkLeft"></a></p>
+
+<h3>winform.bkLeft</h3>
+
+<p>贴图或切图坐标:左</p>
+
+<p><a id="winform.bkRight"></a></p>
+
+<h3>winform.bkRight</h3>
+
+<p>贴图或切图坐标:右</p>
+
+<p><a id="winform.bkTop"></a></p>
+
+<h3>winform.bkTop</h3>
+
+<p>贴图或切图坐标:上</p>
+
+<p><a id="winform.bottom"></a></p>
+
+<h3>winform.bottom</h3>
+
+<p>底部坐标  </p>
+
+<p>如果当前窗口未禁用缩放,<br>
+则在首次显示前自动调用 enableDpiScaling 函数,<br>
+如果需要在此之前获取 DPI 缩放后的窗口大小或位置,<br>
+应当先手动调用 enableDpiScaling 函数</p>
+
+<p><a id="winform.capture"></a></p>
+
+<h3>winform.capture</h3>
+
+<p>是否捕获全局鼠标消息</p>
+
+<p><a id="winform.center"></a></p>
+
+<h3>winform.center(目标窗口句柄)</h3>
+
+<p>居中窗口,并调整以保证显示在可见范围内<br>
+目标窗口句柄如果为空则取父窗口或所有者窗口,为0表示桌面</p>
+
+<p><a id="winform.changeInterval"></a></p>
+
+<h3>winform.changeInterval(定时器ID,-1)</h3>
+
+<p>暂停定时器，修改为有效时间后恢复运行。<br>
+定时器 ID 必须是 setInterval 函数或 setTimeout 函数的返回值</p>
+
+<p><a id="winform.changeInterval"></a></p>
+
+<h3>winform.changeInterval(定时器ID,延时毫秒数)</h3>
+
+<p>重新设定定时器的延时时间<br>
+定时器ID必须是setInterval函数或setTimeout函数的返回值</p>
+
+<p><a id="winform.changeInterval"></a></p>
+
+<h3>winform.changeInterval(定时器ID,延时毫秒数,定时回调函数)</h3>
+
+<p>重新设定定时器的延时时间,并更换定时器回调函数<br>
+定时器ID必须是setInterval函数或setTimeout函数的返回值</p>
+
+<p><a id="winform.clearInterval"></a></p>
+
+<h3>winform.clearInterval(定时器ID)</h3>
+
+<p>删除定时器。<br>
+参数如果为 null 则忽略不执行，<br>
+否则定时器ID必须是 setInterval 函数或setTimeout函数的返回值。  </p>
+
+<p>请注意如果定时器被删除，ID 可能被重新分配给其他定时器。<br>
+在定时器回调函数中返回 0,false 以删除定时器是更稳妥的方式</p>
+
+<p><a id="winform.clearTimeout"></a></p>
+
+<h3>winform.clearTimeout(定时器ID)</h3>
+
+<p>删除定时器。<br>
+参数如果为 null 则忽略不执行，<br>
+否则定时器ID必须是 setInterval 函数或setTimeout函 数的返回值。  </p>
+
+<p>请注意如果定时器被删除，ID 可能被重新分配给其他定时器。<br>
+在定时器回调函数中返回 0,false 以删除定时器是更稳妥的方式</p>
+
+<p><a id="winform.clientRect"></a></p>
+
+<h3>winform.clientRect</h3>
+
+<p>获取控件客户区块位置（::RECT结构体）</p>
+
+<p><a id="winform.close"></a></p>
+
+<h3>winform.close</h3>
+
+<p>关闭窗口<br>
+注意不能在 onClose 事件内调用此函数  </p>
+
+<p>所有非模态、非 MessageOnly 的独立窗口（ 或存为全局变量的 mainForm 窗口 ）都关闭后，<br>
+将会自动终止 win.loopMessage 创建的消息循环（通常也就是退出界面线程）。<br>
+如果主窗口是其他进程或线程的子窗口，则必须存为全局变量  mainForm，<br>
+否则子窗口关闭时不能自动退出消息循环（无论还有没有其他窗口）。</p>
+
+<p><a id="winform.close"></a></p>
+
+<h3>winform.close()</h3>
+
+<p>立即关闭窗口。<br>
+使用 ::SendMessage 发送关闭窗口消息，等待消息处理完成。</p>
+
+<p><a id="winform.close"></a></p>
+
+<h3>winform.close(true)</h3>
+
+<p>异步关闭窗口。<br>
+使用 ::PostMessage 发送关闭窗口消息，不等待消息处理完成。<br>
+只有在关闭消息处理完成并销毁窗口后才会触发退出界面线程消息循环的规则。</p>
+
+<p><a id="winform.cmdTranslate"></a></p>
+
+<h3>winform.cmdTranslate</h3>
+
+<pre><code class="aardio language-aardio">winform.cmdTranslate(hwnd,message,wParam,lParam);  
+//在父控件wndproc消息回调中调用，用于启用子控件的oncommand事件
+</code></pre>
+
+<p><a id="winform.continueModal"></a></p>
+
+<h3>winform.continueModal</h3>
+
+<p>模态对话框是否未关闭</p>
+
+<p><a id="winform.createEmbed"></a></p>
+
+<h3>winform.createEmbed</h3>
+
+<p>创建嵌入控件,返回控件容器对象,<br>
+容器对象的 _object 成员是创建的 COM 对象,<br>
+容器对象可通过添加成员函数响应 COM 对象事件，<br>
+容器对象的主要作用是充当访问 COM 对象的中间代理对象。<br>
+通常使用 util.metaProperty 为容器对象添加属性元表，<br>
+属性元表可拦截属性、函数调用并调用 _object 对象,  </p>
+
+<p>createEmbedEx 返回的容器已添加默认代理以直接访问 COM 对象</p>
+
+<p><a id="winform.createEmbed"></a></p>
+
+<h3>winform.createEmbed()</h3>
+
+<p><a href="#embedObjectForm">返回对象:embedObjectForm</a></p>
+
+<p><a id="winform.createEmbed"></a></p>
+
+<h3>winform.createEmbed(clsId,embedObj)</h3>
+
+<p>创建嵌入控件,返回控件容器对象,<br>
+容器对象的 _object 成员是创建的 COM 对象,<br>
+容器对象可通过添加成员函数响应 COM 对象事件，<br>
+容器对象的主要作用是充当访问 COM 对象的中间代理对象,<br>
+@clsId 指定控件 CLSID,<br>
+可选在参数@2中指定 COM 对象绑定的容器对象  </p>
+
+<p>此函数失败会抛出异常</p>
+
+<p><a id="winform.createEmbed"></a></p>
+
+<h3>winform.createEmbed(comObject,embedObj)</h3>
+
+<p>嵌入 COM 控件,返回控件容器对象,<br>
+容器对象的 _object 成员是传入的 COM 对象,<br>
+容器对象可通过添加成员函数响应 COM 对象事件，<br>
+容器对象的主要作用是充当访问 COM 对象的中间代理对象,<br>
+@comObject 指定已创建成功的 COM 对象,<br>
+可选在参数@2中指定 COM 对象绑定的容器对象  </p>
+
+<p>此函数失败会抛出异常</p>
+
+<p><a id="winform.createEmbedEx"></a></p>
+
+<h3>winform.createEmbedEx</h3>
+
+<p>创建嵌入 COM 控件，返回控件容器对象。<br>
+容器对象的 <em>object 成员是创建的 COM 对象。<br>
+容器对象的 __event</em>_ 成员为 COM 对象默认事件监听器。<br>
+在窗口销毁时解除默认事件监听器并释放 COM 对象。  </p>
+
+<p>返回容器已添加元表，可通过容器对象的成员代理访问 COM 对象成员。<br>
+也可以通过指定容器对象的成员函数响应 COM 对象事件</p>
+
+<p><a id="winform.createEmbedEx"></a></p>
+
+<h3>winform.createEmbedEx()</h3>
+
+<p><a href="#embedObjectForm">返回对象:embedObjectForm</a></p>
+
+<p><a id="winform.createEmbedEx"></a></p>
+
+<h3>winform.createEmbedEx(clsId,embedObj)</h3>
+
+<p>创建嵌入 COM 控件，返回控件容器对象。<br>
+此函数返回的容器已添加元表并创建代理以直接访问 COM 对象，<br>
+也可以通过指定容器对象的成员函数响应 COM 对象事件。  </p>
+
+<p>@clsId 指定控件 CLSID，<br>
+可选在参数 @2 中指定 COM 对象绑定的容器对象。  </p>
+
+<p>此函数失败会抛出异常</p>
+
+<p><a id="winform.createEmbedEx"></a></p>
+
+<h3>winform.createEmbedEx(comObject,embedObj)</h3>
+
+<p>嵌入 COM 控件，返回控件容器对象。<br>
+此函数返回的容器已添加元表并创建代理以直接访问 COM对象，<br>
+也可以通过指定容器对象的成员函数响应 COM 对象事件。  </p>
+
+<p>参数 @comObject 指定已创建成功的 COM 对象,<br>
+可选在参数 @2 中指定 COM 对象绑定的容器对象。  </p>
+
+<p>此函数失败会抛出异常</p>
+
+<p><a id="winform.dialogResult"></a></p>
+
+<h3>winform.dialogResult</h3>
+
+<p>模态对话框返回值</p>
+
+<p><a id="winform.disableDragFullWindow"></a></p>
+
+<h3>winform.disableDragFullWindow</h3>
+
+<p>边框调整窗口大小时是否禁止显示窗口内容<br>
+如果窗口设置了背景、无_WS_CLIPCHILDREN样式则默认为true<br>
+如果系统禁用了该选项则忽略此属性</p>
+
+<p><a id="winform.disabled"></a></p>
+
+<h3>winform.disabled</h3>
+
+<p>是否禁用</p>
+
+<p><a id="winform.doModal"></a></p>
+
+<h3>winform.doModal</h3>
+
+<p>此函数弹出模态对话框，可使用 endModal 函数关闭模态对话框，<br>
+调用 endModal 函数的参数会被设置为 doModal 函数的返回值。  </p>
+
+<p>模态对话框会自己创建自己的消息循环，<br>
+并阻止调用模态对话框的代码继续向后运行 - 直到模态对话框被关闭。</p>
+
+<p><a id="winform.doModal"></a></p>
+
+<h3>winform.doModal(ownerForm,showFlags)</h3>
+
+<p>弹出模态对话框。<br>
+可选用参数 @ownerForm 指定所有者窗口，<br>
+参数 @showFlags 可选用 <em>SW</em> 前缀常量指定显示选项。  </p>
+
+<p>模态对话框应是独立窗口，并显示在所有者窗口前面。<br>
+模态对话框会暂时禁用所有者窗口 - 直到模态对话框被关闭。<br>
+注意子窗口不应该调用 doModal 函数（禁用父窗口等于禁用自己）</p>
+
+<p><a id="winform.dpiScale"></a></p>
+
+<h3>winform.dpiScale(x,y)</h3>
+
+<p>将 @x,@y 表示的像素值乘以窗体当前 DPI 缩放倍数并返回,<br>
+省略 @y 参数时仅返回 @x 转换后的值,<br>
+所有 win.ui 创建的窗口或控件都提供这个函数</p>
+
+<p><a id="winform.dpiScaleX"></a></p>
+
+<h3>winform.dpiScaleX</h3>
+
+<p>窗口当前使用的DPI横坐标缩放系数,<br>
+该值由界面系统自动维护，任何情况下都不应手动修改,  </p>
+
+<p>这是一个以小数表示百分比的数，例如 1.25 表示 125%,<br>
+窗口未使用缩放或未完成缩放初始化时，值可能为 null，<br>
+如果要获取屏幕缩放设置应改用 gdi.getDpiScale 函数</p>
+
+<p><a id="winform.dpiScaleY"></a></p>
+
+<h3>winform.dpiScaleY</h3>
+
+<p>窗口当前使用的DPI纵坐标缩放系数,<br>
+该值由界面系统自动维护，任何情况下都不应手动修改,  </p>
+
+<p>这是一个以小数表示百分比的数，例如 1.25 表示 125%,<br>
+窗口未使用缩放或未完成缩放初始化时，值可能为 null，<br>
+如果要获取屏幕缩放设置应改用 gdi.getDpiScale 函数</p>
+
+<p><a id="winform.eachControl"></a></p>
+
+<h3>winform.eachControl(&quot;类名&quot;,&quot;控件名模式&quot;)</h3>
+
+<pre><code class="aardio language-aardio">for(name,ctrl in winform.eachControl(/*可选指定类名,  
+可选指定控件名模式匹配串,  
+遍历窗口上所有控件,不包含匿名控件,不关心父子级顺序或Z序*/) ){  
+
+}
+</code></pre>
+
+<p><a id="winform.eachControl"></a></p>
+
+<h3>winform.eachControl()</h3>
+
+<p><a href="ctrl/static.html#staticObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/static.html#staticObject">返回对象:staticObject</a></p>
+
+<p><a id="winform.eachControlEx"></a></p>
+
+<h3>winform.eachControlEx(&quot;类名&quot;)</h3>
+
+<pre><code class="aardio language-aardio">for(hwnd,ctrl in winform.eachControlEx(/*可选指定类名  
+遍历窗口上所有控件,包含匿名控件,不关心父子级顺序或Z序*/) ){  
+
+}
+</code></pre>
+
+<p><a id="winform.eachControlEx"></a></p>
+
+<h3>winform.eachControlEx()</h3>
+
+<p><a href="ctrl/static.html#staticObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/static.html#staticObject">返回对象:staticObject</a></p>
+
+<p><a id="winform.enableDpiScaling"></a></p>
+
+<h3>winform.enableDpiScaling</h3>
+
+<p>按系统 DPI 缩放设置自动缩放顶层窗体以及控件字体<br>
+请合理设置该窗体上控件的固定边距、自适应大小等属性<br>
+调用此函数时应交由aardio自动指定参数。  </p>
+
+<p>如果当前窗口未禁用缩放,<br>
+则在首次显示前以&quot;init&quot;为参数自动调用此函数。</p>
+
+<p><a id="winform.enableDpiScaling"></a></p>
+
+<h3>winform.enableDpiScaling(&quot;init&quot;)</h3>
+
+<p>如果窗体为禁用 DPI 缩放，<br>
+且尚未执行默认 DPI 自动缩放，则执行该操作，  </p>
+
+<p>窗体在首次显示时会以&quot;init&quot;为参数执行此调用,<br>
+如果需要提前获取 DPI 缩放后的窗口大小或位置,<br>
+应当先手动调用此函数。</p>
+
+<p><a id="winform.enableDpiScaling"></a></p>
+
+<h3>winform.enableDpiScaling(false)</h3>
+
+<p>禁用DPI自动缩放<br>
+win.ui.disableDpiScaling 设为 false 则全局禁用 DPI 缩放</p>
+
+<p><a id="winform.enableDpiScaling"></a></p>
+
+<h3>winform.enableDpiScaling(scaleX,scaleY,suggestedRect)</h3>
+
+<p>所有参数应当使用 win.form 对象 onDpiChanged 事件传入的参数，<br>
+@scaleX,@scaleY 参数为当前 DPI，<br>
+@suggestedRect 参数为建议大小，必须是 null 或 ::RECT 结构体</p>
+
+<p><a id="winform.endModal"></a></p>
+
+<h3>winform.endModal(请指定模态对话框返回值)</h3>
+
+<p>关闭模态对话框，<br>
+调用endModal()函数的参数会被设置为 doModal()函数的返回值。</p>
+
+<p><a id="winform.enumControl"></a></p>
+
+<h3>winform.enumControl(回调函数,类名)</h3>
+
+<pre><code class="aardio language-aardio">winform.enumControl( function(ctrl){  
+    /*枚举窗体上的所有控件,包含匿名控件  
+此函数保证枚举窗口的顺序是先父级控件窗口后子级窗口最后再遍历独立窗口，例如 orphanWindow  
+在枚举过程不能调用win.setParent函数改变被枚举控件的父窗口*/  
+})
+</code></pre>
+
+<p><a id="winform.expand"></a></p>
+
+<h3>winform.expand</h3>
+
+<p>是否使用九宫格拉伸方式显示背景图</p>
+
+<p><a id="winform.fake"></a></p>
+
+<h3>winform.fake</h3>
+
+<p>是否伪窗口。<br>
+伪窗口并未真正初始化，<br>
+在访问伪窗口除 fake 以外的窗性和方法时才会真正初始化。<br>
+在创建窗口后，伪窗口将成为真实窗口的代理对象。   </p>
+
+<p>伪窗口通过 this 函数可初始化窗口并直接返回真实窗口对象。<br>
+伪窗口初始化后可触发 onCreated 事件，回调参数为创建的真实窗口。</p>
+
+<p><a id="winform.font"></a></p>
+
+<h3>winform.font</h3>
+
+<p>控件字体(::LOGFONT结构体)</p>
+
+<p><a id="winform.fullscreen"></a></p>
+
+<h3>winform.fullscreen</h3>
+
+<p>切换全屏,必须在窗口显示以后才能调用此函数<br>
+注意窗口最小化状态无法全屏</p>
+
+<p><a id="winform.fullscreen"></a></p>
+
+<h3>winform.fullscreen(true)</h3>
+
+<p>参数true切换到全屏,参数false取消全屏,<br>
+不指定参数则切换全屏,<br>
+返回值为当前是否全屏</p>
+
+<p><a id="winform.getBitmap"></a></p>
+
+<h3>winform.getBitmap()</h3>
+
+<p>返回窗体正在使用的背景位图句柄<br>
+该句柄不得删除</p>
+
+<p><a id="winform.getClientRect"></a></p>
+
+<h3>winform.getClientRect()</h3>
+
+<p>窗口客户区块位置（::RECT结构体）  </p>
+
+<p><a href="../../global/_.html#rectObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/global/_.html#rectObject">返回对象:rectObject</a></p>
+
+<p><a id="winform.getCtrl"></a></p>
+
+<h3>winform.getCtrl()</h3>
+
+<p><a href="ctrl/static.html#staticObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/static.html#staticObject">返回对象:staticObject</a></p>
+
+<p><a id="winform.getCtrl"></a></p>
+
+<h3>winform.getCtrl(输入控件句柄)</h3>
+
+<p>根据句柄返回窗体控件对象,<br>
+参数可以是控件句柄，或控件的子窗口句柄</p>
+
+<p><a id="winform.getCtrlById"></a></p>
+
+<h3>winform.getCtrlById()</h3>
+
+<p><a href="ctrl/static.html#staticObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/static.html#staticObject">返回对象:staticObject</a></p>
+
+<p><a id="winform.getCtrlById"></a></p>
+
+<h3>winform.getCtrlById(输入控件ID)</h3>
+
+<p>根据ID返回窗体控件</p>
+
+<p><a id="winform.getFont"></a></p>
+
+<h3>winform.getFont()</h3>
+
+<p>返回窗口 LOGFONT 字体，<br>
+返回对象的 h 值会按窗口的 DPI 缩放设置自动还原为缩放前大小。  </p>
+
+<p><a href="#logfontObject">返回对象:logfontObject</a></p>
+
+<p><a id="winform.getFont"></a></p>
+
+<h3>winform.getFont(true)</h3>
+
+<p>返回窗口 LOGFONT 字体，<br>
+返回对象的 h 值为字体实际大小，不会按窗口 DPI 设置还原。<br>
+返回字体会设置 noScale 属性为 true,<br>
+使用窗口的 setFont 函数或赋值 font 属性时，<br>
+noScale 属性为 true 的字体同样不会进行自动 DPI 缩放  </p>
+
+<p><a href="#logfontObject">返回对象:logfontObject</a></p>
+
+<p><a id="winform.getForm"></a></p>
+
+<h3>winform.getForm()</h3>
+
+<p>返回窗口对象自身<br>
+标准库中所有控件实现了同名函数用于返回控件所在窗口</p>
+
+<p><a id="winform.getMinMaxInfo"></a></p>
+
+<h3>winform.getMinMaxInfo()</h3>
+
+<p>如果定义了onGetMinMaxInfo,<br>
+必须同时定义此函数返回与win.ui.minmax兼容的结构体</p>
+
+<p><a id="winform.getPos"></a></p>
+
+<h3>winform.getPos()</h3>
+
+<p>返回相对父窗口客户区的坐标,宽,高,<br>
+参数为true返回屏幕坐标,宽,高,  </p>
+
+<p>如果当前窗口未禁用缩放,<br>
+则在首次显示前自动调用 enableDpiScaling 函数,<br>
+如果需要在此之前获取 DPI 缩放后的窗口大小或位置,<br>
+应当先手动调用 enableDpiScaling 函数</p>
+
+<p><a id="winform.getRect"></a></p>
+
+<h3>winform.getRect()</h3>
+
+<p>窗口区块位置（::RECT结构体）  </p>
+
+<p><a href="../../global/_.html#rectObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/global/_.html#rectObject">返回对象:rectObject</a></p>
+
+<p><a id="winform.getRect"></a></p>
+
+<h3>winform.getRect(true)</h3>
+
+<p>窗口屏幕区块位置（::RECT结构体）</p>
+
+<p><a id="winform.getRoot"></a></p>
+
+<h3>winform.getRoot()</h3>
+
+<p>获取顶层父窗口，这个函数会查找 orphanWindow 的父窗口</p>
+
+<p><a id="winform.getScale"></a></p>
+
+<h3>winform.getScale()</h3>
+
+<p>返回X轴、Y轴方向缩放比例，DPI缩放比例共4个返回值,<br>
+scaleX,scaleY,dpiScaleX,dpiScale</p>
+
+<p><a id="winform.group"></a></p>
+
+<h3>winform.group()</h3>
+
+<p>将此窗体上所有groupbox范围内的所有其他控件设为groupbox控件的子窗口</p>
+
+<p><a id="winform.hasBackground"></a></p>
+
+<h3>winform.hasBackground</h3>
+
+<p>窗体是否自定义了背景色或背景图像</p>
+
+<p><a id="winform.height"></a></p>
+
+<h3>winform.height</h3>
+
+<p>高度  </p>
+
+<p>如果当前窗口未禁用缩放,<br>
+则在首次显示前自动调用 enableDpiScaling 函数,<br>
+如果需要在此之前获取 DPI 缩放后的窗口大小或位置,<br>
+应当先手动调用 enableDpiScaling 函数</p>
+
+<p><a id="winform.hide"></a></p>
+
+<h3>winform.hide</h3>
+
+<p>当前窗口是否隐藏。<br>
+仅检查当前窗口的可见性样式（窗口 是否移除了 _WS_VISIBLE 样式）。<br>
+不考虑父窗口是否可见，不考虑是否被其他窗口遮挡。<br>
+如果需要同时判断父窗口的可见性，应改用 win.isVisible 函数。</p>
+
+<p><a id="winform.hitBottom"></a></p>
+
+<h3>winform.hitBottom()</h3>
+
+<p>模拟拖动窗口边框下边</p>
+
+<p><a id="winform.hitBottomleft"></a></p>
+
+<h3>winform.hitBottomleft()</h3>
+
+<p>模拟拖动窗口边框左下角</p>
+
+<p><a id="winform.hitBottomright"></a></p>
+
+<h3>winform.hitBottomright()</h3>
+
+<p>模拟拖动窗口边框右下角</p>
+
+<p><a id="winform.hitCaption"></a></p>
+
+<h3>winform.hitCaption()</h3>
+
+<p>模拟拖动顶层父窗口标题栏<br>
+此函数会调用 winform.setTimeout 异步延时0毫秒后实际执行,<br>
+异步执行可避免通过当前线程异步RPC服务器调用此函数导致的问题.<br>
+通常在无边框窗口的 winform.onMouseDown 事件中调用此函数</p>
+
+<p><a id="winform.hitClose"></a></p>
+
+<h3>winform.hitClose()</h3>
+
+<p>模拟点击顶层父窗口关闭按钮</p>
+
+<p><a id="winform.hitLeft"></a></p>
+
+<h3>winform.hitLeft()</h3>
+
+<p>模拟拖动窗口边框左边</p>
+
+<p><a id="winform.hitMax"></a></p>
+
+<h3>winform.hitMax()</h3>
+
+<p>模拟点击顶层父窗口最大化、还原按钮<br>
+返回值为是否最大化指令</p>
+
+<p><a id="winform.hitMin"></a></p>
+
+<h3>winform.hitMin()</h3>
+
+<p>模拟点击顶层父窗口最小化按钮</p>
+
+<p><a id="winform.hitRight"></a></p>
+
+<h3>winform.hitRight()</h3>
+
+<p>模拟拖动窗口边框右边</p>
+
+<p><a id="winform.hitTop"></a></p>
+
+<h3>winform.hitTop()</h3>
+
+<p>模拟拖动窗口边框顶边</p>
+
+<p><a id="winform.hitTopleft"></a></p>
+
+<h3>winform.hitTopleft()</h3>
+
+<p>模拟拖动窗口边框左上角</p>
+
+<p><a id="winform.hitTopright"></a></p>
+
+<h3>winform.hitTopright()</h3>
+
+<p>模拟拖动窗口边框右上角</p>
+
+<p><a id="winform.hwnd"></a></p>
+
+<h3>winform.hwnd</h3>
+
+<p>窗口句柄  </p>
+
+<p>句柄是一个数值，用于标识一种系统资源，如窗口、位图等等，<br>
+如果你要操作一种系统资源，必须先获得句柄。   </p>
+
+<p>句柄在aardio中通常转换为指针(pointer)类型，<br>
+而窗口句柄是个特例，一般使用数值类型(在API函数中应指定为addr类型)</p>
+
+<p><a id="winform.id"></a></p>
+
+<h3>winform.id</h3>
+
+<p>控件ID</p>
+
+<p><a id="winform.image"></a></p>
+
+<h3>winform.image</h3>
+
+<p>窗口背景图像。<br>
+赋值可以为图片文件数据或路径。<br>
+如果使用 win.ui.layered 创建分层窗体则支持透明 png 背景图像。<br>
+如果提前导入 inet.http 可也可赋值为图像网址。<br>
+此属性也可以指定一个位图句柄，位图句柄由窗体负责销毁。<br>
+取值时返回位图句柄。  </p>
+
+<p>用此属性赋值修改背景图像并不会刷新窗口背景。<br>
+请在必要时调用 redrawBackground 函数刷新。</p>
+
+<p><a id="winform.invalidate"></a></p>
+
+<h3>winform.invalidate(rect,erase)</h3>
+
+<p>使绘图区域无效并允许刷新,<br>
+参数@1使用::RECT结构体指定无效区块,参数@1也可以指定子窗口对象<br>
+参数@2指定是否擦除背景,<br>
+所有参数可选,默认使全部区块无效并擦除背景</p>
+
+<p><a id="winform.isDialogMessage"></a></p>
+
+<h3>winform.isDialogMessage</h3>
+
+<pre><code class="aardio language-aardio">winform.isDialogMessage = function(hwnd,msg){  
+    if( msg.message == 0x100/*_WM_KEYDOWN*/){  
+
+        if(  msg.wParam == 0xD/*_VK_RETURN*/ ){   
+            return true;  
+        }  
+
+        if( msg.wParam == 0x1B/*_VK_ESC*/ ){  
+            return true;  
+        }  
+
+        /*检测键盘信息并确定如何响应对话框的默认快捷键  
+调用win.isDialogMessage函数以触发对话框的默认规则  
+该函数把WM_GETDLGETDLGCODE发送给窗口，决定如果响应按键  
+默认回车触发Z序为1的控件命令,按ESC触发Z序为2的控件命令,  
+按tab切换焦点,按down选择下一控制组.  
+
+此函数返回true以告知消息处理函数这是一个快捷键，  
+返回true将阻止继续分发处理此消息   
+*/  
+    }  
+    return win.isDialogMessage(hwnd,msg);  
+}
+</code></pre>
+
+<p><a id="winform.isForm"></a></p>
+
+<h3>winform.isForm</h3>
+
+<p>是否窗体对象,<br>
+窗体：使用 win.form 类创建的对象<br>
+窗口：泛指所有窗体或控件创建的窗口</p>
+
+<p><a id="winform.left"></a></p>
+
+<h3>winform.left</h3>
+
+<p>左侧坐标  </p>
+
+<p>如果当前窗口未禁用缩放,<br>
+则在首次显示前自动调用 enableDpiScaling 函数,<br>
+如果需要在此之前获取 DPI 缩放后的窗口大小或位置,<br>
+应当先手动调用 enableDpiScaling 函数</p>
+
+<p><a id="winform.loadForm"></a></p>
+
+<h3>winform.loadForm(&quot;字符串参数&quot;)</h3>
+
+<p>自代码文件加载窗。<br>
+如果该窗体未用 return 语句返回非 null 值则直接返回创建的窗体，<br>
+可选增加其他参数作为调用外部窗体代码的参数  </p>
+
+<p>custom 控件的 loadForm 函数会将窗体加载为子窗口且自动维护子窗口队列,<br>
+并且 custom 控件会自动维护一个子窗口队列，<br>
+显示一个子窗口其他子窗口就会隐藏（并未关闭或销毁）,<br>
+一个子窗口关闭就会自动移出队列</p>
+
+<p><a id="winform.menu"></a></p>
+
+<h3>winform.menu</h3>
+
+<p><a href="#menuObject">返回对象:menuObject</a></p>
+
+<p><a id="winform.messageOnly"></a></p>
+
+<h3>winform.messageOnly()</h3>
+
+<p>将窗口转换为message-only window<br>
+该窗口不可见,仅用于消息分发<br>
+此函数返回值为窗体对象自身  </p>
+
+<p><a href="_.html#winform" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/_.html#winform">返回对象:winform</a></p>
+
+<p><a id="winform.modifyStyle"></a></p>
+
+<h3>winform.modifyStyle(remove,add,swpFlags)</h3>
+
+<p>修改窗口样式,所有参数都是可选参数,<br>
+@remove 用数值指定要移除的样式,可使用 <em>WS</em> 前缀的常量<br>
+@add 用数值指定要添加的样式,可使用 <em>WS</em> 前缀的常量<br>
+@swpFlags 可选用数值指定调整窗口选项,可使用 <em>SWP</em> 前缀的常量<br>
+如果指定了 @swpFlag ,则使用该参数调用::SetWindowPos<br>
+细节请参考 win.modifyStyle 函数源码</p>
+
+<p><a id="winform.modifyStyleEx"></a></p>
+
+<h3>winform.modifyStyleEx(remove,add,swpFlags)</h3>
+
+<p>修改窗口扩展样式,所有参数都是可选参数,<br>
+@remove 用数值指定要移除的样式,可使用 <em>WS_EX</em> 前缀的常量<br>
+@add 用数值指定要添加的样式,可使用 <em>WS_EX</em> 前缀的常量<br>
+@swpFlags 可选用数值指定调整窗口选项,可使用 <em>SWP</em> 前缀的常量<br>
+如果指定了 @swpFlag ,则使用该参数调用::SetWindowPos<br>
+细节请参考 win.modifyStyle 函数源码</p>
+
+<p><a id="winform.msgAsk"></a></p>
+
+<h3>winform.msgAsk()</h3>
+
+<p>显示询问提示框<br>
+用户按确定或回车返回true，其他返回false或null<br>
+请先导入win.dlg.message以安装此函数</p>
+
+<p><a id="winform.msgErr"></a></p>
+
+<h3>winform.msgErr()</h3>
+
+<p>显示错误提示框,<br>
+可选用参数@2指定延时关闭的毫秒数,<br>
+请先导入win.dlg.message以安装此函数</p>
+
+<p><a id="winform.msgFrown"></a></p>
+
+<h3>winform.msgFrown()</h3>
+
+<p>显示皱眉图标提示框,<br>
+可选用参数@2指定延时关闭的毫秒数,<br>
+请先导入win.dlg.message以安装此函数</p>
+
+<p><a id="winform.msgGreat"></a></p>
+
+<h3>winform.msgGreat()</h3>
+
+<p>显示竖大拇指图标提示框,<br>
+可选用参数@2指定延时关闭的毫秒数,<br>
+请先导入win.dlg.message以安装此函数</p>
+
+<p><a id="winform.msgInfo"></a></p>
+
+<h3>winform.msgInfo()</h3>
+
+<p>显示提示框,<br>
+可选用参数@2指定延时关闭的毫秒数,<br>
+请先导入win.dlg.message以安装此函数</p>
+
+<p><a id="winform.msgOk"></a></p>
+
+<h3>winform.msgOk()</h3>
+
+<p>显示正确提示框,<br>
+可选用参数@2指定延时关闭的毫秒数,<br>
+请先导入win.dlg.message以安装此函数</p>
+
+<p><a id="winform.msgSmile"></a></p>
+
+<h3>winform.msgSmile()</h3>
+
+<p>显示微笑图标提示框,<br>
+可选用参数@2指定延时关闭的毫秒数,<br>
+请先导入win.dlg.message以安装此函数</p>
+
+<p><a id="winform.msgSorry"></a></p>
+
+<h3>winform.msgSorry()</h3>
+
+<p>显示倒竖大拇指图标提示框,<br>
+可选用参数@2指定延时关闭的毫秒数,<br>
+请先导入win.dlg.message以安装此函数</p>
+
+<p><a id="winform.msgWarn"></a></p>
+
+<h3>winform.msgWarn()</h3>
+
+<p>显示警告提示框,<br>
+可选用参数@2指定延时关闭的毫秒数,<br>
+请先导入win.dlg.message以安装此函数</p>
+
+<p><a id="winform.msgbox"></a></p>
+
+<h3>winform.msgbox(&quot;字符串参数&quot;)</h3>
+
+<p>弹出对话框<br>
+参数@1指定显示的数据,如果是表对象先序列化为文本,<br>
+其他对象调用tostring转换为文本  </p>
+
+<p>可选在参数@2中指定标题,<br>
+可选在参数@3中用_MB_前缀的常量自定义样式,设为0去掉图标以及提示音,<br>
+可选用参数@4限定显示时间，以毫秒为单位，超时自动关闭。  </p>
+
+<p>此函数调用win.msgbox,但设定父窗口为当前窗体</p>
+
+<p><a id="winform.msgboxErr"></a></p>
+
+<h3>winform.msgboxErr(&quot;字符串参数&quot;)</h3>
+
+<p>弹出错误对话框<br>
+参数@1指定显示的数据,如果是表对象先序列化为文本,<br>
+其他对象调用tostring转换为文本<br>
+可选在参数@2中指定标题,  </p>
+
+<p>此函数调用win.msgbox,但设定父窗口为当前窗体</p>
+
+<p><a id="winform.msgboxTest"></a></p>
+
+<h3>winform.msgboxTest(&quot;字符串参数&quot;)</h3>
+
+<p>弹出询问对话框<br>
+参数@1指定显示的数据,如果是表对象先序列化为文本,<br>
+其他对象调用tostring转换为文本<br>
+可选在参数@2中指定标题,  </p>
+
+<p>此函数调用win.msgbox,但设定父窗口为当前窗体</p>
+
+<p><a id="winform.onActivate"></a></p>
+
+<h3>winform.onActivate</h3>
+
+<pre><code class="aardio language-aardio">winform.onActivate = function(state,hwndOther,minimized){  
+    if(state){  
+        /*激活窗口时触发此事件  
+state表示窗口是否激活，可能的值为WA_ACTIVE，WA_CLICKACTIVE，WA_INACTIVE  
+hwndOther在激活时表示另外一个取消激活的窗口句柄,取消激活时表示激活的窗口句柄  
+minimized指明当前窗口是否最小化状态*/    
+    }  
+}
+</code></pre>
+
+<p><a id="winform.onActivateApp"></a></p>
+
+<h3>winform.onActivateApp</h3>
+
+<pre><code class="aardio language-aardio">winform.onActivateApp = function(activated,threadId){  
+    if(activated){  
+        /*不同的应用程序窗口被激活时触发此事件  
+activated窗口是否激活,threadId是另一个交接激活状态的线程ID*/   
+    }  
+}
+</code></pre>
+
+<p><a id="winform.onCancel"></a></p>
+
+<h3>winform.onCancel</h3>
+
+<pre><code class="aardio language-aardio">winform.onCancel = function(){  
+    /*按下ESC键触发此事件,  
+如果全屏窗口定义了此事件,应在此自行退出全屏*/  
+}
+</code></pre>
+
+<p><a id="winform.onClose"></a></p>
+
+<h3>winform.onClose</h3>
+
+<pre><code class="aardio language-aardio">winform.onClose = function(hwnd,message,wParam,lParam){  
+    /*窗体关闭前触发此函数。  
+函数返回非 null 值可阻止窗口关闭。  
+这里的代码要写稳妥一点,在这里抛出异常，  
+会导致无法点关闭按钮关闭窗口  
+
+调用 ::User32.DestroyWindow 函数可跳过 onClose 销毁窗口*/  
+}
+</code></pre>
+
+<p><a id="winform.onCopyData"></a></p>
+
+<h3>winform.onCopyData</h3>
+
+<pre><code class="aardio language-aardio">winform.onCopyData = function(data,dataType){  
+    /*收到 _WM_COPYDATA 消息  
+data 为接收到的字符串值,dataType 为接收到的数值 */  
+}
+</code></pre>
+
+<p><a id="winform.onCreated"></a></p>
+
+<h3>winform.onCreated</h3>
+
+<pre><code class="aardio language-aardio">winform.onCreated = function(realForm){  
+    /*伪窗口初始化为真实窗口时触发此函数。  
+realForm 参数为创建的真实窗口*/  
+}
+</code></pre>
+
+<p><a id="winform.onDestroy"></a></p>
+
+<h3>winform.onDestroy</h3>
+
+<pre><code class="aardio language-aardio">winform.onDestroy = function(){  
+    /*指定在窗体销毁以前执行的代码*/  
+
+}
+</code></pre>
+
+<p><a id="winform.onDirectDrawBackground"></a></p>
+
+<h3>winform.onDirectDrawBackground</h3>
+
+<pre><code class="aardio language-aardio">winform.onDirectDrawBackground = function(hdc,graphics){  
+    /*作为子窗口使用时,可在此回调函数内直接在父窗口背景上绘图,  
+hdc为父窗口绘图设备句柄,如果父窗口使用GDI+绘图则graphics为父窗口画布*/  
+}
+</code></pre>
+
+<p><a id="winform.onDpiChanged"></a></p>
+
+<h3>winform.onDpiChanged</h3>
+
+<pre><code class="aardio language-aardio">winform.onDpiChanged = function(dpiX,dpiY,suggestedRect){  
+    winform.enableDpiScaling(dpiX/96,dpiY/96,suggestedRect)//用户在控制面板中修改了屏幕缩放参数  
+
+}
+</code></pre>
+
+<p><a id="winform.onDrawBackground"></a></p>
+
+<h3>winform.onDrawBackground</h3>
+
+<pre><code class="aardio language-aardio">winform.onDrawBackground = function(hdc,rc){  
+    gdi.fillRect(hdc,0x00008C,rc.copy(,150));  
+    gdi.fillRect(hdc,0x468C00,rc.copy(200));  
+
+    var bmp = com.picture.loadBitmap(&quot;~\extensions\wizard\project2\forms\images\winform.jpg&quot;);  
+    gdi.drawBitmap(hdc,bmp,rc.move(200,150),140,140,100,225);  
+
+    var font = ::LOGFONT(weight=800;color=0xFF);  
+    gdi.drawTextCenter(hdc,font,&quot;改变窗口大小试试,任意位置贴图都可以支持九宫格&quot;,rc.move(120,150));  
+    /*窗口背景绘图时触发此事件,hdc为背景绘图设备,rc为绘图区块*/  
+}
+</code></pre>
+
+<p><a id="winform.onDrawBackgroundEnd"></a></p>
+
+<h3>winform.onDrawBackgroundEnd</h3>
+
+<pre><code class="aardio language-aardio">winform.onDrawBackgroundEnd = function(hdc,rc){  
+    /*窗口背景重绘完成触发此事件*/  
+}
+</code></pre>
+
+<p><a id="winform.onDropFiles"></a></p>
+
+<h3>winform.onDropFiles</h3>
+
+<pre><code class="aardio language-aardio">winform.onDropFiles = function(files){  
+    /*接受系统拖放,files是拖放的所有文件路径名数组，  
+以管理权限启动的进程操作系统会禁止拖放操作，  
+标准库提供了 process.admin.enableDropMsg 函数可以设置这个权限，  
+但现在这个设置有可能也是不被允许的*/  
+}
+</code></pre>
+
+<p><a id="winform.onEnterSizeMove"></a></p>
+
+<h3>winform.onEnterSizeMove</h3>
+
+<pre><code class="aardio language-aardio">winform.onEnterSizeMove = function(){  
+    /*开始拖动触发此函数*/  
+}
+</code></pre>
+
+<p><a id="winform.onEraseBkgnd"></a></p>
+
+<h3>winform.onEraseBkgnd</h3>
+
+<pre><code class="aardio language-aardio">winform.onEraseBkgnd  = function(hwnd,message,wParam,lParam){  
+    return 0;/*禁止擦除背景*/  
+}
+</code></pre>
+
+<p><a id="winform.onExitSizeMove"></a></p>
+
+<h3>winform.onExitSizeMove</h3>
+
+<pre><code class="aardio language-aardio">winform.onExitSizeMove = function(){  
+    /*结束拖动触发此函数*/  
+}
+</code></pre>
+
+<p><a id="winform.onGetMinMaxInfo"></a></p>
+
+<h3>winform.onGetMinMaxInfo</h3>
+
+<pre><code class="aardio language-aardio">winform.onGetMinMaxInfo = function(hwnd,message,wParam,lParam){  
+    /*设置窗口缩放大小范围,  
+用法参考标准库中win.ui.minmax*/  
+}
+</code></pre>
+
+<p><a id="winform.onInitDialog"></a></p>
+
+<h3>winform.onInitDialog</h3>
+
+<pre><code class="aardio language-aardio">winform.onInitDialog = function(hwnd,message,wParam,lParam){  
+    winform.center()/*模态对话框初始化完成触发该函数*/  
+}
+</code></pre>
+
+<p><a id="winform.onMinimize"></a></p>
+
+<h3>winform.onMinimize</h3>
+
+<pre><code class="aardio language-aardio">winform.onMinimize = function(lParam){  
+    return true;/*用户点击最小化按钮触发此事件,  
+这里返回true可阻止默认消息传递,取消最小化过程*/  
+}
+</code></pre>
+
+<p><a id="winform.onMinimized"></a></p>
+
+<h3>winform.onMinimized</h3>
+
+<pre><code class="aardio language-aardio">winform.onMinimized = function(){  
+    /*窗口最小化时回调此函数  
+可在此调用 process.emptyWorkingSet() 降低内存占用*/    
+}
+</code></pre>
+
+<p><a id="winform.onMouseActivate"></a></p>
+
+<h3>winform.onMouseActivate</h3>
+
+<pre><code class="aardio language-aardio">winform.onMouseActivate = function(hwndTop,hitTest,message){  
+    return _MA_/*鼠标点击并且将要激活窗口时触发此事件  
+hwndTop表示被激活的顶层窗口,  
+hitTest参数请参考WM_NCHITTEST消息  
+message为鼠标消息ID  
+返回值的作用请参数MSDN*/  
+}
+</code></pre>
+
+<p><a id="winform.onMouseClick"></a></p>
+
+<h3>winform.onMouseClick</h3>
+
+<pre><code class="aardio language-aardio">winform.onMouseClick = function(wParam,lParam){  
+    var x,y = win.getMessagePos(lParam);/*在窗口上单击并弹起鼠标左键触发此事件*/  
+}
+</code></pre>
+
+<p><a id="winform.onMouseDoubleClick"></a></p>
+
+<h3>winform.onMouseDoubleClick</h3>
+
+<pre><code class="aardio language-aardio">winform.onMouseDoubleClick = function(wParam,lParam){  
+    var x,y = win.getMessagePos(lParam);/*在窗口上双击鼠标左键触发此事件*/  
+}
+</code></pre>
+
+<p><a id="winform.onMouseDown"></a></p>
+
+<h3>winform.onMouseDown</h3>
+
+<pre><code class="aardio language-aardio">winform.onMouseDown  = function(wParam,lParam){  
+    var x,y = win.getMessagePos(lParam);/*在窗口按下鼠标左键触发此事件*/    
+}
+</code></pre>
+
+<p><a id="winform.onOk"></a></p>
+
+<h3>winform.onOk</h3>
+
+<pre><code class="aardio language-aardio">winform.onOk = function(){  
+    /*按下回车键触发此事件*/  
+}
+</code></pre>
+
+<p><a id="winform.onPosChanged"></a></p>
+
+<h3>winform.onPosChanged</h3>
+
+<pre><code class="aardio language-aardio">winform.onPosChanged = function(flags,hwndInsertAfter,x,y,cx,cy){   
+    /*窗体接收到 _WM_WINDOWPOSCHANGED 消息  
+flags 可能的值为 _SWP_SHOWWINDOW,_SWP_NOMOVE,_SWP_NOSIZE 等常量按位或的值  
+所有参数为 WINDOWPOS 结构体展开的字段,请参考该结构体文档*/  
+}
+</code></pre>
+
+<p><a id="winform.onRestored"></a></p>
+
+<h3>winform.onRestored</h3>
+
+<pre><code class="aardio language-aardio">winform.onRestored = function(wParam){  
+    /*窗口自最小化或最大化恢复时回调此函数  
+最大化恢复 wParam 为 _SIZE_MAXIMIZED，最小化恢复为 _SIZE_MINIMIZED*/     
+}
+</code></pre>
+
+<p><a id="winform.onThreadCallBackReturn"></a></p>
+
+<h3>winform.onThreadCallBackReturn</h3>
+
+<pre><code class="aardio language-aardio">winform.onThreadCallBackReturn = function(result){  
+    /*处理 _WM_THREAD_CALLBACK 消息时调用窗口函数后触发此事件,  
+参数为调用窗口函数的返回值,可返回新的返回值,  
+此消息最终会将返回值转换为数值*/return result;  
+}
+</code></pre>
+
+<p><a id="winform.onTrayMessage"></a></p>
+
+<h3>winform.onTrayMessage</h3>
+
+<pre><code class="aardio language-aardio">winform.onTrayMessage = {  
+    [0x205/*_WM_RBUTTONUP*/  ] = function(wParam){   
+        win.setForeground(winform.hwnd)/*响应托盘图标默认消息 _WM_TRAYMESSAGE，_WM_RBUTTONUP 为鼠标右键点击，  
+弹出托盘菜单以前,一定要前置主窗口中,不然不点击菜单不会消失*/  
+        winform.popmenu.popup()   
+    };  
+    [0x202/*_WM_LBUTTONUP*/] = function(wParam){   
+
+    };  
+    [0x203/*_WM_LBUTTONDBLCLK*/] = function(wParam){   
+
+    };  
+    [0x404/*_PARAM_DESTROY*/] = function(wParam){   
+
+    };  
+    [0x405/*_PARAM_CLICKED*/] = function(wParam){   
+
+    };  
+}
+</code></pre>
+
+<p><a id="winform.orphanWindow"></a></p>
+
+<h3>winform.orphanWindow</h3>
+
+<p>如果当前是子窗口,<br>
+移除窗口的WS_CHILD样式，使窗口孤立出来悬浮于原位置,<br>
+悬浮窗口如影随形的跟随父窗口移动或改变大小,控件原来的固定边距等参数仍然有效</p>
+
+<p><a id="winform.orphanWindow"></a></p>
+
+<h3>winform.orphanWindow(transparent,hwndBuddy,borderless)</h3>
+
+<p>创建悬浮窗口。<br>
+悬浮窗口是模仿子窗口外观效果的独立窗口，父窗口可自动调整子窗口到设定位置。<br>
+可选参数 @transparent 为 true 则转换为分层透明窗口。<br>
+可选利用 @hwndBuddy 参数指定外部进程窗口句柄的并附加在内部控件上以实现相同的效果。<br>
+伙伴窗口总是会保持在悬浮窗口前面，并保持相同的大小、位置。<br>
+可重复调用此函数更换伙伴窗口，旧的伙伴窗口必须自行关闭。<br>
+可选指定 @borderless 参数 为 true 以移除 @hwndBuddy  的窗口边框。</p>
+
+<p><a id="winform.parent"></a></p>
+
+<h3>winform.parent</h3>
+
+<p>父窗口<br>
+父窗口应当是一个winform对象<br>
+!<br>
+<a href="_.html#winform" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/_.html#winform">返回对象:winform</a></p>
+
+<p><a id="winform.postMessage"></a></p>
+
+<h3>winform.postMessage(msg,wParam,lParam)</h3>
+
+<p>投递窗口消息到消息队列中<br>
+此函数用法请参考 ::User32.PostMessage</p>
+
+<p><a id="winform.preTranslateAccelerator"></a></p>
+
+<h3>winform.preTranslateAccelerator</h3>
+
+<pre><code class="aardio language-aardio">winform.preTranslateAccelerator = function(msg){  
+    if(  msg.wParam == 0x20/*_VK_SPACE*/ &amp; msg.message = 0x101/*_WM_KEYUP*/){   
+        return true;/*返回是否快捷键  
+在 translateAccelerator 之前执行,仅适用于窗体不适用于控件  
+当前窗口以及子窗口上的按键都会触发此事件  
+win.ui.accelerator 绑定窗体时将自动添加该事件  
+
+msg 参数为包含窗口按键消息的 ::MSG 结构体*/  
+    }   
+}
+</code></pre>
+
+<p><a id="winform.preadjust"></a></p>
+
+<h3>winform.preadjust</h3>
+
+<pre><code class="aardio language-aardio">winform.preadjust = function( cx,cy,wParam ) {     
+    /*窗口缩放后重绘前、触发 adjust 事件之前触发此事件。  
+所有 win.form 创建的窗体和控件都支持此事件,  
+与 adjust 事件不同，对 preadjust 重复赋值则覆盖而不是追加事件。   
+
+cx 参数为窗口客户区宽度,cy 参数为窗口客户区高度,  
+wParam 为 _WM_SIZE 消息参数。*/    
+};
+</code></pre>
+
+<p><a id="winform.preloadForm"></a></p>
+
+<h3>winform.preloadForm(&quot;字符串参数&quot;)</h3>
+
+<p>自代码文件预加载窗体文件，返回延迟初始化的伪窗体对象。<br>
+伪窗体对象的 fake 属性为 true，调用任何其他属性或方法则自动初始化窗口。<br>
+调用 this 方法返回真实窗口对象自身。  </p>
+
+<p>可选增加其他参数作为调用外部窗体代码的参数  </p>
+
+<p>custom 控件的 loadForm 函数会将窗体加载为子窗口且自动维护子窗口队列,<br>
+并且 custom 控件会自动维护一个子窗口队列，<br>
+显示一个子窗口其他子窗口就会隐藏（并未关闭或销毁）,<br>
+一个子窗口关闭就会自动移出队列</p>
+
+<p><a id="winform.pretranslate"></a></p>
+
+<h3>winform.pretranslate</h3>
+
+<pre><code class="aardio language-aardio">winform.pretranslate = function( msg ) {  
+    /*消息分发前回调此函数,返回true停止分发*/  
+};
+</code></pre>
+
+<p><a id="winform.publish"></a></p>
+
+<h3>winform.publish(&quot;字符串参数&quot;,)</h3>
+
+<p>在窗口所在界面线程发布消息,<br>
+运行界面线程所有所有调用subscribe函数订阅此消息的函数,<br>
+可添加任意个触发参数</p>
+
+<p><a id="winform.redraw"></a></p>
+
+<h3>winform.redraw()</h3>
+
+<p>刷新,此函数不会刷新背景缓存,<br>
+刷新背景请调用 redrawBackground 函数,<br>
+成功返回 true</p>
+
+<p><a id="winform.redrawBackground"></a></p>
+
+<h3>winform.redrawBackground()</h3>
+
+<p>刷新窗口背景缓存以及窗口内容,<br>
+调用此函数后不需要再重复调用 redraw 函数,<br>
+此函数不宜过多调用,普通刷新且不需要刷新背景缓存时应改用redraw函数,<br>
+仅bk,bkplus等无窗口控件需要使用此函数刷新,<br>
+调整窗口大小后需要使用此函数刷新窗口背景缓存</p>
+
+<p><a id="winform.reduce"></a></p>
+
+<h3>winform.reduce(array,callback,debounce)</h3>
+
+<pre><code class="aardio language-aardio">winform.reduce(  
+    {/*@array 参数指定要循环处理每个元素的数组或表。  
+@array 指定为 false 则取消之前创建的防抖单例循环。  
+
+@callback 指定回调函数。  
+回调函数中可返回本次间隔延时，以毫秒为单位。  
+返回 0、null、false、以及不能转换为非 0 数的值中断处理。  
+回调参数为下一个元素的值和索引,处理到数组尾部时回调参数为 null,  
+如果此时仍然返回可转换为非 0 数的值,将转到第一个数组元素重复循环  
+@callback 指定回调函数。  
+
+@debounce 指定是否创建为防抖单例循环，默认为 true。*/},  
+    function(value,index){  
+        if(value){  
+            return 50  
+        }  
+    }   
+)
+</code></pre>
+
+<p><a id="winform.reghotkey"></a></p>
+
+<h3>winform.reghotkey(回调函数,控制键,虚拟键码)</h3>
+
+<pre><code class="aardio language-aardio">winform.reghotkey( function(id,mod,vk){  
+    /*按下系统热键时触发此回调函数  
+mod为控制键,使用_MOD_前缀的常量表示,0为不按下控制键,  
+vk为虚拟键码,使用_VK_前缀的常量表示*/  
+},0x2/*_MOD_CONTROL*/,&#39;D&#39;#)
+</code></pre>
+
+<p><a id="winform.registCommand"></a></p>
+
+<h3>winform.registCommand(回调函数,重写ID)</h3>
+
+<pre><code class="aardio language-aardio">winform.registCommand(  
+    function(id,event){  
+        win.msgbox( id );   
+    }/*可选指定ID，不指定则生成并返回新ID*/  
+)
+</code></pre>
+
+<p><a id="winform.remove"></a></p>
+
+<h3>winform.remove(&quot;控件名字&quot;)</h3>
+
+<p>移除控件</p>
+
+<p><a id="winform.resize"></a></p>
+
+<h3>winform.resize(宽度,高度)</h3>
+
+<p>如果指定了参数则调整窗口大小,<br>
+无论是否实际调整窗口大小,发送 _WM_SIZE 消息给窗口以触发子窗口自动调整大小的功能</p>
+
+<p><a id="winform.restoreFullScreen"></a></p>
+
+<h3>winform.restoreFullScreen</h3>
+
+<p>当前是否全屏状态</p>
+
+<p><a id="winform.right"></a></p>
+
+<h3>winform.right</h3>
+
+<p>右侧坐标  </p>
+
+<p>如果当前窗口未禁用缩放,<br>
+则在首次显示前自动调用 enableDpiScaling 函数,<br>
+如果需要在此之前获取 DPI 缩放后的窗口大小或位置,<br>
+应当先手动调用 enableDpiScaling 函数</p>
+
+<p><a id="winform.saveConfigBeforeDestroy"></a></p>
+
+<h3>winform.saveConfigBeforeDestroy</h3>
+
+<pre><code class="aardio language-aardio">winform.saveConfigBeforeDestroy = function(){  
+    /*用于在窗体销毁前保存配置文件,bindConfig使用此事件保存配置*/  
+
+}
+</code></pre>
+
+<p><a id="winform.sendMessage"></a></p>
+
+<h3>winform.sendMessage(msg,wParam,lParam)</h3>
+
+<p>发送窗口消息<br>
+此函数用法请参考 ::User32.SendMessage</p>
+
+<p><a id="winform.setBitmap"></a></p>
+
+<h3>winform.setBitmap(图片句柄)</h3>
+
+<p>设置图片<br>
+成功返回true,自动销毁原来的位图</p>
+
+<p><a id="winform.setBitmap"></a></p>
+
+<h3>winform.setBitmap(图片句柄,false)</h3>
+
+<p>设置图片<br>
+成功返回控件原来的位图句柄,<br>
+必须调用::DeleteObject()函数销毁该句柄</p>
+
+<p><a id="winform.setFocus"></a></p>
+
+<h3>winform.setFocus()</h3>
+
+<p>设为输入焦点</p>
+
+<p><a id="winform.setIcon"></a></p>
+
+<h3>winform.setIcon(小图标,大图标)</h3>
+
+<p>修改窗口图标,<br>
+参数可选指定图标句柄、或者图标路径、内存数据等,<br>
+窗口和任务栏显示小图标,ALT+TAB显示大图标,<br>
+指定其中一个图标,另一个会设为相同图标,<br>
+返回窗口之前的小图标和大图标,如果之前无对应图标则返回null</p>
+
+<p><a id="winform.setInterval"></a></p>
+
+<h3>winform.setInterval(回调函数,延时毫秒数,...)</h3>
+
+<pre><code class="aardio language-aardio">winformObject.setInterval(回调函数,延时毫秒数,...setInterval(   
+    function(){  
+        /*参数@1指定执行函数,参数@2指定执行间隔，  
+可选指定一个或多个回调参数，不指定回调参数则默认为:  
+ hwnd,message,timerId,tick,  
+
+如果在定时器中执行了 win.delay 等继续消息循环的代码，  
+在定时器退出前不会再触发同一定时器（重入）。  
+
+定时器回调函数无返回值、返回 null 或 true 则继续运行。  
+返回 false,0，或用 tonumber 可转换为 0 的值则清除此定时器。  
+返回可用 tonumber 转换为非 0 数的值则修改定时器执行间隔（毫秒）  
+
+所有控件的 setInterval 都是调用此函数，用法相同*/  
+    },1000  
+)
+</code></pre>
+
+<p><a id="winform.setPos"></a></p>
+
+<h3>winform.setPos(x坐标,y坐标,宽,高,插入位置,参数)</h3>
+
+<p>调整窗口位置或排序,所有参数可选<br>
+同时指定x,y坐标则移动位置<br>
+同时指定宽高则改变大小<br>
+指定插入位置（句柄或_HWND前缀常量）则调整Z序</p>
+
+<p><a id="winform.setRect"></a></p>
+
+<h3>winform.setRect(rc)</h3>
+
+<p>设置窗口区块位置（::RECT结构体）</p>
+
+<p><a id="winform.setRect"></a></p>
+
+<h3>winform.setRect(rc,true)</h3>
+
+<p>设置窗口屏幕区块位置（::RECT结构体） 调用此函数改变窗口大小后,<br>
+应调用 redrawBackground 函数刷新窗口背景缓存</p>
+
+<p><a id="winform.setRedraw"></a></p>
+
+<h3>winform.setRedraw(false)</h3>
+
+<p>禁止重绘</p>
+
+<p><a id="winform.setRedraw"></a></p>
+
+<h3>winform.setRedraw(true)</h3>
+
+<p>恢复重绘</p>
+
+<p><a id="winform.setTimeout"></a></p>
+
+<h3>winform.setTimeout(函数或代码,延时,其他附加参数)</h3>
+
+<p>推迟执行指定的函数或代码<br>
+此函数异步执行参数中指定的函数，不会阻塞当前代码继续执行，<br>
+延时参数是可选参数，以毫秒为单位，默认为0毫秒<br>
+可选用附加参数指定调用延时函数的实参<br>
+返回值为定时器ID</p>
+
+<p><a id="winform.show"></a></p>
+
+<h3>winform.show</h3>
+
+<p>显示窗口，并指定显示参数<br>
+默认在显示窗口时会自动缩放窗口以适应系统DPI设置。<br>
+调整控件字体或文本样式的代码建议在窗体显示后再执行。</p>
+
+<p><a id="winform.show"></a></p>
+
+<h3>winform.show()</h3>
+
+<p>显示窗口</p>
+
+<p><a id="winform.show"></a></p>
+
+<h3>winform.show(SW_...)</h3>
+
+<p>可使用_SW_前缀的常量参数,<br>
+应用程序第一个窗体将忽略窗体的最大化，最小化设计时属性，<br>
+使用 winform.show( 3/*_SW_MAXIMIZE*/ ) 最大化显示,<br>
+使用winform.show( 6/*_SW_MINIMIZE*/ ) 最小化显示,<br>
+使用winform.show( 9/*_SW_RESTORE*/ ) 自最大化或最小化恢复显示。</p>
+
+<p><a id="winform.show"></a></p>
+
+<h3>winform.show(false)</h3>
+
+<p>隐藏窗口</p>
+
+<p><a id="winform.show"></a></p>
+
+<h3>winform.show(true)</h3>
+
+<p>显示窗口</p>
+
+<p><a id="winform.showChildren"></a></p>
+
+<h3>winform.showChildren(SW_...)</h3>
+
+<p>显示或隐藏所有子级窗口<br>
+参数用法同show函数</p>
+
+<p><a id="winform.statusbar"></a></p>
+
+<h3>winform.statusbar</h3>
+
+<p>状态类  </p>
+
+<p><a href="#statusbarObject">返回对象:statusbarObject</a></p>
+
+<p><a id="winform.tailWndproc"></a></p>
+
+<h3>winform.tailWndproc</h3>
+
+<pre><code class="aardio language-aardio">winform.tailWndproc = function(hwnd,message,wParam,lParam){  
+    /*添加消息回调函数，并设为最低优先级*/  
+}
+</code></pre>
+
+<p><a id="winform.text"></a></p>
+
+<h3>winform.text</h3>
+
+<p>窗口标题</p>
+
+<p><a id="winform.theme"></a></p>
+
+<h3>winform.theme</h3>
+
+<p>外观主题,例如<br>
+winform.theme = &quot;Explorer&quot;<br>
+winform.theme = false</p>
+
+<p><a id="winform.this"></a></p>
+
+<h3>winform.this()</h3>
+
+<p>如果是伪窗口，初始化窗口并返回已初始化的真实窗口对象。<br>
+否则返回窗口对象自身。</p>
+
+<p><a id="winform.toolbar"></a></p>
+
+<h3>winform.toolbar</h3>
+
+<p>工具条  </p>
+
+<p><a href="#toolbarObject">返回对象:toolbarObject</a></p>
+
+<p><a id="winform.tooltipCtrl"></a></p>
+
+<h3>winform.tooltipCtrl</h3>
+
+<p>提示控件<br>
+该控件需要导入win.ui.tooltip以此窗口为参数手动创建  </p>
+
+<p><a href="#winUiTooltipObject">返回对象:winUiTooltipObject</a></p>
+
+<p><a id="winform.top"></a></p>
+
+<h3>winform.top</h3>
+
+<p>顶部坐标  </p>
+
+<p>如果当前窗口未禁用缩放,<br>
+则在首次显示前自动调用 enableDpiScaling 函数,<br>
+如果需要在此之前获取 DPI 缩放后的窗口大小或位置,<br>
+应当先手动调用 enableDpiScaling 函数</p>
+
+<p><a id="winform.trackerGroup"></a></p>
+
+<h3>winform.trackerGroup(&quot;字符串参数&quot;)</h3>
+
+<p>获取plus控件、或任何其他应用win.ui.tracker的控件创建的单选分组当前选定控件<br>
+如果未创建任何分组,此函数不可使用</p>
+
+<p><a id="winform.translateAccelerator"></a></p>
+
+<h3>winform.translateAccelerator</h3>
+
+<pre><code class="aardio language-aardio">winform.translateAccelerator = function(msg){  
+    if(  msg.wParam == 0x20/*_VK_SPACE*/ &amp; msg.message = 0x101/*_WM_KEYUP*/){   
+        return true;/*返回是否快捷键,适用窗体或普通控件对象  
+仅当前窗口内的按键触发此事件  
+
+msg 参数为包含窗口按键消息的 ::MSG 结构体*/  
+    }   
+}
+</code></pre>
+
+<p><a id="winform.transparent"></a></p>
+
+<h3>winform.transparent(128,225)</h3>
+
+<p>启用分层窗口,设置窗口透明度，<br>
+参数(透明度,透明颜色)<br>
+如果指定了透明颜色，透明度参数将被忽略</p>
+
+<p><a id="winform.transparent"></a></p>
+
+<h3>winform.transparent(false)</h3>
+
+<p>取消窗口透明</p>
+
+<p><a id="winform.transparent"></a></p>
+
+<h3>winform.transparent(true)</h3>
+
+<p>启用分层窗口,不设置透明度<br>
+设为分层窗口以后不应再改变窗口大小</p>
+
+<p><a id="winform.tryCreateEmbed"></a></p>
+
+<h3>winform.tryCreateEmbed</h3>
+
+<p>创建嵌入控件,返回控件容器对象,<br>
+容器对象的 _object 成员是创建的 COM 对象,<br>
+容器对象可通过添加成员函数响应 COM 对象事件，<br>
+容器对象的主要作用是充当访问 COM 对象的中间代理对象。<br>
+通常使用 util.metaProperty 为容器对象添加属性元表，<br>
+属性元表可拦截属性、函数调用并调用 _object 对象,  </p>
+
+<p>createEmbedEx 返回的容器已添加默认代理以直接访问 COM 对象</p>
+
+<p><a id="winform.tryCreateEmbed"></a></p>
+
+<h3>winform.tryCreateEmbed()</h3>
+
+<p><a href="#embedObjectForm">返回对象:embedObjectForm</a></p>
+
+<p><a id="winform.tryCreateEmbed"></a></p>
+
+<h3>winform.tryCreateEmbed(clsId,embedObj)</h3>
+
+<p>创建嵌入控件,返回控件容器对象,<br>
+容器对象的 _object 成员是创建的 COM 对象,<br>
+容器对象可通过添加成员函数响应 COM 对象事件，<br>
+容器对象的主要作用是充当访问 COM 对象的中间代理对象,<br>
+@clsId 指定控件 CLSID,<br>
+可选在参数@2中指定 COM 对象绑定的容器对象  </p>
+
+<p>成功返回容器对象,失败返回false,错误信息</p>
+
+<p><a id="winform.unreghotkey"></a></p>
+
+<h3>winform.unreghotkey(请输入ID)</h3>
+
+<p>注销热键<br>
+如果参数为空，则忽略不做任何操作</p>
+
+<p><a id="winform.update"></a></p>
+
+<h3>winform.update()</h3>
+
+<p>重绘invalidate函数指定的区块</p>
+
+<p><a id="winform.valid"></a></p>
+
+<h3>winform.valid</h3>
+
+<p>窗口是否有效，<br>
+窗口未关闭返回 true ，<br>
+窗口已关闭或正在关闭返回 false<br>
+注意所有窗口和控件都有这个属性（不一定会提示）</p>
+
+<p><a id="winform.wait"></a></p>
+
+<h3>winform.wait(等待函数,超时,延时间隔)</h3>
+
+<p>循环执行等待函数,并等待返回值<br>
+直到等待函数返回非空值,或存在第二个返回值,或当前窗口关闭<br>
+等待函数返回的值就是wait函数的返回值,<br>
+如果指定超时,超过指定毫秒时返回null,<br>
+除等待函数以外,所有参数可选</p>
+
+<p><a id="winform.width"></a></p>
+
+<h3>winform.width</h3>
+
+<p>宽度  </p>
+
+<p>如果当前窗口未禁用缩放,<br>
+则在首次显示前自动调用 enableDpiScaling 函数,<br>
+如果需要在此之前获取 DPI 缩放后的窗口大小或位置,<br>
+应当先手动调用 enableDpiScaling 函数</p>
+
+<p><a id="winform.wndproc"></a></p>
+
+<h3>winform.wndproc</h3>
+
+<pre><code class="aardio language-aardio">winform.wndproc = function(hwnd,message,wParam,lParam){   
+    /*添加消息回调函数*/  
+}
+</code></pre>
+
+<p><a id="winform.wndprocMap"></a></p>
+
+<h3>winform.wndprocMap</h3>
+
+<pre><code class="aardio language-aardio">winform.wndproc = {  
+    [0x202/*_WM_LBUTTONUP*/] = function(hwnd,message,wParam,lParam){   
+        var x,y = win.getMessagePos(lParam);  
+        io.print(&quot;左键按下&quot;,x,y)  
+    }  
+}
+</code></pre>
+
+<p><a id="embedObjectForm"></a></p>
+
+<h2>embedObjectForm 成员列表</h2>
+
+<p><a id="embedObjectForm._form"></a></p>
+
+<h3>embedObjectForm._form</h3>
+
+<p>COM 控件宿主窗口,<br>
+也就创建控件的构造参数中指定的 aardio 窗口对象<br>
+也是控件窗口的上级父窗口,  </p>
+
+<p><a href="_.html#winform" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/_.html#winform">返回对象:winform</a></p>
+
+<p><a id="embedObjectForm._host"></a></p>
+
+<h3>embedObjectForm._host</h3>
+
+<p>COM 控件宿主对象</p>
+
+<p><a id="embedObjectForm._host.adjust"></a></p>
+
+<h3>embedObjectForm._host.adjust()</h3>
+
+<p>自动调整 COM 控件窗口大小</p>
+
+<p><a id="embedObjectForm._host.close"></a></p>
+
+<h3>embedObjectForm._host.close()</h3>
+
+<p>关闭对象</p>
+
+<p><a id="embedObjectForm._host.doObjectVerb"></a></p>
+
+<h3>embedObjectForm._host.doObjectVerb( _OLEIVERB )</h3>
+
+<p>执行指定的动词命令</p>
+
+<p><a id="embedObjectForm._host.tranacc"></a></p>
+
+<h3>embedObjectForm._host.tranacc(MSG消息对象)</h3>
+
+<p>解析 COM 控件 快捷键,<br>
+如果是快捷键返回真值</p>
+
+<p><a id="embedObjectForm._object"></a></p>
+
+<h3>embedObjectForm._object</h3>
+
+<p>COM 控件对象,<br>
+通过此对象可以访问 COM 对象的成员函数和成员属性,<br>
+ 可改造容器对象并在内部调用 _object 以改进 COM 对象接口<br>
+也可以通过指定容器对象的成员函数以响应 COM 对象的事件</p>
+
+<p><a id="nmdrObject"></a></p>
+
+<h2>nmdrObject 成员列表</h2>
+
+<p><a id="nmdrObject.code"></a></p>
+
+<h3>nmdrObject.code</h3>
+
+<p>通知码</p>
+
+<p><a id="nmdrObject.hwndFrom"></a></p>
+
+<h3>nmdrObject.hwndFrom</h3>
+
+<p>来源句柄</p>
+
+<p><a id="nmdrObject.idFrom"></a></p>
+
+<h3>nmdrObject.idFrom</h3>
+
+<p>来源ID</p>
+
+<p><a id="win"></a></p>
+
+<h2>win 成员列表</h2>
+
+<p><a id="win._form"></a></p>
+
+<h3>win._form()</h3>
+
+<p><a href="_.html#winform" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/_.html#winform">返回对象:winform</a></p>
+
+<p><a id="win.form"></a></p>
+
+<h3>win.form(propertiesTable)</h3>
+
+<p>创建的窗体对象,<br>
+可选用参数 @propertiesTable 指定一个表对象以指定窗口设置和属性。<br>
+请使用窗体设计器自动生成参数表。  </p>
+
+<p>窗体对象以及窗体创建的控件对象可作为参数传入其他线程，<br>
+跨线程调用窗体对象的成员函数时将转发到创建窗口的线程执行。  </p>
+
+<p><a href="_.html#winform" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/_.html#winform">返回对象:winform</a></p>
+
+<p><a id="win._form"></a></p>
+
+<h2>win._form 成员列表</h2>
+
+<p>指向原始的 win.form<br>
+注意 win.loadForm 函数会暂时修改 win.form函数并注入代码修改默认行为,例如修改父窗口,<br>
+如果在库里面希望创建原生窗口而不需要接受注入代码,<br>
+建议使用win._form代替win.form</p>
+
+<p><a id="win._form._defaultProc"></a></p>
+
+<h3>win._form._defaultProc</h3>
+
+<pre><code class="aardio language-aardio">win._form._defaultProc[/*消息ID*/]  = function(this,hwnd, message, wParam, lParam){  
+
+}
+</code></pre>
+
+<p><a id="win._form.createWindowEx"></a></p>
+
+<h3>win._form.createWindowEx</h3>
+
+<pre><code class="aardio language-aardio">win._form.createWindowEx = function(exStyle,className,windowName,style,x,y,width,height,hwndParent,hMenu,hlnstance,lpParam){
+    return ::CreateWindowEx(exStyle,className,windowName,style,x,y,width,height,hwndParent,hMenu,hlnstance,lpParam);
+}
+</code></pre>
+
+<p><a id="win._form.getForm"></a></p>
+
+<h3>win._form.getForm(控件或窗口句柄)</h3>
+
+<p>在上级父窗口或所有者窗口中查找最接近的form对象</p>
+
+<p><a id="win._form.getParentForm"></a></p>
+
+<h3>win._form.getParentForm(控件或窗口句柄)</h3>
+
+<p>在上级父窗口中查找最接近的form对象</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/ui/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/ui/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/_.md">Markdown 格式</a></p>
+
+</body> 
+</html>

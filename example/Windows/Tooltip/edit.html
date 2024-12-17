@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 文本框提示'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 文本框提示</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 文本框提示</h1><pre><code class="aardio language-aardio">//文本框提示
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;aardio form&quot;;right=759;bottom=469)
+winform.add(
+btnError={cls=&quot;button&quot;;text=&quot;错误&quot;;left=280;top=306;right=390;bottom=353;z=2};
+btnInfo={cls=&quot;button&quot;;text=&quot;提示&quot;;left=539;top=306;right=649;bottom=353;z=4};
+btnWarning={cls=&quot;button&quot;;text=&quot;警告&quot;;left=410;top=306;right=520;bottom=353;z=3};
+edit={cls=&quot;edit&quot;;text=&quot;Edit&quot;;left=129;top=179;right=394;bottom=218;edge=1;multiline=1;z=1}
+)
+/*}}*/
+
+winform.btnError.oncommand = function(id,event){
+    winform.edit.showErrorTip(&quot;这是标题&quot;,&quot;这是要显示的错误信息&quot;)
+}
+
+winform.btnWarning.oncommand = function(id,event){
+    winform.edit.showWarningTip(&quot;这是标题&quot;,&quot;这是要显示的错误信息&quot;)    
+}
+
+winform.btnInfo.oncommand = function(id,event){
+    winform.edit.showInfoTip(&quot;这是标题&quot;,&quot;这是要显示的错误信息&quot;,true)  
+}
+
+winform.show();
+win.loopMessage();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Windows/Tooltip/edit.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Windows/Tooltip/edit.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Windows/Tooltip/edit.md">Markdown 格式</a>
+</body> 
+</html>

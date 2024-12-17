@@ -1,0 +1,195 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - win.guid 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - win.guid 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>win.guid 库模块帮助文档</h1>
+
+<p><a id="win"></a></p>
+
+<h2>win 成员列表</h2>
+
+<p><a id="win.guid"></a></p>
+
+<h3>win.guid(&quot;GUID、CLSID、ProgID等&quot;)</h3>
+
+<p>字符串转换为 GUID,<br>
+参数支持ProgID,CLSID,GUID,<br>
+失败返回null空值</p>
+
+<p><a id="win.guid"></a></p>
+
+<h3>win.guid()</h3>
+
+<p>创建 GUID 结构体,初始化为空值,<br>
+此对象可以使用 tostring 函数转换为大写字符串,<br>
+tostring 参数@2指定是否小写,参数@3指定是否添加大括号,<br>
+tostring 参数@2 也可用字符串指定11个数值参数的格式化串,  </p>
+
+<p><a href="#winGuidObject">返回对象:winGuidObject</a></p>
+
+<p><a id="win.guid"></a></p>
+
+<h3>win.guid(数值,数值,数值,&#39;\x00\x00\x00\x00\x00\x00\x00\x00&#39;)</h3>
+
+<p>创建GUID结构体<br>
+参数@4也可以改为包含8个字节数值的数组或者展开为8个数值参数</p>
+
+<p><a id="win.guid"></a></p>
+
+<h2>win.guid 成员列表</h2>
+
+<p><a id="win.guid.create"></a></p>
+
+<h3>win.guid.create()</h3>
+
+<p>创建 GUID 结构体并初始化为唯一值  </p>
+
+<p><a href="#winGuidObject">返回对象:winGuidObject</a></p>
+
+<p><a id="win.guid.fromString"></a></p>
+
+<h3>win.guid.fromString(&quot;字符串参数&quot;)</h3>
+
+<p>字符串转换为 GUID<br>
+参数支持ProgID,CLSID,GUID,<br>
+失败返回null空值  </p>
+
+<p>注意 win.guid 对象可以使用 tostring 函数转换为字符串,<br>
+tostring 参数@1指定是否小写,参数@2指定是否添加大括号,  </p>
+
+<p><a href="#winGuidObject">返回对象:winGuidObject</a></p>
+
+<p><a id="win.guid.fromString"></a></p>
+
+<h3>win.guid.fromString()</h3>
+
+<p><a href="#winGuidObject">返回对象:winGuidObject</a></p>
+
+<p><a id="win.guid.toProgId"></a></p>
+
+<h3>win.guid.toProgId(&quot;字符串参数&quot;)</h3>
+
+<p>GUID转换为字符串格式的 ProgId<br>
+失败返回null空值</p>
+
+<p><a id="win.guid.valid"></a></p>
+
+<h3>win.guid.valid()</h3>
+
+<p><a href="#winGuidObject">返回对象:winGuidObject</a></p>
+
+<p><a id="win.guid.valid"></a></p>
+
+<h3>win.guid.valid(GUID对象)</h3>
+
+<p>判断是否有效GUID对象,<br>
+如果参数是ProgID,CLSID,GUID,则尝试转换,<br>
+转换成功则返回GUID对象,否则返回空</p>
+
+<p><a id="winGuidObject"></a></p>
+
+<h2>winGuidObject 成员列表</h2>
+
+<p><a id="winGuidObject.Data1"></a></p>
+
+<h3>winGuidObject.Data1</h3>
+
+<p>INT类型</p>
+
+<p><a id="winGuidObject.Data2"></a></p>
+
+<h3>winGuidObject.Data2</h3>
+
+<p>WORD类型</p>
+
+<p><a id="winGuidObject.Data3"></a></p>
+
+<h3>winGuidObject.Data3</h3>
+
+<p>WORD类型</p>
+
+<p><a id="winGuidObject.Data4"></a></p>
+
+<h3>winGuidObject.Data4</h3>
+
+<p>字符串值,也可以指定包含多个字节值的数组</p>
+
+<p><a id="winGuidObject.create"></a></p>
+
+<h3>winGuidObject.create()</h3>
+
+<p>初始化为唯一值，返回自身  </p>
+
+<p><a href="#winGuidObject">返回对象:winGuidObject</a></p>
+
+<p><a id="winGuidObject.fromString"></a></p>
+
+<h3>winGuidObject.fromString(&quot;字符串参数&quot;)</h3>
+
+<p>字符串转换为 GUID 结构体,返回自身,<br>
+也可以直接写到 win.guid 参数中,<br>
+可使用 tostring 函数将 GUID 结构体重新转换为字符串<br>
+tostring 参数@2指定是否小写,参数@3指定是否添加大括号,<br>
+tostring 参数@2 也可用字符串指定11个数值参数的格式化串  </p>
+
+<p><a href="#winGuidObject">返回对象:winGuidObject</a></p>
+
+<p><a id="winGuidObject.hex"></a></p>
+
+<h3>winGuidObject.hex()</h3>
+
+<p>转换为16进制格式<br>
+返回值可以置入单引号转义字符串内使用</p>
+
+<p><a id="winGuidObject.isNull"></a></p>
+
+<h3>winGuidObject.isNull()</h3>
+
+<p>是否等于GUID_NULL，也就是结构体内存的所有字节值为0</p>
+
+<p><a id="winGuidObject.toProgId"></a></p>
+
+<h3>winGuidObject.toProgId()</h3>
+
+<p>CLSID转换为ProgId,返回字符串</p>
+
+<p><a id="winGuidObject.toString"></a></p>
+
+<h3>winGuidObject.toString</h3>
+
+<p>转换为字符串,也支持通过 tostring 自动调用此函数</p>
+
+<p><a id="winGuidObject.toString"></a></p>
+
+<h3>winGuidObject.toString(&quot;%08X%04X%04X%02X%02X%02X%02X%02X%02X%02X%02X&quot;)</h3>
+
+<p>转换为字符串,自定义 11 个数值参数的格式化串</p>
+
+<p><a id="winGuidObject.toString"></a></p>
+
+<h3>winGuidObject.toString(是否小写,是否添加大括号)</h3>
+
+<p>转换为字符串,生成格式:<br>
+00000000-0000-0000-0000-000000000000</p>
+
+<p><a id="winGuidObject.unpack"></a></p>
+
+<h3>winGuidObject.unpack()</h3>
+
+<p>转换并返回 11 个数值</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/guid.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/guid.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/guid.md">Markdown 格式</a></p>
+
+</body> 
+</html>

@@ -1,0 +1,70 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - aardio 编译 Java 代码'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - aardio 编译 Java 代码</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 编译 Java 代码</h1><pre><code class="aardio language-aardio">//aardio 编译 Java 代码
+import console; 
+import java; 
+
+var javaCode = /****
+/*
+Java 中的包相当于 aardio 中的库,
+Java 中的 package 语句类似 aardio 中用 namespace 语句定义名字空间。
+
+而且 Java 与 aardio 一样,都要求包(或库)的名字空间与文件名保持一致。
+aardio 到 lib 目录下查找库,而 Java 则到 classpath 中去查找包。
+jre 文件相当于一个虚拟的包目录。默认的aardio将 &quot;/java/&quot; 目录以及其目录下的所有 jar 添加到类搜录路径中。
+
+例如对于aardio.sample.HelloworldApp 这个类,
+我们就需要把他编译到 &quot;/java/aardio/sample/HelloworldApp.class&quot; 这个位置。
+*/
+package aardio.sample; //定义java包   
+import java.io.*; //引入Java包   
+
+public class HelloworldApp{   
+    static native String aardio(String code); 
+
+    public static String main(String[] args) {   
+        System.out.println(&quot;Hello this is a simply test&quot;); //输出字符串,字符串用引号括起来 
+        System.out.println( args[0]  );  
+        System.out.println( args[1]  ); 
+        return &quot;aardio,你好,这是给你的返回值&quot;; 
+    }  
+    public String name = &quot;HelloworldApp2&quot;;
+    public static int static_num = 123;
+    public int test(int a) {   
+        return a + 123;
+    } 
+    public String test_aardio() {  
+        return aardio(&quot;import win;win.msgbox(&#39;我是Java,我正在执行aardio代码&#39;);return true;&quot;) ; 
+    }      
+}  
+****/
+string.save(&quot;\java\aardio\sample\HelloworldApp.java&quot;,javaCode )  
+
+//在调用其他函数以前可自定义 JDK 路径
+//java.path.setJdkHome(&quot;C:\Program Files (x86)\Java\jdk1.6.0_45&quot;) 
+
+//编译 Java 代码
+var prcs = java.compile(&quot;\java\aardio\sample\HelloworldApp.java&quot;)
+prcs.logResponse(); //这是一个管理进程，也就是 process.popen 对象
+prcs.close();
+
+console.log(&quot;高版本 JDK 中编译的 JAVA 程序不应在低版本的 JRE 中运行。&quot;)
+console.log(&quot;如果控制台没有显示错误,则编译成功&quot;) 
+console.pause()
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/Java/02.compile.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/Java/02.compile.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Languages/Java/02.compile.md">Markdown 格式</a>
+</body> 
+</html>

@@ -1,0 +1,497 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - winex 库'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - winex 库</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>winex 库</h1>
+
+<p>winex 库主要扩展 win 库的功能，并提供管理外部进程窗口的函数与窗口自动化有关的功能。</p>
+
+<h2>winex.match <a id="match" href="#match">&#x23;</a></h2>
+
+<ol>
+<li><p>函数原型：   </p>
+
+<p><code>是否匹配 = winex.match(窗口句柄,文本,类名,ID,超时)</code></p></li>
+<li><p>函数说明：</p>
+
+<p>所有参数可选.  </p>
+
+<p>检测给定窗口句柄的窗口属性，与给定的参数进行比较，如果相符返回真(true)，否则返回假(false) 。</p>
+
+<p>使用模糊匹配比较类名、标题，支持 <a href="../../builtin/string/patterns.html" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/builtin/string/patterns.html">模式语法</a> 。  </p>
+
+<p>可选指定一个以毫秒为单位的超时值。</p>
+
+<p>winex 库中查找窗口的函数多是调用此函数对窗口进行匹配。  </p></li>
+</ol>
+
+<h2>winex.find <a id="find" href="#find">&#x23;</a></h2>
+
+<ol>
+<li><p>函数原型：   </p>
+
+<p><code>hwnd,线程ID,进程ID = winex.find( 类名,标题,进程ID,线程ID )</code> </p>
+
+<p>注意：本文档中 hwnd 用于表示窗口句柄的变量名。</p></li>
+<li><p>函数说明：</p>
+
+<p>按给定的参数查找指定的窗口，所有参数都是可选参数。<br>
+winex.find使用模糊匹配来查找类名、标题，支持 <a href="../../builtin/string/patterns.html" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/builtin/string/patterns.html">模式语法</a> 。  </p>
+
+<p>如果需要简单匹配，请使用 <a href="../win/_.html#find" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/std/win/_.html#find">win.find</a>  </p></li>
+<li><p>调用示例：   </p>
+
+<pre><code class="aardio language-aardio">import winex; 
+import process;
+import console; 
+
+//运行目标程序
+var prcs = process( &quot;请指定文件名.exe&quot;  )
+
+//查找窗口
+var hwnd = winex.find(&quot;请指定类名&quot; , ,prcs.id /*根据进程ID也可以找到窗口*/ );  
+console.logPause(&quot;找到句柄：&quot;, hwnd )
+</code></pre></li>
+</ol>
+
+<h2>winex.findEx <a id="findEx" href="#findEx">&#x23;</a></h2>
+
+<ol>
+<li><p>函数原型：   </p>
+
+<p><code>hwnd = winex.findEx( 父窗口句柄,返回第几个匹配句柄,类名模式串 ,标题模式串, 控件ID )</code></p></li>
+<li><p>函数说明：   </p>
+
+<p>按给定的参数查找指定的窗口，除父窗口句柄以外所有参数都是可选参数。  </p>
+
+<p>winex.findEx使用模糊匹配来查找类名、标题，支持 <a href="../../builtin/string/patterns.html" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/builtin/string/patterns.html">模式查找语法</a> 。  </p>
+
+<p>如果需要简单匹配，请使用 <a href="../win/_.html#findEx" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/std/win/_.html#findEx">win.findEx</a>  </p></li>
+<li><p>调用示例：   </p>
+
+<pre><code class="aardio language-aardio">import process;
+import winex; 
+
+//运行程序
+process.execute(&quot;请指定文件.exe&quot;)
+
+//查找
+var hwnd = win.find(&quot;请指定类名&quot;);//查找父窗口
+var hedit = winex.findEx(hwnd,1,&quot;Edit&quot; ); //查找第一个类名为Edit的子窗口
+
+//输出结果
+console.logPause(&quot;找到目标程序中的文本框句柄：&quot;, hedit )
+
+</code></pre></li>
+</ol>
+
+<h2>winex.findExists <a id="findExists" href="#findExists">&#x23;</a></h2>
+
+<ol>
+<li><p>函数原型：   </p>
+
+<pre><code class="aardio language-aardio">窗口句柄,控件句柄,线程ID,进程ID = winex.findExists( 父窗口标题,控件文本 )
+
+窗口句柄,控件句柄,线程ID,进程ID = winex.findExists( 
+                父窗口标题,
+                控件文本,
+                父窗口类名,
+                控件类名,
+                控件ID
+            )
+</code></pre></li>
+<li><p>函数说明：   </p>
+
+<p>所有参数都是可选参数,但一般应指定父窗口标题与控件文本.<br>
+这个函数基本是结合了winex.find与winex.findEx的功能,首先查找符合条件的父窗口,再查找它是否包含符合条件的控件窗口.您可以打开winex库查看此函数的源代码.  </p>
+
+<p>winex.findExists同样支持使用模糊匹配来查找类名、标题，支持 <a href="../../builtin/string/patterns.html" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/builtin/string/patterns.html">模式查找语法</a> 。  </p>
+
+<p>这个函数是非常有用的一个函数.  </p></li>
+<li><p>调用示例：   </p>
+
+<pre><code class="aardio language-aardio">import winex;
+import process
+import console; 
+
+//运行目标程序
+process.execute( &quot;notepad.exe&quot;) 
+
+//查找包含指定标题,并包含类名为&quot;Edit&quot;控件的窗口.
+窗口句柄,控件句柄,线程ID,进程ID = winex.findExists(&quot;&lt;标题1&gt;|&lt;标题2&gt;&quot;,&quot;&quot;, ,&quot;Edit&quot;)
+
+//显示结果
+console.log( 窗口句柄,控件句柄,线程ID,进程ID  )
+
+//关闭窗口
+win.close(窗口句柄)
+
+console.pause(true);
+</code></pre></li>
+</ol>
+
+<h2>winex.findActivate <a id="findActivate" href="#findActivate">&#x23;</a></h2>
+
+<pre><code class="aardio language-aardio">1. 函数原型：   
+
+窗口句柄,控件句柄,线程ID,进程ID = winex.findActivate( 父窗口标题,控件文本 )
+
+窗口句柄,控件句柄,线程ID,进程ID = winex.findActivate( 
+                父窗口标题,
+                控件文本,
+                父窗口类名,
+                控件类名,
+                控件ID
+            )
+</code></pre>
+
+<ol>
+<li><p>函数说明：   </p>
+
+<p>此函数用法与winex.findExists完全相同,内部直接调用winex.findExists.  </p>
+
+<p>不同的是:winex.findActivate会在找到窗口后激活窗口使之成为前台窗口.  </p></li>
+</ol>
+
+<h2>winex.wait <a id="wait" href="#wait">&#x23;</a></h2>
+
+<ol>
+<li><p>函数原型：   </p>
+
+<pre><code class="aardio language-aardio">窗口句柄,控件句柄,线程ID,进程ID = winex.wait( 父窗口标题,控件文本 )
+
+窗口句柄,控件句柄,线程ID,进程ID = winex.wait( 
+                父窗口标题,
+                控件文本,
+                父窗口类名,
+                控件类名,
+                控件ID
+            )
+</code></pre></li>
+<li><p>函数说明：   </p>
+
+<p>所有参数都是可选参数,但一般应指定父窗口标题与控件文本.<br>
+这个函数内部调用winex.findExists,所以参数用法与winex.findExists完全一致,请参考此函数说明.<br>
+winex.wait同样支持使用模糊匹配来查找类名、标题，支持 <a href="../../builtin/string/patterns.html" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/builtin/string/patterns.html">模式查找语法</a> 。  </p>
+
+<p>该函数指定一些可选的参数,等待指定的窗口创建,然后返回.<br>
+可使用 winex.waitTimeout 指定超时值(以毫秒为单位),如果此属性为null空值,表示永不超时.<br>
+可使用 winex.waitDelay 指定检测间隔(以毫秒为单位),默认为100毫秒.  </p>
+
+<p>该函数如果超时并失败则返回空值.  </p></li>
+</ol>
+
+<h2>winex.waitClose <a id="waitClose" href="#waitClose">&#x23;</a></h2>
+
+<ol>
+<li><p>函数原型：   </p>
+
+<pre><code class="aardio language-aardio">是否成功 = winex.waitClose( 窗口句柄 )
+
+是否成功 = winex.waitClose( 
+                父窗口标题,
+                控件文本,
+                父窗口类名,
+                控件类名,
+                控件ID
+            )
+</code></pre></li>
+<li><p>函数说明：   </p>
+
+<p>此函数用法与winex.wait类似,请参考winex.wait说明.<br>
+不同的是,winex.waitClose可以指定一个窗口句柄作为参数.<br>
+并且 winex.waitClose只有一个返回值,表示是否成功.  </p>
+
+<p>该函数指定一些可选的参数,等待指定的窗口关闭,然后返回.<br>
+可使用 winex.waitTimeout 指定超时值(以毫秒为单位),如果此属性为null空值,表示永不超时.<br>
+可使用 winex.waitDelay 指定检测间隔(以毫秒为单位),默认为100毫秒.  </p>
+
+<p>如果超时返回false,成功则返回true;  </p></li>
+</ol>
+
+<h2>winex.waitActive <a id="waitActive" href="#waitActive">&#x23;</a></h2>
+
+<ol>
+<li><p>函数原型：   </p>
+
+<pre><code class="aardio language-aardio">窗口句柄 = winex.waitActive( 窗口句柄 )
+
+窗口句柄,控件句柄,线程ID,进程ID = winex.waitActive( 
+                父窗口标题,
+                控件文本,
+                父窗口类名,
+                控件类名,
+                控件ID
+            )
+</code></pre></li>
+<li><p>函数说明：   </p>
+
+<p>此函数用法与winex.waitClose类似,请参考winex.waitClose说明.  </p>
+
+<p>winex.waitActive返回激活窗口的句柄.如果使用了winex.wait相同的参数,则返回与winex.wait相同的返回值(窗口句柄,控件句柄,线程ID,进程ID)  </p>
+
+<p>该函数指定一些可选的参数,等待指定的窗口激话,然后返回. 可使用 winex.waitTimeout 指定超时值(以毫秒为单位),如果此属性为null空值,表示永不超时. 可使用 winex.waitDelay 指定检测间隔(以毫秒为单位),默认为100毫秒.  </p>
+
+<p>如果超时返回空值,否则返回激活窗口的句柄.  </p>
+
+<p>注意:此函数内部调用 win.getForeground() 检测激活窗口，而非 win.getActive() 。win.getActive() 仅能获取当前线程的激活窗口,而非系统激活窗口,通常会因为名称而导致误会.  </p></li>
+</ol>
+
+<h2>枚举窗口 <a id="enum" href="#enum">&#x23;</a></h2>
+
+<p>请参考： <a href="../../../language-reference/function/enum-and-each.html" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/function/enum-and-each.html">枚举与遍历</a></p>
+
+<ol>
+<li><p>函数原型：   </p>
+
+<p><code>winex.enum( 回调函数,父窗口句柄 = 桌面窗口,要查找的类名,要查找的标题,要查找的控件ID )</code></p></li>
+<li><p>函数说明：   </p>
+
+<p>在指定的父窗口枚举所有子窗口、除回调函数以外，所有参数为可选参数。类名与标题支持 <a href="../../builtin/string/patterns.html" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/builtin/string/patterns.html">模式语法</a> 。  </p>
+
+<p>每查找到一个窗口就调用第一个参数指定的回调函数。回调函数按下面的格式定义：</p>
+
+<pre><code class="aardio language-aardio">function( 找到的窗口句柄,窗口嵌套深度 ){
+//返回false停止枚举
+}
+</code></pre></li>
+<li><p>调用示例： </p>
+
+<pre><code class="aardio language-aardio">import winex;
+import console; 
+
+winex.enum( 
+    function(hwnd,depth){
+
+    console.log( depth/*深度*/,hwnd/*窗口*/,win.getText(hwnd)/*标题*/ )
+    /*return false*/
+} )
+</code></pre></li>
+</ol>
+
+<h2>枚举顶层窗口 <a id="enumTop" href="#enumTop">&#x23;</a></h2>
+
+<p>请参考： <a href="../../../language-reference/function/enum-and-each.html" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/function/enum-and-each.html">枚举与遍历</a></p>
+
+<ol>
+<li><p>函数原型：   </p>
+
+<p><code>winex.enumTop( 回调函数 )</code></p></li>
+<li><p>函数说明：   </p>
+
+<p>枚举所有桌面顶层窗口。<br>
+每查找到一个窗口就调用第一个参数指定的回调函数。回调函数按下面的格式定义：</p>
+
+<pre><code class="aardio language-aardio">function( 找到的窗口句柄 ){
+//返回false停止枚举
+}
+</code></pre>
+
+<p>winex.enumTop的实现较简单，执行速度也很快，如果仅仅是需要例出顶层窗口的句柄，不需要其他的功能，应优先选用此函数。</p></li>
+<li><p>调用示例： </p>
+
+<pre><code class="aardio language-aardio">import winex;
+import console; 
+
+winex.enumTop(
+    function(hwnd){
+        console.log(hwnd)
+    }
+)
+
+console.pause(true);
+</code></pre></li>
+</ol>
+
+<h2>遍历窗口 <a id="each" href="#each">&#x23;</a></h2>
+
+<p>请参考： <a href="../../../language-reference/function/enum-and-each.html" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/function/enum-and-each.html">枚举与遍历</a></p>
+
+<ol>
+<li><p>函数原型：   </p>
+
+<p><code>winex.each( 要查找的类名,要查找的标题,父窗口句柄 = 桌面窗口 )</code></p></li>
+<li><p>函数说明：   </p>
+
+<p>父窗口句柄为可选参数，默认为桌面窗口。类名和标题都支持 <a href="../../builtin/string/patterns.html" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/builtin/string/patterns.html">模式查找语法</a> 。  </p>
+
+<p>winex.each 创建一个可用于 <a href="../../../language-reference/statements/looping.html#for-in" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/statements/looping.html#for-in">for in</a> 语句的迭代器函数，用于广度遍历同一子级的子窗口。  </p></li>
+</ol>
+
+<h2>winex.fromPoint <a id="fromPoint" href="#fromPoint">&#x23;</a></h2>
+
+<ol>
+<li><p>函数原型：   </p>
+
+<p><code>hwnd = winex.fromPoint( 屏幕坐标x,屏幕坐标y )</code></p></li>
+<li><p>函数说明：   </p>
+
+<p>从指定的屏幕坐标获取窗口，如果窗口拥有子窗口则递归获取子窗口直到叶级窗口</p></li>
+</ol>
+
+<h2>winex.fromPointReal</h2>
+
+<ol>
+<li><p>函数原型：   </p>
+
+<p><code>hwnd = winex.fromPointReal( 屏幕坐标x,屏幕坐标y )</code></p></li>
+<li><p>函数说明：   </p>
+
+<p>此函数首先调用winex.fromPoint，然后调用winex.fromClientPointReal,可穿透groupbox控件获取内部控件窗口</p></li>
+</ol>
+
+<h2>winex.fromClientPoint <a id="fromClientPoint" href="#fromClientPoint">&#x23;</a></h2>
+
+<ol>
+<li><p>函数原型：   </p>
+
+<p><code>hwnd = winex.fromClientPoint(父窗口句柄, 客户坐标x,客户坐标y,un=_CWP_SKIPINVISIBLE )</code></p></li>
+<li><p>函数说明：   </p>
+
+<p>在指定的父窗口获取、从指定的屏幕坐标获取该位置子窗口句柄(不能获取子窗口的子窗口)。</p>
+
+<p>un为可选参数，默认为_CWP_SKIPINVISIBLE，其他可选参数：</p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>0x0000/*_CWP_ALL*/</td>
+<td>测试所有窗口</td>
+</tr>
+<tr>
+<td>0x0001/*_CWP_SKIPINVISIBLE*/</td>
+<td>忽略不可见窗口</td>
+</tr>
+<tr>
+<td>0x0002/*_CWP_SKIPDISABLED*/</td>
+<td>忽略已屏蔽的窗口</td>
+</tr>
+<tr>
+<td>0x0004/*_CWP_SKIPTRANSPARENT* /</td>
+<td>忽略透明窗口</td>
+</tr>
+</tbody></table></li>
+</ol>
+
+<h2>winex.fromClientPointReal <a id="fromClientPointReal" href="#fromClientPointReal">&#x23;</a></h2>
+
+<ol>
+<li><p>函数原型：   </p>
+
+<p><code>hwnd = winex.fromClientPointReal(父窗口句柄, 屏幕坐标x,屏幕坐标y,un=_CWP_SKIPINVISIBLE )</code></p></li>
+<li><p>函数说明：   </p>
+
+<p>在指定的父窗口获取、从指定的屏幕坐标获取该位置子窗口句柄(不能获取子窗口的子窗口)<br>
+可穿透groupbox控件获取内部控件窗口.</p></li>
+</ol>
+
+<h2>winex.getFocus <a id="getFocus" href="#getFocus">&#x23;</a></h2>
+
+<ol>
+<li><p>函数原型：   </p>
+
+<p><code>hfocus = winex.getFocus( hwnd )</code></p></li>
+<li><p>函数说明：   </p>
+
+<p>返回指定窗口输入焦点所在的控件句柄，如果参数hwnd是一个控件，则直接返回该控件的句柄。<br>
+此函数支持获取外部线程的输入焦点，而 <a href="../win/_.html#getFocus" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/std/win/_.html#getFocus">win.getFocus</a> 只能支持当前线程的窗。</p></li>
+</ol>
+
+<h2>winex.click <a id="click" href="#click">&#x23;</a></h2>
+
+<ol>
+<li><p>函数原型：   </p>
+
+<p><code>hwnd = winex.click( 窗口句柄,命令ID )</code></p></li>
+<li><p>函数说明：   </p>
+
+<p>窗口上的菜单、按钮等都会有一个控件ID，可以使用winex.click函数直接向包含该控件的主窗口发送该ID的命令消息，达到后台模拟点击控件的效果。</p>
+
+<p>可以使用附带的工具：winspy查看控件ID，使用查看资源文件的软件查看菜单项的ID。</p></li>
+</ol>
+
+<h2>winex.findMenu</h2>
+
+<ol>
+<li><p>函数原型：   </p>
+
+<p><code>hwnd = winex.findMenu( 窗口句柄,菜单标题 | 菜单ID,...... )</code></p></li>
+<li><p>函数说明：   </p>
+
+<p>第一个参数为目标窗口句柄。<br>
+自第二个参数开始可选添加任意多个参数，可用字符串表示菜单项标题，或用数值表示菜单序号。<br>
+菜单标题支持 <a href="../../builtin/string/patterns.html" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/builtin/string/patterns.html">模式查找语法</a> ，菜单序号自1开始(第一个子菜单序号为1。</p></li>
+<li><p>调用示例： </p>
+
+<pre><code class="aardio language-aardio">//导入winex库
+import winex; 
+
+//查找
+var hwnd = win.find(&quot;指定窗口类名&quot;);//查找父窗口
+
+//查找指定的菜单(&quot;文件&quot;菜单下的子菜单&quot;另存为&quot;)
+hmenu,menuid = winex.findMenu(hwnd ,&quot;文件&quot;,&quot;另存为&quot;  );
+
+//前置窗口
+win.setForeground(hwnd)
+
+//点击菜单项
+winex.click( hwnd,menuid)
+</code></pre></li>
+</ol>
+
+<h2>winex.attach <a id="attach" href="#attach">&#x23;</a></h2>
+
+<ol>
+<li><p>函数原型：   </p>
+
+<p><code>是否成功 = winex.attach( 窗口句柄,是否附加=true )</code></p></li>
+<li><p>函数说明：   </p>
+
+<p>绑定当前线程到外部窗口所属线程并共享输入处理机制。</p>
+
+<p>参数应指定一个非当前线程的窗口,如果第二个参数为真(可省略参数,默认为真)。  </p>
+
+<p>通常，系统内的每个线程都有自己的输入队列。winex.attach 允许当前线程与目标窗口共享输入队列。连接了线程后，输入焦点、窗口激活、鼠标捕获、键盘状态以及输入队列状态都会进入共享状态 返回值 Long，非零表示成功，零表示失败。</p>
+
+<p>调用 winex.attach 以后,可以在附加的目标窗口使用 win.getFocus() win.setFocus() 等函数,也可以方便地使用winex.key winex.mouse等函数库提供的后台模拟函数.</p>
+
+<p>附加与解除应配对使用,例如调用 winex.attach(hwnd)附加成功以后,在不再需要附加时应调用winex.attach(hwnd,false)解除.</p></li>
+</ol>
+
+<h2>winex.attachThread  <a id="attachThread" href="#attachThread">&#x23;</a></h2>
+
+<ol>
+<li><p>函数原型：   </p>
+
+<p><code>是否成功 = winex.attachThread( 目标线程ID,是否附加=true )</code></p></li>
+<li><p>函数说明：   </p>
+
+<p>绑定当前线程到外部线程并共享输入处理机制。</p>
+
+<p>此函数与 winex.attach 的功能一样。</p>
+
+<p>区别是第一个参数需指定线程ID，而不是窗口句柄。</p>
+
+<p>其他参考 <a href="#attach">winex.attach</a> 函数。</p></li>
+</ol>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-guide/std/winex/winex.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-guide/std/winex/winex.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/std/winex/winex.md">Markdown 格式</a></p>
+
+</body> 
+</html>

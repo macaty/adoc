@@ -1,0 +1,292 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - builtin.raw 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - builtin.raw 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>builtin.raw 库模块帮助文档</h1>
+
+<p><a id="raw"></a></p>
+
+<h2>raw 成员列表</h2>
+
+<p><a id="raw.byte"></a></p>
+
+<h3>raw.byte()</h3>
+
+<p>转换参数@1指定的数值为 byte 类型数值（8位整数）包装对象,<br>
+返回对象支持 tonumber tostring 等类型转换函数。  </p>
+
+<p>用于调用非声明式原生 API 函数的参数,<br>
+默认传值,参数@2为 true 则用于传址参数（传数值的指针）。  </p>
+
+<p>用于 COM 函数参数则总是传值, COM 函数也可使用 com.byte 函数</p>
+
+<p><a href="#rawNumberObject">返回对象:rawNumberObject</a></p>
+
+<p><a id="raw.convertArray"></a></p>
+
+<h3>raw.convertArray(源内存指针,源数组长度,&quot;数据类型&quot;)</h3>
+
+<p>将指针指向的内存转换为普通数组,传入空指针返回空值<br>
+数据类型参数可省略,默认为&quot;pointer&quot;<br>
+类型类型也可以直接传入一个声明元素类型的结构体参数<br>
+注意该函数不会检测内存溢出错误,调用该函数时必须保证数组长度是正确的值</p>
+
+<p><a id="raw.double"></a></p>
+
+<h3>raw.double()</h3>
+
+<p>转换参数@1指定的数值为 double 类型数值（64位浮点数）包装对象,<br>
+返回对象支持 tonumber tostring 等类型转换函数。  </p>
+
+<p>用于调用非声明式原生 API 函数的参数,<br>
+默认传值,参数@2为 true 则用于传址参数（传数值的指针）。  </p>
+
+<p>用于 COM 函数参数则总是传值, COM 函数也可使用 com.double 函数</p>
+
+<p><a href="#rawNumberObject">返回对象:rawNumberObject</a></p>
+
+<p><a id="raw.dup"></a></p>
+
+<h3>raw.dup(源句柄,源进程,目标进程,允许子进程继承)</h3>
+
+<p>返回复制的系统句柄<br>
+除参数1之外,其他参数可选<br>
+默认仅在当前进程中复制句柄<br>
+复制的句柄应使用raw.closehandle释放</p>
+
+<p><a id="raw.execute"></a></p>
+
+<h3>raw.execute</h3>
+
+<p>运行外部程序，成功返回 true。<br>
+ process.execute 函数提供类似的功能，区别可参考函数源码</p>
+
+<p><a id="raw.execute"></a></p>
+
+<h3>raw.execute(file,param,operation,showCmd,workDir,hwnd)</h3>
+
+<p>运行外部程序，成功返回 true。<br>
+@file 指定要运行的程序路径，其他所有参数可省略，<br>
+@param 字符串参数，可选指定启动参数。<br>
+@operation 可选用一个字符串指定执行动词，省略则使用默认动词或 &quot;open&quot;。<br>
+@showCmd 可选用 <em>SW</em> 前缀常量指定显示选项，默认为 _SW_SHOW。<br>
+@workDir 参数可选指定工作目录。<br>
+@hwnd 可选指定所有窗口句柄，默认取当前线程活动窗口</p>
+
+<p><a id="raw.explore"></a></p>
+
+<h3>raw.explore(path,args,...)</h3>
+
+<p>使用资源管理器（Explorer.exe）打开文件或目录。<br>
+第一个参数 @path 指定文件路径，可为空值（ null ）。<br>
+注意 Explorer.exe 不解析标准的命令行参数转义符，这一点与其他程序不同。<br>
+如参数 @path 尾部有双反斜杆<code>\\</code>则为无效路径并打开默认目录（打开我的文档，XP系统报错）。<br>
+如参数 @path 指定为 &quot;,&quot;或&quot;file:&quot; 则打开“此电脑（This PC）”。<br>
+如参数 @path 使用<code>shell:::</code>前缀则可以指定特殊路径的 CLSID。  </p>
+
+<p>可用第二个参数 @args 或更多参数指定 Explorer.exe 命令行选项，<br>
+例如指定  &quot;/select&quot; 在资源管理器选择指定路径。<br>
+注意 &quot;/n&quot; 等选项在新系统中是无意义的，Explorer 将总是打开新窗口。</p>
+
+<p><a id="raw.float"></a></p>
+
+<h3>raw.float()</h3>
+
+<p>转换参数@1指定的数值为 float 类型数值（32位浮点数）包装对象,<br>
+返回对象支持 tonumber tostring 等类型转换函数。  </p>
+
+<p>用于调用非声明式原生 API 函数的参数,<br>
+默认传值,参数@2为 true 则用于传址参数（传数值的指针）。  </p>
+
+<p>用于 COM 函数参数则总是传值, COM 函数也可使用 com.float 函数</p>
+
+<p><a href="#rawNumberObject">返回对象:rawNumberObject</a></p>
+
+<p><a id="raw.int"></a></p>
+
+<h3>raw.int()</h3>
+
+<p>转换参数@1指定的数值为 int 类型数值（32位整数）包装对象,<br>
+返回对象支持 tonumber tostring 等类型转换函数。  </p>
+
+<p>用于调用非声明式原生 API 函数的参数,<br>
+默认传值,参数@2为 true 则用于传址参数（传数值的指针）。  </p>
+
+<p>用于 COM 函数参数则总是传值, COM 函数也可使用 com.int 函数</p>
+
+<p><a href="#rawNumberObject">返回对象:rawNumberObject</a></p>
+
+<p><a id="raw.join"></a></p>
+
+<h3>raw.join(buffer数组,分隔字符串,起始索引,结束索引)</h3>
+
+<p>拼接字符串或 buffer 数组，返回 buffer。<br>
+如果拼接后长度为空，此函数返回 null。  </p>
+
+<p>参数@1指定的数组可包含字符串或buffer，<br>
+包含 buffer 的数组只能用 raw.join 拼接，不可使用 string.join 拼接<br>
+参数 @2 可选指定一个间隔字符串。<br>
+起始索引与结束索引为可选参数，可传入负数表示自数组尾部倒计数</p>
+
+<p><a id="raw.long"></a></p>
+
+<h3>raw.long()</h3>
+
+<p>转换参数@1指定的数值为 long 类型数值（64位整数）包装对象,<br>
+返回对象支持 tonumber tostring 等类型转换函数。  </p>
+
+<p>用于调用非声明式原生 API 函数的参数,<br>
+默认传值,参数@2为 true 则用于传址参数（传数值的指针）。  </p>
+
+<p>用于 COM 函数参数则总是传值, COM 函数也可使用 com.long 函数</p>
+
+<p><a href="#rawNumberObject">返回对象:rawNumberObject</a></p>
+
+<p><a id="raw.main"></a></p>
+
+<h3>raw.main</h3>
+
+<p>进程主模块,默认调用约定为stdcall<br>
+与raw.module(&quot;stdcall&quot;)返回的值相同,<br>
+可用于将当前进程中的函数指针转换为aardio函数  </p>
+
+<p><a href="../raw/_.html#dllModuleObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/raw/_.html#dllModuleObject">返回对象:dllModuleObject</a></p>
+
+<p><a id="raw.mixin"></a></p>
+
+<h3>raw.mixin(指针,结构体对象,任意个混入对象)</h3>
+
+<p>混入新的值,支持任意个混入table对象,<br>
+自动更新指针指向内存,并返回结构体对象</p>
+
+<p><a id="raw.module"></a></p>
+
+<h3>raw.module(&quot;调用约定&quot;)</h3>
+
+<p>指定约定并返回进程主模块,<br>
+省略参数时调用约定默认为stdcall,<br>
+可用于将当前进程中的函数指针转换为aardio函数,</p>
+
+<p><a id="raw.module"></a></p>
+
+<h3>raw.module()</h3>
+
+<p><a href="../raw/_.html#dllModuleObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/raw/_.html#dllModuleObject">返回对象:dllModuleObject</a></p>
+
+<p><a id="raw.serializeDupHandle"></a></p>
+
+<h3>raw.serializeDupHandle(&quot;类名&quot;,句柄)</h3>
+
+<p>复制进程内有效句柄并序列化对象<br>
+只能用于_serialize元方法，且必须kernelCall参数为真<br>
+序列化类构造函数必须支持指针参数1为指针类型句柄,参数2为true的参数<br>
+并负责在析构函数中调用 raw.closehandle 释放该句柄</p>
+
+<p><a id="raw.typeOfArray"></a></p>
+
+<h3>raw.typeOfArray()</h3>
+
+<p>如果参数是一个包含原生数组的结构体，<br>
+返回原生类型名，以及数组字段名字。<br>
+如果是其他对象则返回 null 。</p>
+
+<p><a id="raw.ubyte"></a></p>
+
+<h3>raw.ubyte()</h3>
+
+<p>转换参数@1指定的数值为 BYTE 类型数值（8位无符号整数）包装对象,<br>
+返回对象支持 tonumber tostring 等类型转换函数。  </p>
+
+<p>用于调用非声明式原生 API 函数的参数,<br>
+默认传值,参数@2为 true 则用于传址参数（传数值的指针）。  </p>
+
+<p>用于 COM 函数参数则总是传值, COM 函数也可使用 com.ubyte 函数,<br>
+注意在原生类型中使用大写的 BYTE 类型表示8位无符号整数</p>
+
+<p><a href="#rawNumberObject">返回对象:rawNumberObject</a></p>
+
+<p><a id="raw.uint"></a></p>
+
+<h3>raw.uint()</h3>
+
+<p>转换参数@1指定的数值为 INT 类型数值（32位无符号整数）包装对象,<br>
+返回对象支持 tonumber tostring 等类型转换函数。  </p>
+
+<p>用于调用非声明式原生 API 函数的参数,<br>
+默认传值,参数@2为 true 则用于传址参数（传数值的指针）。  </p>
+
+<p>用于 COM 函数参数则总是传值, COM 函数也可使用 com.uint 函数,<br>
+注意在原生类型中使用大写的 INT 类型表示32位无符号整数</p>
+
+<p><a href="#rawNumberObject">返回对象:rawNumberObject</a></p>
+
+<p><a id="raw.ulong"></a></p>
+
+<h3>raw.ulong()</h3>
+
+<p>参数@1可传入数值或 math.size64 对象,<br>
+返回适用于 LONG 类型数值（64位无符号整数）的包装对象,<br>
+返回对象支持 tonumber tostring 等类型转换函数。  </p>
+
+<p>用于调用非声明式原生 API 函数的参数,<br>
+默认传值,参数@2为 true 则用于传址参数（传数值的指针）。  </p>
+
+<p>用于 COM 函数参数则总是传值, COM 函数也可使用 com.ulong 函数,<br>
+注意在原生类型中使用大写的 LONG 类型表示64位无符号整数</p>
+
+<p><a href="#rawNumberObject">返回对象:rawNumberObject</a></p>
+
+<p><a id="raw.uword"></a></p>
+
+<h3>raw.uword()</h3>
+
+<p>转换参数@1指定的数值为 WORD 类型数值（16位无符号整数）包装对象,<br>
+返回对象支持 tonumber tostring 等类型转换函数。  </p>
+
+<p>用于调用非声明式原生 API 函数的参数,<br>
+默认传值,参数@2为 true 则用于传址参数（传数值的指针）。  </p>
+
+<p>用于 COM 函数参数则总是传值, COM 函数也可使用 com.uword 函数,<br>
+注意在原生类型中使用大写的 WORD 类型表示16位无符号整数</p>
+
+<p><a href="#rawNumberObject">返回对象:rawNumberObject</a></p>
+
+<p><a id="raw.word"></a></p>
+
+<h3>raw.word()</h3>
+
+<p>转换参数@1指定的数值为 word 类型数值（16位整数）包装对象,<br>
+返回对象支持 tonumber tostring 等类型转换函数。  </p>
+
+<p>用于调用非声明式原生 API 函数的参数,<br>
+默认传值,参数@2为 true 则用于传址参数（传数值的指针）。  </p>
+
+<p>用于 COM 函数参数则总是传值, COM 函数也可使用 com.word 函数</p>
+
+<p><a href="#rawNumberObject">返回对象:rawNumberObject</a></p>
+
+<p><a id="rawNumberObject"></a></p>
+
+<h2>rawNumberObject 成员列表</h2>
+
+<p><a id="rawNumberObject.value"></a></p>
+
+<h3>rawNumberObject.value</h3>
+
+<p>对象存储的数值</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/builtin/raw.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/builtin/raw.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/builtin/raw.md">Markdown 格式</a></p>
+
+</body> 
+</html>

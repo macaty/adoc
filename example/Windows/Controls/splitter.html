@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 使用拆分条(splitter)控件在窗口上拆分多个控件'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 使用拆分条(splitter)控件在窗口上拆分多个控件</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 使用拆分条(splitter)控件在窗口上拆分多个控件</h1><pre><code class="aardio language-aardio">//拆分控件
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;使用拆分条(splitter)控件在窗口上拆分多个控件&quot;;right=801;bottom=486)
+winform.add(
+custom={cls=&quot;custom&quot;;text=&quot;自定义控件&quot;;left=214;top=8;right=791;bottom=475;db=1;dl=1;dr=1;dt=1;z=3};
+edit={cls=&quot;edit&quot;;text=&quot;edit&quot;;left=4;top=8;right=204;bottom=194;db=1;dl=1;dt=1;edge=1;multiline=1;z=1};
+edit2={cls=&quot;edit&quot;;text=&quot;edit&quot;;left=4;top=205;right=204;bottom=475;db=1;dl=1;dt=1;edge=1;multiline=1;z=4};
+splitterHorz={cls=&quot;splitter&quot;;left=5;top=197;right=204;bottom=202;dl=1;frame=1;horz=1;z=5};
+splitterVert={cls=&quot;splitter&quot;;left=204;top=8;right=212;bottom=475;db=1;dl=1;dt=1;frame=1;z=2}
+)
+/*}}*/
+
+//指定需要拆分的控件（拖动拆分条可改变被拆分控件的大小）
+winform.splitterHorz.split(winform.edit,winform.edit2);
+
+//指定需要拆分的控件，参数也可以指定包含多个控件的数组
+winform.splitterVert.split( {
+    winform.edit,winform.edit2,winform.splitterHorz //数组中的控件须位于拆分条同一侧
+    },winform.custom )
+
+winform.splitterVert.ltMin = 20; //左边控件最小宽度
+winform.splitterVert.rbMin = 500; //右边控件最小宽度
+
+/* 
+如果想拆分更多控件，
+也可以用 custom 控件作为容器加载子窗口即可。
+
+可以用 winform.custom.loadForm() 函数加载子窗口，
+也可以直接在 custom 控件的类名属性中指定子窗口的路径。
+*/
+winform.custom.loadForm(&quot;~/example/plus/disabledText.aardio&quot;)
+
+//拆分条拖拽移动到新位置时触发此事年，l,t,r,b 分别为拆分条当前左、上、右、下坐标。
+winform.splitterVert.onSplitterMoved = function(l,t,r,b){
+
+}
+
+winform.show() 
+win.loopMessage();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Windows/Controls/splitter.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Windows/Controls/splitter.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Windows/Controls/splitter.md">Markdown 格式</a>
+</body> 
+</html>

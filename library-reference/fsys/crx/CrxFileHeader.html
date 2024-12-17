@@ -1,0 +1,133 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - fsys.crx.CrxFileHeader 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - fsys.crx.CrxFileHeader 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>fsys.crx.CrxFileHeader 库模块帮助文档</h1>
+
+<p><a id="fsys.crx"></a></p>
+
+<h2>fsys.crx 成员列表</h2>
+
+<p><a id="fsys.crx.CrxFileHeader"></a></p>
+
+<h3>fsys.crx.CrxFileHeader</h3>
+
+<p>Protobuf 消息对象</p>
+
+<p><a id="fsys.crx.CrxFileHeader"></a></p>
+
+<h3>fsys.crx.CrxFileHeader()</h3>
+
+<p>创建 Protobuf 消息对象。  </p>
+
+<p><a href="#fsysCrxCrxFileHeaderObject">返回对象:fsysCrxCrxFileHeaderObject</a></p>
+
+<p><a id="fsysCrxCrxFileHeaderObject"></a></p>
+
+<h2>fsysCrxCrxFileHeaderObject 成员列表</h2>
+
+<p><a id="fsysCrxCrxFileHeaderObject.crxId"></a></p>
+
+<h3>fsysCrxCrxFileHeaderObject.crxId</h3>
+
+<p>扩展 ID，仅解包 crx 后可用。</p>
+
+<p><a id="fsysCrxCrxFileHeaderObject.eachName"></a></p>
+
+<h3>fsysCrxCrxFileHeaderObject.eachName()</h3>
+
+<pre><code class="aardio language-aardio">for k,v in fsysCrxCrxFileHeaderObject.eachName(){
+    /*遍历此消息对象的所有字段，
+k 为字段名,v 为字段值。*/
+}
+</code></pre>
+
+<p><a id="fsysCrxCrxFileHeaderObject.parseFromString"></a></p>
+
+<h3>fsysCrxCrxFileHeaderObject.parseFromString(字符串)</h3>
+
+<p>二进制数据反序列化到消息对象<br>
+此函数自动清空所有数组值,但不会重置其他非数组字段值.<br>
+因此应对新创建的对象调用此函数.</p>
+
+<p><a id="fsysCrxCrxFileHeaderObject.parseValue"></a></p>
+
+<h3>fsysCrxCrxFileHeaderObject.parseValue()</h3>
+
+<p>调用 table.parseValue 获取纯值表。<br>
+纯值表只包含纯值类型数据，<br>
+纯值类型指的是：字符串、数值、布尔值、buffer、指针、纯值表。<br>
+纯值表要么是数组，要么是包含名值对的表。  </p>
+
+<p>纯值表是可保持原值序列化的表，并且兼容 JSON</p>
+
+<p><a id="fsysCrxCrxFileHeaderObject.serializeToString"></a></p>
+
+<h3>fsysCrxCrxFileHeaderObject.serializeToString()</h3>
+
+<p>序列化消息对象,返回二进制字符串</p>
+
+<p><a id="fsysCrxCrxFileHeaderObject.sha256WithEcdsa"></a></p>
+
+<h3>fsysCrxCrxFileHeaderObject.sha256WithEcdsa</h3>
+
+<p>ECDSA 公钥与签名。<br>
+不作为函数调用时，用于返回或设置数组。</p>
+
+<p><a id="fsysCrxCrxFileHeaderObject.sha256WithEcdsa"></a></p>
+
+<h3>fsysCrxCrxFileHeaderObject.sha256WithEcdsa()</h3>
+
+<p><a href="#fsysCrxAsymmetricKeyProofObject">返回对象:fsysCrxAsymmetricKeyProofObject</a></p>
+
+<p><a id="fsysCrxCrxFileHeaderObject.sha256WithEcdsa"></a></p>
+
+<h3>fsysCrxCrxFileHeaderObject.sha256WithEcdsa(index,value)</h3>
+
+<p>ECDSA 公钥与签名。n如果作为函数调用：<br>
+修改值时参数 @index 指定元素索引，参数 @value 指定元素值。<br>
+获取值时用参数 @index 指定数组索引即可</p>
+
+<p><a id="fsysCrxCrxFileHeaderObject.sha256WithRsa"></a></p>
+
+<h3>fsysCrxCrxFileHeaderObject.sha256WithRsa</h3>
+
+<p>公钥与 sha256 签名。不作为函数调用时，用于返回或设置数组。</p>
+
+<p><a id="fsysCrxCrxFileHeaderObject.sha256WithRsa"></a></p>
+
+<h3>fsysCrxCrxFileHeaderObject.sha256WithRsa()</h3>
+
+<p><a href="#fsysCrxAsymmetricKeyProofObject">返回对象:fsysCrxAsymmetricKeyProofObject</a></p>
+
+<p><a id="fsysCrxCrxFileHeaderObject.sha256WithRsa"></a></p>
+
+<h3>fsysCrxCrxFileHeaderObject.sha256WithRsa(index,value)</h3>
+
+<p>公钥与 sha256 签名。<br>
+如果作为函数调用：<br>
+修改值时参数 @index 指定元素索引，参数 @value 指定元素值。<br>
+获取值时用参数 @index 指定数组索引即可</p>
+
+<p><a id="fsysCrxCrxFileHeaderObject.signedHeaderData"></a></p>
+
+<h3>fsysCrxCrxFileHeaderObject.signedHeaderData</h3>
+
+<p>签名数据.<br>
+protobuf.type.bytes</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/fsys/crx/CrxFileHeader.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/fsys/crx/CrxFileHeader.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/fsys/crx/CrxFileHeader.md">Markdown 格式</a></p>
+
+</body> 
+</html>

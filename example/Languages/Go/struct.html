@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - aardio 调用 Go 语言 - 结构体操作'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - aardio 调用 Go 语言 - 结构体操作</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 调用 Go 语言 - 结构体操作</h1><pre><code class="aardio language-aardio">//aardio 调用 Go 语言 - 结构体操作 
+import console.int;
+import golang; 
+var go = golang();
+
+go.main = /**********
+package main
+
+import &quot;C&quot;
+import &quot;unsafe&quot;
+import &quot;fmt&quot;
+
+//声明结构体
+type Point struct { 
+  x    int  
+  y    int   
+}
+
+//export SetPoint 
+func SetPoint(p uintptr) {  
+
+    // aardio 结构体转换为 Go 结构体
+    point := (*Point)(unsafe.Pointer(p)) 
+    point.x = 1
+    point.y = 2  
+
+    /*
+    Go 用 fmt.Println 打印变量很方便，可传入多个任意类型的参数。
+    */
+    fmt.Println( &quot;在 Go 中打印结构体：&quot;,point );
+}
+
+func main() {} 
+**********/
+
+go.buildShared(&quot;/.go/TestStruct.go&quot;);
+
+//------------------下面调用 DLL----------------------- 
+
+var goDll = raw.loadDll(&quot;/.go/TestStruct.dll&quot;,,&quot;cdecl&quot;);
+
+//声明结构体 
+class Point {
+    int x;
+    int y;
+}
+
+//创建结构体
+var point = Point();
+
+//调用 Go 函数，传结构体（结构体总是传址）
+goDll.SetPoint(point);
+
+//打印结构体
+console.dumpJson(point); 
+
+//结构体就是表（table），也可以这样直接写
+goDll.SetPoint({
+    int x = 1;
+    int y = 2;
+});
+
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/Go/struct.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/Go/struct.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Languages/Go/struct.md">Markdown 格式</a>
+</body> 
+</html>

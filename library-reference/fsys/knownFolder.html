@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - fsys.knownFolder 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - fsys.knownFolder 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>fsys.knownFolder 库模块帮助文档</h1>
+
+<p><a id="fsys"></a></p>
+
+<h2>fsys 成员列表</h2>
+
+<p><a id="fsys.knownFolder"></a></p>
+
+<h3>fsys.knownFolder(guid,path,flags,token)</h3>
+
+<p>返回 @guid 参数指定 GUID 的 已知文件夹，<br>
+GUID 可以是 16 字节的字符串，也可以是 win.guid 支持的格式。<br>
+可选用 @path 参数指定要拼接的子路径。<br>
+@flags,@token 为可选参数，<br>
+用法请参考 ::Shell32.SHGetKnownFolderPath 函数文档</p>
+
+<p><a id="fsys.knownFolder"></a></p>
+
+<h2>fsys.knownFolder 成员列表</h2>
+
+<p>用于获取已知的特殊文件夹<br>
+作用类似 fsys.getSpecial 函数<br>
+不支持 XP，支持 XP 以后的系统</p>
+
+<p>获取已知的特殊文件夹</p>
+
+<p><a id="fsys.knownFolder.default"></a></p>
+
+<h3>fsys.knownFolder.default(guid,path,flags)</h3>
+
+<p>返回默认用户由 @guid 参数指定 GUID 的 已知文件夹，<br>
+参数用法与 fsys.knownFolder 相同</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/fsys/knownFolder.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/fsys/knownFolder.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/fsys/knownFolder.md">Markdown 格式</a></p>
+
+</body> 
+</html>

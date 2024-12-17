@@ -1,0 +1,72 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - win.ole 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - win.ole 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>win.ole 库模块帮助文档</h1>
+
+<p><a id="win.ole"></a></p>
+
+<h2>win.ole 成员列表</h2>
+
+<p>Ole32.dll,OleAut32.dll接口函数</p>
+
+<p><a id="win.ole.fromSysString"></a></p>
+
+<h3>win.ole.fromSysString()</h3>
+
+<p>参数传入bstr指针，返回普通UTF8字符串,<br>
+如果传入参数类型不是指针,返回null,<br>
+此函数会调用::SysFreeString释放传入的bstr指针</p>
+
+<h3>全局常量</h3>
+
+<p><a id="::CoTaskMemFree :"></a></p>
+
+<h3>::CoTaskMemFree :</h3>
+
+<pre><code class="aardio language-aardio">Ole32.api(&quot;CoTaskMemFree&quot;,&quot;void(POINTER hMem)&quot; )
+</code></pre>
+
+<p><a id="::CreateStreamOnHGlobal"></a></p>
+
+<h3>::CreateStreamOnHGlobal</h3>
+
+<pre><code class="aardio language-aardio">Ole32.api(&quot;CreateStreamOnHGlobal&quot;,&quot;int(pointer hGlobal,bool deleteOnRelease,pointer &amp;ppstm)&quot;)
+</code></pre>
+
+<p><a id="::GetHGlobalFromStream"></a></p>
+
+<h3>::GetHGlobalFromStream</h3>
+
+<pre><code class="aardio language-aardio">Ole32.api(&quot;GetHGlobalFromStream&quot;,&quot;int(pointer ppstm,pointer &amp;hGlobal)&quot;)
+</code></pre>
+
+<p><a id="::SysAllocString"></a></p>
+
+<h3>::SysAllocString</h3>
+
+<pre><code class="aardio language-aardio">OleAut32.api(&quot;SysAllocString&quot;,&quot;pointer(ustring psz)&quot;)
+</code></pre>
+
+<p><a id="::SysFreeString"></a></p>
+
+<h3>::SysFreeString</h3>
+
+<pre><code class="aardio language-aardio">OleAut32.api(&quot;SysFreeString&quot;,&quot;pointer(pointer bstr)&quot;)
+</code></pre>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/ole/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/ole/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ole/_.md">Markdown 格式</a></p>
+
+</body> 
+</html>

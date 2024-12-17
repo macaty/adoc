@@ -1,0 +1,223 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - 等式运算符'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - 等式运算符</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>等式运算符</h1>
+
+<p>等式运算符比较两个操作数是否相等，并返回 boolean 类型的值(true 或 false)。</p>
+
+<h2>一、全等式运算符</h2>
+
+<p>全等式又称为恒等式，要求数据类型绝对相等、并且不会调用 <code>_eq</code> 元方法。因此也不能重载恒等操作符。  </p>
+
+<table><thead>
+<tr>
+<th>运算符</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>===</code></td>
+<td>恒等运算符</td>
+</tr>
+<tr>
+<td><code>!==</code></td>
+<td>非恒等运算符</td>
+</tr>
+</tbody></table>
+
+<p>如果是数字，字符串，指针，布尔值，在值与类型都相等时恒等式返回真，返则返回假．<br>
+如果是其他传址对象，指向同一个对象返回真，否则返回假．  </p>
+
+<table><thead>
+<tr>
+<th>示例</th>
+<th>结果</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&quot;abc&quot; === &quot;abc&quot;</code></td>
+<td>true</td>
+</tr>
+<tr>
+<td><code>null === false</code></td>
+<td>false</td>
+</tr>
+</tbody></table>
+
+<h2>二、等式运算符</h2>
+
+<p>等式运算符判断两个操作数是否相等。  </p>
+
+<table><thead>
+<tr>
+<th>运算符</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>==</code></td>
+<td>等式运算符</td>
+</tr>
+<tr>
+<td><code>!=</code></td>
+<td>不等式运算符</td>
+</tr>
+<tr>
+<td><code>=</code></td>
+<td>在表达式中可以替代==</td>
+</tr>
+</tbody></table>
+
+<p>&quot;等式&quot;与&quot;恒等式&quot;最大的不同是&quot;等式&quot;允许类型自动转换。与逻辑值有关的类型自动转换规则：</p>
+
+<ol>
+<li><p>在逻辑运算中，非 0. 非 null、非 false 为 true，反之为 false。  </p></li>
+<li><p>使用 <a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/language-reference/operator/..operatorequality.html  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ļ�δ�ҵ���  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/language-reference/operator/..operatorequality.html'" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/operator/..operatorequality.html">等式运算符</a> 比较 2 个值时：  </p>
+
+<ul>
+<li>任意值与 true,false 比较则先转换为布尔值。<br></li>
+<li><p>非布尔值与数值比较，则先转换为数值，然后比较数值是否相等。  </p>
+
+<p>例如 <code>null == 0</code> 就属于非布尔值与数值比较，而 null 转换为数值还是 null，null 与 0 不是相等的数值。所以 <code>null == 0</code> 会返回 false 。</p>
+
+<p>再例如  <code>&quot;&quot;== 0</code> 或 <code>&#39; \t\r\n&#39;== 0</code>  同样属于非布尔值与数值比较，空白字符串自动转换为数值时返回 0，所以 <code>&quot;&quot;== 0</code> 或 <code>&#39; \t\r\n&#39;== 0</code> 都会返回 true。</p></li>
+</ul>
+
+<blockquote>
+<p>注意：**当等式或不等式的操作数中只有数值而没有出现布尔值，就不应当错误地根据布尔值转换规则去推导结果。**</p>
+</blockquote></li>
+</ol>
+
+<p>请参考： <a href="../datatype/datatype.html#type-coercion" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/datatype/datatype.html#type-coercion">隐式类型转换</a></p>
+
+<h3>1. 操作数的数据类型相同之间的等式比较规则</h3>
+
+<p>对于数值( type.number )、字符串( type.string )、指针( type.pointer )，布尔值( type.boolean )等传值类型比较值是否相等。  </p>
+
+<table><thead>
+<tr>
+<th>示例</th>
+<th>结果</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&quot;abc&quot; == &quot;abc&quot;</code></td>
+<td>true</td>
+</tr>
+<tr>
+<td><code>123 != 456</code></td>
+<td>true</td>
+</tr>
+</tbody></table>
+
+<p>对于 table、cdata、bufffer 等传引用类型，当引用同一个对象时相等。否则检查参考比较的两对象是否存在相同的 <code>_eq</code> <a href="../datatype/table/meta.html" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/datatype/table/meta.html">元方法 </a> ，如果存在就调用 <code>_eq</code> 元方法判断是否相等。如果操作数不是同一个对象且没有相同的 <code>_eq</code> 元方法则不相等。</p>
+
+<table><thead>
+<tr>
+<th>示例</th>
+<th>结果</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>::User32 != ::Kernel32</code></td>
+<td>true</td>
+<td>引用了不同的对象</td>
+</tr>
+<tr>
+<td><code>{} == {}</code></td>
+<td>false</td>
+<td>引用了不同的对象</td>
+</tr>
+<tr>
+<td><code>raw.buffer(&quot;abc&quot;)==raw.buffer(&quot;abc&quot;)</code></td>
+<td>false</td>
+<td>引用了不同的对象</td>
+</tr>
+<tr>
+<td><code>time.now() == time.now()</code></td>
+<td>true</td>
+<td>调用time.now()._eq元方法比较</td>
+</tr>
+</tbody></table>
+
+<h3>2. 非布尔值与布尔值之间的等式比较规则</h3>
+
+<p>0, null 与 false 相等，而所有非零、非 false、非 null 值与 true 相等。</p>
+
+<table><thead>
+<tr>
+<th>表达式</th>
+<th>结果</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>0==false</code></td>
+<td>true</td>
+</tr>
+<tr>
+<td><code>null==false</code></td>
+<td>true</td>
+</tr>
+<tr>
+<td><code>1==false</code></td>
+<td>false</td>
+</tr>
+<tr>
+<td><code>if( 1 ) console.log(&quot;true&quot;)</code></td>
+<td>条件符合，执行代码 console.log(&quot;true&quot;)</td>
+</tr>
+</tbody></table>
+
+<h3>3. 非布尔非数字值与数字值之间的等式比较规则</h3>
+
+<p>非布尔非数字值与数值比较，则先转换为数值，然后比较数值是否相等。 要注意字符串在自动转换为数值时，空白字符串会转换为 0，转换忽略 <code>_tonumber</code> 元主法。</p>
+
+<table><thead>
+<tr>
+<th>表达式</th>
+<th>结果</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&quot;123&quot;==123</code></td>
+<td>true</td>
+</tr>
+<tr>
+<td><code>&quot;abc&quot;==123</code></td>
+<td>false</td>
+</tr>
+<tr>
+<td><code>&quot;&quot;==0</code></td>
+<td>true</td>
+</tr>
+<tr>
+<td><code>&#39;\r\n\t &#39;==0</code></td>
+<td>true</td>
+</tr>
+<tr>
+<td><code>null==0</code></td>
+<td>false</td>
+</tr>
+</tbody></table>
+
+<h3>4. 其他不同类型的操作数之间的等式比较规则</h3>
+
+<p>如果数据类型不同、会尝试进行类型转换后进行比较。如果类型转换失败、也无适合的 _eq 元方法可以调用则返回 false。</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/language-reference/operator/equality.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/language-reference/operator/equality.md'" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/operator/equality.md">Markdown 格式</a></p>
+
+</body> 
+</html>

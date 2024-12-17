@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - aardio 执行 R 语言代码'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - aardio 执行 R 语言代码</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 执行 R 语言代码</h1><pre><code class="aardio language-aardio">//aardio 执行 R 语言代码
+import console; 
+import process.r;
+
+//可自定义 Rscript.exe 路径，不指定则自动获取
+//process.r.setScriptPath(&quot;C:\Program Files\R\R-4.2.0\bin\x64\Rscript.exe&quot;)
+//教程: https://mp.weixin.qq.com/s/QSJUraefFctJYN_cudesZw
+
+//执行纯 R 代码，参数 @1 可以指定 R代码或 R 文件。
+var out = process.r.exec(`
+args=commandArgs(T);
+write(args[1],file=&quot;.data.txt&quot;);
+
+# list 有点像 aardio 中的表(table)，可以包含各种数据类型， 
+a &lt;- list(hello = 1, world = &quot;字符串&quot; ) # &lt;- 相当于 aardio 中的等号,  R的等号一般用于分隔键值对
+print ( a[[&quot;world&quot;]] ); # aardio 里的直接下标也是这么写
+print ( a$world ); # 相当于 aardio 里的  a.world
+print ( a[1] ); # 这个返回的是键值对 hello = 1，不像 aadio 中 a[1] 与 a.hello 是指向不同的元素。
+print ( mode(a[1]) ); # 数据类型还是显示为 list
+
+b &lt;- TRUE #布尔值必须全大写
+print( b ) 
+
+# 向量
+a = c(10, 20, 30, 40, 50)
+print( a[1] ) #起始下标为 1 ,这跟 aardio 一样
+print( a[1:4] ) # 取出第 1 项到第 4 项
+
+# 定义函数，与 aardio 语法类似
+new.function &lt;- function(a,b,c) {
+   result &lt;- a * b + c # 类似 aardio 中的 return a * b + c #
+   print(result) # 指定返回值以后，还能继续执行后面的代码，不像 aardio 函数 return 后面的代码被忽略。
+}
+
+print( new.function(2,3,1) )
+`,&quot;测试一下&quot;); //可以添加不定个数的启动参数
+console.log( out );
+
+console.pause();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/R/exec.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/R/exec.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Languages/R/exec.md">Markdown 格式</a>
+</body> 
+</html>

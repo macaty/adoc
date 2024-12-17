@@ -1,0 +1,109 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 调用打印机'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 调用打印机</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 调用打印机</h1><pre><code class="aardio language-aardio">//打印
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;调用打印机&quot;;right=759;bottom=469;border=&quot;dialog frame&quot;;max=false)
+winform.add(
+btnEnumPrinters={cls=&quot;button&quot;;text=&quot;列出所有打印机&quot;;left=446;top=217;right=697;bottom=285;z=4};
+btnPrint={cls=&quot;button&quot;;text=&quot;调用API打印&quot;;left=446;top=46;right=697;bottom=114;z=1};
+btnPrintDefault={cls=&quot;button&quot;;text=&quot;默认打印机输出&quot;;left=446;top=132;right=697;bottom=200;z=5};
+btnWbPrint={cls=&quot;button&quot;;text=&quot;使用HTML打印&quot;;left=446;top=302;right=697;bottom=370;z=2};
+edit={cls=&quot;edit&quot;;left=40;top=36;right=417;bottom=429;edge=1;multiline=1;z=3}
+)
+/*}}*/
+
+import win.dlg.print;
+import sys.printer;
+
+//调用打印对话框,GDI+打印
+winform.btnPrint.oncommand = function(id,event){
+
+    import win.dlg.print;
+    var printDlg = win.dlg.print(winform);
+    if(!printDlg.doModal()) return;
+
+    var pdc = sys.printer.device(printDlg.hdc);
+    pdc.start(
+        function(hdcPrinter){
+            //GDI+绘图
+            import gdip.graphics;
+            import gdip.family;
+            import gdip.solidBrush;
+
+            var graphics = gdip.graphics(hdcPrinter);
+            graphics.pageUnit = 2/*_UnitPixel,打印单位改为使用像素*/
+
+            var brush = gdip.solidBrush(0xFFFF0000);
+            var family = gdip.family(&quot;宋体&quot;);
+            var strformat = gdip.stringformat(); 
+            var curFont = family.createFont(  15,2/*_GdipFontStyleItalic*/, 2/*_GdipUnitPixel*/)
+            graphics.drawString( &quot;Hellow world! 打印测试!!&quot;  , curFont
+            ,  gdip.RECTF(15,15,500,150), strformat,brush);
+            brush.delete()
+            curFont.delete()
+            strformat.delete();
+            family.delete(); 
+        }
+    );
+
+    //结束打印 
+    printDlg.free()   
+}
+
+//直接选定默认打印机输出
+winform.btnPrintDefault.oncommand = function(id,event){
+
+    var printer = sys.printer();
+    var pdc = printer.createDevice(
+        dmPaperSize = 9/*_DMPAPER_A4*/; //小票打印机可以设为0,普通打印机使用 _DMPAPER_ 前缀常量指定纸张大小，例如 _DMPAPER_A4 指定为A4纸
+        dmOrientation = 0;//横向打印为2,纵向打印为1
+        //dmPaperWidth = 800;//纸张宽度
+        //dmPaperLength = 580;//纸张长度
+    );
+
+    pdc.start(
+        function(hdcPrinter){
+            ::Gdi32.TextOut(hdcPrinter,20,20,&quot;测试打印&quot;,4); 
+        }
+    );
+
+    pdc.close();
+}
+
+//列出所有打印机
+winform.btnEnumPrinters.oncommand = function(id,event){
+
+    for printerName,serverName,attributes in sys.printer.each(){
+        winform.edit.print(printerName,serverName,attributes)
+    }
+}
+
+//HTML格式打印
+winform.btnWbPrint.oncommand = function(id,event){
+    import web.mshtml;
+    wbPrint = web.mshtml();
+    wbPrint.write(&quot;测试一下&quot;)
+    wbPrint.getDoc().execCommand(&quot;print&quot;)
+}
+
+winform.show() 
+win.loopMessage();
+
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/System/Printer/print.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/System/Printer/print.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/System/Printer/print.md">Markdown 格式</a>
+</body> 
+</html>

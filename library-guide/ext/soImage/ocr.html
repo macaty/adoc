@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - aardio 如何调用 soImage 快速识别简单验证码'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - aardio 如何调用 soImage 快速识别简单验证码</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 如何调用 soImage 快速识别简单验证码</h1>
+
+<h2>一. 介绍</h2>
+
+<p>aardio 中提供了很多 OCR 组件可以用于识别验证码。</p>
+
+<p>soImage 是 aardio 中常用的图像处理扩展库。使用 soImage 也可以实现简单的 OCR 功能。使用 soImage 的好处是简单且不需要第三方组件，soImage 的体积很小并支持生成独立 EXE 文件。</p>
+
+<p>注意 soImage 可用于识别简单验证码，复杂验证码请改用其他更大的 OCR 组件。</p>
+
+<h2>二. 使用简单 OCR 代码生成器</h2>
+
+<p>在 aardio 的范例中提供了专门为 soImage 扩展库生成字库与 OCR 范例的工具：</p>
+
+<p><a href="../../../example/Automation/ComputerVision/soImage.ocr.html" tppabs="https://www.aardio.com/zh-cn/doc/example/Automation/ComputerVision/soImage.ocr.html">简单 OCR 生成器</a></p>
+
+<p>在 aardio 中运行上面的简单 OCR 生成器。</p>
+
+<ol>
+<li>输入验证码图像下载网址。</li>
+<li>点击『获取下一个图像』按钮。</li>
+<li>首先人工识别并输入图像上的文本，并继续点击『获取下一个图像』按钮以生成自动识别图像的样本数据。</li>
+</ol>
+
+<p>该工具会自动生成识别验证码所需的字库样本与调用代码。</p>
+
+<h2>三. soImage 扩展库识别验证码示例</h2>
+
+<p>下面是一个使用 soImage 扩展库识别简单验证码的完整 aardio 代码示例：</p>
+
+<pre><code class="aardio language-aardio">import soImage;
+import inet.http;
+
+//字库由 soImage 范例提供的工具自动生成
+var ziku = {
+&quot;1&quot;:&quot;11111111111111111111111111&quot;;
+&quot;2&quot;:&quot;11111111000000110000001100&quot;;
+&quot;3&quot;:&quot;11111110000000100000001000&quot;;
+&quot;4&quot;:&quot;10000010100000101000001010&quot;;
+&quot;5&quot;:&quot;11111110100000001000000010&quot;;
+&quot;6&quot;:&quot;11111111100000011000000110&quot;;
+&quot;7&quot;:&quot;11111110000000100000001000&quot;;
+&quot;8&quot;:&quot;11111111100000111000001110&quot;;
+&quot;8&quot;:&quot;11111111100000111000001110&quot;;
+&quot;9&quot;:&quot;11111110100000101000001010&quot;; 
+&quot;0&quot;:&quot;11111111100000111000001110&quot;;
+}
+
+//创建图像对象
+var img = soImage();
+
+//下载图像
+img.loadUrl(&quot;https://www.******.com/***.php&quot;)
+
+//识别图像并返回文本
+var text = img.ocr(ziku);
+
+</code></pre>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-guide/ext/soImage/ocr.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-guide/ext/soImage/ocr.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/ext/soImage/ocr.md">Markdown 格式</a></p>
+
+</body> 
+</html>

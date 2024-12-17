@@ -1,0 +1,192 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - win.appBar 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - win.appBar 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>win.appBar 库模块帮助文档</h1>
+
+<p><a id="win"></a></p>
+
+<h2>win 成员列表</h2>
+
+<p><a id="win.appBar"></a></p>
+
+<h3>win.appBar()</h3>
+
+<p><a href="#winAppBarObject">返回对象:winAppBarObject</a></p>
+
+<p><a id="win.appBar"></a></p>
+
+<h3>win.appBar(句柄)</h3>
+
+<p>可选指定句柄,<br>
+可选在第二个参数中使用表对象指定APPBARDATA属性</p>
+
+<p><a id="win.appBar"></a></p>
+
+<h2>win.appBar 成员列表</h2>
+
+<p>任务栏</p>
+
+<p><a id="win.appBar.autoHide"></a></p>
+
+<h3>win.appBar.autoHide( 任务栏句柄,false)</h3>
+
+<p>取消自动隐藏</p>
+
+<p><a id="win.appBar.autoHide"></a></p>
+
+<h3>win.appBar.autoHide( 任务栏句柄,true)</h3>
+
+<p>设置为自动隐藏</p>
+
+<p><a id="win.appBar.command"></a></p>
+
+<h3>win.appBar.command()</h3>
+
+<p>发送命令,<br>
+参数@1指定命令 ID，参数为 419 可显示桌面。</p>
+
+<p><a id="win.appBar.find"></a></p>
+
+<h3>win.appBar.find()</h3>
+
+<p>返回系统任务栏句柄</p>
+
+<p><a id="win.appBar.getAutoHideBar"></a></p>
+
+<h3>win.appBar.getAutoHideBar()</h3>
+
+<p>返回左,上,右,下四个被设置为自动隐藏的任务栏句柄</p>
+
+<p><a id="win.appBar.getTaskBar"></a></p>
+
+<h3>win.appBar.getTaskBar()</h3>
+
+<p>返回系统任务栏信息,失败返回null  </p>
+
+<p><a href="#STDAPPBARDATAObject">返回对象:STDAPPBARDATAObject</a></p>
+
+<p><a id="win.appBar.isAutoHide"></a></p>
+
+<h3>win.appBar.isAutoHide( 任务栏句柄 )</h3>
+
+<p>任务栏是否自动隐藏</p>
+
+<p><a id="win.appBar.message"></a></p>
+
+<h3>win.appBar.message(_ABM,{} )</h3>
+
+<p>发送任务栏命令,<br>
+可选在第二个参数中使用表对象指定APPBARDATA属性</p>
+
+<p><a id="win.appBar.regist"></a></p>
+
+<h3>win.appBar.regist(窗口句柄,自定义回调消息ID)</h3>
+
+<p>将窗口注册接收任务栏通知消息,例如 _ABN_FULLSCREENAPP</p>
+
+<p><a id="win.appBar.setAutoHideBar"></a></p>
+
+<h3>win.appBar.setAutoHideBar( 任务栏句柄,_ABE_BOTTOM )</h3>
+
+<p>设置为自动停靠</p>
+
+<p><a id="win.appBar.unRegist"></a></p>
+
+<h3>win.appBar.unRegist(窗口句柄)</h3>
+
+<p>取消注册的任务栏回调消息</p>
+
+<p><a id="STDAPPBARDATAObject"></a></p>
+
+<h2>STDAPPBARDATAObject 成员列表</h2>
+
+<p><a id="STDAPPBARDATAObject.hwnd"></a></p>
+
+<h3>STDAPPBARDATAObject.hwnd</h3>
+
+<p>窗口句柄</p>
+
+<p><a id="STDAPPBARDATAObject.rc"></a></p>
+
+<h3>STDAPPBARDATAObject.rc</h3>
+
+<p>屏幕区块位置</p>
+
+<p><a id="STDAPPBARDATAObject.rc.bottom"></a></p>
+
+<h3>STDAPPBARDATAObject.rc.bottom</h3>
+
+<p>下</p>
+
+<p><a id="STDAPPBARDATAObject.rc.left"></a></p>
+
+<h3>STDAPPBARDATAObject.rc.left</h3>
+
+<p>左</p>
+
+<p><a id="STDAPPBARDATAObject.rc.right"></a></p>
+
+<h3>STDAPPBARDATAObject.rc.right</h3>
+
+<p>右</p>
+
+<p><a id="STDAPPBARDATAObject.rc.top"></a></p>
+
+<h3>STDAPPBARDATAObject.rc.top</h3>
+
+<p>上</p>
+
+<p><a id="STDAPPBARDATAObject.state"></a></p>
+
+<h3>STDAPPBARDATAObject.state</h3>
+
+<p>状态<br>
+<em>ABS</em>前缀常量</p>
+
+<p><a id="STDAPPBARDATAObject.uEdge"></a></p>
+
+<h3>STDAPPBARDATAObject.uEdge</h3>
+
+<p>状态栏靠在屏幕哪个边<br>
+<em>ABE</em> 前缀常量</p>
+
+<h3>自动完成常量</h3>
+
+<p>_ABE_BOTTOM=0x3<br>
+_ABE_LEFT=0x0<br>
+_ABE_RIGHT=0x2<br>
+_ABE_TOP=0x1<br>
+_ABM_ACTIVATE=0x6<br>
+_ABM_GETAUTOHIDEBAR=0x7<br>
+_ABM_GETSTATE=0x4<br>
+_ABM_GETTASKBARPOS=0x5<br>
+_ABM_NEW=0x0<br>
+_ABM_QUERYPOS=0x2<br>
+_ABM_REMOVE=0x1<br>
+_ABM_SETAUTOHIDEBAR=0x8<br>
+_ABM_SETPOS=0x3<br>
+_ABM_SETSTATE=0xA<br>
+_ABM_WINDOWPOSCHANGED=0x9<br>
+_ABN_FULLSCREENAPP=0x2<br>
+_ABN_POSCHANGED=0x1<br>
+_ABN_STATECHANGE=0x0<br>
+_ABN_WINDOWARRANGE=0x3<br>
+_ABS_ALWAYSONTOP=0x2<br>
+_ABS_AUTOHIDE=0x1  </p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/appBar.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/appBar.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/appBar.md">Markdown 格式</a></p>
+
+</body> 
+</html>

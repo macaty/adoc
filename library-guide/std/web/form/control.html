@@ -1,0 +1,192 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - 控制 Web 窗体'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - 控制 Web 窗体</title> 
+<link rel="stylesheet" href="../../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>控制 Web 窗体</h1>
+
+<p>参考: <a href="webform.html" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/std/web/form/webform.html">创建 Web 窗体</a></p>
+
+<h2>控制 Web 窗体</h2>
+
+<p>我们可以使用 Web 窗体提供的函数控制 Web 窗体的动作。</p>
+
+<p>本手册中约定使用 wb 变量名表示 web.form 类创建的 Web 窗体对象。使用 ele 表示 Web 窗体中的元素对象,这也是 aardio 中默认约定具有特殊意义的变量名，不应将这些默认变量名用于其他目的。</p>
+
+<h2>wb.go <a id="go" href="#go">&#x23;</a></h2>
+
+<ol>
+<li><p>函数原型：   </p>
+
+<p><code>wb.go(网址,自定义http请求头,目标窗口=&quot;_self&quot;)</code></p></li>
+<li><p>函数说明：   </p>
+
+<p>一般我们仅需指定需要打开的目标网址就可以了,其他参数为可选参数.<br>
+http请求头一般是以冒号分隔的键值对组成，多个键值对之间以回车换行<code>\r\n</code>分隔.<br>
+例如:</p>
+
+<p><code>&#39;\r\nContent-Type: application/x-www-form-urlencoded&#39;</code></p></li>
+<li><p>调用示例： </p>
+
+<pre><code class="aardio language-aardio">//....省略创建 Web 窗体的代码 
+
+wb.go(&quot;http://www.aardio.com/&quot;)
+</code></pre></li>
+</ol>
+
+<h2>wb.post <a id="post" href="#post">&#x23;</a></h2>
+
+<ol>
+<li><p>函数原型：   </p>
+
+<p><code>wb.post( 目标网址,要提交的数据 ,自定义头=&#39;\r\nContent-Type: application/x-www-form-urlencoded&#39;,目标框架=&quot;_self&quot;)</code></p></li>
+<li><p>函数说明：   </p>
+
+<p>这个函数类似 wb.go ,打开一个网址,各参数的用法类似.<br>
+不同的是多了第二个参数,在第二个参数中可以指定要自动提交的数据.  </p>
+
+<p>实际上我们在网页上看到登录、发贴之类的表单，填写好内容以后点击提交，最后浏览器都是执行一个post提交的动作.所以调用这个函数实际上省略了填写表单的过程.直接达到目的,与手工填表然后提交达到的效果是一样的.因为服务器根本不知道你在自已的电脑上做了什么,它只是从你post提交的数据来判断下一步该给你展现什么样的内容</p></li>
+<li><p>调用示例： </p>
+
+<pre><code class="aardio language-aardio">//....省略创建 Web 窗体的代码 
+
+//打开目标网站
+wb.post(&quot;http://httpbin.org/post&quot;
+,&quot;username=aardio&amp;password=aardio&amp;question=0&amp;answer=&amp;templateid=0&quot; )
+</code></pre></li>
+</ol>
+
+<h2>链接资源文件</h2>
+
+<p>如果将网页置于资源目录,在开发时该文件是硬盘文件，发布后根据发布选项，可能是内嵌的资源，也可以发布为硬盘文件，在 aardio 中例如 string.load 等函数都可以自动识别支持两种发布方式,无需修改代码。</p>
+
+<p>wb.go,web.post 等函数也可以自动支持 aardio 资源文件中的网页,并可支持网页中的相对路径(图片等附件的路径)。</p>
+
+<h2>wb.goBack</h2>
+
+<ol>
+<li><p>函数原型：   </p>
+
+<p><code>wb.goBack()</code></p></li>
+<li><p>函数说明：   </p>
+
+<p>后退到上一次打开的网页.可以响应 <a href="event.html#CommandStateChange" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/std/web/form/event.html#CommandStateChange">wb.CommandStateChange</a> 来判断是否可以后退.  </p></li>
+</ol>
+
+<h2>wb.goForward</h2>
+
+<ol>
+<li><p>函数原型：   </p>
+
+<p><code>wb.goForward()</code></p></li>
+<li><p>函数说明：   </p>
+
+<p>返回后退之前的网页. .可以响应 <a href="event.html#CommandStateChange" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/std/web/form/event.html#CommandStateChange">wb.CommandStateChange</a> 来判断是否可以后退.</p></li>
+</ol>
+
+<h2>wb.goHome()</h2>
+
+<ol>
+<li><p>函数原型：   </p>
+
+<p><code>wb.goHome()</code></p></li>
+<li><p>函数说明：   </p>
+
+<p>打开主页</p></li>
+</ol>
+
+<h2>wb.goSearch</h2>
+
+<ol>
+<li><p>函数原型：   </p>
+
+<p><code>wb.goSearch()</code></p></li>
+<li><p>函数说明：   </p>
+
+<p>打开搜索页</p></li>
+</ol>
+
+<h2>wb.refresh</h2>
+
+<ol>
+<li><p>函数原型：   </p>
+
+<p><code>wb.refresh()</code></p></li>
+<li><p>函数说明：   </p>
+
+<p>刷新页面,如果服务器未更新不会重新下载，类似在浏览器中按F5的效果</p></li>
+</ol>
+
+<h2>wb.refresh2</h2>
+
+<ol>
+<li><p>函数原型：   </p>
+
+<p><code>wb.refresh2()</code></p></li>
+<li><p>函数说明：   </p>
+
+<p>重新下载页面.强制刷新客户端缓存.  </p></li>
+</ol>
+
+<h2>wb.refresh3</h2>
+
+<ol>
+<li><p>函数原型：   </p>
+
+<p><code>wb.refresh3()</code></p></li>
+<li><p>函数说明：   </p>
+
+<p>重新下载最新页面,添加Pragma:no-cache请求头,强制刷新服务器缓存,类似在浏览器中按下Ctrl+F5的效果</p></li>
+</ol>
+
+<h2>wb.stop</h2>
+
+<ol>
+<li><p>函数原型：   </p>
+
+<p><code>wb.stop()</code></p></li>
+<li><p>函数说明：   </p>
+
+<p>停止当前导航</p></li>
+</ol>
+
+<h2>wb.write</h2>
+
+<ol>
+<li><p>函数原型：   </p>
+
+<p><code>wb.write( 要写入的HTML代码,框架名 )</code></p></li>
+<li><p>函数说明：   </p>
+
+<p>向 Web 窗体指定框架窗口写入HTML代码,框架名可省略,默认写入顶层窗口.</p>
+
+<p>该函数结束会关闭输出缓冲,每次调用wb.write都会覆盖以前的写入的内容.</p></li>
+</ol>
+
+<h2>wb.document.write</h2>
+
+<ol>
+<li><p>函数原型：   </p>
+
+<p><code>wb.document.write( 要写入的HTML代码 )</code></p></li>
+<li><p>函数说明：   </p>
+
+<p>该函数类似 wb.write 写入HTML到网页,区别在于不能指定框架窗口,并且在函数结束后不会关闭输出缓冲,即每次写入的内容会追加到上一次写入的内容后面,在最后一次写入 HTML 时调用 wb.write 函数可以关闭输出缓冲.</p>
+
+<p>请参考:<a href="getele.html#document" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/std/web/form/getele.html#document">wb.document</a></p></li>
+</ol>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-guide/std/web/form/control.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-guide/std/web/form/control.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/std/web/form/control.md">Markdown 格式</a></p>
+
+</body> 
+</html>

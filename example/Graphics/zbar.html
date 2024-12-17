@@ -1,0 +1,110 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 二维码识别工具'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 二维码识别工具</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 二维码识别工具</h1><pre><code class="aardio language-aardio">//二维码识别工具
+import fonts.fontAwesome;
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;二维码识别工具&quot;;right=477;bottom=275;bgcolor=16777215;border=&quot;dialog frame&quot;;exmode=&quot;none&quot;;max=false;mode=&quot;popup&quot;;topmost=1)
+winform.add(
+btnScanClipBD={cls=&quot;plus&quot;;text=&quot;自剪贴板识别&quot;;left=155;top=231;right=303;bottom=261;align=&quot;left&quot;;bgcolor=-5197169;db=1;dl=1;dr=1;font=LOGFONT(h=-13);iconStyle={align=&quot;left&quot;;font=LOGFONT(h=-13;name=&#39;FontAwesome&#39;);padding={left=20}};iconText=&#39;\uF0EA&#39;;notify=1;textPadding={left=39};z=2};
+btnScanScreen={cls=&quot;plus&quot;;text=&quot;自屏幕识别&quot;;left=310;top=231;right=447;bottom=261;align=&quot;left&quot;;bgcolor=-5197169;db=1;dr=1;font=LOGFONT(h=-16);foreRight=13;iconStyle={align=&quot;left&quot;;font=LOGFONT(h=-13;name=&#39;FontAwesome&#39;);padding={left=20}};iconText=&#39;\uF108&#39;;notify=1;textPadding={left=39};z=3};
+edit={cls=&quot;edit&quot;;left=15;top=32;right=465;bottom=220;autohscroll=false;db=1;dl=1;dr=1;dt=1;edge=1;multiline=1;z=1};
+static={cls=&quot;static&quot;;text=&quot;复制二维码自动识别，也可以直接拖放二维码图像到此窗口&quot;;left=16;top=7;right=436;bottom=28;color=3947580;dl=1;dr=1;dt=1;transparent=1;z=4}
+)
+/*}}*/
+
+import zbar;
+import win.clip.viewer;
+winform.clipViewer = win.clip.viewer(winform);
+
+var scanner = zbar.scanner();
+scanner.config(&#39;qrcode.enable&#39;);
+winform.clipViewer.onDrawClipboard = function(){
+    winform.btnScanClipBD.oncommand();
+}
+
+import win.clip.bitmap; 
+winform.btnScanClipBD.oncommand = function(id,event){
+    winform.edit.text = &quot;&quot;;
+
+    var bmp = win.clip.bitmap.read()
+    if(bmp){ 
+        scanner.scanBitmap(bmp,function(typeName,data){
+            //二维码应当总是使用 UTF-8 编码
+            if(!string.isUtf8(data)){
+                data = string.fromto(data,936,65001);
+            }
+
+            winform.edit.text = data;
+        }) 
+    }   
+}
+
+import com.picture;
+winform.btnScanScreen.oncommand = function(id,event){
+    winform.edit.text = &quot;&quot;;
+
+    scanner.scanBitmap(com.picture.snap(),function(typeName,data){
+        //二维码应当总是使用 UTF-8 编码
+        if(!string.isUtf8(data)){
+            data = string.fromto(data,936,65001);
+        }
+
+        winform.edit.text = data;
+    })
+}
+
+winform.onDropFiles = function(files){
+    var bmp = gdip.bitmap(files[1])
+    if(bmp){
+        scanner.scanBitmap(bmp,function(typeName,data){
+            winform.edit.text = data;
+        })  
+    }
+}
+
+winform.clipViewer.onDrawClipboard();
+
+winform.btnScanScreen.skin({
+    background={
+        default=0x668FB2B0;
+        disabled=0xFFCCCCCC;
+        hover=0xFF928BB3
+    };
+    color={
+        default=0xFF000000;
+        disabled=0xFF6D6D6D
+    }
+})
+
+winform.btnScanClipBD.skin({
+    background={
+        default=0x668FB2B0;
+        disabled=0xFFCCCCCC;
+        hover=0xFF928BB3
+    };
+    color={
+        default=0xFF000000;
+        disabled=0xFF6D6D6D
+    }
+})
+
+winform.show();
+win.loopMessage();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Graphics/zbar.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Graphics/zbar.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Graphics/zbar.md">Markdown 格式</a>
+</body> 
+</html>

@@ -1,0 +1,914 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - win.ui.tooltip 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - win.ui.tooltip 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>win.ui.tooltip 库模块帮助文档</h1>
+
+<p><details>  <summary>命名约定</summary>  <p>
+1、一个提示控件指的是一个 win.ui.tooltip 控件，
+原生控件类名 &quot;tooltips_class32&quot;，在 aardio 里的类名是 &quot;tooltip&quot;,
+在代码里我们把提示控件我们可以简称为 tooltip 或者 tooltipCtrl。</p>
+
+<p>这个控件比较特别，没有写在 win.ui.ctrl 名字空间下，也不是由 win.form 创建。
+但 win.ui.tooltip 实际上继承了 win.ui.ctrl.metaProperty，仍然由所有者窗口管理。</p>
+
+<p>提示控件有一点像 aardio 里的 orphanWindow 是一个独立窗口，
+所以他没有父窗口而是叫所有者窗口（为便于管理，tooltip 控件 仍然拥有 _parentForm 属性指向所有者窗口）,</p>
+
+<p>但 tooltip 控件 不会跟随所有者窗口自适应调整显示位置，更不会做 DPI 缩放。
+因为这些事 tooltip 控件自己做了。</p>
+
+<p>2、一个提示控件有一个上层所有者窗口（创建提示控件的时候指定）。</p>
+
+<p>3、一个「提示控件」可以管理多个「控件提示」，这里有点绕，不要弄反了。
+控件提示 —— 也就是 TOOLINFO 结构体，TOOLINFO 类的完整路径为 win.ui.tooltip.TOOLINFO。</p>
+
+<p>一个控件提示（TOOLINFO）可以关联一个控件窗口，这指的是所有者窗体上的控件窗口。
+当然控件提示（TOOLINFO）也可以关联所有者窗体自己。</p>
+
+<p>一个提示控件里一个窗口对象只能关联一个控件提示（TOOLINFO），
+实际上你也不可能关联多个，哪有鼠标晃上去多个提示蹦出来乱跳呢。</p>
+
+<p>「控件提示」在代码里会称为 toolinfo 或者缩写为 tool，
+例如 addTool() 就是添加　TOOLINFO, 而 getCurrentTool() 就是获取当前控件提示。
+</p></details></p>
+
+<p><a id="win.ui.tooltip"></a></p>
+
+<h2>win.ui.tooltip 成员列表</h2>
+
+<p>提示控件,<br>
+提示控件可以有一个所有者窗体，这应当是一个 win.form 对象,<br>
+一个提示控件可以管理多个控件提示（ 也就是 TOOLINFO 对象 ）<br>
+而每个 TOOLINFO 对象应关联一个所有者窗体上的控件窗口,<br>
+当然 TOOLINFO 也可以关闭所有者窗体自己,<br>
+同一个提示控件里同一个窗口只能关闭一个 TOOLINFO,<br>
+同一控件关联多次会自动覆盖并删除之前创建的关联TOOLINFO</p>
+
+<p>创建提示控件,<br>
+提示控件可以有一个所有者窗体，这应当是一个 win.form 对象,<br>
+一个提示控件可以管理多个控件提示（ 也就是 TOOLINFO 对象 ）<br>
+而每个 TOOLINFO 对象应关联一个所有者窗体上的控件窗口,<br>
+当然 TOOLINFO 也可以关闭所有者窗体自己,<br>
+同一个提示控件里同一个窗口只能关闭一个 TOOLINFO,<br>
+同一控件关联多次会自动覆盖并删除之前创建的关联TOOLINFO</p>
+
+<p><a id="win.ui.tooltip.balloon"></a></p>
+
+<h3>win.ui.tooltip.balloon</h3>
+
+<p>创建汽泡外观提示控件,<br>
+一个提示控件有一个所有者窗体,<br>
+提示控件可以管理多个控件提示（TOOLINFO）,<br>
+每个TOOLINFO关联一个控件窗口,<br>
+每个控件窗口同时只能关联一个TOOLINFO</p>
+
+<p><a id="win.ui.tooltip.balloon"></a></p>
+
+<h3>win.ui.tooltip.balloon()</h3>
+
+<p><a href="#winUiTooltipObject">返回对象:winUiTooltipObject</a></p>
+
+<p><a id="win.ui.tooltip.balloon"></a></p>
+
+<h3>win.ui.tooltip.balloon(所有者窗体,创建参数)</h3>
+
+<p>创建汽泡外观提示控件,参数@1为窗体对象,<br>
+参数@2使用一个表指定创建选项与样式,可省略,<br>
+参数@2的详细用法请参考源码与MSDN文档</p>
+
+<p><a id="win.ui.tooltip.tracking"></a></p>
+
+<h3>win.ui.tooltip.tracking</h3>
+
+<p>创建提示控件,默认使用默认手动跟踪模式,<br>
+一个提示控件有一个所有者窗体,<br>
+提示控件可以管理多个控件提示（TOOLINFO）,<br>
+每个TOOLINFO关联一个控件窗口,<br>
+每个控件窗口同时只能关联一个TOOLINFO</p>
+
+<p><a id="win.ui.tooltip.tracking"></a></p>
+
+<h3>win.ui.tooltip.tracking()</h3>
+
+<p><a href="#winUiTooltipObject">返回对象:winUiTooltipObject</a></p>
+
+<p><a id="win.ui.tooltip.tracking"></a></p>
+
+<h3>win.ui.tooltip.tracking(ownerForm,hasCloseButton,balloon)</h3>
+
+<p>创建提示控件,默认使用默认手动跟踪模式,<br>
+@ownerForm 参数指定所有者窗口，省略则默认置顶窗口，<br>
+@hasCloseButton 参数指定是否显示关闭按钮,可省略默认值为 true<br>
+@balloon 参数指定是否启用汽泡外观,可省略默认值为 true</p>
+
+<p><a id="NMTTCUSTOMDRAWObject"></a></p>
+
+<h2>NMTTCUSTOMDRAWObject 成员列表</h2>
+
+<p><a id="NMTTCUSTOMDRAWObject.drawFlags"></a></p>
+
+<h3>NMTTCUSTOMDRAWObject.drawFlags</h3>
+
+<p>提示文本显示格式<br>
+此属性会用于 ::DrawText 的 uFormat 参数</p>
+
+<p><a id="NMTTCUSTOMDRAWObject.dwDrawStage"></a></p>
+
+<h3>NMTTCUSTOMDRAWObject.dwDrawStage</h3>
+
+<p>绘图状态</p>
+
+<p><a id="NMTTCUSTOMDRAWObject.dwItemSpec"></a></p>
+
+<h3>NMTTCUSTOMDRAWObject.dwItemSpec</h3>
+
+<p>行序号</p>
+
+<p><a id="NMTTCUSTOMDRAWObject.hdc"></a></p>
+
+<h3>NMTTCUSTOMDRAWObject.hdc</h3>
+
+<p>设置句柄</p>
+
+<p><a id="NMTTCUSTOMDRAWObject.hdr"></a></p>
+
+<h3>NMTTCUSTOMDRAWObject.hdr</h3>
+
+<p><a href="#nmhdrObject">返回对象:nmhdrObject</a></p>
+
+<p><a id="NMTTCUSTOMDRAWObject.lItemlParam"></a></p>
+
+<h3>NMTTCUSTOMDRAWObject.lItemlParam</h3>
+
+<p>自定义数据，LPARAM 参数</p>
+
+<p><a id="NMTTCUSTOMDRAWObject.rc"></a></p>
+
+<h3>NMTTCUSTOMDRAWObject.rc</h3>
+
+<p><a href="../../global/_.html#rectObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/global/_.html#rectObject">返回对象:rectObject</a></p>
+
+<p><a id="NMTTCUSTOMDRAWObject.uItemState"></a></p>
+
+<h3>NMTTCUSTOMDRAWObject.uItemState</h3>
+
+<p>状态值，例如 _CDIS_FOCUS</p>
+
+<p><a id="NMTTCUSTOMDRAWObject.update"></a></p>
+
+<h3>NMTTCUSTOMDRAWObject.update()</h3>
+
+<p>更新数据</p>
+
+<p><a id="win.ui"></a></p>
+
+<h2>win.ui 成员列表</h2>
+
+<p><a id="win.ui.tooltip"></a></p>
+
+<h3>win.ui.tooltip()</h3>
+
+<p><a href="#winUiTooltipObject">返回对象:winUiTooltipObject</a></p>
+
+<p><a id="win.ui.tooltip"></a></p>
+
+<h3>win.ui.tooltip(所有者窗体,创建参数)</h3>
+
+<p>创建提示控件,<br>
+参数@1可选指定所有者窗体对象或所有者窗体句柄，<br>
+参数@2使用一个表指定创建选项与样式,可省略,<br>
+参数@2的详细用法请参考源码与MSDN文档</p>
+
+<p><a id="win.ui.tooltip"></a></p>
+
+<h3>win.ui.tooltip(所有者窗体,提示控件句柄)</h3>
+
+<p>绑定现有提示控件,<br>
+参数@1可选指定所有者窗体对象或所有者窗体句柄，<br>
+参数@2指定现有提示控件句柄</p>
+
+<p><a id="winUiTooltipInfoObject"></a></p>
+
+<h2>winUiTooltipInfoObject 成员列表</h2>
+
+<p><a id="winUiTooltipInfoObject.ctrl"></a></p>
+
+<h3>winUiTooltipInfoObject.ctrl</h3>
+
+<p>创建提示绑定的控件对象  </p>
+
+<p><a href="ctrl/static.html#staticObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/static.html#staticObject">返回对象:staticObject</a></p>
+
+<p><a id="winUiTooltipInfoObject.delete"></a></p>
+
+<h3>winUiTooltipInfoObject.delete()</h3>
+
+<p>删除提示</p>
+
+<p><a id="winUiTooltipInfoObject.getText"></a></p>
+
+<h3>winUiTooltipInfoObject.getText()</h3>
+
+<p>返回提示文本</p>
+
+<p><a id="winUiTooltipInfoObject.sendMessage"></a></p>
+
+<h3>winUiTooltipInfoObject.sendMessage()</h3>
+
+<p><a href="#winUiTooltipInfoObject">返回对象:winUiTooltipInfoObject</a></p>
+
+<p><a id="winUiTooltipInfoObject.sendMessage"></a></p>
+
+<h3>winUiTooltipInfoObject.sendMessage(msg,wParam)</h3>
+
+<p>发送消息，用法参考此函数源码<br>
+此函数返回自身</p>
+
+<p><a id="winUiTooltipInfoObject.setText"></a></p>
+
+<h3>winUiTooltipInfoObject.setText()</h3>
+
+<p><a href="#winUiTooltipInfoObject">返回对象:winUiTooltipInfoObject</a></p>
+
+<p><a id="winUiTooltipInfoObject.setText"></a></p>
+
+<h3>winUiTooltipInfoObject.setText(text)</h3>
+
+<p>设置文本<br>
+如果值不是-1或指针则调用 tostring 函数转换为字符串,<br>
+@text参数指定要更新的提示文本,<br>
+提示必须有文本，否则不会显示,<br>
+此函数返回自身</p>
+
+<p><a id="winUiTooltipInfoObject.trackPopup"></a></p>
+
+<h3>winUiTooltipInfoObject.trackPopup</h3>
+
+<p>弹出提示</p>
+
+<p><a id="winUiTooltipInfoObject.trackPopup"></a></p>
+
+<h3>winUiTooltipInfoObject.trackPopup()</h3>
+
+<p><a href="#winUiTooltipInfoObject">返回对象:winUiTooltipInfoObject</a></p>
+
+<p><a id="winUiTooltipInfoObject.trackPopup"></a></p>
+
+<h3>winUiTooltipInfoObject.trackPopup(false)</h3>
+
+<p>隐藏弹出的提示</p>
+
+<p><a id="winUiTooltipInfoObject.trackPopup"></a></p>
+
+<h3>winUiTooltipInfoObject.trackPopup(text,x,y)</h3>
+
+<p>弹出参数 @text 指定文本内容的提示,<br>
+可选用x,y参数指定显示坐标,不指定则取最后一次鼠标消息坐标,<br>
+此函数返回自身</p>
+
+<p><a id="winUiTooltipInfoObject.trackPopup"></a></p>
+
+<h3>winUiTooltipInfoObject.trackPopup(true,x,y)</h3>
+
+<p>弹出提示,<br>
+可选用x,y参数指定显示坐标,不指定则取最后一次鼠标消息坐标,<br>
+此函数返回自身</p>
+
+<p><a id="winUiTooltipInfoObject.updateRect"></a></p>
+
+<h3>winUiTooltipInfoObject.updateRect()</h3>
+
+<p>修改 rect 字段指定的提示矩形区域后必须调用此函数更新<br>
+可选在参数中指定新的 ::RECT 对象,<br>
+此函数返回自身</p>
+
+<p><a href="#winUiTooltipInfoObject">返回对象:winUiTooltipInfoObject</a></p>
+
+<p><a id="winUiTooltipObject"></a></p>
+
+<h2>winUiTooltipObject 成员列表</h2>
+
+<p><a id="winUiTooltipObject.activate"></a></p>
+
+<h3>winUiTooltipObject.activate(false)</h3>
+
+<p>停用提示控件,相当于禁用提示,<br>
+提示控件在非活动状态时,即使鼠标指针位于绑定的控件窗口上也不会出现提示</p>
+
+<p><a id="winUiTooltipObject.activate"></a></p>
+
+<h3>winUiTooltipObject.activate(true)</h3>
+
+<p>激活提示控件</p>
+
+<p><a id="winUiTooltipObject.add"></a></p>
+
+<h3>winUiTooltipObject.add()</h3>
+
+<p>批量添加控件提示<br>
+参数应使用一个表指定多个控件的提示文本,<br>
+表成员的键为控件名,值为控件提示</p>
+
+<p><a id="winUiTooltipObject.addTool"></a></p>
+
+<h3>winUiTooltipObject.addTool</h3>
+
+<p>创建并返回 TOOLINFO 对象,<br>
+提示控件与绑定控件应在同一线程中</p>
+
+<p><a id="winUiTooltipObject.addTool"></a></p>
+
+<h3>winUiTooltipObject.addTool()</h3>
+
+<p><a href="#winUiTooltipInfoObject">返回对象:winUiTooltipInfoObject</a></p>
+
+<p><a id="winUiTooltipObject.addTool"></a></p>
+
+<h3>winUiTooltipObject.addTool(ctrl,text,flags)</h3>
+
+<p>创建并返回默认 TOOLINFO 对象,<br>
+@ctrl参数指定控件对象,省略则设为提示控件所有窗口<br>
+同一窗口在同一提示控件里只能绑定同一个TOOLTIP,<br>
+如果窗口之前添加了提示会先删除之前的再添加,<br>
+@flags为_TTF_前缀常量组合</p>
+
+<p><a id="winUiTooltipObject.addTrackingTool"></a></p>
+
+<h3>winUiTooltipObject.addTrackingTool</h3>
+
+<p>创建手动跟踪模式的 TOOLINFO 对象，<br>
+可使用 trackPopup 函数在指定坐标显示，<br>
+如果提示控件指定所有窗口并设置标题、启用关闭按钮则可支持超链接</p>
+
+<p><a id="winUiTooltipObject.addTrackingTool"></a></p>
+
+<h3>winUiTooltipObject.addTrackingTool()</h3>
+
+<p><a href="#winUiTooltipInfoObject">返回对象:winUiTooltipInfoObject</a></p>
+
+<p><a id="winUiTooltipObject.addTrackingTool"></a></p>
+
+<h3>winUiTooltipObject.addTrackingTool(ctrl,text,flags)</h3>
+
+<p>创建手动跟踪模式的 TOOLINFO 对象,<br>
+此提示必须使用 trackPopup 函数控制显示或隐藏,<br>
+可选用@ctrl参数指定一个关联控件,<br>
+@ctrl参数指定控件对象,省略则设为提示控件所有窗口<br>
+同一窗口在同一提示控件里只能绑定同一个TOOLTIP,<br>
+如果窗口之前添加了提示会先删除之前的再添加,<br>
+可选用 @text 参数指定显示文本,支持超链接,<br>
+,<br>
+提示文本中嵌入超链接格式<a href="javascript:if(confirm('https://www.aardio.com/  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/'" tppabs="https://www.aardio.com/">超链接</a>,<br>
+@flags为可选参数,可用_TTF_前缀常量组合</p>
+
+<p><a id="winUiTooltipObject.adjustRect"></a></p>
+
+<h3>winUiTooltipObject.adjustRect</h3>
+
+<p>对工具提示控件的文本显示矩形与其窗口矩形之间进行自适应转换</p>
+
+<p><a id="winUiTooltipObject.adjustRect"></a></p>
+
+<h3>winUiTooltipObject.adjustRect()</h3>
+
+<p><a href="../../global/_.html#rectObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/global/_.html#rectObject">返回对象:rectObject</a></p>
+
+<p><a id="winUiTooltipObject.adjustRect"></a></p>
+
+<h3>winUiTooltipObject.adjustRect(rc,false)</h3>
+
+<p>参数 @rc 必须是一个指定窗口矩形的 ::RECT 结构<br>
+调整该结构体为相应的文本显示矩形,并返回该结构体</p>
+
+<p><a id="winUiTooltipObject.adjustRect"></a></p>
+
+<h3>winUiTooltipObject.adjustRect(rc,true)</h3>
+
+<p>参数 @rc 必须是一个指定文本显示的矩形的 ::RECT 结构<br>
+调整该结构体为相应的窗口矩形,并返回该结构体</p>
+
+<p><a id="winUiTooltipObject.capture"></a></p>
+
+<h3>winUiTooltipObject.capture</h3>
+
+<p>是否捕获全局鼠标消息  </p>
+
+<p>winex.tooltip 对象如果在调用 trackPopup 后设置此属性为 true，<br>
+则支持点击自动隐藏提示</p>
+
+<p><a id="winUiTooltipObject.close"></a></p>
+
+<h3>winUiTooltipObject.close()</h3>
+
+<p>关闭提示控件</p>
+
+<p><a id="winUiTooltipObject.delTool"></a></p>
+
+<h3>winUiTooltipObject.delTool(ctrl)</h3>
+
+<p>删除提示<br>
+参数@1请使用窗口控件对象,<br>
+如果控件尚未添加提示则忽略不操作</p>
+
+<p><a id="winUiTooltipObject.delTool"></a></p>
+
+<h3>winUiTooltipObject.delTool(toolInfo)</h3>
+
+<p>删除提示<br>
+参数@1请使用addTool函数的返回值</p>
+
+<p><a id="winUiTooltipObject.getClientRect"></a></p>
+
+<h3>winUiTooltipObject.getClientRect()</h3>
+
+<p>控件客户区块位置(::RECT结构体)  </p>
+
+<p><a href="../../global/_.html#rectObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/global/_.html#rectObject">返回对象:rectObject</a></p>
+
+<p><a id="winUiTooltipObject.getCurrentTool"></a></p>
+
+<h3>winUiTooltipObject.getCurrentTool()</h3>
+
+<p>返回提示控件当前正在使用的 TOOLINFO 对象  </p>
+
+<p><a href="#winUiTooltipInfoObject">返回对象:winUiTooltipInfoObject</a></p>
+
+<p><a id="winUiTooltipObject.getFont"></a></p>
+
+<h3>winUiTooltipObject.getFont()</h3>
+
+<p>控件字体(::LOGFONT结构体)  </p>
+
+<p><a href="#logfontObject">返回对象:logfontObject</a></p>
+
+<p><a id="winUiTooltipObject.getNotifyCustomDraw"></a></p>
+
+<h3>winUiTooltipObject.getNotifyCustomDraw()</h3>
+
+<p><a href="#NMTTCUSTOMDRAWObject">返回对象:NMTTCUSTOMDRAWObject</a></p>
+
+<p><a id="winUiTooltipObject.getNotifyCustomDraw"></a></p>
+
+<h3>winUiTooltipObject.getNotifyCustomDraw(code,ptr)</h3>
+
+<p>NM_CUSTOMDRAW通知消息返回NMLVCUSTOMDRAW结构体</p>
+
+<p><a id="winUiTooltipObject.getParent"></a></p>
+
+<h3>winUiTooltipObject.getParent()</h3>
+
+<p>返回父窗口  </p>
+
+<p><a href="_.html#winform" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/_.html#winform">返回对象:winform</a></p>
+
+<p><a id="winUiTooltipObject.getPos"></a></p>
+
+<h3>winUiTooltipObject.getPos()</h3>
+
+<p>返回相对父窗口客户区的坐标,宽,高,<br>
+参数为true返回屏幕坐标,宽,高,<br>
+x,y,cx,cy=win.getPos(hwnd)</p>
+
+<p><a id="winUiTooltipObject.getRect"></a></p>
+
+<h3>winUiTooltipObject.getRect()</h3>
+
+<p>控件区块位置(::RECT结构体)</p>
+
+<p><a href="../../global/_.html#rectObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/global/_.html#rectObject">返回对象:rectObject</a></p>
+
+<p><a id="winUiTooltipObject.getRect"></a></p>
+
+<h3>winUiTooltipObject.getRect(true)</h3>
+
+<p>控件屏幕区块位置(::RECT结构体)</p>
+
+<p><a id="winUiTooltipObject.getRoot"></a></p>
+
+<h3>winUiTooltipObject.getRoot()</h3>
+
+<p>获取顶层父窗口</p>
+
+<p><a id="winUiTooltipObject.getTool"></a></p>
+
+<h3>winUiTooltipObject.getTool()</h3>
+
+<p><a href="#winUiTooltipInfoObject">返回对象:winUiTooltipInfoObject</a></p>
+
+<p><a id="winUiTooltipObject.getTool"></a></p>
+
+<h3>winUiTooltipObject.getTool(ctrl)</h3>
+
+<p>参数指定控件对象<br>
+返回该控件关联的TOOLINFO结构体<br>
+不指定参数返回最后一次添加的TOOLINFO结构体</p>
+
+<p><a id="winUiTooltipObject.lastToolInfo"></a></p>
+
+<h3>winUiTooltipObject.lastToolInfo</h3>
+
+<p>最后一次添加的提示结构体  </p>
+
+<p><a href="#winUiTooltipInfoObject">返回对象:winUiTooltipInfoObject</a></p>
+
+<p><a id="winUiTooltipObject.lastTrackingToolInfo"></a></p>
+
+<h3>winUiTooltipObject.lastTrackingToolInfo</h3>
+
+<p>最后一次添加的手动跟踪模式提示结构体  </p>
+
+<p><a href="#winUiTooltipInfoObject">返回对象:winUiTooltipInfoObject</a></p>
+
+<p><a id="winUiTooltipObject.modifyStyle"></a></p>
+
+<h3>winUiTooltipObject.modifyStyle(remove,add,swpFlags)</h3>
+
+<p>修改窗口样式,所有参数都是可选参数,<br>
+@remove 用数值指定要移除的样式,可使用 <em>WS</em> 前缀的常量<br>
+@add 用数值指定要添加的样式,可使用 <em>WS</em> 前缀的常量<br>
+@swpFlags 可选用数值指定调整窗口选项,可使用 <em>SWP</em> 前缀的常量<br>
+如果指定了 @swpFlag ,则使用该参数调用::SetWindowPos<br>
+细节请参考 win.modifyStyle 函数源码</p>
+
+<p><a id="winUiTooltipObject.modifyStyleEx"></a></p>
+
+<h3>winUiTooltipObject.modifyStyleEx(remove,add,swpFlags)</h3>
+
+<p>修改窗口扩展样式,所有参数都是可选参数,<br>
+@remove 用数值指定要移除的样式,可使用 <em>WS_EX</em> 前缀的常量<br>
+@add 用数值指定要添加的样式,可使用 <em>WS_EX</em> 前缀的常量<br>
+@swpFlags 可选用数值指定调整窗口选项,可使用 <em>SWP</em> 前缀的常量<br>
+如果指定了 @swpFlag ,则使用该参数调用::SetWindowPos<br>
+细节请参考 win.modifyStyle 函数源码</p>
+
+<p><a id="winUiTooltipObject.onDestroy"></a></p>
+
+<h3>winUiTooltipObject.onDestroy</h3>
+
+<pre><code class="aardio language-aardio">winUiTooltipObject.onDestroy = function(){  
+    /*窗口销毁前触发*/  
+}
+</code></pre>
+
+<p><a id="winUiTooltipObject.onHyperlinkClick"></a></p>
+
+<h3>winUiTooltipObject.onHyperlinkClick(href,title)</h3>
+
+<pre><code class="aardio language-aardio">winUiTooltipObject.onHyperlinkClick = function(href,title){
+    /*点击了超链接,  
+@href 为链接地址,@title 参数为超链接包含文本,  
+提示文本中嵌入超链接格式&lt;a href=&quot;https://www.aardio.com&quot;&gt;超链接&lt;/a&gt;  
+一个提示里只能写一个超链接,不要写多个*/   
+}
+</code></pre>
+
+<p><a id="winUiTooltipObject.onPopupHide"></a></p>
+
+<h3>winUiTooltipObject.onPopupHide()</h3>
+
+<pre><code class="aardio language-aardio">winUiTooltipObject.onPopupHide = function(){
+    /*隐藏提示触发此通知。  
+
+父窗口不是 win.form 对象则此事件不可用，  
+替代方法是在此控件的 wndproc 回调中处理 _WM_SHOWWINDOW 消息*/  
+}
+</code></pre>
+
+<p><a id="winUiTooltipObject.onPopupShow"></a></p>
+
+<h3>winUiTooltipObject.onPopupShow()</h3>
+
+<pre><code class="aardio language-aardio">winUiTooltipObject.onPopupShow = function(){
+    /*显示提示触发此通知。  
+
+父窗口不是 win.form 对象则此事件不可用，  
+替代方法是在此控件的 wndproc 回调中处理 _WM_SHOWWINDOW 消息*/  
+}
+</code></pre>
+
+<p><a id="winUiTooltipObject.onnotify"></a></p>
+
+<h3>winUiTooltipObject.onnotify</h3>
+
+<pre><code class="aardio language-aardio">winUiTooltipObject.onnotify = function(id,code,ptr){  
+    /*通知事件触发*/  
+}
+</code></pre>
+
+<p><a id="winUiTooltipObject.popup"></a></p>
+
+<h3>winUiTooltipObject.popup(false)</h3>
+
+<p>隐藏提示<br>
+不触发onPopupHide</p>
+
+<p><a id="winUiTooltipObject.postMessage"></a></p>
+
+<h3>winUiTooltipObject.postMessage(msg,wParam,lParam)</h3>
+
+<p>投递窗口消息到消息队列中<br>
+此函数用法请参考 ::User32.PostMessage</p>
+
+<p><a id="winUiTooltipObject.ptInClientRect"></a></p>
+
+<h3>winUiTooltipObject.ptInClientRect</h3>
+
+<p>判断指定的坐标是否在客户区内</p>
+
+<p><a id="winUiTooltipObject.ptInClientRect"></a></p>
+
+<h3>winUiTooltipObject.ptInClientRect(lParam)</h3>
+
+<p>使用窗口消息回调函数的 lParam 参数获取 x,y 坐标，<br>
+如果 x,y 坐标在客户区内返回 true</p>
+
+<p><a id="winUiTooltipObject.ptInClientRect"></a></p>
+
+<h3>winUiTooltipObject.ptInClientRect(x,y)</h3>
+
+<p>x,y 坐标是否在客户区内</p>
+
+<p><a id="winUiTooltipObject.redraw"></a></p>
+
+<h3>winUiTooltipObject.redraw()</h3>
+
+<p>刷新</p>
+
+<p><a id="winUiTooltipObject.sendMessage"></a></p>
+
+<h3>winUiTooltipObject.sendMessage(msg,wParam,lParam)</h3>
+
+<p>发送窗口消息<br>
+此函数用法请参考 ::User32.SendMessage</p>
+
+<p><a id="winUiTooltipObject.setBkColor"></a></p>
+
+<h3>winUiTooltipObject.setBkColor(颜色值)</h3>
+
+<p>设置背景颜色</p>
+
+<p><a id="winUiTooltipObject.setDelayTime"></a></p>
+
+<h3>winUiTooltipObject.setDelayTime(超时值,选项)</h3>
+
+<p>光标在控件上悬停并超出一定时间才会显示,<br>
+默认值约为半秒，此函数可修改默认的超时值<br>
+以毫秒为单位,<br>
+选项为可选参数,默认为 0/*_TTDT_AUTOMATIC*/</p>
+
+<p><a id="winUiTooltipObject.setError"></a></p>
+
+<h3>winUiTooltipObject.setError()</h3>
+
+<p><a href="#winUiTooltipObject">返回对象:winUiTooltipObject</a></p>
+
+<p><a id="winUiTooltipObject.setError"></a></p>
+
+<h3>winUiTooltipObject.setError(title,large)</h3>
+
+<p>设置@title参数指定的标题,并显示错误图标,<br>
+可选用@large指定是否使用大图标</p>
+
+<p><a id="winUiTooltipObject.setFont"></a></p>
+
+<h3>winUiTooltipObject.setFont(指定字体)</h3>
+
+<p>指定LOGFONT字体对象,或逻辑字体句柄</p>
+
+<p><a id="winUiTooltipObject.setFont"></a></p>
+
+<h3>winUiTooltipObject.setFont(混入字体属性)</h3>
+
+<pre><code class="aardio language-aardio">winUiTooltipObject.setFont(point=10;name=&quot;宋体&quot;);
+</code></pre>
+
+<p><a id="winUiTooltipObject.setInfo"></a></p>
+
+<h3>winUiTooltipObject.setInfo()</h3>
+
+<p><a href="#winUiTooltipObject">返回对象:winUiTooltipObject</a></p>
+
+<p><a id="winUiTooltipObject.setInfo"></a></p>
+
+<h3>winUiTooltipObject.setInfo(title,large)</h3>
+
+<p>设置@title参数指定的标题,并显示信息图标,<br>
+可选用@large指定是否使用大图标</p>
+
+<p><a id="winUiTooltipObject.setMaxWidth"></a></p>
+
+<h3>winUiTooltipObject.setMaxWidth(宽度)</h3>
+
+<p>设置提示框最大宽度</p>
+
+<p><a id="winUiTooltipObject.setPos"></a></p>
+
+<h3>winUiTooltipObject.setPos(x坐标,y坐标,宽,高,插入位置,参数)</h3>
+
+<p>调整窗口位置或排序,所有参数可选<br>
+同时指定x,y坐标则移动位置<br>
+同时指定宽高则改变大小<br>
+指定插入位置(句柄或_HWND前缀常量)则调整Z序</p>
+
+<p><a id="winUiTooltipObject.setRect"></a></p>
+
+<h3>winUiTooltipObject.setRect(rc)</h3>
+
+<p>设置控件区块位置(::RECT结构体)</p>
+
+<p><a id="winUiTooltipObject.setRect"></a></p>
+
+<h3>winUiTooltipObject.setRect(rc,true)</h3>
+
+<p>设置控件屏幕区块位置(::RECT结构体)</p>
+
+<p><a id="winUiTooltipObject.setText"></a></p>
+
+<h3>winUiTooltipObject.setText()</h3>
+
+<p><a href="#winUiTooltipInfoObject">返回对象:winUiTooltipInfoObject</a></p>
+
+<p><a id="winUiTooltipObject.setText"></a></p>
+
+<h3>winUiTooltipObject.setText(text,ctrlOrToolInfo)</h3>
+
+<p>更新提示文本,<br>
+提示必须有文本，否则不会显示,<br>
+addTrackingTool 函数创建的提示支持超链接,<br>
+提示文本中嵌入超链接格式<a href="javascript:if(confirm('https://www.aardio.com/  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/'" tppabs="https://www.aardio.com/">超链接</a>,<br>
+可选用参数@ctrlOrToolInfo指定控件或TOOLINFO结构体,<br>
+如果不指定则默认使用最后一次添加的TOOLINFO结构体,<br>
+成功返回TOOLINFO结构体</p>
+
+<p><a id="winUiTooltipObject.setTextColor"></a></p>
+
+<h3>winUiTooltipObject.setTextColor(颜色值)</h3>
+
+<p>设置文本颜色</p>
+
+<p><a id="winUiTooltipObject.setTitle"></a></p>
+
+<h3>winUiTooltipObject.setTitle()</h3>
+
+<p><a href="#winUiTooltipObject">返回对象:winUiTooltipObject</a></p>
+
+<p><a id="winUiTooltipObject.setTitle"></a></p>
+
+<h3>winUiTooltipObject.setTitle(title,icon)</h3>
+
+<p>设置@title参数指定的标题,<br>
+可选用@icon参数指定图标句柄,<br>
+工具有标题才会显示图标,<br>
+只设置标题不设置文本则不会显示</p>
+
+<p><a id="winUiTooltipObject.setWarning"></a></p>
+
+<h3>winUiTooltipObject.setWarning()</h3>
+
+<p><a href="#winUiTooltipObject">返回对象:winUiTooltipObject</a></p>
+
+<p><a id="winUiTooltipObject.setWarning"></a></p>
+
+<h3>winUiTooltipObject.setWarning(title,large)</h3>
+
+<p>设置@title参数指定的标题,并显示警告图标,<br>
+可选用@large指定是否使用大图标</p>
+
+<p><a id="winUiTooltipObject.show"></a></p>
+
+<h3>winUiTooltipObject.show(true)</h3>
+
+<p>显示控件</p>
+
+<p><a id="winUiTooltipObject.text"></a></p>
+
+<h3>winUiTooltipObject.text</h3>
+
+<p>当前显示文本,<br>
+包含提示标题与内容,<br>
+此属性只读,</p>
+
+<p><a id="winUiTooltipObject.trackPopup"></a></p>
+
+<h3>winUiTooltipObject.trackPopup</h3>
+
+<p>此函数调用最后一次创建的手动跟踪模式 TOOLINFO 对象，<br>
+这指的是在调用此函数以前执行过以下操作（其中之一）：<br>
+1、调用 addTrackingTool 函数<br>
+2、win.ui.tooltip.tracking 创建的提示控件调用以默认 flags 创建提示的部分函数<br>
+这包括 addTool, setText 等函数  </p>
+
+<p>注意调用此函数显示的提示提示默认不会自动隐藏，<br>
+winex.tooltip 在调用此函数后设置 capture 为 true 支持点击隐藏</p>
+
+<p><a id="winUiTooltipObject.trackPopup"></a></p>
+
+<h3>winUiTooltipObject.trackPopup()</h3>
+
+<p><a href="#winUiTooltipInfoObject">返回对象:winUiTooltipInfoObject</a></p>
+
+<p><a id="winUiTooltipObject.trackPopup"></a></p>
+
+<h3>winUiTooltipObject.trackPopup(false)</h3>
+
+<p>隐藏弹出的提示</p>
+
+<p><a id="winUiTooltipObject.trackPopup"></a></p>
+
+<h3>winUiTooltipObject.trackPopup(text,x,y)</h3>
+
+<p>弹出参数 @text 指定文本内容的提示,<br>
+可选用x,y参数指定显示坐标,不指定则取最后一次鼠标消息坐标。<br>
+此函数返回显示的 TOOLINFO 对象</p>
+
+<p><a id="winUiTooltipObject.trackPopup"></a></p>
+
+<h3>winUiTooltipObject.trackPopup(true,x,y)</h3>
+
+<p>弹出提示,<br>
+可选用x,y参数指定显示坐标,不指定则取最后一次鼠标消息坐标。<br>
+此函数返回显示的 TOOLINFO 对象</p>
+
+<p><a id="winUiTooltipObject.trackPos"></a></p>
+
+<h3>winUiTooltipObject.trackPos()</h3>
+
+<p><a href="#winUiTooltipInfoObject">返回对象:winUiTooltipInfoObject</a></p>
+
+<p><a id="winUiTooltipObject.trackPos"></a></p>
+
+<h3>winUiTooltipObject.trackPos(x,y)</h3>
+
+<p>移动到指定坐标,<br>
+省略参数是移动到最后一次处理鼠标消息的坐标,<br>
+请使用trackPopup函数控制显示和隐藏<br>
+此函数返回自身</p>
+
+<p><a id="winUiTooltipObject.update"></a></p>
+
+<h3>winUiTooltipObject.update()</h3>
+
+<p>刷新</p>
+
+<p><a id="winUiTooltipObject.wait"></a></p>
+
+<h3>winUiTooltipObject.wait(等待函数,超时,延时间隔)</h3>
+
+<p>循环执行等待函数,并等待返回值<br>
+直到等待函数返回非空值,或存在第二个返回值,或当前窗口关闭<br>
+等待函数返回的值就是wait函数的返回值,<br>
+如果指定超时,超过指定毫秒时返回null,<br>
+除等待函数以外,所有参数可选</p>
+
+<p><a id="winUiTooltipObject.wndproc"></a></p>
+
+<h3>winUiTooltipObject.wndproc</h3>
+
+<pre><code class="aardio language-aardio">winUiTooltipObject.wndproc = function(hwnd,message,wParam,lParam){  
+    /*窗口消息回调，返回任意非null值阻止默认回调  
+wndproc重复赋值时追加函数而不是覆盖之前的回调  
+设为null添除所有消息回调函数  
+wndproc也可以是一个表,键要为处理的消息,值为对应的消息回调函数*/     
+}
+</code></pre>
+
+<h3>自动完成常量</h3>
+
+<p>_TTF_ABSOLUTE=0x80<br>
+_TTF_CENTERTIP=2<br>
+_TTF_DI_SETITEM=0x8000<br>
+_TTF_IDISHWND=1<br>
+_TTF_PARSELINKS=0x1000<br>
+_TTF_RTLREADING=4<br>
+_TTF_TRACK=0x20<br>
+_TTF_TRANSPARENT=0x100<br>
+_TTN_FIRST=0xFFFFFDF8<br>
+_TTN_GETDISPINFO=0xFFFFFDF8<br>
+_TTN_LAST=0xFFFFFFCA<br>
+_TTN_LINKCLICK=0xFFFFFDF5<br>
+_TTN_NEEDTEXT=0xFFFFFDF8<br>
+_TTN_POP=0xFFFFFDF6<br>
+_TTN_SHOW=0xFFFFFDF7<br>
+_TTS_ALWAYSTIP=1<br>
+_TTS_BALLOON=0x40<br>
+_TTS_CLOSE=0x80<br>
+_TTS_NOANIMATE=0x10<br>
+_TTS_NOFADE=0x20<br>
+_TTS_NOPREFIX=2  </p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/ui/tooltip.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/ui/tooltip.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/tooltip.md">Markdown 格式</a></p>
+
+</body> 
+</html>

@@ -1,0 +1,140 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - fsys.ini 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - fsys.ini 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>fsys.ini 库模块帮助文档</h1>
+
+<p><a id="fsys"></a></p>
+
+<h2>fsys 成员列表</h2>
+
+<p><a id="fsys.ini"></a></p>
+
+<h3>fsys.ini</h3>
+
+<p>用于 ini 文件读写<br>
+fsys.ini 使用 UTF-8 编码读写 ini 文件，<br>
+但操作系统自动转换为 ANSI 编码存储。  </p>
+
+<p>如果不是为了兼容原来的 ANSI 程序，不必要使用 ini 文件格式。<br>
+web.json, fsys.config 这些格式使用的都是 UTF-8 编码，<br>
+使用也更方便。</p>
+
+<p><a id="fsys.ini"></a></p>
+
+<h3>fsys.ini(&quot;字符串参数&quot;)</h3>
+
+<p>打开 ini 文件对象</p>
+
+<p><a id="fsys.ini"></a></p>
+
+<h3>fsys.ini()</h3>
+
+<p><a href="#fsysiniObject">返回对象:fsysiniObject</a></p>
+
+<p><a id="fsysiniObject"></a></p>
+
+<h2>fsysiniObject 成员列表</h2>
+
+<p><a id="fsysiniObject.eachSection"></a></p>
+
+<h3>fsysiniObject.eachSection()</h3>
+
+<p><a href="#inisectionObject">返回对象:inisectionObject</a></p>
+
+<pre><code class="aardio language-aardio">for section in fsysiniObject.eachSection(/*可选用模式匹配搜索*/) { 
+    for(k,v in section){
+        /*k为键,为值,section为当前遍历到的小节*/
+    }
+}
+</code></pre>
+
+<p><a id="fsysiniObject.getSection"></a></p>
+
+<h3>fsysiniObject.getSection(&quot;字符串参数&quot;)</h3>
+
+<p>读取或添加小节对象,可直接读写成员</p>
+
+<p><a id="fsysiniObject.getSection"></a></p>
+
+<h3>fsysiniObject.getSection()</h3>
+
+<p><a href="#inisectionObject">返回对象:inisectionObject</a></p>
+
+<p><a id="fsysiniObject.getSectionNames"></a></p>
+
+<h3>fsysiniObject.getSectionNames()</h3>
+
+<p>获取所有小节名字,返回字符串数组.</p>
+
+<p><a id="fsysiniObject.read"></a></p>
+
+<h3>fsysiniObject.read(&quot;小节名&quot;,&quot;键名&quot;)</h3>
+
+<p>读取 ini 指字小节的指键键<br>
+可选使用参数 @3 指定默认值<br>
+成功返回读取的值,失败返回 null  </p>
+
+<p>如果指定键名成功应返回字符串值<br>
+不指定键名成功返回小节下所有键值组成的字符串数组<br>
+返回字符串、数组、null 时都可以使用#操作符取长度,null 的长度为0，<br>
+null,0 转换为逻辑值都等价于 false</p>
+
+<p><a id="fsysiniObject.readKeys"></a></p>
+
+<h3>fsysiniObject.readKeys(&quot;小节名&quot;)</h3>
+
+<p>返回指定小节中所有键名组成的字符串数组</p>
+
+<p><a id="fsysiniObject.readSectionNames"></a></p>
+
+<h3>fsysiniObject.readSectionNames()</h3>
+
+<p>返回小节名称组成的字符串数组</p>
+
+<p><a id="fsysiniObject.write"></a></p>
+
+<h3>fsysiniObject.write(&quot;小节名&quot;,&quot;键名&quot;,&quot;新值&quot;)</h3>
+
+<p>写 ini 文件<br>
+健名为 null 删除指定的小节<br>
+值为 null 删除指定的键名</p>
+
+<p><a id="inisectionObject"></a></p>
+
+<h2>inisectionObject 成员列表</h2>
+
+<p><a id="inisectionObject.?"></a></p>
+
+<h3>inisectionObject.?</h3>
+
+<p>可输入任意属性名,读写小节属性,<br>
+成功返回字符串值,失败返回null</p>
+
+<p><a id="inisectionObject.name"></a></p>
+
+<h3>inisectionObject.name()</h3>
+
+<p>返回小节名称</p>
+
+<p><a id="inisectionObject.save"></a></p>
+
+<h3>inisectionObject.save()</h3>
+
+<p>保存更改到ini文件</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/fsys/ini.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/fsys/ini.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/fsys/ini.md">Markdown 格式</a></p>
+
+</body> 
+</html>

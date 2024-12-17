@@ -1,0 +1,64 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - URL 解析'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - URL 解析</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: URL 解析</h1><pre><code class="aardio language-aardio">//URL 解析
+import inet.url;
+import inet.urlpart;
+import console;
+
+var str = &quot;
+需要传递特殊字符的场合,我们只要先将欲传递的内容先以UrlEncode 加以编码,
+就可以保证所传递过去的值可以顺利被读到,而UrlDecode 方法则是将编码过的内容译码...
+&quot;
+
+var str = inet.url.encode(str);
+console.log(&quot;Url Encode 编码&quot; )
+console.log( str );
+
+str  = inet.url.decode(str)
+console.log(&quot;Url Encode 解码&quot; )
+console.log( str );
+
+url = &quot;http://www.aardio.com/bbs/showtopic-7374.aspx#name?username=用户名&quot;
+
+turl = inet.url.split(url ); 
+console.log( &quot;inet.url.split()函数 拆分URL&quot; )
+console.log( &quot;协议&quot;,turl.scheme )
+console.log( &quot;主机&quot;,turl.host )
+console.log( &quot;路径&quot;,turl.path )
+console.log( &quot;参数&quot;,turl.extraInfo ) 
+console.log( &quot;完整URL&quot;,tostring(turl) ) 
+
+console.log() 
+console.log( &quot;url参数(不带问号)&quot;,inet.urlpart.getQuery(url) )
+
+console.log() 
+console.log(&quot;计算哈希值&quot;,inet.url.hashNum(url))
+
+console.log() 
+console.log(&quot;转换URL相对路径&quot;,inet.url.joinpath(url,&quot;../test.aspx&quot;))
+
+console.log() 
+console.log( &quot;mailto:web@aardio.com是OPAQUE URL吗&quot;
+    ,inet.url.is(&quot;mailto:web@aardio.com&quot;
+        ,0x1/*_URLIS_OPAQUE*/)
+)
+
+console.pause();
+
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Network/inet/url.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Network/inet/url.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Network/inet/url.md">Markdown 格式</a>
+</body> 
+</html>

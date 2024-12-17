@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - script 接口'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - script 接口</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: script 接口</h1><pre><code class="aardio language-aardio">//script 接口
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;script 接口&quot;;right=1014;bottom=523)
+winform.add()
+/*}}*/
+
+import web.sciter;
+web.sciter.script.gTest = &quot;为所有网页自定义默认 JavaScript 全局变量&quot;;
+
+//为所有网页添加初始化脚本
+web.sciter.preloadScript(`globalThis.test=1;`)
+
+//创建 Sciter 控件
+var sciter = web.sciter( winform );
+
+//为当前窗口添加 JavaScript 全局变量
+sciter.script.aardio = {
+    func = function(str){ 
+         return &quot;Hello, &quot;+str+&quot;!&quot;; 
+    }
+}
+
+sciter.html = /**
+&lt;body&gt; 
+&lt;button id=&quot;my-button&quot;&gt;JavaSript 调用 aardio 函数 aardio.func(&quot;Sciter&quot;) &lt;/button&gt; 
+&lt;br&gt; 请务必更新 web.sciter 扩展库到最新版本&lt;br&gt;
+&lt;span id=&quot;info&quot;&gt;&lt;/span&gt;
+&lt;script&gt;
+
+var button = document.getElementById(&quot;my-button&quot;);
+button.addEventListener(&#39;click&#39;, () =&gt; { 
+    button.insertAdjacentHTML(&quot;afterEnd&quot;,&quot;&lt;br&gt;&quot;+aardio.func(&quot;Sciter&quot;)) 
+})
+
+window.jsFunction = function(param) {  
+  document.getElementById(&quot;info&quot;).innerText = param;
+  return param;
+}
+&lt;/script&gt;
+&lt;/body&gt;
+**/
+
+//访问当前窗口 JavaScript 全局变量
+sciter.script.jsFunction(&quot;aardio 调用当前窗口 JavaScript 全局函数&quot;)
+
+winform.show(); 
+win.loopMessage();
+
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/WebUI/Sciter.JS/script.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/WebUI/Sciter.JS/script.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/WebUI/Sciter.JS/script.md">Markdown 格式</a>
+</body> 
+</html>

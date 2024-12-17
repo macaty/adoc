@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 函数扩展'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 函数扩展</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 函数扩展</h1><pre><code class="aardio language-aardio">//函数扩展
+
+import util;
+import console;
+
+//util.bind可用于修改函数的默认实参,并生成新的函数
+string.findMail = util.bind( string.match, ,&quot;\w+[\w\-\.]+\w@\w+[\w\-]*\w\.[\w\-\.]*\w{2,}&quot; )
+string.endWith = util.bind( string.endWith, , ,true)
+
+console.log( 
+    string.findMail(&quot;aaaaaaaaaa web@aardio.com &quot;),
+    string.endWith( &quot;a abc&quot;,&quot;ABC&quot; )
+)
+
+//===================================================
+var func = function(){
+    console.log(&quot;a&quot;) 
+}
+
+var proc = function(){
+    console.log(&quot;b&quot;) 
+}
+
+//在调用一个函数前触发钩子函数,钩子函数返回任意非空值可中止目标函数执行
+var func = util.before(,func,proc); 
+func()
+
+//===================================================
+var tab = {
+    name = &quot;名字&quot;;
+    func = function(){
+        console.log( owner[[&quot;name&quot;]] )
+    } 
+}
+
+var func = tab.func;
+func() //调用失败
+
+var func = util.hitch(tab,&quot;func&quot;);
+func() //owner对象不再受前缀影响
+
+console.pause()
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/aardio/Util/func.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/aardio/Util/func.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/aardio/Util/func.md">Markdown 格式</a>
+</body> 
+</html>

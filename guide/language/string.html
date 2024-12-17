@@ -1,0 +1,185 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - 理解字符串与 UTF-8 编码'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - 理解字符串与 UTF-8 编码</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>理解字符串与 UTF-8 编码</h1>
+
+<ol>
+<li><p>字节、字符串  </p>
+
+<p>计算机中以八个二进制位表示一个八位字节 - 这称为一个单字节字符。 </p>
+
+<p>一组连续的字节就构成一个字符串，在aardio中字符串是基于二进制的，可以包含任何数据（例如图像、文本、或者&#39;\0&#39;等不可打印字符）。</p>
+
+<pre><code class="aardio language-aardio">//下面的代码定义了一个字符串变量str  
+var str = &#39;abcd中文\0\0\t&#39;
+</code></pre>
+
+<p>上面的是一个最基础的字符串，注意上面的字符串放在单引号号，单引号中可以使用转义符，例如使用<code>&#39;\t&#39;</code>表示制表符，放在双引号中则不能使用转义符（所以双引号中只能包含可见的文本字符），关于怎么表示一个字符串的更多语法请参考aardio语法手册，这里不再详述。 </p></li>
+<li><p>字节码</p>
+
+<p>每个八位字节实际上存储在内存里就是一个数值 - 我们把这个值称之为字节码。</p>
+
+<p>在 aardio 中你可以把字符串理解为一个字节数组，例如 <code>str[1]</code> 读取字符串的第一个字节码（数值类型），而 <code>str[[1]]</code> 则返回一个字符（字符串类型）</p>
+
+<p>在aardio 是可以使用 #str 获取一个字符串包含的字节数（也就是字符串长度）。</p>
+
+<p>请运行下面的 aardio 代码：</p>
+
+<pre><code class="aardio language-aardio">import console;  
+console.log(&quot;ab的长度为2&quot; ,#&quot;ab&quot; ); //每个英文字符占一个字节  
+console.log(&quot;&#39;中文&#39;的长度为6&quot; ,#&quot;中文&quot; ); //UTF8是多字节变长编码，这里的两个汉字占用6字节  
+console.pause(true);
+</code></pre>
+
+<p>可以看到一个英文字符占1个字节，而一个汉字占用多个字节。</p></li>
+<li><p>文本字符串、二进制字符串  </p>
+
+<ol>
+<li>文本字符串<br>
+文本字符串只包含可正常打印、直接显示的字符，一般的单字节、多字节编码的字符串以<code>&#39;\0&#39;</code>表示字符串终止，而 UTF-16 编码的字符串以<code>&#39;\u0000&#39;</code>为终止符。很明显的，文本字符串不能在内容中包含终止符。<br></li>
+<li><p>二进制字符串<br>
+二进制字符串指的是可以包含任何字节码，当然也可以包含文本，文本也是二进制，但我们一般说的二进制字符串指的是他不仅仅可以包含文本，目的也不仅仅是用于直接打印显示。显然，二进制字符串可以在内容中包含<code>&#39;\0&#39;</code>,<code>&#39;\u0000&#39;</code>这些，不再是终止符。二进制字符串会自己记录自己的长度，而不是依赖终止符去获取长度。  </p>
+
+<p>aardio中的字符串是二进制字符串，记录自己的长度而不是依赖终止符取长度，例如在C语言中用 strlen(str) 取一个字符串的长度，就需要一个字节一个字节的往后找 - 直到遇到终止符<code>&#39;\0&#39;</code>，Unicdoe字符串也类似，所以把 aardio 的字符串传入C语言等实现的接口参数时，aardio还是会保证字符串尾部有终止符<code>&#39;\u0000&#39;</code> 以避免越界操作，这个保护性的终止符是隐藏的（ 在aardio字符串中看不到这个终止符，取字符串长度也不会包含终止符 ）。在 aardio 中用 <code>raw.buffer()</code> 分配内存缓冲区时，也会有类似的机制在尾部隐藏的放置一个保护性的终止符 <code>&#39;\u0000&#39;</code>（你在aardio代码中访问不到他，取长度也不会包含终止符）。 </p></li>
+</ol></li>
+<li><p>字符编码、字符集、ASCII编码</p>
+
+<p>请在 aardio 中运行下面的代码，查看控制台输出：</p>
+
+<pre><code class="aardio language-aardio">import console;
+var str = &quot;ab&quot;;  
+console.log(&quot;输出&#39;a&#39;的字节码97&quot;,str[1]);  
+console.log(&quot;输出字符&#39;b&#39;&quot;,str[[2]]);  
+
+console.pause(true);
+</code></pre>
+
+<p>实际上&quot;a&quot; 在内存中存储的值就是一个数值 97 ，而97转换的2进制为 <code>1100001</code>，</p>
+
+<p>可以看到一个字节码使用了8个二进制位来存储。实际上理论上来说你可以自己设计一套编码规则，例如你可以规定：</p>
+
+<ul>
+<li>1000001 表示&quot;a&quot;<br></li>
+<li>1000011 表示&quot;b&quot;</li>
+</ul>
+
+<p>ANSI已经制定了ASCII编码用于表示单字节字符集，常用的英文字符即是使用ASCII编码表示，例如上面的97( 2#1100001 ) 表示字母&quot;a&quot;就是ASCII规定的。大家可以自行网上搜索ASCII码表看一看了解一下，这里不再详述。  </p></li>
+<li><p>多字节字符集  </p>
+
+<p>用单个字节（8个二进制位）能表示的字符数量非常有限，这对英文世界不是问题，但对中、日、韩这样的文字就是问题了，所以各个有了各个国家不同的多字节编码方案，用多个字节来表示一个字符，例如中文里的GBK（GB2312）编码，繁体中文的BIG5编码，日文的Shift-JIS编码，多字节编码即 MBCS(Multi-Byte Chactacter System)，MBCS的常见实现是DBCS（Double-Byte Character Set） - 也就是双字节字符集，双字节字符集的基本编码规则如下：  </p>
+
+<ol>
+<li>小于等于0x80的字节码表示ASCII单字节字符,英文字母数字符号等，注意<code>&#39;\x80&#39;</code>是欧元符号(也就是最大的一个单字节码)，ASCII中小于32的是控制字符，至于这个32就是空格符了。<br></li>
+<li>大于0x80的字节表示他是一个双字节字符，他后面还跟了一个尾字节共同组成一个字符，常见的几种中日韩编码（代码页 936，950，932，949）尾字节不小于0x40，这个0x40就是&quot;@&quot;这个字符，所以理论上字节码小于&quot;@&quot;的一般做二进制的搜索拆分就比较安全。<br></li>
+</ol>
+
+<p>多字节编码的好处是比较节省存储空间，兼容一些二进制的字符串操作，但是有一个比较麻烦的是，例如你用一个单字节字符来分隔字符串，但是他找啊找找到某个双字节字符的尾字节，然后拆分什么的，出来的结果就乱套、乱码了（这个问题我们称之为“串码”），所以这种多字节处理起来就比较麻烦（你不能直接用处理二进制字符串的代码去处理文本，因为你得不停的分析某个字节是不是一个多字节字符的尾字节），另外各国使用的编码不一致，这就导致经常出现乱码等问题。  </p></li>
+<li><p>ANSI 代码页( Code Page )，Unicode编码。  </p>
+
+<p>各种语言使用的多字节字符集并不统一，ANSI 代码页就是用来告诉操作系统当前使用的是哪种语言的字符集，例如把系统代码页设为 936 就支持简体中文，而繁体 BIG5 编码的代码页就是 950。  </p>
+
+<p>因为不同的字符集并不统一，所以就有了 Unicode 统一编码这种东西，各种语言在这个 Unicode 里的编码都是统一的，这个 Unicode 的知识这里就不细讲了，网上太多。Unicode有多种不同的编码方案，常用的是 UTF-16 LE, UTF-8 , UTF-16 每个字符用两个字节表示，aardio 中一般没有特定说明，函数或文档中提到的 UTF-16 都是指 UTF-16 LE，另外还有一个UTF-16 BE，LE 是小端序，BE 是大端序，这两种编码的区别是字符串中两个字节的前后位置相反。  </p>
+
+<p>UTF-8 他的编码规则很像多字节字符集，是变长编码，而且他跟其他多字节字符集一样，可以方便地转换到其他代码页，例如在 aardio 中可以这样转换 UTF-8 编码：  </p>
+
+<pre><code class="aardio language-aardio">//把 UTF-8 编码转换为 GBK 编码  
+str = string.fromto(&#39;UTF-8 字符串&#39;,65001,936)
+</code></pre>
+
+<p>65001 就是 UTF-8 的代码页，936 是简体中文的代码页。因为各种代码页中的字符基本都能在Unicode 中找到位置，所以把一种编码转换到 Unicode( UTF-16  ) ，再从 Unicode( UTF-16  )  转换到其他编码，就实现了编码的相互转换。</p>
+
+<p>aardio 里实现这个功能的就是 string.fromto 函数， string.fromto() 函数就先调用 string.toUtf16() 将字符串的编码转换到 Unicode( UTF-16  )，然后再调用 string.fromUtf16() 将字符串从 Unicode( UTF-16  ) 转换到指定编码。 </p>
+
+<p>UTF-16 LE 的代码页是 1200，UTF-16 BE 的代码页是1201。string.fromto() 函数也可以支持这两个代码页，也就是说 string.fromto 的参数可以指定任意编码方案，包括 UTF-16 它自己。</p></li>
+<li><p>UTF-8 编码</p>
+
+<p>UTF-8 编码是变长编码，但它有一个好处是很像多字节编码，兼容单字节编码，类似英文 ASCII 字符这些仍然只要一个字节存储，而且这种单字节编码与 ASCII 兼容。</p>
+
+<p>UTF-8 的代码是变长的，其编码规则如下：</p>
+
+<pre><code class="aardio language-aardio">/*  
+* 0000 0000-0000 007F - 0xxxxxxx 单字节  
+* 0000 0080-0000 07FF - 110xxxxx 10xxxxxx 双字节  
+* 0000 0800-0000 FFFF - 1110xxxx 10xxxxxx 10xxxxxx 3字节  
+*/
+</code></pre>
+
+<p>Unicode 0080 ~ 07FF 范围的字符用 UTF-8 编码时需要 2 个字节，例如 <code>\u00CA (11001010)</code>转换为 UTF-8 过程如下：  </p>
+
+<ul>
+<li>将二进制 <code>11001010</code> 拆分为 <code>00011 001010</code>，位数不足在前面补 0。</li>
+<li>将后半部分 <code>001010</code> 填充到 <code>110xxxxx 10xxxxxx</code> 的第二个字节变成 <code>110xxxxx 10001010</code></li>
+<li>将前半部分 <code>00011</code> 填充到 <code>110xxxxx 10001010</code> 的第一个字节变成 <code>11000011 10001010</code>，不足在前面补 0。 </li>
+</ul>
+
+<p><img src="images/utf-8-2.gif" tppabs="https://www.aardio.com/zh-cn/doc/guide/language/images/utf-8-2.gif" alt="2 字节 UTF-8 编码图示"></p>
+
+<p>Unicode 0800 ~FFFF 范围的字符转换为 UTF-8 编码则需要 3 字节，例如<code>\uF03F (11110000 0011111)</code> 转换为 UTF-8 过程如下：  </p>
+
+<ul>
+<li>将二进制 <code>11110000 0011111</code> 拆分为 <code>1111 000000 111111</code>，位数不足在前面补 0。</li>
+<li>将最后部分 <code>111111</code> 填充到 <code>1110xxxx 10xxxxxx 10xxxxxx</code> 尾部字节变成 <code>1110xxxx 10xxxxxx 10111111</code></li>
+<li>将中间部分 <code>000000</code> 填充到  <code>1110xxxx 10xxxxxx 10111111</code>
+的倒数第 2 个字节变成 <code>1110xxxx 10000000 10111111</code>
+，不足在前面补 0。</li>
+<li><p>将最前部分的 <code>1111</code> 填充到 <code>1110xxxx 10000000 10111111</code> 的第一个字节变成  <code>11101111 10000000 10111111</code>。</p>
+
+<p><img src="images/utf-8-3.gif" tppabs="https://www.aardio.com/zh-cn/doc/guide/language/images/utf-8-3.gif" alt="3 字节 UTF-8 编码图示"></p></li>
+</ul>
+
+<p>UTF-8 编码中小于 0x80(最大0x7F) 的一定是单字节，多字节字符的第一个前导字节用前导二进制位说明自己有几个字节，其他附加字节的二进制位总是 10xxxxxx，所以比较容易用代码分析一段字符串是否 UTF-8 编码。aardio 中提供了 string.isUtf8(字符串) 函数用于检测字符串是否符合 UTF-8 编码规则。  </p>
+
+<p>UTF-8 中一个字符有多个字节时 - 每个字节一定不会小于 0x80，这带来一个好处：以处理二进制字符串的函数（例如模式匹配）操作ASCII字符不会出现 MBCS 编码那样的串码问题。但如果用支持MBCS编码的代码去处理UTF-8字符串会出问题，因为在UTF8中一个三字节的中文字符、加上一个单字节的英文字符，用支持MBCS编码的函数去处理，会被理解还两个双字节字符，结果就乱了, 下面我们用一段 aardo 代码演示一下这种乱码出现的过程:  </p>
+
+<pre><code class="aardio language-aardio">import console;/*  
+有一些用Unicode是没法表示的编码（无效码点），  
+Unicode规定用Replacement Character( \uFFFD ) 表示（显示为：� ）。  
+*/  
+var str = &#39;\uFFFD\uFFFD\uFFFD&#39;  
+
+//\uFFFD 在 UTF8 中会编码为 \xEF\xBF\xBD  
+console.log(&#39;\xEF\xBF\xBD&#39;==&#39;\uFFFD&#39;) //输出：true  
+
+/*  
+&#39;\xEF\xBF\xBD\xEF\xBF\xBD&#39; 按 GBK编码 2个字节一个字符就是 &quot;锟斤拷&quot;  
+因为 aardio 中的控制台兼容 ANSI 编码，所以可以这样写  
+*/  
+console.log(&#39;\xEF\xBF&#39;,&#39;\xBD\xEF&#39;,&#39;\xBF\xBD&#39;);//输出：锟  斤 拷  
+
+// aardio 代码中用字面值表示的字符串具有 Unicode 编码自我识别能力，并且自动设置合适的 UTF 标记。 
+console.log(&#39;\xEF\xBF\xBD\xEF\xBF\xBD\xEF\xBF\xBD&#39; ) //输出：��� ，这是合法的 UTF-8 编码。
+
+/*  
+下面这样也改变不了编码，  
+因为 aardio 字符串带 UTF 标记，能自动纠正错误的编码转换。  
+*/  
+var str  = string.fromto(&#39;\xEF\xBF\xBD\xEF\xBF\xBD\xEF\xBF\xBD&#39;,936,65001)  
+console.log(str==&#39;\xEF\xBF\xBD\xEF\xBF\xBD\xEF\xBF\xBD&#39;) //输出：true  
+
+/*  
+如果用 buffer 创建二进制字节数组，逃脱 aardio 的 UTF 标记检测，就可以重现这个 BUG 。  
+*/  
+var str  = string.fromto(raw.buffer(&#39;\xEF\xBF\xBD\xEF\xBF\xBD\xEF\xBF\xBD&#39;),936,65001)  
+console.log(str) //输出：锟斤拷锟?  
+
+console.log(&quot;ANSI 编码仅仅是历史包袱，已经没有存在的意义和使用价值。 &quot;)  
+console.pause(true);
+</code></pre></li>
+</ol>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/guide/language/string.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/guide/language/string.md'" tppabs="https://www.aardio.com/zh-cn/doc/guide/language/string.md">Markdown 格式</a></p>
+
+</body> 
+</html>

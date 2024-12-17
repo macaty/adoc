@@ -1,0 +1,139 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - aardio 反编译 PowerShell 之 Cmdlet'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - aardio 反编译 PowerShell 之 Cmdlet</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 反编译 PowerShell 之 Cmdlet</h1><pre><code class="aardio language-aardio">//aardio 反编译 PowerShell 之 Cmdlet
+import fonts.fontAwesome;
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;PowerShell Cmdlet 反编译工具&quot;;right=491;bottom=311;bgcolor=16777215;max=false)
+winform.add(
+btnDecompile={cls=&quot;plus&quot;;text=&quot;反编译&quot;;left=366;top=11;right=479;bottom=41;align=&quot;left&quot;;bgcolor=-5197169;font=LOGFONT(h=-13);iconStyle={align=&quot;left&quot;;font=LOGFONT(h=-13;name=&#39;FontAwesome&#39;);padding={left=20}};iconText=&#39;\uF121&#39;;notify=1;textPadding={left=39};z=2};
+cmdlets={cls=&quot;combobox&quot;;left=19;top=14;right=350;bottom=40;edge=1;items={};mode=&quot;dropdown&quot;;z=4};
+edit={cls=&quot;edit&quot;;left=15;top=72;right=480;bottom=300;autohscroll=false;edge=1;multiline=1;vscroll=1;z=1};
+plusTip={cls=&quot;plus&quot;;left=18;top=47;right=475;bottom=65;align=&quot;right&quot;;font=LOGFONT(name=&#39;FontAwesome&#39;);z=3}
+)
+/*}}*/
+
+winform.onOk = function(){
+    if(win.getFocus()!=winform.cmdlets.editBox.hwnd){
+        winform.cmdlets.setFocus();
+        return ; 
+    }
+    winform.btnDecompile.oncommand();
+}
+
+winform.cmdlets.onEditChange = function(){ 
+    if(winform.cmdlets.data){
+         var text = winform.cmdlets.text;
+         var items = table.filter( winform.cmdlets.data, lambda(v) string.startWith(v,text,true) ); 
+         if(!#items){
+            items = table.filter( winform.cmdlets.data, lambda(v) string.find(v,&quot;@@&quot;+text) ); 
+         }
+         winform.cmdlets.autoComplete(items,1) 
+    }
+}
+
+winform.btnDecompile.oncommand = function(id,event){
+    if(!#winform.cmdlets.text){
+        return winform.cmdlets.editBox.showErrorTip(&quot;请输入 PowerShell 命名名称&quot;);
+    }
+
+    winform.btnDecompile.disabledText = {&#39;\uF254&#39;;&#39;\uF251&#39;;&#39;\uF252&#39;;&#39;\uF253&#39;;&#39;\uF250&#39;;text=&#39;&#39;};
+    var result = thread.invokeAndWait(
+        function(winform){ 
+
+            import process.popen;
+            var prcs  = process.popen.ps(`(Get-Command `+winform.cmdlets.text+`).Dll`);
+            if(!prcs) return;
+
+            var result = prcs.read(-1);
+            if(#result){ 
+                result = string.trim(result);
+                winform.edit.text = result;
+
+                if(..string.endWith(result,&quot;.dll&quot;,true) &amp;&amp; io.exist(result)){
+                    import dotNet.ilSpy; 
+                    dotNet.ilSpy(result);
+                }
+                return result;
+            }
+        },winform
+    )
+
+    if(!#result){
+        winform.cmdlets.editBox.showErrorTip(&quot;反编译 PowerShell 命令 失败！&quot;);      
+    }
+
+    winform.btnDecompile.disabledText = null;
+}
+
+winform.plusTip.disabledText = {&#39;\uF254&#39;;&#39;\uF251&#39;;&#39;\uF252&#39;;&#39;\uF253&#39;;&#39;\uF250&#39;;text=&#39;正在获取所有 Cmdlet 并准备智能提示数据&#39;}
+thread.invoke( 
+    function(winform){
+            import process.popen;
+            var prcs  = process.popen.ps(`Get-Command -CommandType Cmdlet`);
+            if(!prcs) return;   
+
+            var result = prcs.read(-1);
+            if(!result) {
+                winform.plusTip.disabledText = null;
+                winform.edit.top = winform.edit.top - winform.plusTip.height;
+                winform.plusTip.close();
+                return;
+            }
+
+            var i = 0
+            var cmdlets = {}
+            for( item in string.lines(result,,&quot;\s+&quot;) ){
+
+                if(i&lt;3){ 
+                    i++;
+                    continue;
+                }
+
+                if(#item&lt;3 || item[1][1]==&#39;-&#39;#) continue; 
+                table.push(cmdlets,item[2]);
+            } 
+
+            winform.cmdlets.items = cmdlets;
+            winform.cmdlets.data = cmdlets;
+            winform.plusTip.disabledText = null;
+            winform.edit.top = winform.edit.top - winform.plusTip.height;
+            winform.plusTip.close();
+
+    },winform
+)
+
+winform.btnDecompile.skin({
+    background={
+        default=0x668FB2B0;
+        disabled=0xFFCCCCCC;
+        hover=0xFF928BB3
+    };
+    color={
+        default=0xFF000000;
+        disabled=0xFF6D6D6D
+    }
+})
+
+winform.cmdlets.editBox.setCueBannerText(&quot;请输入 PowerShell 命令&quot;);
+winform.cmdlets.editBox.disableInputMethod();
+
+winform.show();
+win.loopMessage();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/PowerShell/decompiler.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/PowerShell/decompiler.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Languages/PowerShell/decompiler.md">Markdown 格式</a>
+</body> 
+</html>

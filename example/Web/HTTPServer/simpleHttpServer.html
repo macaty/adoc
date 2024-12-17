@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 多线程服务器 / 控制台'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 多线程服务器 / 控制台</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 多线程服务器 / 控制台</h1><pre><code class="aardio language-aardio">//多线程服务器 / 控制台
+import console;
+import process;
+
+import wsock.tcp.simpleHttpServer;
+var server = wsock.tcp.simpleHttpServer(&quot;127.0.0.1&quot;,/*8081*/);
+
+console.log( server.getUrl() )
+process.execute( server.getUrl() );
+
+//如果不需要窗口界面，那也可以直接使用 wsock.tcp.simpleHttpServer
+server.run(
+    function(response,request,session){
+        if( io.exist( request.path,0) 
+            &amp;&amp; request.path!=&quot;/main.aardio&quot; ){
+            response.loadcode( request.path )
+        }
+        else{
+            loadcodex(`
+        &lt;!doctype html&gt;
+        &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body style=&quot;white-space:pre&quot;&gt;&lt;?
+            response.jsonPrettyPrint = true;//输出缩进格式化的JSON
+            response.write(request); 
+        ?&gt;&lt;/body&gt;
+        &lt;/html&gt;`)
+
+        } 
+    }
+)
+
+/*
+import web.rest.client; 
+var http = web.rest.client();
+http.setAuth( &quot;用户名&quot;, &quot;密码&quot; );
+http.get( &quot;http://ddns.oray.com/ph/update&quot;,{ hostname = &quot;****.xicp.net&quot; } );
+
+jQuery Ajax 跨域调用方法,可实现浏览器与本地应用交互
+$.ajax({
+    type: &quot;get&quot;, 
+    dataType: &quot;text&quot;,  
+    async:false,  
+    crossDomain: true, //应用CORS跨域机制,必须设置Access-Control-Allow-Origin头,不适合IE低版本
+    url:&quot;http://localhost:8081&quot;,   
+    success: function(msg){
+        alert( msg.message );
+    },
+    error: function (XMLHttpRequest, textStatus, errorThrown) { 
+        alert(errorThrown); //crossDomain: true,async:false, 才能捕获网络错误
+    } 
+
+} );
+*/
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Web/HTTPServer/simpleHttpServer.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Web/HTTPServer/simpleHttpServer.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Web/HTTPServer/simpleHttpServer.md">Markdown 格式</a>
+</body> 
+</html>

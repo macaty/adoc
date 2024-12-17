@@ -1,0 +1,72 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - JSON 扩展'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - JSON 扩展</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: JSON 扩展</h1><pre><code class="aardio language-aardio">//JSON 扩展
+import console;
+import web.script.json;
+
+//创建 JScript 解释器
+var vm = web.script(); 
+
+//添加脚本，多次写入此属性是添加脚本不是覆盖替换脚本
+vm.script = /*
+function test(data) { 
+    //return JSON.stringify(data); // 已自动引入 JSON3
+    return [data[1],data[2]]; 
+}
+
+var obj = {test:test}
+*/
+
+var aardioArray = {
+    {50,80};
+    {20,24}; 
+    {100,103};
+    {4,8};
+}
+
+/*
+通过 vm.json.test 调用 JS 函数，作用与调用 vm.script.test 类似，
+但 vm.json.test 会自动使用 JSON 转换参数与返回值，因此可以传输 JSON 支持的所有对象。
+*/
+var ret = vm.json.test( aardioArray );
+
+//如果JS 函数名包含 . 号这样写：
+var ret = vm.json[&quot;obj.test&quot;]( aardioArray );
+
+/*
+之所以不允许 vm.json.obj.test() 这种在 JS 函数名中直接包含点号的写法，
+是为了避免不必要的混淆，不能把 vm.json.obj 理解为 vm.script.obj 这样的 JS 对象。
+
+vm.json 本质是 vm.eval + JSON  的语法糖，调用、传参、取返回值都要随时明确这一点。
+例如你不能将 vm.json.xxx 作为 JS 对象传入 JS 函数。
+更不能在 vm.json.xxx() 参数中传入一个 JS 对象。
+*/
+
+//这个下标里可以写返回 JS 函数的 JS 表达式，这样就很灵活了，例如：
+var ret = vm.json[&quot;(function() { return obj.test; })()&quot;]( {50,80} );
+
+//使用 vm.json() 将 aardio 对象转换为 JS 对象。
+var jsArray = vm.script.obj.test( vm.json(aardioArray) )
+//上面的 vm.script.obj 是真正的 JS 对象，参数可以使用 JS 对象。
+
+//使用 vm.json() 将 JS 对象转换为 aardio 对象
+console.dump( vm.json(jsArray) );
+
+console.pause();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/JScript/json.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/JScript/json.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Languages/JScript/json.md">Markdown 格式</a>
+</body> 
+</html>

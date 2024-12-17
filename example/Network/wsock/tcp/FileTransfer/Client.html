@@ -1,0 +1,41 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio ç¼–ç¨‹è¯­è¨€èŒƒä¾‹ - å®¢æˆ·ç«¯'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio ç¼–ç¨‹è¯­è¨€èŒƒä¾‹ - å®¢æˆ·ç«¯</title> 
+<link rel="stylesheet" href="../../../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio ç¼–ç¨‹è¯­è¨€æ–‡æ¡£é¦–é¡µ"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio æ–‡æ¡£</span></a>
+<h1>aardio èŒƒä¾‹: å®¢æˆ·ç«¯</h1><pre><code class="aardio language-aardio">//å®¢æˆ·ç«¯
+import console;
+
+import wsock.tcp.client; 
+var socket = wsock.tcp.client()
+
+socket.connect(&quot;127.0.0.1&quot;,7510)
+console.log(&quot;è¿æ¥ç«¯å£æˆåŠŸ,æ­£åœ¨æ¥æ”¶æ–‡ä»¶!&quot;)
+
+var buffer = raw.buffer(0x1000);
+var file = io.file(&quot;/test.zip&quot;,&quot;w+b&quot;);//æ³¨æ„ io.file é»˜è®¤æ˜¯æ–‡æœ¬æ–¹å¼å†™å…¥çš„,bæŒ‡å®šäºŒè¿›åˆ¶æ¨¡å¼
+var size = math.size64();
+for(readSize,remainSize in socket.eachReadBuffer(buffer) ){  
+    io.stdout.write(&#39;\r&#39; +  size.add(readSize).format() )
+    file.writeBuffer(buffer,readSize);  
+}
+file.close();
+
+console.log(&#39;\n&#39; + &quot;å®¢æˆ·ç«¯æ¥æ”¶æ–‡ä»¶å®Œæˆ&quot;);
+socket.close();
+
+console.pause()
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Network/wsock/tcp/FileTransfer/Client.md  \n\n¸ÃÎÄ¼şÎŞ·¨ÓÃ Teleport Ultra ÏÂÔØ, ÒòÎª ·şÎñÆ÷±¨¸æ·ÃÎÊµÄÎÄ¼şÊÇÒş²ØµÄ¡£  \n\nÄãÏëÔÚ·şÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='https://www.aardio.com/zh-cn/doc/example/Network/wsock/tcp/FileTransfer/Client.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Network/wsock/tcp/FileTransfer/Client.md">Markdown æ ¼å¼</a>
+</body> 
+</html>

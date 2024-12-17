@@ -1,0 +1,106 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 编译 DLL'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 编译 DLL</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 编译 DLL</h1><pre><code class="aardio language-aardio">//编译 DLL
+import process.gfortran;
+
+//创建 gfortran 编译环境，参数指定工作目录，单个斜杠或反斜杆表示应用程序根目录（工程目录、或工程外独立启动文件所在目录，发布后为 EXE 目录）
+var fortran = process.gfortran(&quot;/&quot;);
+
+/*
+在工作目录下保存为同名源码文件，
+也可以写为 fortran[&quot;main.f95&quot;] 显式指定后缀名（可使用 f90,f95,f03 等后缀名）。
+
+Fortran 忽略大小写
+Fortran 参数默认是传址的（传指针）
+Fortran 快速入门: https://learnxinyminutes.com/docs/zh-cn/fortran95-cn/
+*/
+fortran.main = /* 
+module test
+!引入支持C语言类型的模块，不能写在 DLLEXPORT 后面  https://gcc.gnu.org/onlinedocs/gfortran/ISO_005fC_005fBINDING.html
+use iso_c_binding  !Fortran 2003 特性
+
+type, bind(c) :: POINT
+  integer(c_int) :: x
+  integer(c_int) :: y
+end type POINT
+
+CONTAINS 
+
+integer function Add (a,b)  
+    !声明为 DLL 导出函数，关键是下面这句，调用约定建议用 CDECL，最后面的函数名要一致
+    !GCC$ ATTRIBUTES CDECL,DLLEXPORT ::Add 
+
+    !Fortran 默认是传址的，所以 integer 实际上是相当于C语言的 int 指针。
+    integer  :: a   
+    integer :: b 
+    Add = a + b
+END  function 
+
+integer(c_int) function AddByVal(i,j,d) 
+    !GCC$ ATTRIBUTES CDECL,DLLEXPORT ::AddByVal  !声明为 DLL 导出函数 
+
+    !声明为 C语言 int 类型，VALUE 的意思是传值
+    integer(c_int), VALUE :: i
+    integer(c_int), VALUE :: j 
+    real(c_double), VALUE :: d
+    AddByVal = i + j 
+end  function
+
+integer(c_int) function AddByPoint(pt) 
+    !GCC$ ATTRIBUTES CDECL,DLLEXPORT ::AddByPoint    
+    type(POINT) :: pt  
+
+    ! Fortran 里用 % 号访问成员（类似 aardio 里的 . 符号）
+    AddByPoint = pt%x + pt%y 
+end  function
+
+integer(c_int) function hello(str,len) 
+    !GCC$ ATTRIBUTES CDECL,DLLEXPORT ::hello    
+    CHARACTER*(*) :: str
+    integer(c_int), VALUE ::  len
+
+    !重新绑定控制台
+    close (unit=6)
+    open(unit=6,file=&#39;CONOUT$&#39;)
+
+    !输出字符串
+    print &quot;(a)&quot;,str(1:len)
+    hello = len
+end  function 
+
+integer function TestArray(arr,len)
+    !GCC$ ATTRIBUTES CDECL,DLLEXPORT ::TestArray   
+    integer(c_int), VALUE :: len
+    integer i, arr(len)
+    integer total
+
+    total = 0
+    do i = 1,len
+        total = total + arr(i)
+    end do
+
+    arr(1) = 123
+    TestArray = total
+end  function  
+
+end module test  
+*/
+
+fortran.buildShared(&quot;-o fortran.dll main.f95&quot;);
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/Fortran/buildShared.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/Fortran/buildShared.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Languages/Fortran/buildShared.md">Markdown 格式</a>
+</body> 
+</html>

@@ -1,0 +1,131 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - aardio 创建多窗口程序'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - aardio 创建多窗口程序</title> 
+<link rel="stylesheet" href="../../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 创建多窗口程序</h1>
+
+<p>参考： <a href="create-winform.html" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/std/win/ui/create-winform.html">使用 win.form 创建窗口</a></p>
+
+<h2>一. 加载并管理多个独立显示的下属窗口( owned window )</h2>
+
+<h3>1. 创建窗口工程</h3>
+
+<p>点选『 aardio 主菜单 / 新建工程 / 窗口程序 / 窗白程序』，点击『创建工程』按钮。  </p>
+
+<h3>2. 添加多个窗口</h3>
+
+<p>鼠标右键点击『工程资源目录』，在弹出右键菜单点击『 新建文件 / 新建窗体设计器』，新建一个或多个子窗口，例如增加子窗体文件 frmChild.aardio 。  </p>
+
+<h3>3. 在主窗口上添加按钮与响应事件的回调函数</h3>
+
+<p>切换到主窗口 main.aardio ，在上面拖放一个按钮 。</p>
+
+<p>双击新增的按钮，自动切换到代码视图 。 </p>
+
+<p>aardio 自动添加了响应按钮事件的回调函数：  </p>
+
+<pre><code class="aardio language-aardio">mainForm.button.oncommand = function(id,event){  
+    //用户点击按钮将会执行这里的代码
+}
+</code></pre>
+
+<h3>4. 加载其他独立窗口</h3>
+
+<p>从工程管理器中拖动 frmChild.aardio 到 main.aardio 的按钮事件内部，  </p>
+
+<p>aardio 生成代码如下：  </p>
+
+<pre><code class="aardio language-aardio">mainForm.button.oncommand = function(id,event){  
+    var frmChild = mainForm.loadForm(&quot;\res\frmChild.aardio&quot;);  
+    frmChild.show();  
+}
+</code></pre>
+
+<p>frmChild.show() 显示一个非模态的下属窗口( owned window )，改为 frmChild.doModal() 则显示模态对话框，模态对话框在关闭前不能操作所有者窗口（owner window）。 </p>
+
+<h2>二. 在子窗口中嵌入外部子窗口</h2>
+
+<p>使用自定义控件就可以在窗口上任何指定的部位嵌入其他外部子窗口，子窗口显示在父窗口的客户区，如同普通的控件窗口。</p>
+
+<p>步骤如下：</p>
+
+<ol>
+<li><p>在 aardio 工程里找到其他新建的窗体代码文件。
+右键点击该文件，复制文件路径，例如 <code>/.res/frmChild1.aardio</code></p></li>
+<li><p>拖一个 custom 控件到风窗口上，
+点击该控件，在控件属性窗口修改控件类名为 <code>/.res/frmChild1.aardio</code></p></li>
+</ol>
+
+<p>示例：</p>
+
+<pre><code class="aardio language-aardio">import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;加载子窗口文件&quot;;)
+winform.add(
+custom={cls=&quot;~\example\Windows\Custom\.res\frmChild1.aardio&quot;;left=19;top=15;right=740;bottom=455;db=1;dl=1;dr=1;dt=1;z=1}
+)
+/*}}*/
+
+winform.show();
+win.loopMessage();
+</code></pre>
+
+<p>上面的示例加载了 aardio 自带范例中的窗口文件，<a href="../../../builtin/io/path.html#app-path" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/builtin/io/path.html#app-path">文件路径开始的 <code>~</code> 在开发环境中表示  aardio.exe 所在目录</a>。</p>
+
+<p>参考：<a href="ctrl/custom.html#cls-path" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/std/win/ui/ctrl/custom.html#cls-path">custom 控件</a></p>
+
+<h2>三. 使用选项卡管理多个子窗口</h2>
+
+<p>aardio 有两种不同的选项卡：</p>
+
+<ol>
+<li>简单选项卡控件（ win.ui.ctrl.tab ）。用法请参考: <a href="ctrl/tab.html" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/std/win/ui/ctrl/tab.html">简单选项卡使用指南</a></li>
+<li>高级选项卡（ win.ui.tabs  ）。高级选项卡并不是一个控件，而是用于管理 plus 控件实现选项卡效果的管理组件。用法请参考: <a href="tabs/_.html" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/std/win/ui/tabs/_.html">高级选项卡使用指南</a></li>
+</ol>
+
+<p>下面介绍一下 win.ui.ctrl.tab 的用法。</p>
+
+<ol>
+<li>我们首先打开窗体设计器，在界面控件工具箱拖一个 tab 选项卡控件到界面上。</li>
+<li>切换到代码视图，从工程管理器内拖动子窗口到当前主窗口的代码中生成类似 <code>mainForm.loadForm(&quot;\res\frmChild.aardio&quot;)</code> 的默认代码，我们仅仅需要将 <code>mainForm.loadForm()</code> 改为 <code>mainForm.tab.loadForm()</code>就可以了。</li>
+</ol>
+
+<p>通过 tab 选项卡加载多个子窗口的 aardio 示例代码：  </p>
+
+<pre><code class="aardio language-aardio">import win.ui;  
+
+//创建主窗口
+mainForm = win.form(text=&quot;多窗口示例工程&quot;;right=757;bottom=467)  
+
+//添加简单选项卡控件（ classic tab control  ）
+mainForm.add(  
+tab={cls=&quot;tab&quot;;left=22;top=11;right=725;bottom=436;edge=1;z=1}  
+)  
+
+//加载子窗口到选项卡
+var frmChild = mainForm.tab.loadForm(&quot;\res\frmChild.aardio&quot;);    
+
+//加载更多子窗口到选项卡
+var frmChild2 = mainForm.tab.loadForm(&quot;\res\frmChild2.aardio&quot;);    
+
+mainForm.show();  
+win.loopMessage();
+</code></pre>
+
+<p>如果希望界面更漂亮一些，可以使用高级选项卡，参考<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/tabs/QuickStart.html  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/tabs/QuickStart.html'" tppabs="https://www.aardio.com/zh-cn/doc/example/tabs/QuickStart.html">高级选项卡范例</a>。  </p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-guide/std/win/ui/multi-window.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-guide/std/win/ui/multi-window.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/std/win/ui/multi-window.md">Markdown 格式</a></p>
+
+</body> 
+</html>

@@ -1,0 +1,313 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - win.util.changeNotification 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - win.util.changeNotification 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>win.util.changeNotification 库模块帮助文档</h1>
+
+<p><a id="win.util"></a></p>
+
+<h2>win.util 成员列表</h2>
+
+<p><a id="win.util.changeNotification"></a></p>
+
+<h3>win.util.changeNotification</h3>
+
+<p>监听用户对资源管理器的操作</p>
+
+<p><a id="win.util.changeNotification"></a></p>
+
+<h3>win.util.changeNotification()</h3>
+
+<p><a href="#wuChangeNotificationObject">返回对象:wuChangeNotificationObject</a></p>
+
+<p><a id="win.util.changeNotification"></a></p>
+
+<h3>win.util.changeNotification(窗口对象)</h3>
+
+<p>注册文件监听窗口\监听用户对资源管理器的操作,<br>
+省略参数则创建 message only window</p>
+
+<p><a id="wuChangeNotificationObject"></a></p>
+
+<h2>wuChangeNotificationObject 成员列表</h2>
+
+<p><a id="wuChangeNotificationObject._form"></a></p>
+
+<h3>wuChangeNotificationObject._form</h3>
+
+<p><a href="../ui/_.html#winform" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/_.html#winform">返回对象:winform</a></p>
+
+<p><a id="wuChangeNotificationObject.clear"></a></p>
+
+<h3>wuChangeNotificationObject.clear()</h3>
+
+<p>清空所有监视路径并停止监视目录，返回对象自身  </p>
+
+<p><a href="#wuChangeNotificationObject">返回对象:wuChangeNotificationObject</a></p>
+
+<p><a id="wuChangeNotificationObject.deregister"></a></p>
+
+<h3>wuChangeNotificationObject.deregister()</h3>
+
+<p>注销并关闭文件监听</p>
+
+<p><a id="wuChangeNotificationObject.onAssocChanged"></a></p>
+
+<h3>wuChangeNotificationObject.onAssocChanged</h3>
+
+<pre><code class="aardio language-aardio">wuChangeNotificationObject.onAssocChanged = function(srcPath,dstPath){  
+    _/*文件关联被改变了*/  
+}
+</code></pre>
+
+<p><a id="wuChangeNotificationObject.onAttributes"></a></p>
+
+<h3>wuChangeNotificationObject.onAttributes</h3>
+
+<pre><code class="aardio language-aardio">wuChangeNotificationObject.onAttributes = function(srcPath,dstPath){  
+    /*文件属性被改变*/  
+}
+</code></pre>
+
+<p><a id="wuChangeNotificationObject.onCreate"></a></p>
+
+<h3>wuChangeNotificationObject.onCreate</h3>
+
+<pre><code class="aardio language-aardio">wuChangeNotificationObject.onCreate = function(srcPath,dstPath){  
+    /*文件夹的外壳成员创建了*/  
+}
+</code></pre>
+
+<p><a id="wuChangeNotificationObject.onDelete"></a></p>
+
+<h3>wuChangeNotificationObject.onDelete</h3>
+
+<pre><code class="aardio language-aardio">wuChangeNotificationObject.onDelete = function(srcPath,dstPath){  
+    /*非文件夹的外壳成员删除了*/  
+}
+</code></pre>
+
+<p><a id="wuChangeNotificationObject.onDriveAdd"></a></p>
+
+<h3>wuChangeNotificationObject.onDriveAdd</h3>
+
+<pre><code class="aardio language-aardio">wuChangeNotificationObject.onDriveAdd = function(srcPath,dstPath){  
+    /*添加了驱动器*/  
+}
+</code></pre>
+
+<p><a id="wuChangeNotificationObject.onDriveAddGui"></a></p>
+
+<h3>wuChangeNotificationObject.onDriveAddGui</h3>
+
+<pre><code class="aardio language-aardio">wuChangeNotificationObject.onDriveAddGui = function(srcPath,dstPath){  
+    /*通过外壳添加的驱动器*/  
+}
+</code></pre>
+
+<p><a id="wuChangeNotificationObject.onDriveRemoved"></a></p>
+
+<h3>wuChangeNotificationObject.onDriveRemoved</h3>
+
+<pre><code class="aardio language-aardio">wuChangeNotificationObject.onDriveRemoved = function(srcPath,dstPath){  
+    /*驱动器被删除了*/  
+}
+</code></pre>
+
+<p><a id="wuChangeNotificationObject.onFreeSpace"></a></p>
+
+<h3>wuChangeNotificationObject.onFreeSpace</h3>
+
+<pre><code class="aardio language-aardio">wuChangeNotificationObject.onFreeSpace = function(srcPath,dstPath){  
+    /*驱动器剩余空间数变化*/  
+}
+</code></pre>
+
+<p><a id="wuChangeNotificationObject.onMakeDir"></a></p>
+
+<h3>wuChangeNotificationObject.onMakeDir</h3>
+
+<pre><code class="aardio language-aardio">wuChangeNotificationObject.onMakeDir = function(srcPath,dstPath){  
+    /*目录被创建*/  
+}
+</code></pre>
+
+<p><a id="wuChangeNotificationObject.onMediaInserted"></a></p>
+
+<h3>wuChangeNotificationObject.onMediaInserted</h3>
+
+<pre><code class="aardio language-aardio">wuChangeNotificationObject.onMediaInserted = function(srcPath,dstPath){  
+    /*存储介质被插入*/  
+}
+</code></pre>
+
+<p><a id="wuChangeNotificationObject.onMediaRemoved"></a></p>
+
+<h3>wuChangeNotificationObject.onMediaRemoved</h3>
+
+<pre><code class="aardio language-aardio">wuChangeNotificationObject.onMediaRemoved = function(srcPath,dstPath){  
+    /*存储介质被删除*/  
+}
+</code></pre>
+
+<p><a id="wuChangeNotificationObject.onNetShare"></a></p>
+
+<h3>wuChangeNotificationObject.onNetShare</h3>
+
+<pre><code class="aardio language-aardio">wuChangeNotificationObject.onNetShare = function(srcPath,dstPath){  
+    /*本地的目录被共享*/  
+}
+</code></pre>
+
+<p><a id="wuChangeNotificationObject.onNetUnShare"></a></p>
+
+<h3>wuChangeNotificationObject.onNetUnShare</h3>
+
+<pre><code class="aardio language-aardio">wuChangeNotificationObject.onNetShare = function(srcPath,dstPath){  
+    /*本地的目录取消共享*/  
+}
+</code></pre>
+
+<p><a id="wuChangeNotificationObject.onRemoveDir"></a></p>
+
+<h3>wuChangeNotificationObject.onRemoveDir</h3>
+
+<pre><code class="aardio language-aardio">wuChangeNotificationObject.onRemoveDir = function(srcPath,dstPath){  
+    /*文件夹中的内容被改变*/  
+}
+</code></pre>
+
+<p><a id="wuChangeNotificationObject.onRenameFolder"></a></p>
+
+<h3>wuChangeNotificationObject.onRenameFolder</h3>
+
+<pre><code class="aardio language-aardio">wuChangeNotificationObject.onRenameFolder = function(srcPath,dstPath){  
+    /*文件夹名称被改变*/  
+}
+</code></pre>
+
+<p><a id="wuChangeNotificationObject.onRenameItem"></a></p>
+
+<h3>wuChangeNotificationObject.onRenameItem</h3>
+
+<pre><code class="aardio language-aardio">wuChangeNotificationObject.onRenameItem = function(srcPath,dstPath){  
+    /*非文件外壳对象名称被改变*/  
+}
+</code></pre>
+
+<p><a id="wuChangeNotificationObject.onSeverDisconnect"></a></p>
+
+<h3>wuChangeNotificationObject.onSeverDisconnect</h3>
+
+<pre><code class="aardio language-aardio">wuChangeNotificationObject.onSeverDisconnect = function(srcPath,dstPath){  
+    /*计算机被服务器断开*/  
+}
+</code></pre>
+
+<p><a id="wuChangeNotificationObject.onUpdateDir"></a></p>
+
+<h3>wuChangeNotificationObject.onUpdateDir</h3>
+
+<pre><code class="aardio language-aardio">wuChangeNotificationObject.onUpdateDir = function(srcPath,dstPath){  
+    /*文件夹中的内容被改变  
+此目录下的较多文件变更可能被合并为此事件*/  
+}
+</code></pre>
+
+<p><a id="wuChangeNotificationObject.onUpdateImage"></a></p>
+
+<h3>wuChangeNotificationObject.onUpdateImage</h3>
+
+<pre><code class="aardio language-aardio">wuChangeNotificationObject.onUpdateImage = function(srcPath,dstPath){  
+    /*系统图像列表中的图像被改变*/  
+}
+</code></pre>
+
+<p><a id="wuChangeNotificationObject.onUpdateItem"></a></p>
+
+<h3>wuChangeNotificationObject.onUpdateItem</h3>
+
+<pre><code class="aardio language-aardio">wuChangeNotificationObject.onUpdateItem = function(srcPath,dstPath){  
+    /*非文件夹外壳对象的名称被改变*/  
+}
+</code></pre>
+
+<p><a id="wuChangeNotificationObject.register"></a></p>
+
+<h3>wuChangeNotificationObject.register(自定义消息,选项)</h3>
+
+<p>注册并启用文件监视功能,<br>
+所有参数都可以省略,默认使用  _WM_USERDEF_FILECHANGED 消息<br>
+调用此函数以前,必须指定所有需要启用的事件回调函数</p>
+
+<p><a id="wuChangeNotificationObject.watch"></a></p>
+
+<h3>wuChangeNotificationObject.watch()</h3>
+
+<p><a href="#wuChangeNotificationObject">返回对象:wuChangeNotificationObject</a></p>
+
+<p><a id="wuChangeNotificationObject.watch"></a></p>
+
+<h3>wuChangeNotificationObject.watch(监视路径,是否监视子目录)</h3>
+
+<p>添加监视路径,路径可以使用_CSIDL_开头的常量表示<br>
+参数2为可选参数,返回对象自身</p>
+
+<h3>自动完成常量</h3>
+
+<p>_SHCNEE_MSI_CHANGE=4<br>
+_SHCNEE_MSI_UNINSTALL=5<br>
+_SHCNEE_ORDERCHANGED=2<br>
+_SHCNE_ALLEVENTS=0x7FFFFFFF<br>
+_SHCNE_ASSOCCHANGED=0x8000000<br>
+_SHCNE_ATTRIBUTES=0x800<br>
+_SHCNE_CREATE=2<br>
+_SHCNE_DELETE=4<br>
+_SHCNE_DISKEVENTS=0x2381F<br>
+_SHCNE_DRIVEADD=0x100<br>
+_SHCNE_DRIVEADDGUI=0x10000<br>
+_SHCNE_DRIVEREMOVED=0x80<br>
+_SHCNE_FREESPACE=0x40000<br>
+_SHCNE_GLOBALEVENTS=0xC0581E0<br>
+_SHCNE_INTERRUPT=0x80000000<br>
+_SHCNE_MEDIAINSERTED=0x20<br>
+_SHCNE_MEDIAREMOVED=0x40<br>
+_SHCNE_MKDIR=8<br>
+_SHCNE_NETSHARE=0x200<br>
+_SHCNE_NETUNSHARE=0x400<br>
+_SHCNE_RENAMEFOLDER=0x20000<br>
+_SHCNE_RENAMEITEM=1<br>
+_SHCNE_RMDIR=0x10<br>
+_SHCNE_SERVERDISCONNECT=0x4000<br>
+_SHCNE_UPDATEDIR=0x1000<br>
+_SHCNE_UPDATEIMAGE=0x8000<br>
+_SHCNE_UPDATEITEM=0x2000<br>
+_SHCNF_DWORD=3<br>
+_SHCNF_FLUSH=0x1000<br>
+_SHCNF_FLUSHNOWAIT=0x3000<br>
+_SHCNF_IDLIST=0<br>
+_SHCNF_NOTIFYRECURSIVE=0x10000<br>
+_SHCNF_PRINTER=2<br>
+_SHCNF_TYPE=0xFF<br>
+_SHCNF_srcPath=5<br>
+_SHCNRF_InterruptLevel=1<br>
+_SHCNRF_NewDelivery=0x8000<br>
+_SHCNRF_RecursiveInterrupt=0x1000<br>
+_SHCNRF_ShellLevel=2<br>
+_WM_USERDEF_FILECHANGED=0x8F00  </p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/util/changeNotification.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/util/changeNotification.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/util/changeNotification.md">Markdown 格式</a></p>
+
+</body> 
+</html>

@@ -1,0 +1,110 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 错误调试/提问必读'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 错误调试/提问必读</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 错误调试/提问必读</h1><pre><code class="aardio language-aardio">//错误调试/提问必读
+
+/*
+Python 常见问题解答、提问前必读
+https://api.aardio.com/cdn/python/faq/
+*/
+
+import console.int;
+import py3;
+
+/*
+一般执行 Python 代码出错会报错，直接显示错误信息。
+但有些地方是返回 null （因为可能需要用这些函数 null 值做检测而不是报错）。
+*/
+py3.import(&quot;不存在的模块&quot;);//例如这个函数出错就返回 nul 
+
+//可以用 py3.lasterr() 查看错误信息
+console.log(py3.lasterr());
+
+//打开控制台查看 Python 输出的错误信息
+console.open();
+
+// Python 用 sys.excepthook 自定义异常处理，类似 aardio 的 global.onError
+py3.exec(`
+import sys
+import traceback
+
+def handle_exception(exc_type, exc_value, exc_traceback):
+    if issubclass(exc_type, KeyboardInterrupt):
+        sys.__excepthook__(exc_type, exc_value, exc_traceback)
+        return
+    print(&quot;Uncaught exception&quot;, exc_type, exc_value)
+    traceback.print_exception(exc_type, exc_value, exc_traceback)
+
+sys.excepthook = handle_exception
+
+# 这将触发未捕获的异常
+x = 1 / 0
+`)
+console.more(1)
+
+// Python 用 try 捕获错误，用 traceback 打印错误堆栈（ aardio 代码有个类似的 debug 库）
+py3.exec(`
+import traceback
+
+try:
+    # 可能会引发异常的代码
+    x = 1 / 0
+except Exception as e:
+    print(f&quot;An error occurred: {e}&quot;)
+    traceback.print_exc()
+`)
+console.more(1)
+
+//或者用 logging 模块
+py3.exec(`
+import logging
+import traceback
+
+logging.basicConfig(level=logging.ERROR)
+
+try:
+    # 可能会引发异常的代码
+    x = 1 / 0
+except Exception as e:
+    logging.error(&quot;An error occurred&quot;, exc_info=True)
+`)
+console.more(1)
+
+/*
+或者用 contextmanager 模块。
+with 语句封装 try ... except ... finall （与 aardio 里的 with 完全不是一回事）
+而 contextmanager 用于配合 with 语句管理上下文。
+*/
+py3.exec(`
+from contextlib import contextmanager
+import traceback
+
+@contextmanager
+def handling_exceptions():
+    try:
+        yield
+    except Exception as e:
+        print(f&quot;An error occurred: {e}&quot;)
+        traceback.print_exc()
+
+with handling_exceptions():
+    # 可能会引发异常的代码
+    x = 1 / 0
+`) 
+
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/Python/README.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/Python/README.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Languages/Python/README.md">Markdown 格式</a>
+</body> 
+</html>

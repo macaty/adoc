@@ -1,0 +1,268 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - web.layout.valueObject 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - web.layout.valueObject 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>web.layout.valueObject 库模块帮助文档</h1>
+
+<p><a id="web.layout"></a></p>
+
+<h2>web.layout 成员列表</h2>
+
+<p><a id="web.layout.valueObject"></a></p>
+
+<h3>web.layout.valueObject()</h3>
+
+<p><a href="#webLayoutValueObject">返回对象:webLayoutValueObject</a></p>
+
+<p><a id="web.layout.valueObject"></a></p>
+
+<h3>web.layout.valueObject(初始值,单位,类型)</h3>
+
+<p>创建并返回动态值类型,<br>
+所有参数可选</p>
+
+<p><a id="web.layout.valueObjectLite"></a></p>
+
+<h3>web.layout.valueObjectLite()</h3>
+
+<p>无GC值对象,避免自动释放,  </p>
+
+<p><a href="#webLayoutValueObject">返回对象:webLayoutValueObject</a></p>
+
+<p><a id="webLayoutValueObject"></a></p>
+
+<h2>webLayoutValueObject 成员列表</h2>
+
+<p><a id="webLayoutValueObject.addRef"></a></p>
+
+<h3>webLayoutValueObject.addRef()</h3>
+
+<p>添加引用计数</p>
+
+<p><a id="webLayoutValueObject.clear"></a></p>
+
+<h3>webLayoutValueObject.clear()</h3>
+
+<p>清空值</p>
+
+<p><a id="webLayoutValueObject.clone"></a></p>
+
+<h3>webLayoutValueObject.clone()</h3>
+
+<p>复制值  </p>
+
+<p><a href="#webLayoutValueObject">返回对象:webLayoutValueObject</a></p>
+
+<p><a id="webLayoutValueObject.enum"></a></p>
+
+<h3>webLayoutValueObject.enum(枚举函数)</h3>
+
+<pre><code class="aardio language-aardio">webLayoutValueObject.enum(   
+    function(k,v ){  
+        io.print( k,v )   
+    }  
+)
+</code></pre>
+
+<p><a id="webLayoutValueObject.getBinary"></a></p>
+
+<h3>webLayoutValueObject.getBinary()</h3>
+
+<p>返回 buffer 类型字节数组<br>
+零长度数组返回 null</p>
+
+<p><a id="webLayoutValueObject.getEle"></a></p>
+
+<h3>webLayoutValueObject.getEle()</h3>
+
+<p>返回节点对象,<br>
+注意:节点类型只能读取不能写入</p>
+
+<p><a id="webLayoutValueObject.getInt32"></a></p>
+
+<h3>webLayoutValueObject.getInt32()</h3>
+
+<p>返回整型数值<br>
+如果值类型不是整型值,取值返回空</p>
+
+<p><a id="webLayoutValueObject.getItem"></a></p>
+
+<h3>webLayoutValueObject.getItem()</h3>
+
+<p><a href="#webLayoutValueObject">返回对象:webLayoutValueObject</a></p>
+
+<p><a id="webLayoutValueObject.getItem"></a></p>
+
+<h3>webLayoutValueObject.getItem(索引)</h3>
+
+<p>获取成员</p>
+
+<p><a id="webLayoutValueObject.getLong64"></a></p>
+
+<h3>webLayoutValueObject.getLong64()</h3>
+
+<p>返回长整型数值<br>
+如果值类型不是长整型数值,取值返回空</p>
+
+<p><a id="webLayoutValueObject.getNumber"></a></p>
+
+<h3>webLayoutValueObject.getNumber()</h3>
+
+<p>返回浮点数值<br>
+如果值类型不是浮点数,取值返回空<br>
+使用 tonumber() 函数可强制返回数值</p>
+
+<p><a id="webLayoutValueObject.getString"></a></p>
+
+<h3>webLayoutValueObject.getString()</h3>
+
+<p>返回字符串值<br>
+如果值类型字符串值,取值返回空<br>
+使用 tostring() 函数可强制返回数值</p>
+
+<p><a id="webLayoutValueObject.getTime"></a></p>
+
+<h3>webLayoutValueObject.getTime()</h3>
+
+<p>返回时间值<br>
+如果值类型不是时间值,取值返回空</p>
+
+<p><a id="webLayoutValueObject.getType"></a></p>
+
+<h3>webLayoutValueObject.getType()</h3>
+
+<p>返回值类型 <em>HL_T</em> 前缀常量表示</p>
+
+<p><a id="webLayoutValueObject.getValue"></a></p>
+
+<h3>webLayoutValueObject.getValue()</h3>
+
+<p>返回字符串值、数值、时间值</p>
+
+<p><a id="webLayoutValueObject.isArray"></a></p>
+
+<h3>webLayoutValueObject.isArray()</h3>
+
+<p>是否数组对象</p>
+
+<p><a id="webLayoutValueObject.isDomObject"></a></p>
+
+<h3>webLayoutValueObject.isDomObject()</h3>
+
+<p>是否节点对象,<br>
+使用 getEle()函数转换为节点对象</p>
+
+<p><a id="webLayoutValueObject.isMap"></a></p>
+
+<h3>webLayoutValueObject.isMap()</h3>
+
+<p>是否键值表对象</p>
+
+<p><a id="webLayoutValueObject.jsonParse"></a></p>
+
+<h3>webLayoutValueObject.jsonParse(&#39;{ k:&quot;v&quot; }&#39;)</h3>
+
+<p>解析JSON字符串</p>
+
+<p><a id="webLayoutValueObject.jsonStringify"></a></p>
+
+<h3>webLayoutValueObject.jsonStringify()</h3>
+
+<p>转换并返回JSON字符串</p>
+
+<p><a id="webLayoutValueObject.length"></a></p>
+
+<h3>webLayoutValueObject.length</h3>
+
+<p>数组长度</p>
+
+<p><a id="webLayoutValueObject.parse"></a></p>
+
+<h3>webLayoutValueObject.parse(&quot;10pt&quot;)</h3>
+
+<p>解析字符串</p>
+
+<p><a id="webLayoutValueObject.setBinary"></a></p>
+
+<h3>webLayoutValueObject.setBinary(buffer,len)</h3>
+
+<p>设置二进制字节数组,<br>
+如果参数@1是buffer、字符串,可选用参数@2指定长度,<br>
+如果参数@1是指针,则必须指定长度</p>
+
+<p><a id="webLayoutValueObject.setInt32"></a></p>
+
+<h3>webLayoutValueObject.setInt32(数值)</h3>
+
+<p>写入整型数值</p>
+
+<p><a id="webLayoutValueObject.setItem"></a></p>
+
+<h3>webLayoutValueObject.setItem(索引,值)</h3>
+
+<p>设置成员值</p>
+
+<p><a id="webLayoutValueObject.setLong64"></a></p>
+
+<h3>webLayoutValueObject.setLong64(数值)</h3>
+
+<p>写入长整型数值</p>
+
+<p><a id="webLayoutValueObject.setNumber"></a></p>
+
+<h3>webLayoutValueObject.setNumber(数值)</h3>
+
+<p>写入浮点数值</p>
+
+<p><a id="webLayoutValueObject.setString"></a></p>
+
+<h3>webLayoutValueObject.setString(字符串值)</h3>
+
+<p>写入字符串值</p>
+
+<p><a id="webLayoutValueObject.setTime"></a></p>
+
+<h3>webLayoutValueObject.setTime(时间值)</h3>
+
+<p>写入时间值</p>
+
+<p><a id="webLayoutValueObject.setValue"></a></p>
+
+<h3>webLayoutValueObject.setValue(值,单位,类型)</h3>
+
+<p>写入字符串值、数值、时间值<br>
+参数2,参数3为可选参数</p>
+
+<p><a id="webLayoutValueObject.stringify"></a></p>
+
+<h3>webLayoutValueObject.stringify()</h3>
+
+<p>转换并返回字符串</p>
+
+<p><a id="webLayoutValueObject.value"></a></p>
+
+<h3>webLayoutValueObject.value</h3>
+
+<p>读取或写入字符串值、数值、时间值</p>
+
+<h3>自动完成常量</h3>
+
+<p>_HL_CVT_JSON_LITERAL=1<br>
+_HL_CVT_JSON_MAP=2<br>
+_HL_CVT_SIMPLE=0  </p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/web/layout/valueObject.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/web/layout/valueObject.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/web/layout/valueObject.md">Markdown 格式</a></p>
+
+</body> 
+</html>

@@ -1,0 +1,92 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - sqlite 库 - 存取表对象'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - sqlite 库 - 存取表对象</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: sqlite 库 - 存取表对象</h1><pre><code class="aardio language-aardio">//sqlite 库 - 存取表对象
+import sqlite
+import console;
+
+//创建测试数据库
+var db = sqlite(&quot;/tableParameter.db&quot;)
+if( not db.existsTable(&quot;dataTable&quot;) ) {
+    db.exec( &quot;CREATE TABLE dataTable( name TEXT PRIMARY KEY,info BLOB);&quot; );//指定 name 字段为主键 
+}  
+
+//用 REPLACE 语句添加数据,如果存在相同主键数据则覆盖
+var cmd = db.prepare(&quot;REPLACE INTO [dataTable] VALUES ( @name,@info );&quot;)
+
+/*
+注意在 sqlite.format() 函数中，参数如果是表通常会被格式化为 SQL 语句。
+而在预处理命令中，一个参数值如果是表对象，aardio 会直接将其作为 aardio 表存储到 SQLite。
+
+下面执行批处理命令，利用 @info 参数值存入了一个 aardio 表对象。
+*/
+cmd.step( 
+    name = &quot;相同名称&quot;; 
+    info = {
+        a = 123;
+        b = {
+            d = &quot;测试&quot;;
+        }
+    }
+);
+
+cmd.step( 
+    name = &quot;不同名称&quot;; 
+    info = {
+        a = 456;
+        b = {
+            d = &quot;测试2&quot;;
+        }
+    }
+);
+
+/*
+查询数据, prepare 的第二个参数如果是表，
+表中的名值对会自动生成为 WHERE 条件语句,多个条件会使用 AND 连接。
+*/
+cmd.prepare(&quot;SELECT * FROM [dataTable] &quot;,{
+    name = &quot;不同名称&quot;; //可使用键值对指定查询条件
+} )
+
+//上面的代码实际会被解析为下面的代码
+cmd.prepare(&quot;SELECT * FROM [dataTable] WHERE ??&quot;,{ {
+    name = &quot;不同名称&quot;; //可使用键值对指定查询条件
+} } )
+
+console.log(&quot;自动生成的 SQL 语句&quot;,cmd.sql );
+console.more();
+
+var result = cmd.stepQuery(); //执行查询
+console.dumpJson(result); //显示查询结果
+
+cmd.finalize();//释放预处理语句
+console.more();
+
+//查询数据 返回所有符合条件的行记录数组
+//----------------------------------------------- 
+var dataTable = db.getTable(&quot;SELECT * FROM [dataTable] &quot;)
+console.dumpJson(dataTable);
+
+//----------------------------------------------- 
+db.exec(&quot;DROP TABLE dataTable &quot;); //删除表
+db.close(); //关闭数据库
+
+console.pause();
+
+
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Database/sqlite/table.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Database/sqlite/table.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Database/sqlite/table.md">Markdown 格式</a>
+</body> 
+</html>

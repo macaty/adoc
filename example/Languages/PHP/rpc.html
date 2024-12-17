@@ -1,0 +1,55 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - aardio 调用 PHP 函数'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - aardio 调用 PHP 函数</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 调用 PHP 函数</h1><pre><code class="aardio language-aardio">//aardio 调用 PHP 函数
+import console.int;
+import process.php;
+
+var phpCode = /* 
+function add($a,$b) {
+    return $a + $b;   
+} 
+
+class Calculator {
+    public function add($a, $b) {
+        return $a + $b;
+    }
+}
+
+$calculator = new Calculator(); 
+*/
+
+//启动 PHP 服务端，兼容任意版本 PHP
+var php = process.php.startRpc(phpCode); //参数可以是 PHP 代码，也可以是 PHP 文件路径
+
+//调用 PHP 函数
+var ret,err = php.add(2,3); 
+
+//获取返回值
+ret = ret[[&quot;result&quot;]];  
+
+//调用 PHP 对象的成员函数（RPC 调用会重用同一 PHP 进程，多次调用比普通 CGI 更快）
+var ret,err = php.calculator.add(2,3); 
+
+//获取返回值
+ret = ret[[&quot;result&quot;]]; 
+console.dump(ret); 
+
+
+
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/PHP/rpc.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/PHP/rpc.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Languages/PHP/rpc.md">Markdown 格式</a>
+</body> 
+</html>

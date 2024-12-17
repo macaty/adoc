@@ -1,0 +1,108 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - win.rt.bcp47 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - win.rt.bcp47 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>win.rt.bcp47 库模块帮助文档</h1>
+
+<p><a id="win.rt.bcp47"></a></p>
+
+<h2>win.rt.bcp47 成员列表</h2>
+
+<p>BCP47语言标签相关函数库,<br>
+支持 Win8 以及 Win8 以后的操作系统,<br>
+Windows Vista 及以后版本，采用 RFC 4646 作为语言标签，<br>
+字符串最大长度 85，包含了结尾的零字符  </p>
+
+<p>请参考相关库 sys.locale ,string.conv</p>
+
+<p><a id="win.rt.bcp47.getAbbreviation"></a></p>
+
+<h3>win.rt.bcp47.getAbbreviation(bcp47lang)</h3>
+
+<p>返回指定语言的缩写名称,<br>
+例如中文返回&quot;简体&quot;,英文返回&quot;ENU&quot;,<br>
+参数指定 BCP47 语言缩写标签</p>
+
+<p><a id="win.rt.bcp47.getInputMethods"></a></p>
+
+<h3>win.rt.bcp47.getInputMethods()</h3>
+
+<p>返回所有启用的输入法</p>
+
+<p><a id="win.rt.bcp47.getIsoCode"></a></p>
+
+<h3>win.rt.bcp47.getIsoCode(bcp47lang)</h3>
+
+<p>参数指定 BCP47 语言缩写标签,<br>
+返回对应的 ISO 语言代码</p>
+
+<p><a id="win.rt.bcp47.getName"></a></p>
+
+<h3>win.rt.bcp47.getName(bcp47lang)</h3>
+
+<p>返回指定语言的完整名称,<br>
+参数指定 BCP47 语言缩写标签</p>
+
+<p><a id="win.rt.bcp47.getUserLanguageInputMethods"></a></p>
+
+<h3>win.rt.bcp47.getUserLanguageInputMethods(bcp47lang)</h3>
+
+<p>返回指定语言所有启用的输入法,<br>
+参数指定 BCP47 语言缩写标签</p>
+
+<p><a id="win.rt.bcp47.getUserLanguages"></a></p>
+
+<h3>win.rt.bcp47.getUserLanguages()</h3>
+
+<p>返回所有启用的 BCP47 语言缩写标签</p>
+
+<p><a id="win.rt.bcp47.lcidFrom"></a></p>
+
+<h3>win.rt.bcp47.lcidFrom(bcp47lang)</h3>
+
+<p>参数指定 BCP47 语言缩写标签,<br>
+返回对应的 LCID 数值</p>
+
+<p><a id="win.rt.bcp47.setUserLanguages"></a></p>
+
+<h3>win.rt.bcp47.setUserLanguages()</h3>
+
+<p>设置系统语言,进程需要管理权限,<br>
+参数可以指定 BCP47 语言缩写标签组成的数组,<br>
+也可以传入一个字符串，并且分号分隔所有BCP47 语言缩写标签</p>
+
+<h3>全局常量</h3>
+
+<p><a id="::Bcp47Langs"></a></p>
+
+<h3>::Bcp47Langs</h3>
+
+<p>标准库 win.rt.bcp47 加载的系统DLL组件,<br>
+仅 Win8 以及 Win8 以后的系统支持此组件,  </p>
+
+<p><a href="../../raw/_.html#dllModuleObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/raw/_.html#dllModuleObject">返回对象:dllModuleObject</a></p>
+
+<p><a id="::Winlangdb"></a></p>
+
+<h3>::Winlangdb</h3>
+
+<p>标准库 win.rt.bcp47 加载的系统DLL组件,<br>
+仅 Win8 以及 Win8 以后的系统支持此组件,  </p>
+
+<p><a href="../../raw/_.html#dllModuleObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/raw/_.html#dllModuleObject">返回对象:dllModuleObject</a></p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/rt/bcp47.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/rt/bcp47.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/rt/bcp47.md">Markdown 格式</a></p>
+
+</body> 
+</html>

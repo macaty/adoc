@@ -1,0 +1,162 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - win.util.deviceNotification 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - win.util.deviceNotification 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>win.util.deviceNotification 库模块帮助文档</h1>
+
+<p><a id="win.util"></a></p>
+
+<h2>win.util 成员列表</h2>
+
+<p><a id="win.util.deviceNotification"></a></p>
+
+<h3>win.util.deviceNotification</h3>
+
+<p>设备检测</p>
+
+<p><a id="win.util.deviceNotification"></a></p>
+
+<h3>win.util.deviceNotification()</h3>
+
+<p><a href="#winDeviceNotificationObject">返回对象:winDeviceNotificationObject</a></p>
+
+<p><a id="win.util.deviceNotification"></a></p>
+
+<h3>win.util.deviceNotification(输入winform对象)</h3>
+
+<p>创建一个设备通知窗口<br>
+在添加或移除设备时可响应通知消息<br>
+可选使用参数@2指定GUID</p>
+
+<p><a id="winDeviceNotificationObject"></a></p>
+
+<h2>winDeviceNotificationObject 成员列表</h2>
+
+<p><a id="winDeviceNotificationObject.onDeviceArrival"></a></p>
+
+<h3>winDeviceNotificationObject.onDeviceArrival</h3>
+
+<pre><code class="aardio language-aardio">winDeviceNotificationObject.onDeviceArrival = function(devType,devData,pDevData){
+    if( devType == 2/*_DBT_DEVTYP_VOLUME*/ ){
+        if( devData.isMedia ){
+            io.print(&quot;插入光盘&quot;,devData.drives[1] )
+        }
+        elseif( devData.isNet ){
+            io.print(&quot;添加网络卷&quot;,devData.drives[1])
+        }
+        else {
+            io.print(&quot;添加磁盘&quot;,devData.drives[1])
+        }
+    }
+}
+</code></pre>
+
+<p><a id="winDeviceNotificationObject.onDeviceQueryRemove"></a></p>
+
+<h3>winDeviceNotificationObject.onDeviceQueryRemove</h3>
+
+<pre><code class="aardio language-aardio">winDeviceNotificationObject.onDeviceQueryRemove = function(devType,devData,pDevData){
+
+}
+</code></pre>
+
+<p><a id="winDeviceNotificationObject.onDeviceQueryRemoveFailed"></a></p>
+
+<h3>winDeviceNotificationObject.onDeviceQueryRemoveFailed</h3>
+
+<pre><code class="aardio language-aardio">winDeviceNotificationObject.onDeviceQueryRemoveFailed = function(devType,devData,pDevData){
+
+}
+</code></pre>
+
+<p><a id="winDeviceNotificationObject.onDeviceRemoveComplete"></a></p>
+
+<h3>winDeviceNotificationObject.onDeviceRemoveComplete</h3>
+
+<pre><code class="aardio language-aardio">winDeviceNotificationObject.onDeviceRemoveComplete = function(devType,devData,pDevData){
+    if( devType == 2/*_DBT_DEVTYP_VOLUME*/ ){
+        if( devData.isUsbDevice ){
+            io.print(&quot;移除U盘&quot;,devData.drives[1])
+        }
+    }
+}
+</code></pre>
+
+<p><a id="winDeviceNotificationObject.onDeviceRemovePending"></a></p>
+
+<h3>winDeviceNotificationObject.onDeviceRemovePending</h3>
+
+<pre><code class="aardio language-aardio">winDeviceNotificationObject.onDeviceRemovePending = function(devType,devData,pDevData){
+
+}
+</code></pre>
+
+<p><a id="winDeviceNotificationObject.onDeviceTypeSpecific"></a></p>
+
+<h3>winDeviceNotificationObject.onDeviceTypeSpecific</h3>
+
+<pre><code class="aardio language-aardio">winDeviceNotificationObject.onDeviceTypeSpecific = function(devType,devData,pDevData){
+
+}
+</code></pre>
+
+<p><a id="winDeviceNotificationObject.onVolumeArrival"></a></p>
+
+<h3>winDeviceNotificationObject.onVolumeArrival</h3>
+
+<pre><code class="aardio language-aardio">winDeviceNotificationObject.onVolumeArrival = function(devData,pDevData){
+    if( devData.isMedia ){
+        io.print(&quot;插入光盘&quot;,devData.drives[1] )
+    }
+    elseif( devData.isNet ){
+        io.print(&quot;添加网络卷&quot;,devData.drives[1])
+    }
+    elseif(sys.storage.isUsbDevice(devData.drives[1])){
+        io.print(&quot;插入U盘&quot;,devData.drives[1] )
+    }
+}
+</code></pre>
+
+<p><a id="winDeviceNotificationObject.onVolumeRemoveComplete"></a></p>
+
+<h3>winDeviceNotificationObject.onVolumeRemoveComplete</h3>
+
+<pre><code class="aardio language-aardio">winDeviceNotificationObject.onVolumeRemoveComplete = function(devData,pDevData){
+    io.print(&quot;移除：&quot;,devData.drives[1])
+}
+</code></pre>
+
+<h3>自动完成常量</h3>
+
+<p>_BROADCAST_QUERY_DENY=0x424D5144<br>
+_DBT_DEVICEARRIVAL=0x8000<br>
+_DBT_DEVICEQUERYREMOVE=0x8001<br>
+_DBT_DEVICEQUERYREMOVEFAILED=0x8002<br>
+_DBT_DEVICEREMOVECOMPLETE=0x8004<br>
+_DBT_DEVICEREMOVEPENDING=0x8003<br>
+_DBT_DEVICETYPESPECIFIC=0x8005<br>
+_DBT_DEVTYP_DEVICEINTERFACE=5<br>
+_DBT_DEVTYP_DEVINST=7<br>
+_DBT_DEVTYP_DEVNODE=1<br>
+_DBT_DEVTYP_HANDLE=6<br>
+_DBT_DEVTYP_NET=4<br>
+_DBT_DEVTYP_OEM=0<br>
+_DBT_DEVTYP_PORT=3<br>
+_DBT_DEVTYP_VOLUME=2<br>
+_WM_DEVICECHANGE=0x0219  </p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/util/deviceNotification.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/util/deviceNotification.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/util/deviceNotification.md">Markdown 格式</a></p>
+
+</body> 
+</html>

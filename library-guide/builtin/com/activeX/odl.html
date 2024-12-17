@@ -1,0 +1,221 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - ODL 语法指南'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - ODL 语法指南</title> 
+<link rel="stylesheet" href="../../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>ODL 语法指南</h1>
+
+<blockquote>
+<p>在 aardio 中一般不需要改动 *.odl 类型库声明文件。 保持默认就可以，所有接口函数可用 com.activeX 自动导出。</p>
+
+<p>如果要自定义类型库，建议继承 aardio.idl 提供的 IDispeatchExecutable 接口。 所有 DISPID 不应大于 10000 （aardio 自动生成 DISPID 以 10000 为起始值递增）。</p>
+
+<p>所有 aardio 表对象、函数对象都实现了 IDispatch 接口， 表对象可在 DISPID_NEWENUM 调用时返回 IEnumVARIANT 枚举接口。</p>
+</blockquote>
+
+<h2>一、定义类型库（library）</h2>
+
+<h3>1.1 语法</h3>
+
+<pre><code class="odl language-odl">[attributes]
+library 类型库名 { 
+    importlib(&quot;库名&quot;);
+    [attributes]
+    interface/interface_name : IDispatch { 
+        函数定义;
+    };
+};
+</code></pre>
+
+<h3>1.2 语法元素说明</h3>
+
+<ul>
+<li><code>attributes</code>: 可以包括 <code>helpstring</code>, <code>helpcontext</code>, <code>lcid</code>, <code>restricted</code>, <code>hidden</code>, <code>control</code>, <code>uuid</code>, <code>version</code> 属性，其中 <code>uuid</code> 是必须的。</li>
+<li><code>library</code>: 类型库的名字。</li>
+<li><code>importlib</code>: 引入标准库。</li>
+<li><code>interface</code>: 接口定义。</li>
+</ul>
+
+<h3>1.3 备注</h3>
+
+<ul>
+<li><code>library</code> 表达式必须出现在任何类型定义之前。</li>
+</ul>
+
+<h3>1.4 示例</h3>
+
+<pre><code class="odl language-odl">import &quot;aardio.idl&quot;;
+
+[
+uuid(27A24EA2-F236-4FE4-A918-44AAB7A8DC5C),
+version(1.0)
+]
+library aardioTestControl {
+
+    importlib(&quot;stdole32.tlb&quot;);    
+
+    [ uuid(EC32DF0E-0947-4DF1-827D-7073D376995D),control ]
+    coclass Sample {
+
+        //默认接口
+        [default] dispinterface IDispatchExecutable;
+
+        //默认事件源接口
+        [default,source] dispinterface IDispatchExecutableEvent;
+    }; 
+};
+</code></pre>
+
+<h2>二、定义自动化接口（dispinterface）</h2>
+
+<h3>2.1 语法</h3>
+
+<pre><code class="odl language-odl">[attributes]
+dispinterface 接口名 { 
+    函数列表 
+};
+</code></pre>
+
+<h3>2.2 语法元素说明</h3>
+
+<ul>
+<li><code>attributes</code>:  一般只要指定 <code>uuid</code> 就可以了。</li>
+<li><code>functionlist</code>: 接口中每个函数的原型列表。</li>
+</ul>
+
+<h3>2.3 函数定义</h3>
+
+<pre><code class="odl language-odl">[attributes] returntype [calling convention] funcname(params);
+</code></pre>
+
+<ul>
+<li><code>attributes</code>: 可包括 <code>helpstring</code>, <code>helpcontext</code>, <code>string</code>, <code>propget</code>, <code>propput</code>, <code>propputref</code>, <code>bindable</code>, <code>defaultbind</code>, <code>displaybind</code>, <code>vararg</code> 等。</li>
+<li><code>params</code>: 参数列表，可以包括 <code>in</code>, <code>out</code>, <code>optional</code>, <code>string</code> 属性。</li>
+</ul>
+
+<h3>2.4 备注</h3>
+
+<ul>
+<li>aardio 里最常用的是 dispinterface 接口，否则必须是继承自 IDispatch 的自动化接口。</li>
+<li>dispinterface 接口不能继承自其他接口（因为必须继承自IDispatch）。</li>
+<li>dispinterface 不需要在最后一个参数指定返回值，并且也不需要返回  <code>HRESULT</code> 值，而是直接指定实际需要的返回值就可以了。</li>
+<li>添加 [out] 标记参数能声明输出参数，实际上 COM 接口很少用这种输出参数，直接使用返回值更简单。</li>
+<li>所有 DISPID 的值必须小于 10000 并大于等于 0 ，大于 10000 的 DISPID 由 aardio 自动分配。</li>
+</ul>
+
+<h3>2.5 示例</h3>
+
+<pre><code class="odl language-odl">    [ uuid(1C8736BC-8C0C-4DB6-9FAD-1C6A0CDF1FA2) ]
+    dispinterface  IDispatchSample{ 
+        properties:
+        methods:  
+            [ id(10) ]
+            void Test( [in] BSTR str,[in,out] VARIANT *out1,[in,out] VARIANT *out2);
+    } 
+</code></pre>
+
+<h2>三、定义接口（interface）</h2>
+
+<h3>2.1 语法</h3>
+
+<pre><code class="odl language-odl">[attributes]
+interface 接口名 [: 父接口名] { 
+    函数列表 
+};
+</code></pre>
+
+<h3>2.2 语法元素说明</h3>
+
+<ul>
+<li><code>attributes</code>: 可以包括 <code>dual</code>, <code>helpstring</code>, <code>helpcontext</code>, <code>hidden</code>, <code>odl</code>, <code>oleautomation</code>, <code>uuid</code>, <code>version</code> 属性，其中 <code>odl</code> 和 <code>uuid</code> 是必须的。</li>
+<li><code>functionlist</code>: 接口中每个函数的原型列表。</li>
+</ul>
+
+<h3>2.3 函数定义</h3>
+
+<pre><code class="odl language-odl">[attributes] returntype [calling convention] funcname(params);
+</code></pre>
+
+<ul>
+<li><code>attributes</code>: 可包括 <code>helpstring</code>, <code>helpcontext</code>, <code>string</code>, <code>propget</code>, <code>propput</code>, <code>propputref</code>, <code>bindable</code>, <code>defaultbind</code>, <code>displaybind</code>, <code>vararg</code> 等。</li>
+<li><code>params</code>: 参数列表，可以包括 <code>in</code>, <code>out</code>, <code>optional</code>, <code>string</code> 属性。</li>
+</ul>
+
+<h3>2.4 备注</h3>
+
+<ul>
+<li>接口里的函数返回 <code>HRESULT</code> 值，真实返回值指定为返回参数，始终是最后一个参数。</li>
+<li>双重接口必须从 <code>IDispatch</code> 继承。</li>
+</ul>
+
+<h3>2.5 示例</h3>
+
+<pre><code class="odl language-odl">[uuid(BFB73347-822A-1068-8849-00DD011087E8), version(1.0)]
+interface Hello : IUnknown { 
+    void HelloProc([in, string] unsigned char* pszString); 
+    void Shutdown(void); 
+};
+
+[dual]
+interface IMyInt : IDispatch { 
+    [propget] HRESULT MyMessage([in, lcid] LCID lcid, [out, retval] BSTR* pbstrRetVal); 
+    [propput] HRESULT MyMessage([in] BSTR rhs, [in, lcid] DWORD lcid);
+    HRESULT SayMessage([in] long NumTimes, [in, lcid] DWORD lcid, [out, retval] BSTR* pbstrRetVal); 
+}
+</code></pre>
+
+<h2>四、定义组件类（coclass）</h2>
+
+<h3>3.1 语法</h3>
+
+<pre><code class="odl language-odl">[attributes]
+coclass 类名 { 
+    [attributes2] [interface | dispinterface] 接口名; 
+};
+</code></pre>
+
+<h3>3.2 语法元素说明</h3>
+
+<ul>
+<li><code>attributes</code>: <code>uuid</code> 属性是必须的，其它属性包括 <code>helpstring</code>, <code>helpcontext</code>, <code>version</code>, <code>licensed</code>, <code>control</code>, <code>hidden</code>, <code>appobject</code> 等。</li>
+<li><code>attributes2</code>: <code>interface</code> 或 <code>dispinterface</code> 的可选属性，包括 <code>source</code>, <code>default</code>, <code>restricted</code> 等。</li>
+<li><code>interfacename</code>: 用 <code>interface</code> 或 <code>dispinterface</code> 声明的接口名。</li>
+</ul>
+
+<h3>3.3 备注</h3>
+
+<ul>
+<li><code>coclass</code> 定义一个类作为一个实现，允许 <code>QueryInterface</code> 在接口集之间查询。</li>
+</ul>
+
+<h3>3.4 示例</h3>
+
+<pre><code class="odl language-odl">[uuid(BFB73347-822A-1068-8849-00DD011087E8), version(1.0), helpstring(&quot;A class&quot;), helpcontext(2481), appobject]
+coclass myapp {
+    [source] interface IMydocfuncs; 
+    dispinterface DMydocfuncs; 
+};
+
+[uuid(00000000-0000-0000-0000-123456789019)]
+coclass foo {
+    [restricted] interface bar;
+    interface bar;
+}
+</code></pre>
+
+<p>此文档精简了 ODL 语法的关键要素，便于快速入门和掌握基本写法。</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-guide/builtin/com/activeX/odl.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-guide/builtin/com/activeX/odl.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/builtin/com/activeX/odl.md">Markdown 格式</a></p>
+
+</body> 
+</html>

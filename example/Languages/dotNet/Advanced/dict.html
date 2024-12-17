@@ -1,0 +1,41 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - aardio 操作 .NET 字典（Dictionary）'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - aardio 操作 .NET 字典（Dictionary）</title> 
+<link rel="stylesheet" href="../../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 操作 .NET 字典（Dictionary）</h1><pre><code class="aardio language-aardio">//aardio 操作 .NET 字典（Dictionary）
+import dotNet; 
+
+//.NET 字典（Dictionary）是泛型类，可以像下面这样创建 Dictionary。
+/*
+var Dictionary = System.Collections.Generic.Dictionary.$(System.String,System.String)
+var dic = Dictionary();
+*/
+
+/*
+更简单的方法是使用 dotNet.dict 创建 .NET 字典（Dictionary） 。
+参数 @1 指定一个 aardio 非空表，键的数据类型必须相同，值的数据类型也必须相同。
+参数 @2 如果为 true 则返回对象可用于 .NET 输出引用参数，参数 @2 是可选参数。
+*/
+var dict = dotNet.dict(
+    a=&quot;abc&quot;,
+    d=&quot;789&quot;
+)
+
+dict[&quot;a&quot;] = &quot;新的值&quot;;
+var v = dict[&quot;a&quot;];
+
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/dotNet/Advanced/dict.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/dotNet/Advanced/dict.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Languages/dotNet/Advanced/dict.md">Markdown 格式</a>
+</body> 
+</html>

@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - JSON-RPC'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - JSON-RPC</title> 
+<link rel="stylesheet" href="../../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: JSON-RPC</h1><pre><code class="aardio language-aardio">//JSON-RPC
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;JSON-RPC&quot;;right=759;bottom=469)
+winform.add(
+edit={cls=&quot;edit&quot;;left=13;top=18;right=734;bottom=444;edge=1;multiline=1;z=1}
+)
+/*}}*/
+
+import process.python;  
+
+//启动 JSON-RPC，参数可以是 Python 代码，Python 文件路径，或 Python 模块名称
+var py = process.python.jsonRpc(`
+
+#定义允许客户端调用的类
+class MyTarget(object):
+
+    def greet(self, name): 
+        return &quot;Hi, %s!&quot; % name
+
+    def add(self, a,b): 
+        return a + b
+
+#启动 JSON-RPC 服务端
+from jsonrpyc import RPC;       
+RPC( MyTarget() )
+`); 
+
+//调用 Python 进程提供的函数
+var rep,err = py.greet(&quot;Jacen&quot;)
+
+if( rep[[&quot;result&quot;]] ){  
+    winform.edit.print( `调用 py.greet(&quot;Jacen&quot;) 成功，返回值：`, rep.result ) 
+} 
+else{
+    /*
+    本地错误则 err 为错误信息，
+    服务端错误则 err 为 rep[[&quot;error&quot;]] 对象的 JSON 文本格式
+    */
+    winform.edit.print(  err )
+}  
+
+//可以写简单一些，例如
+var ret = py.add(1,2)[[&quot;result&quot;]];
+winform.edit.print(`调用 py.add(1,2) 成功，返回值：`,ret)
+
+//允许使用命名参数
+py.rpc.kwargs = true;
+
+/*
+命名参数必须写在最前面，
+第一个出现的位置参数对应服务端函数的第一个位置参数。
+同一个参数不能既指定命名参数，又指定位置参数。
+*/
+var ret = py.add(b=123,2)[[&quot;result&quot;]];
+winform.edit.print(`调用 py.add(1,2) 成功，返回值：`,ret)
+
+winform.show();
+win.loopMessage();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/Python/Python AnyVersion/json-rpc.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/Python/Python AnyVersion/json-rpc.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Languages/Python/Python AnyVersion/json-rpc.md">Markdown 格式</a>
+</body> 
+</html>

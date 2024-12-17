@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - js 调用 aardio 自定义事件'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - js 调用 aardio 自定义事件</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: js 调用 aardio 自定义事件</h1><pre><code class="aardio language-aardio">//JS 触发本地事件
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;js 调用 aardio 自定义事件&quot;;right=1014;bottom=523;)
+winform.add()
+/*}}*/
+
+import web.sciter;
+var sciter = web.sciter( winform );
+
+namespace web.sciter.behavior.my.customEvent {  
+
+    /*
+    自定义事件第3个回调参数 data 指向 behaviorParams.data 解包后的值，而不是behaviorParams.reason
+    behaviorParams.data 的值在 javascript 里用 event.data 或 event.detail 指定。
+    dat 
+    */
+    onMyCustomEvent = function (scTarget,scOwner,data,behaviorParams) { 
+        scOwner.value = &quot;&quot;;
+        scOwner.printf(&quot;aardio 自定义事件 onMyCustomEvent 被触发,触发参数:%s&quot;,data)
+    } 
+}
+
+sciter.html = /**
+&lt;!doctype html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;META http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot;&gt;
+    &lt;style type=&quot;text/css&quot;&gt;
+    html,body{ height:100%; margin:50; } 
+
+    #my-button{  
+        behavior:&quot;my.customEvent clickable&quot;; 
+    }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt; 
+&lt;button id=&quot;my-button&quot;&gt;请点击这里调用 behavior 里定义的 aardio函数：onMyCustomEvent &lt;/button&gt; 
+&lt;script&gt;
+var button = document.getElementById(&quot;my-button&quot;);
+button.addEventListener(&#39;click&#39;, () =&gt; {
+    var event = new CustomEvent(&quot;onMyCustomEvent&quot;, { detail :&quot;自定义只读的自定义数据参数，可省略&quot;, bubbles:true});
+    event.data = &quot;指定事件自定义数据参数&quot;; // aardio 里 behaviorParams.data 优先取这个值，取不到就取 event.detail
+
+    button.dispatchEvent(event, true); 
+})
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+**/
+
+winform.show(); 
+win.loopMessage();
+
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/WebUI/Sciter.JS/dispatchEvent.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/WebUI/Sciter.JS/dispatchEvent.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/WebUI/Sciter.JS/dispatchEvent.md">Markdown 格式</a>
+</body> 
+</html>

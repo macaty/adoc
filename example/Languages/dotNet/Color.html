@@ -1,0 +1,40 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 在 aardio 中使用 .NET 颜色值 System.Drawing.Color'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 在 aardio 中使用 .NET 颜色值 System.Drawing.Color</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 在 aardio 中使用 .NET 颜色值 System.Drawing.Color</h1><pre><code class="aardio language-aardio">//在 aardio 中使用 .NET 颜色值 System.Drawing.Color 
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;System.Drawing.Color&quot;;right=757;bottom=467)
+winform.add(
+plus={cls=&quot;plus&quot;;left=95;top=95;right=461;bottom=192;z=1}
+)
+/*}}*/
+
+import System.Drawing; //建议右键点库名称 -&gt; 跳转到定义,看看这个库的源代码
+/*
+System.Drawing.Color 是一个 struct 特例，
+System.Drawing.Color 在 aardio 会自动转换为 ARGB 格式的颜色数值。
+调用 .NET 时 ARGB 格式的颜色数值也能自动转换为 System.Drawing.Color 对象。
+注意 GDI+ 使用 ARGB 格式颜色值，与 gdip库，plus 控件等兼容。
+*/
+winform.plus.background = System.Drawing.Color.Blue; //这是一个 .NET 里的枚举值
+
+winform.show();
+win.loopMessage();
+
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/dotNet/Color.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/dotNet/Color.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Languages/dotNet/Color.md">Markdown 格式</a>
+</body> 
+</html>

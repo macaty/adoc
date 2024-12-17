@@ -1,0 +1,124 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 网卡 DNS 修改工具（双击 DNS 修改）'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 网卡 DNS 修改工具（双击 DNS 修改）</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 网卡 DNS 修改工具（双击 DNS 修改）</h1><pre><code class="aardio language-aardio">//RUNAS//设置网络连接
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;网卡 DNS 修改工具（双击 DNS 修改）&quot;;right=1031;bottom=712)
+winform.add(
+edit={cls=&quot;edit&quot;;left=25;top=584;right=997;bottom=693;edge=1;multiline=1;z=2};
+listview={cls=&quot;listview&quot;;left=24;top=27;right=996;bottom=555;edge=1;z=1}
+)
+/*}}*/
+
+import win.ui.grid;
+var grid = win.ui.grid(winform.listview);
+grid.readonlyColums = { [1] = true ,[4] = true, [5] = true};//设置禁止编辑的列
+
+winform.listview.insertColumn(&quot;IP&quot;,100)
+winform.listview.insertColumn(&quot;主DNS&quot;,100)
+winform.listview.insertColumn(&quot;辅DNS&quot;,100)
+winform.listview.insertColumn(&quot;MAC&quot;,110)
+winform.listview.insertColumn(&quot;网卡&quot;,-1) 
+
+import com.wmi;
+var loadNetworks = function(){
+
+    var dataTable = {}
+    dataTable.fields = {&quot;ip&quot;;&quot;dns1&quot;,&quot;dns2&quot;,&quot;mac&quot;,&quot;description&quot;}
+
+    //com.wmi.eachProperties 返回的是普通表而非 COM 对象
+    for item in com.wmi.eachProperties(&quot;SELECT * FROM Win32_NetworkAdapterConfiguration WHERE IPEnabled=true&quot;) {
+        if(!item.DNSServerSearchOrder){
+            continue; 
+        }
+
+        //https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/win32-networkadapterconfiguration
+        table.push(dataTable,{
+            description = item.Description;
+            ip = item.IPAddress[1];
+            dns1 = item.DNSServerSearchOrder[1];
+            dns2 = item.DNSServerSearchOrder[2];
+            mac = item.MACAddress;
+            settingId = item.SettingID;
+        } )     
+    }
+
+    grid.setTable( dataTable );
+    winform.listview.dataTable = dataTable;
+} 
+
+loadNetworks();
+
+//编辑变更值会触发下面的事件
+grid.onEditChanged = function(text,iItem,iSubItem){ 
+    var dataTable = winform.listview.dataTable;
+    var fieldName = dataTable.fields[iSubItem]
+    var itemData = dataTable[iItem];
+
+    var adapter = com.wmi.get(&quot;SELECT * FROM Win32_NetworkAdapterConfiguration WHERE SettingID=@settingId&quot;,itemData);
+
+    var err;
+    if(fieldName === &quot;dns1&quot;){
+        itemData.dns1 = text; 
+        err = adapter.SetDNSServerSearchOrder({itemData.dns1,itemData.dns2}); 
+
+    }
+    else if(fieldName === &quot;dns2&quot;){
+        itemData.dns2 = text; 
+        err = adapter.SetDNSServerSearchOrder({itemData.dns1,itemData.dns2});  
+    }
+
+    //https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/setdnsserversearchorder-method-in-class-win32-networkadapterconfiguration
+    if(err==0){
+        winform.edit.print(&quot;修改成功&quot;,itemData[fieldName],&quot;--&gt;&quot;,text);
+    }
+    else {
+        winform.edit.print(&quot;修改失败，错误代码：&quot;+err,itemData[fieldName],&quot;--&gt;&quot;,text);
+    }
+
+} 
+
+/*
+用户点击列头排序时会触发下面的事件，
+cloumn为例号，desc参数指定是否倒序，返回true允许当前列排序
+*/
+grid.onSortColumn = function(cloumn,desc){
+    var dataTable = winform.listview.dataTable;
+    var name = dataTable.fields[cloumn]
+
+    if(desc){
+        table.sort(dataTable,function(b){
+            return time(owner[name]) &lt; time(b[name])
+        })  
+    }
+    else {
+        table.sort(dataTable,function(b){
+            return time(owner[name]) &gt; time(b[name])
+        })
+    }
+
+    grid.setTable( dataTable )
+    return true;        
+
+}
+
+winform.show();
+win.loopMessage();
+
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Network/Manage/wmi.adapter.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Network/Manage/wmi.adapter.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Network/Manage/wmi.adapter.md">Markdown 格式</a>
+</body> 
+</html>

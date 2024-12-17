@@ -1,0 +1,70 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 入门'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 入门</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 入门</h1><pre><code class="aardio language-aardio">//入门
+import console;
+import web.script;
+
+//创建 VBScript 虚拟机
+var vm = web.script(&quot;VBScript&quot;)
+
+//直接将 aardio 对象（表、数组、函数）赋值为 vm 的成员，即可在 VBScript 中直接调用。
+vm.external = {
+    add = function(a,b){
+        return a + b;
+    };
+}
+
+//模拟 WScript 对象
+vm.WScript = { 
+    CreateObject = ..com.CreateObject;
+    GetObject = ..com.GetObject;
+    Echo = function(...){
+        console.log(...);
+    };
+}
+
+//加载 VBScript,也可以用 vm.doScript() 函数加载脚本。
+vm.script = /*
+Function TestFunction(a,b) 
+    Dim shell, ns, item
+
+    &#39;创建 COM 对象
+    Set shell = CreateObject(&quot;Shell.Application&quot;) 
+    Set ns = shell.NameSpace(&quot;::{7007ACC7-3202-11D1-AAD2-00805FC1270E}&quot;)
+
+    &#39;遍历 COM 对象
+    For Each item In ns.Items()
+        &#39;注意 VBScript 调用方法且不接收返回值时，不要加括号。
+         WScript.Echo item.Name,item.Path
+    Next
+
+   TestFunction = external.add(a(0),b(0))
+End Function
+*/ 
+
+//通过 vm.script.函数名() 调用 VBScript 函数。
+var ret = vm.script.TestFunction({12,13},{2,3});
+console.log( ret );
+
+//执行并计算 VBScript 表达式代码,返回表达式的值
+var version = vm.eval(`ScriptEngine() &amp; &quot; &quot; &amp; ScriptEngineMajorVersion()&amp; &quot;.&quot;  &amp; ScriptEngineMinorVersion() &amp; &quot;.&quot;  &amp; ScriptEngineBuildVersion()`);
+
+console.log(version);
+console.pause();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/VBScript/QuickStart.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/VBScript/QuickStart.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Languages/VBScript/QuickStart.md">Markdown 格式</a>
+</body> 
+</html>

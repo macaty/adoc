@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio ç¼–ç¨‹è¯­è¨€èŒƒä¾‹ - spyHtml'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio ç¼–ç¨‹è¯­è¨€èŒƒä¾‹ - spyHtml</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio ç¼–ç¨‹è¯­è¨€æ–‡æ¡£é¦–é¡µ"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio æ–‡æ¡£</span></a>
+<h1>aardio èŒƒä¾‹: spyHtml</h1><pre><code class="aardio language-aardio">import win;
+import process;
+spyHtml = function(hwnd){
+   var outerHtml
+   var tid,pid = win.getThreadProcessId(hwnd)
+   try{
+        //æ‰“å¼€è¿›ç¨‹
+        var prcs = process(pid)
+
+        //å£°æ˜å¤–éƒ¨EXEä¸­çš„APIå‡½æ•°
+        var HTMLayoutGetRootElement = prcs.remoteApi(&quot;int(int hwnd, pointer&amp; phe)&quot;,&quot;htmlayout.dll&quot;,&quot;HTMLayoutGetRootElement&quot; )
+        var HTMLayoutGetElementHtml = prcs.remoteApi(&quot;int(POINTER he,pointer&amp; utf8bytes,bool outer)&quot;,&quot;htmlayout.dll&quot;,&quot;HTMLayoutGetElementHtml&quot; )
+        var lstrlen = prcs.remoteApi(&quot;int(pointer lpStr)&quot;,&quot;Kernel32.dll&quot;,&quot;lstrlen&quot; )
+
+        //è°ƒç”¨å¤–éƒ¨EXEä¸­çš„å‡½æ•°
+        var ok,he = HTMLayoutGetRootElement(hwnd)
+        var ok,pHtml = HTMLayoutGetElementHtml(he,,true);
+        var size = lstrlen(pHtml) ;
+
+        //è½¬æ¢UTF8ç¼–ç 
+        outerHtml = prcs.readString(tonumber(pHtml),size);
+        outerHtml = string.fromto( outerHtml );  
+   }
+   return  outerHtml; 
+}
+
+io.open() 
+import winex;
+
+//éå†æ‰€æœ‰æ¡Œé¢ä¸Šä½¿ç”¨äº†HTMLayoutçš„çª—å£( aardioçª—å£ç¦æ­¢æŠ“å– )
+for hwnd,title,threadId,processId in winex.each(  ) {   
+    try{
+        var html = spyHtml( çª—å£å¥æŸ„ )
+        if( html ){
+            io.print( html );
+        }
+    }
+}
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/WebUI/HTMLayout/spyHtml.md  \n\n¸ÃÎÄ¼şÎŞ·¨ÓÃ Teleport Ultra ÏÂÔØ, ÒòÎª Ëü²»ÔÚÏîÄ¿ÎÄ¼şÀàĞÍ¹æ·¶ÄÚ¡£  \n\nÄãÏëÔÚ·şÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='https://www.aardio.com/zh-cn/doc/example/WebUI/HTMLayout/spyHtml.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/WebUI/HTMLayout/spyHtml.md">Markdown æ ¼å¼</a>
+</body> 
+</html>

@@ -1,0 +1,1849 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - wsock 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - wsock 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>wsock 库模块帮助文档</h1>
+
+<p><a id="wsock"></a></p>
+
+<h2>wsock 成员列表</h2>
+
+<p><a id="wsock.?"></a></p>
+
+<h3>wsock.?</h3>
+
+<p>其他函数请查看库源码。<br>
+一般不需要直接使用这些库函数。<br>
+应改用 wsock.tcp.client 或 wsock.udp.client 等库</p>
+
+<p><a id="wsock.WSAAsyncSelect"></a></p>
+
+<h3>wsock.WSAAsyncSelect</h3>
+
+<pre><code class="aardio language-aardio">Ws2_32.api(&quot;WSAAsyncSelect&quot;,&quot;int(POINTER s,int hwnd,int Message,int event)&quot;);
+</code></pre>
+
+<p><a id="wsock.WSAFDIsSet"></a></p>
+
+<h3>wsock.WSAFDIsSet</h3>
+
+<pre><code class="aardio language-aardio">Ws2_32.api(&quot;__WSAFDIsSet&quot;,&quot;int(POINTER s,struct&amp; passed_set)&quot;);
+</code></pre>
+
+<p><a id="wsock.WSAIoctl"></a></p>
+
+<h3>wsock.WSAIoctl</h3>
+
+<pre><code class="aardio language-aardio">Ws2_32.api(&quot;WSAIoctl&quot;,&quot;int(POINTER s,INT dwIoControlCode, struct lpvInBuffer,INT cbInBuffer, struct lpvOutBuffer,INT cbOutBuffer,INT &amp; lpcbBytesReturned,  pointer lpOverlapped,  pointer lpCompletionRoutine )&quot;);
+</code></pre>
+
+<p><a id="wsock._INVALID_SOCKET"></a></p>
+
+<h3>wsock._INVALID_SOCKET</h3>
+
+<pre><code class="aardio language-aardio">_INVALID_HANDLE_VALUE;
+</code></pre>
+
+<p><a id="wsock.accept"></a></p>
+
+<h3>wsock.accept(套接字句柄)</h3>
+
+<p>创建一个新的套接字来与客户套接字创建连接通道,<br>
+如果连接成功,就返回新创建的套接字句柄</p>
+
+<p><a id="wsock.bind"></a></p>
+
+<h3>wsock.bind</h3>
+
+<pre><code class="aardio language-aardio">Ws2_32.api(&quot;bind&quot;,&quot;int(POINTER s, struct name,int namelen)&quot; );
+</code></pre>
+
+<p><a id="wsock.close"></a></p>
+
+<h3>wsock.close()</h3>
+
+<p>与wsock.open()配对使用,<br>
+使用wsock库以后必须调用此函数释放资源,<br>
+如果忘记配对调用此函数,在线程结束时将自动调用</p>
+
+<p><a id="wsock.closesocket"></a></p>
+
+<h3>wsock.closesocket</h3>
+
+<pre><code class="aardio language-aardio">Ws2_32.api(&quot;closesocket&quot;,&quot;int(POINTER s)&quot;);
+</code></pre>
+
+<p><a id="wsock.connect"></a></p>
+
+<h3>wsock.connect</h3>
+
+<pre><code class="aardio language-aardio">Ws2_32.api(&quot;connect&quot;,&quot;int(POINTER s,struct&amp; sockstruct,int structlen)&quot;);
+</code></pre>
+
+<p><a id="wsock.fd_set"></a></p>
+
+<h3>wsock.fd_set()</h3>
+
+<p><a href="#wsockFdSetObject">返回对象:wsockFdSetObject</a></p>
+
+<p><a id="wsock.getFreePort"></a></p>
+
+<h3>wsock.getFreePort(ip,套接字类型,协议类型)</h3>
+
+<p>获取空闲服务端口，<br>
+可选在参数中指定IP地址,其他参数不必指定  </p>
+
+<p>分配的端口即使没有马上使用，<br>
+系统下次分配的空闲端口仍然是递增分配下一个端口号，<br>
+动态分配空闲端口为49152到65535之间的值，<br>
+XP系统则为 1025到5000之间的值，<br>
+命令行输入 netsh int ipv4 show dynamicport tcp 看动态端口范围，<br>
+安装 Hyper-V 会导致动态起始端口变为 1024 导致常用端口冲突</p>
+
+<p><a id="wsock.getIp"></a></p>
+
+<h3>wsock.getIp(&quot;字符串参数&quot;)</h3>
+
+<p>解析域名,可返回一个或多个IP<br>
+如果不指定任何参数,返回内网IP,  </p>
+
+<p>优先取192.168.1 开头的IP,请改用 wsock.getLocalIp 函数,  </p>
+
+<p>如果要更优先获取当前上网卡的本机IP,<br>
+请改用 wsock.tcp.client.getLocalIp 函数</p>
+
+<p><a id="wsock.getIpAddr"></a></p>
+
+<h3>wsock.getIpAddr(请输入域名)</h3>
+
+<p>解析域名,<br>
+返回in_addr或in_addr结构体数组<br>
+返回值2为AF_INET或AF_INET6</p>
+
+<p><a id="wsock.getLocalIp"></a></p>
+
+<h3>wsock.getLocalIp()</h3>
+
+<p>返回内网IP，优先取192.168.1 开头的IP,  </p>
+
+<p>如果要更优先获取当前上网卡的本机IP,<br>
+请改用 wsock.tcp.client.getLocalIp 函数</p>
+
+<p><a id="wsock.gethostbyaddr"></a></p>
+
+<h3>wsock.gethostbyaddr</h3>
+
+<pre><code class="aardio language-aardio">Ws2_32.api(&quot;gethostbyaddr&quot;,&quot;pointer(string addr,int length,int thetype)&quot;)
+</code></pre>
+
+<p><a id="wsock.gethostbyname"></a></p>
+
+<h3>wsock.gethostbyname</h3>
+
+<pre><code class="aardio language-aardio">Ws2_32.api(&quot;gethostbyname&quot;,&quot;pointer(string szHost)&quot; );
+</code></pre>
+
+<p><a id="wsock.gethostname"></a></p>
+
+<h3>wsock.gethostname</h3>
+
+<pre><code class="aardio language-aardio">Ws2_32.api(&quot;gethostname&quot;,&quot;int(str &amp;szHost,int len)&quot; );
+</code></pre>
+
+<p><a id="wsock.getpeername"></a></p>
+
+<h3>wsock.getpeername</h3>
+
+<pre><code class="aardio language-aardio">Ws2_32.api(&quot;getpeername&quot;,&quot;int(POINTER s,struct&amp; sockaddr,int&amp; len)&quot;)
+</code></pre>
+
+<p><a id="wsock.getsockname"></a></p>
+
+<h3>wsock.getsockname</h3>
+
+<pre><code class="aardio language-aardio">Ws2_32.api(&quot;getsockname&quot;,&quot;int(POINTER s,struct&amp; sockaddr,int&amp; len)&quot;)
+</code></pre>
+
+<p><a id="wsock.getsockopt"></a></p>
+
+<h3>wsock.getsockopt</h3>
+
+<pre><code class="aardio language-aardio">Ws2_32.api(&quot;getsockopt&quot;,&quot;int(POINTER s,int level,int optname,struct&amp;optval,int&amp; optlen)&quot;)
+</code></pre>
+
+<p><a id="wsock.getsockoptByInt"></a></p>
+
+<h3>wsock.getsockoptByInt</h3>
+
+<pre><code class="aardio language-aardio">Ws2_32.api(&quot;getsockopt&quot;,&quot;int(POINTER s,int level,int optname,int&amp;optval,int&amp; optlen)&quot;)
+</code></pre>
+
+<p><a id="wsock.hostent"></a></p>
+
+<h3>wsock.hostent</h3>
+
+<p>记录主机信息的结构体</p>
+
+<p><a id="wsock.htonl"></a></p>
+
+<h3>wsock.htonl</h3>
+
+<pre><code class="aardio language-aardio">Ws2_32.api(&quot;htonl&quot;,&quot;INT(INT hostlong)&quot;);
+</code></pre>
+
+<p><a id="wsock.htons"></a></p>
+
+<h3>wsock.htons</h3>
+
+<pre><code class="aardio language-aardio">Ws2_32.api(&quot;htons&quot;,&quot;WORD(WORD hostshort)&quot; );
+</code></pre>
+
+<p><a id="wsock.in6_addr"></a></p>
+
+<h3>wsock.in6_addr()</h3>
+
+<p>IPv6 地址结构  </p>
+
+<p><a href="#in6AddrObject">返回对象:in6AddrObject</a></p>
+
+<p><a id="wsock.in_addr"></a></p>
+
+<h3>wsock.in_addr()</h3>
+
+<p>创建 in_addr 结构体，表示 IPv4 地址。<br>
+返回值可用 tostring 函数转换为字符串，<br>
+可用 tonumber 函数转换为数值，Ipv4 实际存为 32 位整数。  </p>
+
+<p><a href="#inAddrObject">返回对象:inAddrObject</a></p>
+
+<p><a id="wsock.inet_addr"></a></p>
+
+<h3>wsock.inet_addr</h3>
+
+<pre><code class="aardio language-aardio">Ws2_32.api(&quot;inet_addr&quot;,&quot;INT(string s)&quot;);
+</code></pre>
+
+<p><a id="wsock.inet_ntoa"></a></p>
+
+<h3>wsock.inet_ntoa(/*in_addr*/)</h3>
+
+<p>in_addr 结构体或数值转换为字符串格式 IP 地址</p>
+
+<p><a id="wsock.ioctlsocket"></a></p>
+
+<h3>wsock.ioctlsocket</h3>
+
+<pre><code class="aardio language-aardio">Ws2_32.api(&quot;ioctlsocket&quot;,&quot;int(POINTER s,int cmd, INT &amp;argp)&quot;)
+</code></pre>
+
+<p><a id="wsock.listen"></a></p>
+
+<h3>wsock.listen</h3>
+
+<pre><code class="aardio language-aardio">Ws2_32.api(&quot;listen&quot;,&quot;int(POINTER s,int backlog)&quot;);
+</code></pre>
+
+<p><a id="wsock.ntohl"></a></p>
+
+<h3>wsock.ntohl</h3>
+
+<pre><code class="aardio language-aardio">Ws2_32.api(&quot;ntohl&quot;,&quot;INT(INT netlong)&quot;);
+</code></pre>
+
+<p><a id="wsock.ntohs"></a></p>
+
+<h3>wsock.ntohs</h3>
+
+<pre><code class="aardio language-aardio">Ws2_32.api(&quot;ntohs&quot;,&quot;WORD(WORD netshort)&quot;);
+</code></pre>
+
+<p><a id="wsock.open"></a></p>
+
+<h3>wsock.open()</h3>
+
+<p>使用wsock库其他函数以前必须调用此函数</p>
+
+<p><a id="wsock.recv"></a></p>
+
+<h3>wsock.recv</h3>
+
+<pre><code class="aardio language-aardio">Ws2_32.api(&quot;recv&quot;,&quot;int(POINTER s,string&amp; buf,int len,int flags)&quot; );
+</code></pre>
+
+<p><a id="wsock.recvbyte"></a></p>
+
+<h3>wsock.recvbyte</h3>
+
+<pre><code class="aardio language-aardio">Ws2_32.api(&quot;recv&quot;,&quot;int(POINTER s,BYTE&amp; b,int len,int flags)&quot;);
+</code></pre>
+
+<p><a id="wsock.recvfrom"></a></p>
+
+<h3>wsock.recvfrom</h3>
+
+<pre><code class="aardio language-aardio">Ws2_32.api(&quot;recvfrom&quot;,&quot;int(POINTER s,string&amp; Buf,int length,int flags, struct&amp; sad, int&amp; fromlen)&quot;)
+</code></pre>
+
+<p><a id="wsock.select"></a></p>
+
+<h3>wsock.select(nfds,readfds,writefds,exceptfds,tv_sec,tv_usec)</h3>
+
+<p>所有参数可选,<br>
+成功返回套接字数目,超时返回0,出错返回-1/*_SOCKET_ERROR*/</p>
+
+<p><a id="wsock.send"></a></p>
+
+<h3>wsock.send</h3>
+
+<pre><code class="aardio language-aardio">Ws2_32.api(&quot;send&quot;,&quot;int(POINTER s,string msg,int msglen,int flag)&quot;);
+</code></pre>
+
+<p><a id="wsock.sendto"></a></p>
+
+<h3>wsock.sendto</h3>
+
+<pre><code class="aardio language-aardio">Ws2_32.api(&quot;sendto&quot;,&quot;int(POINTER s,pointer Buf,int length,int flags, struct&amp; sad, int&amp; tolen)&quot;)
+</code></pre>
+
+<p><a id="wsock.setsockopt"></a></p>
+
+<h3>wsock.setsockopt</h3>
+
+<pre><code class="aardio language-aardio">Ws2_32.api(&quot;setsockopt&quot;,&quot;int(POINTER s,word level,word optname,struct optval,int optlen)&quot;)
+</code></pre>
+
+<p><a id="wsock.setsockoptByInt"></a></p>
+
+<h3>wsock.setsockoptByInt</h3>
+
+<pre><code class="aardio language-aardio">Ws2_32.api(&quot;setsockopt&quot;,&quot;int(POINTER s,word level,word optname,int&amp; optval,int optlen)&quot;)
+</code></pre>
+
+<p><a id="wsock.shutdown"></a></p>
+
+<h3>wsock.shutdown</h3>
+
+<pre><code class="aardio language-aardio">Ws2_32.api(&quot;shutdown&quot;,&quot;int(POINTER s,int how)&quot;)
+</code></pre>
+
+<p><a id="wsock.sockaddrParse"></a></p>
+
+<h3>wsock.sockaddrParse</h3>
+
+<p>字符串转换为 sockaddr_in 或 sockaddr_in6 结构体</p>
+
+<p><a id="wsock.sockaddrParse"></a></p>
+
+<h3>wsock.sockaddrParse(strAddress)</h3>
+
+<p>字符串转换为 sockaddr_in 或 sockaddr_in6 结构体。<br>
+参数 @1 可指定 IPV4 或 IPV6 地址，可选包含端口号。<br>
+可选用参数 @2 指定端口号</p>
+
+<p><a id="wsock.sockaddrStringify"></a></p>
+
+<h3>wsock.sockaddrStringify</h3>
+
+<p>sockaddr 指针或结构体转字符串</p>
+
+<p><a id="wsock.sockaddrStringify"></a></p>
+
+<h3>wsock.sockaddrStringify(sockaddr,size,protocolInfo)</h3>
+
+<p>sockaddr 转字符串。<br>
+@sockaddr 可指定sockaddr 指针或结构体。<br>
+size 指定参数 @1 指向的内存长度。<br>
+@protocolInfo 不必指定</p>
+
+<p><a id="wsock.sockaddr_in"></a></p>
+
+<h3>wsock.sockaddr_in(&quot;主机&quot;,端口)</h3>
+
+<p>返回 sockaddr_in 结构体，所有参数可选。<br>
+参数 @1 可以使用域名、IP、数值,<br>
+如果参数 @1 是字符串,可在 IP 或域名后指定端口号。<br>
+如果参数 @1 传入 sockaddr_in 则直接返回该结构体。<br>
+参数错误返回 null 。  </p>
+
+<p>返回结构体可用 tostring 函数转为字符串，<br>
+也可以用 tonumber 转换为数值。</p>
+
+<p><a id="wsock.sockaddr_in"></a></p>
+
+<h3>wsock.sockaddr_in()</h3>
+
+<p><a href="#sockaddrInObject">返回对象:sockaddrInObject</a></p>
+
+<p><a id="wsock.sockaddr_in6"></a></p>
+
+<h3>wsock.sockaddr_in6(&quot;主机&quot;,端口)</h3>
+
+<p>返回sockaddr_in6结构体,所有参数可选<br>
+参数@1可以使用域名、IPv6地址,<br>
+如果IPv6地址包含端口号,IPv6地址应置于中括号内部,<br>
+域名后不允许指定端口号<br>
+如果参数@1传入sockaddr_in6则直接返回该结构体<br>
+参数错误返回null</p>
+
+<p><a id="wsock.sockaddr_in6"></a></p>
+
+<h3>wsock.sockaddr_in6()</h3>
+
+<p><a href="#sockaddrInObject">返回对象:sockaddrInObject</a></p>
+
+<p><a id="wsock.socket"></a></p>
+
+<h3>wsock.socket</h3>
+
+<pre><code class="aardio language-aardio">Ws2_32.api(&quot;socket&quot;,&quot;pointer(int af,int type,int protoco)&quot; );
+</code></pre>
+
+<p><a id="wsock.versionRequired"></a></p>
+
+<h3>wsock.versionRequired</h3>
+
+<p>支持的版本,<br>
+用于在open函数中WSAStartup的第一个参数</p>
+
+<p><a id="in6AddrObject"></a></p>
+
+<h2>in6AddrObject 成员列表</h2>
+
+<p><a id="in6AddrObject.u.Byte"></a></p>
+
+<h3>in6AddrObject.u.Byte</h3>
+
+<p>16个8位字节数组</p>
+
+<p><a id="in6AddrObject.u.Word"></a></p>
+
+<h3>in6AddrObject.u.Word</h3>
+
+<p>8个16位字数组</p>
+
+<p><a id="inAddrObject"></a></p>
+
+<h2>inAddrObject 成员列表</h2>
+
+<p><a id="inAddrObject.S_un.S_addr"></a></p>
+
+<h3>inAddrObject.S_un.S_addr</h3>
+
+<pre><code class="aardio language-aardio">S_addr
+</code></pre>
+
+<p><a id="inAddrObject.S_un.S_un_b.s_b1"></a></p>
+
+<h3>inAddrObject.S_un.S_un_b.s_b1</h3>
+
+<pre><code class="aardio language-aardio">s_b1
+</code></pre>
+
+<p><a id="inAddrObject.S_un.S_un_b.s_b2"></a></p>
+
+<h3>inAddrObject.S_un.S_un_b.s_b2</h3>
+
+<pre><code class="aardio language-aardio">s_b2
+</code></pre>
+
+<p><a id="inAddrObject.S_un.S_un_b.s_b4"></a></p>
+
+<h3>inAddrObject.S_un.S_un_b.s_b4</h3>
+
+<pre><code class="aardio language-aardio">s_b4
+</code></pre>
+
+<p><a id="inAddrObject.S_un.S_un_w.s_w1"></a></p>
+
+<h3>inAddrObject.S_un.S_un_w.s_w1</h3>
+
+<pre><code class="aardio language-aardio">s_w1
+</code></pre>
+
+<p><a id="inAddrObject.S_un.S_un_w.s_w2"></a></p>
+
+<h3>inAddrObject.S_un.S_un_w.s_w2</h3>
+
+<pre><code class="aardio language-aardio">s_w2
+</code></pre>
+
+<p><a id="sockaddrInObject"></a></p>
+
+<h2>sockaddrInObject 成员列表</h2>
+
+<p><a id="sockaddrInObject.sin6_addr"></a></p>
+
+<h3>sockaddrInObject.sin6_addr</h3>
+
+<p>地址  </p>
+
+<p><a href="#in6AddrObject">返回对象:in6AddrObject</a></p>
+
+<p><a id="sockaddrInObject.sin6_family"></a></p>
+
+<h3>sockaddrInObject.sin6_family</h3>
+
+<p>IPv6地址类型,<br>
+值为_AF_INET6</p>
+
+<p><a id="sockaddrInObject.sin6_flowinfo"></a></p>
+
+<h3>sockaddrInObject.sin6_flowinfo</h3>
+
+<p>IPv6的流信息</p>
+
+<p><a id="sockaddrInObject.sin6_port"></a></p>
+
+<h3>sockaddrInObject.sin6_port</h3>
+
+<p>端口</p>
+
+<p><a id="sockaddrInObject.sin6_scope_id"></a></p>
+
+<h3>sockaddrInObject.sin6_scope_id</h3>
+
+<p>标识地址范围</p>
+
+<p><a id="sockaddrInObject.sin_addr"></a></p>
+
+<h3>sockaddrInObject.sin_addr</h3>
+
+<p>地址  </p>
+
+<p><a href="#inAddrObject">返回对象:inAddrObject</a></p>
+
+<p><a id="sockaddrInObject.sin_family"></a></p>
+
+<h3>sockaddrInObject.sin_family</h3>
+
+<p>IPv4地址类型,<br>
+值为_AF_INET</p>
+
+<p><a id="sockaddrInObject.sin_port"></a></p>
+
+<h3>sockaddrInObject.sin_port</h3>
+
+<p>端口</p>
+
+<p><a id="sockaddrInObject.sin_zero"></a></p>
+
+<h3>sockaddrInObject.sin_zero</h3>
+
+<p>对齐数据</p>
+
+<p><a id="ws232dllObject"></a></p>
+
+<h2>ws232dllObject 成员列表</h2>
+
+<p><a id="ws232dllObject.AcceptEx"></a></p>
+
+<h3>ws232dllObject.AcceptEx()</h3>
+
+<pre><code class="aardio language-aardio">AcceptEx
+</code></pre>
+
+<p><a id="ws232dllObject.ConnectEx"></a></p>
+
+<h3>ws232dllObject.ConnectEx()</h3>
+
+<pre><code class="aardio language-aardio">ConnectEx
+</code></pre>
+
+<p><a id="ws232dllObject.DisconnectEx"></a></p>
+
+<h3>ws232dllObject.DisconnectEx()</h3>
+
+<pre><code class="aardio language-aardio">DisconnectEx
+</code></pre>
+
+<p><a id="ws232dllObject.EnumProtocols"></a></p>
+
+<h3>ws232dllObject.EnumProtocols()</h3>
+
+<pre><code class="aardio language-aardio">EnumProtocols
+</code></pre>
+
+<p><a id="ws232dllObject.FreeAddrInfoEx"></a></p>
+
+<h3>ws232dllObject.FreeAddrInfoEx()</h3>
+
+<pre><code class="aardio language-aardio">FreeAddrInfoEx
+</code></pre>
+
+<p><a id="ws232dllObject.FreeAddrInfoW"></a></p>
+
+<h3>ws232dllObject.FreeAddrInfoW()</h3>
+
+<pre><code class="aardio language-aardio">FreeAddrInfoW
+</code></pre>
+
+<p><a id="ws232dllObject.GetAcceptExSockaddrs"></a></p>
+
+<h3>ws232dllObject.GetAcceptExSockaddrs()</h3>
+
+<pre><code class="aardio language-aardio">GetAcceptExSockaddrs
+</code></pre>
+
+<p><a id="ws232dllObject.GetAddrInfoEx"></a></p>
+
+<h3>ws232dllObject.GetAddrInfoEx()</h3>
+
+<pre><code class="aardio language-aardio">GetAddrInfoEx
+</code></pre>
+
+<p><a id="ws232dllObject.GetAddrInfoExCancel"></a></p>
+
+<h3>ws232dllObject.GetAddrInfoExCancel()</h3>
+
+<pre><code class="aardio language-aardio">GetAddrInfoExCancel
+</code></pre>
+
+<p><a id="ws232dllObject.GetAddrInfoExOverlappedResult"></a></p>
+
+<h3>ws232dllObject.GetAddrInfoExOverlappedResult()</h3>
+
+<pre><code class="aardio language-aardio">GetAddrInfoExOverlappedResult
+</code></pre>
+
+<p><a id="ws232dllObject.GetAddrInfoW"></a></p>
+
+<h3>ws232dllObject.GetAddrInfoW()</h3>
+
+<pre><code class="aardio language-aardio">GetAddrInfoW
+</code></pre>
+
+<p><a id="ws232dllObject.GetAddressByName"></a></p>
+
+<h3>ws232dllObject.GetAddressByName()</h3>
+
+<pre><code class="aardio language-aardio">GetAddressByName
+</code></pre>
+
+<p><a id="ws232dllObject.GetHostNameW"></a></p>
+
+<h3>ws232dllObject.GetHostNameW()</h3>
+
+<pre><code class="aardio language-aardio">GetHostNameW
+</code></pre>
+
+<p><a id="ws232dllObject.GetNameByType"></a></p>
+
+<h3>ws232dllObject.GetNameByType()</h3>
+
+<pre><code class="aardio language-aardio">GetNameByType
+</code></pre>
+
+<p><a id="ws232dllObject.GetNameInfoW"></a></p>
+
+<h3>ws232dllObject.GetNameInfoW()</h3>
+
+<pre><code class="aardio language-aardio">GetNameInfoW
+</code></pre>
+
+<p><a id="ws232dllObject.GetService"></a></p>
+
+<h3>ws232dllObject.GetService()</h3>
+
+<pre><code class="aardio language-aardio">GetService
+</code></pre>
+
+<p><a id="ws232dllObject.GetTypeByName"></a></p>
+
+<h3>ws232dllObject.GetTypeByName()</h3>
+
+<pre><code class="aardio language-aardio">GetTypeByName
+</code></pre>
+
+<p><a id="ws232dllObject.InetNtop"></a></p>
+
+<h3>ws232dllObject.InetNtop()</h3>
+
+<pre><code class="aardio language-aardio">InetNtop
+</code></pre>
+
+<p><a id="ws232dllObject.InetPton"></a></p>
+
+<h3>ws232dllObject.InetPton()</h3>
+
+<pre><code class="aardio language-aardio">InetPton
+</code></pre>
+
+<p><a id="ws232dllObject.RIOCloseCompletionQueue"></a></p>
+
+<h3>ws232dllObject.RIOCloseCompletionQueue()</h3>
+
+<pre><code class="aardio language-aardio">RIOCloseCompletionQueue
+</code></pre>
+
+<p><a id="ws232dllObject.RIOCreateCompletionQueue"></a></p>
+
+<h3>ws232dllObject.RIOCreateCompletionQueue()</h3>
+
+<pre><code class="aardio language-aardio">RIOCreateCompletionQueue
+</code></pre>
+
+<p><a id="ws232dllObject.RIOCreateRequestQueue"></a></p>
+
+<h3>ws232dllObject.RIOCreateRequestQueue()</h3>
+
+<pre><code class="aardio language-aardio">RIOCreateRequestQueue
+</code></pre>
+
+<p><a id="ws232dllObject.RIODequeueCompletion"></a></p>
+
+<h3>ws232dllObject.RIODequeueCompletion()</h3>
+
+<pre><code class="aardio language-aardio">RIODequeueCompletion
+</code></pre>
+
+<p><a id="ws232dllObject.RIODeregisterBuffer"></a></p>
+
+<h3>ws232dllObject.RIODeregisterBuffer()</h3>
+
+<pre><code class="aardio language-aardio">RIODeregisterBuffer
+</code></pre>
+
+<p><a id="ws232dllObject.RIONotify"></a></p>
+
+<h3>ws232dllObject.RIONotify()</h3>
+
+<pre><code class="aardio language-aardio">RIONotify
+</code></pre>
+
+<p><a id="ws232dllObject.RIOReceive"></a></p>
+
+<h3>ws232dllObject.RIOReceive()</h3>
+
+<pre><code class="aardio language-aardio">RIOReceive
+</code></pre>
+
+<p><a id="ws232dllObject.RIOReceiveEx"></a></p>
+
+<h3>ws232dllObject.RIOReceiveEx()</h3>
+
+<pre><code class="aardio language-aardio">RIOReceiveEx
+</code></pre>
+
+<p><a id="ws232dllObject.RIORegisterBuffer"></a></p>
+
+<h3>ws232dllObject.RIORegisterBuffer()</h3>
+
+<pre><code class="aardio language-aardio">RIORegisterBuffer
+</code></pre>
+
+<p><a id="ws232dllObject.RIOResizeCompletionQueue"></a></p>
+
+<h3>ws232dllObject.RIOResizeCompletionQueue()</h3>
+
+<pre><code class="aardio language-aardio">RIOResizeCompletionQueue
+</code></pre>
+
+<p><a id="ws232dllObject.RIOResizeRequestQueue"></a></p>
+
+<h3>ws232dllObject.RIOResizeRequestQueue()</h3>
+
+<pre><code class="aardio language-aardio">RIOResizeRequestQueue
+</code></pre>
+
+<p><a id="ws232dllObject.RIOSend"></a></p>
+
+<h3>ws232dllObject.RIOSend()</h3>
+
+<pre><code class="aardio language-aardio">RIOSend
+</code></pre>
+
+<p><a id="ws232dllObject.RIOSendEx"></a></p>
+
+<h3>ws232dllObject.RIOSendEx()</h3>
+
+<pre><code class="aardio language-aardio">RIOSendEx
+</code></pre>
+
+<p><a id="ws232dllObject.SetAddrInfoEx"></a></p>
+
+<h3>ws232dllObject.SetAddrInfoEx()</h3>
+
+<pre><code class="aardio language-aardio">SetAddrInfoEx
+</code></pre>
+
+<p><a id="ws232dllObject.SetService"></a></p>
+
+<h3>ws232dllObject.SetService()</h3>
+
+<pre><code class="aardio language-aardio">SetService
+</code></pre>
+
+<p><a id="ws232dllObject.SetSocketMediaStreamingMode"></a></p>
+
+<h3>ws232dllObject.SetSocketMediaStreamingMode()</h3>
+
+<pre><code class="aardio language-aardio">SetSocketMediaStreamingMode
+</code></pre>
+
+<p><a id="ws232dllObject.TransmitFile"></a></p>
+
+<h3>ws232dllObject.TransmitFile()</h3>
+
+<pre><code class="aardio language-aardio">TransmitFile
+</code></pre>
+
+<p><a id="ws232dllObject.TransmitPackets"></a></p>
+
+<h3>ws232dllObject.TransmitPackets()</h3>
+
+<pre><code class="aardio language-aardio">TransmitPackets
+</code></pre>
+
+<p><a id="ws232dllObject.WSAAccept"></a></p>
+
+<h3>ws232dllObject.WSAAccept()</h3>
+
+<pre><code class="aardio language-aardio">WSAAccept
+</code></pre>
+
+<p><a id="ws232dllObject.WSAAddressToString"></a></p>
+
+<h3>ws232dllObject.WSAAddressToString()</h3>
+
+<pre><code class="aardio language-aardio">WSAAddressToString
+</code></pre>
+
+<p><a id="ws232dllObject.WSAAsyncGetHostByAddr"></a></p>
+
+<h3>ws232dllObject.WSAAsyncGetHostByAddr()</h3>
+
+<pre><code class="aardio language-aardio">WSAAsyncGetHostByAddr
+</code></pre>
+
+<p><a id="ws232dllObject.WSAAsyncGetHostByName"></a></p>
+
+<h3>ws232dllObject.WSAAsyncGetHostByName()</h3>
+
+<pre><code class="aardio language-aardio">WSAAsyncGetHostByName
+</code></pre>
+
+<p><a id="ws232dllObject.WSAAsyncGetProtoByName"></a></p>
+
+<h3>ws232dllObject.WSAAsyncGetProtoByName()</h3>
+
+<pre><code class="aardio language-aardio">WSAAsyncGetProtoByName
+</code></pre>
+
+<p><a id="ws232dllObject.WSAAsyncGetProtoByNumber"></a></p>
+
+<h3>ws232dllObject.WSAAsyncGetProtoByNumber()</h3>
+
+<pre><code class="aardio language-aardio">WSAAsyncGetProtoByNumber
+</code></pre>
+
+<p><a id="ws232dllObject.WSAAsyncGetServByName"></a></p>
+
+<h3>ws232dllObject.WSAAsyncGetServByName()</h3>
+
+<pre><code class="aardio language-aardio">WSAAsyncGetServByName
+</code></pre>
+
+<p><a id="ws232dllObject.WSAAsyncGetServByPort"></a></p>
+
+<h3>ws232dllObject.WSAAsyncGetServByPort()</h3>
+
+<pre><code class="aardio language-aardio">WSAAsyncGetServByPort
+</code></pre>
+
+<p><a id="ws232dllObject.WSAAsyncSelect"></a></p>
+
+<h3>ws232dllObject.WSAAsyncSelect()</h3>
+
+<pre><code class="aardio language-aardio">WSAAsyncSelect
+</code></pre>
+
+<p><a id="ws232dllObject.WSACancelAsyncRequest"></a></p>
+
+<h3>ws232dllObject.WSACancelAsyncRequest(taskhandle)</h3>
+
+<pre><code class="aardio language-aardio">WSACancelAsyncRequest
+</code></pre>
+
+<p><a id="ws232dllObject.WSACancelBlockingCall"></a></p>
+
+<h3>ws232dllObject.WSACancelBlockingCall()</h3>
+
+<pre><code class="aardio language-aardio">WSACancelBlockingCall
+</code></pre>
+
+<p><a id="ws232dllObject.WSACleanup"></a></p>
+
+<h3>ws232dllObject.WSACleanup()</h3>
+
+<pre><code class="aardio language-aardio">WSACleanup
+</code></pre>
+
+<p><a id="ws232dllObject.WSACloseEvent"></a></p>
+
+<h3>ws232dllObject.WSACloseEvent(hEvent)</h3>
+
+<pre><code class="aardio language-aardio">WSACloseEvent
+</code></pre>
+
+<p><a id="ws232dllObject.WSAConnect"></a></p>
+
+<h3>ws232dllObject.WSAConnect()</h3>
+
+<pre><code class="aardio language-aardio">WSAConnect
+</code></pre>
+
+<p><a id="ws232dllObject.WSAConnectByList"></a></p>
+
+<h3>ws232dllObject.WSAConnectByList()</h3>
+
+<pre><code class="aardio language-aardio">WSAConnectByList
+</code></pre>
+
+<p><a id="ws232dllObject.WSAConnectByName"></a></p>
+
+<h3>ws232dllObject.WSAConnectByName()</h3>
+
+<pre><code class="aardio language-aardio">WSAConnectByName
+</code></pre>
+
+<p><a id="ws232dllObject.WSACreateEvent"></a></p>
+
+<h3>ws232dllObject.WSACreateEvent()</h3>
+
+<pre><code class="aardio language-aardio">WSACreateEvent
+</code></pre>
+
+<p><a id="ws232dllObject.WSADeleteSocketPeerTargetName"></a></p>
+
+<h3>ws232dllObject.WSADeleteSocketPeerTargetName()</h3>
+
+<pre><code class="aardio language-aardio">WSADeleteSocketPeerTargetName
+</code></pre>
+
+<p><a id="ws232dllObject.WSADuplicateSocket"></a></p>
+
+<h3>ws232dllObject.WSADuplicateSocket()</h3>
+
+<pre><code class="aardio language-aardio">WSADuplicateSocket
+</code></pre>
+
+<p><a id="ws232dllObject.WSAEnumNameSpaceProviders"></a></p>
+
+<h3>ws232dllObject.WSAEnumNameSpaceProviders()</h3>
+
+<pre><code class="aardio language-aardio">WSAEnumNameSpaceProviders
+</code></pre>
+
+<p><a id="ws232dllObject.WSAEnumNameSpaceProvidersEx"></a></p>
+
+<h3>ws232dllObject.WSAEnumNameSpaceProvidersEx()</h3>
+
+<pre><code class="aardio language-aardio">WSAEnumNameSpaceProvidersEx
+</code></pre>
+
+<p><a id="ws232dllObject.WSAEnumNetworkEvents"></a></p>
+
+<h3>ws232dllObject.WSAEnumNetworkEvents()</h3>
+
+<pre><code class="aardio language-aardio">WSAEnumNetworkEvents
+</code></pre>
+
+<p><a id="ws232dllObject.WSAEnumProtocols"></a></p>
+
+<h3>ws232dllObject.WSAEnumProtocols()</h3>
+
+<pre><code class="aardio language-aardio">WSAEnumProtocols
+</code></pre>
+
+<p><a id="ws232dllObject.WSAEventSelect"></a></p>
+
+<h3>ws232dllObject.WSAEventSelect()</h3>
+
+<pre><code class="aardio language-aardio">WSAEventSelect
+</code></pre>
+
+<p><a id="ws232dllObject.WSAFDIsSet"></a></p>
+
+<h3>ws232dllObject.WSAFDIsSet()</h3>
+
+<pre><code class="aardio language-aardio">__WSAFDIsSet
+</code></pre>
+
+<p><a id="ws232dllObject.WSAGetLastError"></a></p>
+
+<h3>ws232dllObject.WSAGetLastError()</h3>
+
+<pre><code class="aardio language-aardio">WSAGetLastError
+</code></pre>
+
+<p><a id="ws232dllObject.WSAGetOverlappedResult"></a></p>
+
+<h3>ws232dllObject.WSAGetOverlappedResult()</h3>
+
+<pre><code class="aardio language-aardio">WSAGetOverlappedResult
+</code></pre>
+
+<p><a id="ws232dllObject.WSAGetQOSByName"></a></p>
+
+<h3>ws232dllObject.WSAGetQOSByName()</h3>
+
+<pre><code class="aardio language-aardio">WSAGetQOSByName
+</code></pre>
+
+<p><a id="ws232dllObject.WSAGetServiceClassInfo"></a></p>
+
+<h3>ws232dllObject.WSAGetServiceClassInfo()</h3>
+
+<pre><code class="aardio language-aardio">WSAGetServiceClassInfo
+</code></pre>
+
+<p><a id="ws232dllObject.WSAGetServiceClassNameByClassId"></a></p>
+
+<h3>ws232dllObject.WSAGetServiceClassNameByClassId()</h3>
+
+<pre><code class="aardio language-aardio">WSAGetServiceClassNameByClassId
+</code></pre>
+
+<p><a id="ws232dllObject.WSAHtonl"></a></p>
+
+<h3>ws232dllObject.WSAHtonl()</h3>
+
+<pre><code class="aardio language-aardio">WSAHtonl
+</code></pre>
+
+<p><a id="ws232dllObject.WSAImpersonateSocketPeer"></a></p>
+
+<h3>ws232dllObject.WSAImpersonateSocketPeer()</h3>
+
+<pre><code class="aardio language-aardio">WSAImpersonateSocketPeer
+</code></pre>
+
+<p><a id="ws232dllObject.WSAInstallServiceClass"></a></p>
+
+<h3>ws232dllObject.WSAInstallServiceClass()</h3>
+
+<pre><code class="aardio language-aardio">WSAInstallServiceClass
+</code></pre>
+
+<p><a id="ws232dllObject.WSAIoctl"></a></p>
+
+<h3>ws232dllObject.WSAIoctl()</h3>
+
+<pre><code class="aardio language-aardio">WSAIoctl
+</code></pre>
+
+<p><a id="ws232dllObject.WSAIsBlocking"></a></p>
+
+<h3>ws232dllObject.WSAIsBlocking()</h3>
+
+<pre><code class="aardio language-aardio">WSAIsBlocking
+</code></pre>
+
+<p><a id="ws232dllObject.WSAJoinLeaf"></a></p>
+
+<h3>ws232dllObject.WSAJoinLeaf()</h3>
+
+<pre><code class="aardio language-aardio">WSAJoinLeaf
+</code></pre>
+
+<p><a id="ws232dllObject.WSALookupServiceBegin"></a></p>
+
+<h3>ws232dllObject.WSALookupServiceBegin()</h3>
+
+<pre><code class="aardio language-aardio">WSALookupServiceBegin
+</code></pre>
+
+<p><a id="ws232dllObject.WSALookupServiceEnd"></a></p>
+
+<h3>ws232dllObject.WSALookupServiceEnd()</h3>
+
+<pre><code class="aardio language-aardio">WSALookupServiceEnd
+</code></pre>
+
+<p><a id="ws232dllObject.WSALookupServiceNext"></a></p>
+
+<h3>ws232dllObject.WSALookupServiceNext()</h3>
+
+<pre><code class="aardio language-aardio">WSALookupServiceNext
+</code></pre>
+
+<p><a id="ws232dllObject.WSANSPIoctl"></a></p>
+
+<h3>ws232dllObject.WSANSPIoctl()</h3>
+
+<pre><code class="aardio language-aardio">WSANSPIoctl
+</code></pre>
+
+<p><a id="ws232dllObject.WSANtohl"></a></p>
+
+<h3>ws232dllObject.WSANtohl()</h3>
+
+<pre><code class="aardio language-aardio">WSANtohl
+</code></pre>
+
+<p><a id="ws232dllObject.WSAPoll"></a></p>
+
+<h3>ws232dllObject.WSAPoll()</h3>
+
+<pre><code class="aardio language-aardio">WSAPoll
+</code></pre>
+
+<p><a id="ws232dllObject.WSAProviderConfigChange"></a></p>
+
+<h3>ws232dllObject.WSAProviderConfigChange()</h3>
+
+<pre><code class="aardio language-aardio">WSAProviderConfigChange
+</code></pre>
+
+<p><a id="ws232dllObject.WSAQuerySocketSecurity"></a></p>
+
+<h3>ws232dllObject.WSAQuerySocketSecurity()</h3>
+
+<pre><code class="aardio language-aardio">WSAQuerySocketSecurity
+</code></pre>
+
+<p><a id="ws232dllObject.WSARecv"></a></p>
+
+<h3>ws232dllObject.WSARecv()</h3>
+
+<pre><code class="aardio language-aardio">WSARecv
+</code></pre>
+
+<p><a id="ws232dllObject.WSARecvDisconnect"></a></p>
+
+<h3>ws232dllObject.WSARecvDisconnect()</h3>
+
+<pre><code class="aardio language-aardio">WSARecvDisconnect
+</code></pre>
+
+<p><a id="ws232dllObject.WSARecvEx"></a></p>
+
+<h3>ws232dllObject.WSARecvEx()</h3>
+
+<pre><code class="aardio language-aardio">WSARecvEx
+</code></pre>
+
+<p><a id="ws232dllObject.WSARecvFrom"></a></p>
+
+<h3>ws232dllObject.WSARecvFrom()</h3>
+
+<pre><code class="aardio language-aardio">WSARecvFrom
+</code></pre>
+
+<p><a id="ws232dllObject.WSARecvMsg"></a></p>
+
+<h3>ws232dllObject.WSARecvMsg()</h3>
+
+<pre><code class="aardio language-aardio">WSARecvMsg
+</code></pre>
+
+<p><a id="ws232dllObject.WSARemoveServiceClass"></a></p>
+
+<h3>ws232dllObject.WSARemoveServiceClass()</h3>
+
+<pre><code class="aardio language-aardio">WSARemoveServiceClass
+</code></pre>
+
+<p><a id="ws232dllObject.WSAResetEvent"></a></p>
+
+<h3>ws232dllObject.WSAResetEvent()</h3>
+
+<pre><code class="aardio language-aardio">WSAResetEvent
+</code></pre>
+
+<p><a id="ws232dllObject.WSARevertImpersonation"></a></p>
+
+<h3>ws232dllObject.WSARevertImpersonation()</h3>
+
+<pre><code class="aardio language-aardio">WSARevertImpersonation
+</code></pre>
+
+<p><a id="ws232dllObject.WSASend"></a></p>
+
+<h3>ws232dllObject.WSASend()</h3>
+
+<pre><code class="aardio language-aardio">WSASend
+</code></pre>
+
+<p><a id="ws232dllObject.WSASendDisconnect"></a></p>
+
+<h3>ws232dllObject.WSASendDisconnect()</h3>
+
+<pre><code class="aardio language-aardio">WSASendDisconnect
+</code></pre>
+
+<p><a id="ws232dllObject.WSASendMsg"></a></p>
+
+<h3>ws232dllObject.WSASendMsg()</h3>
+
+<pre><code class="aardio language-aardio">WSASendMsg
+</code></pre>
+
+<p><a id="ws232dllObject.WSASendTo"></a></p>
+
+<h3>ws232dllObject.WSASendTo()</h3>
+
+<pre><code class="aardio language-aardio">WSASendTo
+</code></pre>
+
+<p><a id="ws232dllObject.WSASetBlockingHook"></a></p>
+
+<h3>ws232dllObject.WSASetBlockingHook(lpBlockFunc)</h3>
+
+<pre><code class="aardio language-aardio">WSASetBlockingHook
+</code></pre>
+
+<p><a id="ws232dllObject.WSASetEvent"></a></p>
+
+<h3>ws232dllObject.WSASetEvent()</h3>
+
+<pre><code class="aardio language-aardio">WSASetEvent
+</code></pre>
+
+<p><a id="ws232dllObject.WSASetLastError"></a></p>
+
+<h3>ws232dllObject.WSASetLastError(iErrorCode)</h3>
+
+<pre><code class="aardio language-aardio">WSASetLastError
+</code></pre>
+
+<p><a id="ws232dllObject.WSASetService"></a></p>
+
+<h3>ws232dllObject.WSASetService()</h3>
+
+<pre><code class="aardio language-aardio">WSASetService
+</code></pre>
+
+<p><a id="ws232dllObject.WSASetSocketPeerTargetName"></a></p>
+
+<h3>ws232dllObject.WSASetSocketPeerTargetName()</h3>
+
+<pre><code class="aardio language-aardio">WSASetSocketPeerTargetName
+</code></pre>
+
+<p><a id="ws232dllObject.WSASetSocketSecurity"></a></p>
+
+<h3>ws232dllObject.WSASetSocketSecurity()</h3>
+
+<pre><code class="aardio language-aardio">WSASetSocketSecurity
+</code></pre>
+
+<p><a id="ws232dllObject.WSASocket"></a></p>
+
+<h3>ws232dllObject.WSASocket()</h3>
+
+<pre><code class="aardio language-aardio">WSASocket
+</code></pre>
+
+<p><a id="ws232dllObject.WSAStartup"></a></p>
+
+<h3>ws232dllObject.WSAStartup()</h3>
+
+<pre><code class="aardio language-aardio">WSAStartup
+</code></pre>
+
+<p><a id="ws232dllObject.WSAStringToAddress"></a></p>
+
+<h3>ws232dllObject.WSAStringToAddress()</h3>
+
+<pre><code class="aardio language-aardio">WSAStringToAddress
+</code></pre>
+
+<p><a id="ws232dllObject.WSAUnhookBlockingHook"></a></p>
+
+<h3>ws232dllObject.WSAUnhookBlockingHook()</h3>
+
+<pre><code class="aardio language-aardio">WSAUnhookBlockingHook
+</code></pre>
+
+<p><a id="ws232dllObject.WSAWaitForMultipleEvents"></a></p>
+
+<h3>ws232dllObject.WSAWaitForMultipleEvents()</h3>
+
+<pre><code class="aardio language-aardio">WSAWaitForMultipleEvents
+</code></pre>
+
+<p><a id="ws232dllObject.accept"></a></p>
+
+<h3>ws232dllObject.accept()</h3>
+
+<pre><code class="aardio language-aardio">accept
+</code></pre>
+
+<p><a id="ws232dllObject.bind"></a></p>
+
+<h3>ws232dllObject.bind()</h3>
+
+<pre><code class="aardio language-aardio">bind
+</code></pre>
+
+<p><a id="ws232dllObject.closesocket"></a></p>
+
+<h3>ws232dllObject.closesocket()</h3>
+
+<pre><code class="aardio language-aardio">closesocket
+</code></pre>
+
+<p><a id="ws232dllObject.connect"></a></p>
+
+<h3>ws232dllObject.connect()</h3>
+
+<pre><code class="aardio language-aardio">connect
+</code></pre>
+
+<p><a id="ws232dllObject.freeaddrinfo"></a></p>
+
+<h3>ws232dllObject.freeaddrinfo()</h3>
+
+<pre><code class="aardio language-aardio">freeaddrinfo
+</code></pre>
+
+<p><a id="ws232dllObject.gai_strerror"></a></p>
+
+<h3>ws232dllObject.gai_strerror()</h3>
+
+<pre><code class="aardio language-aardio">gai_strerror
+</code></pre>
+
+<p><a id="ws232dllObject.getaddrinfo"></a></p>
+
+<h3>ws232dllObject.getaddrinfo()</h3>
+
+<pre><code class="aardio language-aardio">getaddrinfo
+</code></pre>
+
+<p><a id="ws232dllObject.gethostbyaddr"></a></p>
+
+<h3>ws232dllObject.gethostbyaddr()</h3>
+
+<pre><code class="aardio language-aardio">gethostbyaddr
+</code></pre>
+
+<p><a id="ws232dllObject.gethostbyname"></a></p>
+
+<h3>ws232dllObject.gethostbyname()</h3>
+
+<pre><code class="aardio language-aardio">gethostbyname
+</code></pre>
+
+<p><a id="ws232dllObject.gethostname"></a></p>
+
+<h3>ws232dllObject.gethostname()</h3>
+
+<pre><code class="aardio language-aardio">gethostname
+</code></pre>
+
+<p><a id="ws232dllObject.getipv4sourcefilter"></a></p>
+
+<h3>ws232dllObject.getipv4sourcefilter()</h3>
+
+<pre><code class="aardio language-aardio">getipv4sourcefilter
+</code></pre>
+
+<p><a id="ws232dllObject.getnameinfo"></a></p>
+
+<h3>ws232dllObject.getnameinfo()</h3>
+
+<pre><code class="aardio language-aardio">getnameinfo
+</code></pre>
+
+<p><a id="ws232dllObject.getpeername"></a></p>
+
+<h3>ws232dllObject.getpeername()</h3>
+
+<pre><code class="aardio language-aardio">getpeername
+</code></pre>
+
+<p><a id="ws232dllObject.getprotobyname"></a></p>
+
+<h3>ws232dllObject.getprotobyname()</h3>
+
+<pre><code class="aardio language-aardio">getprotobyname
+</code></pre>
+
+<p><a id="ws232dllObject.getprotobynumber"></a></p>
+
+<h3>ws232dllObject.getprotobynumber()</h3>
+
+<pre><code class="aardio language-aardio">getprotobynumber
+</code></pre>
+
+<p><a id="ws232dllObject.getservbyname"></a></p>
+
+<h3>ws232dllObject.getservbyname()</h3>
+
+<pre><code class="aardio language-aardio">getservbyname
+</code></pre>
+
+<p><a id="ws232dllObject.getservbyport"></a></p>
+
+<h3>ws232dllObject.getservbyport()</h3>
+
+<pre><code class="aardio language-aardio">getservbyport
+</code></pre>
+
+<p><a id="ws232dllObject.getsockname"></a></p>
+
+<h3>ws232dllObject.getsockname()</h3>
+
+<pre><code class="aardio language-aardio">getsockname
+</code></pre>
+
+<p><a id="ws232dllObject.getsockopt"></a></p>
+
+<h3>ws232dllObject.getsockopt()</h3>
+
+<pre><code class="aardio language-aardio">getsockopt
+</code></pre>
+
+<p><a id="ws232dllObject.getsourcefilter"></a></p>
+
+<h3>ws232dllObject.getsourcefilter()</h3>
+
+<pre><code class="aardio language-aardio">getsourcefilter
+</code></pre>
+
+<p><a id="ws232dllObject.htond"></a></p>
+
+<h3>ws232dllObject.htond()</h3>
+
+<pre><code class="aardio language-aardio">htond
+</code></pre>
+
+<p><a id="ws232dllObject.htonf"></a></p>
+
+<h3>ws232dllObject.htonf()</h3>
+
+<pre><code class="aardio language-aardio">htonf
+</code></pre>
+
+<p><a id="ws232dllObject.htonl"></a></p>
+
+<h3>ws232dllObject.htonl()</h3>
+
+<pre><code class="aardio language-aardio">htonl
+</code></pre>
+
+<p><a id="ws232dllObject.htonll"></a></p>
+
+<h3>ws232dllObject.htonll()</h3>
+
+<pre><code class="aardio language-aardio">htonll
+</code></pre>
+
+<p><a id="ws232dllObject.inet_addr"></a></p>
+
+<h3>ws232dllObject.inet_addr()</h3>
+
+<pre><code class="aardio language-aardio">inet_addr
+</code></pre>
+
+<p><a id="ws232dllObject.inet_ntoa"></a></p>
+
+<h3>ws232dllObject.inet_ntoa()</h3>
+
+<pre><code class="aardio language-aardio">inet_ntoa
+</code></pre>
+
+<p><a id="ws232dllObject.ioctlsocket"></a></p>
+
+<h3>ws232dllObject.ioctlsocket()</h3>
+
+<pre><code class="aardio language-aardio">ioctlsocket
+</code></pre>
+
+<p><a id="ws232dllObject.listen"></a></p>
+
+<h3>ws232dllObject.listen()</h3>
+
+<pre><code class="aardio language-aardio">listen
+</code></pre>
+
+<p><a id="ws232dllObject.ntohd"></a></p>
+
+<h3>ws232dllObject.ntohd()</h3>
+
+<pre><code class="aardio language-aardio">ntohd
+</code></pre>
+
+<p><a id="ws232dllObject.ntohf"></a></p>
+
+<h3>ws232dllObject.ntohf()</h3>
+
+<pre><code class="aardio language-aardio">ntohf
+</code></pre>
+
+<p><a id="ws232dllObject.ntohl"></a></p>
+
+<h3>ws232dllObject.ntohl()</h3>
+
+<pre><code class="aardio language-aardio">ntohl
+</code></pre>
+
+<p><a id="ws232dllObject.ntohll"></a></p>
+
+<h3>ws232dllObject.ntohll()</h3>
+
+<pre><code class="aardio language-aardio">ntohll
+</code></pre>
+
+<p><a id="ws232dllObject.recv"></a></p>
+
+<h3>ws232dllObject.recv()</h3>
+
+<pre><code class="aardio language-aardio">recv
+</code></pre>
+
+<p><a id="ws232dllObject.recvfrom"></a></p>
+
+<h3>ws232dllObject.recvfrom()</h3>
+
+<pre><code class="aardio language-aardio">recvfrom
+</code></pre>
+
+<p><a id="ws232dllObject.select"></a></p>
+
+<h3>ws232dllObject.select()</h3>
+
+<pre><code class="aardio language-aardio">select
+</code></pre>
+
+<p><a id="ws232dllObject.send"></a></p>
+
+<h3>ws232dllObject.send()</h3>
+
+<pre><code class="aardio language-aardio">send
+</code></pre>
+
+<p><a id="ws232dllObject.sendto"></a></p>
+
+<h3>ws232dllObject.sendto()</h3>
+
+<pre><code class="aardio language-aardio">sendto
+</code></pre>
+
+<p><a id="ws232dllObject.setipv4sourcefilter"></a></p>
+
+<h3>ws232dllObject.setipv4sourcefilter()</h3>
+
+<pre><code class="aardio language-aardio">setipv4sourcefilter
+</code></pre>
+
+<p><a id="ws232dllObject.setsockopt"></a></p>
+
+<h3>ws232dllObject.setsockopt()</h3>
+
+<pre><code class="aardio language-aardio">setsockopt
+</code></pre>
+
+<p><a id="ws232dllObject.setsourcefilter"></a></p>
+
+<h3>ws232dllObject.setsourcefilter()</h3>
+
+<pre><code class="aardio language-aardio">setsourcefilter
+</code></pre>
+
+<p><a id="ws232dllObject.shutdown"></a></p>
+
+<h3>ws232dllObject.shutdown()</h3>
+
+<pre><code class="aardio language-aardio">shutdown
+</code></pre>
+
+<p><a id="ws232dllObject.socket"></a></p>
+
+<h3>ws232dllObject.socket()</h3>
+
+<pre><code class="aardio language-aardio">socket
+</code></pre>
+
+<p><a id="wsock._wsadata"></a></p>
+
+<h2>wsock._wsadata 成员列表</h2>
+
+<p><a id="wsock._wsadata.description"></a></p>
+
+<h3>wsock._wsadata.description</h3>
+
+<p>描述</p>
+
+<p><a id="wsock._wsadata.highVersion"></a></p>
+
+<h3>wsock._wsadata.highVersion</h3>
+
+<p>支持的最高版本</p>
+
+<p><a id="wsock._wsadata.maxSockets"></a></p>
+
+<h3>wsock._wsadata.maxSockets</h3>
+
+<p>单进程可打开的最大套接字数</p>
+
+<p><a id="wsock._wsadata.maxUdpDg"></a></p>
+
+<h3>wsock._wsadata.maxUdpDg</h3>
+
+<p>最大数据包大小,0为无限制</p>
+
+<p><a id="wsock._wsadata.systemStatus"></a></p>
+
+<h3>wsock._wsadata.systemStatus</h3>
+
+<p>状态和配置</p>
+
+<p><a id="wsock._wsadata.version"></a></p>
+
+<h3>wsock._wsadata.version</h3>
+
+<p>版本</p>
+
+<p><a id="wsockFdSetObject"></a></p>
+
+<h2>wsockFdSetObject 成员列表</h2>
+
+<p><a id="wsockFdSetObject.fd_array"></a></p>
+
+<h3>wsockFdSetObject.fd_array</h3>
+
+<p>文件句柄数组</p>
+
+<p><a id="wsockFdSetObject.fd_count"></a></p>
+
+<h3>wsockFdSetObject.fd_count</h3>
+
+<p>文件句柄数</p>
+
+<p><a id="wsockFdSetObject.set"></a></p>
+
+<h3>wsockFdSetObject.set()</h3>
+
+<p><a href="#wsockFdSetObject">返回对象:wsockFdSetObject</a></p>
+
+<p><a id="wsockFdSetObject.set"></a></p>
+
+<h3>wsockFdSetObject.set(hSocket)</h3>
+
+<p>设置文件描述符,成功返回对象自身</p>
+
+<h3>全局常量</h3>
+
+<p><a id="::Ws2_32"></a></p>
+
+<h3>::Ws2_32</h3>
+
+<p>Ws2_32.dll在wsock支持库中加载  </p>
+
+<p><a href="#ws232dllObject">返回对象:ws232dllObject</a></p>
+
+<h3>自动完成常量</h3>
+
+<p>_AF_APPLETALK=0x10<br>
+_AF_CCITT=0xA<br>
+_AF_CHAOS=5<br>
+_AF_DATAKIT=9<br>
+_AF_DECNET=0xC<br>
+_AF_DLI=0xD<br>
+_AF_ECMA=8<br>
+_AF_HYLINK=0xF<br>
+_AF_IMPLINK=3<br>
+_AF_INET=2<br>
+_AF_INET6=23<br>
+_AF_ISO=7<br>
+_AF_LAT=0xE<br>
+_AF_MAX=0x12<br>
+_AF_NETBIOS=0x11<br>
+_AF_NS=6<br>
+_AF_OSI=7<br>
+_AF_PUP=4<br>
+_AF_SNA=0xB<br>
+_AF_UNIX=1<br>
+_AF_UNSPEC=0x0<br>
+_FD_ACCEPT=8<br>
+_FD_CLOSE=0x20<br>
+_FD_CONNECT=0x10<br>
+_FD_OOB=4<br>
+_FD_READ=1<br>
+_FD_SETSIZE=0x40<br>
+_FD_WRITE=2<br>
+_FIOASYNC=0x8004667D<br>
+_FIONBIO=0x8004667E<br>
+_FIONREAD=0x8004667F<br>
+_HOST_NOT_FOUND=0x2AF9<br>
+_IMPLINK_HIGHEXPER=0x9E<br>
+_IMPLINK_IP=0x9B<br>
+_IMPLINK_LOWEXPER=0x9C<br>
+_INADDR_ANY=0x0<br>
+_INADDR_BROADCAST=-1<br>
+_INADDR_LOOPBACK=0x7F000001<br>
+_INADDR_NONE=-1<br>
+_IN_CLASSA_HOST=0xFFFFFF<br>
+_IN_CLASSA_MAX=0x80<br>
+_IN_CLASSA_NET=0xFF000000<br>
+_IN_CLASSA_NSHIFT=0x18<br>
+_IN_CLASSB_HOST=0xFFFF<br>
+_IN_CLASSB_MAX=0x10000<br>
+_IN_CLASSB_NET=0xFFFF0000<br>
+_IN_CLASSB_NSHIFT=0x10<br>
+_IN_CLASSC_HOST=0xFF<br>
+_IN_CLASSC_NET=0xFFFFFF00<br>
+_IN_CLASSC_NSHIFT=8<br>
+_IOCPARM_MASK=0x7F<br>
+_IOC_IN=0x80000000<br>
+_IOC_INOUT=0xC0000000<br>
+_IOC_OUT=0x40000000<br>
+_IOC_VOID=0x20000000<br>
+_IPPORT_BIFFUDP=0x200<br>
+_IPPORT_CMDSERVER=0x202<br>
+_IPPORT_DAYTIME=0xD<br>
+_IPPORT_DISCARD=9<br>
+_IPPORT_ECHO=7<br>
+_IPPORT_EFSSERVER=0x208<br>
+_IPPORT_EXECSERVER=0x200<br>
+_IPPORT_FINGER=0x4F<br>
+_IPPORT_FTP=0x15<br>
+_IPPORT_HTTP=0x50<br>
+_IPPORT_LOGINSERVER=0x201<br>
+_IPPORT_MTP=0x39<br>
+_IPPORT_NAMESERVER=0x2A<br>
+_IPPORT_NETSTAT=0xF<br>
+_IPPORT_RESERVED=0x400<br>
+_IPPORT_RJE=0x4D<br>
+_IPPORT_ROUTESERVER=0x208<br>
+_IPPORT_SMTP=0x19<br>
+_IPPORT_SUPDUP=0x5F<br>
+_IPPORT_SYSTAT=0xB<br>
+_IPPORT_TELNET=0x17<br>
+_IPPORT_TFTP=0x45<br>
+_IPPORT_TIMESERVER=0x25<br>
+_IPPORT_TTYLINK=0x57<br>
+_IPPORT_WHOIS=0x2B<br>
+_IPPORT_WHOSERVER=0x201<br>
+_IPPROTO_AH=0x33<br>
+_IPPROTO_CBT=7<br>
+_IPPROTO_DSTOPTS=0x3C<br>
+_IPPROTO_EGP=8<br>
+_IPPROTO_ESP=0x32<br>
+_IPPROTO_FRAGMENT=0x2C<br>
+_IPPROTO_GGP=3<br>
+_IPPROTO_HOPOPTS=0x0<br>
+_IPPROTO_ICLFXBM=0x4E<br>
+_IPPROTO_ICMP=1<br>
+_IPPROTO_ICMPV6=0x3A<br>
+_IPPROTO_IDP=0x16<br>
+_IPPROTO_IGMP=2<br>
+_IPPROTO_IGP=9<br>
+_IPPROTO_IPV4=4<br>
+_IPPROTO_IPV6=0x29<br>
+_IPPROTO_L2TP=0x73<br>
+_IPPROTO_MAX=0x100<br>
+_IPPROTO_ND=0x4D<br>
+_IPPROTO_NONE=0x3B<br>
+_IPPROTO_PGM=0x71<br>
+_IPPROTO_PIM=0x67<br>
+_IPPROTO_PUP=0xC<br>
+_IPPROTO_RAW=0xFF<br>
+_IPPROTO_RDP=0x1B<br>
+_IPPROTO_RESERVED_IPSEC=0x102<br>
+_IPPROTO_RESERVED_IPSECOFFLOAD=0x103<br>
+_IPPROTO_RESERVED_MAX=0x104<br>
+_IPPROTO_RESERVED_RAW=0x101<br>
+_IPPROTO_ROUTING=0x2B<br>
+_IPPROTO_SCTP=0x84<br>
+_IPPROTO_ST=5<br>
+_IPPROTO_TCP=6<br>
+_IPPROTO_UDP=0x11<br>
+_IP_OPTIONS=1<br>
+_MSG_DONTROUTE=4<br>
+_MSG_MAXIOVLEN=0x10<br>
+_MSG_OOB=1<br>
+_MSG_PEEK=2<br>
+_NO_ADDRESS=0x2AFC<br>
+_NO_DATA=0x2AFC<br>
+_NO_RECOVERY=0x2AFB<br>
+_PF_APPLETALK=0x10<br>
+_PF_CCITT=0xA<br>
+_PF_CHAOS=5<br>
+_PF_DATAKIT=9<br>
+_PF_DECNET=0xC<br>
+_PF_DLI=0xD<br>
+_PF_ECMA=8<br>
+_PF_HYLINK=0xF<br>
+_PF_IMPLINK=3<br>
+_PF_INET=2<br>
+_PF_ISO=7<br>
+_PF_LAT=0xE<br>
+_PF_MAX=0x12<br>
+_PF_NETBIOS=0x11<br>
+_PF_NS=6<br>
+_PF_OSI=7<br>
+_PF_PUP=4<br>
+_PF_SNA=0xB<br>
+_PF_UNIX=1<br>
+_PF_UNSPEC=0x0<br>
+_SIO_ABSORB_RTRALERT=0x98000005<br>
+_SIO_INDEX_ADD_MCAST=0x9800000A<br>
+_SIO_INDEX_BIND=0x98000008<br>
+_SIO_INDEX_DEL_MCAST=0x9800000B<br>
+_SIO_INDEX_MCASTIF=0x98000009<br>
+_SIO_KEEPALIVE_VALS=0x98000004<br>
+_SIO_LIMIT_BROADCASTS=0x98000007<br>
+_SIO_RCVALL=0x98000001<br>
+_SIO_RCVALL_IF=0x9800000E<br>
+_SIO_RCVALL_IGMPMCAST=0x98000003<br>
+_SIO_RCVALL_MCAST=0x98000002<br>
+_SIO_RCVALL_MCAST_IF=0x9800000D<br>
+_SIO_UCAST_IF=0x98000006<br>
+_SOCKET_ERROR=-1<br>
+_SOCK_DGRAM=2<br>
+_SOCK_ERROR=-1<br>
+_SOCK_RAW=3<br>
+_SOCK_RDM=4<br>
+_SOCK_SEQPACKET=5<br>
+_SOCK_STREAM=1<br>
+_SOL_SOCKET=0xFFFF<br>
+_SOMAXCONN=5<br>
+_SO_ACCEPTCON=2<br>
+_SO_BROADCAST=0x20<br>
+_SO_DEBUG=1<br>
+_SO_DONTLINGER=0xFFFFFF7F<br>
+_SO_DONTROUTE=0x10<br>
+_SO_ERROR=0x1007<br>
+_SO_KEEPALIVE=8<br>
+_SO_LINGER=0x80<br>
+_SO_OOBINLINE=0x100<br>
+_SO_RCVBUF=0x1002<br>
+_SO_RCVLOWAT=0x1004<br>
+_SO_RCVTIMEO=0x1006<br>
+_SO_REUSEADDR=4<br>
+_SO_SNDBUF=0x1001<br>
+_SO_SNDLOWAT=0x1003<br>
+_SO_SNDTIMEO=0x1005<br>
+_SO_TYPE=0x1008<br>
+_SO_USELOOPBACK=0x40<br>
+_TCP_NODELAY=1<br>
+_TRY_AGAIN=0x2AFA<br>
+_WSABASEERR=0x2710<br>
+_WSADESCRIPTION_LEN=0x100<br>
+_WSAHOST_NOT_FOUND=0x2AF9<br>
+_WSAIOW=_WSAIOW=function(x,y) {return (0x80000000<br>
+_WSANO_ADDRESS=0x2AFC<br>
+_WSANO_DATA=0x2AFC<br>
+_WSANO_RECOVERY=0x2AFB<br>
+_WSASYS_STATUS_LEN=0x80<br>
+_WSATRY_AGAIN=0x2AFA  </p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/wsock/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/wsock/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/wsock/_.md">Markdown 格式</a></p>
+
+</body> 
+</html>

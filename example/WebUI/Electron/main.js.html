@@ -1,0 +1,126 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 主进程通信'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 主进程通信</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 主进程通信</h1><pre><code class="aardio language-aardio">//主进程通信
+//请改用微软的 WebView2（也就是 aardio 标准库里的 web.view ）
+import electron.app;
+var app = electron.app( ,,true);// 如果第3个参数为true，可以查看js主进程里的console.log输出
+
+/*
+electron是多进程运行环境，
+显示网页的叫渲染进程（类似浏览器环境）而启动electron的main.js则称为主进程，
+主进程、渲染进程与aardio交互的方法是一样的（不一样的麻烦地方我给大家处理好了），
+在js中aardio = require(&#39;aardio&#39;) 导入aardio接口就可以与aardio交互了。
+*/
+
+app.jsMain =/**  
+    const aardio = require(&#39;aardio&#39;)  //启动RPC服务允许调aardio/electron互调函数,创建BrowserWindow主窗口
+    const app = require(&#39;electron&#39;).app //管理electron进程的生命周期
+
+    /*
+    aardio-electron 主进程已准备就绪,主窗口已创建触发此事件, 
+    */
+    aardio.ready( win=&gt; { 
+        console.log(&quot;abc已创建窗口&quot;);
+
+        // 参数win是BrowserWindow对象
+        //if( !aardio.studioInvoke ){
+            win.setMenu( null ) 
+        //} 
+
+        win.on(&#39;closed&#39;, () =&gt; {  
+
+        })      
+    } )  
+
+    // 可以继续注册其他导出给aardio的回调函数
+    aardio.on(&#39;main.hello&#39;, (str) =&gt; {   
+
+        // 可以在JS里调用winapi函数
+       aardio.MessageBox(
+            aardio.hwndElectron,
+            &quot;electron调用winapi测试&quot;,
+            &quot;electron&quot;,0
+            );
+
+        return &quot;electron主进程应答&quot; + str;
+    }) 
+
+    app.on(&#39;window-all-closed&#39;, () =&gt; {
+        app.quit();
+
+    }) 
+**/
+
+//可选在这里直接指定index.js的代码，实际开发请写到工程文件里
+app.html = /** 
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+
+  &lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;aardio嵌入electron演示&lt;/title&gt;
+    &lt;script&gt;
+    const aardio = require(&#39;aardio&#39;) //这句用来导入aardio支持模块
+    &lt;/script&gt;
+  &lt;/head&gt;
+
+  &lt;body&gt;
+
+    &lt;h2 onmousedown=&quot;aardio.hitCaption();return false;&quot; 
+        style=&quot;-webkit-user-select: none;cursor:default;&quot;&gt;按这里调用aardio.hitCaption()拖动窗口!&lt;/h2&gt;
+
+   &lt;button onclick=&quot;aardio.quit();&quot;&gt;点这里调用aardio关闭窗口&lt;/button&gt;
+&lt;/html&gt;
+**/
+
+/*
+在下面的external对象中指定允许electron渲染进程中使用JS直接调用的函数
+下面的external 会直接转换为js中的aardio对象，在JS中require(&#39;aardio&#39;)就可以使用
+*/
+app.external = {
+    MessageBox = ::User32.MessageBox;
+}
+
+/*
+接收返回值,服务端为什么要用这种格式接收返回值呢？
+当然这不是因为electron的原因，而是作为一个WebSocket服务端，他可能会有较多连接，
+如果每个连接都注册回调函数，如果连接丢失的话，可能就会不必要的浪费时间去回收，
+所以统一用一个同名的回调函数，hSocket，函数名，以及RPC本身参数中附带的信息都可以区分消息来源。
+这样可以避免创建大量重复的回调函数，客户端我们把方便放第一位，而服务端要稍加考虑性能的问题。
+*/
+app.callback(&quot;main.hello&quot;,function(hSocket,result,err){
+    win.msgbox(result : err,&quot;调用electron主进程的main.add函数以后返回值了&quot;);
+})
+
+//electron窗口准备就绪会触发这个函数
+app.onReady = function(hwndElectron){
+    app.xcall(&quot;main.hello&quot;,&quot;aardio&quot;); 
+}
+
+//WebSocke/RPC中遇到的错误都会触发这个函数,可以在这里自定义错误处理方式
+app.ws.onError = function(hSocket,err){
+    errput(err,&quot;electron/rpc error&quot;);//当然也可以在 global.onError 里自定义全部的错误信息怎么显示
+}
+
+//正式的启动electron进程，并打开主页
+app.start(&quot;/res/main.aardio&quot;);
+
+
+win.loopMessage();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/WebUI/Electron/main.js.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/WebUI/Electron/main.js.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/WebUI/Electron/main.js.md">Markdown 格式</a>
+</body> 
+</html>

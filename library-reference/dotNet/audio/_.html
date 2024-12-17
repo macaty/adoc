@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - dotNet.audio 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - dotNet.audio 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>dotNet.audio 库模块帮助文档</h1>
+
+<p><a id="dotNet.audio"></a></p>
+
+<h2>dotNet.audio 成员列表</h2>
+
+<p>录音</p>
+
+<p><a id="dotNet.audio.convertToMp3"></a></p>
+
+<h3>dotNet.audio.convertToMp3</h3>
+
+<p>转换音频为 MP3 文件，或提取视频中的音频为 MP3 文件</p>
+
+<p><a id="dotNet.audio.convertToMp3"></a></p>
+
+<h3>dotNet.audio.convertToMp3(inPath,outPath,desiredBitRate)</h3>
+
+<p>参数 @inPath 可指定 *.wav 文件路径，<br>
+也可指定 MP3, WMA, AAC（MP4）音频文件、MP4 视频文件路径或网址。<br>
+参数 @outPath 指定输出 *.mp3 文件路径。<br>
+可选用 @desiredBitRate 指定比特率，省略则默认值为 192000</p>
+
+<p><a id="dotNet.audio.convertToWav"></a></p>
+
+<h3>dotNet.audio.convertToWav</h3>
+
+<p>转换音频为 WAV 文件，或提取视频中的音频为 WAV 文件</p>
+
+<p><a id="dotNet.audio.convertToWav"></a></p>
+
+<h3>dotNet.audio.convertToWav(inPath,outPath,desiredBitRate)</h3>
+
+<p>参数 @inPath 可指定 MP3, WMA, AAC（MP4）音频文件、MP4 视频文件路径或网址。<br>
+参数 @outPath 指定输出 *.wav 文件路径</p>
+
+<p><a id="dotNet.audio.eachWaveInDevice"></a></p>
+
+<h3>dotNet.audio.eachWaveInDevice()</h3>
+
+<pre><code class="aardio language-aardio">for deviceNumber,deviceName,caps in dotNet.audio.eachWaveInDevice(){
+    /*遍历录音设备。  
+deviceNumber 为设备 ID，deviceName 为设备名称。  
+caps 参数用法请参考源码与 NAudio 文档*/
+}
+</code></pre>
+
+<p><a id="dotNet.audio.onWaveIn"></a></p>
+
+<h3>dotNet.audio.onWaveIn</h3>
+
+<pre><code class="aardio language-aardio">dotNet.audio.onWaveIn = function(max){
+    /*表示当前录制声音峰值百分比的小数*/
+}
+</code></pre>
+
+<p><a id="dotNet.audio.startWaveIn"></a></p>
+
+<h3>dotNet.audio.startWaveIn()</h3>
+
+<p>开始录音。<br>
+录音前会自动调用 stopWaveIn 函数停止之前创建的录音操作。<br>
+可选用参数 @1 指定 *.wav 文件路径。<br>
+可选用参数 @2 指定设备 ID，省略则默认指定为 -2。<br>
+设备 ID 指定为 -2 录制系统声音，<br>
+指定为 -1 则使用默认录音设备  </p>
+
+<p>如果不指定任何参数，则仅用于捕获系统声音并触发 onWaveIn 事件</p>
+
+<p><a id="dotNet.audio.stopWaveIn"></a></p>
+
+<h3>dotNet.audio.stopWaveIn()</h3>
+
+<p>停止录音</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/dotNet/audio/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/dotNet/audio/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/dotNet/audio/_.md">Markdown 格式</a></p>
+
+</body> 
+</html>

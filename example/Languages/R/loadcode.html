@@ -1,0 +1,43 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - aardio 调用 R 语言 - 嵌入模板'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - aardio 调用 R 语言 - 嵌入模板</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 调用 R 语言 - 嵌入模板</h1><pre><code class="aardio language-aardio">//aardio 调用 R 语言 - 嵌入模板
+import console.int; 
+import process.r;
+
+//执行 R 代码，支持模板语法： 
+//https://www.aardio.com/zh-cn/doc/language-reference/templating/syntax.html
+var prcs = process.r.loadcode(`write(&quot;&lt;?
+
+//可以在 R 代码中嵌入 aardio  代码
+if(_WIN10_LATER){
+    print(&quot;新系统&quot;,owner.模板参数名)
+}
+else {
+    print(&quot;旧系统&quot;,owner.模板参数名)    
+}
+
+
+?&gt;&quot;,file=&quot;.data.txt&quot;);`,{
+    模板参数名 = &quot;参数值&quot;
+})
+
+prcs.logResponse();
+
+console.log(string.load(&quot;/.data.txt&quot;))
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/R/loadcode.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/R/loadcode.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Languages/R/loadcode.md">Markdown 格式</a>
+</body> 
+</html>

@@ -1,0 +1,167 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 选择排序'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 选择排序</title> 
+<link rel="stylesheet" href="../../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 选择排序</h1><pre><code class="aardio language-aardio">import console;
+
+/*-------------------------------------------------------
+ * 堆排序( 原地排序 )
+ *-------------------------------------------------------*/
+
+/*
+二叉堆是完全二叉树。
+索引总是以2倍的形式递增,从上到下从左到右顺序递增
+
+           [1]
+           ∧
+       [2]     [3]
+       ∧       ∧
+    [4] [5]   [6] [7]
+
+因此可以用数组来表示二叉堆。
+
+设 heap= {}
+heap[1] = 29;
+heap[2] = 19;
+heap[3] = 18;
+heap[4] = 9;
+heap[5] = 8;
+heap[6] = 7;
+heap[7] = 6;
+
+则 heap如下排列 {29;19;18;9;8;7;6}
+
+           29
+           ∧
+       19       18
+       ∧       ∧
+     9    9   7    6
+
+二叉堆有小根堆,大根堆,大根堆最大的元素在顶部,所有元素按索引排序。
+*/
+
+var getParentIndex = function(i){
+    //二叉堆的父子索引总是以2倍的形式递增、堆左边索引是2的n次方。
+    return math.floor(i/2)//所以除2总是能向上倒退一层到父节点的索引。
+}
+var getLeftNodeIndex = function(i){
+    //父层到子层,总是一变二,所以索引也增加2倍
+    return 2*i
+}
+var getRightNodeIndex = function(i){
+    return 2*i+1
+}
+
+/*
+假定一个数组A的元素i,假定getLeftNodeIndex[i],getRightNodeIndex[i]都是最大堆。
+如果array[i]小于其子女,则调节array[i],使之下降。
+*/
+var maxHeapify;
+maxHeapify = function(array,i){
+    var l = getLeftNodeIndex(i);
+    var r = getRightNodeIndex(i); 
+
+    var largest;
+    if( ( l&lt;=array.heapsize ) and( array[l] &gt; array[i]) )
+        largest = l;//左子树比较大
+    else{
+        largest = i;//父节点比较大
+    }
+
+    if( ( r&lt;=array.heapsize ) and( array[r] &gt; array[largest]) )
+        largest = r;//右子树比较大
+
+    //如果array[i]小于其子女,则调节 array[i],使之下降。
+    if( largest != i){
+        var exchange = array[i]
+        array[i] = array[largest]
+        array[largest] = exchange;
+
+        maxHeapify(array,largest);//现在子树 largest 是最大的了        
+    }
+}
+
+/*
+对于数组 A,最后一个页节点索引为 #A
+#A 的父节点为 math.floor(#A/2) ,而且是最后一个父节点。而之后都是叶节点。
+
+因此,我们从最后一个父节点开始,从右至左,自下而上调用 maxHeapify 检查所有的堆。使之符合二叉堆定义.
+如此：小的通过 maxHeapify 函数的递归调用一降到底,大的数通过 buildMaxHeap 的 for 循环逐步上升到顶,清升而浊降。
+*/
+
+//建堆
+var buildMaxHeap = function(array){
+    array.heapsize = #array;
+    for(i=math.floor(#array/2);1;-1){
+        maxHeapify(array,i); 
+    }
+}
+
+/*
+堆建好了,根节点一定比子结点大。
+但是左边的不一定比右边的大,因为二叉堆不比较左右子树。
+而且在不同的子二叉堆里,他们也没有排序关系
+console.dump( array ) //输出看一下,整体上仍然是乱的
+*/
+
+/*
+堆虽然不是完全线性有序的数组,但是根节点总是最大的元素。
+通常用于实现 高效的优先级队列
+*/
+
+//那么下面我们要利用建好的堆来排序
+var heapSort = function(array){
+    buildMaxHeap(array)//建堆
+
+    //现在array[1]是根节点了,并且一定是最大的
+    //我们把最大的放在数组最右侧,后把最右侧较小的元素放到根节点来破坏二叉堆,再用maxHeapify来修复堆取到下一个最大的数
+    //不断循环此过程,不断的将最大的元素移到右侧,而堆向左收缩,就达到了排序的效果
+    for(sorted=#array;2;-1){
+        var max = array[1]
+        array[1] = array[sorted] //把小的移到二叉堆的顶部来破坏堆定义
+        array[sorted] = max;//把最大的移到右侧已排序的数组中
+
+        array.heapsize--;
+        maxHeapify(array,1);//修复二叉堆根节点,取下一个最大数
+
+    }
+
+}
+
+//终于排序好了输出看一下
+
+console.log(&quot;----------------&quot;)
+console.log(&quot;堆排序&quot;)
+console.log(&quot;----------------&quot;)
+
+array ={2;46;5;17;1;2;3;99;12;56;66;21};
+heapSort(array)
+
+//输出结果
+for(i=1;#array;1){
+    console.log( array[i] )
+}
+
+/*
+排序算法的稳定性：保证排序前2个相等的数其在序列的前后位置顺序和排序后它们两个的前后位置顺序相同
+
+稳定排序算法：冒泡排序 插入排序 合并排序
+不稳定排序算法：堆排序 快速排序 
+*/
+
+execute(&quot;pause&quot;)
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/aardio/Array/ComparisonSort/SelectionSort.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/aardio/Array/ComparisonSort/SelectionSort.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/aardio/Array/ComparisonSort/SelectionSort.md">Markdown 格式</a>
+</body> 
+</html>

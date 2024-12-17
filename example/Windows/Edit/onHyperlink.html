@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - richedit 富文本框控件如何插入超链接'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - richedit 富文本框控件如何插入超链接</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: richedit 富文本框控件如何插入超链接</h1><pre><code class="aardio language-aardio">//插入超链接
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;richedit 富文本框控件如何插入超链接&quot;;right=759;bottom=469)
+winform.add(
+button={cls=&quot;button&quot;;text=&quot;Button&quot;;left=423;top=397;right=670;bottom=436;z=2};
+richedit={cls=&quot;richedit&quot;;text=&quot;添加超链接&quot;;left=16;top=11;right=749;bottom=379;edge=1;hidesel=false;link=1;multiline=1;z=1}
+)
+/*}}*/
+
+//启用自动识别超链接功能，或者在 richedit 控件的设计器属性中指定「识别链接」为 true。
+winform.richedit.link = true;
+
+//自动识别文本中的超链接，添加超链接样式，并响应点击事件
+winform.richedit.text = &quot;自动识别超链接： http://www.aardio.com  &quot;
+
+//响应按钮事件
+winform.button.oncommand = function(id,event){
+
+    //设置选区文本的超链接请调用 winform.richedit.setLink 函数
+    //手动添加超链接，会自动禁用自动识别超链接功能，不会影响之前识别出来的超链接效果
+    winform.richedit.appendLink( 
+        &quot;点这里打开超链接&quot; ,&quot;http://www.aardio.com&quot;
+    );
+
+}
+
+//自定义超链接消息处理程序，这是可选的。控件默认会自动添加下面的 onHyperlink 处理程序
+winform.richedit.onHyperlink =function(message,href){
+
+    if( message = 0x202/*_WM_LBUTTONUP*/ ) {
+        raw.execute(href);
+    }
+}
+
+//显示窗口
+winform.show();
+
+//启动界面线程消息循环
+win.loopMessage();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Windows/Edit/onHyperlink.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Windows/Edit/onHyperlink.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Windows/Edit/onHyperlink.md">Markdown 格式</a>
+</body> 
+</html>

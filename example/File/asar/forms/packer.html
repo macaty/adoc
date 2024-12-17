@@ -1,0 +1,200 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - packer'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - packer</title> 
+<link rel="stylesheet" href="../../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: packer</h1><pre><code class="aardio language-aardio">import fonts.fontAwesome;
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;WinAsar - packer&quot;;right=1075;bottom=734;acceptfiles=1;bgcolor=16777215;)
+winform.add(
+btnBuild={cls=&quot;plus&quot;;text=&quot;生成asar文件&quot;;left=805;top=664;right=967;bottom=701;align=&quot;left&quot;;db=1;dr=1;font=LOGFONT(h=-15);iconStyle={align=&quot;left&quot;;font=LOGFONT(name=&#39;FontAwesome&#39;);padding={left=15}};iconText=&#39;\uF090&#39;;notify=1;textPadding={left=35};z=3};
+btnClear={cls=&quot;plus&quot;;text=&quot;清空&quot;;left=272;top=8;right=355;bottom=43;align=&quot;left&quot;;dl=1;dt=1;font=LOGFONT(h=-15);iconStyle={align=&quot;left&quot;;font=LOGFONT(name=&#39;FontAwesome&#39;);padding={left=15}};iconText=&#39;\uF1F8&#39;;textPadding={left=35};z=8};
+btnOpen={cls=&quot;plus&quot;;text=&quot;添加&quot;;left=25;top=8;right=129;bottom=43;align=&quot;left&quot;;dl=1;dt=1;font=LOGFONT(h=-15);iconStyle={align=&quot;left&quot;;font=LOGFONT(name=&#39;FontAwesome&#39;);padding={left=15}};iconText=&#39;\uF07C&#39;;textPadding={left=35};z=5};
+btnRemove={cls=&quot;plus&quot;;text=&quot;移除&quot;;left=135;top=8;right=239;bottom=43;align=&quot;left&quot;;disabled=1;dl=1;dt=1;font=LOGFONT(h=-15);iconStyle={align=&quot;left&quot;;font=LOGFONT(name=&#39;FontAwesome&#39;);padding={left=15}};iconText=&#39;\uF08B&#39;;textPadding={left=35};z=9};
+editInfo={cls=&quot;richedit&quot;;left=371;top=8;right=1064;bottom=655;db=1;dl=1;dr=1;dt=1;edge=1;hscroll=1;multiline=1;vscroll=1;z=2};
+editOutPath={cls=&quot;edit&quot;;left=138;top=666;right=800;bottom=699;db=1;dl=1;dr=1;edge=1;multiline=1;z=6};
+lbTip={cls=&quot;plus&quot;;text=&quot;可直接拖放要添加的文件到当前窗体&quot;;left=382;top=706;right=663;bottom=728;align=&quot;right&quot;;db=1;dr=1;transparent=1;z=11};
+plusWebSite={cls=&quot;plus&quot;;text=&quot;Star&quot;;left=975;top=698;right=1052;bottom=729;align=&quot;left&quot;;color=-1;db=1;dr=1;font=LOGFONT(h=-15);iconStyle={align=&quot;left&quot;;font=LOGFONT(h=-19;name=&#39;FontAwesome&#39;);padding={left=15;top=1}};iconText=&#39;\uF09B&#39;;notify=1;textPadding={left=35;bottom=1};z=10};
+progress={cls=&quot;plus&quot;;left=21;top=710;right=1058;bottom=723;bgcolor=6447459;db=1;dl=1;dr=1;forecolor=9959653;hide=1;max=100;min=0;z=4};
+static={cls=&quot;static&quot;;text=&quot;输出文件:&quot;;left=42;top=672;right=128;bottom=696;align=&quot;right&quot;;db=1;dl=1;font=LOGFONT(h=-15);transparent=1;z=7};
+treeview={cls=&quot;treeview&quot;;left=18;top=51;right=364;bottom=658;bgcolor=16777215;db=1;dl=1;dt=1;edge=1;vscroll=1;z=1}
+)
+/*}}*/
+
+import fsys.asar.writer;
+var asarFile = fsys.asar.writer();
+
+var showAsarInfo = function(){
+    var info,err = asarFile.createInfo(); 
+    if(!info){
+        winform.msgboxErr(err)
+        return; 
+    }
+    winform.treeview.clear();
+    winform.treeview.insertItem(asarFile.treeData()); 
+    winform.editInfo.text = web.json.stringify(asarFile.info,true); 
+
+    if( ( !# ( ..string.trim( winform.editOutPath.text )) )
+        || (winform.editOutPath.autoPath = winform.editOutPath.text ) ){
+        winform.editOutPath.text = fsys.path.removeBackslash(asarFile.rootDirectory) + &quot;.asar&quot;;
+        winform.editOutPath.autoPath = winform.editOutPath.text;
+    }
+}
+
+winform.btnClear.oncommand = function(id,event){
+    asarFile.clear();
+    winform.treeview.clear();
+    winform.editInfo.text = &quot;&quot;;
+    winform.btnRemove.disabled = true;
+}
+
+import fsys.dlg;
+winform.btnOpen.oncommand = function(id,event){
+    var path = fsys.dlg.open(&quot;*.*|*.*||&quot;,&quot;添加文件到asar文件&quot;,,winform.hwnd);
+    if(#path){
+        asarFile.add( path );
+        showAsarInfo();
+    } 
+}
+
+winform.wndproc = {
+    [0x233/*_WM_DROPFILES*/] = function(hwnd,message,wParam,lParam){ 
+        var files = win.getDropFile(wParam)
+        if(#files){
+            for(i=1;#files;1){
+                asarFile.add( files[i] );
+            }
+
+            showAsarInfo();
+        };
+    }
+}
+
+import fsys;
+import win.ui.menu;
+import process;
+winform.treeview.onnotify = function(id,code,ptr){
+
+    if( code == 0xFFFFFE3D/*_TVN_SELCHANGEDW*/ ){  
+        var hItem = winform.treeview.getSelection();
+        if(hItem){
+            winform.btnRemove.disabled = false;
+            var data  = winform.treeview.getItemData(hItem);
+            var data = table.clone(data); 
+            for(k,v in data){
+                if( v[[&quot;size&quot;]] ) v.size =..math.size64(v.size).format(); 
+            }
+            if( data[[&quot;size&quot;]] ) data.size =..math.size64(data.size).format(); 
+
+            winform.editInfo.text = web.json.stringify(data,true)  
+        }
+        else {
+            winform.btnRemove.disabled = true;
+        }
+    } 
+}
+
+import fsys.dlg;
+import process;
+winform.btnBuild.oncommand = function(id,event){
+    var outpath = winform.editOutPath.text;
+    if(!#outpath){
+        outpath = fsys.dlg.save(&quot;*.asar|*.asar||&quot;,&quot;请选择asar文件&quot;,,winform.hwnd);
+    } 
+
+    if(!#outpath) return;
+    if(!..string.endWith(outpath,&quot;.asar&quot;,true)){
+        winform.msgboxErr(&quot;输出文件必须以.asar作为文件名后缀&quot;);
+        winform.editOutPath.setFocus();
+        return;
+    }
+
+    winform.plusWebSite.hide = true;
+
+    winform.btnBuild.disabledText = {&#39;\uF254&#39;;&#39;\uF251&#39;;&#39;\uF252&#39;;&#39;\uF253&#39;;&#39;\uF250&#39;}
+    winform.progress.hide = false;
+    winform.progress.setProgressRange(1,1000);
+    for(path,size,progress in asarFile.eachPack(outpath)){
+        winform.progress.progressPos = progress * 1000;
+        win.delay(1)    
+    } 
+    winform.btnBuild.disabledText = null;
+
+    if( asarFile.lasterr ) winform.msgboxErr(asarFile.lasterr)
+    winform.progress.hide = true;
+    process.explore_select(outpath)
+}
+
+winform.btnRemove.oncommand = function(id,event){
+    var hItem = winform.treeview.getSelection();
+    if(hItem){
+        var path = winform.treeview.getItemPath(hItem);
+        if(asarFile.remove(path)){
+            winform.treeview.delItem(hItem)
+        }
+    }   
+}
+
+winform.btnClear.skin({
+    background={
+        default=0xFF8FB2B0;
+        hover=0xFF928BB3;
+        disabled=0xFFCCCCCC;
+    }
+})
+
+winform.btnOpen.skin({
+    background={
+        default=0xFF8FB2B0;
+        hover=0xFF928BB3;
+        disabled=0xFFCCCCCC; 
+    }
+})
+
+winform.btnRemove.skin({
+    background={
+        default=0xFF8FB2B0;
+        hover=0xFF928BB3;
+        disabled=0xFFCCCCCC;
+    }
+})
+
+winform.btnBuild.skin({
+    background={
+        default=0xFF8FB2B0;
+        hover=0xFF928BB3;
+        disabled=0xFFCCCCCC;
+    }
+})
+
+winform.plusWebSite.skin(
+    color = {  
+        hover = 0xFFFF0000;  
+        active = 0xFF00FF00;  
+    }
+)
+winform.plusWebSite.oncommand = function(id,event){
+    import process
+    process.openUrl(&quot;https://github.com/aardio/WinAsar&quot;)
+}
+
+winform.enableDpiScaling();
+winform.show();
+
+win.loopMessage();
+return winform;
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/File/asar/forms/packer.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/File/asar/forms/packer.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/File/asar/forms/packer.md">Markdown 格式</a>
+</body> 
+</html>

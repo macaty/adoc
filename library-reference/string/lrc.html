@@ -1,0 +1,154 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - string.lrc 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - string.lrc 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>string.lrc 库模块帮助文档</h1>
+
+<p><a id="string"></a></p>
+
+<h2>string 成员列表</h2>
+
+<p><a id="string.lrc"></a></p>
+
+<h3>string.lrc</h3>
+
+<p>歌词解析</p>
+
+<p><a id="string.lrc"></a></p>
+
+<h3>string.lrc( 歌词文本 )</h3>
+
+<p>创建歌词解析器</p>
+
+<p><a id="string.lrc"></a></p>
+
+<h3>string.lrc()</h3>
+
+<p><a href="#stringLrcObject">返回对象:stringLrcObject</a></p>
+
+<p><a id="stringLrcObject"></a></p>
+
+<h2>stringLrcObject 成员列表</h2>
+
+<p><a id="stringLrcObject.each"></a></p>
+
+<h3>stringLrcObject.each()</h3>
+
+<pre><code class="aardio language-aardio">for( line,ms in stringLrcObject.each() ){
+    io.print( line,ms );/*按时间索引排序遍历所有歌词*/ 
+}
+</code></pre>
+
+<p><a id="stringLrcObject.find"></a></p>
+
+<h3>stringLrcObject.find</h3>
+
+<p>查找歌词位置</p>
+
+<p><a id="stringLrcObject.find"></a></p>
+
+<h3>stringLrcObject.find(当前时间)</h3>
+
+<p>返回开始索引,结束索引,歌词持纪时间<br>
+开始索引与结束索引不同则应显示多行歌词<br>
+时间以毫秒为单位<br>
+失败返回空值</p>
+
+<p><a id="stringLrcObject.findLrc"></a></p>
+
+<h3>stringLrcObject.findLrc</h3>
+
+<p>查找歌词</p>
+
+<p><a id="stringLrcObject.findLrc"></a></p>
+
+<h3>stringLrcObject.findLrc(当前时间)</h3>
+
+<p>返回歌词,歌词持续时间<br>
+时间以毫秒为单位<br>
+失败返回空值</p>
+
+<p><a id="stringLrcObject.index"></a></p>
+
+<h3>stringLrcObject.index</h3>
+
+<p>当前歌词索引</p>
+
+<p><a id="stringLrcObject.lyric"></a></p>
+
+<h3>stringLrcObject.lyric</h3>
+
+<p>歌词按时间排序后的数组<br>
+每个歌词为一个数组,索引1为显示时间,索引2为歌词</p>
+
+<p><a id="stringLrcObject.offset"></a></p>
+
+<h3>stringLrcObject.offset</h3>
+
+<p>歌词提前时间<br>
+负数表示延后</p>
+
+<p><a id="stringLrcObject.stringify"></a></p>
+
+<h3>stringLrcObject.stringify()</h3>
+
+<p>重新生成歌词并返回字符串<br>
+重复歌词将自动合并时间标记,并自动修正不规范格式</p>
+
+<p><a id="stringLrcObject.tags.al"></a></p>
+
+<h3>stringLrcObject.tags.al</h3>
+
+<p>album<br>
+唱片集,专辑名</p>
+
+<p><a id="stringLrcObject.tags.ar"></a></p>
+
+<h3>stringLrcObject.tags.ar</h3>
+
+<p>artist<br>
+歌手、演唱者</p>
+
+<p><a id="stringLrcObject.tags.by"></a></p>
+
+<h3>stringLrcObject.tags.by</h3>
+
+<p>by ...<br>
+LRC文件制作者</p>
+
+<p><a id="stringLrcObject.tags.re"></a></p>
+
+<h3>stringLrcObject.tags.re</h3>
+
+<p>player/editor<br>
+创建此LRC文件的程序</p>
+
+<p><a id="stringLrcObject.tags.ti"></a></p>
+
+<h3>stringLrcObject.tags.ti</h3>
+
+<p>title<br>
+歌词标题</p>
+
+<p><a id="stringLrcObject.tags.ve"></a></p>
+
+<h3>stringLrcObject.tags.ve</h3>
+
+<p>version<br>
+程序的版本</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/string/lrc.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/string/lrc.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/string/lrc.md">Markdown 格式</a></p>
+
+</body> 
+</html>

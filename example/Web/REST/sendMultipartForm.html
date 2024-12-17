@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 用 web.rest 客户端调用 HTTP API - 上传文件表单'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 用 web.rest 客户端调用 HTTP API - 上传文件表单</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 用 web.rest 客户端调用 HTTP API - 上传文件表单</h1><pre><code class="aardio language-aardio">//用 web.rest 客户端调用 HTTP API - 上传文件表单
+import console; 
+import web.rest.jsonLiteClient;
+
+//创建 REST 客户端
+var http = web.rest.client();
+
+//声明 HTTP API
+var ftEllo = http.api(&quot;https://fontello.com&quot;);
+
+//使用文件表单上传文件，可以指定多个字段
+var sessionId = ftEllo.sendMultipartForm( {
+    //文件路径前必须添加 @ 字符
+    //如果文件不存在这个函数会忽略字段（不会报错）。
+    config = &quot;@\fontello_config.json&quot;; 
+});
+//上面代码也可以写为 fontello.post.sendMultipartForm();
+
+//也可以如下指定上传进度回调函数，contentLength 为要上传的总长度，sendSize 为已上传的长度。
+var sessionId = ftEllo.sendMultipartForm( {
+        config = &quot;@\config.json&quot;; 
+    },function(sendData,sendSize,contentLength,remainSize){
+        /*
+        sendData 为本次上传数据；
+        sendSize 为本次上传字节数；
+        contentLength 为要上传的总字节数；
+        remainSize 为剩余字节数；
+        */
+        console.log(&quot;正在上传&quot;,sendSize,contentLength);
+    }
+);
+
+if(sessionId){
+    //下载字体文件
+    import console.progress;
+    var bar = console.progress();
+    bar.recvSize = 0;
+
+    ftEllo[sessionId].receiveFile(&quot;/fontello.zip&quot;,function(recvData,recvSize,contentLength){
+
+        //计算下载进度
+        bar.recvSize = bar.recvSize + recvSize;
+        var p = bar.recvSize / contentLength * 100;
+
+        //在控制台显示下载进度
+        bar.setProgress(p,p +&quot;% 已下载 ......&quot;);
+    }).getGet();
+
+    //import process;
+    //var url = ftEllo[sessionId].getUrl();
+    //process.execute(url)
+}
+
+console.pause(true);
+
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Web/REST/sendMultipartForm.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Web/REST/sendMultipartForm.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Web/REST/sendMultipartForm.md">Markdown 格式</a>
+</body> 
+</html>

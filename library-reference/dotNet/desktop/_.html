@@ -1,0 +1,308 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - dotNet.desktop 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - dotNet.desktop 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>dotNet.desktop 库模块帮助文档</h1>
+
+<p><a id="dotNet"></a></p>
+
+<h2>dotNet 成员列表</h2>
+
+<p><a id="dotNet.desktop"></a></p>
+
+<h3>dotNet.desktop()</h3>
+
+<p><a href="#DotNetDesktopObject">返回对象:DotNetDesktopObject</a></p>
+
+<p><a id="dotNet.desktop"></a></p>
+
+<h3>dotNet.desktop(name)</h3>
+
+<p>创建新的虚拟桌面，<br>
+可选用 @name 参数指定虚拟桌面名称</p>
+
+<p><a id="dotNet.desktop"></a></p>
+
+<h2>dotNet.desktop 成员列表</h2>
+
+<p>Win10 / Win11 虚拟桌面管理<br>
+在鼠标与键盘钩子回调函数中必须在退出回调函数以后异步调用此扩展库</p>
+
+<p>创建虚拟桌面，返回 .Net 对象</p>
+
+<p><a id="dotNet.desktop.current"></a></p>
+
+<h3>dotNet.desktop.current()</h3>
+
+<p>当前虚拟桌面  </p>
+
+<p><a href="#DotNetDesktopObject">返回对象:DotNetDesktopObject</a></p>
+
+<p><a id="dotNet.desktop.each"></a></p>
+
+<h3>dotNet.desktop.each()</h3>
+
+<pre><code class="aardio language-aardio">for name,index,current in dotNet.desktop.each(){
+    console.log(name,index,current)/*遍历虚拟桌面,  
+@name 为桌面名称,@index 为桌面索引,  
+@current 为 true 则为当前桌面*/
+}
+</code></pre>
+
+<p><a id="dotNet.desktop.first"></a></p>
+
+<h3>dotNet.desktop.first()</h3>
+
+<p>第一个虚拟桌面  </p>
+
+<p><a href="#DotNetDesktopObject">返回对象:DotNetDesktopObject</a></p>
+
+<p><a id="dotNet.desktop.fromIndex"></a></p>
+
+<h3>dotNet.desktop.fromIndex()</h3>
+
+<p><a href="#DotNetDesktopObject">返回对象:DotNetDesktopObject</a></p>
+
+<p><a id="dotNet.desktop.fromIndex"></a></p>
+
+<h3>dotNet.desktop.fromIndex(index)</h3>
+
+<p>自参数 @index 指定的桌面索引取虚拟桌面对象,<br>
+起始索引为 1</p>
+
+<p><a id="dotNet.desktop.fromName"></a></p>
+
+<h3>dotNet.desktop.fromName()</h3>
+
+<p><a href="#DotNetDesktopObject">返回对象:DotNetDesktopObject</a></p>
+
+<p><a id="dotNet.desktop.fromName"></a></p>
+
+<h3>dotNet.desktop.fromName(name)</h3>
+
+<p>自参数 @name 指定的虚拟桌面名称获取虚拟桌面对象</p>
+
+<p><a id="dotNet.desktop.fromWindow"></a></p>
+
+<h3>dotNet.desktop.fromWindow()</h3>
+
+<p><a href="#DotNetDesktopObject">返回对象:DotNetDesktopObject</a></p>
+
+<p><a id="dotNet.desktop.fromWindow"></a></p>
+
+<h3>dotNet.desktop.fromWindow(hwnd)</h3>
+
+<p>自参数 @hwnd 指定的窗口句柄获取虚拟桌面对象</p>
+
+<p><a id="dotNet.desktop.get"></a></p>
+
+<h3>dotNet.desktop.get()</h3>
+
+<p>获取桌面对象，<br>
+参数@1可以是虚拟桌面名称，虚拟桌面对象，或桌面索引,<br>
+起始索引为 1</p>
+
+<p><a href="#DotNetDesktopObject">返回对象:DotNetDesktopObject</a></p>
+
+<p><a id="dotNet.desktop.getName"></a></p>
+
+<h3>dotNet.desktop.getName()</h3>
+
+<p>获取桌面名称，<br>
+参数@1可以是虚拟桌面名称，虚拟桌面对象，或桌面索引,<br>
+起始索引为 1</p>
+
+<p><a id="dotNet.desktop.index"></a></p>
+
+<h3>dotNet.desktop.index</h3>
+
+<p>获取桌面索引,起始索引为 1</p>
+
+<p><a id="dotNet.desktop.index"></a></p>
+
+<h3>dotNet.desktop.index()</h3>
+
+<p>获取当前桌面索引</p>
+
+<p><a id="dotNet.desktop.index"></a></p>
+
+<h3>dotNet.desktop.index(desktop)</h3>
+
+<p>获取桌面索引,@desktop 指定的虚拟桌面对象</p>
+
+<p><a id="dotNet.desktop.index"></a></p>
+
+<h3>dotNet.desktop.index(name)</h3>
+
+<p>获取桌面索引,@name 指定的虚拟桌面名称</p>
+
+<p><a id="dotNet.desktop.isApplicationPinned"></a></p>
+
+<h3>dotNet.desktop.isApplicationPinned(hwnd)</h3>
+
+<p>参数 @hwnd 指定窗口句柄的应用程序是否固定在所有虚拟桌面显示</p>
+
+<p><a id="dotNet.desktop.isVisible"></a></p>
+
+<h3>dotNet.desktop.isVisible()</h3>
+
+<p>指定的桌面是否显示，<br>
+参数@1可以是虚拟桌面名称，虚拟桌面对象，或桌面索引,<br>
+起始索引为 1</p>
+
+<p><a id="dotNet.desktop.isWindowPinned"></a></p>
+
+<h3>dotNet.desktop.isWindowPinned(hwnd)</h3>
+
+<p>参数 @hwnd 指定句柄的窗口是否固定在所有虚拟桌面显示</p>
+
+<p><a id="dotNet.desktop.last"></a></p>
+
+<h3>dotNet.desktop.last()</h3>
+
+<p>最后一个虚拟桌面  </p>
+
+<p><a href="#DotNetDesktopObject">返回对象:DotNetDesktopObject</a></p>
+
+<p><a id="dotNet.desktop.pinApplication"></a></p>
+
+<h3>dotNet.desktop.pinApplication(hwnd)</h3>
+
+<p>在所有虚拟桌面显示参数 @hwnd 指定窗口句柄的应用程序</p>
+
+<p><a id="dotNet.desktop.pinWindow"></a></p>
+
+<h3>dotNet.desktop.pinWindow(hwnd)</h3>
+
+<p>在所有虚拟桌面显示参数 @hwnd 指定句柄的窗口</p>
+
+<p><a id="dotNet.desktop.remove"></a></p>
+
+<h3>dotNet.desktop.remove()</h3>
+
+<p>移除桌面，<br>
+参数@1可以是虚拟桌面名称，虚拟桌面对象，或桌面索引,<br>
+起始索引为 1,  </p>
+
+<p>不指定参数移除最后一个桌面</p>
+
+<p><a id="dotNet.desktop.removeAll"></a></p>
+
+<h3>dotNet.desktop.removeAll()</h3>
+
+<p>移除所有桌面,仅 Win11 可用</p>
+
+<p><a id="dotNet.desktop.setAllWallpapers"></a></p>
+
+<h3>dotNet.desktop.setAllWallpapers(path)</h3>
+
+<p>设置所有桌面壁纸，仅 Win11 可用，</p>
+
+<p><a id="dotNet.desktop.setName"></a></p>
+
+<h3>dotNet.desktop.setName(desktop,name)</h3>
+
+<p>设置虚拟桌面名称为 @name 指定的字符串，<br>
+参数@desktop可以是虚拟桌面名称，虚拟桌面对象，或桌面索引,<br>
+起始索引为 1</p>
+
+<p><a id="dotNet.desktop.setWallpaper"></a></p>
+
+<h3>dotNet.desktop.setWallpaper(path,desktop)</h3>
+
+<p>设置 @desktop 参数指定桌面的壁纸，仅 Win11 可用，<br>
+参数@desktop 可以是虚拟桌面名称，虚拟桌面对象，或桌面索引</p>
+
+<p><a id="dotNet.desktop.switch"></a></p>
+
+<h3>dotNet.desktop.switch()</h3>
+
+<p>切换到指定桌面，<br>
+参数@1可以是虚拟桌面名称，虚拟桌面对象，或桌面索引,<br>
+起始索引为 1</p>
+
+<p><a id="dotNet.desktop.unpinApplication"></a></p>
+
+<h3>dotNet.desktop.unpinApplication(hwnd)</h3>
+
+<p>取消在所有虚拟桌面显示参数 @hwnd 定窗口句柄的应用程序</p>
+
+<p><a id="dotNet.desktop.unpinWindow"></a></p>
+
+<h3>dotNet.desktop.unpinWindow(hwnd)</h3>
+
+<p>取消在所有虚拟桌面显示参数 @hwnd 指定句柄的窗口</p>
+
+<p><a id="DotNetDesktopObject"></a></p>
+
+<h2>DotNetDesktopObject 成员列表</h2>
+
+<p><a id="DotNetDesktopObject.IsVisible"></a></p>
+
+<h3>DotNetDesktopObject.IsVisible</h3>
+
+<p>是否当前显示桌面</p>
+
+<p><a id="DotNetDesktopObject.Left"></a></p>
+
+<h3>DotNetDesktopObject.Left</h3>
+
+<p>上一个虚拟桌面  </p>
+
+<p><a href="#DotNetDesktopObject">返回对象:DotNetDesktopObject</a></p>
+
+<p><a id="DotNetDesktopObject.MakeVisible"></a></p>
+
+<h3>DotNetDesktopObject.MakeVisible()</h3>
+
+<p>切换到指定桌面</p>
+
+<p><a id="DotNetDesktopObject.MoveWindow"></a></p>
+
+<h3>DotNetDesktopObject.MoveWindow(hwnd)</h3>
+
+<p>移动窗口到指定桌面,<br>
+@hwnd 指定窗口句柄</p>
+
+<p><a id="DotNetDesktopObject.Remove"></a></p>
+
+<h3>DotNetDesktopObject.Remove()</h3>
+
+<p>移除桌面</p>
+
+<p><a id="DotNetDesktopObject.Right"></a></p>
+
+<h3>DotNetDesktopObject.Right</h3>
+
+<p>下一个虚拟桌面  </p>
+
+<p><a href="#DotNetDesktopObject">返回对象:DotNetDesktopObject</a></p>
+
+<p><a id="DotNetDesktopObject.SetName"></a></p>
+
+<h3>DotNetDesktopObject.SetName()</h3>
+
+<p>设置桌面为参数@1指定的名称</p>
+
+<p><a id="DotNetDesktopObject.hasWindow"></a></p>
+
+<h3>DotNetDesktopObject.hasWindow(hwnd)</h3>
+
+<p>虚拟桌面上是否包含指定窗口,<br>
+@hwnd 指定要查找的窗口句柄</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/dotNet/desktop/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/dotNet/desktop/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/dotNet/desktop/_.md">Markdown 格式</a></p>
+
+</body> 
+</html>

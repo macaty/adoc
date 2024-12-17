@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - 随机数、随机字符串'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - 随机数、随机字符串</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>随机数、随机字符串</h1>
+
+<h2>随机字符串</h2>
+
+<p><code>str = string.random( len [, seed] )</code></p>
+
+<p>返回长度为 len 的随机字符串，seed 为可选参数指定供随机选择字符的字符串(默认值为英文字母、数字)。<br>
+seed 参数可以使用中英文字符。</p>
+
+<pre><code class="aardio language-aardio">import console; 
+console.log( string.random(10  ) )
+console.log( string.random(10 ,&quot;seed参数可以使用中英文字符。&quot;) )
+</code></pre>
+
+<p><code>str = string.random( str [, str2[, ...] ] )</code></p>
+
+<p>参数为多个字符串，随机选择其中一个字符串并作为返回值。</p>
+
+<pre><code class="aardio language-aardio">import console;  
+console.log( string.random( &quot;待选字符串&quot;,&quot;待选字符串2&quot;,&quot;待选字符串3&quot;) );
+</code></pre>
+
+<h2>随机数</h2>
+
+<p><code>n = math.random(min,max)</code></p>
+
+<p>指定最小随机数 min，最大随机数 max，返回 [5,99] 之间的随机数，如果不指定参数返回(0,1)之间的小数。  </p>
+
+<h2>随机数发生器</h2>
+
+<p><code>math.randomize(随机数发生器种子)</code></p>
+
+<p>用于改变随机数队列的函数。</p>
+
+<p>math.randomize 的参数可以是一个任意的数值，省略参数时，则自动生成一个安全的随机数作为随机数种子。</p>
+
+<p>aardio 程序在启动时，主线程会以 time.tick 获得的系统启动毫秒数作为参数调用一次 math.randomize。  </p>
+
+<p>在创建新的线程时也会自动调用 math.randomize，但不会使用系统启动毫秒数作为参数，而是自动生成一个安全的随机数作为随机数种子。</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-guide/builtin/string/rand.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-guide/builtin/string/rand.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/builtin/string/rand.md">Markdown 格式</a></p>
+
+</body> 
+</html>

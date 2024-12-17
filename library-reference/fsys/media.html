@@ -1,0 +1,232 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - fsys.media 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - fsys.media 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>fsys.media 库模块帮助文档</h1>
+
+<p><a id="fsys"></a></p>
+
+<h2>fsys 成员列表</h2>
+
+<p><a id="fsys.media"></a></p>
+
+<h3>fsys.media(&quot;媒体文件路径&quot;,&quot;其他选项&quot;,通知窗口)</h3>
+
+<p>打开媒体文件,支持 MP3。<br>
+参数@2,@3为可选参数<br>
+如果指定了通知窗口，操作完成以后窗口会收到 _MM_MCINOTIFY 消息  </p>
+
+<p>如果同一线程已打开同一文件，则返回已打开的 fsys.media 对象，并移动播放位置到开始处。<br>
+fsys.media 创建的对象在超出变量作用域后会自动释放<br>
+对象关闭后会自动关闭正在播放的媒体文件<br>
+所以不要使用临时变量播放媒体文件</p>
+
+<p><a id="fsys.media"></a></p>
+
+<h3>fsys.media()</h3>
+
+<p><a href="#fsysMediaObject">返回对象:fsysMediaObject</a></p>
+
+<p><a id="fsys.media"></a></p>
+
+<h2>fsys.media 成员列表</h2>
+
+<p><a id="fsys.media.closeAll"></a></p>
+
+<h3>fsys.media.closeAll()</h3>
+
+<p>全部关闭</p>
+
+<p><a id="fsys.media.execute"></a></p>
+
+<h3>fsys.media.execute(&quot;MCI媒体控制命令&quot;,通知窗口句柄)</h3>
+
+<p>发送MCI媒体控制命令<br>
+如果指定通知窗口句柄则在命令尾部添加&quot;notify&quot;,<br>
+成功返回true,可选的返回消息,<br>
+失败返回false,错误信息</p>
+
+<p><a id="fsys.media.getErrorString"></a></p>
+
+<h3>fsys.media.getErrorString(错误代码)</h3>
+
+<p>返回错误信息</p>
+
+<p><a id="fsys.media.playRepeat"></a></p>
+
+<h3>fsys.media.playRepeat(&quot;音频文件路径&quot;,播放次数)</h3>
+
+<p>创建线程并重复播放指定的wav或mp3文件,<br>
+参数@1指定文件路径或资源文件路径<br>
+参数@2指定播放次数</p>
+
+<p><a id="fsys.media.playSound"></a></p>
+
+<h3>fsys.media.playSound(&quot;WAVE文件路径&quot;,选项)</h3>
+
+<p>播放WAVE文件,参数@2可选<br>
+WAVE文件可指定内嵌资源或内存文件,如果为null空值则停止播放<br>
+选项不指定时默认为_SND_ASYNC,也即启用异步播放,<br>
+选项指定为0时同步播放并等待播放完成,同步播放建议放到工作线程里</p>
+
+<p><a id="fsysMediaObject"></a></p>
+
+<h2>fsysMediaObject 成员列表</h2>
+
+<p><a id="fsysMediaObject.close"></a></p>
+
+<h3>fsysMediaObject.close()</h3>
+
+<p>关闭</p>
+
+<p><a id="fsysMediaObject.deviceId"></a></p>
+
+<h3>fsysMediaObject.deviceId</h3>
+
+<p>打开的设备标识符，数值。<br>
+_MM_MCINOTIFY 消息的 lParam 参数里存放的就是这里的 deviceId</p>
+
+<p><a id="fsysMediaObject.hwndCallback"></a></p>
+
+<h3>fsysMediaObject.hwndCallback</h3>
+
+<p>指定用于接收_MM_MCINOTIFY通知消息的窗口句柄<br>
+_MM_MCINOTIFY可用于获取指令执行状态</p>
+
+<p><a id="fsysMediaObject.isPaused"></a></p>
+
+<h3>fsysMediaObject.isPaused()</h3>
+
+<p>是否已暂停</p>
+
+<p><a id="fsysMediaObject.isPlaying"></a></p>
+
+<h3>fsysMediaObject.isPlaying()</h3>
+
+<p>是否正在播放</p>
+
+<p><a id="fsysMediaObject.isStopped"></a></p>
+
+<h3>fsysMediaObject.isStopped()</h3>
+
+<p>是否已停止播放</p>
+
+<p><a id="fsysMediaObject.length"></a></p>
+
+<h3>fsysMediaObject.length()</h3>
+
+<p>音频长度</p>
+
+<p><a id="fsysMediaObject.mode"></a></p>
+
+<h3>fsysMediaObject.mode()</h3>
+
+<p>返回当前模式，<br>
+所有设备都存在 &quot;not ready&quot;, &quot;paused&quot;, &quot;playing&quot;,  &quot;stopped&quot; 等模式,<br>
+一些设备可能返回 &quot;open&quot;, &quot;parked&quot;, &quot;recording&quot;,  &quot;seeking&quot; 等值</p>
+
+<p><a id="fsysMediaObject.path"></a></p>
+
+<h3>fsysMediaObject.path()</h3>
+
+<p>打开的文件路径</p>
+
+<p><a id="fsysMediaObject.pause"></a></p>
+
+<h3>fsysMediaObject.pause()</h3>
+
+<p>暂停</p>
+
+<p><a id="fsysMediaObject.play"></a></p>
+
+<h3>fsysMediaObject.play(&quot;repeat&quot;)</h3>
+
+<p>循环播放,<br>
+仅适用于mp3，wav文件不支持</p>
+
+<p><a id="fsysMediaObject.play"></a></p>
+
+<h3>fsysMediaObject.play(&quot;wait&quot;)</h3>
+
+<p>播放并等待，<br>
+重新播放声音应该调用要seek(1)回到开始位置<br>
+此操作会阻塞代码向后执行,最好是在工作线程里执行</p>
+
+<p><a id="fsysMediaObject.play"></a></p>
+
+<h3>fsysMediaObject.play()</h3>
+
+<p>播放声音<br>
+可选添加多个文本指令参数<br>
+无参数时不会阻塞当前线程，<br>
+fsys.media 对像在析构时，会自动关闭声音，所以在声音播放时，要保持变量在生命周期内，<br>
+重新播放声音应该调用要seek(1)回到开始位置</p>
+
+<p><a id="fsysMediaObject.position"></a></p>
+
+<h3>fsysMediaObject.position()</h3>
+
+<p>返回当前播放位置</p>
+
+<p><a id="fsysMediaObject.ready"></a></p>
+
+<h3>fsysMediaObject.ready()</h3>
+
+<p>是否准备就绪可继续处理命令</p>
+
+<p><a id="fsysMediaObject.resume"></a></p>
+
+<h3>fsysMediaObject.resume()</h3>
+
+<p>继续</p>
+
+<p><a id="fsysMediaObject.seek"></a></p>
+
+<h3>fsysMediaObject.seek(位置)</h3>
+
+<p>移动到指定位置<br>
+参数为1表示移动到开始位置，<br>
+在播放声音以后重新播放声音时可调用此函数重新回到声音文件的开始位置</p>
+
+<p><a id="fsysMediaObject.send"></a></p>
+
+<h3>fsysMediaObject.send(&quot;MCI媒体控制命令&quot;)</h3>
+
+<p>使用$PATH表示打开的媒体文件路径,不要加引号<br>
+如果传入多个参数则使用string.format格式化<br>
+<a href="javascript:if(confirm('https://docs.microsoft.com/en-us/windows/desktop/Multimedia/multimedia-command-strings  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='https://docs.microsoft.com/en-us/windows/desktop/Multimedia/multimedia-command-strings'" tppabs="https://docs.microsoft.com/en-us/windows/desktop/Multimedia/multimedia-command-strings">所有可用指令</a></p>
+
+<p><a id="fsysMediaObject.step"></a></p>
+
+<h3>fsysMediaObject.step(-1)</h3>
+
+<p>负数向前,正数向后,省略跳到下一步</p>
+
+<p><a id="fsysMediaObject.stop"></a></p>
+
+<h3>fsysMediaObject.stop()</h3>
+
+<p>停止播放</p>
+
+<p><a id="fsysMediaObject.volume"></a></p>
+
+<h3>fsysMediaObject.volume()</h3>
+
+<p>无参数获取音量<br>
+指定数值参数设置音量</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/fsys/media.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/fsys/media.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/fsys/media.md">Markdown 格式</a></p>
+
+</body> 
+</html>

@@ -1,0 +1,193 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - key.hotkey 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - key.hotkey 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>key.hotkey 库模块帮助文档</h1>
+
+<p><a href="../../../library-guide/std/key/hotkey.html" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/std/key/hotkey.html">超级热键使用指南</a></p>
+
+<p><a id="key"></a></p>
+
+<h2>key 成员列表</h2>
+
+<p><a id="key.hotkey"></a></p>
+
+<h3>key.hotkey</h3>
+
+<p>超级热键支持库<br>
+超级热键,指的是一组连续按下的键作为热键并触发相应的操作,<br>
+超级热键检测规则如下：<br>
+1、如果首个按下的键不是控制键，则不需要同时按住多个键<br>
+2、如果首次按住控制键不放开，则多个组合键需要同时按住触发相应的操作,<br>
+控制键指的是CTRL,ALT,SHIFT,WIN键<br>
+3、单字符键名（例如~）不需要按shift键<br>
+4、超级热键支持按键顺序检测,<br>
+例如 CTRL+SHIFT,SHIFT+CTRL 触发不同回调,<br>
+当然也可以指向同一回调函数</p>
+
+<p><a id="key.hotkey"></a></p>
+
+<h3>key.hotkey()</h3>
+
+<p>创建热键方案管理器<br>
+当前线程必须是使用 win.loopMessage 函数启动消息循环的界面线程。  </p>
+
+<p><a href="#keyHotkeyObject">返回对象:keyHotkeyObject</a></p>
+
+<p><a id="keyHotkeyObject"></a></p>
+
+<h2>keyHotkeyObject 成员列表</h2>
+
+<p><a id="keyHotkeyObject.clear"></a></p>
+
+<h3>keyHotkeyObject.clear()</h3>
+
+<p>清除所有热键</p>
+
+<p><a id="keyHotkeyObject.clearKeys"></a></p>
+
+<h3>keyHotkeyObject.clearKeys()</h3>
+
+<p>清除已捕获的热键</p>
+
+<p><a id="keyHotkeyObject.close"></a></p>
+
+<h3>keyHotkeyObject.close()</h3>
+
+<p>关闭热键方案管理器<br>
+成功返回null,失败返回错误信息,错误代码</p>
+
+<p><a id="keyHotkeyObject.getControlKeys"></a></p>
+
+<h3>keyHotkeyObject.getControlKeys()</h3>
+
+<p>返回所有预设控制键名，<br>
+控制键如果放开就表示超级热键已结束检测</p>
+
+<p><a id="keyHotkeyObject.getEndKeys"></a></p>
+
+<h3>keyHotkeyObject.getEndKeys()</h3>
+
+<p>返回所有预设终止键键名</p>
+
+<p><a id="keyHotkeyObject.loadTable"></a></p>
+
+<h3>keyHotkeyObject.loadTable(配置表)</h3>
+
+<p>使用配置表注册热键，<br>
+配置表中每个名值对调用 regStr 函数注册为热键</p>
+
+<p><a id="keyHotkeyObject.onKeyDown"></a></p>
+
+<h3>keyHotkeyObject.onKeyDown</h3>
+
+<pre><code class="aardio language-aardio">keyHotkeyObject.onKeyDown = function(vk){
+    /*按键时触发,返回true阻止按键事件  
+注意返回true会阻止超级热键*/
+}
+</code></pre>
+
+<p><a id="keyHotkeyObject.onKeyUp"></a></p>
+
+<h3>keyHotkeyObject.onKeyUp</h3>
+
+<pre><code class="aardio language-aardio">keyHotkeyObject.onKeyUp = function(vk){
+    /*放开按键时触发,返回true阻止放开按键事件  
+注意会先检测处理超级热键再触发此事件*/
+}
+</code></pre>
+
+<p><a id="keyHotkeyObject.onWaiting"></a></p>
+
+<h3>keyHotkeyObject.onWaiting</h3>
+
+<pre><code class="aardio language-aardio">keyHotkeyObject.onWaiting = function(hwnd,enteredKeys,waitingKeys){
+    if(!enteredKeys){
+        /*已完成热键*/
+        return;
+    } 
+    var str = (
+        &#39;已按下键:&#39; 
+        + ..string.join(enteredKeys,&quot;+&quot;)  
+        + &#39; 等待候选键:&#39; 
+        + ..string.join(waitingKeys,&quot;,&quot;) 
+    )
+}
+</code></pre>
+
+<p><a id="keyHotkeyObject.reg"></a></p>
+
+<h3>keyHotkeyObject.reg</h3>
+
+<pre><code class="aardio language-aardio">keyHotkeyObject.reg(  
+    &quot;~&quot;,&quot;H&quot;,&quot;I&quot;,  
+    function(hFocusWnd,...){  
+        ..key.sendString(&quot;此回调函数返回true继续发送原来的按键&quot;)  
+    }   
+)
+</code></pre>
+
+<p><a id="keyHotkeyObject.regEndStr"></a></p>
+
+<h3>keyHotkeyObject.regEndStr(超级热键,回调函数或输入文本)</h3>
+
+<p>参数@1是可以表示有效键名的英文字符<br>
+参数@2可以是一段用于输出的文本,aardio代码或aardio文件,<br>
+也可以是一个回调函数,回调函数执行时间不应超过200毫秒，<br>
+该回调函数可返回布尔值指定是否取消当前按键事件，<br>
+也可以返回一个自动延时执行的函数并取消当前按键事件。<br>
+此函数注册的热键必须在最后按下预设的终止键时才会触发<br>
+使用setEndKeys函数可以修改预设终止键<br>
+输入文本如果以美元符号结束$,则输出当前终止键到目标窗体.  </p>
+
+<p>参数@1不区分大小写,字符间不能有空白,<br>
+如果首个控制按键使用+号分隔,则其他所有按键都要用逗号分开</p>
+
+<p><a id="keyHotkeyObject.regStr"></a></p>
+
+<h3>keyHotkeyObject.regStr(超级热键,回调函数或输入文本)</h3>
+
+<p>参数@1可以是英文键名串,尾部可用<code>&#39;\0&#39;</code>表示终止键<br>
+参数@2可以是一段用于输出的文本,aardio代码或aardio文件,<br>
+也可以是一个回调函数,回调函数执行时间不应超过200毫秒，<br>
+该回调函数可返回布尔值指定是否取消当前按键事件，<br>
+也可以返回一个自动延时执行的函数并取消当前按键事件。  </p>
+
+<p>参数@1不区分大小写,字符间不能有空白,<br>
+如果首个控制按键使用+号分隔,则其他所有按键都要用逗号分开</p>
+
+<p><a id="keyHotkeyObject.reset"></a></p>
+
+<h3>keyHotkeyObject.reset()</h3>
+
+<p>清除所有热键并重新创建键盘钩子</p>
+
+<p><a id="keyHotkeyObject.setControlKeys"></a></p>
+
+<h3>keyHotkeyObject.setControlKeys(&quot;字符串参数&quot;)</h3>
+
+<p>设定控制键,支持不定个数参数,支持键名或键码<br>
+默认控制键为左右CTRL,ALT,SHIFT,WIN</p>
+
+<p><a id="keyHotkeyObject.setEndKeys"></a></p>
+
+<h3>keyHotkeyObject.setEndKeys(&quot;字符串参数&quot;)</h3>
+
+<p>设定预设终止键,支持不定个数参数<br>
+支持键名或键码.</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/key/hotkey/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/key/hotkey/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/key/hotkey/_.md">Markdown 格式</a></p>
+
+</body> 
+</html>

@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - aardio 调用 .NET 之 JSON 转换'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - aardio 调用 .NET 之 JSON 转换</title> 
+<link rel="stylesheet" href="../../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 调用 .NET 之 JSON 转换</h1><pre><code class="aardio language-aardio">//aardio 调用 .NET 之 JSON 转换
+import console; 
+import web.json;
+import dotNet.json;
+import System.Collections;
+
+//创建 .NET 的 ArrayList 数组
+var arrList = System.Collections.ArrayList();
+
+arrList.Add(123);
+arrList.Add(&quot;字符串&quot;);
+
+//.NET 对象转换为 JSON
+var json = dotNet.json.SerializeObject(arrList);
+console.log(json);
+
+//导入 dotNet.json 以后 web.json 会自动支持 .NET对象
+console.log(web.json.stringify(arrList));
+
+//这个函数内部也是调用 web.json.stringify
+console.dumpJson(arrList);
+
+//JSON 解析为 .NET 对象
+var obj = dotNet.json.DeserializeObject(json);
+console.log(obj);
+
+/*------------------------------------------------------
+ *以下为调用 Newtonsoft.Json 实现 JSON Path 查询演示
+------------------------------------------------------*/
+
+JObject = dotNet.json.Linq.JObject; 
+
+//参考: https://www.newtonsoft.com/json/help/html/QueryJsonSelectToken.htm
+var jObj = JObject.Parse(&quot;{
+  &#39;Space Invaders&#39;: [&#39;Taito&#39;],
+  &#39;Doom ]|[&#39;: &#39;id&#39;,
+  &quot;&quot;Yar&#39;s Revenge&quot;&quot;: &#39;Atari&#39;,
+  &#39;Government &quot;&quot;Intelligence&quot;&quot;&#39;: &#39;Make-Believe&#39;
+}&quot;);
+
+//JSON Path 查询
+var spaceInvaders = jObj.SelectToken(&quot;[&#39;Space Invaders&#39;]&quot;);
+
+//.NET 对象转换为字符串
+var str = tostring(spaceInvaders); 
+console.log(str); 
+
+//.NET 对象转换为纯 aardio 对象
+var obj = web.json.strip(spaceInvaders);
+console.dump(obj);
+
+console.pause();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/dotNet/Advanced/Json.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/dotNet/Advanced/Json.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Languages/dotNet/Advanced/Json.md">Markdown 格式</a>
+</body> 
+</html>

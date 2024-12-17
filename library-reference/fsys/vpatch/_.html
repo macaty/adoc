@@ -1,0 +1,152 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - fsys.vpatch 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - fsys.vpatch 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>fsys.vpatch 库模块帮助文档</h1>
+
+<p><a id="fsys"></a></p>
+
+<h2>fsys 成员列表</h2>
+
+<p><a id="fsys.vpatch"></a></p>
+
+<h3>fsys.vpatch(&quot;字符串参数&quot;)</h3>
+
+<p>创建 vpatch 对象,<br>
+参数指定 *.pat 格式补丁文件</p>
+
+<p><a id="fsys.vpatch"></a></p>
+
+<h3>fsys.vpatch()</h3>
+
+<p><a href="#vpatchObject">返回对象:vpatchObject</a></p>
+
+<p><a id="fsys.vpatch"></a></p>
+
+<h2>fsys.vpatch 成员列表</h2>
+
+<p>vpatch支持库<br>
+VPatch WebSite:<a href="javascript:if(confirm('http://www.tibed.net/vpatch  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://www.tibed.net/vpatch'" tppabs="http://www.tibed.net/vpatch">http://www.tibed.net/vpatch</a></p>
+
+<p><a id="fsys.vpatch._magicNumber"></a></p>
+
+<h3>fsys.vpatch._magicNumber</h3>
+
+<pre><code class="aardio language-aardio">0x54415056
+</code></pre>
+
+<p><a id="fsys.vpatch.crc32"></a></p>
+
+<h3>fsys.vpatch.crc32(&quot;文件路径&quot;)</h3>
+
+<p>获取文件CRC32</p>
+
+<p><a id="fsys.vpatch.genPat"></a></p>
+
+<h3>fsys.vpatch.genPat</h3>
+
+<p>扩展库，用于生成vpatch补丁</p>
+
+<p><a id="fsys.vpatch.md5"></a></p>
+
+<h3>fsys.vpatch.md5(&quot;文件路径&quot;)</h3>
+
+<p>获取文件MD5(大写32位)</p>
+
+<p><a id="vpatchObject"></a></p>
+
+<h2>vpatchObject 成员列表</h2>
+
+<p><a id="vpatchObject.apply"></a></p>
+
+<h3>vpatchObject.apply(&quot;旧版源文件路径&quot;,&quot;更新目标文件路径&quot;)</h3>
+
+<p>应用补丁文件<br>
+返回值为 <em>VPATCH</em> 前缀的常量,如下:  </p>
+
+<p>_VPATCH_SUCCESS 成功<br>
+_VPATCH_UPTODATE 文件已经是最新,不需要更新<br>
+_VPATCH_NOMATCH 在补丁文件中没有找到哈希匹配的文件<br>
+_VPATCH_ERROR 发生错误<br>
+_VPATCH_CORRUPT 补丁文件错误</p>
+
+<p><a id="vpatchObject.beginPatch"></a></p>
+
+<h3>vpatchObject.beginPatch</h3>
+
+<pre><code class="aardio language-aardio">vpatchObject.beginPatch = function(blockSize,stepSize){
+    /*开始应用补丁,blockSize为补丁块总数*/
+}
+</code></pre>
+
+<p><a id="vpatchObject.close"></a></p>
+
+<h3>vpatchObject.close()</h3>
+
+<p>关闭补丁文件</p>
+
+<p><a id="vpatchObject.eachPatch"></a></p>
+
+<h3>vpatchObject.eachPatch()</h3>
+
+<pre><code class="aardio language-aardio">for( ind,md5Mode,chksum,dstChksum,blocks,size in vpatchObject.eachPatch() ){ 
+    io.print( ind,md5Mode,chksum,dstChksum,blocks,size );
+}
+</code></pre>
+
+<p><a id="vpatchObject.endPatch"></a></p>
+
+<h3>vpatchObject.endPatch</h3>
+
+<pre><code class="aardio language-aardio">vpatchObject.endPatch = function(md5,crc32,dwLowDateTime,dwHighDateTime){ 
+    var tmFile = fsys.time();
+    tmFile.dwLowDateTime = dwLowDateTime;
+    tmFile.dwHighDateTime = dwHighDateTime;
+
+    if( #md5 ){
+        ..io.print(&quot;目标文件MD5&quot;,md5)
+    }
+}
+</code></pre>
+
+<p><a id="vpatchObject.stepPatch"></a></p>
+
+<h3>vpatchObject.stepPatch</h3>
+
+<pre><code class="aardio language-aardio">vpatchObject.stepPatch = function(){
+    /*应用一个补丁块*/   
+}
+</code></pre>
+
+<p><a id="vpatchObject.valid"></a></p>
+
+<h3>vpatchObject.valid()</h3>
+
+<p>该补丁是否有效补丁文件</p>
+
+<h3>自动完成常量</h3>
+
+<p>_VPATCH_CORRUPT=2<br>
+_VPATCH_ERROR=1<br>
+_VPATCH_FILE_ERR_DEST=7<br>
+_VPATCH_FILE_ERR_PATCH=5<br>
+_VPATCH_FILE_ERR_SOURCE=6<br>
+_VPATCH_NOMATCH=3<br>
+_VPATCH_SUCCESS=0<br>
+_VPATCH_UPTODATE=4  </p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/fsys/vpatch/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/fsys/vpatch/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/fsys/vpatch/_.md">Markdown 格式</a></p>
+
+</body> 
+</html>

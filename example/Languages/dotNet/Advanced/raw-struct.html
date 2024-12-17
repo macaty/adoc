@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - aardio 调用 .NET - 原生结构体操作'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - aardio 调用 .NET - 原生结构体操作</title> 
+<link rel="stylesheet" href="../../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 调用 .NET - 原生结构体操作</h1><pre><code class="aardio language-aardio">//aardio 调用 .NET - 原生结构体操作
+import dotNet; 
+import console.int; 
+console.open();
+
+var compiler = dotNet.createCompiler(&quot;C#&quot;);
+
+//指定 /unsafe 选项，否则操作原生结构体的代码会非常复杂
+compiler.Parameters.CompilerOptions = &quot;/optimize /unsafe&quot; ;
+
+compiler.Source = /******   
+using System;
+using System.Runtime.InteropServices;
+
+namespace CSharpLibrary  
+{   
+    //使用跨语言兼容的结构体内存布局 
+    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)] 
+    public unsafe struct MyCStruct //结构体前要加 unsafe 关键字
+    {
+        public int id;
+        public float value; 
+    }
+
+    public class Util  
+    {    
+        //函数名前要加 unsafe 关键字
+        public static unsafe void TestStruct(IntPtr bytePtr)
+        {
+            //创建结构体
+            MyCStruct myStruct; 
+
+            //将数据复制到结构体
+            myStruct = *(MyCStruct*)bytePtr;
+
+            System.Console.WriteLine(&quot;id:{0},value:{1}&quot;,myStruct.id,myStruct.value); 
+
+            //修改结构体
+            myStruct.id = 33;
+            myStruct.value = 44;
+
+            //将修改后的内容写回去
+            *(MyCStruct*)bytePtr = myStruct; 
+            //Marshal.StructureToPtr(myStruct,bytePtr,false);
+        } 
+
+    }   
+} 
+******/ 
+compiler.import(&quot;CSharpLibrary&quot;);  
+
+//声明结构体
+class MyCStruct {
+    int id = 22;
+    float value = 33; 
+}
+
+//创建结构体
+var myStruct = MyCStruct();
+
+//分配固定内存
+var fixedBuffer = raw.buffer(myStruct);
+
+//直接取指针地址要谨慎，务必保持 fixedBuffer 在作用域内（避免回收内存）。
+//获取指针并转为数值（.NET 不能传指针参数，可以先换为数值）
+var intPtr = tonumber( raw.toPointer(fixedBuffer) );
+
+//结构体指针地址作为参数
+CSharpLibrary.Util.TestStruct( intPtr ); //C# 参数声明为 IntPtr 类型（本质上也是数值）
+
+//自内存获取为结构体。
+raw.convert(fixedBuffer,myStruct);
+
+//查看 C# 修改后结构体数据
+console.dumpJson(myStruct); 
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/dotNet/Advanced/raw-struct.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/dotNet/Advanced/raw-struct.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Languages/dotNet/Advanced/raw-struct.md">Markdown 格式</a>
+</body> 
+</html>

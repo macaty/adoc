@@ -1,0 +1,92 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - aardio 调用 Go 语言 - 生成 COM 接口 DLL'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - aardio 调用 Go 语言 - 生成 COM 接口 DLL</title> 
+<link rel="stylesheet" href="../../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 调用 Go 语言 - 生成 COM 接口 DLL</h1><pre><code class="aardio language-aardio">//aardio 调用 Go 语言 - 生成 COM 接口 DLL
+import console.int; 
+import golang;
+
+//参数 @1 指定工作目录，默认为 &quot;/&quot;
+var go = golang(&quot;/go&quot;)
+go.setGoProxy(&quot;https://mirrors.aliyun.com/goproxy/,direct&quot;);
+
+//初始化项目
+go.mod(&quot;init golang/dispDemo&quot;)
+
+//下载第三方模块
+go.get(&quot;github.com/go-ole/go-ole&quot;) 
+
+go.main = /**********
+package main
+
+import (
+    &quot;C&quot;
+    &quot;unsafe&quot;
+    &quot;github.com/go-ole/go-ole&quot;
+    &quot;github.com/go-ole/go-ole/oleutil&quot;
+    &quot;fmt&quot;
+)
+
+//export TestDispatch
+func TestDispatch(dispatchIn uintptr) uintptr {
+    //这里不需要初始化 OLE，aardio 自动支持这些
+
+    // 获取传入的 IDispatch 指针
+    dispatch := (*ole.IDispatch)(unsafe.Pointer(dispatchIn))
+
+    // 调用 dispatch 对象的方法
+    result := oleutil.MustCallMethod(dispatch, &quot;Add&quot;, 1, 2)
+    defer result.Clear()
+
+    // 假设 Add 方法返回一个数值，可以这样获取返回值
+    // value := result.Value() // 返回 interface{}
+    // valueInt := result.ToInt() // 返回 int
+    // valueFloat := result.ToFloat() // 返回 float64
+    // valueString := result.ToString() // 返回 string
+
+    // 打印结果（假设返回一个数值）
+    fmt.Println(&quot;Result:&quot;, result.Value())
+
+    // 创建新的 IDispatch 对象 
+    clsid, err := ole.CLSIDFromProgID(&quot;Scripting.Dictionary&quot;)
+    if err != nil {
+        panic(err)
+    }
+
+    unknown, err := ole.CreateInstance(clsid, nil)
+    if err != nil {
+        panic(err)
+    }
+    defer unknown.Release()
+
+    //这里增加引用计数
+    newDispatch, err := unknown.QueryInterface(ole.IID_IDispatch)
+    if err != nil {
+        panic(err)
+    }
+
+    // 返回新的 IDispatch 对象的指针（不必释放引用计数，由 aardio 接收时释放）
+    return uintptr(unsafe.Pointer(newDispatch))
+}
+
+func main() {
+    // 需要有一个空的 main 函数以满足 go build
+}
+**********/
+go.buildShared(&quot;/dispDemo.go&quot;);
+
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/Go/COM Interface/disp-dll.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/Go/COM Interface/disp-dll.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Languages/Go/COM Interface/disp-dll.md">Markdown 格式</a>
+</body> 
+</html>

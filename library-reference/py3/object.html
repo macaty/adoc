@@ -1,0 +1,436 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - py3.object 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - py3.object 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>py3.object 库模块帮助文档</h1>
+
+<p><a id="py3"></a></p>
+
+<h2>py3 成员列表</h2>
+
+<p><a id="py3.object"></a></p>
+
+<h3>py3.object</h3>
+
+<p>所有Python对象都是一个pyObject<br>
+在aardio中使用py3.object封装该指针为对象,<br>
+并自动管理引用计数</p>
+
+<p><a id="py3.object"></a></p>
+
+<h3>py3.object()</h3>
+
+<p><a href="object.html#py3Object" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/py3/object.html#py3Object">返回对象:py3Object</a></p>
+
+<p><a id="py3.object"></a></p>
+
+<h3>py3.object(aardio值)</h3>
+
+<p>将aardio值转换为pyObject<br>
+py3扩展库负责在与python交互时自动转换能转换的基础数据类型<br>
+其他对象aardio代码接触到的都会是py3.object<br>
+原始pyObject指针原则上保证不会返回给aardio调用代码</p>
+
+<p><a id="py3.object"></a></p>
+
+<h3>py3.object(pyObject封装对象)</h3>
+
+<p>参数是py3.object封装对象<br>
+复制一个对象，并增加引用计数<br>
+并负责在封装对象销毁时释放一次pyObject引用计数  </p>
+
+<p>这里传入的参数是aardio值，或者是py3.object统一都会返回py3.object<br>
+py3扩展库基于这种兼容性自动转换所有aardio,python对象</p>
+
+<p><a id="py3.object"></a></p>
+
+<h3>py3.object(pyObject指针,true)</h3>
+
+<p>参数@2为true,参数@1就必须是pyObject对象指针<br>
+返回pyObject封装对象,并负责在封装对象销毁时释放一次pyObject引用计数,<br>
+原始pyObject指针原则上保证不会返回给aardio调用代码<br>
+这种用法仅用于py扩展库内部使用</p>
+
+<p><a id="py3Object"></a></p>
+
+<h2>py3Object 成员列表</h2>
+
+<p><a id="py3Object.?"></a></p>
+
+<h3>py3Object.?</h3>
+
+<p>输入 Python 对象属性或函数名称。<br>
+如果首字符为 $ ，则返回支持命名参数的函数对象。<br>
+也就是说 pyObject.$fun 等价于 pyObject.fun.invoke。  </p>
+
+<p><a href="object.html#py3Object" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/py3/object.html#py3Object">返回对象:py3Object</a></p>
+
+<p><a id="py3Object.call"></a></p>
+
+<h3>py3Object.call()</h3>
+
+<p><a href="object.html#py3Object" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/py3/object.html#py3Object">返回对象:py3Object</a></p>
+
+<p><a id="py3Object.call"></a></p>
+
+<h3>py3Object.call(不定个数参数)</h3>
+
+<p>该对象为 Python 函数对象时支持使用此方法调用 Python 函数,<br>
+也可以不写 call 函数，直接作为普通函数调用。<br>
+参数为不定个数的字符串、数值、布尔值等。  </p>
+
+<p>如果函数调用成功，<br>
+返回值除数值、布尔值、字符串、字节数组以外的值<br>
+在 aardio 中存为 py.object 对象</p>
+
+<p><a id="py3Object.callObject"></a></p>
+
+<h3>py3Object.callObject( py3.tuple对象 )</h3>
+
+<p>该对象为 Python 函数对象时支持使用此方法调用 Python 函数,<br>
+参数为tuple元数组对象<br>
+返回值为 py3.object对象,可使用 tostring 或 tonumber 等函数转换为aardio类型</p>
+
+<p><a id="py3Object.callObject"></a></p>
+
+<h3>py3Object.callObject()</h3>
+
+<p><a href="object.html#py3Object" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/py3/object.html#py3Object">返回对象:py3Object</a></p>
+
+<p><a id="py3Object.checkBool"></a></p>
+
+<h3>py3Object.checkBool()</h3>
+
+<p>检测是否布尔值</p>
+
+<p><a id="py3Object.checkBytes"></a></p>
+
+<h3>py3Object.checkBytes()</h3>
+
+<p>检测是否字节串</p>
+
+<p><a id="py3Object.checkDict"></a></p>
+
+<h3>py3Object.checkDict()</h3>
+
+<p>检测是否字典</p>
+
+<p><a id="py3Object.checkFloat"></a></p>
+
+<h3>py3Object.checkFloat()</h3>
+
+<p>检测是否浮点数</p>
+
+<p><a id="py3Object.checkList"></a></p>
+
+<h3>py3Object.checkList()</h3>
+
+<p>检测是否列表</p>
+
+<p><a id="py3Object.checkLong"></a></p>
+
+<h3>py3Object.checkLong()</h3>
+
+<p>检测是否整数</p>
+
+<p><a id="py3Object.checkNumber"></a></p>
+
+<h3>py3Object.checkNumber()</h3>
+
+<p>检测是否数值</p>
+
+<p><a id="py3Object.checkTuple"></a></p>
+
+<h3>py3Object.checkTuple()</h3>
+
+<p>检测是否字典</p>
+
+<p><a id="py3Object.checkUnicode"></a></p>
+
+<h3>py3Object.checkUnicode()</h3>
+
+<p>检测是否字符串，注意Py3中字符串都是Unicode，取回aardio都是UTF8编码</p>
+
+<p><a id="py3Object.each"></a></p>
+
+<h3>py3Object.each()</h3>
+
+<pre><code class="aardio language-aardio">for( pyItem in py3Object.each() ){  
+    /*创建迭代器用于遍历所有的项,返回一个值*/  
+}  
+
+[返回对象:py3Object](https://www.aardio.com/zh-cn/doc/library-reference/py3/object.html#py3Object)
+</code></pre>
+
+<p><a id="py3Object.getAttr"></a></p>
+
+<h3>py3Object.getAttr(&quot;字符串参数&quot;)</h3>
+
+<p>读属性值，也可以用成员操作符获取。<br>
+除数值、布尔值、字符串、字节数组以外的值在 aardio 中存为 py.object 对象。<br>
+指定可选参数 @2 为 true 则不检查属性是否存在。</p>
+
+<p><a id="py3Object.getAttr"></a></p>
+
+<h3>py3Object.getAttr()</h3>
+
+<p><a href="object.html#py3Object" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/py3/object.html#py3Object">返回对象:py3Object</a></p>
+
+<p><a id="py3Object.getFuncDesc"></a></p>
+
+<h3>py3Object.getFuncDesc</h3>
+
+<pre><code class="aardio language-aardio">function(){
+    return PyEval_GetFuncDesc(owner.pyObject ); 
+}
+</code></pre>
+
+<p><a id="py3Object.getFuncDesc"></a></p>
+
+<h3>py3Object.getFuncDesc()</h3>
+
+<p>获取函数原型，返回值为字符串。</p>
+
+<p><a id="py3Object.getFuncName"></a></p>
+
+<h3>py3Object.getFuncName()</h3>
+
+<p>获取函数名，返回值为字符串。</p>
+
+<p><a id="py3Object.getFuncName（）"></a></p>
+
+<h3>py3Object.getFuncName（）</h3>
+
+<p>获取函数名</p>
+
+<p><a id="py3Object.getItem"></a></p>
+
+<h3>py3Object.getItem(索引)</h3>
+
+<p>返回指定索引的项，也可以用索引下标操作符 [] 取值。<br>
+除数值、布尔值、字符串、字节数组以外的值在 aardio 中存为 py.object 对象</p>
+
+<p><a id="py3Object.getTypeFlags"></a></p>
+
+<h3>py3Object.getTypeFlags()</h3>
+
+<p>返回类型特性,用法请参考此函数源码以及 Python 文档</p>
+
+<p><a id="py3Object.has"></a></p>
+
+<h3>py3Object.has(&quot;字符串参数&quot;)</h3>
+
+<p>是否存在指定的属性</p>
+
+<p><a id="py3Object.hasFeature"></a></p>
+
+<h3>py3Object.hasFeature()</h3>
+
+<p>检测类型特性,这个函数实现了C++中的PyType_HasFeature宏相同的功能</p>
+
+<p><a id="py3Object.invoke"></a></p>
+
+<h3>py3Object.invoke</h3>
+
+<p>该对象为 Python 函数对象时支持使用此方法调用 Python 函数,<br>
+与通过 call 方法调用不同的是 invoke 支持传递命名参数，<br>
+如果函数调用成功，返回值除数值、布尔值、字符串、字节数组以外的值<br>
+在 aardio 中存为 py.object 对象。  </p>
+
+<p>pyObject.func.invoke 可缩写为 pyObject.$func</p>
+
+<p><a id="py3Object.invoke"></a></p>
+
+<h3>py3Object.invoke()</h3>
+
+<p><a href="object.html#py3Object" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/py3/object.html#py3Object">返回对象:py3Object</a></p>
+
+<p><a id="py3Object.invoke"></a></p>
+
+<h3>py3Object.invoke(kwarg=value,arg1...)</h3>
+
+<p>如果参数@1是未指定元表的纯表对象,且没有 pyObject 成员，<br>
+则将该表中的名值对作为调用时的命名参数，<br>
+该表中的数组成员作为调用时的匿名参数，<br>
+注意名值对参数应当且只能写在最前面，所有参数请用逗号分隔。  </p>
+
+<p>如果指定了第 2 个参数或更多参数，则 kwarg 的数组成员被忽略。<br>
+如果参数 @1 不符合前述规则，<br>
+则与 call 调用相同的方式将所有参数作为调用时的匿名参数。  </p>
+
+<p>如果参数 @1 为 null，则忽略第一个参数并禁用命名参数。<br>
+并将第二个参数作为第一个参数，后续参数依次前移。</p>
+
+<p><a id="py3Object.invokeObject"></a></p>
+
+<h3>py3Object.invokeObject</h3>
+
+<p>该对象为 Python 函数对象时支持使用此方法调用 Python 函数,<br>
+与通过 call 方法调用不同的是 invokeObject 支持传递命名参数，<br>
+调用成功返回值为 py3.object 对象。<br>
+invoke 函数调用 invokeObject 函数并会转换基础类型的值为纯 aardio 值。</p>
+
+<p><a id="py3Object.invokeObject"></a></p>
+
+<h3>py3Object.invokeObject()</h3>
+
+<p><a href="object.html#py3Object" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/py3/object.html#py3Object">返回对象:py3Object</a></p>
+
+<p><a href="object.html#py3Object" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/py3/object.html#py3Object">返回对象:py3Object</a></p>
+
+<p><a id="py3Object.invokeObject"></a></p>
+
+<h3>py3Object.invokeObject(kwarg=value,arg1...)</h3>
+
+<p>如果参数@1是未指定元表的纯表对象,且没有 pyObject 成员，<br>
+则将该表中的名值对作为调用时的命名参数，<br>
+该表中的数组成员作为调用时的匿名参数，<br>
+注意名值对参数应当且只能写在最前面，所有参数请用逗号分隔。  </p>
+
+<p>如果指定了第 2 个参数或更多参数，则 kwarg 的数组成员被忽略。<br>
+如果参数 @1 不符合前述规则，<br>
+则与 call 调用相同的方式将所有参数作为调用时的匿名参数。  </p>
+
+<p>如果参数 @1 为 null，则忽略第一个参数并禁用命名参数。<br>
+并将第二个参数作为第一个参数，后续参数依次前移。</p>
+
+<p><a id="py3Object.parseValue"></a></p>
+
+<h3>py3Object.parseValue()</h3>
+
+<p>检测 Python 对象的类型，并自动返回对应的aardio类型对象。<br>
+基础的数值字符串布尔值转换为同类型，整数值即使大于 53 位仍转为浮点数。<br>
+dict, list, tuple 等等使用json格式转换为 aardio 类型的表</p>
+
+<p><a id="py3Object.parseValue"></a></p>
+
+<h3>py3Object.parseValue(true)</h3>
+
+<p>检测P ython 对象的类型，<br>
+基础类型返回对应的 aardio 类型对象，其他对象返回自身。<br>
+基础类型指：数值、布尔值、字符串、字节数组。<br>
+数值仅转换浮点数值，以及不大于 53位（bit）的整数值。<br>
+字节数组指 Python 中的 bytes，aardio 中的 buffer 对象。<br>
+所有 Python 返回的对象自动调用此函数转换基础类型。</p>
+
+<p><a id="py3Object.setAttr"></a></p>
+
+<h3>py3Object.setAttr(&quot;字符串参数&quot;,)</h3>
+
+<p>写属性成员的值，也可以用成员操作符赋值。</p>
+
+<p><a id="py3Object.setItem"></a></p>
+
+<h3>py3Object.setItem(索引，)</h3>
+
+<p>修改指定索引的项，也可以用索引下标操作符 [] 赋值。</p>
+
+<p><a id="py3Object.size64"></a></p>
+
+<h3>py3Object.size64()</h3>
+
+<p>获取64位无符号长整数<br>
+返回 math.size64 对象</p>
+
+<p><a id="py3Object.stealPtr"></a></p>
+
+<h3>py3Object.stealPtr()</h3>
+
+<p>接管此对象的指针并盗用一次引用计数<br>
+原对象的内部指针被清空,并不再负责释放引用计数<br>
+ steal references</p>
+
+<p><a id="py3Object.toBool"></a></p>
+
+<h3>py3Object.toBool()</h3>
+
+<p>解析为 aardio 布尔值</p>
+
+<p><a id="py3Object.toBytes"></a></p>
+
+<h3>py3Object.toBytes()</h3>
+
+<p>解析为 aardio 字节数组</p>
+
+<p><a id="py3Object.toDict"></a></p>
+
+<h3>py3Object.toDict()</h3>
+
+<p>如果 Python 对象是一个 dict,<br>
+返回绑定相同 Python 对象的 py3.dict 对象,<br>
+添加引用计数,对象销毁时负责释放引用计数,<br>
+否则将传入对象作为 Python 内置函数 dict 的参数并返回 py3.dict 对象,<br>
+失败返回null  </p>
+
+<p><a href="#py3DictObject">返回对象:py3DictObject</a></p>
+
+<p><a id="py3Object.toList"></a></p>
+
+<h3>py3Object.toList()</h3>
+
+<p>如果 Python 对象是一个 list,<br>
+返回绑定相同 Python 对象的 py3.list 对象,<br>
+添加引用计数,对象销毁时负责释放引用计数,<br>
+否则将传入对象作为 Python 内置函数 list 的参数并返回 py3.list 对象,<br>
+失败返回null  </p>
+
+<p><a href="#py3ListObject">返回对象:py3ListObject</a></p>
+
+<p><a id="py3Object.toNumber"></a></p>
+
+<h3>py3Object.toNumber()</h3>
+
+<p>解析为 aardio 数值<br>
+也可以直接将对象传入 tonumber 函数并转换为数值</p>
+
+<p><a id="py3Object.toStr"></a></p>
+
+<h3>py3Object.toStr()</h3>
+
+<p>Python 对象转换为 Python 字符串对象,<br>
+相当于调用 Python 中的 str 函数,<br>
+如果要返回 aardio 字符串可使用 toString 函数,<br>
+也可以调用 py3.str 函数创建 Python 字符串对象</p>
+
+<p><a id="py3Object.toString"></a></p>
+
+<h3>py3Object.toString()</h3>
+
+<p>Python 对象转换为 aardio 字符串<br>
+Python 字节数组（bytes）解析为aardio中的字节数组（buffer）<br>
+其他类型尝试调用 Python 中的 str 函数转换为 aardio 字符串,<br>
+也可以直接将对象作为参数传入 tostring 函数转换为字符串</p>
+
+<p><a id="py3Object.toTuple"></a></p>
+
+<h3>py3Object.toTuple()</h3>
+
+<p>如果 Python 对象是一个 tuple,<br>
+返回绑定相同 Python 对象的 py3.tuple 对象,<br>
+添加引用计数,对象销毁时负责释放引用计数,<br>
+否则将传入对象作为 Python 内置函数 tuple 的参数并返回 py3.tuple 对象,<br>
+失败返回null  </p>
+
+<p><a href="#py3TupleObject">返回对象:py3TupleObject</a></p>
+
+<p><a id="py3Object.type"></a></p>
+
+<h3>py3Object.type()</h3>
+
+<p>返回类型名字</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/py3/object.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/py3/object.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/py3/object.md">Markdown 格式</a></p>
+
+</body> 
+</html>

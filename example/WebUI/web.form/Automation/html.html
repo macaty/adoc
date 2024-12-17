@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 快速抓取分析网页'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 快速抓取分析网页</title> 
+<link rel="stylesheet" href="../../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 快速抓取分析网页</h1><pre><code class="aardio language-aardio">//快速抓取网页
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;快速抓取分析网页&quot;;right=600;bottom=400)
+winform.add()
+/*}}*/
+
+import web.form;
+var wb = web.form( winform ,/*_UIFLAG_*/
+    //禁用图片,禁用脚本,禁用ActiveX控件,禁用框架
+    ,0 | 0x80/*_DLCTL_NO_SCRIPTS*/ | 0x200/*_DLCTL_NO_RUNACTIVEXCTLS*/ | 0x1000/*_DLCTL_NO_FRAMEDOWNLOAD*/
+);
+
+winform.show() 
+
+wb.DocumentComplete = function(pDisp,url) {
+    if( pDisp == wb.application ){
+        winform.text = wb.document.title;
+    }
+}
+
+do{
+    for(i=1;2;1){ 
+        wb.go(&quot;http://www.aardio.com&quot;);
+        wb.wait();
+
+        wb.go(&quot;about:...&quot;);
+        wb.wait();
+    }
+}while(! winform.msgboxTest(&quot;是不是很快？&quot;) )
+
+win.loopMessage();
+return winform;
+
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/WebUI/web.form/Automation/html.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/WebUI/web.form/Automation/html.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/WebUI/web.form/Automation/html.md">Markdown 格式</a>
+</body> 
+</html>

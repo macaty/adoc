@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - aardio 调用 PowerShell'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - aardio 调用 PowerShell</title> 
+<link rel="stylesheet" href="../../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 调用 PowerShell</h1><pre><code class="aardio language-aardio">//aardio 调用 PowerShell
+import win;
+import console;
+import dotNet.ps;
+
+/*
+dotNet.ps 在当前进程运行 PowerShell，
+aardio / .Net(C#) / PowerShell 共享应用程序域，并共享导入的 .Net 程序集与类型。
+*/
+var compiler = dotNet.createCompiler(&quot;C#&quot;);  
+compiler.Source = /****** 
+namespace CSharpLibrary
+{ 
+    public class Object
+    {
+        //定义一个委托类型
+        public delegate int TestDelegateType(string str,int a);
+
+        //定义一个事件
+        public event TestDelegateType onTestEvent; 
+
+        public int Test()
+        {   
+            return onTestEvent(&quot;你好&quot;,123);
+        }
+
+        //PowerShell 5 不需要加这个函数
+        public static Object New(){return new Object(); }
+    }
+}
+******/
+compiler.import(&quot;CSharpLibrary&quot;); //编译 C# 代码并导入名字空间
+
+var out,err = dotNet.ps( `
+param($win) # 声明参数，类似 aardio 中 $win = ...
+
+#PowerShell 里 :: 表示访问类的静态成员，New 用于创建对象
+$obj = [CSharpLibrary.Object]::New() #低于 PowerShell 5 需要在类里增加 New 函数或改用 New-Object
+
+# 添加事件，注意下面方括号里是强制类型转换
+$obj.add_onTestEvent( {
+    param($str,$a) # 声明参数
+
+    # PowerShell 会把所有语句的默认输出塞进返回值，改为赋值语句可避免这个问题
+    $temp = $win.InvokeMember(&quot;msgbox&quot;,&quot;事件被回调了&quot;,$str)
+
+    # return 语句只能改最后一个返回值，与其他语言有较大区别
+    return $a 
+})
+
+$obj.Test()
+`,{win = dotNet.ps.export(win)});
+
+console.log(out,err);
+console.pause(true);
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/dotNet/Apps/PowerShell.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/dotNet/Apps/PowerShell.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Languages/dotNet/Apps/PowerShell.md">Markdown 格式</a>
+</body> 
+</html>

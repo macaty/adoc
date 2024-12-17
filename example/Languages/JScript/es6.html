@@ -1,0 +1,88 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - ES6(Chakra)'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - ES6(Chakra)</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: ES6(Chakra)</h1><pre><code class="aardio language-aardio">//ES6(Chakra)
+import console;
+import web.script;
+var chakra = web.script(&quot;ES6&quot;); 
+
+//Chakra 最低要求为 Win10/Win11， Win7 已逐渐退出市场一般可以忽略 
+assert(_WIN10_LATER,&quot;虽然低于 Win10 的系统 ES6 参数自动退化为 JScript，但此示例用到了 ES6 语法&quot;);
+
+//导出 aardio 函数到 JavaScript
+chakra.external = {
+    log = function(...){  
+        console.log(...)
+    } 
+}
+
+chakra.script = /*****   
+external.log(&quot;JavaScript 调用 aardio 函数&quot;);
+
+class ES5 {
+    constructor(name) {
+        this._name = name;
+    }
+
+    test() {
+        let result = 0;
+        let numbers = [1,2,3];
+
+        if(Array.isArray(numbers)){
+            numbers.forEach( (value) =&gt;{
+            result = result + value; 
+            }); 
+        }
+
+        return result;
+    }
+}
+
+class ES6 extends ES5 {
+  test(v) {
+    return  super.test() + v;
+  }
+}
+
+var es6 = new ES6(); 
+var testResult = es6.test(1000); 
+
+var test = function(v){
+    return es6.test(v);
+}
+
+*****/
+
+//访问脚本中的变量
+console.dump( chakra.script.testResult ); 
+
+//通过 script 对象调用 JavaScript 函数，必须有参数，不支持无参数函数
+console.dump( chakra.script.test(1000) ); 
+
+//通过 json 对象调用 JavaScript 函数，参数与返回值使用 JSON 格式转换。调用参数要符合 JS 函数定义。
+console.dump( chakra.json.test(1000) );
+
+//支持以复杂的 JavaScript 表达式作为下标获取并调用 JavaScript 函数
+console.dump( chakra.json[&quot;new ES6().test&quot;](1000) ); 
+
+/*
+Chakra 性能更强悍，支持 ES6，但对 COM 接口的支持不如 JScript，
+在使用上与 JScript 有很多区别
+*/
+console.pause();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/JScript/es6.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/JScript/es6.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Languages/JScript/es6.md">Markdown 格式</a>
+</body> 
+</html>

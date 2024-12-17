@@ -1,0 +1,69 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - electron嵌入多个窗口'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - electron嵌入多个窗口</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: electron嵌入多个窗口</h1><pre><code class="aardio language-aardio">//electron嵌入多个窗口
+//请改用微软的 WebView2（也就是 aardio 标准库里的 web.view ）
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;electron嵌入多个窗口&quot;;right=1250;bottom=789;bgcolor=16777215)
+winform.add(
+custom={cls=&quot;custom&quot;;text=&quot;custom&quot;;left=29;top=14;right=518;bottom=779;bgcolor=16777215;db=1;dl=1;dt=1;z=1};
+custom2={cls=&quot;custom&quot;;text=&quot;custom2&quot;;left=552;top=14;right=1196;bottom=779;bgcolor=16777215;db=1;dl=1;dr=1;dt=1;z=2}
+)
+/*}}*/
+
+import electron.app;
+//创建第一个electron窗口
+var app = electron.app(winform.custom); 
+app.jsMain =/**  
+
+    //启动RPC服务允许调aardio/electron互调函数,创建BrowserWindow主窗口
+    const aardio = require(&#39;aardio&#39;);
+    aardio.ready( win=&gt; { 
+        //if( !aardio.studioInvoke  ){
+            win.removeMenu()
+        //}
+    })
+
+    //管理electron进程的生命周期
+    const app = require(&#39;electron&#39;).app;
+
+    //在所有窗口关闭时退出electron进程
+    app.on(&#39;window-all-closed&#39;, () =&gt; app.quit() );
+**/
+app.start(&quot;http://bbs.aardio.com/forum.php?mod=viewthread&amp;tid=12574&amp;from=portal&quot;) 
+
+//创建第二个electron窗口
+var app2 = electron.app(winform.custom2); 
+app2.jsMain =/**  
+    const aardio = require(&#39;aardio&#39;);
+    const app = require(&#39;electron&#39;).app;
+    aardio.ready( win=&gt; { 
+        //if( !aardio.studioInvoke  ){
+            win.removeMenu()
+        //}
+    })
+
+    app.on(&#39;window-all-closed&#39;, () =&gt; app.quit() ); 
+**/
+app2.start(&quot;http://bbs.aardio.com/forum.php?mod=viewthread&amp;tid=11486&amp;from=portal&quot;)
+
+winform.show() 
+win.loopMessage();
+
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/WebUI/Electron/multiWindow.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/WebUI/Electron/multiWindow.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/WebUI/Electron/multiWindow.md">Markdown 格式</a>
+</body> 
+</html>

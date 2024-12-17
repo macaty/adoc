@@ -1,0 +1,1827 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - win.ui.ctrl.richedit 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - win.ui.ctrl.richedit 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>win.ui.ctrl.richedit 库模块帮助文档</h1>
+
+<p><details>  <summary>必读文档</summary>  <p></p>
+
+<h2>设置文本样式</h2>
+
+<h3>使用 COM 接口实现的 TOM 文本对象设置样式</h3>
+
+<p>以下是一个简单示例：</p>
+
+<pre><code>textDoc = winform.richedit.createTextDocument()
+textDoc.Selection.Text = &quot;这是红色加粗的文本&quot;
+textDoc.Selection.Font.ForeColor = gdi.RGB(255,0,0)  // 红色
+textDoc.Selection.Font.Bold = textDoc.tomTrue  // 加粗
+</code></pre>
+
+<p><a href="javascript:if(confirm('https://learn.microsoft.com/zh-cn/windows/win32/controls/text-object-model?redirectedfrom=MSDN  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='https://learn.microsoft.com/zh-cn/windows/win32/controls/text-object-model?redirectedfrom=MSDN'" tppabs="https://learn.microsoft.com/zh-cn/windows/win32/controls/text-object-model?redirectedfrom=MSDN">TOM 文档</a></p>
+
+<h3>使用 CHARFORMAT2 结构体设置样式</h3>
+
+<p>以下函数会用到 CHARFORMAT2（这里指的是 win.ui.ctrl.CHARFORMAT2 类） 结构体。</p>
+
+<ul>
+<li>appendText 支持任意个文本参数与任意个 CHARFORMAT2 参数，如果修改了样式则函数返回前恢复默认样式</li>
+<li>setSelCharformat 修改当前选区或插入点样式，传入指定 CHARFORMAT2 部分字段的表即可。</li>
+<li>getSelCharformat 获取当前选区或插入点样式，返回 CHARFORMAT2</li>
+<li>setCharformat 修改样式 ，传入指定 CHARFORMAT2 部分字段的表即可。</li>
+<li>getCharformat 获取样式，返回 CHARFORMAT2</li>
+<li>setLink 设置超链接样式</li>
+<li>appendLink 追加超链接</li>
+</ul>
+
+<p>设置样式的函数可直接指定普通表参数（不需要指定全部 CHARFORMAT2 字段），
+aardio 会自动将这些表转换为完整的 CHARFORMAT2 结构体。 
+并且会自动设置 mask 字段的掩码。
+在 aardio 会自动设置值，所以这个最复杂的部分可以不用管了。
+所以只要字段名写对就可以了。</p>
+
+<p>CHARFORMAT2 有以下字段</p>
+
+<ul>
+<li>backColor: 背景颜色，GDI 颜色格式（ 0xBBGGRR ）。</li>
+<li>textColor: 字体颜色，GDI 颜色格式（ 0xBBGGRR ）。</li>
+<li>faceName: 字体名</li>
+<li>bold = 是否粗体，仅用于写入样式。\n设置了这个值会在应用样式前自动修改 weight 属性。</li>
+<li>underline = 是否粗体，仅用于写入样式。 </li>
+<li>italic = 是否斜体，仅用于写入样式。 </li>
+<li>strikeout = 是否显示删除线，仅用于写入样式。<br></li>
+<li>disabled = 偏移一个像素，仅用于写入样式。</li>
+<li>protected = 保护文本，修改时触发 onProtected 事件。\n仅用于写入样式，仅用于设置全部文本，不适用选区。</li>
+<li>weight: 字体重量，一般不要改，改 bold 即可</li>
+<li>spacing: 字体间距</li>
+<li>effects: 效果</li>
+<li>yHeight: 字体大小，以 twips  为单位</li>
+<li>point: 字体大小，以 pt 为单位。设置样式时指定 point 会在应用样式前自动修改 yHeight 的值。</li>
+<li>yOffset: 偏移 </li>
+<li>charSet: 字符集</li>
+<li>pitchAndFamily: 字体族 </li>
+<li>lcid: 区域ID</li>
+<li>underlineType: 下划线类型 </li>
+<li>mask 掩码，这个一般不用管</li>
+<li>getFont() 返回LOGFONT对象</li>
+</ul>
+
+<p>注意修改字体大小请在窗体显示并且 DPI 初始化缩放完成以后再设置，不然会被重复放大。
+如果要在窗体显示前设置，请在设置字体大小前主动调用 winform.enableDpiScaling(&quot;init&quot;);</p>
+
+<h2>参考文档：</h2>
+
+<p><a href="javascript:if(confirm('https://learn.microsoft.com/en-us/windows/win32/controls/about-rich-edit-controls  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='https://learn.microsoft.com/en-us/windows/win32/controls/about-rich-edit-controls'" tppabs="https://learn.microsoft.com/en-us/windows/win32/controls/about-rich-edit-controls">https://learn.microsoft.com/en-us/windows/win32/controls/about-rich-edit-controls</a>
+<a href="javascript:if(confirm('https://github.com/MicrosoftDocs/win32/blob/docs/desktop-src/Controls/about-rich-edit-controls.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='https://github.com/MicrosoftDocs/win32/blob/docs/desktop-src/Controls/about-rich-edit-controls.md'" tppabs="https://github.com/MicrosoftDocs/win32/blob/docs/desktop-src/Controls/about-rich-edit-controls.md">https://github.com/MicrosoftDocs/win32/blob/docs/desktop-src/Controls/about-rich-edit-controls.md</a>
+<a href="javascript:if(confirm('https://learn.microsoft.com/zh-cn/windows/win32/api/richedit/ns-richedit-charformatw  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='https://learn.microsoft.com/zh-cn/windows/win32/api/richedit/ns-richedit-charformatw'" tppabs="https://learn.microsoft.com/zh-cn/windows/win32/api/richedit/ns-richedit-charformatw">https://learn.microsoft.com/zh-cn/windows/win32/api/richedit/ns-richedit-charformatw</a>
+<a href="javascript:if(confirm('https://learn.microsoft.com/zh-cn/windows/win32/api/richedit/ns-richedit-charformat2w  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='https://learn.microsoft.com/zh-cn/windows/win32/api/richedit/ns-richedit-charformat2w'" tppabs="https://learn.microsoft.com/zh-cn/windows/win32/api/richedit/ns-richedit-charformat2w">https://learn.microsoft.com/zh-cn/windows/win32/api/richedit/ns-richedit-charformat2w</a></p>
+
+<p>API 常量在 aardio 里需要在前面加一个下划线，然后利用 IDE 的自动完成可自动转换为实际的常量值。
+</p></details></p>
+
+<p><a id="win.ui.ctrl"></a></p>
+
+<h2>win.ui.ctrl 成员列表</h2>
+
+<p><a id="win.ui.ctrl.CHARFORMAT2"></a></p>
+
+<h3>win.ui.ctrl.CHARFORMAT2()</h3>
+
+<p>用于创建 richedit 支持的 CHARFORMAT2 结构体。<br>
+因为 richedit 提供的函数可将样式表参数自动转换为此结构，<br>
+所以一般不需要手动创建此结构体。  </p>
+
+<p>注意 aardio 中的 CHARFORMAT2 结构体字段命名与 MSDN 有微小差别。  </p>
+
+<p><a href="#charformat2Object">返回对象:charformat2Object</a></p>
+
+<p><a id="win.ui.ctrl.richedit"></a></p>
+
+<h3>win.ui.ctrl.richedit</h3>
+
+<p>多功能文本框控件支持库</p>
+
+<p><a id="win.ui.ctrl.richedit"></a></p>
+
+<h3>win.ui.ctrl.richedit()</h3>
+
+<p>多功能文本框控件  </p>
+
+<p><a href="#richeditObject">返回对象:richeditObject</a></p>
+
+<p><a id="richeditObject"></a></p>
+
+<h2>richeditObject 成员列表</h2>
+
+<p><a id="richeditObject._defWindowProc"></a></p>
+
+<h3>richeditObject._defWindowProc(hwnd,message,wParam,lParam)</h3>
+
+<p>用于在 wndproc 回调中提前调用默认消息回调函数,<br>
+所有窗口和控件定义了 wndproc 回调以后会自动创建这个函数,<br>
+调用此函数以后,wndproc 必须指定非 null 返回值,<br>
+以避免再次重复调用默认回调函数</p>
+
+<p><a id="richeditObject._parentForm"></a></p>
+
+<h3>richeditObject._parentForm</h3>
+
+<p>创建该控件的父窗口（win.form对象）,<br>
+设计时窗体容器是所有拖放在窗体上的控件的 _parentForm,  </p>
+
+<p>即使窗口移除子窗口样式、更改父子关系，或以 orphanWindow显示,<br>
+控件的 _parentForm 始终都不会改变  </p>
+
+<p><a href="../_.html#winform" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/_.html#winform">返回对象:winform</a></p>
+
+<p><a id="richeditObject.addCtrl"></a></p>
+
+<h3>richeditObject.addCtrl(tParam)</h3>
+
+<pre><code class="aardio language-aardio">richeditObject.addCtrl(  
+    spin={  
+        cls=&quot;spin&quot;;marginRight=4;marginTop=1;marginBottom=4;width=16;  
+        oncommand = function(id,event,pos){   
+            if( pos &amp; event == 0x4/*_SB_THUMBPOSITION*/ ){  
+                winform.edit.text = string.format(&quot;%.2f&quot;,pos / 100 )  
+            }  
+        }  
+    }  
+)/*在edit控件窗口内添加子窗口*/
+</code></pre>
+
+<p><a id="richeditObject.adjust"></a></p>
+
+<h3>richeditObject.adjust</h3>
+
+<pre><code class="aardio language-aardio">richeditObject.adjust = function( cx,cy,wParam ) {     
+    /*窗口缩放时会自动触发此函数。  
+cx 参数为窗口宽度,cy 参数为窗口高度,  
+wParam 参数请参考 _WM_SIZE 消息参数说明,一般不用管。  
+
+所有 win.form 创建的窗体和控件都支持此事件,  
+重复赋值只会追加而不会覆盖此事件。  
+一般不建议添加一个 wndproc 仅仅是为了处理  _WM_SIZE 消息，  
+定义 adjust 事件是更好的选择。  
+
+可主动调用此事件,省略参数时 cx,cy 参数默认设为窗口大小*/    
+};
+</code></pre>
+
+<p><a id="richeditObject.appendLink"></a></p>
+
+<h3>richeditObject.appendLink</h3>
+
+<p>在文本尾部追加超链接。<br>
+如果未定义 onHyperlink 事件，<br>
+则添加默认 onHyperlink 调用 raw.execute 函数打开链接。  </p>
+
+<p>此函数会自动禁用自动识别超链接功能，但不会取消之前自动识别的超链接。</p>
+
+<p><a id="richeditObject.appendLink"></a></p>
+
+<h3>richeditObject.appendLink(title,href,charFormat2)</h3>
+
+<p>在文本尾部追加超链接。<br>
+参数 @title 指定显示文本。<br>
+参数 @href 指定超链接或文件路径。<br>
+参数 @charFormat2 可选指定包含 win.ui.ctrl.CHARFORMAT2 部分字段的表  </p>
+
+<p>默认会通过插入位置获取超链接，<br>
+如果超链接位置改变而获取失败，则通过 title 指定显示名称获取链接。</p>
+
+<p><a id="richeditObject.appendText"></a></p>
+
+<h3>richeditObject.appendText</h3>
+
+<p>追加文本并移动光标插入点到文本尾部。<br>
+用法细节请参考 richedit 库函数文档。</p>
+
+<p><a id="richeditObject.appendText"></a></p>
+
+<h3>richeditObject.appendText(追加文本-..)</h3>
+
+<p>追加文本并移动光标插入点到文本尾部。<br>
+可指定零个、或多个参数，参数可以是字符串、buffer、数值。<br>
+如果参数是表对象，则将该表作为 setSelCharformat 的参数修改插入点样式。<br>
+如果修改字体大小请在窗体显示 DPI 缩放以后设置。<br>
+如果传入了样式参数，在函数调用结束总是会恢复为默认样式。<br>
+传入其他类型参数会抛出异常。  </p>
+
+<p>函数返回插入文本以后控件的文本总长度。</p>
+
+<p><a id="richeditObject.bgcolor"></a></p>
+
+<h3>richeditObject.bgcolor</h3>
+
+<p>获取或修改背景颜色、数值</p>
+
+<p><a id="richeditObject.bottom"></a></p>
+
+<h3>richeditObject.bottom</h3>
+
+<p>底部坐标</p>
+
+<p><a id="richeditObject.canCopy"></a></p>
+
+<h3>richeditObject.canCopy()</h3>
+
+<p>能否复制</p>
+
+<p><a id="richeditObject.canPaste"></a></p>
+
+<h3>richeditObject.canPaste()</h3>
+
+<p>能否粘贴</p>
+
+<p><a id="richeditObject.canRedo"></a></p>
+
+<h3>richeditObject.canRedo()</h3>
+
+<p>能否重做</p>
+
+<p><a id="richeditObject.canUndo"></a></p>
+
+<h3>richeditObject.canUndo()</h3>
+
+<p>能否撤消</p>
+
+<p><a id="richeditObject.capture"></a></p>
+
+<h3>richeditObject.capture</h3>
+
+<p>是否捕获全局鼠标消息</p>
+
+<p><a id="richeditObject.className"></a></p>
+
+<h3>richeditObject.className</h3>
+
+<p>运行时类名</p>
+
+<p><a id="richeditObject.clear"></a></p>
+
+<h3>richeditObject.clear()</h3>
+
+<p>清除选中文本</p>
+
+<p><a id="richeditObject.close"></a></p>
+
+<h3>richeditObject.close()</h3>
+
+<p>关闭控件窗</p>
+
+<p><a id="richeditObject.cls"></a></p>
+
+<h3>richeditObject.cls</h3>
+
+<p>设计时类名</p>
+
+<p><a id="richeditObject.color"></a></p>
+
+<h3>richeditObject.color</h3>
+
+<p>取或修改字体颜色、数值</p>
+
+<p><a id="richeditObject.copy"></a></p>
+
+<h3>richeditObject.copy()</h3>
+
+<p>复制选区。<br>
+如果要复制全部 RTF 文档，<br>
+可用 win.clip.data(&quot;Rich Text Format&quot;) 复制</p>
+
+<p><a id="richeditObject.createTextDocument"></a></p>
+
+<h3>richeditObject.createTextDocument()</h3>
+
+<p>返回 COM 接口的<a href="javascript:if(confirm('https://learn.microsoft.com/zh-cn/windows/win32/controls/text-object-model?redirectedfrom=MSDN  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='https://learn.microsoft.com/zh-cn/windows/win32/controls/text-object-model?redirectedfrom=MSDN'" tppabs="https://learn.microsoft.com/zh-cn/windows/win32/controls/text-object-model?redirectedfrom=MSDN">TOM 文本对象</a>  </p>
+
+<p><a href="#TextDocumentObject">返回对象:TextDocumentObject</a></p>
+
+<p><a id="richeditObject.cut"></a></p>
+
+<h3>richeditObject.cut()</h3>
+
+<p>剪切选区</p>
+
+<p><a id="richeditObject.deselect"></a></p>
+
+<h3>richeditObject.deselect()</h3>
+
+<p>取消选定</p>
+
+<p><a id="richeditObject.disableInputMethod"></a></p>
+
+<h3>richeditObject.disableInputMethod()</h3>
+
+<p>在此控件中关闭输入法, 仅支持英文输入</p>
+
+<p><a id="richeditObject.disabled"></a></p>
+
+<h3>richeditObject.disabled</h3>
+
+<p>控件时否可见</p>
+
+<p><a id="richeditObject.disabledText"></a></p>
+
+<h3>richeditObject.disabledText</h3>
+
+<p>当指定文本时，禁用此控件并显示指定文本。<br>
+指定为 null 时，启用此控件并恢复控件之前的正常文本。</p>
+
+<p><a id="richeditObject.dump"></a></p>
+
+<h3>richeditObject.dump(变量)</h3>
+
+<p>显示变量的值,支持多参数<br>
+注意仅显示普通table,string,number等类型的值,不显示函数等</p>
+
+<p><a id="richeditObject.enablePopMenu"></a></p>
+
+<h3>richeditObject.enablePopMenu()</h3>
+
+<pre><code class="aardio language-aardio">richeditObject.enablePopMenu(function(){  
+    return {   
+        { /*分隔线*/ };   
+        { &quot;自定义菜单项&quot;;  function(id){  
+            /*enablePopMenu 用于启用文本框的右键菜单。  
+可选指定要增加的菜单配置表（或返回菜单配置表的函数）作为参数。  
+菜单配置表将作为参数传给 win.ui.popmenu 对象的 addTable 函数。  
+格式请查看该函数说明*/  
+        }; !owner.canCopy() ? 1/*_MF_GRAYED*/ : 0};       
+    }  
+})
+</code></pre>
+
+<p><a id="richeditObject.findText"></a></p>
+
+<h3>richeditObject.findText</h3>
+
+<p>查找文本</p>
+
+<p><a id="richeditObject.findText"></a></p>
+
+<h3>richeditObject.findText(查找字符串,选项,开始位置,结束位置)</h3>
+
+<p>查找<br>
+选项可使用 win.dlg.findReplace 对象的 flags 属性,<br>
+不指定查找范围时,aardio 根据选区自动确定下次替换的范围<br>
+替换完全部文本会重新重新设置查找范围为全部文本  </p>
+
+<p>此函数返回2个数值，表示查找到的字符串起始、结束位置<br>
+如果参数中未指定查找位置,会自动选中查找到的字符串</p>
+
+<p><a id="richeditObject.font"></a></p>
+
+<h3>richeditObject.font</h3>
+
+<p>控件字体（LOGFONT 结构体），<br>
+注意获取该属性总是返回新的 LOGFONT 对象，<br>
+修改返回字体并不会更新控件字体，<br>
+除非重新赋值。  </p>
+
+<p>建议尽量优先使用 getFont 或 setFont 函数，<br>
+以增强代码可读性  </p>
+
+<p>字体会根据控件设置自动处理 DPI 缩放，不需要事先缩放字体大小</p>
+
+<p><a id="richeditObject.getCharformat"></a></p>
+
+<h3>richeditObject.getCharformat()</h3>
+
+<p><a href="#charformat2Object">返回对象:charformat2Object</a></p>
+
+<p><a id="richeditObject.getCharformat"></a></p>
+
+<h3>richeditObject.getCharformat(mask)</h3>
+
+<p>返回 win.ui.ctrl.CHARFORMAT2 结构体。<br>
+参数 @mask 指定获取字段掩码,省略获取全部值</p>
+
+<p><a id="richeditObject.getClientRect"></a></p>
+
+<h3>richeditObject.getClientRect()</h3>
+
+<p>控件客户区块位置(::RECT结构体)  </p>
+
+<p><a href="../../../global/_.html#rectObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/global/_.html#rectObject">返回对象:rectObject</a></p>
+
+<p><a id="richeditObject.getFont"></a></p>
+
+<h3>richeditObject.getFont()</h3>
+
+<p>返回控件 LOGFONT 字体，<br>
+返回对象的 h 值会按控件的 DPI 缩放设置自动还原为缩放前大小。  </p>
+
+<p><a href="#logfontObject">返回对象:logfontObject</a></p>
+
+<p><a id="richeditObject.getFont"></a></p>
+
+<h3>richeditObject.getFont(true)</h3>
+
+<p>返回控件 LOGFONT 字体，<br>
+返回对象的 h 值为字体实际大小，不会按控件 DPI 设置还原。<br>
+返回字体会设置 noScale 属性为 true,<br>
+使用控件的 setFont 函数或赋值 font 属性时，<br>
+noScale 属性为 true 的字体同样不会进行自动 DPI 缩放  </p>
+
+<p><a href="#logfontObject">返回对象:logfontObject</a></p>
+
+<p><a id="richeditObject.getLength"></a></p>
+
+<h3>richeditObject.getLength()</h3>
+
+<p>获取文本长度<br>
+注意是按字符计数，而不是按字节计数</p>
+
+<p><a id="richeditObject.getParent"></a></p>
+
+<h3>richeditObject.getParent()</h3>
+
+<p>返回父窗口  </p>
+
+<p><a href="static.html#staticObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/static.html#staticObject">返回对象:staticObject</a></p>
+
+<p><a id="richeditObject.getPos"></a></p>
+
+<h3>richeditObject.getPos()</h3>
+
+<p>返回相对坐标,宽,高<br>
+x,y,cx,cy=win.getPos(hwnd)</p>
+
+<p><a id="richeditObject.getRect"></a></p>
+
+<h3>richeditObject.getRect()</h3>
+
+<p>控件区块位置(::RECT结构体)</p>
+
+<p><a id="richeditObject.getRect"></a></p>
+
+<h3>richeditObject.getRect(true)</h3>
+
+<p>控件屏幕区块位置(::RECT结构体)</p>
+
+<p><a id="richeditObject.getRoot"></a></p>
+
+<h3>richeditObject.getRoot()</h3>
+
+<p>获取顶层父窗口，这个函数会查找 orphanWindow 的父窗口</p>
+
+<p><a id="richeditObject.getSelCharformat"></a></p>
+
+<h3>richeditObject.getSelCharformat()</h3>
+
+<p><a href="#charformat2Object">返回对象:charformat2Object</a></p>
+
+<p><a id="richeditObject.getSelCharformat"></a></p>
+
+<h3>richeditObject.getSelCharformat(mask)</h3>
+
+<p>返回选区 win.ui.ctrl.CHARFORMAT2 结构体。<br>
+参数 @mask 指定获取字段掩码,省略获取全部值</p>
+
+<p><a id="richeditObject.getsel"></a></p>
+
+<h3>richeditObject.getsel()</h3>
+
+<p>获取选区起始位置,结束位置<br>
+选区包含起始与结束位置的字符，首字符位置为1<br>
+开始位置在指定的字符前面,结束位置表示指定的字符后面<br>
+只有一个返回值时表示无选区,并表示输入光标在指定字符后面<br>
+返回0表示输入光标在最前面,并且无选区</p>
+
+<p><a id="richeditObject.hScroll"></a></p>
+
+<h3>richeditObject.hScroll()</h3>
+
+<p>滚动到右侧</p>
+
+<p><a id="richeditObject.hScroll"></a></p>
+
+<h3>richeditObject.hScroll(_SB)</h3>
+
+<p>滚动横向滚动条</p>
+
+<p><a id="richeditObject.height"></a></p>
+
+<h3>richeditObject.height</h3>
+
+<p>高度</p>
+
+<p><a id="richeditObject.hide"></a></p>
+
+<h3>richeditObject.hide</h3>
+
+<p>当前控件窗口是否隐藏。<br>
+仅检查当前窗口的可见性样式（窗口 是否移除了 _WS_VISIBLE 样式）。<br>
+不考虑父窗口是否可见，不考虑是否被其他窗口遮挡。<br>
+如果需要同时判断父窗口的可见性，应改用 win.isVisible 函数。</p>
+
+<p><a id="richeditObject.hwnd"></a></p>
+
+<h3>richeditObject.hwnd</h3>
+
+<p>控件句柄</p>
+
+<p><a id="richeditObject.id"></a></p>
+
+<h3>richeditObject.id</h3>
+
+<p>控件ID</p>
+
+<p><a id="richeditObject.inflateClientRect"></a></p>
+
+<h3>richeditObject.inflateClientRect(dx,dy)</h3>
+
+<p>正数增大,负数缩小文本客户区<br>
+文本框必须在设计时指定为多行<br>
+在文本框改变大小必须重新设置</p>
+
+<p><a id="richeditObject.invalidate(/*可选使用::RECT"></a></p>
+
+<h3>richeditObject.invalidate(/*可选使用::RECT()对象指定客户区*/)</h3>
+
+<p>使窗口绘图区无效</p>
+
+<p><a id="richeditObject.invalidate(/*可选使用::RECT"></a></p>
+
+<h3>richeditObject.invalidate(/*可选使用::RECT()对象指定客户区*/,0)</h3>
+
+<p>使窗口绘图区无效<br>
+不刷新背景</p>
+
+<p><a id="richeditObject.isDialogMessage"></a></p>
+
+<h3>richeditObject.isDialogMessage</h3>
+
+<pre><code class="aardio language-aardio">richeditObject.isDialogMessage = function(hParent,msg){/*在控件范围内替代父窗口的 isDialogMessage，  
+可用于在控件范围内屏蔽对话框快捷键。  
+可用于禁用 tab 控制键的多行文本框支持按 tab 输入制表符*/}
+</code></pre>
+
+<p><a id="richeditObject.langOptions"></a></p>
+
+<h3>richeditObject.langOptions</h3>
+
+<p>设置输入和远东语言选项<br>
+选项为数值,使用_IMF_前缀常量表示</p>
+
+<p><a id="richeditObject.left"></a></p>
+
+<h3>richeditObject.left</h3>
+
+<p>左侧坐标</p>
+
+<p><a id="richeditObject.limit"></a></p>
+
+<h3>richeditObject.limit</h3>
+
+<p>字符数限制</p>
+
+<p><a id="richeditObject.lineCount"></a></p>
+
+<h3>richeditObject.lineCount</h3>
+
+<p>获取行数</p>
+
+<p><a id="richeditObject.lineFromChar"></a></p>
+
+<h3>richeditObject.lineFromChar()</h3>
+
+<p>不指定参数则返回当前行</p>
+
+<p><a id="richeditObject.lineFromChar"></a></p>
+
+<h3>richeditObject.lineFromChar(指定位置)</h3>
+
+<p>返回指定位置行数</p>
+
+<p><a id="richeditObject.lineLength"></a></p>
+
+<h3>richeditObject.lineLength(指定行号)</h3>
+
+<p>返回指定行字符数<br>
+省略参数表示当前行,小于0表示自尾部倒数到指定行,-1表示最后一行</p>
+
+<p><a id="richeditObject.lineScroll"></a></p>
+
+<h3>richeditObject.lineScroll(滚动到指定行)</h3>
+
+<p>滚动条移动到指定行<br>
+如果不指定参数则滚动到最后一行</p>
+
+<p><a id="richeditObject.lineSel"></a></p>
+
+<h3>richeditObject.lineSel(行号,替换文本)</h3>
+
+<p>选择指定的行的全部文本,<br>
+行号为-1时表示选取最后一行,<br>
+可选使用参数@2指定一个字符串用于替换该行文本</p>
+
+<p><a id="richeditObject.lineText"></a></p>
+
+<h3>richeditObject.lineText()</h3>
+
+<p>不指定行号参数,则获取当前行文本</p>
+
+<p><a id="richeditObject.lineText"></a></p>
+
+<h3>richeditObject.lineText(指定行号)</h3>
+
+<p>获取指定行文本<br>
+省略参数表示当前行,小于0表示自尾部倒数到指定行,-1表示最后一行</p>
+
+<p><a id="richeditObject.lineToChar"></a></p>
+
+<h3>richeditObject.lineToChar(指定行号)</h3>
+
+<p>获取指定行首字符位置<br>
+省略参数表示当前行,小于0表示自尾部倒数到指定行,-1表示最后一行</p>
+
+<p><a id="richeditObject.lines"></a></p>
+
+<h3>richeditObject.lines(忽略空白)</h3>
+
+<pre><code class="aardio language-aardio">for line in richeditObject.lines(true){ 
+    /*遍历所有文本行,  
+如果迭代器参数为true则清除每行首尾空格,并忽略空行*/
+}
+</code></pre>
+
+<p><a id="richeditObject.link"></a></p>
+
+<h3>richeditObject.link</h3>
+
+<p>控件是否自动识别超链接。<br>
+启用此属性会重新设置控件文本内容并丢失选区样式。<br>
+如果未定义 onHyperlink 事件，<br>
+则添加默认 onHyperlink 调用 raw.execute 函数打开链接。  </p>
+
+<p>禁用此属性不会重置文本内容，之前识别的超链接不会失效。</p>
+
+<p><a id="richeditObject.load"></a></p>
+
+<h3>richeditObject.load()</h3>
+
+<p>自参数 @1 指定的文件路径加载文本。<br>
+如果文件后缀为 .rtf 则加载 RTF 格式文本。<br>
+此函数内部调用 streamIn 函数。</p>
+
+<p><a id="richeditObject.log"></a></p>
+
+<h3>richeditObject.log( ,&#39;\r\n&#39; )</h3>
+
+<p>追加字符串到文本框,可输入多个参数<br>
+如果超出limit属性设定的字符数限制则移除头部多余的字符<br>
+为提升性能,limit不可过大</p>
+
+<p><a id="richeditObject.modified"></a></p>
+
+<h3>richeditObject.modified</h3>
+
+<p>文本内容是否已修改。<br>
+修改 text 属性、以及调用 log,print 等函数不会自动变更此属性。<br>
+用户输入、selText 变更、 appendTexxt,appendLink 调用都会变更此属性为 true。</p>
+
+<p><a id="richeditObject.modifyEvent"></a></p>
+
+<h3>richeditObject.modifyEvent(移除通知,添加通知)</h3>
+
+<p>启用或禁用通知消息,返回EVENTMASK值</p>
+
+<p><a id="richeditObject.modifyStyle"></a></p>
+
+<h3>richeditObject.modifyStyle(remove,add,swpFlags)</h3>
+
+<p>修改窗口样式,所有参数都是可选参数,<br>
+@remove 用数值指定要移除的样式,可使用 <em>WS</em> 前缀的常量<br>
+@add 用数值指定要添加的样式,可使用 <em>WS</em> 前缀的常量<br>
+@swpFlags 可选用数值指定调整窗口选项,可使用 <em>SWP</em> 前缀的常量<br>
+如果指定了 @swpFlag ,则使用该参数调用::SetWindowPos<br>
+细节请参考 win.modifyStyle 函数源码</p>
+
+<p><a id="richeditObject.modifyStyleEx"></a></p>
+
+<h3>richeditObject.modifyStyleEx(remove,add,swpFlags)</h3>
+
+<p>修改窗口扩展样式,所有参数都是可选参数,<br>
+@remove 用数值指定要移除的样式,可使用 <em>WS_EX</em> 前缀的常量<br>
+@add 用数值指定要添加的样式,可使用 <em>WS_EX</em> 前缀的常量<br>
+@swpFlags 可选用数值指定调整窗口选项,可使用 <em>SWP</em> 前缀的常量<br>
+如果指定了 @swpFlag ,则使用该参数调用::SetWindowPos<br>
+细节请参考 win.modifyStyle 函数源码</p>
+
+<p><a id="richeditObject.onCancel"></a></p>
+
+<h3>richeditObject.onCancel()</h3>
+
+<pre><code class="aardio language-aardio">richeditObject.onCancel = function(){ 
+    /*当前已按下ESC,返回true阻止默认事件*/
+    return true;    
+}
+</code></pre>
+
+<p><a id="richeditObject.onChange"></a></p>
+
+<h3>richeditObject.onChange()</h3>
+
+<pre><code class="aardio language-aardio">richeditObject.onChange = function(){ 
+    if(owner.onModified)owner.onModified(true);
+
+    owner.validateText(&quot;&lt;\d+\.\d\d&gt;|&lt;\d+\.\d&gt;|&lt;\d+\.&gt;|&lt;\d+&gt;&quot;
+        ,&quot;请输入金额，小数点后不能超过 2 位!&quot;); 
+
+    /*响应事件，文本内容已变更，  
+对于 richedit 修改 text 属性赋值文本会触发此事件。  
+但可以通过 modified 属性判断是否由赋值 text 而触发。  
+*/
+}
+</code></pre>
+
+<p><a id="richeditObject.onDpiFontChange"></a></p>
+
+<h3>richeditObject.onDpiFontChange</h3>
+
+<pre><code class="aardio language-aardio">richeditObject.onDpiFontChange = function(f){  
+    return owner.setFont(f);/*自定义DPI字体缩放*/  
+};
+</code></pre>
+
+<p><a id="richeditObject.onFocusGot"></a></p>
+
+<h3>richeditObject.onFocusGot()</h3>
+
+<pre><code class="aardio language-aardio">richeditObject.onFocusGot = function(){ 
+    /*响应事件，文本框已获得输入焦点*/
+}
+</code></pre>
+
+<p><a id="richeditObject.onFocusLost"></a></p>
+
+<h3>richeditObject.onFocusLost()</h3>
+
+<pre><code class="aardio language-aardio">richeditObject.onFocusLost = function(){
+    /*响应事件，文本框已失去输入焦点*/
+}
+</code></pre>
+
+<p><a id="richeditObject.onHyperlink"></a></p>
+
+<h3>richeditObject.onHyperlink</h3>
+
+<pre><code class="aardio language-aardio">richeditObject.onHyperlink =function(message,href){  
+
+    if( message = 0x202/*_WM_LBUTTONUP*/ ) {  
+        raw.execute(href);  
+    }  
+}
+</code></pre>
+
+<p><a id="richeditObject.onModified"></a></p>
+
+<h3>richeditObject.onModified</h3>
+
+<pre><code class="aardio language-aardio">richeditObject.onModified = function(modified){ 
+    /*使用代码变更modified属性后触发此事件,  
+用户编辑文本导致变更modified属性不会触发此事件，  
+可在onChange事件内主动调用此事件*/
+}
+</code></pre>
+
+<p><a id="richeditObject.onOk"></a></p>
+
+<h3>richeditObject.onOk()</h3>
+
+<pre><code class="aardio language-aardio">richeditObject.onOk = function(){ 
+    /*当前已按下回车,返回true阻止默认事件*/
+    return true;    
+}
+</code></pre>
+
+<p><a id="richeditObject.onProtected"></a></p>
+
+<h3>richeditObject.onProtected</h3>
+
+<pre><code class="aardio language-aardio">richeditObject.onProtected = function(b,e,message){ 
+    /*修改保护样式文本触发此事件。  
+b,e 为被修改的选区，message 为触发消息。  
+返回 true 禁止修改*/
+    return true;    
+}
+</code></pre>
+
+<p><a id="richeditObject.orphanWindow"></a></p>
+
+<h3>richeditObject.orphanWindow(transparent,hwndBuddy,borderless)</h3>
+
+<p>创建悬浮窗口。<br>
+悬浮窗口是模仿子窗口外观效果的独立窗口，父窗口可自动调整子窗口到设定位置。<br>
+可选参数 @transparent 为 true 则转换为分层透明窗口。<br>
+可选利用 @hwndBuddy 参数指定外部进程窗口句柄的并附加在内部控件上以实现相同的效果。<br>
+伙伴窗口总是会保持在悬浮窗口前面，并保持相同的大小、位置。<br>
+可重复调用此函数更换伙伴窗口，旧的伙伴窗口必须自行关闭。<br>
+可选指定 @borderless 参数 为 true 以移除 @hwndBuddy  的窗口边框。</p>
+
+<p><a id="richeditObject.padding"></a></p>
+
+<h3>richeditObject.padding</h3>
+
+<p>文本边距<br>
+应通过setPadding函数设置该值</p>
+
+<p><a id="richeditObject.passwordChar"></a></p>
+
+<h3>richeditObject.passwordChar</h3>
+
+<p>指定隐藏密码的占位字符,该字符使用UTF-16编码,<br>
+例如指定为&#39;*&#39;u隐藏密码,指定为null正常显示文本</p>
+
+<p><a id="richeditObject.paste"></a></p>
+
+<h3>richeditObject.paste()</h3>
+
+<p>粘贴</p>
+
+<p><a id="richeditObject.popMenu"></a></p>
+
+<h3>richeditObject.popMenu()</h3>
+
+<p>弹出右键菜单</p>
+
+<p><a id="richeditObject.postMessage"></a></p>
+
+<h3>richeditObject.postMessage(msg,wParam,lParam)</h3>
+
+<p>投递窗口消息到消息队列中<br>
+此函数用法请参考 ::User32.PostMessage</p>
+
+<p><a id="richeditObject.preadjust"></a></p>
+
+<h3>richeditObject.preadjust</h3>
+
+<pre><code class="aardio language-aardio">richeditObject.preadjust = function( cx,cy,wParam ) {      
+    /*窗口缩放后重绘前、触发 adjust 事件之前触发此事件。  
+所有 win.form 创建的窗体和控件都支持此事件,  
+与 adjust 事件不同，对 preadjust 重复赋值则覆盖而不是追加事件。   
+
+cx 参数为窗口宽度,cy 参数为窗口高度,  
+wParam 为 _WM_SIZE 消息参数。*/    
+};
+</code></pre>
+
+<p><a id="richeditObject.print"></a></p>
+
+<h3>richeditObject.print(...)</h3>
+
+<p>将多个参数转换为字符串,<br>
+并使用制表符分隔各参数追加到文本尾部<br>
+并追加换行  </p>
+
+<p>对于table对象,aardio会序列化为文本然后输出,<br>
+如果当前已经导入了web.json，则自动转换为json后输出,<br>
+可以用于调试代码显示变量的值</p>
+
+<p><a id="richeditObject.printf"></a></p>
+
+<h3>richeditObject.printf(...)</h3>
+
+<p>将多个参数调用string.format格式化后追加到文本尾部<br>
+并追加换行</p>
+
+<p><a id="richeditObject.publish"></a></p>
+
+<h3>richeditObject.publish(&quot;字符串参数&quot;,)</h3>
+
+<p>在窗口所在界面线程发布消息,<br>
+运行界面线程所有所有调用subscribe函数订阅此消息的函数,<br>
+可添加任意个触发参数</p>
+
+<p><a id="richeditObject.rangeText"></a></p>
+
+<h3>richeditObject.rangeText(起始位置,结束位置)</h3>
+
+<p>返回指定位置文本<br>
+1表示首字符</p>
+
+<p><a id="richeditObject.readonly"></a></p>
+
+<h3>richeditObject.readonly</h3>
+
+<p>是否只读<br>
+只读时禁止编辑</p>
+
+<p><a id="richeditObject.redo"></a></p>
+
+<h3>richeditObject.redo()</h3>
+
+<p>重做</p>
+
+<p><a id="richeditObject.redraw"></a></p>
+
+<h3>richeditObject.redraw()</h3>
+
+<p>刷新</p>
+
+<p><a id="richeditObject.replaceAll"></a></p>
+
+<h3>richeditObject.replaceAll</h3>
+
+<p>全部替换查找到的文本</p>
+
+<p><a id="richeditObject.replaceAll"></a></p>
+
+<h3>richeditObject.replaceAll(查找字符串,替换字符串,选项)</h3>
+
+<p>全部替换查找到的文本<br>
+选项可使用win.dlg.findReplace对象的flags属性</p>
+
+<p><a id="richeditObject.replaceText"></a></p>
+
+<h3>richeditObject.replaceText</h3>
+
+<p>替换替换文本</p>
+
+<p><a id="richeditObject.replaceText"></a></p>
+
+<h3>richeditObject.replaceText(查找字符串,替换字符串,选项,开始位置,结束位置)</h3>
+
+<p>替换当前选区并查找下一个，<br>
+选项可使用 win.dlg.findReplace 对象的 flags 属性,<br>
+不指定查找范围时,aardio 根据选区自动确定下次替换的范围<br>
+替换完全部文本会重新重新设置查找范围为全部文本，<br>
+此函数返回2个数值，表示下一个找到的字符串起始、结束位置</p>
+
+<p><a id="richeditObject.resize"></a></p>
+
+<h3>richeditObject.resize(宽度,高度)</h3>
+
+<p>如果指定了参数则调整窗口大小,<br>
+无论是否实际调整窗口大小,发送 _WM_SIZE 消息给窗口</p>
+
+<p><a id="richeditObject.right"></a></p>
+
+<h3>richeditObject.right</h3>
+
+<p>右侧坐标</p>
+
+<p><a id="richeditObject.rtf"></a></p>
+
+<h3>richeditObject.rtf</h3>
+
+<p>获取或写入 RTF 格式文本。<br>
+读写此属性会自动转换为调用 streamIn,streamOut 函数。</p>
+
+<p><a id="richeditObject.save"></a></p>
+
+<h3>richeditObject.save()</h3>
+
+<p>保存控件文本到参数 @1 指定的文件路径。<br>
+如果文件后缀为 .rtf 则保存 RTF 格式文本。<br>
+此函数内部调用 streamOut 函数。</p>
+
+<p><a id="richeditObject.saveScale"></a></p>
+
+<h3>richeditObject.saveScale(scaleX,scaleY,dpiScaleX,dpiScaleY)</h3>
+
+<p>根据控件当前的运行时位置更新设计时大小\如果控件允许自动缩放，窗口缩放时依据设计时大小按比例缩放<br>
+所有参数可省略,并且不建议写参数</p>
+
+<p><a id="richeditObject.scrollCaret"></a></p>
+
+<h3>richeditObject.scrollCaret()</h3>
+
+<p>滚动到光标处</p>
+
+<p><a id="richeditObject.selLine"></a></p>
+
+<h3>richeditObject.selLine</h3>
+
+<p>获取或设置当前行,<br>
+光标移动到该行开始处,并且滚动到该行,<br>
+设为-1跳转到最后一行</p>
+
+<p><a id="richeditObject.selText"></a></p>
+
+<h3>richeditObject.selText</h3>
+
+<p>获取或写入选区文本<br>
+可写入UTF8或UTF16字符串，其他类型转为字符串写入</p>
+
+<p><a id="richeditObject.selectAll"></a></p>
+
+<h3>richeditObject.selectAll()</h3>
+
+<p>全选</p>
+
+<p><a id="richeditObject.sendMessage"></a></p>
+
+<h3>richeditObject.sendMessage(msg,wParam,lParam)</h3>
+
+<p>发送窗口消息<br>
+此函数用法请参考 ::User32.SendMessage</p>
+
+<p><a id="richeditObject.setCharformat"></a></p>
+
+<h3>richeditObject.setCharformat</h3>
+
+<p>修改样式，<br>
+如果修改字体大小请在窗体显示 DPI 缩放以后设置。<br>
+用法细节请参考 richedit 库函数文档。</p>
+
+<p><a id="richeditObject.setCharformat"></a></p>
+
+<h3>richeditObject.setCharformat(charformat2,wParam)</h3>
+
+<p>参数 @charformat2 使用 win.ui.ctrl.CHARFORMAT2 结构体设置文本样式，<br>
+可仅指定部分字段<br>
+wParam可省略,可选值参考EM_SETCHARFORMAT消息。\例如修改字体颜色可传入 {textColor=0x00ff00}</p>
+
+<p><a id="richeditObject.setClientRect"></a></p>
+
+<h3>richeditObject.setClientRect(RECT区块)</h3>
+
+<p>参数为指定文本客户区的RECT结构体<br>
+文本框必须在设计时指定为多行<br>
+在文本框改变大小必须重新设置</p>
+
+<p><a id="richeditObject.setFocus"></a></p>
+
+<h3>richeditObject.setFocus()</h3>
+
+<p>设置焦点</p>
+
+<p><a id="richeditObject.setFont"></a></p>
+
+<h3>richeditObject.setFont(指定字体)</h3>
+
+<p>指定 LOGFONT 字体对象,或逻辑字体句柄<br>
+如果不指定 point 值并指定 h 值，字体会按控件的 DPI 缩放设置自动缩放。</p>
+
+<p><a id="richeditObject.setFont"></a></p>
+
+<h3>richeditObject.setFont(混入字体属性)</h3>
+
+<pre><code class="aardio language-aardio">richeditObject.setFont(h=-12;name=&quot;Tahoma&quot;);
+</code></pre>
+
+<p><a id="richeditObject.setLink"></a></p>
+
+<h3>richeditObject.setLink</h3>
+
+<p>设置当前选区为超链接。<br>
+如果未定义 onHyperlink 事件，<br>
+则添加默认 onHyperlink 调用 raw.execute 函数打开链接。  </p>
+
+<p>此函数会自动禁用自动识别超链接功能，但不会取消之前自动识别的超链接。</p>
+
+<p><a id="richeditObject.setLink"></a></p>
+
+<h3>richeditObject.setLink(href,charFormat2)</h3>
+
+<p>设置当前选区为超链接。<br>
+参数 @href 指定超链接或文件路径。<br>
+参数 @charFormat2 可选指定包含 win.ui.ctrl.CHARFORMAT2 部分字段的表  </p>
+
+<p>默认会通过插入位置获取超链接，<br>
+如果超链接位置改变而获取失败，则通过 title 指定显示名称获取链接</p>
+
+<p><a id="richeditObject.setPadding"></a></p>
+
+<h3>richeditObject.setPadding(上,右,下,左)</h3>
+
+<p>设置文本边距<br>
+文本框必须在设计时指定为多行<br>
+在文本框改变大小后仍然可以保持此边距</p>
+
+<p><a id="richeditObject.setParent"></a></p>
+
+<h3>richeditObject.setParent(控件对象)</h3>
+
+<p>改变父窗口</p>
+
+<p><a id="richeditObject.setPos"></a></p>
+
+<h3>richeditObject.setPos(x坐标,y坐标,宽,高,插入位置,参数)</h3>
+
+<p>调整窗口位置或排序,所有参数可选<br>
+同时指定x,y坐标则移动位置<br>
+同时指定宽高则改变大小<br>
+指定插入位置(句柄或_HWND前缀常量)则调整Z序</p>
+
+<p><a id="richeditObject.setRect"></a></p>
+
+<h3>richeditObject.setRect(rc)</h3>
+
+<p>设置控件区块位置(::RECT结构体)</p>
+
+<p><a id="richeditObject.setRect"></a></p>
+
+<h3>richeditObject.setRect(rc,true)</h3>
+
+<p>设置控件屏幕区块位置(::RECT结构体)</p>
+
+<p><a id="richeditObject.setSelCharformat"></a></p>
+
+<h3>richeditObject.setSelCharformat</h3>
+
+<p>设置选区样式。<br>
+用法细节请参考 richedit 库函数文档。<br>
+如果当前没有选区则修改插入点样式，新的样式仅在插入位置修改前有效。  </p>
+
+<p>可调用控件的 setFocus,setsel 函数修改选区或光标插入位置。</p>
+
+<p><a id="richeditObject.setSelCharformat"></a></p>
+
+<h3>richeditObject.setSelCharformat(charformat2)</h3>
+
+<p>参数 @charformat2 使用 win.ui.ctrl.CHARFORMAT2 结构体设置文本样式，<br>
+传入仅指定部分字段的表将自动转换为 CHARFORMAT2 结构体。\例如修改字体颜色可传入 {textColor=0x00ff00}</p>
+
+<p><a id="richeditObject.setSelCharformat"></a></p>
+
+<h3>richeditObject.setSelCharformat(null)</h3>
+
+<p>将选区或光标插入点样式设为默认样式。</p>
+
+<p><a id="richeditObject.setsel"></a></p>
+
+<h3>richeditObject.setsel(当前位置)</h3>
+
+<p>无选区,<br>
+移动光标到指定位置的字符后面</p>
+
+<p><a id="richeditObject.setsel"></a></p>
+
+<h3>richeditObject.setsel(起始位置,结束位置)</h3>
+
+<p>设置选区,以字符为单位<br>
+1为首字符，选区包含起始与结束位置<br>
+如果结束位置小于开始位置,自动交换参数位置,<br>
+注意richedit实际以＼n换行,输入字符中的＼r＼n作为一个字符计数<br>
+可以用-1表示文本尾部</p>
+
+<p><a id="richeditObject.show"></a></p>
+
+<h3>richeditObject.show(true)</h3>
+
+<p>显示控件</p>
+
+<p><a id="richeditObject.streamIn"></a></p>
+
+<h3>richeditObject.streamIn</h3>
+
+<p>读入 RTF 文档或普通文档</p>
+
+<p><a id="richeditObject.streamIn"></a></p>
+
+<h3>richeditObject.streamIn(RTF文本)</h3>
+
+<p>加载字符串参数 @1 指定的 RTF 格式文本</p>
+
+<p><a id="richeditObject.streamIn"></a></p>
+
+<h3>richeditObject.streamIn(格式,RTF文件路径)</h3>
+
+<p>读入 RTF 文档或普通文档，<br>
+格式参数默认为 _SF_RTF 用于读入 RTF 文档，<br>
+指定为 _SF_TEXT 则读入普通文本</p>
+
+<p><a id="richeditObject.streamIn"></a></p>
+
+<h3>richeditObject.streamIn(格式,输入函数)</h3>
+
+<pre><code class="aardio language-aardio">richeditObject.streamIn(,function(format,buf,len){    
+    return 0,file.readBuffer(buf,len);/*格式参数默认为 _SF_RTF，用于读入 RTF 文档，  
+指定为 _SF_TEXT 则读入普通文本。  
+成功读取文件回调函数应返回 0 与读取长度，  
+否则请返回错误代码*/  
+} )
+</code></pre>
+
+<p><a id="richeditObject.streamOut"></a></p>
+
+<h3>richeditObject.streamOut</h3>
+
+<p>输出 RTF 文档或普通文档</p>
+
+<p><a id="richeditObject.streamOut"></a></p>
+
+<h3>richeditObject.streamOut(格式)</h3>
+
+<p>直接返回 RTF 格式或普通文本。<br>
+格式参数默认为 _SF_RTF 用于输出 RTF 文档，<br>
+指定为 _SF_TEXT 则输出普通文本</p>
+
+<p><a id="richeditObject.streamOut"></a></p>
+
+<h3>richeditObject.streamOut(格式,RTF文件路径)</h3>
+
+<p>输出 RTF 文档或普通文档，<br>
+格式参数默认为 _SF_RTF 用于输出 RTF 文档，<br>
+指定为 _SF_TEXT 则输出普通文本</p>
+
+<p><a id="richeditObject.streamOut"></a></p>
+
+<h3>richeditObject.streamOut(格式,输出函数)</h3>
+
+<pre><code class="aardio language-aardio">richeditObject.streamOut(,function(format,buf,len){    
+    var ok,bytes = file.writeBuffer(buf,len);/*保存RTF文档*/   
+    return 0,bytes;  
+} )
+</code></pre>
+
+<p><a id="richeditObject.tabNext"></a></p>
+
+<h3>richeditObject.tabNext()</h3>
+
+<p><a href="static.html#staticObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/static.html#staticObject">返回对象:staticObject</a></p>
+
+<p><a id="richeditObject.tabNext"></a></p>
+
+<h3>richeditObject.tabNext(移动焦点,是否反向)</h3>
+
+<p>获取下一个支持tab控制焦点的控件<br>
+参数@1为true会自动移动焦点到该控件<br>
+参数@2为true则获取上一个控件,否则获取下一个控件</p>
+
+<p><a id="richeditObject.text"></a></p>
+
+<h3>richeditObject.text</h3>
+
+<p>获取或写入编辑控件文本属性。<br>
+可写入 UTF8 或 UTF16 字符串，写入 null 值转换为空字符串，<br>
+其他类型值用 tostring 转为字符串后写入。<br>
+注意 edit 控件使用&#39;\r\<br>
+&#39;表示换行,而 richedit 控件则使用&#39;\<br>
+&#39;表示换行，<br>
+用双引号或反引号包含字符串赋值时换行会自动将换行解析为&#39;\<br>
+&#39;，<br>
+例如 winform.richedit.txt = &quot;文本<br>
+第二行文本&quot;</p>
+
+<p><a id="richeditObject.theme"></a></p>
+
+<h3>richeditObject.theme</h3>
+
+<p>外观主题,例如<br>
+winform.button.theme = &quot;Explorer&quot;<br>
+winform.button.theme = false</p>
+
+<p><a id="richeditObject.threadCallable"></a></p>
+
+<h3>richeditObject.threadCallable()</h3>
+
+<p>开启此控件的跨线程调用功能</p>
+
+<p><a id="richeditObject.top"></a></p>
+
+<h3>richeditObject.top</h3>
+
+<p>顶部坐标</p>
+
+<p><a id="richeditObject.translateAccelerator"></a></p>
+
+<h3>richeditObject.translateAccelerator(msg)</h3>
+
+<pre><code class="aardio language-aardio">richeditObject.translateAccelerator = function(msg){ 
+    var vk = msg.wParam;
+    if( (vk == 0x9/*_VK_TAB*/ ) || (vk = 0xD/*_VK_RETURN*/) ){
+        if( msg.message == 0x100/*_WM_KEYDOWN*/) {
+            owner.tabNext(true); 
+            return true;/*在此事件中可拦截键盘消息并自定义快捷键  
+tabNext函数切换到下一个支持tab控制键的控件  
+如果这是一个快捷键返回true以取消该消息的默认行为*/
+        }
+    }   
+}
+</code></pre>
+
+<p><a id="richeditObject.translateCommand"></a></p>
+
+<h3>richeditObject.translateCommand()</h3>
+
+<p>允许转发转发子窗口的命令（_WM_COMMAND）与通知（_WM_NOTIFY）消息，<br>
+避免子窗口 oncommand，onnotify 等回调失效。<br>
+同时会处理子窗口的 _WM_CTLCOLORSTATIC 等消息，<br>
+以避免部分外观属性失效</p>
+
+<p><a id="richeditObject.undo"></a></p>
+
+<h3>richeditObject.undo()</h3>
+
+<p>撤消</p>
+
+<p><a id="richeditObject.update"></a></p>
+
+<h3>richeditObject.update()</h3>
+
+<p>重绘invalidate函数指定的区块</p>
+
+<p><a id="richeditObject.vScroll"></a></p>
+
+<h3>richeditObject.vScroll()</h3>
+
+<p>滚动到底部</p>
+
+<p><a id="richeditObject.vScroll"></a></p>
+
+<h3>richeditObject.vScroll(_SB)</h3>
+
+<p>滚动竖向滚动条</p>
+
+<p><a id="richeditObject.valid"></a></p>
+
+<h3>richeditObject.valid</h3>
+
+<p>窗口是否有效，<br>
+窗口未关闭返回 true ，<br>
+窗口已关闭或正在关闭返回 false</p>
+
+<p><a id="richeditObject.validateText"></a></p>
+
+<h3>richeditObject.validateText</h3>
+
+<p>校验输入文本。<br>
+全部文本完全符合要求返回 true，否则返回 false。  </p>
+
+<p>可在 onChange 事件内调用此函数实时校验输入。</p>
+
+<p><a id="richeditObject.validateText"></a></p>
+
+<h3>richeditObject.validateText(校验输入函数,是否设置光标)</h3>
+
+<p>调用参数 @1 指定的函数校验控件的文本属性，<br>
+该函数必须自参数中接收当前文本并返回合法文本或 null。<br>
+然后将文本设为符合合法的文本，如果校验函数返回 null 设为空字符串。  </p>
+
+<p>如果修改了文本且指定了参数 @2 为 true，\则将焦点切换到该控件，然后将输入光标设置到文本尾部。<br>
+注意仅 edit 控件可直接显示气泡提示，<br>
+richedit 无此功能可使用其他控件显示错误信息。</p>
+
+<p><a id="richeditObject.validateText"></a></p>
+
+<h3>richeditObject.validateText(模式串,是否设置光标)</h3>
+
+<p>用字符串参数 @1 指定的模式串校验控件的文本属性。<br>
+将文本设为符合匹配的文本，如果找不到匹配文本设为空字符串。  </p>
+
+<p>如果修改了文本且指定了参数 @2 为 true，\则将焦点切换到该控件，然后将输入光标设置到文本尾部。<br>
+注意仅 edit 控件可直接显示气泡提示，<br>
+richedit 无此功能可使用其他控件显示错误信息。</p>
+
+<p><a id="richeditObject.validateText"></a></p>
+
+<h3>richeditObject.validateText(限制金额示例,是否设置光标)</h3>
+
+<pre><code class="aardio language-aardio">richeditObject.validateText(&quot;&lt;\d+\.\d\d&gt;|&lt;\d+\.\d&gt;|&lt;\d+\.&gt;|&lt;\d+&gt;&quot;,true)
+</code></pre>
+
+<p><a id="richeditObject.width"></a></p>
+
+<h3>richeditObject.width</h3>
+
+<p>宽度</p>
+
+<p><a id="richeditObject.wrap"></a></p>
+
+<h3>richeditObject.wrap</h3>
+
+<p>是否启用自动换行，仅 richedit 支持</p>
+
+<p><a id="richeditObject.zoom"></a></p>
+
+<h3>richeditObject.zoom</h3>
+
+<p>缩放比例，必须大于 1/32 并小于 32<br>
+Richedit 存在一个 BUG：如果不是左对齐,只要设置缩放 —— 包含中文就会偏移错乱,<br>
+所以右对齐或居中对齐后，自动 DPI 缩放将会更改为设置文本框默认字体,<br>
+这会导致局部字体样式被重置为默认字体</p>
+
+<p><a id="TextDocumentObject"></a></p>
+
+<h2>TextDocumentObject 成员列表</h2>
+
+<p><a id="TextDocumentObject.BeginEditCollection"></a></p>
+
+<h3>TextDocumentObject.BeginEditCollection()</h3>
+
+<p>开始编辑</p>
+
+<p><a id="TextDocumentObject.DefaultTabStop"></a></p>
+
+<h3>TextDocumentObject.DefaultTabStop</h3>
+
+<p>制表符宽度</p>
+
+<p><a id="TextDocumentObject.EndEditCollection"></a></p>
+
+<h3>TextDocumentObject.EndEditCollection()</h3>
+
+<p>结束编辑</p>
+
+<p><a id="TextDocumentObject.Name"></a></p>
+
+<h3>TextDocumentObject.Name</h3>
+
+<p>文件名</p>
+
+<p><a id="TextDocumentObject.New"></a></p>
+
+<h3>TextDocumentObject.New()</h3>
+
+<p>新建文件</p>
+
+<p><a id="TextDocumentObject.Open"></a></p>
+
+<h3>TextDocumentObject.Open(filename,flags,codepage)</h3>
+
+<p>打开文档</p>
+
+<p><a id="TextDocumentObject.Range"></a></p>
+
+<h3>TextDocumentObject.Range(first,lim)</h3>
+
+<p>返回选区</p>
+
+<p><a id="TextDocumentObject.RangeFromPoint"></a></p>
+
+<h3>TextDocumentObject.RangeFromPoint(x,y)</h3>
+
+<p>指定坐标返回选区</p>
+
+<p><a id="TextDocumentObject.Redo"></a></p>
+
+<h3>TextDocumentObject.Redo(number)</h3>
+
+<p>重做</p>
+
+<p><a id="TextDocumentObject.Save"></a></p>
+
+<h3>TextDocumentObject.Save(filename,flags,codepage)</h3>
+
+<p>保存文档</p>
+
+<p><a id="TextDocumentObject.Saved"></a></p>
+
+<h3>TextDocumentObject.Saved</h3>
+
+<p>是否保存</p>
+
+<p><a id="TextDocumentObject.Selection"></a></p>
+
+<h3>TextDocumentObject.Selection</h3>
+
+<p>选区对象</p>
+
+<p><a id="TextDocumentObject.Selection.Font"></a></p>
+
+<h3>TextDocumentObject.Selection.Font</h3>
+
+<p>字体  </p>
+
+<p><a href="#TomTextFontObject">返回对象:TomTextFontObject</a></p>
+
+<p><a id="TextDocumentObject.Undo"></a></p>
+
+<h3>TextDocumentObject.Undo(number)</h3>
+
+<p>撤消</p>
+
+<p><a id="TextDocumentObject.tomFalse"></a></p>
+
+<h3>TextDocumentObject.tomFalse</h3>
+
+<p>假值</p>
+
+<p><a id="TextDocumentObject.tomToggle"></a></p>
+
+<h3>TextDocumentObject.tomToggle</h3>
+
+<p>切换原来的值</p>
+
+<p><a id="TextDocumentObject.tomTrue"></a></p>
+
+<h3>TextDocumentObject.tomTrue</h3>
+
+<p>真值</p>
+
+<p><a id="TextDocumentObject.tomUndefined"></a></p>
+
+<h3>TextDocumentObject.tomUndefined</h3>
+
+<p>未定义值</p>
+
+<p><a id="TomTextFontObject"></a></p>
+
+<h2>TomTextFontObject 成员列表</h2>
+
+<p><a id="TomTextFontObject.Bold"></a></p>
+
+<h3>TomTextFontObject.Bold</h3>
+
+<p>是否粗体,<br>
+可使用tomTrue,tomFalse等值</p>
+
+<p><a id="TomTextFontObject.ForeColor"></a></p>
+
+<h3>TomTextFontObject.ForeColor</h3>
+
+<p>字体颜色</p>
+
+<p><a id="TomTextFontObject.Name"></a></p>
+
+<h3>TomTextFontObject.Name</h3>
+
+<p>字体名</p>
+
+<p><a id="TomTextFontObject.Size"></a></p>
+
+<h3>TomTextFontObject.Size</h3>
+
+<p>字体大小</p>
+
+<p><a id="charformat2Object"></a></p>
+
+<h2>charformat2Object 成员列表</h2>
+
+<p><a id="charformat2Object.backColor"></a></p>
+
+<h3>charformat2Object.backColor</h3>
+
+<p>背景颜色，GDI 颜色格式（ 0xBBGGRR ）。</p>
+
+<p><a id="charformat2Object.bold"></a></p>
+
+<h3>charformat2Object.bold</h3>
+
+<p>是否粗体，仅用于写入样式。<br>
+设置了这个值会在应用样式前自动修改 weight 属性。</p>
+
+<p><a id="charformat2Object.charSet"></a></p>
+
+<h3>charformat2Object.charSet</h3>
+
+<p>字符集</p>
+
+<p><a id="charformat2Object.disabled"></a></p>
+
+<h3>charformat2Object.disabled</h3>
+
+<p>偏移一个像素，仅用于写入样式。</p>
+
+<p><a id="charformat2Object.effects"></a></p>
+
+<h3>charformat2Object.effects</h3>
+
+<p>效果</p>
+
+<p><a id="charformat2Object.faceName"></a></p>
+
+<h3>charformat2Object.faceName</h3>
+
+<p>字体名</p>
+
+<p><a id="charformat2Object.getFont"></a></p>
+
+<h3>charformat2Object.getFont()</h3>
+
+<p>返回LOGFONT对象</p>
+
+<p>返回 LOGFONT 对象  </p>
+
+<p><a href="#logfontObject">返回对象:logfontObject</a></p>
+
+<p><a id="charformat2Object.italic"></a></p>
+
+<h3>charformat2Object.italic</h3>
+
+<p>是否斜体，仅用于写入样式。</p>
+
+<p><a id="charformat2Object.lcid"></a></p>
+
+<h3>charformat2Object.lcid</h3>
+
+<p>区域ID</p>
+
+<p><a id="charformat2Object.mask"></a></p>
+
+<h3>charformat2Object.mask</h3>
+
+<p>掩码，这个一般不用管</p>
+
+<p><a id="charformat2Object.pitchAndFamily"></a></p>
+
+<h3>charformat2Object.pitchAndFamily</h3>
+
+<p>字体族</p>
+
+<p><a id="charformat2Object.point"></a></p>
+
+<h3>charformat2Object.point</h3>
+
+<p>字体大小，以 pt 为单位。仅用于写入样式。<br>
+在设置样式时指定  point 会在应用样式前自动修改 yHeight 的值。<br>
+修改字体大小请在窗体显示并且 DPI 初始化缩放完成以后再设置，不然会被重复放大。</p>
+
+<p><a id="charformat2Object.protected"></a></p>
+
+<h3>charformat2Object.protected</h3>
+
+<p>保护文本，修改时触发 onProtected 事件。<br>
+仅用于整个控件，不适用于部分选区。<br>
+此属性仅用于写入样式。</p>
+
+<p><a id="charformat2Object.spacing"></a></p>
+
+<h3>charformat2Object.spacing</h3>
+
+<p>字体间距</p>
+
+<p><a id="charformat2Object.strikeout"></a></p>
+
+<h3>charformat2Object.strikeout</h3>
+
+<p>是否显示删除线，仅用于写入样式。</p>
+
+<p><a id="charformat2Object.textColor"></a></p>
+
+<h3>charformat2Object.textColor</h3>
+
+<p>字体颜色，GDI 颜色格式（ 0xBBGGRR ）。</p>
+
+<p><a id="charformat2Object.underline"></a></p>
+
+<h3>charformat2Object.underline</h3>
+
+<p>是否粗体，仅用于写入样式。</p>
+
+<p><a id="charformat2Object.underlineType"></a></p>
+
+<h3>charformat2Object.underlineType</h3>
+
+<p>下划线类型</p>
+
+<p><a id="charformat2Object.weight"></a></p>
+
+<h3>charformat2Object.weight</h3>
+
+<p>字体重量</p>
+
+<p><a id="charformat2Object.yHeight"></a></p>
+
+<h3>charformat2Object.yHeight</h3>
+
+<p>字体大小，以 twips  为单位。<br>
+修改字体大小请在窗体显示并且 DPI 初始化缩放完成以后再设置，不然会被重复放大。</p>
+
+<p><a id="charformat2Object.yOffset"></a></p>
+
+<h3>charformat2Object.yOffset</h3>
+
+<p>偏移</p>
+
+<h3>自动完成常量</h3>
+
+<p>_CFE_ALLCAPS=0x80<br>
+_CFE_AUTOBACKCOLOR=0x4000000<br>
+_CFE_AUTOCOLOR=0x40000000<br>
+_CFE_BOLD=1<br>
+_CFE_DISABLED=0x2000<br>
+_CFE_EMBOSS=0x800<br>
+_CFE_HIDDEN=0x100<br>
+_CFE_IMPRINT=0x1000<br>
+_CFE_ITALIC=2<br>
+_CFE_LINK=0x20<br>
+_CFE_OUTLINE=0x200<br>
+_CFE_PROTECTED=0x10<br>
+_CFE_REVISED=0x4000<br>
+_CFE_SHADOW=0x400<br>
+_CFE_SMALLCAPS=0x40<br>
+_CFE_STRIKEOUT=8<br>
+_CFE_SUBSCRIPT=0x10000<br>
+_CFE_SUPERSCRIPT=0x20000<br>
+_CFE_UNDERLINE=4<br>
+_CFM_ALL=-134217665<br>
+_CFM_ALL2=-16777217<br>
+_CFM_ALLCAPS=0x80<br>
+_CFM_ANIMATION=0x40000<br>
+_CFM_BACKCOLOR=0x4000000<br>
+_CFM_BOLD=1<br>
+_CFM_CHARSET=0x8000000<br>
+_CFM_COLOR=0x40000000<br>
+_CFM_DISABLED=0x2000<br>
+_CFM_EFFECTS=0x4000003F<br>
+_CFM_EFFECTS2=0x44037FFF<br>
+_CFM_EMBOSS=0x800<br>
+_CFM_FACE=0x20000000<br>
+_CFM_HIDDEN=0x100<br>
+_CFM_IMPRINT=0x1000<br>
+_CFM_ITALIC=2<br>
+_CFM_KERNING=0x100000<br>
+_CFM_LCID=0x2000000<br>
+_CFM_LINK=0x20<br>
+_CFM_OFFSET=0x10000000<br>
+_CFM_OUTLINE=0x200<br>
+_CFM_PROTECTED=0x10<br>
+_CFM_REVAUTHOR=0x8000<br>
+_CFM_REVISED=0x4000<br>
+_CFM_SHADOW=0x400<br>
+_CFM_SIZE=0x80000000<br>
+_CFM_SMALLCAPS=0x40<br>
+_CFM_SPACING=0x200000<br>
+_CFM_STRIKEOUT=8<br>
+_CFM_STYLE=0x80000<br>
+_CFM_SUBSCRIPT=0x30000<br>
+_CFM_SUPERSCRIPT=0x30000<br>
+_CFM_UNDERLINE=4<br>
+_CFM_UNDERLINETYPE=0x800000<br>
+_CFM_WEIGHT=0x400000<br>
+_CFU_CF1UNDERLINE=0xFF<br>
+_CFU_INVERT=0xFE<br>
+_CFU_UNDERLINE=1<br>
+_CFU_UNDERLINEDASH=5<br>
+_CFU_UNDERLINEDASHDOT=6<br>
+_CFU_UNDERLINEDASHDOTDOT=7<br>
+_CFU_UNDERLINEDOTTED=4<br>
+_CFU_UNDERLINEDOUBLE=3<br>
+_CFU_UNDERLINEDOUBLEWAVE=0xB<br>
+_CFU_UNDERLINEHAIRLINE=0xA<br>
+_CFU_UNDERLINEHEAVYWAVE=0xC<br>
+_CFU_UNDERLINELONGDASH=0xD<br>
+_CFU_UNDERLINENONE=0<br>
+_CFU_UNDERLINETHICK=9<br>
+_CFU_UNDERLINETHICKDASH=0xE<br>
+_CFU_UNDERLINETHICKDASHDOT=0xF<br>
+_CFU_UNDERLINETHICKDASHDOTDOT=0x10<br>
+_CFU_UNDERLINETHICKDOTTED=0x11<br>
+_CFU_UNDERLINETHICKLONGDASH=0x12<br>
+_CFU_UNDERLINEWAVE=8<br>
+_CFU_UNDERLINEWORD=2<br>
+_ENM_CHANGE=0x1<br>
+_ENM_CORRECTTEXT=0x400000<br>
+_ENM_DRAGDROPDONE=0x10<br>
+_ENM_DROPFILES=0x100000<br>
+_ENM_IMECHANGE=0x800000<br>
+_ENM_KEYEVENTS=0x10000<br>
+_ENM_LANGCHANGE=0x1000000<br>
+_ENM_LINK=0x4000000<br>
+_ENM_LOWFIRTF=0x8000000<br>
+_ENM_MOUSEEVENTS=0x20000<br>
+_ENM_NONE=0x0<br>
+_ENM_OBJECTPOSITIONS=0x2000000<br>
+_ENM_PAGECHANGE=0x40<br>
+_ENM_PARAGRAPHEXPANDED=0x20<br>
+_ENM_PROTECTED=0x200000<br>
+_ENM_REQUESTRESIZE=0x40000<br>
+_ENM_SCROLL=0x4<br>
+_ENM_SCROLLEVENTS=0x8<br>
+_ENM_SELCHANGE=0x80000<br>
+_ENM_UPDATE=0x2<br>
+_IMF_AUTOFONT=2<br>
+_IMF_AUTOFONTSIZEADJUST=0x10<br>
+_IMF_AUTOKEYBOARD=1<br>
+_IMF_CLOSESTATUSWINDOW=8<br>
+_IMF_DUALFONT=0x80<br>
+_IMF_FORCEACTIVE=0x40<br>
+_IMF_FORCEDISABLE=4<br>
+_IMF_FORCEENABLE=2<br>
+_IMF_FORCEINACTIVE=0x80<br>
+_IMF_FORCENONE=1<br>
+_IMF_FORCEREMEMBER=0x100<br>
+_IMF_IMEALWAYSSENDNOTIFY=8<br>
+_IMF_IMECANCELCOMPLETE=4<br>
+_IMF_MULTIPLEEDIT=0x400<br>
+_IMF_SMODE_NONE=2<br>
+_IMF_SMODE_PLAURALCLAUSE=1<br>
+_IMF_UIFONTS=0x20<br>
+_IMF_VERTICAL=0x20<br>
+_SCF_ALL=4<br>
+_SCF_ASSOCIATEFONT=0x10<br>
+_SCF_ASSOCIATEFONT2=0x40<br>
+_SCF_DEFAULT=0<br>
+_SCF_NOKBUPDATE=0x20<br>
+_SCF_SELECTION=1<br>
+_SCF_USEUIRULES=8<br>
+_SCF_WORD=2<br>
+_SFF_PWI=0x800<br>
+_SF_PWI=0x10802<br>
+_SF_RTF=2<br>
+_SF_TEXT=1<br>
+_SF_UNICODE=0x10<br>
+_SF_UTEXT=0x11  </p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/richedit.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/richedit.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/richedit.md">Markdown 格式</a></p>
+
+</body> 
+</html>

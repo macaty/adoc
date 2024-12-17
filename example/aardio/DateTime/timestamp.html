@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 时间戳'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 时间戳</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 时间戳</h1><pre><code class="aardio language-aardio">//时间戳
+//Unix 时间戳 0 表示 ISO8601 时间 1970-01-01T00:00:00Z
+import console.int; 
+import fsys.time;
+
+//Unix 时间戳，返回数值，以毫秒为单位
+var stamp = time.stamp();
+console.log(stamp);
+
+//Unix 时间戳，返回字符串，以毫秒为单位
+var stamp = time.stamp(true);
+console.log(stamp); 
+
+//Unix 时间戳，返回字符串，以秒为单位
+var stamp = time.stamp(true,1);
+console.log(stamp); 
+
+//Unix 时间戳，以秒为单位
+var stamp = tonumber( time() );
+console.log(stamp); 
+
+//Unix 时间戳，返回字符串，以毫秒为单位
+var fileTime = fsys.time().now();
+var stamp = fileTime.stamp(true);
+console.log(stamp); 
+
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/aardio/DateTime/timestamp.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/aardio/DateTime/timestamp.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/aardio/DateTime/timestamp.md">Markdown 格式</a>
+</body> 
+</html>

@@ -1,0 +1,84 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 安卓手机扫码配对，无线调试'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 安卓手机扫码配对，无线调试</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 安卓手机扫码配对，无线调试</h1><pre><code class="aardio language-aardio">//扫码配对
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;安卓手机扫码配对，无线调试&quot;;right=564;bottom=593;bgcolor=16777215)
+winform.add(
+button={cls=&quot;button&quot;;text=&quot;连接到 ...&quot;;left=299;top=542;right=530;bottom=575;db=1;disabled=1;dr=1;z=5};
+edit={cls=&quot;edit&quot;;left=19;top=411;right=544;bottom=535;db=1;dl=1;dr=1;edge=1;hscroll=1;multiline=1;vscroll=1;z=2};
+editPort={cls=&quot;edit&quot;;left=158;top=546;right=274;bottom=573;db=1;dr=1;edge=1;num=1;z=3};
+plus={cls=&quot;plus&quot;;left=19;top=22;right=544;bottom=400;db=1;dl=1;dr=1;dt=1;repeat=&quot;scale&quot;;z=1};
+static={cls=&quot;static&quot;;text=&quot;请输入连接端口：&quot;;left=9;top=550;right=139;bottom=574;align=&quot;right&quot;;db=1;dr=1;transparent=1;z=4}
+)
+/*}}*/
+
+/*
+adb 文档： http://developer.android.com/tools/help/adb.html
+process.adb.startServer 启动 adb 服务端，这个函数实际上会自动调用一次，
+adb 需要一个常驻服务端（启动一个 adb.exe 进程），也只能有一个服务进程，多个会工作不正常。
+这个扩展库会自动查找之前启动的 adb 服务端，如果找到就直接重用。
+进程退出时不会退出常驻服务端（一般无此必要）
+
+每次发送 adb 指令时也会启动一个 adb 客户端，这也是一个 adb.exe 进程。
+所有 adb 客户端在执行完成后，或当前进程退出后将会自动关闭（由 process.job.limitKill 实现）。
+*/
+import process.adb;
+winform.button.oncommand = function(id,event){
+
+    var str = process.adb.connect(owner.adbInfo.addr + &quot;:&quot; + winform.editPort.text,true);
+    if(str){
+        winform.msgbox(str)
+
+        //执行 shell 命令
+        var adb = process.adb.shell(&quot;ls&quot;); 
+        var out = adb.readAll(); //读取进程输出，adb 是一个 process.popen 对象，请参考该库函数文档。
+        winform.edit.print(out);
+
+        //上传文件
+        //process.adb.push( &quot;/abc.txt&quot;,&quot;/mnt/sdcard/abc.text&quot; ); 
+    } 
+    else {
+        winform.msgboxErr(&quot;连接失败，请输入正确端口&quot;)
+    }
+}
+
+winform.onAdbPair = function(info){
+    if(info){
+        winform.edit.print(&quot;配对成功：&quot;,info);
+        winform.button.text = &quot;连接到：&quot; + info.addr;
+        winform.button.adbInfo = info;
+        winform.button.disabled = false;
+    }
+
+    return true;//返回 false 停止此二维码的自动配对
+}
+
+import process.adb.qrCode;
+var qrBmp = process.adb.qrCode(winform );
+winform.plus.setBackground(qrBmp.copyBitmap(winform.plus.width));
+
+winform.edit.text = /*
+手机与电脑连接到同一无线局域网，
+然后打开安卓手机 &gt; 设置 &gt; 开发者选项 &gt; 无线调试 &gt; 扫二维码配对
+*/
+
+winform.show() 
+win.loopMessage();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Network/adb/pair.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Network/adb/pair.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Network/adb/pair.md">Markdown 格式</a>
+</body> 
+</html>

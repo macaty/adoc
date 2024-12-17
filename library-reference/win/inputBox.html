@@ -1,0 +1,201 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - win.inputBox 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - win.inputBox 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>win.inputBox 库模块帮助文档</h1>
+
+<p><a id="win"></a></p>
+
+<h2>win 成员列表</h2>
+
+<p><a id="win.inputBox"></a></p>
+
+<h3>win.inputBox</h3>
+
+<p>输入对话框</p>
+
+<p>创建一个输入对话框</p>
+
+<p><a id="win.inputBox"></a></p>
+
+<h3>win.inputBox()</h3>
+
+<p><a href="#wininputBoxObject">返回对象:wininputBoxObject</a></p>
+
+<p><a id="win.inputBox"></a></p>
+
+<h3>win.inputBox(父窗口,密码模式）</h3>
+
+<p>创建一个输入对话框,所有参数可选<br>
+设置密码模式输入框输入内容显示为星号</p>
+
+<p><a id="wininputBoxObject"></a></p>
+
+<h2>wininputBoxObject 成员列表</h2>
+
+<p><a id="wininputBoxObject.bgcolor"></a></p>
+
+<h3>wininputBoxObject.bgcolor</h3>
+
+<p>设置窗口背景颜色。<br>
+使用 GDI 颜色值，例如 0xFFFFFF 为白色</p>
+
+<p><a id="wininputBoxObject.center"></a></p>
+
+<h3>wininputBoxObject.center()</h3>
+
+<p>居中显示</p>
+
+<p><a id="wininputBoxObject.changeInterval"></a></p>
+
+<h3>wininputBoxObject.changeInterval(请输入ID,1000)</h3>
+
+<p>重新设定定时器的延时时间</p>
+
+<p><a id="wininputBoxObject.clearInterval"></a></p>
+
+<h3>wininputBoxObject.clearInterval(请输入ID)</h3>
+
+<p>删除定时器</p>
+
+<p><a id="wininputBoxObject.doModal"></a></p>
+
+<h3>wininputBoxObject.doModal()</h3>
+
+<p>弹出输入对话框<br>
+该函数返回用户输入的值<br>
+取消则返回null空值</p>
+
+<p><a id="wininputBoxObject.dpiScale"></a></p>
+
+<h3>wininputBoxObject.dpiScale(x,y)</h3>
+
+<p>将 @x,@y 表示的像素值乘以窗体当前 DPI 缩放倍数并返回,<br>
+省略 @y 参数时仅返回 @x 转换后的值</p>
+
+<p><a id="wininputBoxObject.getPos"></a></p>
+
+<h3>wininputBoxObject.getPos()</h3>
+
+<p>返回相对坐标,宽,高</p>
+
+<p><a id="wininputBoxObject.info"></a></p>
+
+<h3>wininputBoxObject.info</h3>
+
+<p><a href="ui/ctrl/edit.html#editObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/edit.html#editObject">返回对象:editObject</a></p>
+
+<p><a id="wininputBoxObject.input"></a></p>
+
+<h3>wininputBoxObject.input</h3>
+
+<p><a href="ui/ctrl/edit.html#editObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/edit.html#editObject">返回对象:editObject</a></p>
+
+<p><a id="wininputBoxObject.modifyStyle"></a></p>
+
+<h3>wininputBoxObject.modifyStyle(remove,add,swpFlags)</h3>
+
+<p>修改窗口样式,所有参数都是可选参数,<br>
+@remove 用数值指定要移除的样式,可使用 <em>WS</em> 前缀的常量<br>
+@add 用数值指定要添加的样式,可使用 <em>WS</em> 前缀的常量<br>
+@swpFlags 可选用数值指定调整窗口选项,可使用 <em>SWP</em> 前缀的常量<br>
+如果指定了 @swpFlag ,则使用该参数调用::SetWindowPos<br>
+细节请参考 win.modifyStyle 函数源码</p>
+
+<p><a id="wininputBoxObject.modifyStyleEx"></a></p>
+
+<h3>wininputBoxObject.modifyStyleEx(remove,add,swpFlags)</h3>
+
+<p>修改窗口扩展样式,所有参数都是可选参数,<br>
+@remove 用数值指定要移除的样式,可使用 <em>WS_EX</em> 前缀的常量<br>
+@add 用数值指定要添加的样式,可使用 <em>WS_EX</em> 前缀的常量<br>
+@swpFlags 可选用数值指定调整窗口选项,可使用 <em>SWP</em> 前缀的常量<br>
+如果指定了 @swpFlag ,则使用该参数调用::SetWindowPos<br>
+细节请参考 win.modifyStyle 函数源码</p>
+
+<p><a id="wininputBoxObject.onInitDialog"></a></p>
+
+<h3>wininputBoxObject.onInitDialog</h3>
+
+<pre><code class="aardio language-aardio">wininputBoxObject.onInitDialog = function(hwnd,message,wParam,lParam){  
+    wininputBoxObject.center()/*输入框初始化完成触发该函数*/  
+}
+</code></pre>
+
+<p><a id="wininputBoxObject.setInterval"></a></p>
+
+<h3>wininputBoxObject.setInterval(回调函数,延时毫秒数,...)</h3>
+
+<pre><code class="aardio language-aardio">wininputBoxObject.setInterval(回调函数,延时毫秒数,...setInterval(   
+    function(){  
+        /*参数@1指定执行函数,参数@2指定执行间隔，  
+可选指定一个或多个回调参数，不指定回调参数则默认为:  
+ hwnd,message,timerId,tick,  
+
+如果在定时器中执行了win.delay等继续消息循环的代码，  
+在定时器退出前不会再触发同一定时器（重入）。  
+
+定时器回调函数返回数值可修改时间间隔,  
+返回false取消该定时器*/  
+    },1000   
+)
+</code></pre>
+
+<p><a id="wininputBoxObject.setPos"></a></p>
+
+<h3>wininputBoxObject.setPos(x,y,宽,高,插入位置,参数)</h3>
+
+<p>调整窗口位置或排序<br>
+所有参数可选</p>
+
+<p><a id="wininputBoxObject.setTimeout"></a></p>
+
+<h3>wininputBoxObject.setTimeout(函数名,延时,其他参数)</h3>
+
+<p>延时执行函数</p>
+
+<p><a id="wininputBoxObject.text"></a></p>
+
+<h3>wininputBoxObject.text</h3>
+
+<p>输入框标题</p>
+
+<p><a id="wininputBoxObject.topmost"></a></p>
+
+<h3>wininputBoxObject.topmost()</h3>
+
+<p>窗体始终最前</p>
+
+<p><a id="wininputBoxObject.topmost"></a></p>
+
+<h3>wininputBoxObject.topmost(false)</h3>
+
+<p>取消窗体始终最前</p>
+
+<p><a id="wininputBoxObject.width"></a></p>
+
+<h3>wininputBoxObject.width</h3>
+
+<p>设置对话框宽度。  </p>
+
+<p>在窗口显示或其他方式自动或手动调用 enableDpiScaling 前修改此值，<br>
+则会在 enableDpiScaling 被调用时自动缩放，<br>
+否则设置或获取当前真实宽度。  </p>
+
+<p>可调用 dpiScale 函数获取缩放后的宽度</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/inputBox.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/inputBox.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/inputBox.md">Markdown 格式</a></p>
+
+</body> 
+</html>

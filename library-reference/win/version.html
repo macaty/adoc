@@ -1,0 +1,180 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - win.version 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - win.version 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>win.version 库模块帮助文档</h1>
+
+<p><a id="win"></a></p>
+
+<h2>win 成员列表</h2>
+
+<p><a id="win.version"></a></p>
+
+<h3>win.version</h3>
+
+<p>系统版本信息<br>
+aardio 内建以下全局常量也可用于检测系统版本：<br>
+_WINXP,_WIN7_LATER,_WIN10_LATER,_WINE,<br>
+_WIN_VER_MAJOR,_WIN_VER_MINOR,_WIN_VER_BUILD 等  </p>
+
+<p><a href="#winVersionObject">返回对象:winVersionObject</a></p>
+
+<p><a id="winVersionObject"></a></p>
+
+<h2>winVersionObject 成员列表</h2>
+
+<p><a id="winVersionObject.buildNumber"></a></p>
+
+<h3>winVersionObject.buildNumber</h3>
+
+<p>操作系统的构建版本号</p>
+
+<p><a id="winVersionObject.csdVersion"></a></p>
+
+<h3>winVersionObject.csdVersion</h3>
+
+<p>关于该操作系统的附加信息</p>
+
+<p><a id="winVersionObject.displayVersion"></a></p>
+
+<h3>winVersionObject.displayVersion</h3>
+
+<p>用于显示的版本号,<br>
+默认显示为主版本号 + &quot;.&quot; + 副版本号  </p>
+
+<p>如果导入了 win.versionEx：<br>
+Win 10,Win 11 显示为4字符发行时间,<br>
+前2位数字为年份,春季加H1,秋季加H2<br>
+Win10 20H2 以前返回后2位为月份的 Release ID</p>
+
+<p><a id="winVersionObject.format"></a></p>
+
+<h3>winVersionObject.format()</h3>
+
+<p>格式化为文本格式的版本号</p>
+
+<p><a id="winVersionObject.isServer"></a></p>
+
+<h3>winVersionObject.isServer</h3>
+
+<p>是否服务器版本系统</p>
+
+<p><a id="winVersionObject.isVista"></a></p>
+
+<h3>winVersionObject.isVista</h3>
+
+<p>是否 Vista</p>
+
+<p><a id="winVersionObject.isVistaLater"></a></p>
+
+<h3>winVersionObject.isVistaLater</h3>
+
+<p>当前系统是否 Vista 以及 Vista 以后的版本<br>
+该值如果为false,即为 Win  xp, Win  2003操作系统</p>
+
+<p><a id="winVersionObject.isWin10Later"></a></p>
+
+<h3>winVersionObject.isWin10Later</h3>
+
+<p>当前系统是否 Win 10以及 Win 10以后的版本</p>
+
+<p><a id="winVersionObject.isWin11Later"></a></p>
+
+<h3>winVersionObject.isWin11Later</h3>
+
+<p>当前系统是否 Win  11以及 Win 11以后的版本<br>
+注意 Windows 11 的主版本号仍然是 10</p>
+
+<p><a id="winVersionObject.isWin7"></a></p>
+
+<h3>winVersionObject.isWin7</h3>
+
+<p>是否 win7</p>
+
+<p><a id="winVersionObject.isWin7Later"></a></p>
+
+<h3>winVersionObject.isWin7Later</h3>
+
+<p>当前系统是否 Win 7以及 Win 7以后的版本</p>
+
+<p><a id="winVersionObject.isWin8"></a></p>
+
+<h3>winVersionObject.isWin8</h3>
+
+<p>是否 win8</p>
+
+<p><a id="winVersionObject.isWin8Later"></a></p>
+
+<h3>winVersionObject.isWin8Later</h3>
+
+<p>当前系统是否 Win 8以及 Win 8以后的版本</p>
+
+<p><a id="winVersionObject.isXp"></a></p>
+
+<h3>winVersionObject.isXp</h3>
+
+<p>是否 Win XP</p>
+
+<p><a id="winVersionObject.majorVersion"></a></p>
+
+<h3>winVersionObject.majorVersion</h3>
+
+<p>操作系统的主版本号<br>
+注意 Windows 11 的主版本号仍然是 10</p>
+
+<p><a id="winVersionObject.minorVersion"></a></p>
+
+<h3>winVersionObject.minorVersion</h3>
+
+<p>操作系统的副版本号</p>
+
+<p><a id="winVersionObject.name"></a></p>
+
+<h3>winVersionObject.name</h3>
+
+<p>操作系统产品名称,例如<br>
+&quot;Windows XP&quot;<br>
+&quot;Windows 7&quot;<br>
+&quot;Windows 2012 R2&quot;</p>
+
+<p><a id="winVersionObject.platformId"></a></p>
+
+<h3>winVersionObject.platformId</h3>
+
+<p>平台ID</p>
+
+<p><a id="winVersionObject.productType"></a></p>
+
+<h3>winVersionObject.productType</h3>
+
+<p>产品类型,多个选项按位和<br>
+普通家用操作系统_VER_NT_WORKSTATION<br>
+服务器操作系统_VER_NT_SERVER,_VER_NT_DOMAIN_CONTROLLER</p>
+
+<h3>自动完成常量</h3>
+
+<p>_VER_EQUAL=0x1<br>
+_VER_GREATER_EQUAL=0x3<br>
+_VER_MAJORVERSION=0x2<br>
+_VER_MINORVERSION=0x1<br>
+_VER_NT_DOMAIN_CONTROLLER=0x2<br>
+_VER_NT_SERVER=0x3<br>
+_VER_NT_WORKSTATION=1<br>
+_VER_PRODUCT_TYPE=0x80<br>
+_VER_SERVICEPACKMAJOR=0x20  </p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/version.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/version.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/version.md">Markdown 格式</a></p>
+
+</body> 
+</html>

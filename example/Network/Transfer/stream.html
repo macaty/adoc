@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 缂栫▼璇█鑼冧緥 - 涓婁紶'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 缂栫▼璇█鑼冧緥 - 涓婁紶</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 缂栫▼璇█鏂囨。棣栭〉"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 鏂囨。</span></a>
+<h1>aardio 鑼冧緥: 涓婁紶</h1><pre><code class="aardio language-aardio">//涓婁紶
+import console;
+import inet.http;
+
+console.open();
+console.setTitle(&quot;姝ｅ湪涓婁紶...&quot;);
+
+var http = inet.http(); 
+http.beginRequest( &quot;http://eu.httpbin.org/post&quot;,&quot;POST&quot; );
+
+//寰幆涓婁紶
+http.beginSendData(100)  
+for(i=1;100;1){
+    http.writeData( &quot;-&quot; )
+    io.stdout.write(&quot;.&quot;)
+} 
+http.endSendData()
+
+//寰幆涓嬭浇
+file = io.file(&quot;/test.html&quot;,&quot;w+b&quot;) 
+for(str,size in http.eachRead() ){ 
+    file.write( str );  
+    io.stdout.write( str )
+} 
+
+io.print(&quot;ok&quot;)
+execute(&quot;pause&quot;)
+
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Network/Transfer/stream.md  \n\n该文件无法用 Teleport Ultra 下载, 因为 服务器报告访问的文件是隐藏的。  \n\n你想在服务器上打开它?'))window.location='https://www.aardio.com/zh-cn/doc/example/Network/Transfer/stream.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Network/Transfer/stream.md">Markdown 鏍煎紡</a>
+</body> 
+</html>

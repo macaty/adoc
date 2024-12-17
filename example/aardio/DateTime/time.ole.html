@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - OLE时间对象'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - OLE时间对象</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: OLE时间对象</h1><pre><code class="aardio language-aardio">//OLE时间对象
+
+import console;
+import time.ole;
+
+//我们试一下创建一个OLE时间对象
+var tm = time.ole(); 
+
+//给他1970年以前的时间
+tm.year = 1932; 
+
+//正确出现数值
+console.log(  tonumber( tm )  ) 
+
+tm.year = 3010;//年
+
+//再把他转换回来,仍然正确显示年份
+console.log( time.ole( tonumber( tm ) ) ) 
+
+//OLE时间支持系统格式化语法
+var str = tostring(tm,&quot;yyyy-MM-dd HH:mm:ss&quot;)
+console.dump(str)
+
+//也默认支持time对象的格式化语法
+console.log(tostring(tm,&quot;%Y年%m月%d日 %H时%M分%S秒&quot;)) 
+
+//还可以转换格式化语法
+console.log( tm.toSystemFormat(&quot;%Y年%m月%d日 %H时%M分%S秒&quot;))
+
+//time对象也支持1900年到9999年之间的时间
+var tm = time(&quot;1969/1/1 11:21:03&quot;,&quot;%Y/%m/%d %H:%M:%S&quot;)
+console.log(tm)
+
+//但是数值运行就不支持了
+console.log( tonumber(tm) )
+
+console.pause()
+
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/aardio/DateTime/time.ole.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/aardio/DateTime/time.ole.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/aardio/DateTime/time.ole.md">Markdown 格式</a>
+</body> 
+</html>

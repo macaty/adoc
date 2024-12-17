@@ -1,0 +1,163 @@
+[aardio 文档](../../../index.htm "aardio 编程语言文档首页")
+
+# aardio 范例: 万能视频播放�?- 调用 libvlc
+
+```aardio aardio
+import fonts.fontAwesome;
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text="万能视频播放�?- 调用 libvlc";right=856;bottom=483;bgcolor=16515070;)
+winform.add(
+btnFullScreen={cls="plus";text='\uF047';left=811;top=453;right=852;bottom=483;color=1938422;db=1;dr=1;font=LOGFONT(h=-16;name='FontAwesome');notify=1;repeat="center";z=4};
+btnPlay={cls="plus";text='\uF04B';left=10;top=456;right=42;bottom=479;color=1938422;db=1;dl=1;font=LOGFONT(h=-19;name='FontAwesome');notify=1;repeat="scale";z=5};
+lbTime={cls="plus";text="00:00:00";left=602;top=455;right=655;bottom=475;db=1;dr=1;z=7};
+plus={cls="plus";text='\uF027';left=666;top=457;right=691;bottom=480;color=1938422;db=1;dr=1;font=LOGFONT(h=-19;name='FontAwesome');repeat="scale";z=2};
+trackbar={cls="plus";left=49;top=460;right=595;bottom=472;bgcolor=-2512093;border={radius=-1};color=23807;db=1;dl=1;dr=1;foreRepeat="expand";foreRight=13;forecolor=-14911489;notify=1;paddingBottom=5;paddingTop=5;z=1};
+video={cls="custom";left=8;top=6;right=848;bottom=447;bgcolor=0;db=1;dl=1;dr=1;dt=1;z=6};
+volume={cls="plus";left=696;top=461;right=812;bottom=473;bgcolor=-2512093;border={radius=-1};color=23807;db=1;dr=1;foreRepeat="expand";foreRight=13;forecolor=-14911489;notify=1;paddingBottom=5;paddingTop=5;z=3}
+)
+/*}}*/
+
+import libvlc;
+
+//初始化vlc引擎，可用参数：https://wiki.videolan.org/VLC_command-line_help/
+var vlcEngine = libvlc(
+    "--subsdec-encoding=GB18030",//字幕默认使用中文编码
+    _WINXP ? "--freetype-font=宋体" : "--freetype-font=DFKai-SB",//WIN7可用字体：Arial Unicode MS,DFKai-SB, Microsoft JhengHei, MingLiU, MingLiU-ExtB, MingLiU_HKSCS, MingLiU_HKSCS-ExtB, PMingLiU, PMingLiU-ExtB
+    "-I","dummy","--ignore-config"//,"--extraintf=logger" ,"--verbose=2"
+    )
+
+//创建播放�?var vlcPlayer = vlcEngine.mediaPlayer( winform.video );
+winform.video.orphanWindow();
+vlcPlayer.setKeyInput(true);
+
+var eventManager = vlcPlayer.getEventManager()
+eventManager.mediaPlayerTimeChanged = function(event){
+    if( !winform.trackbar.state.active ){
+        winform.trackbar.progressPos = event.newTime;
+    }
+}
+
+eventManager.mediaPlayerLengthChanged = function(event){
+    winform.btnPlay.disabledText = null;
+    winform.trackbar.setTrackbarRange(1,vlcPlayer.length);
+    winform.trackbar.progressPos = 0;
+    //vlcPlayer.spuLoad("字幕路径");
+}
+
+import fsys.dlg;
+winform.btnPlay.oncommand = function(id,event){
+
+    if( winform.btnPlay.checked ){
+        if(!vlcPlayer.isStopped() && !vlcPlayer.isPaused() &&  !vlcPlayer.isEnded() ){
+            //vlcPlayer.loadMediaFile(fsys.dlg.open(,"请指定视频文�?));
+            vlcPlayer.loadMedia("http://download.aardio.com/demo/video.aardio");
+            winform.btnPlay.disabledText = {'\uF254';'\uF251';'\uF252';'\uF253';'\uF250'}
+        }
+
+        vlcPlayer.play();
+    }
+    else {
+        vlcPlayer.pause();
+    }
+}
+
+winform.volume.setTrackbarRange(1,100);
+winform.trackbar.onMouseUp = function(){
+    vlcPlayer.time = winform.trackbar.progressPos;
+}
+
+winform.trackbar.onPosChanged = function( pos,thumbTrack ){
+    winform.lbTime.text = time(pos/1000,"!%H:%M:%S");
+}
+
+winform.volume.setTrackbarRange(1,100);
+winform.volume.progressPos = 100;
+winform.volume.onMouseUp = function(){
+    //不要写在 onPosChanged 事件里，过于密集调用这接口有可能会卡
+    vlcPlayer.volume = winform.volume.progressPos ;
+}
+
+winform.btnFullScreen.oncommand = function(id,event){
+    winform.video.fullscreen(true);
+}
+
+// 关闭窗体时退出播放器
+winform.onClose = function(hwnd,message,wParam,lParam){
+    vlcPlayer.release()
+}
+
+//按回车、空格暂�?winform.isDialogMessage = function(hwnd,msg){
+    if(  msg.wParam == 0xD/*_VK_RETURN*/ || msg.wParam == 0x20/*_VK_SPACE*/ ){
+        msg.hwnd = winform.btnPlay.hwnd;
+        return;
+    }
+    return win.isDialogMessage(hwnd,msg);
+}
+
+//全屏快捷�?winform.video.translateAccelerator = function(msg){
+     if(  msg.wParam == 0xD/*_VK_RETURN*/ || msg.wParam == 0x20/*_VK_SPACE*/ ){
+          msg.hwnd = winform.btnPlay.hwnd;
+     }
+     if(  msg.wParam == 0x1B/*_VK_ESC*/ ){
+         winform.video.fullscreen(false);
+     }
+}
+
+winform.volume.skin({
+    background={
+        default=0xFF23ABD9
+    };
+    foreground={
+        default=0xFFFF771C;
+        hover=0xFFFF6600
+    };
+    color={
+        default=0xFFFF5C00;
+        hover=0xFFFF6600
+    }
+})
+
+winform.trackbar.setTrackbarRange(1,100);
+winform.trackbar.skin({
+    background={
+        default=0xFF23ABD9
+    };
+    foreground={
+        default=0xFFFF771C;
+        hover=0xFFFF6600
+    };
+    color={
+        default=0xFFFF5C00;
+        hover=0xFFFF6600
+    }
+})
+
+winform.btnFullScreen.skin({
+    color={
+        active=0xFF00FF00;
+        default=0xFFF6931D;
+        disabled=0xFF6D6D6D;
+        hover=0xFFFF0000
+    }
+})
+
+winform.btnPlay.skin({
+    color={
+        active=0xFF00FF00;
+        default=0xFFF6931D;
+        disabled=0xFF6D6D6D;
+        hover=0xFFFF0000
+    }
+    checked={
+        text = '\uF04D'
+    }
+})
+
+winform.show();
+win.loopMessage();
+
+```
+
+[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Media/Video/libvlc.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Media/Video/libvlc.md')
+

@@ -1,0 +1,62 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 循环遍历数组'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 循环遍历数组</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 循环遍历数组</h1><pre><code class="aardio language-aardio">//循环遍历数组
+import console.int;
+
+//创建纯数组
+var array = {123,456,789}
+
+//纯数组用 for in 语句遍历可保持数组索引顺序。
+for(i,v in array){
+    console.log(i,v);
+} 
+
+//如果表包含了非数组成员
+array.name = &quot;数组&quot;;
+
+/*
+这时候应当改用计数循环遍历数组成员
+*/
+for(i=1;#array;1){
+    var v = array[i];
+    console.log(i,v);
+}
+console.more(1,true);
+
+var array = {
+    [0] = 123;
+    [1] = 456;
+    [2] = 789;
+
+    //下面定义元表
+    @{
+        length = 5;
+        _startIndex = 0;
+    }
+}
+
+/*
+table.eachIndex() 创建的迭代器也可以顺序遍历表的数组成员。
+并且支持用 length 属性或 length 元属性自定义数组大小。
+支持用 _startIndex 元属性自定义数组起始索引。
+*/
+for i,v in table.eachIndex(array){
+    console.log(i,v);   
+}
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/aardio/Array/for.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/aardio/Array/for.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/aardio/Array/for.md">Markdown 格式</a>
+</body> 
+</html>

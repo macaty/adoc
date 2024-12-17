@@ -1,0 +1,422 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - time 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - time 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>time 库模块帮助文档</h1>
+
+<p><a id="time"></a></p>
+
+<h2>time 成员列表</h2>
+
+<p>创建时间对象,返回对象可传入其他线程使用,  </p>
+
+<p>时间对象可作为调用 tonumber 的参数转换为<br>
+自UTC时间1970年1月1日 00:00:00 到 3000年12月31日23:59:59 之间的秒数  </p>
+
+<p>也可以作为调用tostring函数的参数转换为字符串</p>
+
+<p>日期时间,这是自动导入的内核类库,<br>
+字符串格式化支持从 1900年1月1日 到 9999年12月31日 的时间<br>
+可用 tonumber 转换为自UTC时间1970年1月1日 00:00:00 到 3000年12月31日23:59:59 间的秒数<br>
+需要更宽的运算范围请使用time.ole  </p>
+
+<p><a href="../../library-guide/builtin/time/time.html" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/builtin/time/time.html">使用手册相关文档</a></p>
+
+<p><a id="time()"></a></p>
+
+<h3>time()</h3>
+
+<p>获取当前时间。<br>
+不指定参数、或者格式化以前都是默认初始化为当前时间。  </p>
+
+<p>不指定参数@1 在 milliseconds 字段返回毫秒数，且 dayofyear 字段无效,<br>
+参数@1指定其他参数时 milliseconds 字段总是为 0</p>
+
+<p><a href="_.html#timeObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/time/_.html#timeObject">返回对象:timeObject</a></p>
+
+<p><a id="time(,"%Y/%m/%d %H:%M:%S")"></a></p>
+
+<h3>time(,&quot;%Y/%m/%d %H:%M:%S&quot;)</h3>
+
+<p>构造并返回时间对象。<br>
+参数@1可以是表示时间的数值、字符串、参数表、time,time.ole 对象。<br>
+不指定参数@1默认初始化为当前时间。  </p>
+
+<p>可选用参数@2指定格式化串,首字符为!表示 UTC 时间。<br>
+参数@1 为文本时，则依据参数@2指定的格式化串解析获取时间。<br>
+省略格式串时默认值为&#39;%Y/%m/%d %H:%M:%S&#39;，可兼容解析ISO8601格式时间。<br>
+自文本解析时间以尽可能宽松的规则识别时间。<br>
+格式串中非%前导的字符、分隔符不要求精确匹配。<br>
+如果输入文本中的时间数值超出日期范围，则返回 null 。<br>
+但如果出现当月不存在的日期且小于 31 号时会顺推为下月时间。<br>
+如果格式化解析时间时输入文本提前结束，返回 null。<br>
+创建对象后可通过 format 属性单独修改输出时间格式。  </p>
+
+<p>可选用参数@3指定对象的locale属性,即文本格式化语言,<br>
+locale支持的参数与setlocale相同,英文&quot;enu&quot;,中文&quot;chs&quot;</p>
+
+<p><a id="time.gmt"></a></p>
+
+<h3>time.gmt()</h3>
+
+<p>返回 RFC1123 格式 GMT 时间，HTTP 协议使用该格式。<br>
+参数可以是数值，字符串，或其他time对象，用法参考time构造函数，<br>
+如果参数是使用本地时间的 time 对象，返回补偿时后的标准时间。<br>
+如果参数是字符串，可兼容解析 RFC 850，RFC1123 两种格式，<br>
+例如：&quot;Sun， 07 Feb 2016 01:11:22 GMT&quot;，<br>
+字符串中如果使用数值格式指定了时区，将自动补偿时差转换为 GMT 时区<br>
+时区以正负号开始，支持省略冒号分隔符的1位，2位，3位，4位数字缩写</p>
+
+<p><a href="_.html#timeObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/time/_.html#timeObject">返回对象:timeObject</a></p>
+
+<p><a id="time.iso8601"></a></p>
+
+<h3>time.iso8601()</h3>
+
+<p>返回 ISO8601 格式 GMT 时间。<br>
+参数可以是数值，字符串，或其他time对象，用法参考time构造函数，<br>
+如果参数是使用本地时间的 time 对象，返回补偿时差后的标准时间。  </p>
+
+<p>如果参数是字符串，可支持 ISO8601 省略分隔符的写法。支持仅日期无时间的格式。<br>
+但日期必须包含年月日，时间必须包含时分秒，不能只写那部分。<br>
+字符串中如果使用数值格式指定了时区，将自动补偿时差转换为 GMT 时区<br>
+时区以正负号开始，支持省略冒号分隔符的1位，2位，3位，4位数字缩写</p>
+
+<p><a href="_.html#timeObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/time/_.html#timeObject">返回对象:timeObject</a></p>
+
+<p><a id="time.istime"></a></p>
+
+<h3>time.istime()</h3>
+
+<p>判断对象是否time对象</p>
+
+<p><a id="time.now"></a></p>
+
+<h3>time.now()</h3>
+
+<p>获取当前时间并返回time 对象。<br>
+在 milliseconds 字段返回毫秒数，且 dayofyear 字段无效  </p>
+
+<p><a href="_.html#timeObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/time/_.html#timeObject">返回对象:timeObject</a></p>
+
+<p><a id="time.stamp"></a></p>
+
+<h3>time.stamp</h3>
+
+<p>取 Unix 时间戳。<br>
+时间戳 0 表示 ISO8601 时间 1970-01-01T00:00:00Z</p>
+
+<p><a id="time.stamp"></a></p>
+
+<h3>time.stamp(返回字符串,返回单位)</h3>
+
+<p>所有参数可省略。<br>
+默认返回数值，以毫秒为单位。<br>
+参数 @2 指定为 1 则返回值以秒为单位</p>
+
+<p><a id="time.tick"></a></p>
+
+<h3>time.tick()</h3>
+
+<p>获取系统启动时间，单位毫秒。<br>
+XP 系统每 49.7 天重置为 0，之后的系统无此限制。<br>
+高精度高性能计时请参考 time.performance.tick 函数。</p>
+
+<p><a id="time.utc"></a></p>
+
+<h3>time.utc()</h3>
+
+<p>返回 UTC 标准时间。<br>
+time.gmt,time.utc 返回相同的 UTC 时间，区别仅仅是默认格式化串不同。<br>
+参数可以是数值，字符串，或其他time对象，用法参考 time 构造函数，<br>
+如果参数是使用本地时间的 time 对象，返回补偿时后的标准时间。<br>
+格式化串默认指定为 &quot;!%Y/%m/%d %H:%M:%S&quot;<br>
+如果参数是字符串，解析失败则尝试修改格式化串为  &quot;!%Y/%m/%d&quot; 解析。<br>
+可兼容解析 ISO8601 格式（可省略分隔符）。</p>
+
+<p><a href="_.html#timeObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/time/_.html#timeObject">返回对象:timeObject</a></p>
+
+<p><a id="timeObject"></a></p>
+
+<h2>timeObject 成员列表</h2>
+
+<pre><code class="aardio language-aardio">class datetime{  
+WORD year; //年  
+WORD month; //月  
+WORD dayofweek; //星期  
+WORD day; //日期  
+WORD hour; //小时  
+WORD minute; //分钟  
+WORD second; //秒  
+WORD milliseconds; //这个字段正常情况下为0,只有在WINAPI函数中会起作用  
+format; //时间格式字符串  
+isdst //是否夏令时  
+}
+</code></pre>
+
+<p><a id="timeObject.addday"></a></p>
+
+<h3>timeObject.addday()</h3>
+
+<p><a href="_.html#timeObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/time/_.html#timeObject">返回对象:timeObject</a></p>
+
+<p><a id="timeObject.addday"></a></p>
+
+<h3>timeObject.addday(输入数值)</h3>
+
+<p>增加天数,可以为负数,返回自身</p>
+
+<p><a id="timeObject.addhour"></a></p>
+
+<h3>timeObject.addhour()</h3>
+
+<p><a href="_.html#timeObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/time/_.html#timeObject">返回对象:timeObject</a></p>
+
+<p><a id="timeObject.addhour"></a></p>
+
+<h3>timeObject.addhour(输入数值)</h3>
+
+<p>增加小时数,可以为负数,返回自身</p>
+
+<p><a id="timeObject.addminute"></a></p>
+
+<h3>timeObject.addminute()</h3>
+
+<p><a href="_.html#timeObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/time/_.html#timeObject">返回对象:timeObject</a></p>
+
+<p><a id="timeObject.addminute"></a></p>
+
+<h3>timeObject.addminute(输入数值)</h3>
+
+<p>增加分钟数,可以为负数,返回自身</p>
+
+<p><a id="timeObject.addmonth"></a></p>
+
+<h3>timeObject.addmonth()</h3>
+
+<p><a href="_.html#timeObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/time/_.html#timeObject">返回对象:timeObject</a></p>
+
+<p><a id="timeObject.addmonth"></a></p>
+
+<h3>timeObject.addmonth(输入数值)</h3>
+
+<p>增加月份数,返回自身</p>
+
+<p><a id="timeObject.addsecond"></a></p>
+
+<h3>timeObject.addsecond()</h3>
+
+<p><a href="_.html#timeObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/time/_.html#timeObject">返回对象:timeObject</a></p>
+
+<p><a id="timeObject.addsecond"></a></p>
+
+<h3>timeObject.addsecond(输入数值)</h3>
+
+<p>增加秒数,可以为负数,返回自身</p>
+
+<p><a id="timeObject.day"></a></p>
+
+<h3>timeObject.day</h3>
+
+<p>日</p>
+
+<p><a id="timeObject.dayofweek"></a></p>
+
+<h3>timeObject.dayofweek</h3>
+
+<p>星期<br>
+星期一到星期六的值对应数值为1到6,星期日的值为 0,<br>
+注意修改这个字段不会更新时间值,  </p>
+
+<p>这个字段只有参与数值运算或调用 add*** 函数才会填充或更新,<br>
+例如调用 addday(0) 会更新此字段</p>
+
+<p><a id="timeObject.dayofyear"></a></p>
+
+<h3>timeObject.dayofyear</h3>
+
+<p>所在年份的天数,<br>
+注意修改这个字段不会更新时间值。<br>
+无参数调用 time 或 time.now 函数此字段无效。  </p>
+
+<p>这个字段只有参与数值运算或调用 add*** 函数才会填充或更新,<br>
+例如调用addsecond(0)会更新此字段,  </p>
+
+<p>使用格式化标记%j %U %W前必须首先刷新此字段</p>
+
+<p><a id="timeObject.diffday"></a></p>
+
+<h3>timeObject.diffday(指定time对象)</h3>
+
+<p>用当前time对象减参数指定的time对象<br>
+计算两个time对象相差天数</p>
+
+<p><a id="timeObject.diffhour"></a></p>
+
+<h3>timeObject.diffhour(指定time对象)</h3>
+
+<p>用当前time对象减参数指定的time对象<br>
+计算两个time对象相差小时数</p>
+
+<p><a id="timeObject.diffminute"></a></p>
+
+<h3>timeObject.diffminute(指定time对象)</h3>
+
+<p>用当前time对象减参数指定的time对象<br>
+计算两个time对象相差分钟数</p>
+
+<p><a id="timeObject.diffmonth"></a></p>
+
+<h3>timeObject.diffmonth(指定time对象)</h3>
+
+<p>用当前time对象减参数指定的time对象<br>
+计算两个time对象相差月份</p>
+
+<p><a id="timeObject.diffsecond"></a></p>
+
+<h3>timeObject.diffsecond(指定time对象)</h3>
+
+<p>用当前time对象减参数指定的time对象<br>
+计算两个time对象相差秒数</p>
+
+<p><a id="timeObject.endstr"></a></p>
+
+<h3>timeObject.endstr</h3>
+
+<p>文本解析为时间后，<br>
+最后一个格式化标记解析成功并跳过空白字符以后的剩余的连续不含空白字符串，<br>
+可用于后续解析iso8601等格式的时区（解析后将必须删除）。</p>
+
+<p><a id="timeObject.format"></a></p>
+
+<h3>timeObject.format</h3>
+
+<pre><code class="aardio language-aardio">timeObject.format=&quot;%Y年%m月%d日 %H时%M分%S秒&quot;;/*指定输出时间文本的格式化串,首字符为!表示GMT时间*/
+</code></pre>
+
+<p><a id="timeObject.getMilliTime"></a></p>
+
+<h3>timeObject.getMilliTime()</h3>
+
+<p>返回自UTC时间 1970年1月1日 00:00:00 开始的毫秒数<br>
+最大值为UTC时间3000年12月31日23:59:59</p>
+
+<p><a id="timeObject.hour"></a></p>
+
+<h3>timeObject.hour</h3>
+
+<p>小时</p>
+
+<p><a id="timeObject.local"></a></p>
+
+<h3>timeObject.local()</h3>
+
+<p>将UTC时间转换为本地时间<br>
+格式化串首字符为!表示UTF时间<br>
+如果不是UTC时间直接返回<br>
+返回自身  </p>
+
+<p><a href="_.html#timeObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/time/_.html#timeObject">返回对象:timeObject</a></p>
+
+<p><a id="timeObject.local"></a></p>
+
+<h3>timeObject.local(true)</h3>
+
+<p>将UTC时间转换为本地时间<br>
+并创建一个新的时间对象返回<br>
+如果不是UTC时间直接复制并返回<br>
+不修改自身并返回新对象</p>
+
+<p><a id="timeObject.locale"></a></p>
+
+<h3>timeObject.locale</h3>
+
+<p>格式化时间使用的语言代码<br>
+参数与setlocale相同,英文&quot;enu&quot;,中文&quot;chs&quot;,<br>
+该属性为空表示使用当前默认语言</p>
+
+<p><a id="timeObject.milliseconds"></a></p>
+
+<h3>timeObject.milliseconds</h3>
+
+<p>毫秒。<br>
+构造 time 对象不指定参数 @1 或用 time.now 取当前时间，则设置此字段为当前毫秒数，否则此字段无效</p>
+
+<p><a id="timeObject.minute"></a></p>
+
+<h3>timeObject.minute</h3>
+
+<p>分钟</p>
+
+<p><a id="timeObject.month"></a></p>
+
+<h3>timeObject.month</h3>
+
+<p>月</p>
+
+<p><a id="timeObject.second"></a></p>
+
+<h3>timeObject.second</h3>
+
+<p>秒</p>
+
+<p><a id="timeObject.setMilliTime"></a></p>
+
+<h3>timeObject.setMilliTime()</h3>
+
+<p>参数为数值<br>
+设置自UTC时间 1970年1月1日 00:00:00 开始的毫秒数<br>
+最大值为UTC时间3000年12月31日23:59:59<br>
+此函数返回时间对象自身</p>
+
+<p><a href="_.html#timeObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/time/_.html#timeObject">返回对象:timeObject</a></p>
+
+<p><a id="timeObject.update"></a></p>
+
+<h3>timeObject.update()</h3>
+
+<p>重新计算时间并更新dayOfWeek字段.  </p>
+
+<p><a href="_.html#timeObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/time/_.html#timeObject">返回对象:timeObject</a></p>
+
+<p><a id="timeObject.utc"></a></p>
+
+<h3>timeObject.utc()</h3>
+
+<p>将本地时间转换为UTC时间<br>
+格式化串首字符为!表示UTF时间<br>
+如果已经是UTC时间直接返回<br>
+修改并返回自身  </p>
+
+<p><a href="_.html#timeObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/time/_.html#timeObject">返回对象:timeObject</a></p>
+
+<p><a id="timeObject.utc"></a></p>
+
+<h3>timeObject.utc(true)</h3>
+
+<p>将本地时间转换为UTC时间<br>
+并创建一个新的时间对象返回<br>
+如果已经是UTC时间直接复制并返回<br>
+不修改自身并返回新对象</p>
+
+<p><a id="timeObject.year"></a></p>
+
+<h3>timeObject.year</h3>
+
+<p>年</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/time/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/time/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/time/_.md">Markdown 格式</a></p>
+
+</body> 
+</html>

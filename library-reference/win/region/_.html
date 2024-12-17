@@ -1,0 +1,76 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - win.region 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - win.region 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>win.region 库模块帮助文档</h1>
+
+<p><a id="win.region"></a></p>
+
+<h2>win.region 成员列表</h2>
+
+<p>该支持库定义REGION相关API</p>
+
+<p><a id="win.region.copy"></a></p>
+
+<h3>win.region.copy(HRGN绘图区域句柄)</h3>
+
+<p>复制HRGN句柄</p>
+
+<p><a id="win.region.getWindowRgn"></a></p>
+
+<h3>win.region.getWindowRgn(HWND窗口句柄)</h3>
+
+<p>复制窗体绘图区域</p>
+
+<h3>全局常量</h3>
+
+<p><a id="::CombineRgn :"></a></p>
+
+<h3>::CombineRgn :</h3>
+
+<pre><code class="aardio language-aardio">::Gdi32.api(&quot;CombineRgn&quot;, &quot;int(pointer hrg,pointer hrgnSrc1,pointer hrgnSrc12,int mode)&quot;);
+</code></pre>
+
+<p><a id="::CreateRectRgn :"></a></p>
+
+<h3>::CreateRectRgn :</h3>
+
+<pre><code class="aardio language-aardio">::Gdi32.api(&quot;CreateRectRgn&quot;, &quot;pinter(int top,int top,int right,int bottom)&quot;);
+</code></pre>
+
+<p><a id="::CreateRoundRectRgn :"></a></p>
+
+<h3>::CreateRoundRectRgn :</h3>
+
+<pre><code class="aardio language-aardio">::Gdi32.api( &quot;CreateRoundRectRgn&quot;, &quot;pointer(int, int, int, int, int, int)&quot; );
+</code></pre>
+
+<p><a id="::GetWindowRgn :"></a></p>
+
+<h3>::GetWindowRgn :</h3>
+
+<pre><code class="aardio language-aardio">::User32.api(&quot;GetWindowRgn&quot;, &quot;int(addr hWnd, pointer hRgn)&quot;);
+</code></pre>
+
+<p><a id="::SetWindowRgn :"></a></p>
+
+<h3>::SetWindowRgn :</h3>
+
+<pre><code class="aardio language-aardio">::User32.api(&quot;SetWindowRgn&quot;, &quot;bool(addr hWnd, pointer hRgn, bool bRedraw)&quot;);
+</code></pre>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/region/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/region/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/region/_.md">Markdown 格式</a></p>
+
+</body> 
+</html>

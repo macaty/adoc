@@ -1,0 +1,51 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - aardio 调用 AutoCAD - 对象数组'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - aardio 调用 AutoCAD - 对象数组</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 调用 AutoCAD - 对象数组</h1><pre><code class="aardio language-aardio">//aardio 调用 AutoCAD - 对象数组
+import com.cad
+var cad = com.cad();
+cad.Visible = true;  
+
+var patternName = &quot;ANSI31&quot;;//填充图案的名称
+var patternType = 0 ;// 填充类型
+
+//在模型空间中添加填充图案对象（Hatch）
+var hatchObj = cad.ActiveDocument.ModelSpace.AddHatch(patternType, patternName, true);
+
+//定义圆心和半径
+var centerPoint = {0;0;0};
+var radius = 1;
+
+//创建圆对象
+var circle = cad.ActiveDocument.ModelSpace.AddCircle(centerPoint, radius);
+
+/*
+如果数组成员为普通 COM 对象（IDispatch 对象），在 COM 接口中自动转换为 VT_DISPATCH 类型 SafeArray。
+细节请参考「aardio 范例 / COM 组件 / 进阶提示 / 类型转换规则」
+*/
+var outerLoop = { circle };
+
+//添加一个圆作为填充图案的外循环边界
+hatchObj.AppendOuterLoop (  outerLoop );
+
+//计算并更新填充图案
+hatchObj.Evaluate();
+
+//重新生成视图
+cad.ActiveDocument.Regen(cad.acActiveViewport);
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/COM/AutoCAD/dispArray.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/COM/AutoCAD/dispArray.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/COM/AutoCAD/dispArray.md">Markdown 格式</a>
+</body> 
+</html>

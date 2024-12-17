@@ -1,0 +1,241 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 语音合成'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 语音合成</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 语音合成</h1><pre><code class="aardio language-aardio">//语音合成
+import chrome.edge; 
+var theApp = chrome.edge.app();
+
+import sys.audioVolume;
+var volumeCtrl = sys.audioVolume();
+
+import dotNet.waveIn;
+theApp.external = {
+    getVolume = function(){
+        return volumeCtrl.volume;
+    }
+    setVolume = function(v){ 
+        v = tonumber(v)
+        if(volumeCtrl.volume = v) return;
+        volumeCtrl.volume = v;
+        volumeCtrl.mute = !v;
+    }  
+    startRecording = function(){
+        dotNet.waveIn.startLoopback(&quot;/edge.wav&quot;);
+    } 
+    stopRecording = function(){
+        dotNet.waveIn.stop();
+    } 
+    openWav = function(){
+        if(!io.exist(&quot;/edge.wav&quot;)){
+            return theApp.msgboxErr(&quot;请先录音&quot;);
+        }
+
+        process.exploreSelect(&quot;/edge.wav&quot;)
+    } 
+}
+
+//因为 /res/ 已设为 theApp.http.documentBase，这里不用再写 &quot;/res/index.aardio&quot;
+theApp.httpHandler[&quot;/index.aardio&quot; ] = function(response,request){
+    response.write(`
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width&quot;&gt;
+    &lt;title&gt;Edge 语音合成&lt;/title&gt;
+    &lt;script src=&quot;/aardio.js&quot;&gt;&lt;/script&gt;
+    &lt;style&gt;
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body style=&quot;margin:0;line-height:180%;height:100%&quot;&gt;
+    &lt;form
+        style=&quot;height:100%;display:flex;flex-direction:column;justify-content:flex-start;align-content:stretch;padding:15px;box-sizing:border-box&quot;&gt;
+        &lt;div style=&quot;flex:0 1 auto;&quot;&gt;
+            &lt;label&gt;请选择语音：&lt;select&gt; &lt;/select&gt;&lt;/lable&gt;&lt;br&gt;
+                &lt;label for=&quot;volume&quot;&gt;系统音量:&lt;input type=&quot;range&quot; min=&quot;0&quot; max=&quot;100&quot; step=&quot;1&quot; id=&quot;volume&quot;&gt;&lt;span
+                        class=&quot;volume-value&quot;&gt;1&lt;/span&gt;&lt;/label&gt;
+                &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+                &lt;label for=&quot;rate&quot;&gt;速度:&lt;input type=&quot;range&quot; min=&quot;0.5&quot; max=&quot;2&quot; value=&quot;1&quot; step=&quot;0.1&quot; id=&quot;rate&quot;&gt;&lt;span
+                        class=&quot;rate-value&quot;&gt;1&lt;/span&gt;&lt;/label&gt;
+                &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+                &lt;label for=&quot;pitch&quot;&gt;音调:&lt;input type=&quot;range&quot; min=&quot;0&quot; max=&quot;2&quot; value=&quot;1&quot; step=&quot;0.1&quot; id=&quot;pitch&quot;&gt; &lt;span
+                        class=&quot;pitch-value&quot;&gt;1&lt;/span&gt;&lt;/label&gt;
+        &lt;/div&gt;
+
+        &lt;div class=&quot;controls&quot; style=&quot;flex:0 1 auto;&quot;&gt;
+            &lt;button id=&quot;play&quot; type=&quot;submit&quot; style=&quot;margin-top:5px&quot;&gt;大声朗读下面输入的文本&lt;/button&gt; &lt;label&gt;&lt;input type=&quot;checkbox&quot;
+                    id=&quot;recording&quot;&gt;录音到 &lt;a href=&quot;javascript:void(0)&quot; onclick=&quot;aardio.openWav()&quot;&gt;/edge.wav&lt;/a&gt;&lt;/label&gt;
+        &lt;/div&gt;
+
+        &lt;textarea rows=&quot;20&quot; cols=&quot;100&quot; id=&quot;txt&quot; name=&quot;txt&quot; autofocus
+            style=&quot;margin-top:10px;width:100%;flex:1 1 auto;&quot;&gt;&lt;/textarea&gt;
+
+    &lt;/form&gt;
+
+    &lt;script&gt;
+        var synth = window.speechSynthesis;
+
+        var inputForm = document.querySelector(&#39;form&#39;);
+        var inputTxt = document.querySelector(&#39;#txt&#39;);
+        var voiceSelect = document.querySelector(&#39;select&#39;);
+
+        var volume = document.querySelector(&#39;#volume&#39;);
+        var volumeValue = document.querySelector(&#39;.volume-value&#39;);
+        var pitch = document.querySelector(&#39;#pitch&#39;);
+        var pitchValue = document.querySelector(&#39;.pitch-value&#39;);
+        var rate = document.querySelector(&#39;#rate&#39;);
+        var rateValue = document.querySelector(&#39;.rate-value&#39;);
+
+        var voices = [];
+
+        function populateVoiceList() {
+            voices = synth.getVoices().sort(function (a, b) {
+                const aname = a.name.toUpperCase(), bname = b.name.toUpperCase();
+                if (aname &lt; bname) return -1;
+                else if (aname == bname) return 0;
+                else return +1;
+            });
+
+            voiceSelect.innerHTML = &#39;&#39;;
+
+            var selectedIndex = 0;
+            var voiceCount = 0;
+            for (i = 0; i &lt; voices.length; i++) {
+                var option = document.createElement(&#39;option&#39;);
+                if (voices[i].name.indexOf(&quot;Chinese&quot;) &lt; 0) {
+                    continue;
+                }
+                option.textContent = voices[i].name + &#39; (&#39; + voices[i].lang + &#39;)&#39;;
+
+                if (voices[i].default) {
+                    option.textContent += &#39; -- DEFAULT&#39;;
+                }
+
+                option.setAttribute(&#39;data-lang&#39;, voices[i].lang);
+                option.setAttribute(&#39;data-name&#39;, voices[i].name);
+                if (voices[i].name.indexOf(&quot;Xiaoxiao&quot;) &gt; 0) {
+                    selectedIndex = voiceCount;
+                }
+                voiceSelect.appendChild(option);
+                voiceCount++;
+            }
+            voiceSelect.selectedIndex = selectedIndex;
+        }
+
+        populateVoiceList();
+        if (speechSynthesis.onvoiceschanged !== undefined) {
+            speechSynthesis.onvoiceschanged = populateVoiceList;
+        }
+
+        function speak2() {
+            var txt = inputTxt.value;
+            if (txt === &#39;&#39;) txt = &quot;请先输入要朗读的文本&quot;;
+            document.getElementById(&quot;play&quot;).disabled = true;
+
+            var utterThis = new SpeechSynthesisUtterance(txt);
+            utterThis.onend = function (event) {
+                document.getElementById(&quot;play&quot;).disabled = false;
+                aardio.stopRecording();
+            }
+            utterThis.onerror = function (event) {
+                document.getElementById(&quot;play&quot;).disabled = false;
+            }
+            var selectedOption = voiceSelect.selectedOptions[0].getAttribute(&#39;data-name&#39;);
+            for (i = 0; i &lt; voices.length; i++) {
+                if (voices[i].name === selectedOption) {
+                    utterThis.voice = voices[i];
+                    break;
+                }
+            }
+            utterThis.pitch = pitch.value;
+            utterThis.rate = rate.value;
+            synth.speak(utterThis);
+        }
+
+        function speak() {
+            if (synth.speaking) {
+                console.error(&#39;speechSynthesis.speaking&#39;);
+                return;
+            }
+
+            if (document.getElementById(&quot;recording&quot;).checked) {
+                aardio.startRecording().then(speak2)
+            }
+            else {
+                speak2();
+            }
+        }
+
+        inputForm.onsubmit = function (event) {
+            event.preventDefault();
+
+            speak();
+
+            inputTxt.blur();
+        }
+
+        pitch.onchange = function () {
+            pitchValue.textContent = pitch.value;
+        }
+
+        rate.onchange = function () {
+            rateValue.textContent = rate.value;
+        }
+
+        volume.onchange = function () {
+            volumeValue.textContent = volume.value;
+            aardio.setVolume(volume.value);
+        }
+
+        aardio.getVolume().then(v =&gt; { volume.value = v; volume.onchange() })
+
+        voiceSelect.onchange = function () {
+            //speak();
+        }
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;`)
+}
+
+//此函数参数指定的回调函数会在网页端准备就绪后执行
+theApp.indexReady(
+    function($){ //参数 $ 表示当前连接到 aardio 的网页客户端
+        theApp.doScript($,`
+            document.getElementById(&quot;txt&quot;).innerText = &quot;这是测试文本&quot;;
+        `)
+    } 
+)
+
+//可选在调用 start 函数前用 theApp.setPos 或 theApp.center 调整窗口位置
+theApp.setPos(20,20,1080,720)
+
+/*
+正式启动 Edge 进程，
+如果文件名为 index.html 或 index.aardio，目录 &quot;/res/&quot; 会自动设为 theApp.http.documentBase。
+之后网页访问 &quot;/index.aardio&quot; 会自动转为 &quot;/res/index.aardio&quot; 。
+*/
+theApp.start(&quot;/res/index.aardio&quot;)
+
+//网页中可以调用 aardio.quit() 退出,也可以直接关闭 Edge 窗口退出
+win.loopMessage();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/WebUI/Edge/speech.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/WebUI/Edge/speech.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/WebUI/Edge/speech.md">Markdown 格式</a>
+</body> 
+</html>

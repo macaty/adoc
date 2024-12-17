@@ -1,0 +1,139 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - win.ui.lcdClock 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - win.ui.lcdClock 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>win.ui.lcdClock 库模块帮助文档</h1>
+
+<p><a id="win.ui"></a></p>
+
+<h2>win.ui 成员列表</h2>
+
+<p><a id="win.ui.lcdClock"></a></p>
+
+<h3>win.ui.lcdClock</h3>
+
+<p>创建液晶时钟控件</p>
+
+<p><a id="win.ui.lcdClock"></a></p>
+
+<h3>win.ui.lcdClock()</h3>
+
+<p><a href="#winUiLcdClockObject">返回对象:winUiLcdClockObject</a></p>
+
+<p><a id="win.ui.lcdClock"></a></p>
+
+<h3>win.ui.lcdClock(plus控件,计时器格式,时钟格式,显示属性)</h3>
+
+<p>参数@1必须指定一个plus控件,<br>
+plus控件可以使用fontCharMap属性自定义字符的输出图像,<br>
+参数@2,参数@3可省略,格式参考time对象说明,<br>
+计时器格式首字符必须为!号<br>
+可选用参数@4指定gdip.imageAttributes对象控制显示属性</p>
+
+<p><a id="winUiLcdClockObject"></a></p>
+
+<h2>winUiLcdClockObject 成员列表</h2>
+
+<p><a id="winUiLcdClockObject.millisCountDown"></a></p>
+
+<h3>winUiLcdClockObject.millisCountDown</h3>
+
+<p>倒计时已经过的毫秒数<br>
+不要直接改动此值</p>
+
+<p><a id="winUiLcdClockObject.millisInFuture"></a></p>
+
+<h3>winUiLcdClockObject.millisInFuture</h3>
+
+<p>倒计时设定的总毫秒数<br>
+不要直接改动此值</p>
+
+<p><a id="winUiLcdClockObject.mode"></a></p>
+
+<h3>winUiLcdClockObject.mode</h3>
+
+<p>当前﻿工作模式<br>
+倒计时为&quot;countdown&quot;<br>
+计时器为&quot;timer&quot;<br>
+时钟为&quot;clock&quot;<br>
+切换到倒计时器、或计时器模式总会重置另一个<br>
+切换到时钟模式不会重置计时器</p>
+
+<p><a id="winUiLcdClockObject.pause"></a></p>
+
+<h3>winUiLcdClockObject.pause()</h3>
+
+<p>暂停时钟或计时器</p>
+
+<p><a id="winUiLcdClockObject.resetCountDownTimer"></a></p>
+
+<h3>winUiLcdClockObject.resetCountDownTimer()</h3>
+
+<p>重置倒计时器<br>
+参数可指定倒计时总毫秒数,也可以使用一个time对象指定倒计时的时间</p>
+
+<p><a id="winUiLcdClockObject.resetTimer"></a></p>
+
+<h3>winUiLcdClockObject.resetTimer()</h3>
+
+<p>重置计时器</p>
+
+<p><a id="winUiLcdClockObject.setColor"></a></p>
+
+<h3>winUiLcdClockObject.setColor()</h3>
+
+<p>替换颜色，<br>
+参数 @1 支持 RGBA 格式颜色数值</p>
+
+<p><a id="winUiLcdClockObject.setImageAttributes"></a></p>
+
+<h3>winUiLcdClockObject.setImageAttributes()</h3>
+
+<p>使用参数指定的 gdip.imageAttributes 对象调色</p>
+
+<p><a id="winUiLcdClockObject.startClock"></a></p>
+
+<h3>winUiLcdClockObject.startClock()</h3>
+
+<p>启动时钟,用于实时显示当前时间<br>
+不会清零计时器</p>
+
+<p><a id="winUiLcdClockObject.startCountDownTimer"></a></p>
+
+<h3>winUiLcdClockObject.startCountDownTimer(倒计时毫秒数,结束回调函数)</h3>
+
+<pre><code class="aardio language-aardio">winUiLcdClockObject.startCountDownTimer(,function(){
+    /*倒计时结束触发此回调函数,  
+也可以使用setCountDownMillisInFuture事先指定倒计时毫秒数  
+倒计时毫秒数必须大于0*/
+})
+</code></pre>
+
+<p><a id="winUiLcdClockObject.startTimer"></a></p>
+
+<h3>winUiLcdClockObject.startTimer()</h3>
+
+<p>启动计时器,或自暂停状态恢复计时<br>
+调用此函数也会重置倒计时数据</p>
+
+<p><a id="winUiLcdClockObject.stop"></a></p>
+
+<h3>winUiLcdClockObject.stop()</h3>
+
+<p>重置清零计时、倒计时数据并停止计时</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/ui/lcdClock/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/ui/lcdClock/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/lcdClock/_.md">Markdown 格式</a></p>
+
+</body> 
+</html>

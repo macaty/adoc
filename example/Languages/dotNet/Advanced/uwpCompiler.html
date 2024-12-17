@@ -1,0 +1,141 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - aardio 通过 .NET 调用 UWP 接口'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - aardio 通过 .NET 调用 UWP 接口</title> 
+<link rel="stylesheet" href="../../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 通过 .NET 调用 UWP 接口</h1><pre><code class="aardio language-aardio">//aardio 通过 .NET 调用 UWP 接口 
+//标准库 dotNet.ocr, 扩展库 dotNet.toastListener 都运用了以下方法编译 DLL 。
+import dotNet.uwpCompiler  
+
+/*
+如果参数@2 未指定 Windows.winmd，默认在 C:\Program Files (x86)\Windows Kits\10\UnionMetadata 
+最新版本SDK目录下查找此文件，生成的DLL程序集并不依赖 Windows.winmd 文件，仅编译时需要。
+*/
+var uwpCompiler = dotNet.uwpCompiler( &quot;\ocr.dll&quot; )//&quot;~\lib\dotNet\ocr\.res\ocr.dll&quot; 
+
+//启用编译优化
+uwpCompiler.Parameters.CompilerOptions = &quot;/optimize&quot;
+
+//设置待编译C#源码
+uwpCompiler.Source = /****** 
+using System;
+using System.Reflection; 
+using System.Collections; 
+using System.Collections.Generic;
+using System.IO;
+using System.Threading.Tasks; 
+using Windows.Graphics.Imaging;
+using Windows.Storage;
+using Windows.Storage.Streams;
+using System.Runtime.InteropServices;
+using Windows.Media.Ocr;
+
+namespace aardio  
+{ 
+    public class UwpOcrResult
+    {
+
+        public UwpOcrResult(OcrResult ocrRet)
+        {
+            ocrResult = ocrRet; 
+        }
+
+        public int LineCount()
+        {
+            return ocrResult.Lines.Count;
+        }
+
+        public string [] GetWords(int index)
+        {
+            ArrayList arr = new ArrayList();
+            foreach (var word in ocrResult.Lines[index].Words)
+            {
+                arr.Add(word.Text);
+            }
+
+            return (string[])arr.ToArray(typeof(string));
+        }
+
+        public object GetWordRects(int index)
+        {
+            ArrayList arr = new ArrayList();
+            foreach (var word in ocrResult.Lines[index].Words)
+            {
+                double[] rc = { word.BoundingRect.Left, word.BoundingRect.Top, word.BoundingRect.Right, word.BoundingRect.Bottom };  
+                arr.Add(rc);
+            }
+
+            return (object)arr.ToArray(typeof(object));
+        }
+
+        private OcrResult ocrResult;
+
+    }
+
+    public class UwpOcrEngine  
+    {
+        public string [] AvailableRecognizerLanguages(){   
+            ArrayList arr = new ArrayList();
+            foreach (var lang in OcrEngine.AvailableRecognizerLanguages)
+            {
+                arr.Add(lang.LanguageTag);
+            }
+            return (string [])arr.ToArray(typeof( string));
+        } 
+
+        public object IsLanguageSupported( string name ){   
+            Windows.Globalization.Language lang = new Windows.Globalization.Language(name);
+            return OcrEngine.IsLanguageSupported(lang); 
+        }
+
+        public UwpOcrResult Recognize(byte[] imgBuffer, string language){   
+            return new UwpOcrResult( RecognizeAsync(imgBuffer, language).GetAwaiter().GetResult() );
+        }
+
+        async Task&lt;OcrResult&gt; RecognizeAsync(byte[] imgBuffer, string language)
+        { 
+                var randomAccessStream = new InMemoryRandomAccessStream();
+                var outputStream = randomAccessStream.GetOutputStreamAt(0);
+                var dw = new DataWriter(outputStream);
+                var task = new Task(() =&gt; dw.WriteBytes(imgBuffer));
+                task.Start();
+                await task;
+                await dw.StoreAsync();
+                await outputStream.FlushAsync();
+
+                BitmapDecoder decoder = await BitmapDecoder.CreateAsync(randomAccessStream);
+                SoftwareBitmap softwareBitmap = await decoder.GetSoftwareBitmapAsync(BitmapPixelFormat.Bgra8, BitmapAlphaMode.Premultiplied);
+                Windows.Globalization.Language lang = new Windows.Globalization.Language(language);
+
+                OcrEngine engine = OcrEngine.TryCreateFromLanguage(lang);
+                if (engine != null)
+                {
+                    OcrResult ocrResult = await engine.RecognizeAsync(softwareBitmap);
+                    return ocrResult;
+                }
+
+                return null;
+        }
+    }   
+} 
+******/
+
+//编译并返回程序集  
+var assembly = uwpCompiler.CompileOrFail();
+
+import console;
+if(assembly) console.logPause(&quot;编译成功&quot;,uwpCompiler.Parameters.OutputAssembly);
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/dotNet/Advanced/uwpCompiler.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/dotNet/Advanced/uwpCompiler.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Languages/dotNet/Advanced/uwpCompiler.md">Markdown 格式</a>
+</body> 
+</html>

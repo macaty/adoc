@@ -1,0 +1,64 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - 连接运算符'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - 连接运算符</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>连接运算符</h1>
+
+<p>参考： <a href="../datatype/string.html" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/datatype/string.html">字符串</a></p>
+
+<p>对两个操作数进行字符串连接操作。</p>
+
+<p>如果操作数不是字符串，aardio 将尝试自动转换为字符串，如果转换失败则会报错。 </p>
+
+<table><thead>
+<tr>
+<th>运算符</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>++</code></td>
+<td>连接运算符</td>
+</tr>
+</tbody></table>
+
+<p><img src="../../icon/info.gif" tppabs="https://www.aardio.com/zh-cn/doc/icon/info.gif" alt="">  要特别注意 <code>+</code> 运算符也具有连接字符串的作用： </p>
+
+<ul>
+<li>引号（双引号、单引号、反引号）前后的 <code>+</code> 运算符将自动转换为字符串连接运算符 <code>++</code> 。</li>
+<li>如果  <code>+</code> 运算符的两个操作数都是字符串，且其中任一操作数无法转换为数值则进行字符串连接操作。不应依赖此规则做字符串连接，明确写为 <code>++</code> 可以避免不必要的转换，也可避免不必要的误操作。</li>
+</ul>
+
+<p>例如：</p>
+
+<pre><code class="aardio language-aardio">import console.int; 
+
+// str 为 “hello world” 
+var str = &quot;hello &quot; ++ &quot;world&quot;; 
+
+// str 为 &quot;12&quot;，表达式自动转换为 1 ++ &quot;2&quot;
+var str = 1 + &quot;2&quot;;   
+
+// str 为数值 3，+ 与 &quot; 号被括号分开
+var str = 1 + (&quot;2&quot;);
+
+console.log(str);
+</code></pre>
+
+<p>除了在引号（双引号、单引号、反引号）前后可以用  <code>+</code> 替代<code>++</code>，其他情况下应当明确写 <code>++</code> 以避免误操作与不必要的转换过程。</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/language-reference/operator/concat.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/language-reference/operator/concat.md'" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/operator/concat.md">Markdown 格式</a></p>
+
+</body> 
+</html>

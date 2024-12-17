@@ -1,0 +1,51 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 事件回调'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 事件回调</title> 
+<link rel="stylesheet" href="../../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 事件回调</h1><pre><code class="aardio language-aardio">//事件回调
+
+import console;
+import inet.http;
+
+//首先创建 HTTP 客户端对象
+var http = inet.http();
+
+//准备向服务器发送数据时执行此回调
+http.beforeSend = function(){
+
+}
+
+//发送请求以后，获取数据以前执行此回调
+http.afterSend = function(statusCode,contentLength){
+
+    /*
+    如果在这里不带参数读取了所有 HTTP 头，
+    则 aardio 会缓存所有 HTTP 头，即使请求结束仍然可以使用 http.readHeader 函数。
+    */
+    http.readHeader();  
+}
+
+//发送 GET 请求并获取数据
+var data = http.get(&quot;http://www.aardio.com&quot;)
+console.log(data);
+
+/*
+如果在请求前读取过全部 HTTP 头，即使请求结束仍然可以使用 http.readHeader 函数。
+*/
+console.log(http.readHeader());
+console.pause()
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Network/inet/http/event.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Network/inet/http/event.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Network/inet/http/event.md">Markdown 格式</a>
+</body> 
+</html>

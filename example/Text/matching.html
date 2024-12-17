@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 模式匹配'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 模式匹配</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 模式匹配</h1><pre><code class="aardio language-aardio">//模式匹配
+import console;
+
+/*
+《模匹匹配快速入门》
+https://www.aardio.com/zh-cn/doc/guide/language/pattern-matching.html
+
+《模匹匹配语法》
+https://www.aardio.com/zh-cn/doc/library-guide/builtin/string/patterns.html
+*/
+
+//查找字符串位置
+var i,j = string.find(&quot;abc456d&quot; ,&quot;c\d+&quot;);
+
+if( i ) {
+   console.log(&quot;在 &#39;abc456d&#39; 中找到 c\d+&quot; ,&quot;从&quot; + i + &quot;到&quot; + j);
+}
+
+//匹配字符串：圆括号添加匹配分组 —— 并增加返回值
+var a,b = string.match(&quot;abc456d&quot; ,&quot;(c(\d+))&quot;);
+console.log(a,b);
+
+//替换字符串：在模式匹配中 .圆点标记匹配任意字符
+str = string.replace(&quot;abcd&quot;,&quot;.&quot;,&quot;k&quot;);
+console.log(str); //输出kkkk
+
+str = string.replace(&quot;abcd&quot;,&quot;.&quot;,&quot;k&quot;,1);
+console.log(str); //输出kbcd 
+
+var url = console.getText( &quot;请输入网址:&quot; )
+
+import inet.url;
+console.log(&quot;直接用标准库函数检测字符串是否网址&quot;,inet.url.is(url) );  
+console.log(&quot;简单检测是否以http开始（忽略大小写）&quot;,string.startWith(url,&quot;http&quot;,true) );
+
+console.log(&quot;使用模式匹配检测字符串是否以https:或http:开始（忽略大小写）&quot;
+    ,string.match(url,&quot;^&lt;@@https@&gt;|&lt;@@http@&gt;\:&quot;) 
+)   
+
+console.pause();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Text/matching.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Text/matching.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Text/matching.md">Markdown 格式</a>
+</body> 
+</html>

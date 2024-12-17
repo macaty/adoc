@@ -1,0 +1,204 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - fsys.version 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - fsys.version 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>fsys.version 库模块帮助文档</h1>
+
+<p><details>  <summary>转换字符串规则</summary>  <p>
+fsys.version 对象可作为参数传入 tostring 函数转换为字符串格式。
+tostring 函数的第 2 个参数可选指定格式化串（ 语法与 string.format 函数相同）。
+如果不指定格式化串，默认格式化串为 &quot;%d.%d.%d.%d&quot;，
+如果 revision 为 0 ，默认格式化串为 &quot;%d.%d.%d&quot;。
+如果同时 build 也为 0，默认格式化串为 &quot;%d.%d&quot;。
+</p></details></p>
+
+<p><a id="fsys"></a></p>
+
+<h2>fsys 成员列表</h2>
+
+<p><a id="fsys.version"></a></p>
+
+<h3>fsys.version(&quot;0.0.0.0&quot;)</h3>
+
+<p>创建版本号,支持大于小于相等比较,可转换为字符串或数值,<br>
+参数可以为空,或者数值,字符串,表对象等<br>
+如果参数为字符串,忽略无关文本,版本号后的文本提取为releaseType<br>
+文本中提取的版本号为2~4组以圆点、或其他标点、空格分隔的数值</p>
+
+<p><a id="fsys.version"></a></p>
+
+<h3>fsys.version()</h3>
+
+<p><a href="#fsysVersionObject">返回对象:fsysVersionObject</a></p>
+
+<p><a id="fsys.version"></a></p>
+
+<h2>fsys.version 成员列表</h2>
+
+<p>用于创建与解析版本号。<br>
+fsys.version 对象可作为参数传入 tostring 函数转换为字符串格式。<br>
+tostring 函数的第 2 个参数可选指定格式化串（ 语法与 string.format 函数相同）。<br>
+如果不指定格式化串，默认格式化串为 &quot;%d.%d.%d.%d&quot;，<br>
+如果 revision 为 0 ，默认格式化串为 &quot;%d.%d.%d&quot;。<br>
+如果同时 build 也为 0，默认格式化串为 &quot;%d.%d&quot;</p>
+
+<p><a id="fsys.version.getInfo"></a></p>
+
+<h3>fsys.version.getInfo()</h3>
+
+<p><a href="#fsysVersionInfoObject">返回对象:fsysVersionInfoObject</a></p>
+
+<p><a id="fsys.version.getInfo"></a></p>
+
+<h3>fsys.version.getInfo(执行文件路径)</h3>
+
+<p>返回版本信息</p>
+
+<p><a id="fsysVersionInfoObject"></a></p>
+
+<h2>fsysVersionInfoObject 成员列表</h2>
+
+<p><a id="fsysVersionInfoObject.codePage"></a></p>
+
+<h3>fsysVersionInfoObject.codePage</h3>
+
+<p>代码页</p>
+
+<p><a id="fsysVersionInfoObject.companyName"></a></p>
+
+<h3>fsysVersionInfoObject.companyName</h3>
+
+<p>公司名</p>
+
+<p><a id="fsysVersionInfoObject.companyNameUnicode"></a></p>
+
+<h3>fsysVersionInfoObject.companyNameUnicode</h3>
+
+<p>公司名,Unicode编码</p>
+
+<p><a id="fsysVersionInfoObject.fileDescription"></a></p>
+
+<h3>fsysVersionInfoObject.fileDescription</h3>
+
+<p>文件描述</p>
+
+<p><a id="fsysVersionInfoObject.fileDescriptionUnicode"></a></p>
+
+<h3>fsysVersionInfoObject.fileDescriptionUnicode</h3>
+
+<p>文件描述,Unicode编码</p>
+
+<p><a id="fsysVersionInfoObject.fileVersion"></a></p>
+
+<h3>fsysVersionInfoObject.fileVersion</h3>
+
+<p><a href="#fsysVersionObject">返回对象:fsysVersionObject</a></p>
+
+<p><a id="fsysVersionInfoObject.internalName"></a></p>
+
+<h3>fsysVersionInfoObject.internalName</h3>
+
+<p>内部名</p>
+
+<p><a id="fsysVersionInfoObject.internalNameUnicode"></a></p>
+
+<h3>fsysVersionInfoObject.internalNameUnicode</h3>
+
+<p>内部名,Unicode编码</p>
+
+<p><a id="fsysVersionInfoObject.language"></a></p>
+
+<h3>fsysVersionInfoObject.language</h3>
+
+<p>语言代码</p>
+
+<p><a id="fsysVersionInfoObject.originalFileName"></a></p>
+
+<h3>fsysVersionInfoObject.originalFileName</h3>
+
+<p>原始文件名</p>
+
+<p><a id="fsysVersionInfoObject.originalFileNameUnicode"></a></p>
+
+<h3>fsysVersionInfoObject.originalFileNameUnicode</h3>
+
+<p>原始文件名,Unicode编码</p>
+
+<p><a id="fsysVersionInfoObject.productName"></a></p>
+
+<h3>fsysVersionInfoObject.productName</h3>
+
+<p>产品名称</p>
+
+<p><a id="fsysVersionInfoObject.productNameUnicode"></a></p>
+
+<h3>fsysVersionInfoObject.productNameUnicode</h3>
+
+<p>产品名称,Unicode编码</p>
+
+<p><a id="fsysVersionInfoObject.productVersion"></a></p>
+
+<h3>fsysVersionInfoObject.productVersion</h3>
+
+<p><a href="#fsysVersionObject">返回对象:fsysVersionObject</a></p>
+
+<p><a id="fsysVersionObject"></a></p>
+
+<h2>fsysVersionObject 成员列表</h2>
+
+<p><a id="fsysVersionObject.build"></a></p>
+
+<h3>fsysVersionObject.build</h3>
+
+<p>发行版本号中用于表示编译版本或补丁版本,16位数值<br>
+该版本号表示兼容的问题修正</p>
+
+<p><a id="fsysVersionObject.major"></a></p>
+
+<h3>fsysVersionObject.major</h3>
+
+<p>发行版本号中的主版本号,8位数值<br>
+表示较大或不兼容的改动</p>
+
+<p><a id="fsysVersionObject.minor"></a></p>
+
+<h3>fsysVersionObject.minor</h3>
+
+<p>发行版本号中的副版本号,8位数值<br>
+表示向下兼容的改动或新增功能</p>
+
+<p><a id="fsysVersionObject.releaseType"></a></p>
+
+<h3>fsysVersionObject.releaseType</h3>
+
+<p>发行版本类型,例如:&quot;alpha&quot;, &quot;beta&quot;,&quot;RC&quot; 等<br>
+可选字段,字符串类型</p>
+
+<p><a id="fsysVersionObject.revision"></a></p>
+
+<h3>fsysVersionObject.revision</h3>
+
+<p>内部修订版本号<br>
+注意版本号转换为一个数值时忽略此版本号</p>
+
+<p><a id="fsysVersionObject.valid"></a></p>
+
+<h3>fsysVersionObject.valid()</h3>
+
+<p>版本号是否有效</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/fsys/version.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/fsys/version.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/fsys/version.md">Markdown 格式</a></p>
+
+</body> 
+</html>

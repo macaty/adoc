@@ -1,0 +1,64 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - aardio 调用 Go 语言 yaegi 脚本 - 提取符号表'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - aardio 调用 Go 语言 yaegi 脚本 - 提取符号表</title> 
+<link rel="stylesheet" href="../../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 调用 Go 语言 yaegi 脚本 - 提取符号表</h1><pre><code class="aardio language-aardio">//aardio 调用 Go 语言 yaegi 脚本 - 提取符号表
+//教程: https://mp.weixin.qq.com/s/_YBW0kN2uJ_pBekNF_b0WQ
+import console.int; 
+import golang;
+
+var go = golang(&quot;/&quot;,&quot;1.22.3&quot;)
+
+//创建项目
+go.mod(&quot;init excelize&quot;)
+
+//先要安装模块
+go.get(&quot;github.com/xuri/excelize/v2&quot;)
+
+//再生成符号表
+go.yaegiExtract(&quot;github.com/xuri/excelize/v2&quot;)
+
+/*
+运行完成会生成 github_com-xuri-excelize-v2.go
+
+先定义一个全局变量
+var Symbols = map[string]map[string]reflect.Value{}
+
+然后加上 github_com-xuri-excelize-v2.go 生成的
+Symbols[&quot;github.com/xuri/excelize/v2/excelize&quot;] = map[string]reflect.Value{
+    //注意上面的键名是包路径 &quot;github.com/xuri/excelize/v2/&quot; 尾部要再加上符号名 &quot;excelize&quot;  
+    //这里一大堆自动生成的人码。 
+}
+
+然后创建 Yaegi 解释器的时候注册符号表
+
+yaegiInterpreter = interp.New(interp.Options{})
+yaegiInterpreter.Use(stdlib.Symbols) 
+yaegiInterpreter.Use(Symbols);
+
+然后就可以用了。
+
+在 Yaegi 脚本里仍然要引入模块：
+
+import ( 
+    &quot;github.com/xuri/excelize/v2&quot;
+)
+
+其实这个模块已经在 Yaegi 里了，不用再下载安装。
+*/
+
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/Go/Yaegi/yaegi.Symbols.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/Go/Yaegi/yaegi.Symbols.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Languages/Go/Yaegi/yaegi.Symbols.md">Markdown 格式</a>
+</body> 
+</html>

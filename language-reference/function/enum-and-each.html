@@ -1,0 +1,130 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - 枚举与遍历'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - 枚举与遍历</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>枚举与遍历</h1>
+
+<h2>集合对象</h2>
+
+<p>集合对象在这里泛指被其他对象管理的一组具有类似行为的对象，例如桌面上的所有窗口、aardio 语言中表示复合数据的 <a href="../datatype/table/_.html" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/datatype/table/_.html">table 对象</a> 。</p>
+
+<h2>枚举、遍历</h2>
+
+<p>在 aardio 标准库中&quot;枚举&quot; 一般指的是调用一个枚举函数枚举集合对象的所有元素，并使用回调函数处理枚举到的元素。</p>
+
+<p>枚举的主要特点：</p>
+
+<ul>
+<li>深度枚举所有向下层级的元素。</li>
+<li>回调函数返回 false 停止枚举。</li>
+<li>所有枚举函数使用 enum 作为函数名前缀。 </li>
+</ul>
+
+<p>在 aardio 标准库中&quot;遍历&quot; 一般指的是使用 for in 语句迭代遍历集合对象。</p>
+
+<p>遍历的主要特点：</p>
+
+<ul>
+<li>仅遍历集合的所有直接成员，不会深度遍历所有下级元素。</li>
+<li>所有遍历函数使用 each 作为函数名前缀。 </li>
+</ul>
+
+<h2>枚举示例</h2>
+
+<p>请参考：<a href="definitions.html" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/function/definitions.html">定义函数</a></p>
+
+<p>调用 winex.enum 枚举所有桌面窗口：</p>
+
+<pre><code class="aardio language-aardio">import console;  
+import winex;
+
+//枚举所有窗口（包括子窗口）。
+winex.enum( 
+
+    function(hwnd,depth){
+        console.log( 
+            depth/*深度*/,
+            hwnd/*窗口句柄*/,
+            win.getText(hwnd,30)/*标题*/ 
+        )
+    } 
+)
+
+console.pause();
+</code></pre>
+
+<p>从上面的示例可以看出：</p>
+
+<ul>
+<li>enum 前缀的枚举函数会有一个回调函数用于处理枚举到的元素。</li>
+<li>枚举函数是会深度枚举所有向下层级的成员。以枚举窗口为例，枚举范围包含所有顶层窗口与所有子窗口。</li>
+</ul>
+
+<h2>遍历示例</h2>
+
+<p>请参考：<a href="../statements/iterator.html" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/statements/iterator.html">泛型 for 与迭代器</a></p>
+
+<p>调用 winex.each 遍历所有顶层桌面窗口：</p>
+
+<pre><code class="aardio language-aardio">import console;
+import winex;
+
+for hwnd,title,theadId,processId in winex.each( ) { 
+    console.log( hwnd,title,theadId,processId )
+}
+
+console.pause();
+</code></pre>
+
+<p>从上面的示例可以看出：</p>
+
+<ul>
+<li>调用 each 前缀的遍历函数会创建一个可用于 for in 语句的迭代器。</li>
+<li>遍历函数创建的迭代器仅仅遍历集合的直接成员，不会深度遍历所有向下层级的成员。以遍历窗口为例，仅仅会遍历顶层窗口，不会深度向下遍历子窗口。</li>
+</ul>
+
+<h2>迭代与枚举的主要区别</h2>
+
+<p>枚举与遍历有类似的语义，在 aardio 标准库中它们的主要区别下：</p>
+
+<ul>
+<li>枚举一般指使用回调触发器机制来枚举集合对象的所有元素。</li>
+<li>遍历一般是指用 for in 语句来循环迭代集合对象的所有直接成员（不会深度遍历所有下级成员）。<br></li>
+</ul>
+
+<hr>
+
+<ul>
+<li>枚举函数会深度枚举所有下级成员。</li>
+<li>遍历则仅仅遍历集合的直接成员，不会深度遍历所有向下层级的成员。 </li>
+</ul>
+
+<hr>
+
+<ul>
+<li>枚举可以通过返回 false 值来被动退出遍历过程。<br></li>
+<li>遍历时则可以调用 break 语句来主动中断遍历过程，或者在迭代器中返回 null 值以退出遍历过程。 </li>
+</ul>
+
+<hr>
+
+<ul>
+<li>枚举函数使用 enum 作为名字前缀。</li>
+<li>遍历函数使用 each 作为名字前缀。</li>
+</ul>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/language-reference/function/enum-and-each.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/language-reference/function/enum-and-each.md'" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/function/enum-and-each.md">Markdown 格式</a></p>
+
+</body> 
+</html>

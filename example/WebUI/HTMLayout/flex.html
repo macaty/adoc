@@ -1,0 +1,325 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 浏览器伸缩盒与HTMLayout布局语法对比'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 浏览器伸缩盒与HTMLayout布局语法对比</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 浏览器伸缩盒与HTMLayout布局语法对比</h1><pre><code class="aardio language-aardio">//伸缩盒
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;浏览器伸缩盒与HTMLayout布局语法对比&quot;;right=759;bottom=469)
+winform.add()
+/*}}*/
+
+import web.layout;
+var wbLayout = web.layout(winform)
+
+import process;
+wbLayout.sinking = {
+    onHyperlinkClick = function (ltTarget,ltEle,reason,behaviorParams) {
+        process.openUrl(ltTarget.href);
+        return true;
+    }
+}
+
+wbLayout.html = /** 
+&lt;html&gt;&lt;head&gt;
+&lt;title&gt;浏览器伸缩盒与 HTMLayout 布局语法对比&lt;/title&gt;
+&lt;style&gt;
+div.section {
+    margin: 1em;
+}
+
+div.section &gt; div {
+    font: 10pt Verdana, sans-serif;
+    padding: 1em;
+    text-align: center; 
+    width: 30%
+}
+
+div.section &gt; pre {
+    padding: 1em;
+    border: thin solid #ddd;
+    height: *
+}
+
+div.section &gt; :nth-child(1) {
+    background: #eff;
+    width: 30%
+}
+
+div.section &gt; :nth-child(2) {
+    background: #ffe;
+    width: 30%
+}
+
+div.section &gt; .parent {
+    border: thin solid #888;
+}
+
+div.section &gt; .parent &gt; .child {
+    font-size: 28px;
+    border: thin solid #bbb;
+    text-align: center;
+    background: gold;
+}
+
+div.section div {
+}
+
+div.section {
+    flow: horizontal;
+}
+
+div.section &gt; * {
+    width: 1*;
+    margin: 1em;
+}
+
+#A .parent {
+    flow: horizontal;
+}
+
+#B .parent {
+    flow: vertical;
+}
+
+#C .parent {
+    flow: h-flow;
+}
+
+#C .parent .child {
+    width: 40%;
+}
+
+#D .parent {
+    flow: horizontal;
+    border-spacing: *;
+}
+
+#E .parent {
+    flow: horizontal;
+    height: *;
+}
+
+#E .child {
+    height: *;
+    width: 40px
+}
+
+#E .child:nth-child(3) {
+    height: 80px;
+}
+
+#F .parent {
+    flow: horizontal;
+    height: *;
+}
+
+#F .child {
+    margin-top: *;
+    margin-bottom: *;
+}
+
+#F .child:nth-child(3) {
+    margin-top: 0;
+    margin-bottom: *;
+}
+
+#G .parent {
+    flow: horizontal;
+}
+
+#G .child {
+    height: *;
+    width: 40px
+}
+
+#G .child:nth-child(3) {
+    width: *;
+}
+        &lt;/style&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+
+&lt;h1&gt;浏览器 &lt;code&gt;display:flex&lt;/code&gt; 与 HTMLayout/Sciter 布局语法 &lt;code&gt;flow/flex&lt;/code&gt; 对比&lt;/h1&gt;
+&lt;a href=&quot;http://bbs.aardio.com/forum.php?mod=viewthread&amp;tid=7159&quot;&gt;参考：HTMLayout布局教程&lt;/a&gt;
+&lt;div .section id=&quot;header&quot;&gt;
+  &lt;div&gt;浏览器: Flexbox &lt;/div&gt;
+  &lt;div&gt;HTMLayout/Sciter: flow/flex&lt;/div&gt;
+  &lt;div&gt;演示&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;h5&gt;水平布局&lt;/h5&gt;
+&lt;div .section id=&quot;A&quot;&gt;
+  &lt;pre&gt;.parent { 
+  display:flex; 
+  flex-direction: row; 
+}&lt;/pre&gt;
+  &lt;pre&gt;.parent { flow:horizontal; }&lt;/pre&gt;
+  &lt;div class=&quot;parent&quot;&gt;
+    &lt;div class=&quot;child&quot;&gt;1&lt;/div&gt;
+    &lt;div class=&quot;child&quot;&gt;2&lt;/div&gt;
+    &lt;div class=&quot;child&quot;&gt;3&lt;/div&gt;
+    &lt;div class=&quot;child&quot;&gt;4&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;h5&gt;垂直布局&lt;/h5&gt;
+&lt;div .section id=&quot;B&quot;&gt;
+  &lt;pre&gt;.parent { 
+  display:flex; 
+  flex-direction: column; 
+}&lt;/pre&gt;
+  &lt;pre&gt;.parent { flow:vertical; }&lt;/pre&gt;
+  &lt;div class=&quot;parent&quot;&gt;
+    &lt;div class=&quot;child&quot;&gt;1&lt;/div&gt;
+    &lt;div class=&quot;child&quot;&gt;2&lt;/div&gt;
+    &lt;div class=&quot;child&quot;&gt;3&lt;/div&gt;
+    &lt;div class=&quot;child&quot;&gt;4&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;h5&gt;水平流式布局&lt;/h5&gt;
+&lt;div .section id=&quot;C&quot;&gt;
+  &lt;pre&gt;.parent { 
+  display: flex; 
+  flex-wrap: wrap; 
+}
+.child { 
+  width:40%; 
+} &lt;/pre&gt;
+  &lt;pre&gt;.parent { 
+  flow:h-flow; 
+}
+.child { 
+  width:40%; 
+}&lt;/pre&gt;
+  &lt;div class=&quot;parent&quot;&gt;
+    &lt;div class=&quot;child&quot;&gt;1&lt;/div&gt;
+    &lt;div class=&quot;child&quot;&gt;2&lt;/div&gt;
+    &lt;div class=&quot;child&quot;&gt;3&lt;/div&gt;
+    &lt;div class=&quot;child&quot;&gt;4&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;h5&gt;水平布局，并平分间距&lt;/h5&gt;
+&lt;div .section id=&quot;D&quot;&gt;
+  &lt;pre&gt;.parent { 
+  display:flex; 
+  flex-direction: row; 
+  justify-content: space-between; 
+}&lt;/pre&gt;
+  &lt;pre&gt;.parent { 
+  flow:horizontal; 
+  border-spacing:*; 
+}&lt;/pre&gt;
+  &lt;div class=&quot;parent&quot;&gt;
+    &lt;div class=&quot;child&quot;&gt;1&lt;/div&gt;
+    &lt;div class=&quot;child&quot;&gt;2&lt;/div&gt;
+    &lt;div class=&quot;child&quot;&gt;3&lt;/div&gt;
+    &lt;div class=&quot;child&quot;&gt;4&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;h5&gt;水平布局，高度自适应&lt;/h5&gt;
+&lt;div .section id=&quot;E&quot;&gt;
+  &lt;pre&gt;.parent { 
+  display:flex; 
+  flex-direction: row; 
+  height:80px; 
+  align-items:stretch;
+}
+.child:nth-child(3) { 
+  align-self: flex-start; 
+}&lt;/pre&gt;
+  &lt;pre&gt;.parent { 
+  flow:horizontal; 
+  height:*; 
+}
+.child { 
+  height:*;
+  width:40px 
+}
+.child:nth-child(3) { 
+  height:80px;
+}&lt;/pre&gt;
+  &lt;div class=&quot;parent&quot;&gt;
+    &lt;div class=&quot;child&quot;&gt;1&lt;/div&gt;
+    &lt;div class=&quot;child&quot;&gt;2&lt;/div&gt;
+    &lt;div class=&quot;child&quot;&gt;3&lt;/div&gt;
+    &lt;div class=&quot;child&quot;&gt;4&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+
+&lt;h5&gt;水平布局，垂直对齐&lt;/h5&gt;
+&lt;div .section id=&quot;F&quot;&gt;
+  &lt;pre&gt;.parent { 
+  display:flex; 
+  flex-direction: row; 
+  height:80px; 
+  align-items:center;
+}
+.child:nth-child(3) { 
+  align-self: flex-start; 
+}&lt;/pre&gt;
+  &lt;pre&gt;.parent {
+    flow: horizontal;
+    height: *;
+}
+.child {
+    margin-top: *;
+    margin-bottom: *;
+}
+.child:nth-child(3) {
+    margin-top: 0;
+    margin-bottom: *;
+}&lt;/pre&gt;
+  &lt;div class=&quot;parent&quot;&gt;
+    &lt;div class=&quot;child&quot;&gt;1&lt;/div&gt;
+    &lt;div class=&quot;child&quot;&gt;2&lt;/div&gt;
+    &lt;div class=&quot;child&quot;&gt;3&lt;/div&gt;
+    &lt;div class=&quot;child&quot;&gt;4&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+
+&lt;h5&gt;水平布局，宽度自适应&lt;/h5&gt;
+&lt;div .section id=&quot;G&quot;&gt;
+  &lt;pre&gt;.parent { 
+  display:flex; 
+  flex-direction: row; 
+}
+.child:nth-child(3) { 
+  flex: 1;
+}&lt;/pre&gt;
+  &lt;pre&gt;.parent { flow:horizontal; }
+.child { height:*;width:40px  }
+.child:nth-child(3) { width: *; }&lt;/pre&gt;
+  &lt;div class=&quot;parent&quot;&gt;
+    &lt;div class=&quot;child&quot;&gt;1&lt;/div&gt;
+    &lt;div class=&quot;child&quot;&gt;2&lt;/div&gt;
+    &lt;div class=&quot;child&quot;&gt;3&lt;/div&gt;
+    &lt;div class=&quot;child&quot;&gt;4&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt; 
+&lt;/body&gt;&lt;/html&gt;
+**/
+
+winform.show(3/*_SW_MAXIMIZE*/) 
+win.loopMessage();
+
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/WebUI/HTMLayout/flex.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/WebUI/HTMLayout/flex.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/WebUI/HTMLayout/flex.md">Markdown 格式</a>
+</body> 
+</html>

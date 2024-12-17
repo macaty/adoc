@@ -1,0 +1,348 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - dotNet.ocr 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - dotNet.ocr 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>dotNet.ocr 库模块帮助文档</h1>
+
+<p><a id="dotNet"></a></p>
+
+<h2>dotNet 成员列表</h2>
+
+<p><a id="dotNet.ocr"></a></p>
+
+<h3>dotNet.ocr</h3>
+
+<p>识别屏幕或图像上文字的本地组件，<br>
+系统自带组件，仅支持 Windows 10。  </p>
+
+<p>相关的库或函数： string.ocrLite, soImage 。<br>
+soImage 范例中提供自动生成字符与简单 OCR 的工具。</p>
+
+<p><a id="dotNet.ocr"></a></p>
+
+<h3>dotNet.ocr()</h3>
+
+<p>创建OCR对象  </p>
+
+<p><a href="#DotNetOrcObject">返回对象:DotNetOrcObject</a></p>
+
+<p><a id="DotNetOrcObject"></a></p>
+
+<h2>DotNetOrcObject 成员列表</h2>
+
+<p><a id="DotNetOrcObject.availableLanguages"></a></p>
+
+<h3>DotNetOrcObject.availableLanguages()</h3>
+
+<p>返回支持的语言列表,返回值为字符串数组</p>
+
+<p><a id="DotNetOrcObject.clickClient"></a></p>
+
+<h3>DotNetOrcObject.clickClient(hwnd,text,miniSimilar)</h3>
+
+<p>在@hwnd参数指定的窗口上查找并点击@text指定的文本,<br>
+@miniSimilar指定最小相似度,可选参数,默认为 0.5,<br>
+成功返回true</p>
+
+<p><a id="DotNetOrcObject.close"></a></p>
+
+<h3>DotNetOrcObject.close()</h3>
+
+<p>关闭对象,<br>
+关闭以后不应再使用此对象,<br>
+默认在对象被回收时会自动关闭</p>
+
+<p><a id="DotNetOrcObject.detectBitmap"></a></p>
+
+<h3>DotNetOrcObject.detectBitmap()</h3>
+
+<p>传入 gdip.bimap 对象并识别文字,<br>
+返回识别结果对象</p>
+
+<p><a href="#DotNetOrcResultObject">返回对象:DotNetOrcResultObject</a></p>
+
+<p><a id="DotNetOrcObject.detectBuffer"></a></p>
+
+<h3>DotNetOrcObject.detectBuffer()</h3>
+
+<p><a href="#DotNetOrcResultObject">返回对象:DotNetOrcResultObject</a></p>
+
+<p><a id="DotNetOrcObject.detectBuffer"></a></p>
+
+<h3>DotNetOrcObject.detectBuffer(buffer)</h3>
+
+<p>识别文字并返回识别结果对象,<br>
+buffer指定图像文件的内存数据,<br>
+支持jpg,png,bmp等常见格式</p>
+
+<p><a id="DotNetOrcObject.detectClient"></a></p>
+
+<h3>DotNetOrcObject.detectClient()</h3>
+
+<p><a href="#DotNetOrcResultObject">返回对象:DotNetOrcResultObject</a></p>
+
+<p><a id="DotNetOrcObject.detectClient"></a></p>
+
+<h3>DotNetOrcObject.detectClient(hwnd,x,y,cx,cy)</h3>
+
+<p>自窗口客户区后台截图并识别文字,注意截图范围越小结果越准确,<br>
+必须用 @hwnd 参数指定窗口句柄,<br>
+可选用 @x,y@ 参数指定坐标<br>
+可选用 @cx,@cy 指定宽度和高度,<br>
+返回识别结果对象</p>
+
+<p><a id="DotNetOrcObject.detectImagePath"></a></p>
+
+<h3>DotNetOrcObject.detectImagePath()</h3>
+
+<p><a href="#DotNetOrcResultObject">返回对象:DotNetOrcResultObject</a></p>
+
+<p><a id="DotNetOrcObject.detectImagePath"></a></p>
+
+<h3>DotNetOrcObject.detectImagePath(path)</h3>
+
+<p>自图像文件识别文字,<br>
+参数指定图像文件路径</p>
+
+<p><a id="DotNetOrcObject.detectScreen"></a></p>
+
+<h3>DotNetOrcObject.detectScreen()</h3>
+
+<p><a href="#DotNetOrcResultObject">返回对象:DotNetOrcResultObject</a></p>
+
+<p><a id="DotNetOrcObject.detectScreen"></a></p>
+
+<h3>DotNetOrcObject.detectScreen(hwnd,x,y,cx,cy)</h3>
+
+<p>自屏幕截图并识别文字,<br>
+所有参数可选,可选用 @hwnd 参数指定窗口句柄,<br>
+可选用 @x,y@ 参数指定坐标<br>
+可选用 @cx,@cy 指定宽度和高度,<br>
+返回识别结果对象</p>
+
+<p><a id="DotNetOrcObject.detectWindow"></a></p>
+
+<h3>DotNetOrcObject.detectWindow()</h3>
+
+<p><a href="#DotNetOrcResultObject">返回对象:DotNetOrcResultObject</a></p>
+
+<p><a id="DotNetOrcObject.detectWindow"></a></p>
+
+<h3>DotNetOrcObject.detectWindow(hwnd,x,y,cx,cy)</h3>
+
+<p>自窗口后台截图并识别文字,<br>
+所有参数可选,可选用 @hwnd 参数指定窗口句柄,<br>
+可选用 @x,y@ 参数指定坐标<br>
+可选用 @cx,@cy 指定宽度和高度,<br>
+返回识别结果对象</p>
+
+<p><a id="DotNetOrcObject.findClient"></a></p>
+
+<h3>DotNetOrcObject.findClient(hwnd,text,miniSimilar)</h3>
+
+<p>在@hwnd参数指定的窗口上查找@text指定的文本,<br>
+@miniSimilar指定最小相似度,可选参数,默认为 0.5,<br>
+成功返回true</p>
+
+<p><a id="DotNetOrcObject.isLanguageSupported"></a></p>
+
+<h3>DotNetOrcObject.isLanguageSupported()</h3>
+
+<p>是否支持指定的语言，字符串参数 @1 用于指定语言。<br>
+例如 &quot;en-US&quot; 指定英文， &quot;zh-Hans-CN&quot; 指定简体中文。</p>
+
+<p><a id="DotNetOrcObject.language"></a></p>
+
+<h3>DotNetOrcObject.language</h3>
+
+<p>字符串，设置识别用到的语言。<br>
+例如 &quot;en-US&quot; 指定英文， &quot;zh-Hans-CN&quot; 指定简体中文。</p>
+
+<p><a id="DotNetOrcObject.waitClickClient"></a></p>
+
+<h3>DotNetOrcObject.waitClickClient(hwnd,text,miniSimilar,timeout,hwndWait)</h3>
+
+<p>等待@hwnd参数指定的窗口,查找并点击@text指定的文本,<br>
+@miniSimilar指定最小相似度,可选参数,默认为 0.6,<br>
+@timeout 为可选的超时参数,单位毫秒,<br>
+可选用 @hwndWait 指定等待窗口句柄,不指定则默认值为 @hwnd,<br>
+成功返回true</p>
+
+<p><a id="DotNetOrcObject.waitClient"></a></p>
+
+<h3>DotNetOrcObject.waitClient(hwnd,text,miniSimilar,timeout,hwndWait)</h3>
+
+<p>等待@hwnd参数指定的窗口上出现@text指定的文本,<br>
+@miniSimilar指定最小相似度,可选参数,默认为 0.6,<br>
+@timeout 为可选的超时参数,单位毫秒,<br>
+可选用 @hwndWait 指定等待窗口句柄,不指定则默认值为 @hwnd,<br>
+成功返回true</p>
+
+<p><a id="DotNetOrcObject.wordSpace"></a></p>
+
+<h3>DotNetOrcObject.wordSpace</h3>
+
+<p>单词分隔符，<br>
+不指定则自动设置英文或数值使用空格，中文不分隔</p>
+
+<p><a id="DotNetOrcResultBlockObject"></a></p>
+
+<h2>DotNetOrcResultBlockObject 成员列表</h2>
+
+<p><a id="DotNetOrcResultBlockObject.points"></a></p>
+
+<h3>DotNetOrcResultBlockObject.points</h3>
+
+<p>文本框四角坐标,长度为4的坐标数组,<br>
+每个坐都是包含x,y坐标属性的对象,  </p>
+
+<p><a href="#pointsObject">返回对象:pointsObject</a></p>
+
+<p><a id="DotNetOrcResultBlockObject.rect"></a></p>
+
+<h3>DotNetOrcResultBlockObject.rect</h3>
+
+<p>识别出的文本区块</p>
+
+<p><a id="DotNetOrcResultBlockObject.text"></a></p>
+
+<h3>DotNetOrcResultBlockObject.text</h3>
+
+<p>识别出的全部文本</p>
+
+<p><a id="DotNetOrcResultBlockObject.word"></a></p>
+
+<h3>DotNetOrcResultBlockObject.word</h3>
+
+<p>字符或单词数组</p>
+
+<p><a id="DotNetOrcResultBlockObject.wordRects"></a></p>
+
+<h3>DotNetOrcResultBlockObject.wordRects</h3>
+
+<p>字符或单词区块数组</p>
+
+<p><a id="DotNetOrcResultObject"></a></p>
+
+<h2>DotNetOrcResultObject 成员列表</h2>
+
+<p><a id="DotNetOrcResultObject.blocks"></a></p>
+
+<h3>DotNetOrcResultObject.blocks</h3>
+
+<p>识别结果文本块数组</p>
+
+<p><a id="DotNetOrcResultObject.click"></a></p>
+
+<h3>DotNetOrcResultObject.click</h3>
+
+<p>查找文本所在的区块正中点坐标,并发送鼠标点击消息</p>
+
+<p><a id="DotNetOrcResultObject.click"></a></p>
+
+<h3>DotNetOrcResultObject.click(txt,miniSimilar,startIndex)</h3>
+
+<p>查找文本所在的区块正中点坐标,并发送鼠标点击消息,<br>
+参数 @txt 指定要查找的文本,可传入文本数组,支持模糊匹配,<br>
+@miniSimilar 指定最小相似度,可选参数,<br>
+完全相似为1,完全不相似为0,默认最小相似度为0.5,<br>
+可以降低相似度没有问题,此函数会自动获取相似度最高的结果,<br>
+可选指定起始索引,<br>
+成功返回值@1为匹配的文本坐标,返回值@2为找到的索引</p>
+
+<p><a id="DotNetOrcResultObject.find"></a></p>
+
+<h3>DotNetOrcResultObject.find</h3>
+
+<p>查找文本,支持模糊匹配</p>
+
+<p><a id="DotNetOrcResultObject.find"></a></p>
+
+<h3>DotNetOrcResultObject.find()</h3>
+
+<p><a href="#DotNetOrcResultBlockObject">返回对象:DotNetOrcResultBlockObject</a></p>
+
+<p><a id="DotNetOrcResultObject.find"></a></p>
+
+<h3>DotNetOrcResultObject.find(txt,miniSimilar,startIndex)</h3>
+
+<p>查找文本,支持模糊匹配,<br>
+参数 @txt 指定要查找的文本,可传入包含多个查询文本的数组,<br>
+@miniSimilar 指定最小相似度,可选参数,<br>
+完全相似为1,完全不相似为0,默认最小相似度为0.5,<br>
+可以降低相似度没有问题,此函数会自动获取相似度最高的结果,<br>
+可选指定起始索引,<br>
+成功返回值@1为匹配的文本块信息,返回值@2为找到的索引</p>
+
+<p><a id="DotNetOrcResultObject.findPoint"></a></p>
+
+<h3>DotNetOrcResultObject.findPoint</h3>
+
+<p>查找文本所在的区块正中点坐标,支持模糊匹配</p>
+
+<p><a id="DotNetOrcResultObject.findPoint"></a></p>
+
+<h3>DotNetOrcResultObject.findPoint(txt,miniSimilar,startIndex)</h3>
+
+<p>查找文本所在的区块正中点坐标,支持模糊匹配,<br>
+参数 @txt 指定要查找的文本,可传入包含多个查询文本的数组,<br>
+@miniSimilar 指定最小相似度,可选参数,<br>
+完全相似为1,完全不相似为0,默认最小相似度为0.5,<br>
+可以降低相似度没有问题,此函数会自动获取相似度最高的结果,<br>
+可选指定起始索引,<br>
+成功返回值@1为匹配的文本坐标,返回值@2为找到的索引</p>
+
+<p><a id="DotNetOrcResultObject.findRect"></a></p>
+
+<h3>DotNetOrcResultObject.findRect</h3>
+
+<p>查找文本所在的区块,支持模糊匹配</p>
+
+<p><a id="DotNetOrcResultObject.findRect"></a></p>
+
+<h3>DotNetOrcResultObject.findRect()</h3>
+
+<p><a href="../../global/_.html#rectObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/global/_.html#rectObject">返回对象:rectObject</a></p>
+
+<p><a id="DotNetOrcResultObject.findRect"></a></p>
+
+<h3>DotNetOrcResultObject.findRect(txt,miniSimilar,startIndex)</h3>
+
+<p>查找文本所在的区块,支持模糊匹配,<br>
+参数 @txt 指定要查找的文本,可传入包含多个查询文本的数组,<br>
+@miniSimilar 指定最小相似度,可选参数,<br>
+完全相似为1,完全不相似为0,默认最小相似度为0.5,<br>
+可以降低相似度没有问题,此函数会自动获取相似度最高的结果,<br>
+可选指定起始索引,<br>
+成功返回值@1为匹配的::RECT对象,返回值@2为找到的索引</p>
+
+<p><a id="DotNetOrcResultObject.search"></a></p>
+
+<h3>DotNetOrcResultObject.search(subString,miniSimilar)</h3>
+
+<p>查找识别结果是否包含@subString指定的子字符串,支持模糊匹配,<br>
+@miniSimilar 指定最小相似度,可选参数,<br>
+完全相似为1,完全不相似为0,默认最小相似度为0.8,<br>
+字符串较短时建议降低相似度</p>
+
+<p><a id="DotNetOrcResultObject.text"></a></p>
+
+<h3>DotNetOrcResultObject.text</h3>
+
+<p>识别出的全部文本</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/dotNet/ocr/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/dotNet/ocr/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/dotNet/ocr/_.md">Markdown 格式</a></p>
+
+</body> 
+</html>

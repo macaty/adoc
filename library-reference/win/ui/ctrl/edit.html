@@ -1,0 +1,1175 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - win.ui.ctrl.edit 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - win.ui.ctrl.edit 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>win.ui.ctrl.edit 库模块帮助文档</h1>
+
+<p><a id="win.ui.ctrl"></a></p>
+
+<h2>win.ui.ctrl 成员列表</h2>
+
+<p><a id="win.ui.ctrl.edit"></a></p>
+
+<h3>win.ui.ctrl.edit</h3>
+
+<p>文本框控件支持库</p>
+
+<p><a id="win.ui.ctrl.edit"></a></p>
+
+<h3>win.ui.ctrl.edit()</h3>
+
+<p>文本框控件  </p>
+
+<p><a href="edit.html#editObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/edit.html#editObject">返回对象:editObject</a></p>
+
+<p><a id="editObject"></a></p>
+
+<h2>editObject 成员列表</h2>
+
+<p><a id="editObject._defWindowProc"></a></p>
+
+<h3>editObject._defWindowProc(hwnd,message,wParam,lParam)</h3>
+
+<p>用于在 wndproc 回调中提前调用默认消息回调函数,<br>
+所有窗口和控件定义了 wndproc 回调以后会自动创建这个函数,<br>
+调用此函数以后,wndproc 必须指定非 null 返回值,<br>
+以避免再次重复调用默认回调函数</p>
+
+<p><a id="editObject._parentForm"></a></p>
+
+<h3>editObject._parentForm</h3>
+
+<p>创建该控件的父窗口（win.form对象）,<br>
+设计时窗体容器是所有拖放在窗体上的控件的 _parentForm,  </p>
+
+<p>即使窗口移除子窗口样式、更改父子关系，或以 orphanWindow显示,<br>
+控件的 _parentForm 始终都不会改变  </p>
+
+<p><a href="../_.html#winform" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/_.html#winform">返回对象:winform</a></p>
+
+<p><a id="editObject.addCtrl"></a></p>
+
+<h3>editObject.addCtrl(tParam)</h3>
+
+<pre><code class="aardio language-aardio">editObject.addCtrl(  
+    spin={  
+        cls=&quot;spin&quot;;marginRight=4;marginTop=1;marginBottom=4;width=16;  
+        oncommand = function(id,event,pos){   
+            if( pos &amp; event == 0x4/*_SB_THUMBPOSITION*/ ){  
+                winform.edit.text = string.format(&quot;%.2f&quot;,pos / 100 )  
+            }  
+        }  
+    }  
+)/*在edit控件窗口内添加子窗口*/
+</code></pre>
+
+<p><a id="editObject.adjust"></a></p>
+
+<h3>editObject.adjust</h3>
+
+<pre><code class="aardio language-aardio">editObject.adjust = function( cx,cy,wParam ) {     
+    /*窗口缩放时会自动触发此函数。  
+cx 参数为窗口宽度,cy 参数为窗口高度,  
+wParam 参数请参考 _WM_SIZE 消息参数说明,一般不用管。  
+
+所有 win.form 创建的窗体和控件都支持此事件,  
+重复赋值只会追加而不会覆盖此事件。  
+一般不建议添加一个 wndproc 仅仅是为了处理  _WM_SIZE 消息，  
+定义 adjust 事件是更好的选择。  
+
+可主动调用此事件,省略参数时 cx,cy 参数默认设为窗口大小*/    
+};
+</code></pre>
+
+<p><a id="editObject.appendText"></a></p>
+
+<h3>editObject.appendText</h3>
+
+<p>追加文本并移动光标插入点到文本尾部。</p>
+
+<p><a id="editObject.appendText"></a></p>
+
+<h3>editObject.appendText(追加文本-..)</h3>
+
+<p>追加文本并移动光标插入点到文本尾部。<br>
+可指定零个、或多个参数，参数可以是字符串、buffer、数值。<br>
+传入其他类型参数会抛出异常。<br>
+返回文本总长度</p>
+
+<p><a id="editObject.bgcolor"></a></p>
+
+<h3>editObject.bgcolor</h3>
+
+<p>获取或修改景颜色数值</p>
+
+<p><a id="editObject.bottom"></a></p>
+
+<h3>editObject.bottom</h3>
+
+<p>底部坐标</p>
+
+<p><a id="editObject.canCopy"></a></p>
+
+<h3>editObject.canCopy()</h3>
+
+<p>能否复制,<br>
+实际上也就是判断是否存在选区</p>
+
+<p><a id="editObject.canPaste"></a></p>
+
+<h3>editObject.canPaste()</h3>
+
+<p>能否粘贴</p>
+
+<p><a id="editObject.canRedo"></a></p>
+
+<h3>editObject.canRedo()</h3>
+
+<p>能否重做</p>
+
+<p><a id="editObject.canUndo"></a></p>
+
+<h3>editObject.canUndo()</h3>
+
+<p>能否撤消</p>
+
+<p><a id="editObject.capture"></a></p>
+
+<h3>editObject.capture</h3>
+
+<p>是否捕获全局鼠标消息</p>
+
+<p><a id="editObject.className"></a></p>
+
+<h3>editObject.className</h3>
+
+<p>运行时类名</p>
+
+<p><a id="editObject.clear"></a></p>
+
+<h3>editObject.clear()</h3>
+
+<p>清除选中文本</p>
+
+<p><a id="editObject.close"></a></p>
+
+<h3>editObject.close()</h3>
+
+<p>关闭控件窗</p>
+
+<p><a id="editObject.cls"></a></p>
+
+<h3>editObject.cls</h3>
+
+<p>设计时类名</p>
+
+<p><a id="editObject.color"></a></p>
+
+<h3>editObject.color</h3>
+
+<p>获取或修改字体颜色数值</p>
+
+<p><a id="editObject.copy"></a></p>
+
+<h3>editObject.copy()</h3>
+
+<p>复制</p>
+
+<p><a id="editObject.cut"></a></p>
+
+<h3>editObject.cut()</h3>
+
+<p>剪切</p>
+
+<p><a id="editObject.deselect"></a></p>
+
+<h3>editObject.deselect()</h3>
+
+<p>取消选定</p>
+
+<p><a id="editObject.disableInputMethod"></a></p>
+
+<h3>editObject.disableInputMethod()</h3>
+
+<p>在此控件中关闭输入法, 仅支持英文输入</p>
+
+<p><a id="editObject.disabled"></a></p>
+
+<h3>editObject.disabled</h3>
+
+<p>控件时否禁用</p>
+
+<p><a id="editObject.disabledText"></a></p>
+
+<h3>editObject.disabledText</h3>
+
+<p>当指定文本时，禁用此控件并显示指定文本。<br>
+指定为 null 时，启用此控件并恢复控件之前的正常文本。</p>
+
+<p><a id="editObject.dump"></a></p>
+
+<h3>editObject.dump(变量)</h3>
+
+<p>显示变量的值,支持多参数<br>
+注意仅显示普通table,string,number等类型的值,不显示函数等</p>
+
+<p><a id="editObject.enablePopMenu"></a></p>
+
+<h3>editObject.enablePopMenu()</h3>
+
+<pre><code class="aardio language-aardio">editObject.enablePopMenu(function(){  
+    return {   
+        { /*分隔线*/ };   
+        { &quot;自定义菜单项&quot;;  function(id){  
+            /*enablePopMenu 用于启用文本框的右键菜单。  
+可选指定要增加的菜单配置表（或返回菜单配置表的函数）作为参数。  
+菜单配置表将作为参数传给 win.ui.popmenu 对象的 addTable 函数。  
+格式请查看该函数说明函数。  
+调用此函数必须事先引用 win.ui.menu 。*/  
+        }; !owner.canCopy() ? 1/*_MF_GRAYED*/ : 0};       
+    }  
+})
+</code></pre>
+
+<p><a id="editObject.font"></a></p>
+
+<h3>editObject.font</h3>
+
+<p>控件字体（LOGFONT 结构体），<br>
+注意获取该属性总是返回新的 LOGFONT 对象，<br>
+修改返回字体并不会更新控件字体，<br>
+除非重新赋值。  </p>
+
+<p>建议尽量优先使用 getFont 或 setFont 函数，<br>
+以增强代码可读性  </p>
+
+<p>字体会根据控件设置自动处理 DPI 缩放，不需要事先缩放字体大小</p>
+
+<p><a id="editObject.getClientRect"></a></p>
+
+<h3>editObject.getClientRect()</h3>
+
+<p>控件文本客户区块位置(::RECT结构体)  </p>
+
+<p><a href="../../../global/_.html#rectObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/global/_.html#rectObject">返回对象:rectObject</a></p>
+
+<p><a id="editObject.getFont"></a></p>
+
+<h3>editObject.getFont()</h3>
+
+<p>返回控件 LOGFONT 字体，<br>
+返回对象的 h 值会按控件的 DPI 缩放设置自动还原为缩放前大小。  </p>
+
+<p><a href="#logfontObject">返回对象:logfontObject</a></p>
+
+<p><a id="editObject.getFont"></a></p>
+
+<h3>editObject.getFont(true)</h3>
+
+<p>返回控件 LOGFONT 字体，<br>
+返回对象的 h 值为字体实际大小，不会按控件 DPI 设置还原。<br>
+返回字体会设置 noScale 属性为 true,<br>
+使用控件的 setFont 函数或赋值 font 属性时，<br>
+noScale 属性为 true 的字体同样不会进行自动 DPI 缩放  </p>
+
+<p><a href="#logfontObject">返回对象:logfontObject</a></p>
+
+<p><a id="editObject.getLength"></a></p>
+
+<h3>editObject.getLength()</h3>
+
+<p>获取文本长度<br>
+注意是按字符计数，而不是按字节计数</p>
+
+<p><a id="editObject.getParent"></a></p>
+
+<h3>editObject.getParent()</h3>
+
+<p>返回父窗口  </p>
+
+<p><a href="static.html#staticObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/static.html#staticObject">返回对象:staticObject</a></p>
+
+<p><a id="editObject.getPos"></a></p>
+
+<h3>editObject.getPos()</h3>
+
+<p>返回相对坐标,宽,高<br>
+x,y,cx,cy=win.getPos(hwnd)</p>
+
+<p><a id="editObject.getRect"></a></p>
+
+<h3>editObject.getRect()</h3>
+
+<p>控件区块位置(::RECT结构体)</p>
+
+<p><a id="editObject.getRect"></a></p>
+
+<h3>editObject.getRect(true)</h3>
+
+<p>控件屏幕区块位置(::RECT结构体)</p>
+
+<p><a id="editObject.getRoot"></a></p>
+
+<h3>editObject.getRoot()</h3>
+
+<p>获取顶层父窗口，这个函数会查找 orphanWindow 的父窗口</p>
+
+<p><a id="editObject.getsel"></a></p>
+
+<h3>editObject.getsel()</h3>
+
+<p>获取选区起始位置,结束位置<br>
+选区包含起始与结束位置的字符，首字符位置为1<br>
+开始位置在指定的字符前面,结束位置表示指定的字符后面<br>
+只有一个返回值时表示无选区,并表示输入光标在指定字符后面<br>
+返回0表示输入光标在最前面,并且无选区</p>
+
+<p><a id="editObject.hScroll"></a></p>
+
+<h3>editObject.hScroll()</h3>
+
+<p>滚动到右侧</p>
+
+<p><a id="editObject.hScroll"></a></p>
+
+<h3>editObject.hScroll(_SB)</h3>
+
+<p>滚动横向滚动条</p>
+
+<p><a id="editObject.height"></a></p>
+
+<h3>editObject.height</h3>
+
+<p>高度</p>
+
+<p><a id="editObject.hide"></a></p>
+
+<h3>editObject.hide</h3>
+
+<p>当前控件窗口是否隐藏。<br>
+仅检查当前窗口的可见性样式（窗口 是否移除了 _WS_VISIBLE 样式）。<br>
+不考虑父窗口是否可见，不考虑是否被其他窗口遮挡。<br>
+如果需要同时判断父窗口的可见性，应改用 win.isVisible 函数。</p>
+
+<p><a id="editObject.hwnd"></a></p>
+
+<h3>editObject.hwnd</h3>
+
+<p>控件句柄</p>
+
+<p><a id="editObject.id"></a></p>
+
+<h3>editObject.id</h3>
+
+<p>控件ID</p>
+
+<p><a id="editObject.inflateClientRect"></a></p>
+
+<h3>editObject.inflateClientRect(dx,dy)</h3>
+
+<p>正数增大,负数缩小文本客户区<br>
+文本框必须在设计时指定为多行<br>
+在文本框改变大小必须重新设置</p>
+
+<p><a id="editObject.invalidate(/*可选使用::RECT"></a></p>
+
+<h3>editObject.invalidate(/*可选使用::RECT()对象指定客户区*/)</h3>
+
+<p>使窗口绘图区无效</p>
+
+<p><a id="editObject.invalidate(/*可选使用::RECT"></a></p>
+
+<h3>editObject.invalidate(/*可选使用::RECT()对象指定客户区*/,0)</h3>
+
+<p>使窗口绘图区无效<br>
+不刷新背景</p>
+
+<p><a id="editObject.isDialogMessage"></a></p>
+
+<h3>editObject.isDialogMessage</h3>
+
+<pre><code class="aardio language-aardio">editObject.isDialogMessage = function(hParent,msg){/*在控件范围内替代父窗口的 isDialogMessage，  
+可用于在控件范围内屏蔽对话框快捷键。  
+可用于禁用 tab 控制键的多行文本框支持按 tab 输入制表符*/}
+</code></pre>
+
+<p><a id="editObject.left"></a></p>
+
+<h3>editObject.left</h3>
+
+<p>左侧坐标</p>
+
+<p><a id="editObject.limit"></a></p>
+
+<h3>editObject.limit</h3>
+
+<p>字符数限制,注意不是以字节为单位,<br>
+此限制主要用于限制用户输入,对读写text属性无效,<br>
+如果设为0，单行文本框指定为0x7FFFFFFE，多行文本框指定为-1<br>
+如果用于限制log,print等函数输出字符数时,值不能设置过大或设为0、负数等</p>
+
+<p><a id="editObject.lineCount"></a></p>
+
+<h3>editObject.lineCount</h3>
+
+<p>获取行数</p>
+
+<p><a id="editObject.lineFromChar"></a></p>
+
+<h3>editObject.lineFromChar()</h3>
+
+<p>不指定参数则返回当前行</p>
+
+<p><a id="editObject.lineFromChar"></a></p>
+
+<h3>editObject.lineFromChar(指定位置)</h3>
+
+<p>返回指定位置行数</p>
+
+<p><a id="editObject.lineLength"></a></p>
+
+<h3>editObject.lineLength(指定行号)</h3>
+
+<p>返回指定行字符数<br>
+省略参数表示当前行,小于0表示自尾部倒数到指定行,-1表示最后一行</p>
+
+<p><a id="editObject.lineScroll"></a></p>
+
+<h3>editObject.lineScroll(滚动到指定行)</h3>
+
+<p>滚动条移动到指定行<br>
+如果不指定参数则滚动到最后一行</p>
+
+<p><a id="editObject.lineSel"></a></p>
+
+<h3>editObject.lineSel(行号,替换文本)</h3>
+
+<p>选择指定的行的全部文本,<br>
+行号为-1时表示选取最后一行,<br>
+可选使用参数@2指定一个字符串用于替换该行文本</p>
+
+<p><a id="editObject.lineText"></a></p>
+
+<h3>editObject.lineText(指定行号)</h3>
+
+<p>获取指定行文本<br>
+错误行号返回null空值<br>
+省略参数表示当前行,小于0表示自尾部倒数到指定行,-1表示最后一行</p>
+
+<p><a id="editObject.lineToChar"></a></p>
+
+<h3>editObject.lineToChar()</h3>
+
+<p>获取当前选定行首字符位置</p>
+
+<p><a id="editObject.lineToChar"></a></p>
+
+<h3>editObject.lineToChar(指定行号)</h3>
+
+<p>获取指定行首字符位置<br>
+省略参数表示当前行,小于0表示自尾部倒数到指定行,-1表示最后一行</p>
+
+<p><a id="editObject.lines"></a></p>
+
+<h3>editObject.lines(忽略空白)</h3>
+
+<pre><code class="aardio language-aardio">for line in editObject.lines(true){ 
+    /*遍历所有文本行,  
+如果迭代器参数为true则清除每行首尾空格,并忽略空行*/
+}
+</code></pre>
+
+<p><a id="editObject.load"></a></p>
+
+<h3>editObject.load()</h3>
+
+<p>自参数 @1 指定的文件路径加载文本。</p>
+
+<p><a id="editObject.log"></a></p>
+
+<h3>editObject.log( ,&#39;\r\n&#39; )</h3>
+
+<p>追加字符串到文本框,可输入多个参数<br>
+如果超出limit属性设定的字符数限制则移除头部多余的字符<br>
+为提升性能,limit不可过大</p>
+
+<p><a id="editObject.modified"></a></p>
+
+<h3>editObject.modified</h3>
+
+<p>文本内容是否已修改，可修改此属性。<br>
+修改 text 属性、以及调用 log,print 等函数不会自动变更此属性。<br>
+用户输入、selText 变更、 appendTexxt,appendLink 调用都会变更此属性为 true。</p>
+
+<p><a id="editObject.modifyStyle"></a></p>
+
+<h3>editObject.modifyStyle(remove,add,swpFlags)</h3>
+
+<p>修改窗口样式,所有参数都是可选参数,<br>
+@remove 用数值指定要移除的样式,可使用 <em>WS</em> 前缀的常量<br>
+@add 用数值指定要添加的样式,可使用 <em>WS</em> 前缀的常量<br>
+@swpFlags 可选用数值指定调整窗口选项,可使用 <em>SWP</em> 前缀的常量<br>
+如果指定了 @swpFlag ,则使用该参数调用::SetWindowPos<br>
+细节请参考 win.modifyStyle 函数源码</p>
+
+<p><a id="editObject.modifyStyleEx"></a></p>
+
+<h3>editObject.modifyStyleEx(remove,add,swpFlags)</h3>
+
+<p>修改窗口扩展样式,所有参数都是可选参数,<br>
+@remove 用数值指定要移除的样式,可使用 <em>WS_EX</em> 前缀的常量<br>
+@add 用数值指定要添加的样式,可使用 <em>WS_EX</em> 前缀的常量<br>
+@swpFlags 可选用数值指定调整窗口选项,可使用 <em>SWP</em> 前缀的常量<br>
+如果指定了 @swpFlag ,则使用该参数调用::SetWindowPos<br>
+细节请参考 win.modifyStyle 函数源码</p>
+
+<p><a id="editObject.onCancel"></a></p>
+
+<h3>editObject.onCancel()</h3>
+
+<pre><code class="aardio language-aardio">editObject.onCancel = function(){ 
+    /*当前已按下ESC,返回true阻止默认事件*/
+    return true;    
+}
+</code></pre>
+
+<p><a id="editObject.onChange"></a></p>
+
+<h3>editObject.onChange()</h3>
+
+<pre><code class="aardio language-aardio">editObject.onChange = function(){ 
+    if(owner.onModified)owner.onModified(true);
+
+    owner.validateText(&quot;&lt;\d+\.\d\d&gt;|&lt;\d+\.\d&gt;|&lt;\d+\.&gt;|&lt;\d+&gt;&quot;
+        ,&quot;请输入金额，小数点后不能超过 2 位!&quot;); 
+
+    /*响应事件，文本内容已变更，  
+edit 控件启用多行时用 text 属性赋值文本不会触发此事件。  
+log,print 函数调用也是基于修改 text 属性实现，也不会触发此事件。  
+但 appendText,selText 修改插入点文本的调用会触发此事件。*/
+}
+</code></pre>
+
+<p><a id="editObject.onFocusGot"></a></p>
+
+<h3>editObject.onFocusGot()</h3>
+
+<pre><code class="aardio language-aardio">editObject.onFocusGot = function(){ 
+    /*响应事件，文本框已获得输入焦点*/
+}
+</code></pre>
+
+<p><a id="editObject.onFocusLost"></a></p>
+
+<h3>editObject.onFocusLost()</h3>
+
+<pre><code class="aardio language-aardio">editObject.onFocusLost = function(){
+    /*响应事件，文本框已失去输入焦点*/
+}
+</code></pre>
+
+<p><a id="editObject.onModified"></a></p>
+
+<h3>editObject.onModified</h3>
+
+<pre><code class="aardio language-aardio">editObject.onModified = function(modified){ 
+    /*使用代码变更 modified 属性后触发此事件,  
+用户编辑文本导致变更 modified 属性不会触发此事件，  
+可在 onChange 事件内主动调用此事件*/
+}
+</code></pre>
+
+<p><a id="editObject.onOk"></a></p>
+
+<h3>editObject.onOk()</h3>
+
+<pre><code class="aardio language-aardio">editObject.onOk = function(){ 
+    /*当前已按下回车,返回true阻止默认事件*/
+    return true;    
+}
+</code></pre>
+
+<p><a id="editObject.orphanWindow"></a></p>
+
+<h3>editObject.orphanWindow(transparent,hwndBuddy,borderless)</h3>
+
+<p>创建悬浮窗口。<br>
+悬浮窗口是模仿子窗口外观效果的独立窗口，父窗口可自动调整子窗口到设定位置。<br>
+可选参数 @transparent 为 true 则转换为分层透明窗口。<br>
+可选利用 @hwndBuddy 参数指定外部进程窗口句柄的并附加在内部控件上以实现相同的效果。<br>
+伙伴窗口总是会保持在悬浮窗口前面，并保持相同的大小、位置。<br>
+可重复调用此函数更换伙伴窗口，旧的伙伴窗口必须自行关闭。<br>
+可选指定 @borderless 参数 为 true 以移除 @hwndBuddy  的窗口边框。</p>
+
+<p><a id="editObject.padding"></a></p>
+
+<h3>editObject.padding</h3>
+
+<p>文本边距<br>
+应通过 setPadding 函数设置该值</p>
+
+<p><a id="editObject.passwordChar"></a></p>
+
+<h3>editObject.passwordChar</h3>
+
+<p>指定隐藏密码的占位字符,该字符使用UTF-16编码,<br>
+例如指定为&#39;*&#39;u隐藏密码,指定为null正常显示文本</p>
+
+<p><a id="editObject.paste"></a></p>
+
+<h3>editObject.paste()</h3>
+
+<p>粘贴</p>
+
+<p><a id="editObject.postMessage"></a></p>
+
+<h3>editObject.postMessage(msg,wParam,lParam)</h3>
+
+<p>投递窗口消息到消息队列中<br>
+此函数用法请参考 ::User32.PostMessage</p>
+
+<p><a id="editObject.preadjust"></a></p>
+
+<h3>editObject.preadjust</h3>
+
+<pre><code class="aardio language-aardio">editObject.preadjust = function( cx,cy,wParam ) {      
+    /*窗口缩放后重绘前、触发 adjust 事件之前触发此事件。  
+所有 win.form 创建的窗体和控件都支持此事件,  
+与 adjust 事件不同，对 preadjust 重复赋值则覆盖而不是追加事件。   
+
+cx 参数为窗口宽度,cy 参数为窗口高度,  
+wParam 为 _WM_SIZE 消息参数。*/    
+};
+</code></pre>
+
+<p><a id="editObject.print"></a></p>
+
+<h3>editObject.print(...)</h3>
+
+<p>将多个参数转换为字符串,<br>
+并使用制表符分隔各参数追加到文本尾部<br>
+并追加换行<br>
+如果超出limit属性设定的字符数限制则移除头部多余的字符<br>
+为提升性能,limit不可过大  </p>
+
+<p>对于table对象,aardio会序列化为文本然后输出,<br>
+如果当前已经导入了web.json，则自动转换为json后输出,<br>
+可以用于调试代码显示变量的值</p>
+
+<p><a id="editObject.printf"></a></p>
+
+<h3>editObject.printf(...)</h3>
+
+<p>将多个参数调用string.format格式化后追加到文本尾部<br>
+并追加换行</p>
+
+<p><a id="editObject.publish"></a></p>
+
+<h3>editObject.publish(&quot;字符串参数&quot;,)</h3>
+
+<p>在窗口所在界面线程发布消息,<br>
+运行界面线程所有所有调用subscribe函数订阅此消息的函数,<br>
+可添加任意个触发参数</p>
+
+<p><a id="editObject.readonly"></a></p>
+
+<h3>editObject.readonly</h3>
+
+<p>是否只读<br>
+只读时禁止编辑</p>
+
+<p><a id="editObject.redo"></a></p>
+
+<h3>editObject.redo()</h3>
+
+<p>重做</p>
+
+<p><a id="editObject.redraw"></a></p>
+
+<h3>editObject.redraw()</h3>
+
+<p>刷新</p>
+
+<p><a id="editObject.reloadScale"></a></p>
+
+<h3>editObject.reloadScale()</h3>
+
+<p>按设计时位置参数、重新调整控件位置以适应窗口当前缩放比例。<br>
+父窗口缩放时会自动执行此操作。<br>
+默认在启动窗口消息循环时会自适应调整所有控件。<br>
+所以在启动消息循环前添加控件不必调用此函数。</p>
+
+<p><a id="editObject.resize"></a></p>
+
+<h3>editObject.resize(宽度,高度)</h3>
+
+<p>如果指定了参数则调整窗口大小,<br>
+无论是否实际调整窗口大小,发送 _WM_SIZE 消息给窗口</p>
+
+<p><a id="editObject.right"></a></p>
+
+<h3>editObject.right</h3>
+
+<p>右侧坐标</p>
+
+<p><a id="editObject.save"></a></p>
+
+<h3>editObject.save()</h3>
+
+<p>保存控件文本到参数 @1 指定的文件路径。</p>
+
+<p><a id="editObject.saveScale"></a></p>
+
+<h3>editObject.saveScale()</h3>
+
+<p>根据控件当前位置、缩放比例，更新控件的设计时位置参数。<br>
+以避免下次窗口缩放自适应调整控件当前位置更改被清除，<br>
+控件所有调整位置的属性或成员函数已自动调用此函数。</p>
+
+<p><a id="editObject.scrollCaret"></a></p>
+
+<h3>editObject.scrollCaret()</h3>
+
+<p>滚动到光标处</p>
+
+<p><a id="editObject.selLine"></a></p>
+
+<h3>editObject.selLine</h3>
+
+<p>获取或设置当前行,<br>
+光标移动到该行开始处,并且滚动到该行,<br>
+设为-1跳转到最后一行</p>
+
+<p><a id="editObject.selText"></a></p>
+
+<h3>editObject.selText</h3>
+
+<p>获取或替换选区文本</p>
+
+<p><a id="editObject.selectAll"></a></p>
+
+<h3>editObject.selectAll()</h3>
+
+<p>全选</p>
+
+<p><a id="editObject.sendMessage"></a></p>
+
+<h3>editObject.sendMessage(msg,wParam,lParam)</h3>
+
+<p>发送窗口消息<br>
+此函数用法请参考 ::User32.SendMessage</p>
+
+<p><a id="editObject.setClientRect"></a></p>
+
+<h3>editObject.setClientRect(RECT区块)</h3>
+
+<p>参数为指定文本客户区的RECT结构体<br>
+文本框必须在设计时指定为多行<br>
+在文本框改变大小必须重新设置</p>
+
+<p><a id="editObject.setCueBannerText"></a></p>
+
+<h3>editObject.setCueBannerText</h3>
+
+<p>指定单行文本框文本为空时的显示的默认提示文本</p>
+
+<p><a id="editObject.setCueBannerText"></a></p>
+
+<h3>editObject.setCueBannerText(&quot;提示文本&quot;,是否一直显示)</h3>
+
+<p>指定单行文本框默认提示文本。<br>
+参数 @1 必须是字符串，<br>
+参数 @2 可省略，默认仅失去焦点时显示。  </p>
+
+<p>XP 系统不支持此函数、但调用不报错。<br>
+注意 plus 控件提供支持XP系统的 setCueBannerText 函数</p>
+
+<p><a id="editObject.setFocus"></a></p>
+
+<h3>editObject.setFocus</h3>
+
+<p>设置焦点,可指定选区参数</p>
+
+<p><a id="editObject.setFocus"></a></p>
+
+<h3>editObject.setFocus()</h3>
+
+<p>设置焦点到文本框尾部</p>
+
+<p><a id="editObject.setFocus"></a></p>
+
+<h3>editObject.setFocus(0)</h3>
+
+<p>设置焦点到文本框的指定位置</p>
+
+<p><a id="editObject.setFocus"></a></p>
+
+<h3>editObject.setFocus(0,-1)</h3>
+
+<p>全选并设置焦点</p>
+
+<p><a id="editObject.setFont"></a></p>
+
+<h3>editObject.setFont(指定字体)</h3>
+
+<p>指定 LOGFONT 字体对象,或逻辑字体句柄<br>
+如果不指定 point 值并指定 h 值，字体会按控件的 DPI 缩放设置自动缩放。</p>
+
+<p><a id="editObject.setFont"></a></p>
+
+<h3>editObject.setFont(混入字体属性)</h3>
+
+<pre><code class="aardio language-aardio">editObject.setFont(h=-12;name=&quot;Tahoma&quot;);
+</code></pre>
+
+<p><a id="editObject.setPadding"></a></p>
+
+<h3>editObject.setPadding(上,右,下,左)</h3>
+
+<p>设置文本边距，所有参数都可以省略。<br>
+文本框必须在设计时指定为多行，<br>
+在文本框改变大小后仍然可以保持此边距。  </p>
+
+<p>边距默认应设置缩放前的原始值<br>
+如果参数为 @5 为 true 则边距应为当前 DPI 缩放后的值</p>
+
+<p><a id="editObject.setParent"></a></p>
+
+<h3>editObject.setParent(控件对象)</h3>
+
+<p>改变父窗口</p>
+
+<p><a id="editObject.setPos"></a></p>
+
+<h3>editObject.setPos(x坐标,y坐标,宽,高,插入位置,参数)</h3>
+
+<p>调整窗口位置或排序,所有参数可选<br>
+同时指定x,y坐标则移动位置<br>
+同时指定宽高则改变大小<br>
+指定插入位置(句柄或_HWND前缀常量)则调整Z序</p>
+
+<p><a id="editObject.setRect"></a></p>
+
+<h3>editObject.setRect(rc)</h3>
+
+<p>设置控件区块位置(::RECT结构体)</p>
+
+<p><a id="editObject.setRect"></a></p>
+
+<h3>editObject.setRect(rc,true)</h3>
+
+<p>设置控件屏幕区块位置(::RECT结构体)</p>
+
+<p><a id="editObject.setRedraw"></a></p>
+
+<h3>editObject.setRedraw(false)</h3>
+
+<p>禁止重绘</p>
+
+<p><a id="editObject.setRedraw"></a></p>
+
+<h3>editObject.setRedraw(true)</h3>
+
+<p>恢复重绘</p>
+
+<p><a id="editObject.setsel"></a></p>
+
+<h3>editObject.setsel(当前位置)</h3>
+
+<p>无选区,<br>
+移动光标到指定位置的字符后面</p>
+
+<p><a id="editObject.setsel"></a></p>
+
+<h3>editObject.setsel(起始位置,结束位置)</h3>
+
+<p>设置选区,以字符为单位<br>
+1为首字符，选区包含起始与结束位置<br>
+如果结束位置小于开始位置,自动交换参数位置</p>
+
+<p><a id="editObject.show"></a></p>
+
+<h3>editObject.show(true)</h3>
+
+<p>显示控件</p>
+
+<p><a id="editObject.showBalloonTip"></a></p>
+
+<h3>editObject.showBalloonTip</h3>
+
+<p>显示气泡提示,<br>
+建议直接调用showInfoTip，showWarningTip 或 showErrorTip</p>
+
+<p><a id="editObject.showBalloonTip"></a></p>
+
+<h3>editObject.showBalloonTip(text)</h3>
+
+<p>在输入光标处显示汽泡提示,<br>
+@text参数指定文本</p>
+
+<p><a id="editObject.showBalloonTip"></a></p>
+
+<h3>editObject.showBalloonTip(title,text,icon)</h3>
+
+<p>在输入光标处显示汽泡提示,<br>
+@title参数指定标题,<br>
+@text参数指定文本,<br>
+icon指定图标句柄，可省略</p>
+
+<p><a id="editObject.showErrorTip"></a></p>
+
+<h3>editObject.showErrorTip</h3>
+
+<p>在输入光标处显示汽泡提示,使用错误图标</p>
+
+<p><a id="editObject.showErrorTip"></a></p>
+
+<h3>editObject.showErrorTip(text)</h3>
+
+<p>在输入光标处显示汽泡提示,使用错误图标,<br>
+@text参数指定文本</p>
+
+<p><a id="editObject.showErrorTip"></a></p>
+
+<h3>editObject.showErrorTip(title,text,large)</h3>
+
+<p>在输入光标处显示汽泡提示,使用错误图标,<br>
+@title参数指定标题,<br>
+@text参数指定文本,<br>
+large指定是否使用大图标，可省略</p>
+
+<p><a id="editObject.showInfoTip"></a></p>
+
+<h3>editObject.showInfoTip</h3>
+
+<p>在输入光标处显示汽泡提示</p>
+
+<p><a id="editObject.showInfoTip"></a></p>
+
+<h3>editObject.showInfoTip(text)</h3>
+
+<p>在输入光标处显示汽泡提示,使用提示信息图标,<br>
+@text参数指定文本</p>
+
+<p><a id="editObject.showInfoTip"></a></p>
+
+<h3>editObject.showInfoTip(title,text,large)</h3>
+
+<p>在输入光标处显示汽泡提示,使用提示信息图标,<br>
+@title参数指定标题,<br>
+@text参数指定文本,<br>
+large指定是否使用大图标，可省略</p>
+
+<p><a id="editObject.showWarningTip"></a></p>
+
+<h3>editObject.showWarningTip</h3>
+
+<p>在输入光标处显示汽泡提示,使用警告图标</p>
+
+<p><a id="editObject.showWarningTip"></a></p>
+
+<h3>editObject.showWarningTip(text)</h3>
+
+<p>在输入光标处显示汽泡提示,使用警告图标,<br>
+@text参数指定文本</p>
+
+<p><a id="editObject.showWarningTip"></a></p>
+
+<h3>editObject.showWarningTip(title,text,large)</h3>
+
+<p>在输入光标处显示汽泡提示,使用警告图标,<br>
+@title参数指定标题,<br>
+@text参数指定文本,<br>
+large指定是否使用大图标，可省略</p>
+
+<p><a id="editObject.tabNext"></a></p>
+
+<h3>editObject.tabNext()</h3>
+
+<p><a href="static.html#staticObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/static.html#staticObject">返回对象:staticObject</a></p>
+
+<p><a id="editObject.tabNext"></a></p>
+
+<h3>editObject.tabNext(移动焦点,是否反向)</h3>
+
+<p>获取下一个支持tab控制焦点的控件<br>
+参数@1为true会自动移动焦点到该控件<br>
+参数@2为true则获取上一个控件,否则获取下一个控件</p>
+
+<p><a id="editObject.text"></a></p>
+
+<h3>editObject.text</h3>
+
+<p>获取或写入编辑控件文本属性。<br>
+可写入 UTF8 或 UTF16 字符串，写入 null 值转换为空字符串，<br>
+其他类型值用 tostring 转为字符串后写入。<br>
+注意 edit 控件使用&#39;\r\<br>
+&#39;表示换行,而 richedit 控件则使用&#39;\<br>
+&#39;表示换行，<br>
+用双引号或反引号包含字符串赋值时换行会自动将换行解析为&#39;\<br>
+&#39;，  </p>
+
+<p>用块注释赋值为字符串时会自动将换行规范化解析为&#39;\r\<br>
+&#39;，<br>
+例如 winform.edit.txt = /*文本<br>
+第二行文本*/</p>
+
+<p><a id="editObject.theme"></a></p>
+
+<h3>editObject.theme</h3>
+
+<p>外观主题,例如<br>
+winform.button.theme = &quot;Explorer&quot;<br>
+winform.button.theme = false</p>
+
+<p><a id="editObject.threadCallable"></a></p>
+
+<h3>editObject.threadCallable()</h3>
+
+<p>开启此控件的跨线程调用功能</p>
+
+<p><a id="editObject.top"></a></p>
+
+<h3>editObject.top</h3>
+
+<p>顶部坐标</p>
+
+<p><a id="editObject.translateAccelerator"></a></p>
+
+<h3>editObject.translateAccelerator(msg)</h3>
+
+<pre><code class="aardio language-aardio">editObject.translateAccelerator = function(msg){ 
+    var vk = msg.wParam;
+    if( (vk == 0x9/*_VK_TAB*/ ) || (vk = 0xD/*_VK_RETURN*/) ){
+        if( msg.message == 0x100/*_WM_KEYDOWN*/) {
+            owner.tabNext(true); 
+            return true;/*在此事件中可拦截键盘消息并自定义快捷键  
+tabNext函数切换到下一个支持tab控制键的控件  
+如果这是一个快捷键返回true以取消该消息的默认行为*/
+        }
+    }   
+}
+</code></pre>
+
+<p><a id="editObject.translateCommand"></a></p>
+
+<h3>editObject.translateCommand()</h3>
+
+<p>允许转发转发子窗口的命令（_WM_COMMAND）与通知（_WM_NOTIFY）消息，<br>
+避免子窗口 oncommand，onnotify 等回调失效。<br>
+同时会处理子窗口的 _WM_CTLCOLORSTATIC 等消息，<br>
+以避免部分外观属性失效</p>
+
+<p><a id="editObject.undo"></a></p>
+
+<h3>editObject.undo()</h3>
+
+<p>撤消</p>
+
+<p><a id="editObject.update"></a></p>
+
+<h3>editObject.update()</h3>
+
+<p>重绘invalidate函数指定的区块</p>
+
+<p><a id="editObject.vScroll"></a></p>
+
+<h3>editObject.vScroll()</h3>
+
+<p>滚动到底部</p>
+
+<p><a id="editObject.vScroll"></a></p>
+
+<h3>editObject.vScroll(_SB)</h3>
+
+<p>滚动竖向滚动条</p>
+
+<p><a id="editObject.valid"></a></p>
+
+<h3>editObject.valid</h3>
+
+<p>窗口是否有效，<br>
+窗口未关闭返回 true ，<br>
+窗口已关闭或正在关闭返回 false</p>
+
+<p><a id="editObject.validateText"></a></p>
+
+<h3>editObject.validateText</h3>
+
+<p>校验输入文本。<br>
+全部文本完全符合要求返回 true，否则返回 false。  </p>
+
+<p>可在 onChange 事件内调用此函数实时校验输入。  </p>
+
+<p>如果需要限制数字，<br>
+更简单的方法是在窗体设计器中设置控件的『限制数字』属性为 true，<br>
+也就是指定控件的创建参数 num 的值为 true。</p>
+
+<p><a id="editObject.validateText"></a></p>
+
+<h3>editObject.validateText(校验输入函数,错误信息)</h3>
+
+<p>调用参数 @1 指定的函数校验控件的文本属性，<br>
+该函数必须自参数中接收当前文本并返回合法文本或 null。<br>
+然后将文本设为符合合法的文本，如果校验函数返回 null 设为空字符串。  </p>
+
+<p>如果修改了文本且指定了字符串参数 @2 ，则在控件内用气泡提示显示参数 @2 指定的错误信息，<br>
+并且将焦点切换到该控件，然后将输入光标设置到文本尾部。</p>
+
+<p><a id="editObject.validateText"></a></p>
+
+<h3>editObject.validateText(模式串,错误信息)</h3>
+
+<p>用字符串参数 @1 指定的模式串校验控件的文本属性。<br>
+将文本设为符合匹配的文本，如果找不到匹配文本设为空字符串。  </p>
+
+<p>如果修改了文本且指定了字符串参数 @2 ，<br>
+则在控件内用气泡提示显示参数 @2 指定的错误信息，<br>
+并且将焦点切换到该控件，然后将输入光标设置到文本尾部。</p>
+
+<p><a id="editObject.validateText"></a></p>
+
+<h3>editObject.validateText(模式串,错误标题,错误信息)</h3>
+
+<p>用字符串参数 @1 指定的模式串校验控件的文本属性。<br>
+将文本设为符合匹配的文本，如果找不到匹配文本设为空字符串。  </p>
+
+<p>如果修改了文本且指定了字符串参数 @2,@3 ，<br>
+则在控件内用气泡提示显示参数 @2,@3 指定的错误信息，<br>
+并且将焦点切换到该控件，然后将输入光标设置到文本尾部。</p>
+
+<p><a id="editObject.validateText"></a></p>
+
+<h3>editObject.validateText(限制金额示例,错误标题,错误信息)</h3>
+
+<pre><code class="aardio language-aardio">editObject.validateText(&quot;&lt;\d+\.\d\d&gt;|&lt;\d+\.\d&gt;|&lt;\d+\.&gt;|&lt;\d+&gt;&quot;,  
+    &quot;不能接受的字符&quot;,&quot;只能在此输入金额，小数点后不能超过 2 位!&quot;)
+</code></pre>
+
+<p><a id="editObject.width"></a></p>
+
+<h3>editObject.width</h3>
+
+<p>宽度</p>
+
+<p><a id="editObject.wrap"></a></p>
+
+<h3>editObject.wrap</h3>
+
+<p>是否启用自动换行,仅richedit支持</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/edit.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/edit.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/edit.md">Markdown 格式</a></p>
+
+</body> 
+</html>

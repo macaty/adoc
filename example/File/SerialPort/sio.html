@@ -1,0 +1,105 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 简单串口助手'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 简单串口助手</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 简单串口助手</h1><pre><code class="aardio language-aardio">import win.dlg.message;
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;简单串口助手&quot;;right=759;bottom=469)
+winform.add(
+btnOpen={cls=&quot;button&quot;;text=&quot;打开端口&quot;;left=85;top=411;right=183;bottom=445;db=1;dl=1;z=6};
+btnTx={cls=&quot;button&quot;;text=&quot;发送&quot;;left=582;top=411;right=680;bottom=445;db=1;dr=1;z=5};
+combobox={cls=&quot;combobox&quot;;left=30;top=13;right=169;bottom=39;dl=1;dt=1;edge=1;items={};mode=&quot;dropdown&quot;;z=1};
+editRx={cls=&quot;edit&quot;;left=29;top=62;right=727;bottom=396;db=1;dl=1;dr=1;dt=1;edge=1;multiline=1;z=2};
+editTx={cls=&quot;edit&quot;;left=240;top=414;right=569;bottom=446;db=1;dl=1;dr=1;edge=1;z=4};
+lbComPort={cls=&quot;static&quot;;text=&quot;没有找到任何串口，建议安装虚拟串口驱动： Virtual Serial Port Driver&quot;;left=199;top=16;right=607;bottom=40;dl=1;dr=1;dt=1;transparent=1;z=3};
+openDeviceManager={cls=&quot;plus&quot;;text=&quot;打开设备管理器&quot;;left=612;top=14;right=732;bottom=38;align=&quot;left&quot;;color=8388608;font=LOGFONT(h=-13);notify=1;textPadding={left=5};z=7}
+)
+/*}}*/
+
+//串口列表
+import sys.comPort;
+var comPorts = sys.comPort.list();
+winform.combobox.items = comPorts;
+winform.combobox.selIndex = sys.comPort.find(&quot;CP210x&quot;)[[&quot;index&quot;]] or 1; 
+
+//获取串口信息
+winform.combobox.oncommand = function(id,event){
+    var item = comPorts[winform.combobox.selIndex]
+    if(item){
+        winform.lbComPort.text = item.friendlyName;
+    }
+}
+winform.combobox.oncommand();
+
+//串口发送
+import sio;
+var sioPort;
+winform.btnTx.oncommand = function(id,event){
+    if(!sioPort){
+        winform.btnOpen.oncommand();
+    }
+
+    if( !sioPort.write( winform.editTx.text ) ){
+        return winform.msgErr(&quot;发送失败&quot;);
+    }
+}
+
+//打开串口
+winform.btnOpen.oncommand = function(id,event){
+    if(sioPort){
+        sioPort.close();
+    }
+
+    var err;
+    sioPort,err = sio.port(winform.combobox.selText);
+    if(!sioPort){
+        return winform.msgErr(err);
+    }
+
+    //sioPort.ioctl(115200,8,1);
+    //串口接收到数据触发回调
+    sioPort.termCntIrq(1,function(port){
+        winform.editRx.appendText(sioPort.read());
+    } ) 
+
+    winform.msgOk(&quot;已打开端口&quot;,1000)
+}
+
+winform.onDestroy = function(){
+    if(sioPort){
+        sioPort.close();
+    }   
+}
+
+import sys.device;
+winform.openDeviceManager.oncommand = function(id,event){
+    sys.device.manager();
+}
+
+winform.openDeviceManager.skin({
+    color={
+        active=0xFF00FF00;
+        default=0xFF000080;
+        disabled=0xFF6D6D6D;
+        hover=0xFFFF0000
+    }
+})
+
+winform.show();
+win.loopMessage();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/File/SerialPort/sio.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/File/SerialPort/sio.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/File/SerialPort/sio.md">Markdown 格式</a>
+</body> 
+</html>

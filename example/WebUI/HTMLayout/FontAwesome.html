@@ -1,0 +1,44 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - HTMLayout - FontAwesome图标字体'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - HTMLayout - FontAwesome图标字体</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: HTMLayout - FontAwesome图标字体</h1><pre><code class="aardio language-aardio">//图标字体
+import win.ui;
+/*DSG{{*/
+mainForm = win.form(text=&quot;HTMLayout - FontAwesome图标字体&quot;;right=759;bottom=469;border=&quot;dialog frame&quot;)
+mainForm.add()
+/*}}*/
+
+import web.layout;  
+import web.layout.fontAwesome;//可以根据需要编辑字体文件移除用不到的图标
+wbLayout = web.layout( mainForm );   
+
+wbLayout.html = /**
+&lt;!doctype html&gt;
+&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;  
+&lt;span style=&quot;font-size:60px;&quot;&gt;&lt;i class=&quot;fa fa-bell-o&quot; /&gt; 铃铛&lt;/span&gt; &lt;br&gt;
+&lt;span style=&quot;color:red&quot;&gt;&lt;i class=&quot;fa fa-pencil-square fa-5x &quot; /&gt; 编辑&lt;/span&gt;&lt;br&gt; 
+&lt;button&gt;&lt;i class=&quot;fa fa-pencil&quot;/&gt; 编辑&lt;/button&gt;
+&lt;/body&gt;&lt;/html&gt;
+**/
+//所有可用样式请访问官网 http://fontawesome.io/cheatsheet
+
+mainForm.show() 
+wbLayout.querySelector(&quot;button&quot;).state.focus = false;
+
+return win.loopMessage();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/WebUI/HTMLayout/FontAwesome.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/WebUI/HTMLayout/FontAwesome.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/WebUI/HTMLayout/FontAwesome.md">Markdown 格式</a>
+</body> 
+</html>

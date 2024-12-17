@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - sqlite 库 - 参数化进阶'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - sqlite 库 - 参数化进阶</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: sqlite 库 - 参数化进阶</h1><pre><code class="aardio language-aardio">//sqlite 库 - 参数化进阶
+
+/*
+一、说明
+aardio 中所有数据库的支持库都支持用法与规则类似的参数化语法，
+请不要用字符串拼接的方法生成  SQL 语句，这会导致不当字符注入 SQL 语句的意外或风险。
+
+参数化查询可以避免注入问题。
+aardio 在预处理命令使用了 sqlite 原生的参数化查询功能，
+也使用 sqlite.format 改进和增强了 SQL 参数化查询的语法。
+
+sqlite 中执行SQL的函数 sql 语句后面如果是一个表，
+就会调用 sqlite.format 使用参数化规则格式化并生成新的 SQL 语句。
+如果参数不是一个表，则简单的调用 string.format 函数格式化。
+string.format 并不具有参数化、避免注入等功能，应当尽量避免使用。
+*/
+
+import console;
+import util.table;
+import sqlite;
+
+sqlite.format2 = sqlite.format;
+sqlite.format = function(sql,...){
+    console.log(&#39;\r\n格式化代码：&#39;)
+    console.log(&quot;-------------------------------------------------&quot;)
+    console.log(`sqlite.format(&quot;`+sql + `&quot;,` + util.table.stringify(...) + `);` );
+    console.log(&#39;\r\n格式化结果：&#39;)
+    console.log(&quot;-------------------------------------------------&quot;)
+
+    sql = sqlite.format2(sql,...)
+    console.log(sql);
+
+    console.more(1,true);
+    return sql;
+}
+
+console.log( &quot;SQL语句中 @ 字符开始的命名参数使用参数表的名值对元素格式化&quot; );
+sqlite.format(&quot;SELECT *　FROM `tab-name` WHERE name = @name&quot;,{name = &quot;参数值&quot;})
+
+console.log( &quot;SQL语句中 ? 或 ?? 占位符使用参数表的数组元素格式化&quot; );
+sqlite.format(&quot;SELECT *　FROM `tab-name` WHERE name = ? AND text = ?&quot;,{&quot;参数值1&quot;,&quot;参数值2&quot;});
+
+console.log( &quot;其中 ?? 格式化为标识符( 放入反引号 ),其他占位符格式化为参数值&quot; );
+sqlite.format(&quot;SELECT *　FROM ?? WHERE name = ? AND text = ?&quot;,{&quot;`format-tab`&quot;,&quot;参数值1&quot;,&quot;参数值2&quot;});
+
+console.log( &quot;字符串转为 SQL 安全转义字符串,buffer转为X&#39;4D7953514C&#39;格式&quot; );
+sqlite.format(&quot;SELECT *　FROM ``format-tab`` WHERE str = @str AND buffer = @buffer&quot;,{str=&quot;a&#39;a&quot;;buffer=raw.buffer(&quot;sqlite&quot;)});
+
+console.log( &quot;数组则自动展开为列表,例如{&#39;a&#39;, &#39;b&#39;}格式化为&#39;a&#39;, &#39;b&#39;&quot; );
+sqlite.format(&quot;INSERT INTO `format-tab`(??) VALUES(?)&quot;,{{&#39;name1&#39;, &#39;name2&#39;},{&#39;value1&#39;, &#39;value2&#39;}});
+
+console.log( &quot;嵌套数组则格式化为分组列表&quot; );
+sqlite.format(&quot;INSERT INTO `format-tab`(text,number) VALUES @values&quot;,{ values = { {&#39;text1&#39;, 123}, {&#39;text2&#39;, 456} } }); 
+
+console.log( &quot;非数组的命名表，则格式化为 SQL 键值对,默认以逗号为分隔符&quot; );
+sqlite.format(&quot;UPDATE `format-tab` SET ?&quot;,{ {text=&quot;text2&quot;;number=123} });
+
+console.log( &quot;??占位符用于格式化 SQL 键值对则以 AND 为分隔符,数组值转换为IN语句&quot; );
+sqlite.format(&quot;UPDATE `format-tab` SET text=? WHERE ??&quot;,{ &quot;text2+&quot;,{text=&quot;text2&quot;;number={1,2,456}} });
+
+sqlite.format = sqlite.format2;
+var db = sqlite(&quot;/test-sqlite.db&quot;); 
+if( not db.existsTable(&quot;format-tab&quot;) ){ 
+    db.exec( &quot;CREATE TABLE `format-tab`(text, number);&quot;); 
+}  
+
+//执行参数化 SQL 插入数据
+db.exec(&quot;INSERT INTO `format-tab`(text,number) VALUES @values&quot;,{ values = { {&#39;text1&#39;, 123}, {&#39;text2&#39;, 456} } }); 
+
+//查询数据
+console.dumpJson(db.getTable(&quot;SELECT * FROM `format-tab` &quot;))
+
+//删除测试表 
+db.exec(&quot;DROP TABLE [format-tab]&quot; ); 
+console.pause();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Database/sqlite/sqlite.format.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Database/sqlite/sqlite.format.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Database/sqlite/sqlite.format.md">Markdown 格式</a>
+</body> 
+</html>

@@ -1,0 +1,101 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio ÁºñÁ®ãËØ≠Ë®ÄËåÉ‰æã - ÂΩïÈü≥ÔºàNAudioÔºâ'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio ÁºñÁ®ãËØ≠Ë®ÄËåÉ‰æã - ÂΩïÈü≥ÔºàNAudioÔºâ</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio ÁºñÁ®ãËØ≠Ë®ÄÊñáÊ°£È¶ñÈ°µ"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio ÊñáÊ°£</span></a>
+<h1>aardio ËåÉ‰æã: ÂΩïÈü≥ÔºàNAudioÔºâ</h1><pre><code class="aardio language-aardio">//ÂΩïÈü≥ÔºàNAudioÔºâ
+import fonts.fontAwesome;
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;ÂΩïÈü≥&quot;;right=382;bottom=201)
+winform.add(
+btnPlay={cls=&quot;plus&quot;;text=&quot;Êí≠Êîæ&quot;;left=59;top=132;right=156;bottom=162;align=&quot;left&quot;;color=3947580;dl=1;dt=1;font=LOGFONT(h=-13);iconColor=32768;iconStyle={align=&quot;left&quot;;font=LOGFONT(h=-16;name=&#39;FontAwesome&#39;)};iconText=&#39;\uF027&#39;;notify=1;textPadding={left=20};z=3};
+btnRecord={cls=&quot;plus&quot;;text=&quot;ÂΩïÈü≥&quot;;left=59;top=84;right=196;bottom=115;align=&quot;left&quot;;dl=1;dt=1;font=LOGFONT(h=-14);iconColor=17151;iconStyle={align=&quot;left&quot;;font=LOGFONT(h=-14;name=&#39;FontAwesome&#39;)};iconText=&#39;\uF130&#39;;notify=1;textPadding={left=20};z=1};
+cmbDevices={cls=&quot;combobox&quot;;left=59;top=25;right=264;bottom=51;dl=1;dt=1;edge=1;items={};mode=&quot;dropdown&quot;;z=2};
+recordingLevelMeter={cls=&quot;plus&quot;;left=23;top=25;right=31;bottom=156;bgcolor=6447459;db=1;dl=1;dt=1;forecolor=17151;hide=1;notify=1;z=4}
+)
+/*}}*/
+
+import dotNet.audio;
+winform.recordingLevelMeter.setProgressRange(1,100);
+dotNet.audio.onWaveIn = function(max){
+    winform.recordingLevelMeter.progressPos = max * 100;
+}
+
+var devices = {&quot;Á≥ªÁªüÂ£∞Èü≥&quot;};
+for deviceNumber,deviceName,caps in dotNet.audio.eachWaveInDevice(){
+    table.push(devices,deviceName);
+}
+
+winform.cmbDevices.items = devices;
+winform.cmbDevices.selIndex = 1;
+
+import fsys.media;
+winform.btnRecord.oncommand = function(id,event){
+    fsys.media.playSound(null);
+
+    if(winform.btnRecord.checked){
+        var deviceNumber = winform.cmbDevices.selIndex - 3;
+        dotNet.audio.startWaveIn(&quot;/test.wav&quot;,deviceNumber);
+        winform.btnPlay.disabled = true;
+
+        winform.recordingLevelMeter.hide = false;
+    }
+    else {
+        dotNet.audio.stopWaveIn();
+        winform.btnPlay.disabled = false;
+        winform.recordingLevelMeter.hide = true;
+    } 
+}
+
+import fsys.media;
+winform.btnPlay.oncommand = function(id,event){
+    winform.recordingLevelMeter.hide = false;
+    fsys.media.playSound(&quot;/test.wav&quot;);
+    dotNet.audio.startWaveIn();
+}
+winform.btnPlay.disabled = true;
+
+winform.btnPlay.skin({
+    color={
+        active=0xFF00FF00;
+        default=0xFF3C3C3C;
+        disabled=0xFF6D6D6D;
+        hover=0xFFFF0000
+    }
+    iconColor = {
+        default=0xFF008000;
+        disabled=0xFF6D6D6D;
+    }
+})
+
+winform.btnRecord.skin({
+    color={
+        active=0xFF00FF00;
+        default=0xFF000000;
+        disabled=0xEE666666;
+        hover=0xFFFF0000
+    };
+    checked={
+        iconColor={default=0xFFff4200};
+        iconText=&#39;\uF04D&#39;;
+        text=&quot;ÂÅúÊ≠¢ÂΩïÈü≥&quot;
+    }
+})
+
+winform.show();
+win.loopMessage();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Media/Audio/dotNet.audio.md  \n\n∏√Œƒº˛Œﬁ∑®”√ Teleport Ultra œ¬‘ÿ, “ÚŒ™ À¸≤ª‘⁄œÓƒøŒƒº˛¿‡–ÕπÊ∑∂ƒ⁄°£  \n\nƒ„œÎ‘⁄∑˛ŒÒ∆˜…œ¥Úø™À¸?'))window.location='https://www.aardio.com/zh-cn/doc/example/Media/Audio/dotNet.audio.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Media/Audio/dotNet.audio.md">Markdown Ê†ºÂºè</a>
+</body> 
+</html>

@@ -1,0 +1,715 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - web.view 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - web.view 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>web.view 库模块帮助文档</h1>
+
+<p><details>  <summary>必读</summary>  <p>
+web.view 基于微软 WebView2（Edge/Chromium内核），
+WebView2 稳定可靠、性能强悍、接口简洁，可生成体积很小的独立 EXE 程序。</p>
+
+<p>WebView2 支持 Win10 以及之后的系统。
+Win11 已自带 WebView2，Win10 1803 以及之后的系统早已自动推送 WebView2。</p>
+
+<p>实际上现在 WebView2 已经是无法卸载的系统级组件。
+没有自带 WebView2 的旧系统已经非常罕见，可以忽略不记。</p>
+
+<p>只要简洁，不求完美！
+Win7 在市场上已经接近消失，现在开发软件再处处考虑 Win7 兼容是不必要的。
+web.view 支持库不再支持 Win7，可通过 web.view.7 扩展库导入兼容 Win7 的旧版 web.view 。 </p>
+
+<p>在网页上点右键菜单项<b>（Inspect / 检查）</b>或按 F12 键可以打开网页开发工具（ DevTools ），
+在开发工具的「设置 / 语言」<b>（Settings / Language」）</b>界面可切换开发工具的界面语言。
+在 DevTools <b>控制台（Console）</b>可查看程序错误信息。<br>
+</p></details></p>
+
+<p><a id="web"></a></p>
+
+<h2>web 成员列表</h2>
+
+<p><a id="web.view"></a></p>
+
+<h3>web.view()</h3>
+
+<p><a href="#WebView2Object">返回对象:WebView2Object</a></p>
+
+<p><a id="web.view"></a></p>
+
+<h3>web.view(winform,createBrowserOptions)</h3>
+
+<pre><code class="aardio language-aardio">web.view(winform,{  
+    extensions = true;  
+    language =  &quot;zh-CN&quot;;  
+    startArguments = {acceptLang = &quot;zh-CN&quot; };  
+    /*extensions 是否启用浏览器扩展，启用后可调用 loadExtension 函数加载扩展。  
+userDataDir 一般可省略，不同的 userDataDir 创建不同的会话。  
+
+language 指定浏览器界面语言，也影响 --accept--lang 参数的值。  
+一般自动指定为系统语言，可省略。  
+
+startArguments 指定浏览器启动参数，  
+可以是 string.args 兼容的字符串、表对象都可以。  
+
+compatibleBrowserVersion 指定最低兼容的浏览器版本，可省略。  
+*/})
+</code></pre>
+
+<p><a id="web.view"></a></p>
+
+<h3>web.view(winform,userDataDir,browserArguments,...)</h3>
+
+<p>创建浏览器控件，<br>
+参数 @winform 指定嵌入网页的宿主窗口，<br>
+└── @winform 可指定窗体对象或 static,custom 等控件对象。└── 不指定 @winform 则自动创建 messageOnly 隐藏窗口。<br>
+可选用参数 @userDataDir 参数自定义用户数据目录，<br>
+可选用参数 @browserArguments 传入一个命令行参数表或多个非 null 命令行参数。<br>
+所有命令行参数调用 string.args.joinEx 合成为 WebView2 的启动参数。<br>
+表参数中的驼峰参数名自动转为连字符风格并加 -- 前缀。<br>
+其他规则请参考原码与 string.args.joinEx 说明。<br>
+└── 例如修改 UA：<code>--user-agent=&quot;Mozilla/5.0 aardio&quot;</code><br>
+└──例如切换语言：<code>--accept-lang=zh-CN</code><br>
+<a href="javascript:if(confirm('https://peter.sh/experiments/chromium-command-line-switches  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='https://peter.sh/experiments/chromium-command-line-switches'" tppabs="https://peter.sh/experiments/chromium-command-line-switches">└──更多参数：</a><br>
+参数 @browserArguments 也可用数值指定要启动的远程调试端口，<br>
+└── 调试端口为 0 则自动分配空闲端口，<br>
+└── 同一用户数据目录不能同时使用远程调试与内置 CDP 接口<br>
+如果未指定 @browserArguments，则取 web.view.browserArguments 设为默认启动参数。<br>
+@browserArguments 之后的参数仍会合成到启动参数内</p>
+
+<p><a id="web.view"></a></p>
+
+<h2>web.view 成员列表</h2>
+
+<p>WebView2（Edge/Chromium内核）控件，<br>
+可生成体积很小的独立 EXE 程序。  </p>
+
+<p>WebView2 支持 Win10 以及之后的系统。<br>
+Win11 已自带 WebView2，Win10 1803 以及之后的系统也已经自动推送 WebView2。<br>
+因为 Win10 会自动更新，版本小于 1803 的 Win10 数量极少，可以忽略不计。<br>
+其他检测到未安装 WebView2 的系统 —— aardio 会自动安装（不需要写任何代码）</p>
+
+<p>创建 WebView2（Edge/Chromium内核） 浏览器控件。  </p>
+
+<p>此对象支持多线程界面回调，可传入工作线程使用</p>
+
+<p><a id="web.view.browserArguments"></a></p>
+
+<h3>web.view.browserArguments</h3>
+
+<p>用于指定默认的浏览器启动参数。<br>
+可以指定一个 string.args.joinEx 支持的命令行参数表或字符串。<br>
+也可以指定一个可以返回上述参数的函数。</p>
+
+<p><a id="web.view.checkRuntime"></a></p>
+
+<h3>web.view.checkRuntime(winform)</h3>
+
+<p>如果未安装 WebView2 Runtime 就自动下载安装</p>
+
+<p><a id="web.view.getRuntimeInfo"></a></p>
+
+<h3>web.view.getRuntimeInfo()</h3>
+
+<p>获取 WebView2 Runtime 安装信息<br>
+未安装返回 null</p>
+
+<p><a id="web.view.installRuntime"></a></p>
+
+<h3>web.view.installRuntime(winform)</h3>
+
+<p>重装 WebView2 Runtime</p>
+
+<p><a id="WebView2Object"></a></p>
+
+<h2>WebView2Object 成员列表</h2>
+
+<p><a id="WebView2Object._form"></a></p>
+
+<h3>WebView2Object._form</h3>
+
+<p>创建浏览器控件传入的窗口对象  </p>
+
+<p><a href="../../win/ui/ctrl/static.html#staticObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/static.html#staticObject">返回对象:staticObject</a></p>
+
+<p><a id="WebView2Object.adjust"></a></p>
+
+<h3>WebView2Object.adjust()</h3>
+
+<p>调整页面大小到适合窗口</p>
+
+<p><a id="WebView2Object.cdp"></a></p>
+
+<h3>WebView2Object.cdp</h3>
+
+<p>调用 WebView2 内置 CDP（Chrome DevTools Protocol） 接口。<br>
+调用内置 CDP（Chrome DevTools Protocol）接口，多个 WebView2 不会冲突。<br>
+但同一用户数据目录不能在使用内置 CDP 接口的同时开放远程调试端口。  </p>
+
+<p>CDP 文档: <a href="javascript:if(confirm('https://chromedevtools.github.io/devtools-protocol  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='https://chromedevtools.github.io/devtools-protocol'" tppabs="https://chromedevtools.github.io/devtools-protocol">https://chromedevtools.github.io/devtools-protocol</a><br>
+使用范例: <a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/WebUI/web.view/DevTools/cdp.html  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/WebUI/web.view/DevTools/cdp.html'" tppabs="https://www.aardio.com/zh-cn/doc/example/WebUI/web.view/DevTools/cdp.html">https://www.aardio.com/zh-cn/doc/example/WebUI/web.view/DevTools/cdp.html</a></p>
+
+<p><a id="WebView2Object.cdp"></a></p>
+
+<h3>WebView2Object.cdp(method,params)</h3>
+
+<p>调用 WebView2 内置 CDP 接口。<br>
+参数 @method 指定 CDP 方法，例如：&quot;Page.navigate&quot; 。<br>
+参数 @param 用一个表对象，或 JSON 字符串指定调用参数。<br>
+成功返回一个表对象，失败返回 null，错误代码。<br>
+错误代码可用 lasterr 函数转换为错误信息。</p>
+
+<p><a id="WebView2Object.cdp"></a></p>
+
+<h3>WebView2Object.cdp(method,params,callback)</h3>
+
+<p>异步调用 WebView2 内置 CDP 接口。<br>
+不等待 CDP 调用完成，而是在调用完成异步回调 callback 函数。<br>
+参数 @method 指定 CDP 方法，例如：&quot;Page.navigate&quot; 。<br>
+参数 @param 用一个表对象，或 JSON 字符串指定调用参数。<br>
+@callback 指定回调函数，<br>
+回调参数@1为 CDP 返回的表对象，回调参数@2 为错误代码。<br>
+成功返回 true，失败返回 null,错误代码</p>
+
+<p><a id="WebView2Object.cdpQuery"></a></p>
+
+<h3>WebView2Object.cdpQuery</h3>
+
+<p>使用 WebView2 内置 CDP 接口查询 DOM 节点。<br>
+成功返回表对象，失败返回 null，错误代码。<br>
+错误代码可用 lasterr 函数转换为错误信息。  </p>
+
+<p>此函数调用内置 CDP（Chrome DevTools Protocol）接口，多个 WebView2 不会冲突。<br>
+但同一用户数据目录不能在使用内置 CDP 接口的同时开放远程调试端口</p>
+
+<p><a id="WebView2Object.cdpQuery"></a></p>
+
+<h3>WebView2Object.cdpQuery(selector,parent)</h3>
+
+<p>使用 WebView2 内置 CDP 接口查询节点。<br>
+@selector 指定 CSS 选择器，<br>
+@parent 可选指定父节点或父节点的 nodeId。<br>
+不指定父节点则 @parent 默认取页面根节点。</p>
+
+<p><a id="WebView2Object.cdpQuery"></a></p>
+
+<h3>WebView2Object.cdpQuery(selector,parent,callback)</h3>
+
+<p>异步调用 WebView2 内置 CDP 接口查询节点。<br>
+不等待 CDP 调用完成，而是在调用完成异步回调 callback 函数。<br>
+@selector 指定 CSS 选择器，<br>
+@parent 可选指定父节点或父节点的 nodeId。<br>
+不指定父节点则 @parent 默认取页面根节点。<br>
+@callback 指定回调函数，<br>
+回调参数@1为 CDP 返回的表对象，回调参数@2 为错误代码。<br>
+成功返回 true，失败返回 null,错误代码</p>
+
+<p><a id="WebView2Object.cdpSubscribe"></a></p>
+
+<h3>WebView2Object.cdpSubscribe</h3>
+
+<p>订阅 CDP 事件</p>
+
+<p><a id="WebView2Object.cdpSubscribe"></a></p>
+
+<h3>WebView2Object.cdpSubscribe(事件名,回调函数)</h3>
+
+<p>回调函数的参数为参数表对象。<br>
+如果回调函数返回一个函数，则先结束事件，然后异步执行该函数。<br>
+调用此函数总是会取消之前订阅的同名事件。<br>
+如果回调函数为 null，则仅取消订阅</p>
+
+<p><a id="WebView2Object.cdpWait"></a></p>
+
+<h3>WebView2Object.cdpWait</h3>
+
+<p>调用 WebView2 内置 CDP 接口并等待返回非 null 值。<br>
+调用内置 CDP（Chrome DevTools Protocol）接口，多个 WebView2 不会冲突。<br>
+但同一用户数据目录不能在使用内置 CDP 接口的同时开放远程调试端口。<br>
+函数执行成功返回一个表对象，失败返回 null,错误代码。<br>
+错误代码可用 lasterr 函数转换为错误信息。</p>
+
+<p><a id="WebView2Object.cdpWait"></a></p>
+
+<h3>WebView2Object.cdpWait(method,params,timeout)</h3>
+
+<p>调用 WebView2 内置 CDP 接口并等待返回非 null 值。<br>
+参数 @method 指定 CDP 方法，例如：&quot;DOM.getDocument&quot; 。<br>
+参数 @param 用一个表对象，或 JSON 字符串指定调用参数。<br>
+可选用 @timeout 指定超时，单位毫秒，默认在窗口关闭前一直等待。<br>
+成功返回一个表对象，失败返回 null,错误代码。<br>
+超时错误代码为 0x102/*_WAIT_TIMEOUT*/。<br>
+错误代码可用 lasterr 函数转换为错误信息。</p>
+
+<p><a id="WebView2Object.cdpWaitQuery"></a></p>
+
+<h3>WebView2Object.cdpWaitQuery</h3>
+
+<p>使用 WebView2 内置 CDP 接口查询并等待 DOM 节点。<br>
+调用内置 CDP（Chrome DevTools Protocol）接口，多个 WebView2 不会冲突。<br>
+但同一用户数据目录不能在使用内置 CDP 接口的同时开放远程调试端口</p>
+
+<p><a id="WebView2Object.cdpWaitQuery"></a></p>
+
+<h3>WebView2Object.cdpWaitQuery(selector,parent,timeout)</h3>
+
+<p>使用 WebView2 内置 CDP 接口接口查询并等待节点，<br>
+@selector 指定 CSS 选择器，<br>
+@parent 可选指定父节点或父节点的 nodeId。<br>
+不指定父节点则 @parent 默认取页面根节点。<br>
+可选用 @timeout 指定超时，单位毫秒，默认在窗口关闭前一直等待。<br>
+成功返回表对象，失败返回 null,错误代码。<br>
+超时错误代码为 0x102/*_WAIT_TIMEOUT*/</p>
+
+<p><a id="WebView2Object.defaultBackgroundColor"></a></p>
+
+<h3>WebView2Object.defaultBackgroundColor</h3>
+
+<p>网页默认背景色, GDI+ 兼容的 ARGB 格式数值<br>
+颜色透明度仅支持透明或不透明</p>
+
+<p><a id="WebView2Object.doScript"></a></p>
+
+<h3>WebView2Object.doScript(/*JS 脚本*/)</h3>
+
+<p>执行 字符串参数@1 指定的 JS 脚本</p>
+
+<p><a id="WebView2Object.doScript"></a></p>
+
+<h3>WebView2Object.doScript(js)</h3>
+
+<p>执行JS代码，<br>
+不指定回调函数时，JS代码放入匿名函数体内执行</p>
+
+<p><a id="WebView2Object.doScript"></a></p>
+
+<h3>WebView2Object.doScript(js,callback)</h3>
+
+<pre><code class="aardio language-aardio">WebView2Object.doScript(js,function(result){  
+    /*执行JS代码成功在当前界面线程异步回调此函数，  
+@result参数为JS代码的返回值*/  
+} )
+</code></pre>
+
+<p><a id="WebView2Object.enableDefaultContextMenus"></a></p>
+
+<h3>WebView2Object.enableDefaultContextMenus()</h3>
+
+<p>设置是否启用默认右键菜单。<br>
+参数 @1 可指定 true 或 false 。<br>
+必须在加载网页前设置</p>
+
+<p><a id="WebView2Object.enableDevTools"></a></p>
+
+<h3>WebView2Object.enableDevTools()</h3>
+
+<p>设置是否启用网页开发工具。<br>
+参数 @1 可指定 true 或 false 。<br>
+必须在加载网页前设置</p>
+
+<p><a id="WebView2Object.enableStatusBar"></a></p>
+
+<h3>WebView2Object.enableStatusBar()</h3>
+
+<p>是否允许在网页窗口底部显示默认状态栏，默认不显示。<br>
+参数 @1 可指定 true 或 false</p>
+
+<p><a id="WebView2Object.eval"></a></p>
+
+<h3>WebView2Object.eval</h3>
+
+<p>运算 JS 代码并返回值<br>
+返回值使用 JSON 转换为 aardio 值。<br>
+此函数会阻塞直到调用返回。<br>
+在被网页回调 aardio 函数内调用 webView.xcall，webView.eval 可能导致阻塞，<br>
+应改用非阻塞的 webView.invoke 函数，或用 winform.setTimeout 异步调用 webView.xcall，webView.eval 函数</p>
+
+<p><a id="WebView2Object.eval"></a></p>
+
+<h3>WebView2Object.eval(js,...)</h3>
+
+<p>运算JS代码并返回值，<br>
+等待返回值过程中会继续处理界面消息,<br>
+如果指定多个参数，则首先调用 string.format 格式化所有参数</p>
+
+<p><a id="WebView2Object.export"></a></p>
+
+<h3>WebView2Object.export</h3>
+
+<p>导出 aardio 函数为 JS 全局变量。<br>
+注意 JS 调用这里导出的本地函数时，<br>
+调用参数会通过 JSON 转换为纯 aardio 对象。<br>
+返回值也会通过 JSON 转换为纯 JS 对象。  </p>
+
+<p>在被网页回调 aardio 函数内执行 JS 时要避免在 JS 中再次回调此 aardio 函数。  </p>
+
+<p>被网页回调的 aardio 函数内不要调用可能阻塞的 webView.xcall，webView.eval 函数。<br>
+应改用非阻塞的 webView.invoke 函数，或通过 winform.setTimeout 异步调用会导致同步阻塞的函数。</p>
+
+<p><a id="WebView2Object.export"></a></p>
+
+<h3>WebView2Object.export(JS变量名,回调函数)</h3>
+
+<p>导出aardio函数为JS全局变量,<br>
+参数也可以使用一个表包含多个需要绑定到JS的变量名值对,值必须是函数。<br>
+JS脚本中调用这里绑定的本地函数返回值为 Promise 对象</p>
+
+<p><a id="WebView2Object.exportHostObject"></a></p>
+
+<h3>WebView2Object.exportHostObject</h3>
+
+<p>直接导出 aardio 对象到 JavaScript，<br>
+直接转换为 COM 对象，中间不需要经过 JSON 转换,<br>
+用法请参考: <a href="javascript:if(confirm('https://docs.microsoft.com/en-us/microsoft-edge/webview2/reference/win32/icorewebview2?view=webview2-1.0.705.50  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='https://docs.microsoft.com/en-us/microsoft-edge/webview2/reference/win32/icorewebview2?view=webview2-1.0.705.50#addhostobjecttoscript'" tppabs="https://docs.microsoft.com/en-us/microsoft-edge/webview2/reference/win32/icorewebview2?view=webview2-1.0.705.50#addhostobjecttoscript">https://docs.microsoft.com/en-us/microsoft-edge/webview2/reference/win32/icorewebview2?view=webview2-1.0.705.50#addhostobjecttoscript</a></p>
+
+<p><a id="WebView2Object.exportHostObject"></a></p>
+
+<h3>WebView2Object.exportHostObject(变量名,对象)</h3>
+
+<p>直接导出 aardio 对象到 JavaScript，<br>
+可导出表对象、函数对象、COM 对象等,<br>
+在js中通过 chrome.webview.hostObjects的成员访问此对象,<br>
+中间不会经过JSON转换，而是直接转换为 COM 对象，<br>
+用这个方法导出函数时，<br>
+要特别注意参数中的 JavaScript 对象会被转换为 COM 对象，<br>
+而返回给 JavaScript 的 aardio 对象会被转换为 Promise 对象</p>
+
+<p><a id="WebView2Object.external"></a></p>
+
+<h3>WebView2Object.external</h3>
+
+<pre><code class="aardio language-aardio">WebView2Object.external = {
+    /*在 Javascript 中可通过全局变量 `aardio` 访问 WebView2Object.external 对象。
+在 JavaScript 中所有的 aardio 对象以及 aardio 对象的方法与属性都被包装为 Promise 对象
+
+在 JavaScript 中调用  WebView2Object.external 导出的函数时，参数与返回值都不需要经过 JSON 转换。
+除字符串、数值、布尔值、可兼容的数组、buffer 等基础值类型可以直接传值以外，
+其他对象类型（JavaScript 中的 object 或 aardio 中的表对象 ）自动转换为 COM 代理对象，
+让我们可以通过 COM 接口间接操作跨语言的对象。
+
+要注意不能将这种 COM 代理对象作为原生 JavaScript 对象使用，
+例如不能用于 JavaScript 图表或表格的数据源对象，而  WebView2Object.export 导出的 aardio 函数则无此限制。
+
+被网页回调的 aardio 函数内不要调用可能阻塞的 webView.xcall，webView.eval 函数。
+应改用非阻塞的 webView.invoke 函数，或通过 winform.setTimeout 异步调用同步阻塞的函数*/
+}
+</code></pre>
+
+<p><a id="WebView2Object.focus"></a></p>
+
+<h3>WebView2Object.focus()</h3>
+
+<p>网页窗口设置为输入焦点</p>
+
+<p><a id="WebView2Object.fullscreen"></a></p>
+
+<h3>WebView2Object.fullscreen()</h3>
+
+<p>全屏。<br>
+参数指定是否全屏，不指定参数则切换全屏。<br>
+返回值为当前是否全屏</p>
+
+<p><a id="WebView2Object.go"></a></p>
+
+<h3>WebView2Object.go</h3>
+
+<p>打开网址或文件地址。<br>
+如果需要用这个函数打开工程内的资源文件，<br>
+请提前导入 wsock.tcp.simpleHttpServer 或 wsock.tcp.asynHttpServer 。  </p>
+
+<p>如果要在打开的网页上跳转锚点（也就是跳转 &num; 开头的网址），<br>
+可改用 location 属性跳转</p>
+
+<p><a id="WebView2Object.go"></a></p>
+
+<h3>WebView2Object.go(url,devPort,devTimeout)</h3>
+
+<p>打开 @url 参数指定的网址。  </p>
+
+<p>如果提前导入 wsock.tcp.simpleHttpServer 或 wsock.tcp.asynHttpServer<br>
+则 io.localpath 支持的路径转换为通过嵌入 HTTP 服务器访问的网址。  </p>
+
+<p>使用 HTTP 嵌入服务器可自动支持嵌入资源路径与 SPA 单页应用。<br>
+如果同时文件名为 index.html 或 index.aardio。<br>
+则上级目录设为 documentBase 根目录，后续请求路径应当以 &quot;/&quot; 代替 documentBase。  </p>
+
+<p>可选使用@devPort参数指定前端项目开发环境调试端口，<br>
+可选用@devTimeout参数指定检测调试端口超时<br>
+@devPort,@devTimeout参数仅在开发环境中有效</p>
+
+<p><a id="WebView2Object.go"></a></p>
+
+<h3>WebView2Object.go(url,params)</h3>
+
+<p>打开 @url 参数指定的网址。<br>
+@params 用一个表对象（table）指定 URL 参数。<br>
+调用 inet.url.appendExtraInfo 函数在网址后添加参数 。</p>
+
+<p><a id="WebView2Object.html"></a></p>
+
+<h3>WebView2Object.html</h3>
+
+<pre><code class="aardio language-aardio">WebView2Object.html = /**  
+&lt;!doctype html&gt;  
+&lt;html&gt;  
+&lt;head&gt;  
+    &lt;meta charset=&quot;utf-8&quot;&gt;  
+    &lt;style type=&quot;text/css&quot;&gt;  
+    html,body{ height:100%; margin:0; } /*将网页写入内存。  
+支持 aardio 模板语法，模板的 owner 参数为当前 web.view 对象。  
+包含 HTML 的块注释可赋值为字符串，首尾星号数目要一致。  
+
+WebView2 通过 html 属性内存加载体积太大的 HTML 会卡住，改用本地文件可流畅打开。  
+如果要引用其他本地文件，也必须改用 wb.go 打开 html 文件。*/  
+    &lt;/style&gt;  
+    &lt;script&gt;&lt;/script&gt;  
+&lt;/head&gt;  
+&lt;body&gt;&lt;/body&gt;  
+&lt;/html&gt;  
+**/
+</code></pre>
+
+<p><a id="WebView2Object.hwndChrome"></a></p>
+
+<h3>WebView2Object.hwndChrome</h3>
+
+<p>网页窗口句柄</p>
+
+<p><a id="WebView2Object.invoke"></a></p>
+
+<h3>WebView2Object.invoke</h3>
+
+<p>调用 JS 函数但不会等待返回值。  </p>
+
+<p>此函数使用 JSON 在 JS/aardio 之间转换参数与返回值</p>
+
+<p><a id="WebView2Object.invoke"></a></p>
+
+<h3>WebView2Object.invoke(&quot;object.func&quot;,...)</h3>
+
+<p>调用 JS 函数但不会等待返回值，<br>
+等待返回值过程中会继续处理界面消息。  </p>
+
+<p>参数 @1 指定要调用的函数名或返回函数的表达式,  </p>
+
+<p>如果参数 @1 不包含回车或换换行、分号、大括号、圆括号，<br>
+则参数 @1最后一个点号前的对象作为调用 JS 函数的 this 参数</p>
+
+<p><a id="WebView2Object.isVisible"></a></p>
+
+<h3>WebView2Object.isVisible</h3>
+
+<p>浏览器控件是否显示</p>
+
+<p><a id="WebView2Object.loadExtension"></a></p>
+
+<h3>WebView2Object.loadExtension()</h3>
+
+<p>加载浏览器扩展目录。<br>
+参数 @1 必须指定浏览器扩展配置文件 manifest.json 所在的目录。  </p>
+
+<p>如果事先导入 chrome.extensions 库，<br>
+则参数可指定系统浏览器扩展 ID、或名称、描述包含的关键字（忽略大小写）。<br>
+在浏览器扩展管理页面可查看 ID。</p>
+
+<p><a id="WebView2Object.location"></a></p>
+
+<h3>WebView2Object.location</h3>
+
+<p>获取或设置当前网址。<br>
+可以用于跳转锚点（也就是指定#开头的网址)。<br>
+如果当前已经打开其他网页，则修改 location.href 跳转。<br>
+否则调用 go 函数跳转</p>
+
+<p><a id="WebView2Object.notifyPositionChanged"></a></p>
+
+<h3>WebView2Object.notifyPositionChanged()</h3>
+
+<p>通知 WebView2 控件父窗口已移动</p>
+
+<p><a id="WebView2Object.onDocumentInit"></a></p>
+
+<h3>WebView2Object.onDocumentInit(url)</h3>
+
+<pre><code class="aardio language-aardio">WebView2Object.onDocumentInit = function(url){
+    /*打开网页并创建 document 对象后触发此事件,  
+url为当前网址*/
+}
+</code></pre>
+
+<p><a id="WebView2Object.onFullScreen"></a></p>
+
+<h3>WebView2Object.onFullScreen</h3>
+
+<pre><code class="aardio language-aardio">WebView2Object.onFullScreen = lambda(enabled) owner.fullscreen(enabled);/*响应网页全屏事件，  
+参数 enabled 表示网页是否请求全屏，此函数忽略返回值。  
+设为 null 移除事件*/
+</code></pre>
+
+<p><a id="WebView2Object.onNewWindow"></a></p>
+
+<h3>WebView2Object.onNewWindow(callback)</h3>
+
+<pre><code class="aardio language-aardio">WebView2Object.onNewWindow = function(url){  
+    /*返回 false 继续打开新窗口。  
+返回 true 阻止打开新窗口。  
+返回函数则阻止打开新窗口，并异步执行该函数。  
+耗时或阻塞浏览器控件的操作应放入返回的异步函数内执行*/  
+}
+</code></pre>
+
+<p><a id="WebView2Object.openRemoteDebugging"></a></p>
+
+<h3>WebView2Object.openRemoteDebugging()</h3>
+
+<p>创建 web.socket.chrome 远程调试对象,<br>
+请先导入web.socket.chrome  </p>
+
+<p><a href="#websocketchromeClientObject">返回对象:websocketchromeClientObject</a></p>
+
+<p><a id="WebView2Object.preloadScript"></a></p>
+
+<h3>WebView2Object.preloadScript(/*JS 脚本*/)</h3>
+
+<p>将 字符串参数@1 指定的 JS 脚本添加为网页默认加载脚本,<br>
+在网页初始化时执行，保证在 window.onload 事件前执行,<br>
+不会覆盖之前添加的脚本</p>
+
+<p><a id="WebView2Object.remoteDebuggingPort"></a></p>
+
+<h3>WebView2Object.remoteDebuggingPort</h3>
+
+<p>远程调试端口,只读属性</p>
+
+<p><a id="WebView2Object.setTimeout"></a></p>
+
+<h3>WebView2Object.setTimeout</h3>
+
+<p>推迟执行指定的函数或代码。<br>
+此函数异步执行参数中指定的函数，不会阻塞当前代码继续执行。  </p>
+
+<p>网页回调 aardio 函数时，<br>
+如果要使用 webView.eval, webView.xcall 等阻塞调用网页的函数，<br>
+应通过 setTimeout 函数异步调用</p>
+
+<p><a id="WebView2Object.setTimeout"></a></p>
+
+<h3>WebView2Object.setTimeout(函数或代码,延时,其他附加参数)</h3>
+
+<p>延时参数是可选参数，以毫秒为单位，默认为0毫秒。<br>
+可选用附加参数指定调用延时函数的实参。<br>
+返回值为定时器 ID</p>
+
+<p><a id="WebView2Object.userDataDir"></a></p>
+
+<h3>WebView2Object.userDataDir</h3>
+
+<p>创建浏览器控件指定的浏览器用户数据目录<br>
+如果该目录下数据异常会导致浏览器异常组件并显示空白，<br>
+此时关闭程序并清空或更新用户数据目录即可</p>
+
+<p><a id="WebView2Object.wait"></a></p>
+
+<h3>WebView2Object.wait(&quot;字符串参数&quot;)</h3>
+
+<p>等待参数@1指定的网址打开，<br>
+参数@2支持模式匹配语法，<br>
+在指定的网页创建 document 对象后返回，<br>
+窗口关闭也会返回。  </p>
+
+<p>成功返回页面 URL</p>
+
+<p><a id="WebView2Object.waitDoc"></a></p>
+
+<h3>WebView2Object.waitDoc()</h3>
+
+<p>等待文档对象准备就绪。<br>
+也就是页面的 document.readyState 为 &quot;interactive&quot; 时返回 true。<br>
+如果参数 @1 为 true 则  document.readyState 为 &quot;complete&quot; 时返回 true。<br>
+可选用参数 @2 指定超时。</p>
+
+<p><a id="WebView2Object.waitEle"></a></p>
+
+<h3>WebView2Object.waitEle</h3>
+
+<p>等待网页创建指定节点</p>
+
+<p><a id="WebView2Object.waitEle"></a></p>
+
+<h3>WebView2Object.waitEle(selector)</h3>
+
+<p>等待网页创建指定节点<br>
+@selector 参数指定CSS选择器,<br>
+省略参数@2时同步等待节点出现。  </p>
+
+<p>成功返回 CSS 选择器，失败返回 null,错误对象（表对象或字符串）</p>
+
+<p><a id="WebView2Object.waitEle"></a></p>
+
+<h3>WebView2Object.waitEle(selector,callback,timeout)</h3>
+
+<p>异步等待网页创建指定节点<br>
+@selector 参数指定CSS选择器,<br>
+参数@2指定 aardio 回调函数,<br>
+找到节点回调参数@1为选择器，<br>
+失败回调参数@2为错误信息,回调参数@1为null,<br>
+可选用参数@3指定超时，单位毫秒</p>
+
+<p><a id="WebView2Object.waitEle"></a></p>
+
+<h3>WebView2Object.waitEle(selector,js,timeout)</h3>
+
+<p>异步等待网页创建指定节点<br>
+@selector 参数指定CSS选择器,<br>
+找到节点执行参数@2指定的 JavaScript 代码,<br>
+执行JS代码时自动绑定this对象为找到的节点,<br>
+可选用参数@3指定超时，单位毫秒</p>
+
+<p><a id="WebView2Object.waitUrlParam"></a></p>
+
+<h3>WebView2Object.waitUrlParam(&quot;字符串参数&quot;,&quot;字符串参数&quot;)</h3>
+
+<p>等待参数@1指定的网址打开，支持模式匹配。<br>
+参数 @1 的等待规则与 wait 函数相同。  </p>
+
+<p>参数 @2 指定要等待的 URL 参数名，<br>
+如果找到该参数则返回参数值，否则继续等待到参数出现或社会窗口关闭</p>
+
+<p><a id="WebView2Object.xcall"></a></p>
+
+<h3>WebView2Object.xcall</h3>
+
+<p>调用JS函数并返回值。<br>
+此函数使用 JSON 在 JS/aardio 之间转换参数与返回值  </p>
+
+<p>此函数会阻塞直到调用返回。<br>
+如果不需要返回值建议改用异步非阻塞的 webView.invoke 函数。<br>
+在被网页回调 aardio 函数内调用 webView.xcall，webView.eval 可能导致阻塞，<br>
+应改用非阻塞的 webView.invoke 函数，或用 winform.setTimeout 异步调用 webView.xcall，webView.eval 函数</p>
+
+<p><a id="WebView2Object.xcall"></a></p>
+
+<h3>WebView2Object.xcall(&quot;object.func&quot;,...)</h3>
+
+<p>调用 JS 函数并返回值，<br>
+此函数使用 JSON 在 JS/aardio 之间转换参数与返回值。  </p>
+
+<p>等待返回值过程中会继续处理界面消息,<br>
+参数@!指定要调用的函数名或返回函数的表达式,  </p>
+
+<p>如果参数 @1 不包含回车或换换行、分号、大括号、圆括号，<br>
+则参数 @1最后一个点号前的对象作为调用 JS 函数的 this 参数</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/web/view/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/web/view/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/web/view/_.md">Markdown 格式</a></p>
+
+</body> 
+</html>

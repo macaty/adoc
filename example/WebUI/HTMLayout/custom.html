@@ -1,0 +1,93 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - HTMLayout 自定义控件'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - HTMLayout 自定义控件</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: HTMLayout 自定义控件</h1><pre><code class="aardio language-aardio">//自定义控件
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;HTMLayout 自定义控件&quot;;right=1014;bottom=523;)
+winform.add()
+/*}}*/
+
+import web.layout;
+var wbLayout = web.layout( winform );
+
+import web.layout.debug;
+wbLayout.attachEventHandler( web.layout.debug );
+
+import web.form; 
+namespace web.layout.behavior.webBrowser {  
+    onElementControlCreated = function (ltTarget,ltOwner,reason,behaviorParams) {
+        var ltCtrl = ltOwner.getCtrl(); 
+        wb = ..web.form( ltCtrl,0x4/*_UIFLAG_NO3DBORDER*/  , , ,true/*securityTrusted*/ ) 
+        ltCtrl.translateAccelerator = function( msg ){
+            var message,vk = msg.message,msg.wParam;
+            if (   (message == 0x100/*_WM_KEYDOWN*/) || (message== 0x101/*_WM_KEYUP*/) ) { 
+                if( /**( vk == 0x74/*_VK_F5*/ )
+                    || **/( ( vk == &#39;N&#39;# ) &amp;&amp; ( ( ::GetKeyState(0x11/*_VK_CTRL*/) &amp; 0x8000 ) == 0x8000 ) ) ) 
+                {
+                    return true;   
+                } 
+            }  
+            return wb._host.tranacc(msg)
+        }
+        if( !_STUDIO_INVOKED ){
+            wb.noScriptErr = true;
+        }
+        var homepage = ltOwner.getCustomAttribute(&quot;homepage&quot;);
+        if( #homepage ) wb.go(  ltOwner.getCustomAttribute(&quot;homepage&quot;))   
+        ltOwner.sendEvent(&quot;onBrowserCreated&quot;,1);
+    } 
+    onSize = function (ltOwner) {
+        ltOwner.adjustCtrl(); 
+    }
+}
+
+//在HTML中引用的控件,需要使用import语句导入aardio 
+import win.ui.ctrl.static;
+import win.ui.ctrl.richedit; 
+wbLayout.html =/*** 
+&lt;body&gt;
+
+&lt;span style=&quot;font:system&quot;&gt;
+自定义控件很简单,在input,object,widget三种节点中使用cls属性指定控件类名即可,&lt;br /&gt;
+可选在data-table属性中使用一个table对象指定控件初始化参数 &lt;br /&gt;
+&lt;/span&gt; 
+
+&lt;object cls=&quot;richedit&quot; data-table=&quot;{ text=&#39;控件文本&#39;;multiline=true }&quot; id=&quot;edit&quot; style=&quot;font-size:9pt;width:100%; height:50px;&quot;&gt;&lt;/object&gt; 
+&lt;widget cls=&quot;static&quot; #browser style=&quot;width:100%%;height:100%%;&quot;&gt;&lt;/widget&gt; 
+widget可以指定相对高度,input,object因为被包含在匿名节点中,无法指定相对高度 &lt;? = &quot; | &quot;,time(),&quot; 这里也是可以使用模板语法的&quot; ?&gt;
+&lt;/body&gt;
+***/
+
+wbLayout.css = /**
+body{ 
+    margin:20px;
+    height:100%%;
+    font:system;
+} 
+
+#browser {
+    behavior:web-browser; 
+    -homepage:&quot;http://www.aardio.com&quot;;
+}
+**/
+
+winform.show() 
+win.loopMessage();
+
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/WebUI/HTMLayout/custom.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/WebUI/HTMLayout/custom.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/WebUI/HTMLayout/custom.md">Markdown 格式</a>
+</body> 
+</html>

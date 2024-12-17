@@ -1,0 +1,83 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - Selenium.NET'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - Selenium.NET</title> 
+<link rel="stylesheet" href="../../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: Selenium.NET</h1><pre><code class="aardio language-aardio"> //使用 Selenium 实现网页自动化操作
+import console;
+console.showLoading(&quot; 正在启动 Selenium .NET &quot;);
+
+/*
+在 aardio 里用 chrome.driver 更简单一些。
+aardio 实际不需要任何第三方组件即可调用 ChromeDriver，
+
+dotNet.Selenium 基于开源的 Selenium .NET 版本，一些小的改进：
+1、自动检测并配置运行环境，自动匹配 Chrome 版本下载对应版本的 ChromeDriver。
+2、自动兼容系统安装的 Chrome 或 Edge Chromium，自动选择 ChromeDriver 或 EdgeDriver
+3、内存加载所有 DLL ，可以生成绿色独立的 EXE 文件。
+*/
+import dotNet.Selenium;
+
+//简单化创建 WebDriver 对象
+var wd = Selenium.CreateDefaultWebDriver(); 
+
+//打开网址。
+wd.Url = &quot;https://www.aardio.com/zh-cn/doc/&quot;
+
+//By 对象用于创建查找节点的条件对象。
+var By = Selenium.By;
+
+/*
+查找并等待输入框节点，
+Selenium 自己提供的 WebDriverWait 不好用，这个 WaitEle 函数是用 aardio 实现的。 
+*/
+var keyword = wd.WaitEle( By.Id(&quot;search-input&quot;)  ) 
+
+//清空输入框 
+keyword.Clear();
+
+//发送按键
+keyword.SendKeys(&quot;多线程&quot;);
+
+//查找按钮
+var button = wd.FindElement( By.Id(&quot;search-button&quot;) );
+
+//点击按钮
+button.Click();
+
+//获取 cookie  
+var cookies = wd.Manage().Cookies.AllCookies; 
+
+//用 dotNet 遍历 .NET 数组
+for i,cookie in dotNet.each(cookies) {
+    console.log(cookie.Name)
+    console.log(cookie.Value)
+    console.log(cookie.Domain)
+}
+
+//截图
+wd.GetScreenshot().SaveAsFile(io.fullpath(&quot;/baidu.png&quot;) );
+//上面第2个参数 0 ,也可以用枚举 SeleniumBasic.Utility.ScreenshotImageFormat.Png 获取
+
+console.close();
+console.log(wd.Title, wd.Url);
+console.log(wd.PageSource);
+console.pause(,&quot;按任意键退出浏览器&quot;);
+
+//退出浏览器
+wd.Quit();
+
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/dotNet/Apps/Selenium.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/dotNet/Apps/Selenium.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Languages/dotNet/Apps/Selenium.md">Markdown 格式</a>
+</body> 
+</html>

@@ -1,0 +1,69 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - web.json 库 -  JSON 解析'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - web.json 库 -  JSON 解析</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: web.json 库 -  JSON 解析</h1><pre><code class="aardio language-aardio">//web.json 库 -  JSON 解析
+//参考:『工具 ＞ 编码 ＞ JSON / table 互转』
+
+import web.json;
+import console;
+
+//web.json 有很好的兼容性，写法非常自由。  
+var json = /*******
+//这是注释
+
+#这也是注释
+
+/*
+如果根节点是一个对象，可以省略外层的 {}
+*/
+name = {
+    a: 123,
+    b: 456,
+    c: [1,2,3]
+}
+tm: 2021-02-1T15:02:31+08:00 //可以使用ISO 8601格式表示日期时间
+名字 = 值，可以使用等号分隔键值
+名字2: 值，也可以用冒号分隔键值
+名字3  值，甚至可以不使用分隔符，用空格分开就可以
+
+名字4
+这样写也可以
+
+名字5
+这样写也没问题
+
+&quot;名字6&quot;:&quot;完全兼容传统的JSON语法&quot;,
+名字7: 分隔符也可以使用分号;
+名字8: 分隔符可以不写也没问题
+名字9:  null //支持 null 值（虽然在 aardio 中 null 等效于删除变量 ）
+*******/ 
+
+//JSON 字串解码成 table 对象
+var tabObject  = web.json.parse(json);
+console.dumpJson( tabObject ) 
+console.more(1);
+
+// table 对象转换为 JSON 字符串,参数 @2 为 true 时格式化 JSON
+var json = web.json.stringify(tabObject,true);
+console.dump(json);
+
+//再次使用 JSON 转换为对象
+var jsonObject = web.json.parse(json); 
+
+console.pause(true);
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Web/JSON/JSON.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Web/JSON/JSON.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Web/JSON/JSON.md">Markdown 格式</a>
+</body> 
+</html>

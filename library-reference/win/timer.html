@@ -1,0 +1,96 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - win.timer 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - win.timer 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>win.timer 库模块帮助文档</h1>
+
+<p><a id="win"></a></p>
+
+<h2>win 成员列表</h2>
+
+<p><a id="win.timer"></a></p>
+
+<h3>win.timer</h3>
+
+<p>定时管理器</p>
+
+<p><a id="win.timer"></a></p>
+
+<h3>win.timer()</h3>
+
+<p><a href="#winTimerObject">返回对象:winTimerObject</a></p>
+
+<p><a id="win.timer"></a></p>
+
+<h3>win.timer(winform,interval)</h3>
+
+<p>创建定时器<br>
+如果不指定窗体对象,则创建消息窗体<br>
+interval为可选参数，用于指定间隔时间,以毫秒为单位,默认为100毫秒</p>
+
+<p><a id="winTimerObject"></a></p>
+
+<h2>winTimerObject 成员列表</h2>
+
+<p><a id="winTimerObject.disable"></a></p>
+
+<h3>winTimerObject.disable()</h3>
+
+<p>禁用定时器</p>
+
+<p><a id="winTimerObject.enable"></a></p>
+
+<h3>winTimerObject.enable(interval,count)</h3>
+
+<p>启用定时器,<br>
+可选使用interval参数中指定间隔时间,以毫秒为单位,<br>
+可选使用count参数限定定时器执行次数,<br>
+如果指定了有效执行次数,则定时器会立即执行一次onTimer函数,<br>
+否则会先延时再执行onTimer函数</p>
+
+<p><a id="winTimerObject.getInterval"></a></p>
+
+<h3>winTimerObject.getInterval()</h3>
+
+<p>读取定时器间隔时间</p>
+
+<p><a id="winTimerObject.onEnd"></a></p>
+
+<h3>winTimerObject.onEnd</h3>
+
+<pre><code class="aardio language-aardio">winTimerObject.onEnd = function(){
+    /*定时器停止时触发此事件*/
+}
+</code></pre>
+
+<p><a id="winTimerObject.onTimer"></a></p>
+
+<h3>winTimerObject.onTimer</h3>
+
+<pre><code class="aardio language-aardio">winTimerObject.onTimer = function(){
+    /*设置定时器触发函数,此函数不应返回任何值*/
+}
+</code></pre>
+
+<p><a id="winTimerObject.setInterval"></a></p>
+
+<h3>winTimerObject.setInterval(1)</h3>
+
+<p>修改定时器间隔时间,<br>
+以毫秒为单位</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/timer.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/timer.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/timer.md">Markdown 格式</a></p>
+
+</body> 
+</html>

@@ -1,0 +1,544 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - wsock.tcp.asynClient 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - wsock.tcp.asynClient 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>wsock.tcp.asynClient 库模块帮助文档</h1>
+
+<p><a id="tcpaclientObject"></a></p>
+
+<h2>tcpaclientObject 成员列表</h2>
+
+<p><a id="tcpaclientObject._form"></a></p>
+
+<h3>tcpaclientObject._form</h3>
+
+<p>用于处理套接字消息的窗口对象  </p>
+
+<p><a href="../../win/ui/_.html#winform" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/_.html#winform">返回对象:winform</a></p>
+
+<p><a id="tcpaclientObject.asyncSelect"></a></p>
+
+<h3>tcpaclientObject.asyncSelect(event)</h3>
+
+<p>检测到由event参数指明的网络事件后,<br>
+参数@1使用_FD_前缀的常量指定,可使用位或操作符指定多个选项<br>
+事件到达会触发相应的事件(参考on前缀的事件函数),  </p>
+
+<p>失败返回null,以及错误信息,<br>
+成功返回true,以及上次调用此函数指定的event参数</p>
+
+<p><a id="tcpaclientObject.bind"></a></p>
+
+<h3>tcpaclientObject.bind</h3>
+
+<p>绑定 IP 端口。</p>
+
+<p><a id="tcpaclientObject.bind"></a></p>
+
+<h3>tcpaclientObject.bind(IP,端口)</h3>
+
+<p>绑定 IP 端口。<br>
+如果不指定 IP 则默认绑定 0.0.0.0。  </p>
+
+<p>成功返回 true，<br>
+失败返回 null,错误信息,错误代码。  </p>
+
+<p>同一套接字重复绑定会返回 10022（_WSAEINVAL） 错误。<br>
+重新绑定应当重新创建套接字。<br>
+这就好比一张车票只能上一次车。<br>
+不能在已经上车以后再要求车站修改车票上的上车地。</p>
+
+<p><a id="tcpaclientObject.bufferSize"></a></p>
+
+<h3>tcpaclientObject.bufferSize</h3>
+
+<p>读写缓冲区大小，默认为64KB<br>
+缓冲区如果设置的太小，会导致过于频繁的调用读写函数</p>
+
+<p><a id="tcpaclientObject.close"></a></p>
+
+<h3>tcpaclientObject.close()</h3>
+
+<p>关闭TCP客户端。<br>
+如果未显式调用此函数，在对象析构时将会自动调用。  </p>
+
+<p>已断开连接的套接字不能再使用，需要重连接请重新创建套接字。<br>
+就好比用过的车票不能重复用，什么地方都有规则和限制。</p>
+
+<p><a id="tcpaclientObject.connect"></a></p>
+
+<h3>tcpaclientObject.connect</h3>
+
+<p>创建连接。  </p>
+
+<p>已关闭的套接字不能再使用，需要重连接请重新创建套接字。<br>
+就好比用过的车票不能重复用，什么地方都有规则和限制。</p>
+
+<p><a id="tcpaclientObject.connect"></a></p>
+
+<h3>tcpaclientObject.connect(IP或域名,端口号)</h3>
+
+<p>创建连接。<br>
+也可以在参数 @1 中用一个字符串同时指定 IP 和端口号,IP 与端口号使用冒号分隔。<br>
+异步套接字始终返回 null ，在 onOpen ,onError 回调事件中判断是否连接成功。</p>
+
+<p><a id="tcpaclientObject.eachRead"></a></p>
+
+<h3>tcpaclientObject.eachRead</h3>
+
+<pre><code class="aardio language-aardio">for(str,readSize,remainSize in tcpaclientObject.eachRead() ){   
+    /*可选指在eachRead参数中指定最大长度,  
+读取长度不可指定负数  
+
+迭代变量:  
+str是本迭代次读取的字符串,readSize是读取的长度,      
+remainSize是剩余还没有读取的字节,      
+如果限定了最大长度,remainSize为0时才表示读完所有数据,     
+此函数不支持unRead送回的数据,  
+异步客户端只能在onRead事件中使用  
+
+如果套接字没有断开,并且出没有遇到错误,  
+但是还没有数据到达,此函数会等待数据  
+但不会阻塞消息循环*/  
+}
+</code></pre>
+
+<p><a id="tcpaclientObject.eachReadBuffer"></a></p>
+
+<h3>tcpaclientObject.eachReadBuffer</h3>
+
+<pre><code class="aardio language-aardio">for(readSize,remainSize in tcpaclientObject.eachReadBuffer() ){   
+    /*可选指在eachReadBuffer参数中指定最大长度,  
+读取长度不可指定负数  
+
+迭代变量:  
+readSize是本次迭代读取的长度,buffer的实际长度可能大于readSize,     
+remainSize是剩余还没有读取的字节,      
+如果限定了最大长度,remainSize为0时才表示读完所有数据,     
+此函数不支持unRead送回的数据,  
+异步客户端只能在onRead事件中使用  
+
+如果套接字没有断开,并且出没有遇到错误,  
+但是还没有数据到达,此函数会等待数据  
+但不会阻塞消息循环*/  
+}
+</code></pre>
+
+<p><a id="tcpaclientObject.flush"></a></p>
+
+<h3>tcpaclientObject.flush()</h3>
+
+<p>兼容aardio标准流接口</p>
+
+<p><a id="tcpaclientObject.getLocalIp"></a></p>
+
+<h3>tcpaclientObject.getLocalIp()</h3>
+
+<p>返回连接的本地IP,端口号</p>
+
+<p><a id="tcpaclientObject.getRemoteIp"></a></p>
+
+<h3>tcpaclientObject.getRemoteIp()</h3>
+
+<p>返回连接的远程IP,端口号</p>
+
+<p><a id="tcpaclientObject.getSocketError"></a></p>
+
+<h3>tcpaclientObject.getSocketError()</h3>
+
+<p>获取并同时清除套接字错误代码</p>
+
+<p><a id="tcpaclientObject.getopt"></a></p>
+
+<h3>tcpaclientObject.getopt(_SO)</h3>
+
+<p>获取选项<br>
+参数@1使用_SO_前缀的常量指定选项,参数@2使用结构体指定值<br>
+如果不指定参数@2,则获取一个32位整型数值,<br>
+可选用参数@3指定设置层次，默认为SOL_SOCKET<br>
+成功返回读取的结构体</p>
+
+<p><a id="tcpaclientObject.hSocket"></a></p>
+
+<h3>tcpaclientObject.hSocket</h3>
+
+<p>套接字句柄<br>
+关闭对象后为空值<br>
+此值应由对象自动维护，调用者不应修改此属性</p>
+
+<p><a id="tcpaclientObject.isClosed"></a></p>
+
+<h3>tcpaclientObject.isClosed()</h3>
+
+<p>套接字是否已关闭</p>
+
+<p><a id="tcpaclientObject.isConnected"></a></p>
+
+<h3>tcpaclientObject.isConnected()</h3>
+
+<p>套接字是否已连接</p>
+
+<p><a id="tcpaclientObject.lastSelectEvent"></a></p>
+
+<h3>tcpaclientObject.lastSelectEvent</h3>
+
+<p>最后一次调用asyncSelect应用的事件<br>
+不可手动修改此属性，应由对象自动维护</p>
+
+<p><a id="tcpaclientObject.lastSelectHwnd"></a></p>
+
+<h3>tcpaclientObject.lastSelectHwnd</h3>
+
+<p>最后一次调用asyncSelect应用的窗口句柄<br>
+不可手动修改此属性，应由对象自动维护</p>
+
+<p><a id="tcpaclientObject.lastSelectMessageId"></a></p>
+
+<h3>tcpaclientObject.lastSelectMessageId</h3>
+
+<p>最后一次调用asyncSelect应用的消息ID<br>
+不可手动修改此属性，应由对象自动维护</p>
+
+<p><a id="tcpaclientObject.onClose"></a></p>
+
+<h3>tcpaclientObject.onClose</h3>
+
+<pre><code class="aardio language-aardio">tcpaclientObject.onClose = function(err){
+    /*已断开连接,  
+如果缓冲区中仍然有数据,  
+这个事件可能在其他事件前面触发*/ 
+}
+</code></pre>
+
+<p><a id="tcpaclientObject.onConnect"></a></p>
+
+<h3>tcpaclientObject.onConnect</h3>
+
+<pre><code class="aardio language-aardio">tcpaclientObject.onConnect = function(err){
+    /*连接操作已完成,  
+连接成功时err为0，且readyState为1,  
+在这里可以开始发送数据*/ 
+}
+</code></pre>
+
+<p><a id="tcpaclientObject.onOutOfBandData"></a></p>
+
+<h3>tcpaclientObject.onOutOfBandData</h3>
+
+<pre><code class="aardio language-aardio">tcpaclientObject.onOutOfBandData = function(err){
+    /*收到紧急数据,  
+即send函数最后一个flag参数设为_MSG_OOB时发送的1字节带外数据*/      
+}
+</code></pre>
+
+<p><a id="tcpaclientObject.onRead"></a></p>
+
+<h3>tcpaclientObject.onRead</h3>
+
+<pre><code class="aardio language-aardio">tcpaclientObject.onRead = function(err){
+    /*收到数据,  
+可阻塞读取数据,  
+定义了此事件就不应同时定义onReceive事件*/    
+}
+</code></pre>
+
+<p><a id="tcpaclientObject.onReceive"></a></p>
+
+<h3>tcpaclientObject.onReceive</h3>
+
+<pre><code class="aardio language-aardio">tcpaclientObject.onReceive = function(err){
+    /*收到数据,  
+仅读取已到达的数据,  
+定义了此事件就不应同时定义onRead事件*/   
+}
+</code></pre>
+
+<p><a id="tcpaclientObject.onSend"></a></p>
+
+<h3>tcpaclientObject.onSend</h3>
+
+<pre><code class="aardio language-aardio">tcpaclientObject.onSend = function(err){
+    /*发送数据*/
+}
+</code></pre>
+
+<p><a id="tcpaclientObject.peek"></a></p>
+
+<h3>tcpaclientObject.peek(长度)</h3>
+
+<p>读取但并不移除缓冲区的数据,返回字符串<br>
+不指定参数则使用bufferSize指定的大小分配buffer并尝试读取</p>
+
+<p><a id="tcpaclientObject.read"></a></p>
+
+<h3>tcpaclientObject.read(读取长度)</h3>
+
+<p>读取数据<br>
+只能在onRead事件中使用<br>
+参数可以指定长度,也可以使用接收数据的结构体作为参数<br>
+此函数会循环读取数据，<br>
+如果当前没有数据此函数会立即返回不会阻塞<br>
+如果读取长度指定为负数,此函数会等待数据到达直到读取全部数据<br>
+等待过程中不会阻塞消息循环<br>
+不指定读取长度时表示读取一行,<br>
+使用CRLF回车换行符分行  </p>
+
+<p>此函数如果读取部分不完整数据会调用 unRead 函数退回缓冲区<br>
+读取不到任何数据会调用shutdown函数关闭连接</p>
+
+<p><a id="tcpaclientObject.readAll"></a></p>
+
+<h3>tcpaclientObject.readAll()</h3>
+
+<p>读取全部数据<br>
+只能在onRead事件中使用</p>
+
+<p><a id="tcpaclientObject.readAlloc"></a></p>
+
+<h3>tcpaclientObject.readAlloc</h3>
+
+<p>循环读取数据到动态指针内,<br>
+对于异步套接字，只能在onRead函数内使用此函数,<br>
+动态指针的使用风险较大,如果不是非常熟悉其规则,<br>
+建议不要使用此函数  </p>
+
+<p>对象所有read前缀的成员函数底层基本都是调用这个函数<br>
+此函数读取的数据支持调用unRead或unReadAlloc,<br>
+撤消并退回到读缓冲区</p>
+
+<p><a id="tcpaclientObject.readAlloc"></a></p>
+
+<h3>tcpaclientObject.readAlloc()</h3>
+
+<p>循环读取数据，直到读取结束,</p>
+
+<p><a id="tcpaclientObject.readAlloc"></a></p>
+
+<h3>tcpaclientObject.readAlloc(动态指针)</h3>
+
+<p>循环读取数据并存入参数指定的动态指针,<br>
+返回新的指针地址和内存长度,<br>
+此函数可能更新指针地址或分配的内存大小，<br>
+必须使用返回的新指针覆盖原来保存该动态指针的变量值</p>
+
+<p><a id="tcpaclientObject.readAlloc"></a></p>
+
+<h3>tcpaclientObject.readAlloc(读取长度)</h3>
+
+<p>循环读取数据，直到达到参数中限定的最大长度<br>
+无数据返回null，  </p>
+
+<p>如果读取到数据则返回2个值：动态指针,内存长度<br>
+调用者必须负责调用 raw.realloc(0,动态指针)<br>
+释放返回值1返回的指针  </p>
+
+<p>此函数直接操作内存，效率更好<br>
+但一定要记住释放返回的内存指针</p>
+
+<p><a id="tcpaclientObject.readBuffer"></a></p>
+
+<h3>tcpaclientObject.readBuffer(buffer,读取长度)</h3>
+
+<p>读取数据,返回 buffer 对象,<br>
+省略所有参数则读取所有数据，<br>
+参数@1可选指定一个使用 buffer 对象，<br>
+省略读取长度时取缓冲区长度，  </p>
+
+<p>如果参数@1指定了缓冲区,成功返回读取长度,<br>
+否则成功返回缓冲区，<br>
+失败返回null  </p>
+
+<p>如果指定了长度,没有到完整的数据时,<br>
+此函数会将数据退回缓冲区,并返回null<br>
+如果读取出错,或没有读取到数据,此函数会自动调用shutdown关闭连接</p>
+
+<p><a id="tcpaclientObject.readDelayInterval"></a></p>
+
+<h3>tcpaclientObject.readDelayInterval</h3>
+
+<p>数据尚未到达时的等待时间<br>
+此属性仅适用于界面线程异步套接字<br>
+仅在所有read前缀的读数据函数中，读取长度为负值是有效,<br>
+each前缀的迭代器函数也使用此属性指定的等待时间</p>
+
+<p><a id="tcpaclientObject.readOobByte"></a></p>
+
+<h3>tcpaclientObject.readOobByte()</h3>
+
+<p>读取一个字节的紧急数据,返回字节码</p>
+
+<p><a id="tcpaclientObject.readTo"></a></p>
+
+<h3>tcpaclientObject.readTo</h3>
+
+<p>读取直到以指定的字符串结束<br>
+只能在onRead事件中使用  </p>
+
+<p>此函数如果读取部分不完整数据会调用 unRead() 退回缓冲区<br>
+读取不到任何数据会调用shutdown函数关闭连接</p>
+
+<p><a id="tcpaclientObject.readTo"></a></p>
+
+<h3>tcpaclientObject.readTo(&#39;结束串&#39;)</h3>
+
+<p>读取直到以指定的字符串结束,返回值不包含结束串,<br>
+该函数每次仅读取一个字节,效率较低<br>
+只能在onRead事件中使用</p>
+
+<p><a id="tcpaclientObject.readTo"></a></p>
+
+<h3>tcpaclientObject.readTo(&#39;结束串&#39;,true)</h3>
+
+<p>读取直到以指定的字符串结束,返回值不包含结束串,<br>
+如果没有读取到数据，则循环等待，等待时继续处理界面消息<br>
+此用法仅适用于界面线程异步套接字<br>
+该函数每次仅读取一个字节,效率较低</p>
+
+<p><a id="tcpaclientObject.readyState"></a></p>
+
+<h3>tcpaclientObject.readyState</h3>
+
+<p>套接字连接状态,<br>
+0为等待连接,1为已连接,2为正在关闭,3为已关闭</p>
+
+<p><a id="tcpaclientObject.recv"></a></p>
+
+<h3>tcpaclientObject.recv(最大接收长度)</h3>
+
+<p>单次接收数据包<br>
+如果参数不指定长度，则使用bufferSize指定的长度<br>
+成功返回字符串,<br>
+失败返回null,错误代码  </p>
+
+<p>recv,recvBuffer应在onReceive事件中使用，<br>
+在onReceive里不能多次调用recv,recvBuffer。<br>
+recv,recvBuffer不保证每次一定会读完数据，所以在onClose事件里要继续读到没有任何数据。  </p>
+
+<p>在 onRead事件中调用read前缀的系列函数可以循环读取所有接收的数据，<br>
+这样就可以避免onClose以后还数据没有收完的问题</p>
+
+<p><a id="tcpaclientObject.recvBuffer"></a></p>
+
+<h3>tcpaclientObject.recvBuffer(缓冲区,读取长度)</h3>
+
+<p>单次接收数据包<br>
+参数@1指定 buffer 对象,<br>
+参数@2可省略,默认为缓冲区长度,<br>
+成功返回接收的长度,<br>
+失败返回null,错误代码  </p>
+
+<p>recv,recvBuffer应在onReceive事件中使用，<br>
+在onReceive里不能多次调用recv,recvBuffer。<br>
+recv,recvBuffer不保证每次一定会读完数据，所以在onClose事件里要继续读到没有任何数据。  </p>
+
+<p>在 onRead事件中调用read前缀的系列函数可以循环读取所有接收的数据，<br>
+这样就可以避免onClose以后还数据没有收完的问题</p>
+
+<p><a id="tcpaclientObject.send"></a></p>
+
+<h3>tcpaclientObject.send(数据,长度)</h3>
+
+<p>单次发送数据包</p>
+
+<p><a id="tcpaclientObject.setTimeouts"></a></p>
+
+<h3>tcpaclientObject.setTimeouts(发送超时,接收超时)</h3>
+
+<p>设置超时,以亳秒为单位(1秒为1000毫秒)</p>
+
+<p><a id="tcpaclientObject.setopt"></a></p>
+
+<h3>tcpaclientObject.setopt(_SO)</h3>
+
+<p>设置选项<br>
+参数@1使用_SO_前缀的常量指定选项,参数@2使用结构体或数值指定值<br>
+可选用参数@3指定设置层次，默认为SOL_SOCKET<br>
+成功返回true</p>
+
+<p><a id="tcpaclientObject.shutdown"></a></p>
+
+<h3>tcpaclientObject.shutdown()</h3>
+
+<p>断开连接。<br>
+参数中指定 0 为仅停止收数据，指定 1 为停止发送数据。<br>
+默认值为 2 表示停止收发数据。<br>
+此函数并不销毁套接字句柄，也不会关闭事件监听器。  </p>
+
+<p>已断开连接的套接字不能再使用，需要重连接请重新创建套接字。<br>
+就好比用过的车票不能重复用，什么地方都有规则和限制。</p>
+
+<p><a id="tcpaclientObject.unRead"></a></p>
+
+<h3>tcpaclientObject.unRead()</h3>
+
+<p>把read,readTo,readBuffer等函数读出的数据退回缓存，<br>
+注意退回数据的顺序是“后出先进”，<br>
+最后读出的应当最先退回</p>
+
+<p><a id="tcpaclientObject.unReadAlloc"></a></p>
+
+<h3>tcpaclientObject.unReadAlloc()</h3>
+
+<p>把readAlloc读取的动态指针退回缓存,  </p>
+
+<p>注意退回数据的顺序是“后出先进”，<br>
+最后读出的应当最先退回</p>
+
+<p><a id="tcpaclientObject.write"></a></p>
+
+<h3>tcpaclientObject.write(...)</h3>
+
+<p>发送数据,<br>
+支持一个或多个参数，参数支持字符串、buffer (buffer)、数值、结构体<br>
+成功返回true</p>
+
+<p><a id="tcpaclientObject.writeBuffer"></a></p>
+
+<h3>tcpaclientObject.writeBuffer(buffer,长度)</h3>
+
+<p>发送数据,<br>
+参数@1应使用 buffer 对象,<br>
+可选使用参数2指定长度<br>
+成功返回true</p>
+
+<p><a id="wsock.tcp"></a></p>
+
+<h2>wsock.tcp 成员列表</h2>
+
+<p><a id="wsock.tcp.asynClient"></a></p>
+
+<h3>wsock.tcp.asynClient</h3>
+
+<p>TCP异步客户端<br>
+创建监听器</p>
+
+<p><a id="wsock.tcp.asynClient"></a></p>
+
+<h3>wsock.tcp.asynClient()</h3>
+
+<p>创建TCP异步客户端</p>
+
+<p><a href="asynClient.html#tcpaclientObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/wsock/tcp/asynClient.html#tcpaclientObject">返回对象:tcpaclientObject</a></p>
+
+<p><a id="wsock.tcp.asynClient"></a></p>
+
+<h3>wsock.tcp.asynClient(套接字句柄)</h3>
+
+<p>绑定异步套接字返回客户端对象<br>
+不创建事件监听器</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/wsock/tcp/asynClient.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/wsock/tcp/asynClient.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/wsock/tcp/asynClient.md">Markdown 格式</a></p>
+
+</body> 
+</html>

@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - sqlie 数据库示例 - 遍历与显示查询结果'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - sqlie 数据库示例 - 遍历与显示查询结果</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: sqlie 数据库示例 - 遍历与显示查询结果</h1><pre><code class="aardio language-aardio">//sqlite 库 - 遍历与显示
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;sqlie 数据库示例 - 遍历与显示查询结果&quot;;right=1031;bottom=712)
+winform.add(
+edit={cls=&quot;edit&quot;;left=25;top=584;right=997;bottom=693;db=1;dl=1;dr=1;edge=1;hscroll=1;multiline=1;vscroll=1;z=2};
+listview={cls=&quot;listview&quot;;left=24;top=27;right=996;bottom=555;db=1;dl=1;dr=1;dt=1;edge=1;z=1}
+)
+/*}}*/
+
+//创建测试数据库
+import sqlite;
+var db = sqlite(&quot;/test-sqlite.db&quot;); 
+if( not db.existsTable(&quot;each-tab&quot;) ){ 
+    db.exec( &quot;CREATE TABLE [each-tab](text, number);&quot;); 
+}  
+
+//添加测试数据
+var cmd = db.prepare(&quot;INSERT INTO [each-tab] VALUES (@text, @number );&quot;)
+for(i=1;5;1){ cmd.step(number = i;text = &quot;测试数据&quot; + i ) }
+
+//创建迭代器遍历查询结果
+for rowid,number,text in db.each(&quot;SELECT rowid,number,text FROM [each-tab]&quot;) {
+    /*
+    for 语句的第一个返回值如果为 null 就会退出循环,
+    如果数据库返回的第一个字段可能为空,那么可以把 SQLite 默认就有的索引字段 rowid 放在最前面
+    */
+    winform.edit.print( rowid,number,text ) 
+}
+
+//也可以用 getTable 一次取出所有的数据
+var dataTable = db.getTable(&quot;SELECT rowid,number,text FROM [each-tab]&quot;)
+
+/*
+result 是包含0到多条数据的数组，
+但也包含 fields 字段用于声明所有列名,
+不要 for(k,v in dataTable) { } 这样写，这样会不必要地遍历到 fields
+*/
+for i,v in table.eachIndex(dataTable){
+    //应当使用专门用于遍历数组的 table.eachIndex 创建迭代器
+    winform.edit.print(v.rowid,v.number,v.text)
+}
+
+import win.ui.grid;
+var grid = win.ui.grid(winform.listview);//创建数据视图
+grid.setTable( dataTable ) //直接显示数据库的查询结果,视图控件通过 dataTable.fields 获取所有字段名
+
+//删除测试表 
+db.exec(&quot;DROP TABLE [each-tab]&quot; ); 
+
+winform.show(true);
+win.loopMessage();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Database/sqlite/Each.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Database/sqlite/Each.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Database/sqlite/Each.md">Markdown 格式</a>
+</body> 
+</html>

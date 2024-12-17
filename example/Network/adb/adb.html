@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 操作安卓手机'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 操作安卓手机</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 操作安卓手机</h1><pre><code class="aardio language-aardio">//操作安卓手机
+import console.int;
+
+/*
+请先打开安卓手机『 设置 / 更多设置 / 开发者选项 』，
+然后启用『USB 调试』，如果看不到开发者选项，可上网查询该手机设备『显示开发者选项』的方法。
+
+也可以调用下面的函数无线连接手机（需要在手机开发者选项中启用『无线调试』）
+process.adb.connect(&quot;IP:端口&quot;)
+
+adb 文档： http://developer.android.com/tools/help/adb.html
+*/
+import process.adb;
+
+/*
+查找已连接设备，找不到返回 null，
+找到多个设备会自动设置默认设备，找到单个设备时不限定默认设备。
+*/
+if(!process.adb.findDevice()){
+    return console.log(&quot;未连接手机设备&quot;) 
+}
+
+//获取所有设备
+var devices = process.adb.getDevices();
+console.dumpJson(devices);
+
+//获取当前设备
+var serialNo = process.adb.getSerialNo(); 
+console.log(&quot;当前设备&quot;,serialNo)
+
+var state = process.adb.getState();
+console.log(state==&quot;device&quot;?&quot;已连接&quot;:&quot;未连接&quot;)
+
+//执行 ADB 命令并获取结果，成功返回进程输出，失败返回 null，错误信息。
+console.log(process.adb.get(&quot;get-state&quot;))
+
+//执行 Shell 命令
+var adb = process.adb.shell(&quot;ls&quot;); 
+var out = adb.readAll(); //读取进程输出，adb 是一个 process.popen 对象，请参考该库函数文档。
+console.log(out);
+
+//执行 am start 命令打开程序，例如调用浏览器打开网址
+var adb = process.adb.shell(&quot;am start -a android.intent.action.VIEW -d &#39;https://www.aardio.com&#39;&quot;);
+
+//或者直接调用下面的函数也可以
+process.adb.startUrl(&quot;https://www.aardio.com&quot;);
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Network/adb/adb.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Network/adb/adb.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Network/adb/adb.md">Markdown 格式</a>
+</body> 
+</html>

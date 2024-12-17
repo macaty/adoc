@@ -1,0 +1,113 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - web.json 库 -  特殊数据类型'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - web.json 库 -  特殊数据类型</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: web.json 库 -  特殊数据类型</h1><pre><code class="aardio language-aardio">//web.json 库 -  特殊数据类型
+import console;
+import web.json;
+
+/*
+在 aardio 中对象与数组的数据类型都是 &quot;table&quot;。
+所以在 aardio 中空对象与空数组都是 {} 。
+
+使用 table.array() 则可以创建 JSON 兼容的空数组。 
+web.json 也会将 JSON 中的 &quot;[]&quot; 解析为 table.array() 创建的空数组。
+*/
+
+//定义 JSON
+var json = &quot;{ items = [] }&quot;;
+
+//转换为对象，items 解析为 table.array() 创建的空数组。
+var object = web.json.parse(json);
+
+//添加数组字段
+object.items2 = table.array(); //空数组
+object.items3 = {1,2,3}; //非空数组直接兼容
+
+//转换为数组
+var json = web.json.stringify(object);
+console.log(json)
+
+//web.json.stringifyArray 总是将参数视为数组处理。
+var json = web.json.stringifyArray({});
+console.log(json)
+
+/*
+在 aardio 中 null 是一个不存在的值。
+例如 { name = null } 等价于空表 {} 。
+
+而在 JSON 中我们有时候需要保存 null 值。
+aardio 通过在元表的 _defined 字段中指定必须保存 null 值的字段名。
+可以调用 table.define() 定义需要保留 null 值的键名（可以重复调用以添加键名）。
+web.json 或 table.eachName 支持 _defined 元属性。
+*/
+
+//定义 JSON
+var json = &quot;{name:null,age:22}&quot;;
+
+//解析为对象
+var object = web.json.parse(json);
+
+//生成 JSON 
+var json = web.json.stringify(object);
+
+console.log(json);
+
+/*
+时间对象与 JS 语言相同转换为 ISO8601 格式字符串。
+time 对象与 JS 一样只负责字符串化,不负责在解析 JSON 时自动还原。
+应使用 time.iso8601 函数解析 iso8601 格式的时间。
+*/
+
+//定义对象
+var object = { time = time() };
+
+//生成 JSON 
+var json = web.json.stringify(object);
+
+//解析为对象
+var object = web.json.parse(json);
+
+var tm = time.iso8601(object.time);
+console.log( tostring(tm,&quot;%c&quot;)  )
+
+
+/*
+buffer 类与 node.js 中的 Buffer 类转换结果类似。
+{&quot;data&quot;:[230,181,139],&quot;type&quot;:&quot;Buffer&quot;}
+其中 type 指明类型,data 为 buffer 字节数组的值。
+
+buffer,
+
+在 raw.buffer 的参数中使用结构体还原字节数组。
+*/
+
+//定义 buffer
+var buffer = raw.buffer(&quot;abc&quot;);
+
+//生成 JSON 
+var json = web.json.stringify(buffer);
+
+//解析为对象
+var bufferObject = web.json.parse(json);
+
+//可以作为参数快速还原为 buffer
+var buffer = raw.buffer(bufferObject)
+
+console.log(buffer);  
+console.pause()
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Web/JSON/DataType.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Web/JSON/DataType.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Web/JSON/DataType.md">Markdown 格式</a>
+</body> 
+</html>

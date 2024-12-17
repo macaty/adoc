@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 最简多线程服务端'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 最简多线程服务端</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 最简多线程服务端</h1><pre><code class="aardio language-aardio">//最简多线程服务端
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;aardio form&quot;;right=759;bottom=469)
+winform.add()
+/*}}*/
+
+import wsock.tcp.simpleHttpServer;  
+/*
+wsock.tcp.simpleHttpServer 用于创建多线程 HTTP 服务器。
+默认的服务器线程是阻塞的，所以不要在窗口界面线程启动服务器线程。
+
+wsock.tcp.simpleHttpServer.mainThread 则用于界面线程创建后台线程启动服务器，
+好处是不会阻塞界面。
+
+wsock.tcp.simpleHttpServer.startUrl() 函数
+实际上就是调用 wsock.tcp.simpleHttpServer.mainThread
+这个函数在界面线程内启动线程并返回访问地址，自动分配空闲端口，自动创建服务器线程，
+并在界面线程退出前自动退出服务器线程，最适合用于创建软件内嵌的 HTTP 服务端。 
+*/
+
+//服务端 aardio 支持模板语法： https://www.aardio.com/zh-cn/doc/language-reference/templating/syntax.html
+var url = wsock.tcp.simpleHttpServer.startUrl(&quot;/.www/main.aardio&quot;);//参数支持 aardio 工程嵌入资源目录路径
+//上面的函数可以重复调用，不会重复创建新的 HTTP 服务器端。
+
+import web.form;
+var wb = web.form(winform);
+
+//用浏览器组件打开网页试试
+wb.go(url);
+
+winform.show();
+win.loopMessage();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Web/HTTPServer/simpleHttpServer.startUrl.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Web/HTTPServer/simpleHttpServer.startUrl.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Web/HTTPServer/simpleHttpServer.startUrl.md">Markdown 格式</a>
+</body> 
+</html>

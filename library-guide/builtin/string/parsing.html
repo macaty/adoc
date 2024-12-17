@@ -1,0 +1,187 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - 文本解析'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - 文本解析</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>文本解析</h1>
+
+<h2>一、分行遍历匹配结果</h2>
+
+<p>函数原型：</p>
+
+<pre><code class="aardio language-aardio">string.each(str,pattern,lineDelimiter)
+</code></pre>
+
+<p>与 <a href="matching.html#match" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/builtin/string/matching.html#match">string.match</a> 等模式匹配函数不同，string.each 会将文本按行拆分，然后返回一个迭代器，用于在 <a href="../../../language-reference/statements/iterator.html" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/statements/iterator.html">for in</a> 语句中循环且逐行匹配字符串并且循环返回结果。</p>
+
+<ul>
+<li>参数 str 指定要处理的字符串。</li>
+<li>参数 pattern 指定模式匹配串，查找模式串中可用圆括号创建捕获分组自定义迭代器返回值个数，如果不指定捕获组则迭代器直接返回找到的字符串。</li>
+</ul>
+
+<p>示例：</p>
+
+<pre><code class="aardio language-aardio">import console; 
+
+var str = /*
+属性名1: 属性值1
+属性名2: 属性值2
+属性名3: 属性值3
+*/
+
+for k,v in string.each(str,&quot;(.+?)\s*\:\s*(.*)&quot;) { 
+    console.log(k,v)
+} 
+console.pause();
+</code></pre>
+
+<h2>二、分行拆分文本 <a id="lines" href="#lines">&#x23;</a></h2>
+
+<p>我们遇到的很多需要解析的文本都以是行为单位的。</p>
+
+<p>最常见的例如 CSV 格式，CSV 格式可以用 aardio 标准库中的 <a href="../../../library-reference/string/database.html" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/string/database.html">string.database</a> 解析。</p>
+
+<p>但是我们还会遇到很多其他格式的分行文本，这时候我们可以使用 string.lines 函数进行解析。</p>
+
+<p>函数原型：</p>
+
+<pre><code class="aardio language-aardio">string.lines(str,lineDelimiter,columnSeparator,maxColumns)
+</code></pre>
+
+<p>说明：</p>
+
+<p>string.lines 用于创建一个迭代器，用于 <a href="../../../language-reference/statements/iterator.html" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/statements/iterator.html">for in</a> 语句中循环按行拆分字符串并返回拆分结果。</p>
+
+<ul>
+<li>参数 str 指定要解析的字符串。<br></li>
+<li>参数 lineDelimiter 用于指定换行标记，支持模式匹配语法。<br></li>
+<li>参数 columnSeparator 用于指定列分隔符，支持模式匹配。如果指定了列分隔符则每次迭代返回的都是数组，否则返回的是字符串。</li>
+<li>参数 maxColumns 用于限定拆分的最大列数，注意这个参数仅在指定 columnSeparator 参数时有效。</li>
+</ul>
+
+<p>string.lines 实际上相当于调用并增强了 <a href="part.html#splitEx" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/builtin/string/part.html#splitEx">splitEx</a> 的功能，参数用法与 splitEx 是一致的，例如在分隔符中同样支持捕获组并作如下处理：</p>
+
+<ul>
+<li>模式串尾部有 <code>$</code> 符号，则捕获组放到上个拆分结果尾部。</li>
+<li>模式串头部有 <code>^</code> 符号，则捕获组放到下个拆分结果头部。</li>
+<li>模式串头部有 <code>^</code> 符号并且尾部有 <code>$</code> 符号， 则捕获组将由迭代器返回为单独的拆分结果，紧随其后的第二个返回值为 true 以表明该拆分结果是一个分隔符。调用代码格式为  <code>for line,isSeparator in string.lines(str,&quot;^(分隔符)$&quot;){ }</code> 这个特性被用于实现文本分句的 <a href="../../../library-reference/string/sentences.html" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/string/sentences.html">string.sentences 库</a>。</li>
+</ul>
+
+<p>下面看一个简单的调用示例：</p>
+
+<pre><code class="aardio language-aardio">import console; 
+
+var str = /*
+abc,def,xyz
+abc2,def2,xyz2
+abc3,def3,xyz3
+*/
+
+for( line in string.lines(str,,&quot;[\s,;=]&quot;) ){ 
+    console.log(line[1],line[2],line[3])
+} 
+console.pause();
+</code></pre>
+
+<p>以上代码用于循环遍历每一行用空格键、制表符(tab)、逗号、分号或等号拆分出来的字符串数组。</p>
+
+<p>我们可以将迭代器直接传入 table.array 以快速转换为数组，例如：</p>
+
+<pre><code class="aardio language-aardio">var str  = /*
+abc,def,efg
+123,456,789
+*/
+
+//转换为数组
+var array = table.array( , string.lines(str,,&quot;,&quot;) )
+</code></pre>
+
+<p>如果迭代器传入 table.array 的第 2 个参数，则取迭代器的首个循环返回值作为数组元素。 </p>
+
+<h2>三、解析字符串属性表 <a id="talbe" href="#talbe">&#x23;</a></h2>
+
+<p>字符串属性表是一种很常见的文本格式。</p>
+
+<p>示例：</p>
+
+<pre><code class="txt language-txt">属性名1: 属性值1
+属性名2: 属性值2
+属性名3: 属性值3
+</code></pre>
+
+<p>格式说明：</p>
+
+<ul>
+<li>每行为一个单位，属性值不能跨行，引号等仅作为字面值解析。</li>
+<li>名值对之间用 <code>:</code> 或 <code>=</code> 分隔，忽略分隔等前后的空白字符。</li>
+<li>某些程序里允许在行首用 <code>#</code> 标明一个需要被忽略的注释。 </li>
+</ul>
+
+<p>aardio 提供了 string.table 用于快速解析这样的文本并返回一个表对象。</p>
+
+<p>示例：</p>
+
+<pre><code class="aardio language-aardio">import console; 
+
+var str = &quot;
+属性名1: 属性值1
+属性名2: 属性值2
+属性名3: 属性值3
+&quot;
+
+//解析为表对象
+var propTable = string.table(str);
+
+//输出结果
+console.dump(propTable);
+
+console.pause();
+</code></pre>
+
+<p>string.table 的函数原型为：</p>
+
+<pre><code class="aardio language-aardio">string.table(str,nameValueSeparator,lineDelimiter,commentChar) 
+</code></pre>
+
+<p>除了第一个参数，其他参数都是可选的。<br>
+参数 nameValueSeparator 用于指定键值分隔符，已默认指定为 <code>\s*[\:=]\s*</code> 。<br>
+参数 lineDelimiter 用于指定识别行分隔符的模式串，已默认指定为 <code>&lt;\r*\n&gt;|\r</code> 。<br>
+参数 commentChar 指定行首注释符，这个参数仅支持字节码。默认未指定。如果指定为 <code>&#39;#&#39;#</code> 表示以 <code>#</code> 置于行首时则忽略该行。</p>
+
+<p>string.table 仅支持以行为单位的字符串属性表。而标准库 string.list 则允许在属性值中用引号包含跨行的引用段，以及更多其他特性。</p>
+
+<p>参考：</p>
+
+<ul>
+<li><p><a href="../../../library-reference/string/list.html" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/string/list.html">string.list 库参考</a></p></li>
+<li><p><a href="../../../example/Text/list.html" tppabs="https://www.aardio.com/zh-cn/doc/example/Text/list.html">string.list 范例</a></p></li>
+</ul>
+
+<h2>四、解析更多文本格式</h2>
+
+<p>aardio 解析文本非常方便，标准库提供了很多解析各种格式的库，代码量都很少。</p>
+
+<ul>
+<li><p><a href="../../../library-reference/web/json.html" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/web/json.html">web.json 库参考</a> JSON 格式。</p></li>
+<li><p><a href="../../../library-reference/string/database.html" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/string/database.html">string.database 库参考</a> CSV 格式。</p></li>
+<li><p><a href="../../../library-reference/string/xml.html" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/string/xml.html">string.xml 库参考</a>  XML 格式。</p></li>
+<li><p><a href="../../../library-reference/string/html.html" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/string/html.html">string.html 库参考</a> HTML 格式。</p></li>
+<li><p>L<a href="../../../library-reference/string/list.html" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/string/list.html">string.list 库参考</a> LIST 格式。</p></li>
+</ul>
+
+<p>更多其他格式请查看相关库参考与范例。</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-guide/builtin/string/parsing.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-guide/builtin/string/parsing.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/builtin/string/parsing.md">Markdown 格式</a></p>
+
+</body> 
+</html>

@@ -1,0 +1,488 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - chrome.app 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - chrome.app 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>chrome.app 库模块帮助文档</h1>
+
+<p><a id="chrome"></a></p>
+
+<h2>chrome 成员列表</h2>
+
+<p><a id="chrome.app"></a></p>
+
+<h3>chrome.app()</h3>
+
+<p><a href="#processchromeappObject">返回对象:processchromeappObject</a></p>
+
+<p><a id="chrome.app"></a></p>
+
+<h3>chrome.app(父窗口,chrome启动程序路径)</h3>
+
+<p>调用系统已安装的chrome创建应用程序<br>
+所有参数可选，参数@2也可以指定CEF3启动程序cefclient.exe的路径<br>
+使用CEF3支持在参数@1指定父窗口并嵌入浏览器到该窗口,<br>
+原版Chrome嵌入父窗口会出现兼容性问题,  </p>
+
+<p><a href="#processchromeappObject">返回对象:processchromeappObject</a></p>
+
+<p><a id="chrome.app"></a></p>
+
+<h2>chrome.app 成员列表</h2>
+
+<p>调用系统已安装的 Chrome 创建应用程序，<br>
+支持 Chrome 、 Edge（Chromium ）、Supermium 等浏览器，  </p>
+
+<p>如果没有找到可用的浏览器会下载安装 Microsoft Edge (Chromium)。<br>
+Win7 则自动安装 Chrome 109，XP 自动安装 Chrome 49</p>
+
+<p><a id="chrome.app.path"></a></p>
+
+<h3>chrome.app.path</h3>
+
+<p>自定义Chrome.exe位置,<br>
+支持Chrome,兼容Chrome启动参数的Chrome内核浏览器,<br>
+也可以指定CEF3启动程序cefclient.exe</p>
+
+<p><a id="processchromeappObject"></a></p>
+
+<h2>processchromeappObject 成员列表</h2>
+
+<p><a id="processchromeappObject._form"></a></p>
+
+<h3>processchromeappObject._form</h3>
+
+<p>创建chrome.app时指定的父窗口  </p>
+
+<p><a href="../win/ui/ctrl/static.html#staticObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/static.html#staticObject">返回对象:staticObject</a></p>
+
+<p><a id="processchromeappObject.accessControlAllowOrigin"></a></p>
+
+<h3>processchromeappObject.accessControlAllowOrigin</h3>
+
+<p>允许写入 Access-Control-Allow-Headers 响应头的站点地址。<br>
+此属性必须为 null、字符串，或者指定为一个表对象,<br>
+表的键为允许跨域调用的站点地址,值必须为 true<br>
+站点地址应使用 https://host 格式，且结尾不要有斜杠，<br>
+新的浏览器已经禁止在非 HTTPS 协议下调用本机地址，<br>
+而老版浏览器则反之</p>
+
+<p><a id="processchromeappObject.accessControlRequestPrivateNetwork"></a></p>
+
+<h3>processchromeappObject.accessControlRequestPrivateNetwork</h3>
+
+<p>自定义 Access-Control-Request-Private-Network 响应头的值，<br>
+默认为 &quot;true&quot;，可改为 null</p>
+
+<p><a id="processchromeappObject.addArguments"></a></p>
+
+<h3>processchromeappObject.addArguments()</h3>
+
+<p>添加一个或多个Chrome启动参数,<br>
+参数也可以是一个包含多个启动参数的数组<br>
+注意参数中不必要使用引号,多个参数应分开写不要拼接成一个参数<br>
+每个启动参数都是使用两个横杠开始的字符串<br>
+<a href="javascript:if(confirm('https://peter.sh/experiments/chromium-command-line-switches/  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='https://peter.sh/experiments/chromium-command-line-switches/'" tppabs="https://peter.sh/experiments/chromium-command-line-switches/">chrome启动参数大全</a></p>
+
+<p><a id="processchromeappObject.callback"></a></p>
+
+<h3>processchromeappObject.callback(name,callback)</h3>
+
+<pre><code class="aardio language-aardio">processchromeappObject.callback(&quot;/*要接收返回值的JS函数名,  
+回调叁数$为RPC客户端套接字句柄  
+成功result为返回值,失败err为错误信息*/&quot;,function($,result,err){  
+
+})
+</code></pre>
+
+<p><a id="processchromeappObject.center"></a></p>
+
+<h3>processchromeappObject.center</h3>
+
+<p>居中窗口,并调整以保证显示在可见范围内,<br>
+如果要调用此函数,建议在调用 start 函数前调用,<br>
+只有浏览器显示为独立窗口时才支持此函数</p>
+
+<p><a id="processchromeappObject.center"></a></p>
+
+<h3>processchromeappObject.center(目标窗口句柄)</h3>
+
+<p>居中窗口,并调整以保证显示在可见范围内,<br>
+如果要调用此函数,建议在调用 start 函数前调用,<br>
+目标窗口句柄如果为空则取父窗口或所有者窗口,为0表示桌面</p>
+
+<p><a id="processchromeappObject.chromePath"></a></p>
+
+<h3>processchromeappObject.chromePath</h3>
+
+<p>chrome启动exe文件路径</p>
+
+<p><a id="processchromeappObject.chromeProcessId"></a></p>
+
+<h3>processchromeappObject.chromeProcessId</h3>
+
+<p>chrome进程ID<br>
+注意chrome可能会使用一个进程启动多个独立的应用</p>
+
+<p><a id="processchromeappObject.chromeThreadId"></a></p>
+
+<h3>processchromeappObject.chromeThreadId</h3>
+
+<p>chrome启动线程ID</p>
+
+<p><a id="processchromeappObject.close"></a></p>
+
+<h3>processchromeappObject.close()</h3>
+
+<p>关闭chrome窗口</p>
+
+<p><a id="processchromeappObject.doScript"></a></p>
+
+<h3>processchromeappObject.doScript($,js,...)</h3>
+
+<p>在chrome中执行javascript代码,忽略返回值,<br>
+在js参数后可选指定多个字符串格式化参数用于调用string.form格式化代码,  </p>
+
+<p>参数@1指定客户端套接字句柄,<br>
+RPC服务端远程回调函数名首字符为$时,<br>
+第一个回调$参数即为当前客户端套接字句柄,<br>
+除非熟悉 getActiveSocket 函数导致的潜在问题,请不要省略$参数</p>
+
+<p><a id="processchromeappObject.external"></a></p>
+
+<h3>processchromeappObject.external</h3>
+
+<pre><code class="aardio language-aardio">processchromeappObject.external = {
+    /*可以在这里指定允许chrome访问的对象和函数  
+在chrome里引用虚拟的&quot;/aardio.js&quot;导入aardio对象即可访问这里的成员函数,  
+必须在调用start函数以前设置此对象才能生效*/
+}
+</code></pre>
+
+<p><a id="processchromeappObject.favicon"></a></p>
+
+<h3>processchromeappObject.favicon</h3>
+
+<p>指定窗口图标路径<br>
+默认为/res/favicon.ico</p>
+
+<p><a id="processchromeappObject.getActiveSocket"></a></p>
+
+<h3>processchromeappObject.getActiveSocket()</h3>
+
+<p>获取RPC服务端当前活动套接字句柄<br>
+,任何触发消息处理、异步套接字处理程序的代码都有可能改变这个函数的返回值<br>
+任何时候都不推荐使用此函数  </p>
+
+<p>更好的替代方案是在RPC函数名前添加$字符,用于通知aardio在回调参数中添加$参数<br>
+回调$参数可以稳定可靠的获取当前套接字</p>
+
+<p><a id="processchromeappObject.getUrl"></a></p>
+
+<h3>processchromeappObject.getUrl(&quot;/&quot;)</h3>
+
+<p>参数指定资源文件路径,<br>
+转换并返回为可以通过内嵌 HTTP 服务端访问的网址  </p>
+
+<p>如果使用 start 函数启动了单页应用，且启动文件名为 &quot;index.html&quot; 或 &quot;index.aardio&quot;，<br>
+chrome.app 会自动将启动路径的上级目录设为 http.documentBase。<br>
+此时 getUrl 的参数应当以 http.documentBase 为根目录</p>
+
+<p><a id="processchromeappObject.http"></a></p>
+
+<h3>processchromeappObject.http</h3>
+
+<p>aardio创建的HTTP服务器  </p>
+
+<p><a href="../wsock/tcp/asynHttpServer.html#asynHttpServerObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/wsock/tcp/asynHttpServer.html#asynHttpServerObject">返回对象:asynHttpServerObject</a></p>
+
+<p><a id="processchromeappObject.httpHandler"></a></p>
+
+<h3>processchromeappObject.httpHandler</h3>
+
+<pre><code class="aardio language-aardio">processchromeappObject.httpHandler[&quot;/test.js&quot; ] = function(response,request){
+    /*自定义HTTP处理程序  
+键为请求的路径,值为处理函数或者HTML代码*/
+}
+</code></pre>
+
+<p><a id="processchromeappObject.hwndChrome"></a></p>
+
+<h3>processchromeappObject.hwndChrome</h3>
+
+<p>chrome窗口句柄<br>
+如果在wine环境下运行，此窗口句柄为空值,依赖此句柄的部分chrome窗口操作函数将无效</p>
+
+<p><a id="processchromeappObject.indexReady"></a></p>
+
+<h3>processchromeappObject.indexReady</h3>
+
+<pre><code class="aardio language-aardio">processchromeappObject.indexReady(  
+    function($){  
+        /*如果加载首页已完成,  
+并且页面上的DOM内容、aardio模块都已准备就绪,  
+将立即执行在此注册的回调函数,  
+可重复添加回调，并保证按添加的前后顺序调用且仅调用一次  
+参数 $ 为触发此事件的网页RPC客户端套接字句柄*/  
+    }   
+)
+</code></pre>
+
+<p><a id="processchromeappObject.msgbox"></a></p>
+
+<h3>processchromeappObject.msgbox(&quot;字符串参数&quot;)</h3>
+
+<p>弹出对话框<br>
+参数@1指定显示的数据,如果是表对象先序列化为文本,<br>
+其他对象调用tostring转换为文本  </p>
+
+<p>此函数调用win.msgbox,但设定父窗口为当前chrome窗体</p>
+
+<p><a id="processchromeappObject.msgbox"></a></p>
+
+<h3>processchromeappObject.msgbox(&quot;字符串参数&quot;,&quot;标题&quot;)</h3>
+
+<p>弹出对话框<br>
+参数@1指定显示的数据,如果是表对象先序列化为文本,<br>
+其他对象调用tostring转换为文本  </p>
+
+<p>此函数调用win.msgbox,但设定父窗口为当前chrome窗体</p>
+
+<p><a id="processchromeappObject.msgboxErr"></a></p>
+
+<h3>processchromeappObject.msgboxErr(&quot;字符串参数&quot;)</h3>
+
+<p>弹出错误对话框<br>
+参数@1指定显示的数据,如果是表对象先序列化为文本,<br>
+其他对象调用tostring转换为文本  </p>
+
+<p>此函数调用win.msgbox,但设定父窗口为当前chrome窗体</p>
+
+<p><a id="processchromeappObject.msgboxErr"></a></p>
+
+<h3>processchromeappObject.msgboxErr(&quot;字符串参数&quot;,&quot;标题&quot;)</h3>
+
+<p>弹出错误对话框<br>
+参数@1指定显示的数据,如果是表对象先序列化为文本,<br>
+其他对象调用tostring转换为文本  </p>
+
+<p>此函数调用win.msgbox,但设定父窗口为当前chrome窗体</p>
+
+<p><a id="processchromeappObject.msgboxTest"></a></p>
+
+<h3>processchromeappObject.msgboxTest(&quot;字符串参数&quot;)</h3>
+
+<p>弹出询问对话框<br>
+参数@1指定显示的数据,如果是表对象先序列化为文本,<br>
+其他对象调用tostring转换为文本  </p>
+
+<p>此函数调用win.msgbox,但设定父窗口为当前chrome窗体</p>
+
+<p><a id="processchromeappObject.notify"></a></p>
+
+<h3>processchromeappObject.notify($,&quot;method&quot;,...)</h3>
+
+<p>调用指定chrome函数,但不需要客户端回调反馈,  </p>
+
+<p>参数@1指定客户端套接字句柄,<br>
+RPC服务端远程回调函数名首字符为$时,<br>
+第一个回调$参数即为当前客户端套接字句柄,<br>
+除非熟悉getActiveSocket函数导致的潜在问题,请不要省略$参数</p>
+
+<p><a id="processchromeappObject.onClose"></a></p>
+
+<h3>processchromeappObject.onClose</h3>
+
+<pre><code class="aardio language-aardio">processchromeappObject.onClose = function($hSocket,err){
+    /*一个网页窗口断开连接触发此事件*/
+}
+</code></pre>
+
+<p><a id="processchromeappObject.onError"></a></p>
+
+<h3>processchromeappObject.onError</h3>
+
+<pre><code class="aardio language-aardio">processchromeappObject.onError = function($hSocket,err){
+    errput(err,&quot;chrome/rpc error&quot;);/*自定义RPC错误处理*/
+}
+</code></pre>
+
+<p><a id="processchromeappObject.onIndexReady"></a></p>
+
+<h3>processchromeappObject.onIndexReady</h3>
+
+<pre><code class="aardio language-aardio">processchromeappObject.onIndexReady = function(){
+    /*主窗口首次加载完成startEnviron.indexUrl指定的首页,  
+并且页面上的DOM内容、aardio模块都已准备就绪*/
+}
+</code></pre>
+
+<p><a id="processchromeappObject.onQuit"></a></p>
+
+<h3>processchromeappObject.onQuit</h3>
+
+<pre><code class="aardio language-aardio">processchromeappObject.onQuit = function(){
+    ..win.quitMessage();/*Chrome关闭网页客户端触发此代码  
+此事件触发以后hwndChrome会变为空值*/
+}
+</code></pre>
+
+<p><a id="processchromeappObject.onUrlReady"></a></p>
+
+<h3>processchromeappObject.onUrlReady</h3>
+
+<pre><code class="aardio language-aardio">processchromeappObject.onUrlReady = function(hSocket,url){
+    /*页面加载完成并且页面上的DOM内容、aardio模块都已准备就绪*/
+}
+</code></pre>
+
+<p><a id="processchromeappObject.publish"></a></p>
+
+<h3>processchromeappObject.publish(method,...)</h3>
+
+<p>主动向所有客户端发送通知<br>
+method指定网页客户端方法名,<br>
+可添加任意个调用参数</p>
+
+<p><a id="processchromeappObject.remoteDebuggingPort"></a></p>
+
+<h3>processchromeappObject.remoteDebuggingPort</h3>
+
+<p>指定远程调试端口<br>
+如果指定为0，则自动分配1025以后的空闲端口<br>
+此属性启动后更新为实际开始的调试端口号</p>
+
+<p><a id="processchromeappObject.rpc"></a></p>
+
+<h3>processchromeappObject.rpc</h3>
+
+<p>aardio创建的JSON-RPC服务端  </p>
+
+<p><a href="#websocketjsonserverObject">返回对象:websocketjsonserverObject</a></p>
+
+<p><a id="processchromeappObject.serverIp"></a></p>
+
+<h3>processchromeappObject.serverIp</h3>
+
+<p>指定嵌入服务器的监听IP<br>
+默认值为 &quot;127.0.0.1&quot;,仅限本机可以访问<br>
+如果希望外网可以访问,可以赋值为null即可<br>
+在调用start函数以前指定此属性才有效</p>
+
+<p><a id="processchromeappObject.serverPort"></a></p>
+
+<h3>processchromeappObject.serverPort</h3>
+
+<p>指定嵌入服务器的监听端口<br>
+建议保持默认值null<br>
+不指定端口可以随机分配空闲端口，不会出现端口冲突的问题<br>
+在调用start函数以前指定此属性才有效</p>
+
+<p><a id="processchromeappObject.setPos"></a></p>
+
+<h3>processchromeappObject.setPos</h3>
+
+<p>调整窗口位置或排序，所有参数可选。<br>
+如果要调用此函数，建议在调用 start 函数前调用。<br>
+只有浏览器显示为独立窗口时才支持此函数</p>
+
+<p><a id="processchromeappObject.setPos"></a></p>
+
+<h3>processchromeappObject.setPos(x坐标,y坐标,宽,高,插入位置,选项)</h3>
+
+<p>调整窗口位置或排序，所有参数可选。<br>
+此函数将根据当前 DPI 缩放设置自动缩放参数。<br>
+同时指定 x，y 坐标则移动位置。<br>
+同时指定宽高则改变大小。<br>
+指定插入位置&lt;句柄或_HWND前缀常量&gt;则调整Z序。<br>
+选项不用指定，可参考此函数源码了解细节</p>
+
+<p><a id="processchromeappObject.start"></a></p>
+
+<h3>processchromeappObject.start(url)</h3>
+
+<p>启动chrome应用<br>
+参数@1可以指定资源目录下的aardio文件,<br>
+aardio 会自动使用嵌入HTTP服务器调用该文件。  </p>
+
+<p>自动支持嵌入资源路径与 SPA 单页应用。<br>
+如果同时文件名为 index.html 或 &quot;index.aardio&quot;，<br>
+则上级目录设为 http.documentBase 根目录，<br>
+后续请求网址应当以 &quot;/&quot; 代替 http.documentBase 根目录</p>
+
+<p><a id="processchromeappObject.start"></a></p>
+
+<h3>processchromeappObject.start(url,devPort,timeout)</h3>
+
+<p>启动 Chrome 应用<br>
+参数@1可以指定资源目录下的 aardio 文件,<br>
+在开发环境中可选用devPort指定前端项目调试服务器端口  </p>
+
+<p>自动支持嵌入资源路径与 SPA 单页应用。<br>
+如果同时文件名为 index.html，则上级目录设为根目录，且路径转换为 &quot;/index.html&quot;</p>
+
+<p><a id="processchromeappObject.start"></a></p>
+
+<h3>processchromeappObject.start(url,laucher)</h3>
+
+<p>启动 Chrome 应用<br>
+参数@1可以指定资源目录下的 aardio 文件,<br>
+可选在参数@2中指定一个函数对象用于自定义启动Chrome的代码,<br>
+此启动函数唯一的回调参数是一个包含Chrome启动参数的数组<br>
+自定义启动函数成功应返回true</p>
+
+<p><a id="processchromeappObject.survey"></a></p>
+
+<h3>processchromeappObject.survey(method,...)</h3>
+
+<p>发起调查任务,<br>
+调用所有网页客户端的同名函数,<br>
+method指定客户端方法名,<br>
+可添加任意个调用参数  </p>
+
+<p>请使用callback函数指定调查结束后客户端回调的函数</p>
+
+<p><a id="processchromeappObject.userDataDir"></a></p>
+
+<h3>processchromeappObject.userDataDir</h3>
+
+<p>设置用户数据目录,<br>
+使用 fsys.environment自动转换%LocalAppData%等路径环境变量<br>
+远程调试以及全屏功能，都要求使用同一用户数据目录时只有一个正在运行的chrome进程</p>
+
+<p><a id="processchromeappObject.ws"></a></p>
+
+<h3>processchromeappObject.ws</h3>
+
+<p>aardio创建的WebSocket服务器  </p>
+
+<p><a href="#websocketserverObject">返回对象:websocketserverObject</a></p>
+
+<p><a id="processchromeappObject.xcall"></a></p>
+
+<h3>processchromeappObject.xcall($,&quot;method&quot;,...)</h3>
+
+<p>调用chrome函数,<br>
+参数@1指定客户端套接字句柄,<br>
+RPC服务端远程回调函数名首字符为$时,第一个回调$参数即为当前客户端套接字句柄,<br>
+除非熟悉getActiveSocket函数导致的潜在问题,请不要省略$参数  </p>
+
+<p>在chrome的js代码使用 aardio.on(&quot;method&quot;)<br>
+添加允许aardio调用的js回调函数.  </p>
+
+<p>可选使用callback函数指定一个同名回调函数按收本次调用chrome的返回值</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/chrome/app.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/chrome/app.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/chrome/app.md">Markdown 格式</a></p>
+
+</body> 
+</html>

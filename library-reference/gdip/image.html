@@ -1,0 +1,599 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - gdip.image 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - gdip.image 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>gdip.image 库模块帮助文档</h1>
+
+<p><a id="gdip"></a></p>
+
+<h2>gdip 成员列表</h2>
+
+<p><a id="gdip.CloneImage"></a></p>
+
+<h3>gdip.CloneImage</h3>
+
+<pre><code class="aardio language-aardio">$.api(&quot;GdipCloneImage&quot;,&quot;int(PTR img,ptr&amp; cloneImage)&quot;)
+</code></pre>
+
+<p><a id="gdip.GetAllPropertyItems"></a></p>
+
+<h3>gdip.GetAllPropertyItems</h3>
+
+<pre><code class="aardio language-aardio">$.api(&quot;GdipGetAllPropertyItems&quot;,&quot;int(PTR img,int totalBufferSize,int numProperties,struct&amp; allItems)&quot;)
+</code></pre>
+
+<p><a id="gdip.GetImageHeight"></a></p>
+
+<h3>gdip.GetImageHeight</h3>
+
+<pre><code class="aardio language-aardio">$.api(&quot;GdipGetImageHeight&quot;,&quot;int(PTR img,int&amp; Height)&quot;)
+</code></pre>
+
+<p><a id="gdip.GetImageHorizontalResolution"></a></p>
+
+<h3>gdip.GetImageHorizontalResolution</h3>
+
+<pre><code class="aardio language-aardio">$.api(&quot;GdipGetImageHorizontalResolution&quot;,&quot;int(PTR img,float&amp; resolution)&quot;)
+</code></pre>
+
+<p><a id="gdip.GetImagePixelFormat"></a></p>
+
+<h3>gdip.GetImagePixelFormat</h3>
+
+<pre><code class="aardio language-aardio">$.api(&quot;GdipGetImagePixelFormat&quot;,&quot;int(PTR img,int&amp; PixelFormat)&quot;)
+</code></pre>
+
+<p><a id="gdip.GetImageThumbnail"></a></p>
+
+<h3>gdip.GetImageThumbnail</h3>
+
+<pre><code class="aardio language-aardio">$.api(&quot;GdipGetImageThumbnail&quot;,&quot;int(PTR img,int w,int h,pointer&amp; thumb,pointer callback,pointer callbackData )&quot;)
+</code></pre>
+
+<p><a id="gdip.GetImageVerticalResolution"></a></p>
+
+<h3>gdip.GetImageVerticalResolution</h3>
+
+<pre><code class="aardio language-aardio">$.api(&quot;GdipGetImageVerticalResolution&quot;,&quot;int(PTR img,float&amp; resolution)&quot;)
+</code></pre>
+
+<p><a id="gdip.GetImageWidth"></a></p>
+
+<h3>gdip.GetImageWidth</h3>
+
+<pre><code class="aardio language-aardio">$.api(&quot;GdipGetImageWidth&quot;,&quot;int(PTR img,int&amp; Width)&quot;)
+</code></pre>
+
+<p><a id="gdip.GetPropertyCount"></a></p>
+
+<h3>gdip.GetPropertyCount</h3>
+
+<pre><code class="aardio language-aardio">$.api(&quot;GdipGetPropertyCount&quot;,&quot;int(PTR img,int&amp; numOfProperty)&quot;)
+</code></pre>
+
+<p><a id="gdip.GetPropertyIdList"></a></p>
+
+<h3>gdip.GetPropertyIdList</h3>
+
+<pre><code class="aardio language-aardio">$.api(&quot;GdipGetPropertyIdList&quot;,&quot;int(PTR img,int numOfProperty,struct&amp; list)&quot;)
+</code></pre>
+
+<p><a id="gdip.GetPropertyItem"></a></p>
+
+<h3>gdip.GetPropertyItem</h3>
+
+<pre><code class="aardio language-aardio">$.api(&quot;GdipGetPropertyItem&quot;,&quot;int(PTR img,int propId,int propSize,string&amp; buffer)&quot;)
+</code></pre>
+
+<p><a id="gdip.GetPropertyItemSize"></a></p>
+
+<h3>gdip.GetPropertyItemSize</h3>
+
+<pre><code class="aardio language-aardio">$.api(&quot;GdipGetPropertyItemSize&quot;,&quot;int(PTR img,int propId,int&amp; size)&quot;)
+</code></pre>
+
+<p><a id="gdip.GetPropertySize"></a></p>
+
+<h3>gdip.GetPropertySize</h3>
+
+<pre><code class="aardio language-aardio">$.api(&quot;GdipGetPropertySize&quot;,&quot;int(PTR img,int&amp; totalBufferSize,int&amp; numProperties)&quot;)
+</code></pre>
+
+<p><a id="gdip.ImageGetFrameCount"></a></p>
+
+<h3>gdip.ImageGetFrameCount</h3>
+
+<pre><code class="aardio language-aardio">$.api(&quot;GdipImageGetFrameCount&quot;,&quot;int(PTR img,struct dimensionID,INT&amp; count)&quot;)
+</code></pre>
+
+<p><a id="gdip.ImageGetFrameDimensionsCount"></a></p>
+
+<h3>gdip.ImageGetFrameDimensionsCount</h3>
+
+<pre><code class="aardio language-aardio">$.api(&quot;GdipImageGetFrameDimensionsCount&quot;,&quot;int(PTR img,int&amp; count)&quot;)
+</code></pre>
+
+<p><a id="gdip.ImageGetFrameDimensionsList"></a></p>
+
+<h3>gdip.ImageGetFrameDimensionsList</h3>
+
+<pre><code class="aardio language-aardio">$.api(&quot;GdipImageGetFrameDimensionsList&quot;,&quot;int(PTR img,struct&amp; dimensionIDs,int count)&quot;)
+</code></pre>
+
+<p><a id="gdip.ImageRotateFlip"></a></p>
+
+<h3>gdip.ImageRotateFlip</h3>
+
+<pre><code class="aardio language-aardio">$.api(&quot;GdipImageRotateFlip&quot;,&quot;int(PTR img,int rfType)&quot;)
+</code></pre>
+
+<p><a id="gdip.ImageSelectActiveFrame"></a></p>
+
+<h3>gdip.ImageSelectActiveFrame</h3>
+
+<pre><code class="aardio language-aardio">$.api(&quot;GdipImageSelectActiveFrame&quot;,&quot;int(PTR img,struct&amp; dimensionID,int frameIndex)&quot;)
+</code></pre>
+
+<p><a id="gdip.LoadImageFromFile"></a></p>
+
+<h3>gdip.LoadImageFromFile</h3>
+
+<pre><code class="aardio language-aardio">$.api(&quot;GdipLoadImageFromFile&quot;,&quot;int(ustring FileName,pointer&amp; Image)&quot;)
+</code></pre>
+
+<p><a id="gdip.LoadImageFromStream"></a></p>
+
+<h3>gdip.LoadImageFromStream</h3>
+
+<pre><code class="aardio language-aardio">$.api(&quot;GdipLoadImageFromStream&quot;,&quot;int(POINTER stream,pointer&amp; Image)&quot;)
+</code></pre>
+
+<p><a id="gdip.RemovePropertyItem"></a></p>
+
+<h3>gdip.RemovePropertyItem</h3>
+
+<pre><code class="aardio language-aardio">$.api(&quot;GdipRemovePropertyItem&quot;,&quot;int(PTR img,int propId)&quot;)
+</code></pre>
+
+<p><a id="gdip.SaveImageToFile"></a></p>
+
+<h3>gdip.SaveImageToFile</h3>
+
+<pre><code class="aardio language-aardio">$.api(&quot;GdipSaveImageToFile&quot;,&quot;int(PTR img,ustring FileName,struct clsidEncoder,struct encoderParams)&quot;)
+</code></pre>
+
+<p><a id="gdip.SaveImageToStream"></a></p>
+
+<h3>gdip.SaveImageToStream</h3>
+
+<pre><code class="aardio language-aardio">$.api(&quot;GdipSaveImageToStream&quot;,&quot;int(PTR img,PTR stream,struct clsidEncoder,struct encoderParams)&quot;)
+</code></pre>
+
+<p><a id="gdip.SetPropertyItem"></a></p>
+
+<h3>gdip.SetPropertyItem</h3>
+
+<pre><code class="aardio language-aardio">$.api(&quot;GdipSetPropertyItem&quot;,&quot;int(PTR img,struct&amp; Item)&quot;)
+</code></pre>
+
+<p><a id="gdip.image"></a></p>
+
+<h3>gdip.image(&quot;字符串参数&quot;)</h3>
+
+<p>创建GDI+L图片对象</p>
+
+<p><a id="gdip.image"></a></p>
+
+<h3>gdip.image()</h3>
+
+<p><a href="image.html#gdipimageObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/gdip/image.html#gdipimageObject">返回对象:gdipimageObject</a></p>
+
+<p><a id="gdip.loadImageFromString"></a></p>
+
+<h3>gdip.loadImageFromString(请输入图片数据)</h3>
+
+<p>从内存字符串直接创建图像</p>
+
+<p><a id="gdip.encoder"></a></p>
+
+<h2>gdip.encoder 成员列表</h2>
+
+<p><a id="gdip.encoder.parameter"></a></p>
+
+<h3>gdip.encoder.parameter(&quot;SaveFlag&quot;,{int v})</h3>
+
+<p>创建保存图像参数,用法参考函数源码</p>
+
+<p><a id="gdipExifItemObject"></a></p>
+
+<h2>gdipExifItemObject 成员列表</h2>
+
+<p><a id="gdipExifItemObject.length"></a></p>
+
+<h3>gdipExifItemObject.length</h3>
+
+<p>数据长度</p>
+
+<p><a id="gdipExifItemObject.number"></a></p>
+
+<h3>gdipExifItemObject.number</h3>
+
+<p>数值格式<br>
+如果是数组仅显示第一个数值<br>
+如果value为文本则number字段为空</p>
+
+<p><a id="gdipExifItemObject.propId"></a></p>
+
+<h3>gdipExifItemObject.propId</h3>
+
+<p>属性 ID</p>
+
+<p><a id="gdipExifItemObject.text"></a></p>
+
+<h3>gdipExifItemObject.text</h3>
+
+<p>尝试转换为文本格式的值，<br>
+将对象转入 tostring 函数返回此字段。<br>
+此字段有可能是根据 value 在 _get 元方法中动态生成。</p>
+
+<p><a id="gdipExifItemObject.type"></a></p>
+
+<h3>gdipExifItemObject.type</h3>
+
+<p>数据类型</p>
+
+<p><a id="gdipExifItemObject.value"></a></p>
+
+<h3>gdipExifItemObject.value</h3>
+
+<p>原始数据值。<br>
+值可能为文本、buffer、或一个结构体。<br>
+如果是结构体,则数组值放在 array 字段里<br>
+如果 value 为文本或 buffer 则 number 字段为空</p>
+
+<p><a id="gdipExifItemObject.value.array"></a></p>
+
+<h3>gdipExifItemObject.value.array</h3>
+
+<p>数组值</p>
+
+<p><a id="gdipimageObject"></a></p>
+
+<h2>gdipimageObject 成员列表</h2>
+
+<p><a id="gdipimageObject.activeFrame"></a></p>
+
+<h3>gdipimageObject.activeFrame</h3>
+
+<p>当前帧索引<br>
+修改该属性请使用SelectActiveFrame函数</p>
+
+<p><a id="gdipimageObject.clone"></a></p>
+
+<h3>gdipimageObject.clone()</h3>
+
+<p>复制图像  </p>
+
+<p><a href="image.html#gdipimageObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/gdip/image.html#gdipimageObject">返回对象:gdipimageObject</a></p>
+
+<p><a id="gdipimageObject.createAnimation"></a></p>
+
+<h3>gdipimageObject.createAnimation</h3>
+
+<p>如果图像是一个动画,创建定时器执行动画<br>
+注意每个图像同时只能在一个窗口上创建动画<br>
+创建动画前自动删除之前创建的动画定时器<br>
+如果图像不是动画,此函数不执行任何操作<br>
+成功返回定时器ID</p>
+
+<p><a id="gdipimageObject.createAnimation"></a></p>
+
+<h3>gdipimageObject.createAnimation(窗口对象,回调函数)</h3>
+
+<p>在窗口上创建定时器,<br>
+每帧动画触发回调函数,<br>
+回调函数owner参数被设为参数@1指定的窗口对象  </p>
+
+<p>如果不指定控件,则默认指定为上次创建动画的控件,<br>
+如果不指定回调函数,则默认指定为控件的redrawTransparent函数</p>
+
+<p><a id="gdipimageObject.dispose"></a></p>
+
+<h3>gdipimageObject.dispose()</h3>
+
+<p>释放图像<br>
+此对象支持自动释放,不必手工调用此函数</p>
+
+<p><a id="gdipimageObject.eachFrame"></a></p>
+
+<h3>gdipimageObject.eachFrame</h3>
+
+<p>如果图像支持动画，则返回一个帧迭代器。<br>
+否则此函数返回 null。</p>
+
+<p><a id="gdipimageObject.eachFrame"></a></p>
+
+<h3>gdipimageObject.eachFrame(loopCount)</h3>
+
+<p>遍历动画帧。<br>
+每次调用帧迭代器切换到下一帧并返回当前帧所需延时，帧索引。<br>
+动画完成迭代器返回 null 。<br>
+可选用 @loopCount 参数指定循环所有帧的次数，0 为无限循环。<br>
+不指定参数则获取图像默认循环次数。  </p>
+
+<p>示例：  </p>
+
+<pre><code class="aardio language-aardio">for delay,frame in bmp.eachFrame(1) {  
+    bmp.save(&quot;/&quot;+frame+&quot;.gif&quot;);  
+}  
+</code></pre>
+
+<p><a id="gdipimageObject.eachProperty"></a></p>
+
+<h3>gdipimageObject.eachProperty()</h3>
+
+<pre><code class="aardio language-aardio">for( tagId,propertyItem in gdipimageObject.eachProperty() ){
+     propertyItem./*遍历图像属性字段*/
+}  
+
+[返回对象:gdipExifItemObject](#gdipExifItemObject)
+</code></pre>
+
+<p><a id="gdipimageObject.frameDimension"></a></p>
+
+<h3>gdipimageObject.frameDimension</h3>
+
+<p>当前分辨率GUID</p>
+
+<p><a id="gdipimageObject.getFrameDelays"></a></p>
+
+<h3>gdipimageObject.getFrameDelays()</h3>
+
+<p>返回多帧图像每帧延时数值组成的数组,<br>
+延时单位为厘秒,即0.01秒</p>
+
+<p><a id="gdipimageObject.getFrameDimensionsList"></a></p>
+
+<h3>gdipimageObject.getFrameDimensionsList()</h3>
+
+<p>图像帧分辨率列表<br>
+该值是GUID数组</p>
+
+<p><a id="gdipimageObject.getGraphics"></a></p>
+
+<h3>gdipimageObject.getGraphics()</h3>
+
+<p>从图像获取画布  </p>
+
+<p><a href="#gdipgraphicsObject">返回对象:gdipgraphicsObject</a></p>
+
+<p><a id="gdipimageObject.getLoopCount"></a></p>
+
+<h3>gdipimageObject.getLoopCount()</h3>
+
+<p>获取动画循环次数,0为一直循环,<br>
+根据 GDI+ 的规则,循环次数为2会改为1,其他不变,<br>
+为不影响性能默认不处理这个问题  </p>
+
+<p>如果要处理,步骤如下:<br>
+1、读取循环次数如果为1就进行下一步<br>
+2、在GIF图像数据中搜索关键字&quot;NETSCAPE2.0&quot;<br>
+如果找到就将此图像的 $loopCount 属性赋值为2,<br>
+注意 plus 控件支持将加载好的GDI+图像作为参数  </p>
+
+<p>GIF动画循环次数一般不是0就是1,<br>
+其他数值基本无人使用,搞这么复杂是不必要的</p>
+
+<p><a id="gdipimageObject.getPixelFormat"></a></p>
+
+<h3>gdipimageObject.getPixelFormat()</h3>
+
+<p>返回像素格式</p>
+
+<p><a id="gdipimageObject.getPropertyIds"></a></p>
+
+<h3>gdipimageObject.getPropertyIds()</h3>
+
+<p>返回所有属性ID数组</p>
+
+<p><a id="gdipimageObject.getPropertyItem"></a></p>
+
+<h3>gdipimageObject.getPropertyItem()</h3>
+
+<p><a href="#gdipExifItemObject">返回对象:gdipExifItemObject</a></p>
+
+<p><a id="gdipimageObject.getPropertyItem"></a></p>
+
+<h3>gdipimageObject.getPropertyItem(属性ID)</h3>
+
+<p>返回字段</p>
+
+<p><a id="gdipimageObject.getResolution"></a></p>
+
+<h3>gdipimageObject.getResolution()</h3>
+
+<p>返回分辨率xdpi,ydpi</p>
+
+<p><a id="gdipimageObject.getThumbnail"></a></p>
+
+<h3>gdipimageObject.getThumbnail()</h3>
+
+<p><a href="image.html#gdipimageObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/gdip/image.html#gdipimageObject">返回对象:gdipimageObject</a></p>
+
+<p><a id="gdipimageObject.getThumbnail"></a></p>
+
+<h3>gdipimageObject.getThumbnail(宽度,高度,是否保持比例)</h3>
+
+<p>获取缩略图,<br>
+返回 gdip.image 对象.<br>
+宽度,高度指定新的像素大小,也可以用小于1大于0的小数指定缩放百分比.</p>
+
+<p><a id="gdipimageObject.height"></a></p>
+
+<h3>gdipimageObject.height</h3>
+
+<p>高度</p>
+
+<p><a id="gdipimageObject.isPlaying"></a></p>
+
+<h3>gdipimageObject.isPlaying()</h3>
+
+<p>是否正在播放动画</p>
+
+<p><a id="gdipimageObject.isValid"></a></p>
+
+<h3>gdipimageObject.isValid()</h3>
+
+<p>图像是否有效<br>
+dispose函数释放以后返回false</p>
+
+<p><a id="gdipimageObject.origHeight"></a></p>
+
+<h3>gdipimageObject.origHeight</h3>
+
+<p>原始高度，<br>
+对于一个 gdip.image 对象会一直缓存第一次读取的值</p>
+
+<p><a id="gdipimageObject.origWidth"></a></p>
+
+<h3>gdipimageObject.origWidth</h3>
+
+<p>原始宽度，<br>
+对于一个 gdip.image 对象会一直缓存第一次读取的值</p>
+
+<p><a id="gdipimageObject.removePropertyItem"></a></p>
+
+<h3>gdipimageObject.removePropertyItem(属性ID)</h3>
+
+<p>移除字段</p>
+
+<p><a id="gdipimageObject.rotateFlip"></a></p>
+
+<h3>gdipimageObject.rotateFlip(_GdipRotate指定翻转选项)</h3>
+
+<p>翻转图片</p>
+
+<p><a id="gdipimageObject.save"></a></p>
+
+<h3>gdipimageObject.save(&quot;字符串参数&quot;)</h3>
+
+<p>保存图像<br>
+使用参数指定的文件路径或加载图片时的路径<br>
+根据后缀名自动设定格式,<br>
+可选在参数@3使用gdip.encoder.parameter数组指定保存参数</p>
+
+<p><a id="gdipimageObject.save"></a></p>
+
+<h3>gdipimageObject.save(&quot;字符串参数&quot;,80)</h3>
+
+<p>保存图像<br>
+使用参数指定的文件路径或加载图片时的路径<br>
+根据后缀名自动设定格式<br>
+jpg文件可使用第二个参数指定图像质量,<br>
+可选在参数@3使用gdip.encoder.parameter数组指定保存参数</p>
+
+<p><a id="gdipimageObject.saveAdd"></a></p>
+
+<h3>gdipimageObject.saveAdd()</h3>
+
+<p>添加当前图像到多帧图像</p>
+
+<p><a id="gdipimageObject.saveAdd"></a></p>
+
+<h3>gdipimageObject.saveAdd(图像)</h3>
+
+<p>添加其他gdip.image或gdip.bitmap对象到多帧图像,<br>
+可选使用参数2指定saveFlag，可选在参数@3使用gdip.encoder.parameter数组指定保存参数</p>
+
+<p><a id="gdipimageObject.saveAdd"></a></p>
+
+<h3>gdipimageObject.saveAdd(图像路径)</h3>
+
+<p>创建多帧图像,参数指定保存路径,<br>
+使用saveAdd添加帧，添加帧参数@1不能指定路径,<br>
+添加所有帧以后调用saveFlush函数即可</p>
+
+<p><a id="gdipimageObject.saveToBuffer"></a></p>
+
+<h3>gdipimageObject.saveToBuffer(后缀名,输出质量)</h3>
+
+<p>保存图像到 buffer，返回 buffer 对象,<br>
+后缀名默认为&quot;*.jpg&quot;,质量默认为100,<br>
+可选在参数@3使用gdip.encoder.parameter数组指定保存参数</p>
+
+<p><a id="gdipimageObject.saveToStream"></a></p>
+
+<h3>gdipimageObject.saveToStream</h3>
+
+<p>保存到内存流对象,<br>
+该函数成功返回值为流对象</p>
+
+<p><a id="gdipimageObject.saveToStream"></a></p>
+
+<h3>gdipimageObject.saveToStream()</h3>
+
+<p><a href="../fsys/stream.html#fsysStreamObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/fsys/stream.html#fsysStreamObject">返回对象:fsysStreamObject</a></p>
+
+<p><a id="gdipimageObject.saveToStream"></a></p>
+
+<h3>gdipimageObject.saveToStream(流对象,后缀名,输出质量)</h3>
+
+<p>流对象请使用 fsys.stream 创建<br>
+后缀名默认为&quot;*.jpg&quot;,质量默认为100,<br>
+可选在参数@4使用gdip.encoder.parameter数组指定保存参数</p>
+
+<p><a id="gdipimageObject.selectActiveFrame"></a></p>
+
+<h3>gdipimageObject.selectActiveFrame(帧序号)</h3>
+
+<p>设置当前动画帧</p>
+
+<p><a id="gdipimageObject.setFrameDelays"></a></p>
+
+<h3>gdipimageObject.setFrameDelays()</h3>
+
+<p>修改多帧图像每帧延时数值<br>
+参数必须是由数值组成的非空数组,<br>
+延时单位为厘秒,即0.01秒<br>
+必须在调用saveAdd以前设置</p>
+
+<p><a id="gdipimageObject.setPropertyItem"></a></p>
+
+<h3>gdipimageObject.setPropertyItem(字段结构体)</h3>
+
+<p>修改字段</p>
+
+<p><a id="gdipimageObject.stopAnimation"></a></p>
+
+<h3>gdipimageObject.stopAnimation()</h3>
+
+<p>如果此图像已运行动画,则停止动画并返回 true</p>
+
+<p><a id="gdipimageObject.totalFrames"></a></p>
+
+<h3>gdipimageObject.totalFrames</h3>
+
+<p>动画帧总数<br>
+不是动画返回1</p>
+
+<p><a id="gdipimageObject.width"></a></p>
+
+<h3>gdipimageObject.width</h3>
+
+<p>宽度</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/gdip/image.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/gdip/image.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/gdip/image.md">Markdown 格式</a></p>
+
+</body> 
+</html>

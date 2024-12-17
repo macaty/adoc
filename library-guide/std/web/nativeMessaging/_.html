@@ -1,0 +1,255 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - 编写浏览器本地应用扩展'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - 编写浏览器本地应用扩展</title> 
+<link rel="stylesheet" href="../../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>编写浏览器本地应用扩展</h1>
+
+<p>使用 aardio 编写浏览器本地应用 (Native Messaging) 扩展分为两个主要部分：</p>
+
+<ol>
+<li><strong>本地消息服务端</strong>：用 aardio 实现的多线程服务端，可以多线程收发消息，并提供类似 WebSocket 的单线程异步调用接口。</li>
+<li><strong>浏览器扩展客户端</strong>：用 JS 和 HTML 编写的扩展程序，用于实现 Native Messaging 客户端。</li>
+</ol>
+
+<h2>一. 发布安装</h2>
+
+<h4>1. 安装消息服务端</h4>
+
+<p>运行发布后的 EXE 自动安装消息服务端。在安装代码中配置允许调用此 EXE 的浏览器扩展 ID。</p>
+
+<p>安装未打包扩展会动态生成扩展 ID（每次都会变化）。aardio 允许在参数中指定扩展目录并自动获取动态生成的扩展 ID。示例：</p>
+
+<pre><code class="aardio language-aardio">web.nativeMessaging.install(
+    allowed_origins = {&quot;\crx\nativeMessagingTest&quot;} 
+)
+</code></pre>
+
+<h4>2. 安装浏览器扩展</h4>
+
+<p>在浏览器扩展管理页面启用开发者模式，安装包含 manifest.json 文件的未打包扩展。</p>
+
+<pre><code class="json language-json">{
+    &quot;manifest_version&quot;: 3, 
+    &quot;permissions&quot;: [
+        &quot;nativeMessaging&quot;,
+        &quot;https://*/*&quot; 
+    ] 
+}
+</code></pre>
+
+<h2>二. Native Messaging 服务端示例</h2>
+
+<p>以下是 aardio 实现的 Native Messaging 服务端示例代码：</p>
+
+<pre><code class="aardio language-aardio">import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;aardio工程15&quot;;right=759;bottom=469)
+winform.add(
+edit={cls=&quot;edit&quot;;left=24;top=15;right=726;bottom=428;edge=1;multiline=1;z=1}
+)
+/*}}*/
+
+//创建浏览器本地消息主机
+import web.nativeMessaging;
+var host = web.nativeMessaging();
+
+//如果不是在浏览器中启动 host 返回 null
+if( !host ){
+
+    //安装浏览器本地消息主机
+    import web.nativeMessaging.install;
+
+    //自动生成配置文件,并在注册表中写入此应用
+    var json = web.nativeMessaging.install(
+
+        //本地应用名,命名规则与变量命名规则类似，只能使用字母数字，可用圆点分隔名称
+        name = &quot;com.my_company.my_application&quot;;
+
+        //这个是描述，其实没什么用
+        description = &quot;My Application&quot;;
+
+        //允许他调用此消息主机的浏览器扩展 ID 数组
+        allowed_origins = {
+            &quot;agnhjnpjidnjcppanhimaidodnbnhhbp&quot;;//可以指定扩展 ID
+            &quot;\crx\nativeMessagingTest&quot;;//也可以指定解压的扩展目录路径，自动转换为扩展 ID
+            &quot;\crx\nativeMessagingTest.pem&quot;;//也可以指定私钥文件，自动转换为扩展 ID
+        }
+    )
+
+    winform.edit.print(&quot;本地应用服务端已注册成功&quot;)
+    winform.edit.print(json); 
+}
+else{
+
+    //在Native Messaging管道中启动,客户端已连交接触发此事件
+    host.onOpen = function(extension,parentWindow){
+
+        winform.edit.print(&quot;客户端已连接：&quot;,extension)
+
+            //不能使用 win.setParent()把chrome搞成父窗口，这样chrome会崩溃
+        win.setOwner(winform.hwnd,parentWindow);
+    }
+
+    //客户端关闭时触发此事件
+    host.onClose = function(){
+        winform.edit.print(&quot;客户端已断开，即将退出&quot;)
+        win.quitMessage();//必须及时退出
+    }
+
+    //客户端发了JSON对象过来，注意data是一个经过JSON解析得到的对象，不是JSON字符串
+    host.onMessage = function(data){
+        winform.edit.print(&quot;收到数据&quot;,data);
+        host.send(&quot;这是来自aardio的数据&quot;);
+    }
+
+    //遇到错误了
+    host.onError = function(err){
+        winform.edit.print(err);
+    }
+
+    //运行消息主机,这个函数只是启动监听线程，不会阻塞
+    host.run();
+}
+
+winform.show() 
+win.loopMessage();
+</code></pre>
+
+<h2>三. 浏览器实现的 Native Messaging 客户端示例</h2>
+
+<h4>popup.html</h4>
+
+<pre><code class="html language-html">&lt;!doctype html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;title&gt;Native Messaging&lt;/title&gt;
+    &lt;style&gt;
+      body {
+        min-width: 300px;
+        font-family: Arial, sans-serif;
+        margin: 20px;
+      }
+      #message-form {
+        display: flex;
+        flex-direction: column;
+      }
+      input, button {
+        margin: 10px 0;
+      }
+      button {
+        padding: 10px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+      button:disabled {
+        background-color: #ccc;
+      }
+    &lt;/style&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Native Messaging&lt;/h1&gt;
+    &lt;form id=&quot;message-form&quot;&gt;
+      &lt;input type=&quot;text&quot; id=&quot;message-input&quot; placeholder=&quot;输入消息&quot;&gt;
+      &lt;button type=&quot;button&quot; id=&quot;send-button&quot;&gt;发送消息&lt;/button&gt;
+    &lt;/form&gt;
+    &lt;p id=&quot;msg&quot;&gt;&lt;/p&gt;
+    &lt;script src=&quot;popup.js&quot;&gt;&lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<h4>popup.js</h4>
+
+<pre><code class="javascript language-javascript">// 这里的参数改为本地应用的标识名
+var port = chrome.runtime.connectNative(&#39;com.my_company.my_application&#39;);
+
+// 连接成功后的处理函数
+function onConnected(port) {
+  port.onMessage.addListener(onNativeMessage);
+  port.onDisconnect.addListener(onDisconnected);
+  document.getElementById(&#39;send-button&#39;).disabled = false;
+}
+
+// 本地应用消息处理函数
+function onNativeMessage(msg) {
+  const msgElement = document.getElementById(&quot;msg&quot;);
+  if (msgElement) {
+    msgElement.innerText = &quot;本地应用发过来的对象：&quot; + JSON.stringify(msg);
+  }
+}
+
+// 断开连接处理函数
+function onDisconnected() {
+  const msgElement = document.getElementById(&quot;msg&quot;);
+  if (msgElement) {
+    msgElement.innerText = &quot;已断开连接&quot;;
+  }
+  document.getElementById(&#39;send-button&#39;).disabled = true;
+}
+
+// 发送消息函数
+function sendNativeMessage(message) {
+  if (port) {
+    port.postMessage(message);
+  } else {
+    console.error(&quot;无法发送消息，端口未连接&quot;);
+  }
+}
+
+// 发送按钮点击事件处理
+document.getElementById(&#39;send-button&#39;).addEventListener(&#39;click&#39;, () =&gt; {
+  const messageInput = document.getElementById(&#39;message-input&#39;);
+  const messageText = messageInput.value;
+  if (messageText) {
+    sendNativeMessage({ text: messageText });
+    messageInput.value = &#39;&#39;; // 清空输入框
+  } else {
+    alert(&#39;请输入消息&#39;);
+  }
+});
+
+// 错误处理
+try {
+  onConnected(port);
+} catch (error) {
+  console.error(&quot;连接本地应用时发生错误:&quot;, error);
+}
+</code></pre>
+
+<h4>manifest.json</h4>
+
+<pre><code class="json language-json">{
+    &quot;manifest_version&quot;: 3,
+    &quot;name&quot;: &quot;Native Messaging Test&quot;,
+    &quot;description&quot;: &quot;Native Messaging&quot;,
+    &quot;version&quot;: &quot;1.0&quot;,
+    &quot;permissions&quot;: [
+        &quot;nativeMessaging&quot;,
+        &quot;https://*/*&quot;,
+        &quot;http://*/*&quot;
+    ],
+    &quot;action&quot;: {
+        &quot;default_icon&quot;: &quot;app.ico&quot;,
+        &quot;default_popup&quot;: &quot;popup.html&quot;
+    }
+}
+</code></pre>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-guide/std/web/nativeMessaging/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-guide/std/web/nativeMessaging/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/std/web/nativeMessaging/_.md">Markdown 格式</a></p>
+
+</body> 
+</html>

@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 使用SAPI语音组件朗读文本示例'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 使用SAPI语音组件朗读文本示例</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 使用SAPI语音组件朗读文本示例</h1><pre><code class="aardio language-aardio">//SAPI 文本转语音
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;使用SAPI语音组件朗读文本示例&quot;;right=825;bottom=532)
+winform.add(
+button={cls=&quot;button&quot;;text=&quot;朗读&quot;;left=657;top=429;right=780;bottom=468;db=1;dr=1;z=1};
+cbVoice={cls=&quot;combobox&quot;;left=379;top=436;right=639;bottom=462;db=1;dl=1;dr=1;edge=1;items={};mode=&quot;dropdown&quot;;z=2};
+edit={cls=&quot;edit&quot;;left=20;top=9;right=794;bottom=426;db=1;dl=1;dr=1;dt=1;edge=1;hscroll=1;multiline=1;vscroll=1;z=8};
+lbRate={cls=&quot;static&quot;;text=&quot;语速:&quot;;left=53;top=498;right=120;bottom=520;align=&quot;right&quot;;db=1;dl=1;transparent=1;z=6};
+lbVolume={cls=&quot;static&quot;;text=&quot;音量:&quot;;left=372;top=498;right=434;bottom=520;align=&quot;right&quot;;db=1;dl=1;dr=1;transparent=1;z=5};
+plusAudioLevel={cls=&quot;plus&quot;;left=795;top=9;right=813;bottom=423;bgcolor=10789024;db=1;dr=1;dt=1;z=3};
+tbRate={cls=&quot;trackbar&quot;;left=149;top=487;right=375;bottom=517;db=1;dl=1;max=100;min=0;z=7};
+tbVolume={cls=&quot;trackbar&quot;;left=467;top=487;right=693;bottom=517;db=1;dr=1;max=100;min=0;z=4}
+)
+/*}}*/
+
+winform.edit.text = /*&lt;lang langid=&#39;409&#39;&gt;Hello&lt;/lang&gt; 
+&lt;lang langid=&#39;804&#39;&gt;你好&lt;/lang&gt;
+&lt;VOLUME LEVEL=&#39;90&#39;&gt;SAPI为正常系统自带组件，如果是精简过删除了SAPI组件的系统请自行安装修复该组件&lt;/VOLUME&gt; 
+*/
+
+import com.sapi.voice;//导入语音组件
+var voice = com.sapi.voice();//创建语音对象
+
+//设置plus控件的进度条效果,用于显示音频变化
+winform.plusAudioLevel.foreground = 0xFFE5f897;
+winform.plusAudioLevel.setProgressRange(0,50);
+voice.event.AudioLevel = function(streamNumber,streamPosition,audioLevel){ 
+winform.plusAudioLevel.progressPos = audioLevel;
+}
+
+//随着朗读的进度，自动选中正在朗读的词,
+voice.event.Word =  function(streamNumber,streamPosition,characterPosition,length ){ 
+    characterPosition++;
+    winform.edit.setsel(characterPosition,characterPosition + length-1);
+    //注意richedit会自动将\r\n转换为\n显示,所以改用edit控件这里的字符位置就是完全一致的
+}
+
+//列出系统支持的所有语音库
+for name,lang,gender,age,vendor,description in voice.eachVoices(){
+     winform.cbVoice.add(description);
+     if(lang==804){
+         winform.cbVoice.selIndex = winform.cbVoice.count;
+     }
+}
+
+//开始朗读
+winform.button.oncommand = function(id,event){
+    winform.button.disabledText = &quot;正在朗读...&quot;;
+
+    voice.volume = winform.tbVolume.pos;//音量
+    voice.rate = winform.tbRate.pos;//语速
+
+    voice.setVoiceByIndex(winform.cbVoice.selIndex);//语音库
+    voice.speakAsync(winform.edit.text,1);//异步非阻塞朗读
+    voice.waitOne();//等待朗读结束
+
+    winform.button.disabledText = null;
+}
+
+//语速滑块
+winform.tbRate.setRange(-10,10);
+winform.tbRate.pos = voice.rate;
+
+//音量滑块
+winform.tbVolume.setRange(0,100);
+winform.tbVolume.pos = voice.volume;
+
+winform.show() 
+win.loopMessage();
+
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Media/Audio/tts.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Media/Audio/tts.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Media/Audio/tts.md">Markdown 格式</a>
+</body> 
+</html>

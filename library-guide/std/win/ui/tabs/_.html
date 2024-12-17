@@ -1,0 +1,240 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - 高级选项卡（win.ui.tabs）使用指南'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - 高级选项卡（win.ui.tabs）使用指南</title> 
+<link rel="stylesheet" href="../../../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>高级选项卡（win.ui.tabs）使用指南</h1>
+
+<p>aardio 有两种不同的选项卡：</p>
+
+<ol>
+<li><p>简单选项卡控件（ classic tab control  ）</p>
+
+<p>简单选项卡是由 win.ui.ctrl.tab 类库基于系统 SysTabControl32 控件实现的选项卡。可在窗体可视化设计器上直接拖放添加选项卡控件，控件创建参数中指定的 cls 类名为 &quot;tab&quot;。</p>
+
+<p>关于简单选项卡的用法请参考: <a href="../ctrl/tab.html" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/std/win/ui/ctrl/tab.html">简单选项卡使用指南</a></p></li>
+<li><p>高级选项卡（ tab plus  ）</p>
+
+<p>高级选项卡由 win.ui.tabs 类库实现。高级选项卡并不是一个控件，而是用于管理 plus 控件（ win.ui.ctrl.plus ）组成的按钮列表（ tab list ）以实现选项卡效果的管理组件，并由 custom 控件（ win.ui.ctrl.custom ）创建的容器控件（ tab panel ）加载并管理一组显示内容的子窗口（ tab forms ）。</p></li>
+</ol>
+
+<p>下面介绍高级选项卡的用法。 </p>
+
+<h2>创建高级选项卡的步骤</h2>
+
+<ol>
+<li><p>创建高级选项卡。</p>
+
+<p>要点： </p>
+
+<ul>
+<li>在窗体上添加两个 plus 控件 mainForm.tabPlus1, mainForm.tabPlus2 ，这些 plus 控件显示在选项卡头部（ header ）位置作为切换页面的按钮，并且这被指指的 plus 控件将被用于确定选项卡的外观与排列方向。如果后继用代码添加更多选项卡则会根据 mainForm.tabPlus1, mainForm.tabPlus2 获取的控件属性与样式作为模板创建新的 plus 控件。</li>
+<li>在窗体上添加一个 custom 控件 mainForm.tabPanel 作为页面容器，用于在选项卡的客户区（ client area ）加载子窗口以显示不同的页面内容。</li>
+</ul>
+
+<p>示例代码：</p>
+
+<pre><code class="aardio language-aardio">import win.ui;
+import win.ui.tabs;
+/*DSG{{*/
+var mainForm = win.form(text=&quot;多标签页窗口示例&quot;;right=600;bottom=400)
+mainForm.add( 
+tabPlus1={cls=&quot;plus&quot;;text=&quot;标签页 1&quot;;left=149;top=2;right=265;bottom=36;align=&quot;left&quot;;color=32768;dl=1;dt=1;font=LOGFONT(h=-16);iconStyle={align=&quot;left&quot;;font=LOGFONT(h=-19;name=&#39;FontAwesome&#39;);padding={left=12;top=4}};iconText=&#39;\uF00A&#39;;notify=1;paddingLeft=1;paddingRight=1;paddingTop=3;textPadding={left=39;bottom=1};x=0.5;y=0.2;z=2};
+tabPlus2={cls=&quot;plus&quot;;text=&quot;标签页 2&quot;;left=14;top=2;right=148;bottom=36;align=&quot;left&quot;;color=32768;dl=1;dt=1;font=LOGFONT(h=-16);iconStyle={align=&quot;left&quot;;font=LOGFONT(h=-19;name=&#39;FontAwesome&#39;);padding={left=12;top=4}};iconText=&#39;\uF11C &#39;;notify=1;paddingLeft=1;paddingRight=1;paddingTop=3;textPadding={left=39;bottom=1};x=0.5;y=0.2;z=3};
+tabPanel={cls=&quot;custom&quot;;left=2;top=37;right=600;bottom=401;bgcolor=16777215;db=1;dl=1;dr=1;dt=1;z=1};
+)
+/*}}*/
+
+//创建高级选项卡，参数指定两个选项卡按钮并用以确定选项卡头部（ header ）按钮的外观样式与排列方向。
+var tabs = win.ui.tabs( 
+    mainForm.tabPlus1,//选项卡头部按钮1
+    mainForm.tabPlus2,//选项卡头部按钮2
+);
+</code></pre>
+
+<p>参数中的 mainForm.tabPlus1， mainForm.tabPlus2 指定选项卡最初的 2 个按钮，这 2 个按钮将作为模板控件用于确定选项卡按钮的排列方向、间距、默认外观样式。可以通过 tabs.tabList 属性访问包含所有选项卡按钮的数组。</p>
+
+<p>高级选项卡会自动查找紧贴在选项卡按钮（  mainForm.tabPlus1， mainForm.tabPlus2 ）一侧的 custom 控件（ 优先选择未禁用、未隐藏、未设置透明的 custom 控件，上面的示例会 mainForm.tabPanel ）作为页面容器（ tab panel ）。可以通过 tab.panel 属性访问页面容器控件。tabs.panel 用于确定选项卡的内容区域（ client area ）。</p></li>
+<li><p>设置选项卡交互样式</p>
+
+<p>创建高级选项卡对象 tabs 以后，我们可以如下设置 tabs 的外观样式。</p>
+
+<pre><code class="aardio language-aardio">tabs.skin({
+    background={
+        active=0xFFFFFFFF;
+        default=0x00FFFFFF;
+        hover=0x38FFFFFF
+    };
+    color={
+        default=0xFF0F0000; 
+    };
+    checked={
+        background={default=0xFFFFFFFF;};
+        color={default=0xFF42A875;};
+    }
+})
+</code></pre>
+
+<p>这个 skin 函数的用法与 plus 控件的 skin 函数完全相同，win.ui.tabs 会将上面的样式逐一应用到每一个选项卡按钮。</p>
+
+<p>相关文档:</p>
+
+<ul>
+<li><a href="../ctrl/plus.html" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/std/win/ui/ctrl/plus.html">plus 控件使用指南</a> </li>
+<li><a href="../../../../../library-reference/win/ui/ctrl/plus.html" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/plus.html">plus 控件参考手册</a></li>
+</ul></li>
+</ol>
+
+<h2>添加选项卡与加载子窗口 <a id="loadForm" href="#loadForm">&#x23;</a></h2>
+
+<p>创建高级选项卡对象 tabs 以后，我们可以如下使用 tabs 对象创建新的选项卡按钮，并为每个选项卡按钮绑定一个子窗口用于显示选项卡内容。</p>
+
+<p>示例：</p>
+
+<pre><code class="aardio language-aardio">// 添加新的选项卡按钮。
+var tabIndex = tabs.add({
+    text=&quot;标签页3&quot;;
+    iconText=&#39;\uF0E0&#39;;//选项卡字体图标
+})
+
+// 添加新的子页面，第一个参数指定要绑定的选项卡按钮索引。
+var formPage1  = tabs.loadForm(1)
+
+// formPage1 就是一个 winform，用法与 winform.add 相同
+formPage1.add({
+    button1 = { 
+            cls=&quot;button&quot;;
+            text=&quot;按钮1&quot;;
+            left=20;top=20;right=120;bottom=50;
+    };
+})
+
+//设置当前选项卡索引为 1 。
+tabs.selIndex = 1;
+</code></pre>
+
+<p>我们使用 tabs.add 函数增加新的选项卡。要特别注意 <code>tabs.add()</code> 的返回值是一个表示新选项索引的数值，也就是说 tabs.add 返回的是 tabIndex 。</p>
+
+<p>并且使用 tabs.loadForm 函数增加新的子窗口，这个函数的原型如下：</p>
+
+<p><code>tabs.loadForm( tabIndex,formOrFormPathOrFormPropertiesTableOrNull )</code>
+<code>tabs.loadForm( formOrFormPathOrFormPropertiesTableOrNull )</code></p>
+
+<p>这个函数非常特别，省略 tabIndex 参数时可以同时省略参数占位。aardio 中其他函数省略的参数如果不是最后一个参数一般仍然需要写一个逗号以保持参数位置不变。 </p>
+
+<p>tabIndex 参数指定了子窗口要绑定的选项卡按钮索引。如果不指定索引，则会自动跳过已绑定子窗体的选项卡，添加到下一个还没有绑定子窗体的选项卡。也就是说省略索引则索引参数将被默认设为 <code>#tabs.forms + 1</code> 。</p>
+
+<p>@formOrFormPathOrFormPropertiesTableOrNull 这个参数允许指定不同类型的参数：</p>
+
+<ul>
+<li>form: 指定一个创建好的 win.form 窗口对象。</li>
+<li>formPath: 指定一个加载并返回 win.form 窗口对象的 aardio 代码文件路径。</li>
+<li>formPropertiesTable: 直接指定一个表对象（table）作为创建 win.form 窗口对象的属性表参数。</li>
+<li>null: 不指定参数，保持 null 值则默认创建一个窗口。</li>
+</ul>
+
+<p>tabs.loadForm( tabIndex ) 返回的是 win.form 窗体对象。</p>
+
+<p>tabs.loadForm 函数返回 winform（ win.form 对象 ） 窗口对象。</p>
+
+<p>tabs 加载的所有子窗口被放在 tabs.forms 这个数组对象中。</p>
+
+<p>用户点击选项卡按钮时，高级选项卡会在 tab.panel 这个页面容器中显示对应的子窗口。具体来说用户点击并切换到 tabs.tabList[1] 则会在 tab.panel 显示 tabs.forms[1] 这个子窗口。</p>
+
+<h2>高级选项卡完整示例</h2>
+
+<p>创建与使用高级选项卡的完整示例代码如下：</p>
+
+<pre><code class="aardio language-aardio">import win.ui;
+import win.ui.tabs;
+/*DSG{{*/
+var mainForm = win.form(text=&quot;多标签页窗口示例&quot;;right=600;bottom=400)
+mainForm.add( 
+tabPlus1={cls=&quot;plus&quot;;text=&quot;标签页 1&quot;;left=149;top=2;right=265;bottom=36;align=&quot;left&quot;;color=32768;dl=1;dt=1;font=LOGFONT(h=-16);iconStyle={align=&quot;left&quot;;font=LOGFONT(h=-19;name=&#39;FontAwesome&#39;);padding={left=12;top=4}};iconText=&#39;\uF00A&#39;;notify=1;paddingLeft=1;paddingRight=1;paddingTop=3;textPadding={left=39;bottom=1};x=0.5;y=0.2;z=2};
+tabPlus2={cls=&quot;plus&quot;;text=&quot;标签页 2&quot;;left=14;top=2;right=148;bottom=36;align=&quot;left&quot;;color=32768;dl=1;dt=1;font=LOGFONT(h=-16);iconStyle={align=&quot;left&quot;;font=LOGFONT(h=-19;name=&#39;FontAwesome&#39;);padding={left=12;top=4}};iconText=&#39;\uF11C &#39;;notify=1;paddingLeft=1;paddingRight=1;paddingTop=3;textPadding={left=39;bottom=1};x=0.5;y=0.2;z=3};
+tabPanel={cls=&quot;custom&quot;;left=2;top=37;right=600;bottom=401;bgcolor=16777215;db=1;dl=1;dr=1;dt=1;z=1};
+)
+/*}}*/
+
+//创建高级选项卡，参数指定两个选项卡按钮并用以确定选项卡头部按钮的外观样式与排列方向。
+var tabs = win.ui.tabs( 
+    mainForm.tabPlus1,//选项卡头部按钮1
+    mainForm.tabPlus2,//选项卡头部按钮2
+);
+
+// 配置选项卡外观样式风格
+tabs.skin({
+    background={
+        active=0xFFFFFFFF;
+        default=0x00FFFFFF;
+        hover=0x38FFFFFF
+    };
+    color={
+        default=0xFF0F0000; 
+    };
+    checked={
+        background={default=0xFFFFFFFF;};
+        color={default=0xFF42A875;};
+    }
+})
+
+
+// 添加新的选项卡按钮。
+var tabIndex = tabs.add({
+    text=&quot;标签页3&quot;;
+    iconText=&#39;\uF0E0&#39;;//选项卡字体图标
+})
+
+// 添加新的子页面，第一个参数指定要绑定的选项卡按钮索引。
+var formPage1  = tabs.loadForm(1)
+
+// formPage1 就是一个 winform，用法与 winform.add 相同
+formPage1.add({
+   button1 = { 
+        cls=&quot;button&quot;;
+        text=&quot;按钮1&quot;;
+        left=20;top=20;right=120;bottom=50;
+   };
+})
+
+// 响应子窗体的按钮事件
+formPage1.button1.oncommand = function(){
+    formPage1 .msgbox(&quot;hello&quot;)
+}
+
+
+// 添加新的子页面，第一个参数指定要绑定的选项卡按钮索引。
+var formPage2  = tabs.loadForm(2)
+
+// formPage2 就是一个 winform，用法与 winform.add 相同。
+formPage2.add({
+   edit2 = { 
+        cls=&quot;edit&quot;; 
+        left=20;top=20;right=580;bottom=350;
+   }
+})
+
+//设置当前选项卡索引为 1 。
+tabs.selIndex = 1;
+
+// 显示窗口
+mainForm.show();
+
+// 运行消息循环
+win.loopMessage();
+</code></pre>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-guide/std/win/ui/tabs/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-guide/std/win/ui/tabs/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/std/win/ui/tabs/_.md">Markdown 格式</a></p>
+
+</body> 
+</html>

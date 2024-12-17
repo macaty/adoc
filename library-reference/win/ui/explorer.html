@@ -1,0 +1,213 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - win.ui.explorer 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - win.ui.explorer 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>win.ui.explorer 库模块帮助文档</h1>
+
+<p><a id="win.ui"></a></p>
+
+<h2>win.ui 成员列表</h2>
+
+<p><a id="win.ui.explorer"></a></p>
+
+<h3>win.ui.explorer</h3>
+
+<p>用于创建类似资源管理器的文件树形视图</p>
+
+<p><a id="win.ui.explorer"></a></p>
+
+<h3>win.ui.explorer()</h3>
+
+<p>创建类似资源管理器的文件树形视图。<br>
+请在参数中指定一个已创建的 treeview 视图对象。<br>
+创建对象时会自动启用 treeview 控件的滚动条。<br>
+默认会在树形视图控件顶部自动搜索下拉框用于显示驱动器列表。</p>
+
+<p><a href="#winUiExplorerObject">返回对象:winUiExplorerObject</a></p>
+
+<p><a id="winUiExplorerObject"></a></p>
+
+<h2>winUiExplorerObject 成员列表</h2>
+
+<p><a id="winUiExplorerObject.combobox"></a></p>
+
+<h3>winUiExplorerObject.combobox</h3>
+
+<p>用于显示驱动器的下拉框,<br>
+默认会在树形视图控件顶部自动搜索下拉框,也可以自行指定  </p>
+
+<p><a href="#comboboxObject">返回对象:comboboxObject</a></p>
+
+<p><a id="winUiExplorerObject.getCurrentFilePath"></a></p>
+
+<h3>winUiExplorerObject.getCurrentFilePath()</h3>
+
+<p>返回当前选中节点文件路径<br>
+注意onClick事件触发时树形控件尚未更改选中状态</p>
+
+<p><a id="winUiExplorerObject.getFilePath"></a></p>
+
+<h3>winUiExplorerObject.getFilePath(hItem)</h3>
+
+<p>返回节点文件路径,不指定节点句柄时返回根路径</p>
+
+<p><a id="winUiExplorerObject.insertDir"></a></p>
+
+<h3>winUiExplorerObject.insertDir(name,path,hItemParent)</h3>
+
+<p>插入目录节点。<br>
+参数 @name 指定显示名称。<br>
+参数 @path 指定节点绑定的目录路径。<br>
+可选用 @hItemParent 指定父节点句柄,不指定 @hItem 时添加到根节点</p>
+
+<p><a id="winUiExplorerObject.insertFile"></a></p>
+
+<h3>winUiExplorerObject.insertFile(name,path,hItemParent)</h3>
+
+<p>插入文件节点。<br>
+参数 @name 指定显示名称。<br>
+参数 @path 指定节点绑定的文件路径。<br>
+可选用 @hItemParent 指定父节点句柄,不指定 @hItem 时添加到根节点</p>
+
+<p><a id="winUiExplorerObject.insertItem"></a></p>
+
+<h3>winUiExplorerObject.insertItem(filename,hItemParent)</h3>
+
+<p>添加文件名或目录名到指定节点。<br>
+可选用 @hItemParent 指定父节点句柄,不指定 @hItem 时添加到根节点</p>
+
+<p><a id="winUiExplorerObject.loadFile"></a></p>
+
+<h3>winUiExplorerObject.loadFile</h3>
+
+<p>搜索文件并加载到树形视图</p>
+
+<p><a id="winUiExplorerObject.loadFile"></a></p>
+
+<h3>winUiExplorerObject.loadFile(&quot;目录路径&quot;,&quot;通配符&quot;,&quot;模式匹配&quot;)</h3>
+
+<p>搜索文件并加载到树形视图<br>
+不指定任何参数调用此函数时默认显示所有硬盘分区,<br>
+除参数@1以外,其他参数可选<br>
+参数@2使用模式匹配语法匹配文件名<br>
+通配符默认值是&quot;*.*&quot;,也可以传入通配符数组</p>
+
+<p><a id="winUiExplorerObject.onClick"></a></p>
+
+<h3>winUiExplorerObject.onClick</h3>
+
+<pre><code class="aardio language-aardio">winUiExplorerObject.onClick = function(filePath,hItem){
+    /*用户单击节点或节点图标,此时尚未改变选中节点*/
+}
+</code></pre>
+
+<p><a id="winUiExplorerObject.onDoubleClick"></a></p>
+
+<h3>winUiExplorerObject.onDoubleClick</h3>
+
+<pre><code class="aardio language-aardio">winUiExplorerObject.onDoubleClick = function(filePath,hItem){
+    /*用户双击节点或节点图标,此时尚未改变选中节点*/
+}
+</code></pre>
+
+<p><a id="winUiExplorerObject.onExpandedOnce"></a></p>
+
+<h3>winUiExplorerObject.onExpandedOnce</h3>
+
+<pre><code class="aardio language-aardio">winUiExplorerObject.onExpandedOnce = function(hItem){
+    /*第一次展开参数指定的节点*/
+}
+</code></pre>
+
+<p><a id="winUiExplorerObject.onRightClick"></a></p>
+
+<h3>winUiExplorerObject.onRightClick</h3>
+
+<pre><code class="aardio language-aardio">winUiExplorerObject.onRightClick = function(filePath,hItem,x,y){
+    /*用户右键单击节点*/    
+}
+</code></pre>
+
+<p><a id="winUiExplorerObject.onSelChanged"></a></p>
+
+<h3>winUiExplorerObject.onSelChanged</h3>
+
+<pre><code class="aardio language-aardio">winUiExplorerObject.onSelChanged = function(filePath,hItem){
+    /*用户已改变选中节点*/
+}
+</code></pre>
+
+<p><a id="winUiExplorerObject.pattern"></a></p>
+
+<h3>winUiExplorerObject.pattern</h3>
+
+<p>用于匹配要显示的文件或目录名的模式串</p>
+
+<p><a id="winUiExplorerObject.reloadFile"></a></p>
+
+<h3>winUiExplorerObject.reloadFile</h3>
+
+<p>重新加载指定目录下的文件</p>
+
+<p><a id="winUiExplorerObject.reloadFile"></a></p>
+
+<h3>winUiExplorerObject.reloadFile(&quot;目录路径&quot;,节点句柄)</h3>
+
+<p>重新加载指定目录下的文件到参数@2指定的节点,<br>
+参数@2如果省略则刷新所有节点</p>
+
+<p><a id="winUiExplorerObject.rootPath"></a></p>
+
+<h3>winUiExplorerObject.rootPath</h3>
+
+<p>文件视图根目录路径</p>
+
+<p><a id="winUiExplorerObject.setIconSize"></a></p>
+
+<h3>winUiExplorerObject.setIconSize(&quot;large&quot;)</h3>
+
+<p>显示大图标<br>
+可选参数有：large,small,extralarge,syssmall,jumbo</p>
+
+<p><a id="winUiExplorerObject.setItemText"></a></p>
+
+<h3>winUiExplorerObject.setItemText(hItem,text)</h3>
+
+<p>设置节点显示文本。<br>
+参数 @hItem 指定树视图节点句柄。<br>
+参数 @text 指定要显示的文本。</p>
+
+<p><a id="winUiExplorerObject.translatePath"></a></p>
+
+<h3>winUiExplorerObject.translatePath</h3>
+
+<p>function(dirPath,files,dirs){
+    __/*转换显示名称。<br>
+dirPath 为当前目录路径。<br>
+files,dirs 为  fsys.list 返回的文件名与子目录数组。<br>
+数组同时包含显示名称与实际路径对照的名值对。<br>
+必须返回相同结构的 files,dirs。*/
+    return files,dirs; 
+}</p>
+
+<p><a id="winUiExplorerObject.wildcard"></a></p>
+
+<h3>winUiExplorerObject.wildcard</h3>
+
+<p>用于匹配要显示的文件名通配符</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/ui/explorer.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/ui/explorer.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/explorer.md">Markdown 格式</a></p>
+
+</body> 
+</html>

@@ -1,0 +1,66 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 正则表达式( preg )'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 正则表达式( preg )</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 正则表达式( preg )</h1><pre><code class="aardio language-aardio">//正则表达式( preg )
+import preg;
+import console; 
+
+/*
+preg 扩展库教程: http://bbs.aardio.com/forum.php?mod=viewthread&amp;tid=8910
+正则表达式速览: https://quickref.me/regex
+*/
+var regex = preg(&quot;(\w+\:\/\/)(?P&lt;host&gt;[\w.]+)&quot;);
+
+var testString = /*
+http://bbs.aardio.com
+https://www.example.com
+*/
+
+console.log( &quot;测试是否匹配&quot;, regex.test(testString) );
+console.log( &quot;查找匹配位置&quot;, regex.find(testString) );
+console.log( &quot;获取匹配字符串&quot;, regex.match(testString) );
+
+//全局匹配
+for scheme,host in regex.gmatch( testString  ) { 
+    console.log(&quot;发现匹配字符串&quot;, scheme,host )
+}
+
+console.log( &#39;字符串替换结果\r\n&#39;, regex.replace( testString,&quot;ftp://\2&quot; ) );
+
+console.log( &#39;函数替换结果\r\n&#39;, regex.replace( testString
+    ,function(scheme,host){
+        if( host == &quot;bbs.aardio.com&quot; )
+            return &quot;ftp://&quot; + host; 
+    }  ) );
+
+//数组匹配,找出所有网址并返回数组
+var urls = regex.grep( {
+    &quot;http://bbs.aardio.com&quot;;
+    &quot;www.aardio.net&quot;;
+    &quot;http://www.example.com&quot;;
+} );
+
+console.varDump(urls)
+regex.free(); 
+
+var $keywords = preg(&quot;/[\s,]/is&quot;).split ( &quot;hypertext language,,programming&quot;);
+console.varDump( $keywords )
+
+console.pause();
+
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Text/regex.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Text/regex.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Text/regex.md">Markdown 格式</a>
+</body> 
+</html>

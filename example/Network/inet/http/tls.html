@@ -1,0 +1,43 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - TLS/HTTPS'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - TLS/HTTPS</title> 
+<link rel="stylesheet" href="../../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: TLS/HTTPS</h1><pre><code class="aardio language-aardio">//TLS/HTTPS
+import console.int;
+console.showLoading(&quot;正在检测 TLS 版本&quot;);
+
+import web.rest.jsonClient;
+var http = web.rest.jsonClient();
+var sslInfo = http.get(&quot;https://www.howsmyssl.com/a/check&quot;);
+console.dumpJson(sslInfo);
+
+console.log(sslInfo.tls_version);
+console.log(sslInfo.rating);
+
+/*
+inet.http ,web.form, web.rest 等
+在低版本操作系统上会自动调用 inet.tls 设置 TLS 版本。
+
+Win10 及之后的系统默认是不用设置的，
+但有些软件在新系统上错误地修敢了注册表，也会导致这些系统上 HTTPS 请求异常。
+当然这个问题比较罕见，处理方法请查看 inet.tls 库源码中的说明。
+
+如果系统不支持目标 HTTPS 网址的 TLS 版本，
+通常会返回 12157 错误（参考 aardio 工具 &gt; 网络 &gt;  HTTP 状态码检测）。
+*/
+
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Network/inet/http/tls.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Network/inet/http/tls.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Network/inet/http/tls.md">Markdown 格式</a>
+</body> 
+</html>

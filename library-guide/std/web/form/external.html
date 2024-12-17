@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - 在网页中调用 aardio 代码'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - 在网页中调用 aardio 代码</title> 
+<link rel="stylesheet" href="../../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>在网页中调用 aardio 代码</h1>
+
+<p>参考: <a href="webform.html" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/std/web/form/webform.html">创建 Web 窗体</a> <a href="doScript.html" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/std/web/form/doScript.html">在aardio中执行网页脚本</a></p>
+
+<h2>wb.external</h2>
+
+<ol>
+<li><p>接口语法：   </p>
+
+<pre><code class="aardio language-aardio">wb.external = { 
+  成员名字 = 值
+}
+</code></pre></li>
+<li><p>函数说明：   </p>
+
+<p>定义 wb.external 为一个 table 对象,然后我们可以在网页脚本中直接访问 external 对象。</p>
+
+<p>aardio 要求你显示的指定 external 以及 external 的成员,是需要你基于本机安全去考虑哪些方法应当公开给网页访问。</p></li>
+<li><p>调用示例：   </p>
+
+<pre><code class="aardio language-aardio">//....省略创建 Web 窗体的代码 
+
+//创建 external 接口
+wb.external = {
+  //可以通过javascript脚本访问external接口的所有成员
+  aardio_func = function( arg ){
+     win.msgbox(&quot;我被网页上的脚本调用了&quot; + arg + &quot;
+     aardio的语法与Javascript很接近哦&quot; )
+  }
+}
+
+//在网页上执行 javascript 脚本
+wb.doScript(&quot;javascript:external.aardio_func(123);&quot;)
+</code></pre></li>
+<li><p>调用示例： </p>
+
+<pre><code class="aardio language-aardio">//....省略创建 Web 窗体的代码 
+
+//只要是 Web 窗体external内的成员，都可以从网页上调用
+wb.external = { 
+  showmsg = function (txt){
+     win.msgbox(txt, &quot;aardio&quot;);
+     return true;
+  }
+}
+
+//在网页的 JavaScript 里可以直接调用 external 成员
+wb.write( &quot;
+&lt;button onclick=&#39;external.showmsg(123)&#39; &gt;我是网页上的按钮&lt;/button&gt;
+&quot; )
+</code></pre>
+
+<p>external 使用的是 IDispatch 接口,请参考: <a href="../../../builtin/com/ImplInterface.html#IDispatch" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/builtin/com/ImplInterface.html#IDispatch">创建IDispatch接口</a></p></li>
+</ol>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-guide/std/web/form/external.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-guide/std/web/form/external.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/std/web/form/external.md">Markdown 格式</a></p>
+
+</body> 
+</html>

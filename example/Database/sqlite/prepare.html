@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - sqlite 库 - 预处理命令'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - sqlite 库 - 预处理命令</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: sqlite 库 - 预处理命令</h1><pre><code class="aardio language-aardio">//sqlite 库 - 预处理命令
+import sqlite
+
+//创建测试数据库
+var db = sqlite(&quot;/testParameters.db&quot;)
+if( not db.existsTable(&quot;film&quot;) ){  
+    db.exec( &quot;CREATE TABLE film(title, length, year, starring);&quot;)  
+}  
+
+/*
+下面 SQL 语句中用@表示的命名参数 - 这是 sqlite 提供的原生参数化，
+由 cmd.bind.parameterAtNames 函数绑定参数，这种命名参数
+不支持由 sqlite.format 函数参数化查询中的数组、针对一个命名参数的名值对参数化等功能。
+
+如果sqlConnection.prepare() 函数的第2个参数是一个数组，
+则调用 sqlite.format 格式化 SQL 语句中的 ?? 参数（不格式化 ? 或 @ 参数）
+
+如果 db.prepare() 函数的第2个参数表包含名值对成员，
+则这些名值对被自动创建为 WHERE 条件语句（ 等价于格式化 SQL 语句中的 &quot;WHERE ??&quot;）
+*/
+var cmd = db.prepare(&quot;INSERT INTO film VALUES (@title,@length,@year, &#39;Jodie Foster&#39;);&quot; )
+
+//绑定命名参数并执行一次预处理命令
+cmd.step(
+    title = &quot;标题11111&quot;;
+    length = 4;
+    year = time.now();  
+)
+
+//上面的代码等价于下面的代码
+cmd.reset();
+cmd.bind.parameterAtNames( 
+    [&quot;title&quot;] = &quot;标题&quot;;
+    [&quot;length&quot;] = 4;
+    [&quot;year&quot;] = time.now();
+);
+cmd.step();
+
+/*
+aardio 中的 string 类型字符串存为 sqlite 的 text 类型(UTF-8文本)，
+aardio 中的 buffer 类型字节数组存为 sqlite 的 blob 类型。
+可在预处理语句的命名参数名中使用 blob,utf8,utf16 前缀指定字符串值的编码、或数据类型。
+*/
+cmd.prepare(&quot;INSERT INTO film VALUES (@blobTitle,@length,@year,&#39;Jodie Foster&#39;);&quot; );
+//注意上面我们用 cmd.prepare() 更新了预处理命令对象的 SQL 语句。
+
+//预处理 SQL 语句里的问号表示匿名参数（ 不要和 sqlite.format 的数组参数混淆 ）
+cmd.prepare(&quot;INSERT INTO film VALUES (?,?, ?, &#39;Jodie Foster&#39;);&quot; )
+
+//按参数顺序绑定多个参数
+cmd.step( {
+    &#39;用 string.loadBuffer() 读入二进制字符\0串&#39;, //设定第一个?号表示的参数
+    null, //设定第二个?号表示的参数
+    time.now()  //设定第三个?号表示的参数
+})
+
+//上面的代码等价于下面的代码
+cmd.reset();
+cmd.bind.blob(&#39;用 string.loadBuffer() 读入二进制字符\0串&#39;);
+cmd.bind.double(123,2/*参数二*/ );
+cmd.bind.text( tostring( time.now() ),3/*参数三*/ );
+cmd.step();
+
+//释放预处理命令对象 
+cmd.finalize();
+
+//迭代方式查询数据 
+import console;
+for title, length, year, starring in db.each(&quot;SELECT * FROM film&quot;) {
+    console.log( title, length, year, starring  ) 
+}
+
+//删除表 
+db.exec(&quot;DROP TABLE film&quot; ); 
+execute(&quot;pause&quot;)
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Database/sqlite/prepare.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Database/sqlite/prepare.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Database/sqlite/prepare.md">Markdown 格式</a>
+</body> 
+</html>

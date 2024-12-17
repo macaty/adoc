@@ -1,0 +1,62 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - 选择不同版本 Python 运行库'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - 选择不同版本 Python 运行库</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>选择不同版本 Python 运行库</h1>
+
+<p>aardio 提供了自带不同 Python 运行时版本的 Python 扩展库。</p>
+
+<p>可用 import 语句导入指定版本  Python 扩展库示例：</p>
+
+<ul>
+<li><code>import py3;</code> 导入 Python 3.8 扩展库，支持 Win7 及 Win7 以上系统</li>
+<li><code>import py3.4;</code> 导入 Python 3.4 扩展库，支持 XP 及 XP 以上系统</li>
+<li><code>import py3.10;</code> 导入 Python 3.10 扩展库，支持 Win10 及 Win10 以上系统</li>
+<li><code>import py2;</code> 导入 Python 2.7 扩展库，支持 XP 及 XP 以上系统</li>
+</ul>
+
+<p>推荐使用更通用的 py3 扩展库。</p>
+
+<p>要点：</p>
+
+<ul>
+<li>在一个 aardio 程序中，不应导入多个不同版本的 Python 扩展库，</li>
+<li>aardio 中所有 Python 扩展库都自带绿色 Python 运行时。</li>
+</ul>
+
+<p>使用 Python 扩展库时应去掉扩展库副版本号，例如：</p>
+
+<pre><code class="aardio language-aardio">import py3.4;
+console.log( py3.version );
+</code></pre>
+
+<p>要特别注意 <code>py3.4</code> 只是库名称，导入的是  <code>py3</code> 对象，<code>py3.4</code> 不是符合语法的标识符。</p>
+
+<p>因为 aardio 程序是 32 位，上面所有 Python 扩展库都是 32 位。</p>
+
+<p>aardio 提供了 process.python 扩展库可支持任意版本 Python。</p>
+
+<p>process.python 的主要特点：</p>
+
+<ul>
+<li>兼容 32位/64位 Python 运行时。</li>
+<li>可自带 Python 运行时，也可以支持系统安装的 Python 运行时。</li>
+</ul>
+
+<p>请参考范例：<a href="../../../example/Languages/Python/Python AnyVersion/QuickStart-1.html" tppabs="https://www.aardio.com/zh-cn/doc/example/Languages/Python/Python%20AnyVersion/QuickStart.html">调用 Python 任意版本</a></p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-guide/ext/python/versions.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-guide/ext/python/versions.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/ext/python/versions.md">Markdown 格式</a></p>
+
+</body> 
+</html>

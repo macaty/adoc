@@ -1,0 +1,37 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 安装模块'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 安装模块</title> 
+<link rel="stylesheet" href="../../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 安装模块</h1><pre><code class="aardio language-aardio">//安装模块
+import process.python.pip;
+//指定 process.python.path = &quot;python.exe&quot; 则调用系统安装的 pip。
+
+/*
+安装模块。
+
+参数可以用一个字符串指定多个 pip 参数，参数之间以空格分开。
+参数用法与原版 pip 一样: https://pip.pypa.io/en/stable/cli/pip_install/
+
+也可以用多个 aardio 参数指定多个 pip 参数，aardio 自动合并所有参数并自动处理转义。
+*/
+process.python.pip(&quot;install jsonrpclib&quot;);
+
+//如果指定的模块未安装，则调用 pip 安装
+process.python.pip.require(&quot;jsonrpclib&quot;);
+
+console.pause();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/Python/Python AnyVersion/pip.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/Python/Python AnyVersion/pip.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Languages/Python/Python AnyVersion/pip.md">Markdown 格式</a>
+</body> 
+</html>

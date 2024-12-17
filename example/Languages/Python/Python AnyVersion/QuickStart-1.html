@@ -1,0 +1,64 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - process.python - 入门'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - process.python - 入门</title> 
+<link rel="stylesheet" href="../../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: process.python - 入门</h1><pre><code class="aardio language-aardio">//入门
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;process.python - 入门&quot;;right=759;bottom=469)
+winform.add(
+edit={cls=&quot;edit&quot;;left=16;top=22;right=722;bottom=420;edge=1;multiline=1;z=1}
+)
+/*}}*/
+
+import process.python; 
+/*
+如果指定 process.python.path = &quot;python.exe&quot; 
+则调用系统安装的 Python，没安装会自动下载安装，
+否则调用绿色嵌入版 Python ，没下载也会自动下载。
+*/ 
+
+/*
+执行 Python 代码，支持任意版本 python ( 支持 64位 Python )。
+调用 32 / 64 位 python.exe 都可以在发布 aardio 程序时打包为独立 EXE 文件。
+
+参数也可以是（*.py, *.aardio 文件路径，支持内存加载资源文件）
+如果 Python 代码开始为 aardio 模板标记，则启用模板语法： 
+https://www.aardio.com/zh-cn/doc/language-reference/templating/syntax.html
+*/
+var python = process.python.exec(`
+?&gt;import json
+str = json.dumps([&#39;foo&#39;, &quot;&lt;?= 
+time() //可使用模板语法嵌入 aardio  代码
+?&gt;&quot;,{&#39;bar&#39;: (&#39;baz&#39;, None, 1.0, 2)}])
+
+# print 写到进程标准输出，在 aardio 中可以读取
+print( str )
+`);
+
+/*
+这里的 python 对象就是进程管道（ process.popen ）对象。 
+下面的 python.json 读取进程输出的下一行 JSON 并转换为 aardio 对象，忽略非 JSON 输出。
+读取其他数据可以改为 readAll() 或 read() 函数。
+*/
+var info,err = python.json();
+
+winform.edit.print(info || err);
+
+winform.show();
+win.loopMessage();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/Python/Python%20AnyVersion/QuickStart.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/Python/Python%20AnyVersion/QuickStart.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Languages/Python/Python%20AnyVersion/QuickStart.md">Markdown 格式</a>
+</body> 
+</html>

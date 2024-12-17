@@ -1,0 +1,141 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - win.image 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - win.image 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>win.image 库模块帮助文档</h1>
+
+<p><a id="win.image"></a></p>
+
+<h2>win.image 成员列表</h2>
+
+<p><a id="win.image.createAniCursor"></a></p>
+
+<h3>win.image.createAniCursor(动画光标数据)</h3>
+
+<p>自内存加载*.ani格式的动画光标<br>
+参数也可以是文件、或资源文件路径</p>
+
+<p><a id="win.image.createIcon"></a></p>
+
+<h3>win.image.createIcon</h3>
+
+<p>在图标数据中加载指定像素的图标,失败返回空值</p>
+
+<p><a id="win.image.createIcon"></a></p>
+
+<h3>win.image.createIcon(图标数据,是否图标,适配大小,最大位宽,选项)</h3>
+
+<p>自内存创建图标,失败返回空值,<br>
+图标数据:也可以是路径,或资源文件路径,<br>
+是否图标:可省略,默认为true,载入光标请指定为false,仅支持单色光标<br>
+适配大小:可省略,如果不匹配则取最接近大小的图标,<br>
+最大位宽:可省略,默认值为32位<br>
+选项:保留参数,不必指定  </p>
+
+<p>如果选项不指定_LR_SHARED，返回的句柄不再使用时必须调用 ::DestroyIcon销毁</p>
+
+<p><a id="win.image.createSharedIcon"></a></p>
+
+<h3>win.image.createSharedIcon(图标数据,是否图标,适配大小,最大位宽)</h3>
+
+<p>自内存创建共享图标,失败返回空值,<br>
+图标数据:也可以是路径,或资源文件路径,<br>
+是否图标:可省略,默认为true,载入光标请指定为false,仅支持单色光标<br>
+适配大小:可省略,如果不匹配则取最接近大小的图标,<br>
+最大位宽:可省略,默认值为32位<br>
+选项:保留参数,不必指定<br>
+\返回的句柄不能调用 ::DestroyIcon销毁,注意这种图标不应大量创建</p>
+
+<p><a id="win.image.extractIcon"></a></p>
+
+<h3>win.image.extractIcon(EXE文件路径,图标索引,是否自动释放)</h3>
+
+<p>索引默认为1,如果为0,则返回图标总数,<br>
+参数二默认为true</p>
+
+<p><a id="win.image.getIcon"></a></p>
+
+<h3>win.image.getIcon(窗口对象或句柄,是否大图标)</h3>
+
+<p>获取窗口图标句柄<br>
+返回的句柄不应被释放,共享图标返回空值</p>
+
+<p><a id="win.image.loadCursor"></a></p>
+
+<h3>win.image.loadCursor(请输入资源名,模块句柄)</h3>
+
+<p>自光标资源载入光标,<br>
+返回句柄无需释放</p>
+
+<p><a id="win.image.loadCursorFromFile"></a></p>
+
+<h3>win.image.loadCursorFromFile(位图路径)</h3>
+
+<p>自文件载入光标,支持资源文件</p>
+
+<p><a id="win.image.loadIcon"></a></p>
+
+<h3>win.image.loadIcon(请输入资源名,模块句柄)</h3>
+
+<p>自图标资源载入图标,<br>
+返回句柄无需释放</p>
+
+<p><a id="win.image.loadIconFromFile"></a></p>
+
+<h3>win.image.loadIconFromFile(位图路径,是否自动释放)</h3>
+
+<p>自文件载入图标,支持aardio资源文件<br>
+参数二默认为true</p>
+
+<p><a id="win.image.loadImage"></a></p>
+
+<h3>win.image.loadImage(请输入资源名,模块句柄)</h3>
+
+<p>自位图资源载入位图,<br>
+返回句柄无需释放</p>
+
+<p><a id="win.image.loadImageFromFile"></a></p>
+
+<h3>win.image.loadImageFromFile(位图路径,是否自动释放)</h3>
+
+<p>自文件载入位图,支持aardio资源文件<br>
+参数二默认为true</p>
+
+<p><a id="win.image.queryIconFromResource"></a></p>
+
+<h3>win.image.queryIconFromResource(图标数据,是否图标,回调函数,选项)</h3>
+
+<pre><code class="aardio language-aardio">win.image.queryIconFromResource(/*图标数据或路径*/,true,  
+
+    function(count,index,width,height,bpp,colorCount,planes){  
+        if ( width == 48 &amp; bpp == 32 ) {    
+            return true;  
+        }  
+    }  
+)
+</code></pre>
+
+<p><a id="win.image.setIcon"></a></p>
+
+<h3>win.image.setIcon(窗口对象或句柄,图标句柄或路径,是否大图标)</h3>
+
+<p>设置窗口图标,窗口负责释放图标句柄,<br>
+参数@3设为true仅设置大图标,设为false仅设置小图标<br>
+如果省略参数@3则同时设置大图标和小图标。<br>
+如果替换了小图标,返回值1为窗口原来的小图标,如果替换了大图标,返回值2为窗口原来的大图标</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/image.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/image.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/image.md">Markdown 格式</a></p>
+
+</body> 
+</html>

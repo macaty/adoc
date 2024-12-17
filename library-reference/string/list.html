@@ -1,0 +1,171 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - string.list 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - string.list 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>string.list 库模块帮助文档</h1>
+
+<p><a id="string"></a></p>
+
+<h2>string 成员列表</h2>
+
+<p><a id="string.list"></a></p>
+
+<h3>string.list</h3>
+
+<p>字符串列表</p>
+
+<p>创建字符串列表</p>
+
+<p><a id="string.list"></a></p>
+
+<h3>string.list()</h3>
+
+<p><a href="#stringlistObject">返回对象:stringlistObject</a></p>
+
+<p><a id="string.list"></a></p>
+
+<h3>string.list(字符串,行分隔符,键值分隔符,引用符)</h3>
+
+<p>第一个参数也可以是文件路径,所有参数可选<br>
+行分隔符为&quot;\s&quot;,&quot;\s+&quot;,或开始于&quot;[&quot;字符时使用模式匹配语法<br>
+如果使用了模式匹配,可在tostring的参数中指定拼接为字符串的行分隔符,不指定使用空格拼接,<br>
+行分隔符不指定时默认为回车换行,  </p>
+
+<p>键值分隔符默认为等号,  </p>
+
+<p>引用符必须指字含两个单字节字符的字符串,例如两个引号，<br>
+对于包含了分隔符的值,在生成字符串时自动置入引用符内。<br>
+关于引用符请参考getConfiguration()函数说明，<br>
+这里如果指定引用符则覆盖默认的quoteChar,quoteChars配置</p>
+
+<p><a id="stringlistObject"></a></p>
+
+<h2>stringlistObject 成员列表</h2>
+
+<p><a id="stringlistObject.assign"></a></p>
+
+<h3>stringlistObject.assign</h3>
+
+<pre><code class="aardio language-aardio">stringlistObject.assign(  
+    键 = 值;  
+)
+</code></pre>
+
+<p><a id="stringlistObject.each"></a></p>
+
+<h3>stringlistObject.each</h3>
+
+<pre><code class="aardio language-aardio">for i,k,v in stringlistObject.each() { 
+    io.print(&quot;顺序:&quot;+i,&quot;名字:&quot;+k,&quot;值:&quot;+v ) 
+}
+</code></pre>
+
+<p><a id="stringlistObject.find"></a></p>
+
+<h3>stringlistObject.find(&quot;字符串参数&quot;)</h3>
+
+<p>查找指定键所在位置,忽略大小写<br>
+支持使用多个能有数指定多个查找键名,此函数将逐个查找,<br>
+找到即返回返回三个值: 位置索引,键名,键值</p>
+
+<p><a id="stringlistObject.getConfiguration"></a></p>
+
+<h3>stringlistObject.getConfiguration()</h3>
+
+<p>返回配置  </p>
+
+<p><a href="#stringlistcfgObject">返回对象:stringlistcfgObject</a></p>
+
+<p><a id="stringlistObject.load"></a></p>
+
+<h3>stringlistObject.load(&quot;字符串参数&quot;)</h3>
+
+<p>加载配置文件</p>
+
+<p><a id="stringlistObject.load"></a></p>
+
+<h3>stringlistObject.load()</h3>
+
+<p><a href="#stringlistObject">返回对象:stringlistObject</a></p>
+
+<p><a id="stringlistObject.remove"></a></p>
+
+<h3>stringlistObject.remove(&quot;字符串参数&quot;)</h3>
+
+<p>查询并移除第一个找到的键名与键值，键名忽略大小写。<br>
+如果只是用 string.list 对象的下标设置指定键为 null 值，并不会移除键名。</p>
+
+<p><a id="stringlistObject.save"></a></p>
+
+<h3>stringlistObject.save(&quot;字符串参数&quot;)</h3>
+
+<p>保存配置文件</p>
+
+<p><a id="stringlistObject.save"></a></p>
+
+<h3>stringlistObject.save()</h3>
+
+<p>保存配置文件  </p>
+
+<p><a href="#stringlistObject">返回对象:stringlistObject</a></p>
+
+<p><a id="stringlistcfgObject"></a></p>
+
+<h2>stringlistcfgObject 成员列表</h2>
+
+<p><a id="stringlistcfgObject.lineDelimiter"></a></p>
+
+<h3>stringlistcfgObject.lineDelimiter</h3>
+
+<p>行分隔符,默认为回车换行</p>
+
+<p><a id="stringlistcfgObject.nameValueSeparator"></a></p>
+
+<h3>stringlistcfgObject.nameValueSeparator</h3>
+
+<p>键值对分隔符,默认为等号</p>
+
+<p><a id="stringlistcfgObject.quoteChar"></a></p>
+
+<h3>stringlistcfgObject.quoteChar</h3>
+
+<p>生成字符串使用的引用符号,默认为双引号<br>
+如果某个键名对应的字符串值包含换行符,且没有包含在其他引用符内,<br>
+在转换为文本格式的字符串列表时,自动添加此引用符</p>
+
+<p><a id="stringlistcfgObject.quoteChars"></a></p>
+
+<h3>stringlistcfgObject.quoteChars</h3>
+
+<p>解析字符串时支持的引用符号<br>
+默认为单双引号、大中小括号,<br>
+可设为空表清空所有引用符号,<br>
+引用符号内忽略行分隔符</p>
+
+<p><a id="stringlistcfgObject.reserve"></a></p>
+
+<h3>stringlistcfgObject.reserve</h3>
+
+<p>保留名字表,不可修改</p>
+
+<p><a id="stringlistcfgObject.reserveData"></a></p>
+
+<h3>stringlistcfgObject.reserveData</h3>
+
+<p>保留数据,不可手动修改</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/string/list.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/string/list.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/string/list.md">Markdown 格式</a></p>
+
+</body> 
+</html>

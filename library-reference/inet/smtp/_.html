@@ -1,0 +1,408 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - inet.smtp 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - inet.smtp 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>inet.smtp 库模块帮助文档</h1>
+
+<p><a id="inet"></a></p>
+
+<h2>inet 成员列表</h2>
+
+<p><a id="inet.smtp"></a></p>
+
+<h3>inet.smtp</h3>
+
+<p>邮件发送支持库</p>
+
+<p><a id="inet.smtp"></a></p>
+
+<h3>inet.smtp()</h3>
+
+<p>创建邮件发送对象  </p>
+
+<p><a href="#inetsmtpObject">返回对象:inetsmtpObject</a></p>
+
+<p><a id="inetsmtpObject"></a></p>
+
+<h2>inetsmtpObject 成员列表</h2>
+
+<p><a id="inetsmtpObject.addAttachment"></a></p>
+
+<h3>inetsmtpObject.addAttachment(path)</h3>
+
+<p>添加附件</p>
+
+<p><a id="inetsmtpObject.addBCCRecipient"></a></p>
+
+<h3>inetsmtpObject.addBCCRecipient(email, name)</h3>
+
+<p>添加密件抄送地址<br>
+BCC是blind carbon copy的缩写,意指收件人看不到其他收件人</p>
+
+<p><a id="inetsmtpObject.addCCRecipient"></a></p>
+
+<h3>inetsmtpObject.addCCRecipient(email, name)</h3>
+
+<p>添加密件抄送地址<br>
+CC是carbon copy的缩写</p>
+
+<p><a id="inetsmtpObject.addMsgLine"></a></p>
+
+<h3>inetsmtpObject.addMsgLine(text)</h3>
+
+<p>添加待发送文本行</p>
+
+<p><a id="inetsmtpObject.addRecipient"></a></p>
+
+<h3>inetsmtpObject.addRecipient(email,name)</h3>
+
+<p>添加收件地址</p>
+
+<p><a id="inetsmtpObject.clearMessage"></a></p>
+
+<h3>inetsmtpObject.clearMessage()</h3>
+
+<p>清空邮件待发送文本、附件、收件地址等等</p>
+
+<p><a id="inetsmtpObject.delAttachments"></a></p>
+
+<h3>inetsmtpObject.delAttachments()</h3>
+
+<p>清空附件</p>
+
+<p><a id="inetsmtpObject.delBCCRecipients"></a></p>
+
+<h3>inetsmtpObject.delBCCRecipients()</h3>
+
+<p>清空密件抄送地址</p>
+
+<p><a id="inetsmtpObject.delCCRecipients"></a></p>
+
+<h3>inetsmtpObject.delCCRecipients()</h3>
+
+<p>清空抄送地址</p>
+
+<p><a id="inetsmtpObject.delMsgLine"></a></p>
+
+<h3>inetsmtpObject.delMsgLine(行号)</h3>
+
+<p>删除待发送文本行,参数为数值行号</p>
+
+<p><a id="inetsmtpObject.delMsgLines"></a></p>
+
+<h3>inetsmtpObject.delMsgLines()</h3>
+
+<p>清空所有待发送文本行</p>
+
+<p><a id="inetsmtpObject.delRecipients"></a></p>
+
+<h3>inetsmtpObject.delRecipients()</h3>
+
+<p>清空收件人</p>
+
+<p><a id="inetsmtpObject.getBCCRecipientCount"></a></p>
+
+<h3>inetsmtpObject.getBCCRecipientCount()</h3>
+
+<p>密送地址总数</p>
+
+<p><a id="inetsmtpObject.getCCRecipientCount"></a></p>
+
+<h3>inetsmtpObject.getCCRecipientCount()</h3>
+
+<p>抄送地址总数</p>
+
+<p><a id="inetsmtpObject.getErrorNum"></a></p>
+
+<h3>inetsmtpObject.getErrorNum()</h3>
+
+<p>返回错误代码</p>
+
+<p><a id="inetsmtpObject.getErrorText"></a></p>
+
+<h3>inetsmtpObject.getErrorText()</h3>
+
+<p>返回错误描述</p>
+
+<p><a id="inetsmtpObject.getLastRequest"></a></p>
+
+<h3>inetsmtpObject.getLastRequest()</h3>
+
+<p>返回最后发送的请求文本</p>
+
+<p><a id="inetsmtpObject.getLastResponse"></a></p>
+
+<h3>inetsmtpObject.getLastResponse()</h3>
+
+<p>返回服务器最后返回的文本</p>
+
+<p><a id="inetsmtpObject.getLastResponseCode"></a></p>
+
+<h3>inetsmtpObject.getLastResponseCode()</h3>
+
+<p>返回服务器最后响应代码</p>
+
+<p><a id="inetsmtpObject.getLocalHostName"></a></p>
+
+<h3>inetsmtpObject.getLocalHostName()</h3>
+
+<p>获取EHLO主机名</p>
+
+<p><a id="inetsmtpObject.getMailFrom"></a></p>
+
+<h3>inetsmtpObject.getMailFrom()</h3>
+
+<p>发件人地址</p>
+
+<p><a id="inetsmtpObject.getMsgLineText"></a></p>
+
+<h3>inetsmtpObject.getMsgLineText(行号)</h3>
+
+<p>获取指定行待发送文本</p>
+
+<p><a id="inetsmtpObject.getMsgLines"></a></p>
+
+<h3>inetsmtpObject.getMsgLines()</h3>
+
+<p>获取待发送文本总行数</p>
+
+<p><a id="inetsmtpObject.getRecipientCount"></a></p>
+
+<h3>inetsmtpObject.getRecipientCount()</h3>
+
+<p>收件地址总数</p>
+
+<p><a id="inetsmtpObject.getReplyTo"></a></p>
+
+<h3>inetsmtpObject.getReplyTo()</h3>
+
+<pre><code class="aardio language-aardio">getReplyTo
+</code></pre>
+
+<p><a id="inetsmtpObject.getSecurityType"></a></p>
+
+<h3>inetsmtpObject.getSecurityType()</h3>
+
+<p>获取安全协议类型</p>
+
+<p><a id="inetsmtpObject.getSenderName"></a></p>
+
+<h3>inetsmtpObject.getSenderName()</h3>
+
+<p>发件人名字</p>
+
+<p><a id="inetsmtpObject.getSubject"></a></p>
+
+<h3>inetsmtpObject.getSubject()</h3>
+
+<p>邮件标题</p>
+
+<p><a id="inetsmtpObject.getXMailer"></a></p>
+
+<h3>inetsmtpObject.getXMailer()</h3>
+
+<p>邮件发送程序名</p>
+
+<p><a id="inetsmtpObject.getXPriority"></a></p>
+
+<h3>inetsmtpObject.getXPriority()</h3>
+
+<p>邮件优先级</p>
+
+<p><a id="inetsmtpObject.modMsgLine"></a></p>
+
+<h3>inetsmtpObject.modMsgLine(行号,文本内容)</h3>
+
+<p>修改指定行的待发送文本</p>
+
+<p><a id="inetsmtpObject.send"></a></p>
+
+<h3>inetsmtpObject.send()</h3>
+
+<p>发送邮件</p>
+
+<p><a id="inetsmtpObject.setBodyHtml"></a></p>
+
+<h3>inetsmtpObject.setBodyHtml(HTML)</h3>
+
+<p>重新设置HTML格式邮件内容</p>
+
+<p><a id="inetsmtpObject.setBodyText"></a></p>
+
+<h3>inetsmtpObject.setBodyText(文本)</h3>
+
+<p>重新设置文本格式邮件内容</p>
+
+<p><a id="inetsmtpObject.setCharSet"></a></p>
+
+<h3>inetsmtpObject.setCharSet(&quot;gbk&quot;)</h3>
+
+<p>编码</p>
+
+<p><a id="inetsmtpObject.setHtmlFormat"></a></p>
+
+<h3>inetsmtpObject.setHtmlFormat(true)</h3>
+
+<p>邮件使用HTML格式</p>
+
+<p><a id="inetsmtpObject.setLocalHostName"></a></p>
+
+<h3>inetsmtpObject.setLocalHostName(localHostName)</h3>
+
+<p>设置EHLO主机名</p>
+
+<p><a id="inetsmtpObject.setLogin"></a></p>
+
+<h3>inetsmtpObject.setLogin(&quot;用户名&quot;)</h3>
+
+<p>设置邮件服务器登录用户名</p>
+
+<p><a id="inetsmtpObject.setPassword"></a></p>
+
+<h3>inetsmtpObject.setPassword(&quot;密码&quot;)</h3>
+
+<p>设置邮件服务器登录密码</p>
+
+<p><a id="inetsmtpObject.setReadReceipt"></a></p>
+
+<h3>inetsmtpObject.setReadReceipt(true)</h3>
+
+<p>要求发送已读回执</p>
+
+<p><a id="inetsmtpObject.setReplyTo"></a></p>
+
+<h3>inetsmtpObject.setReplyTo(string)</h3>
+
+<p>设置</p>
+
+<p><a id="inetsmtpObject.setSMTPServer"></a></p>
+
+<h3>inetsmtpObject.setSMTPServer(&quot;主机名&quot;,端口,是否认证)</h3>
+
+<p>设置邮件服务器<br>
+端口一般为25,SSL端口为465</p>
+
+<p><a id="inetsmtpObject.setSecurityType"></a></p>
+
+<h3>inetsmtpObject.setSecurityType(_INETSMTP_SECURITY)</h3>
+
+<p>设置安全协议类型</p>
+
+<p><a id="inetsmtpObject.setSecurityTypeSSL"></a></p>
+
+<h3>inetsmtpObject.setSecurityTypeSSL()</h3>
+
+<p>使用TLS加密协议</p>
+
+<p><a id="inetsmtpObject.setSecurityTypeTLS"></a></p>
+
+<h3>inetsmtpObject.setSecurityTypeTLS()</h3>
+
+<p>使用SSL加密协议</p>
+
+<p><a id="inetsmtpObject.setSenderMail"></a></p>
+
+<h3>inetsmtpObject.setSenderMail(string)</h3>
+
+<p>设置</p>
+
+<p><a id="inetsmtpObject.setSenderName"></a></p>
+
+<h3>inetsmtpObject.setSenderName(string)</h3>
+
+<p>设置</p>
+
+<p><a id="inetsmtpObject.setSubject"></a></p>
+
+<h3>inetsmtpObject.setSubject(string)</h3>
+
+<p>设置邮件标题</p>
+
+<p><a id="inetsmtpObject.setXMailer"></a></p>
+
+<h3>inetsmtpObject.setXMailer(&quot;邮件发送程序名&quot;)</h3>
+
+<p>邮件发送程序名</p>
+
+<p><a id="inetsmtpObject.setXPriority"></a></p>
+
+<h3>inetsmtpObject.setXPriority(_INETSMTP_XPRIORITY)</h3>
+
+<p>设置优先级</p>
+
+<h3>自动完成常量</h3>
+
+<p>_INETSMTPE_BAD_DIGEST_RESPONSE=0xCF<br>
+_INETSMTPE_BAD_IPV4_ADDR=0x6E<br>
+_INETSMTPE_BAD_LOGIN_PASS=0x196<br>
+_INETSMTPE_BAD_LOGIN_PASSWORD=0xCE<br>
+_INETSMTPE_BAD_SERVER_NAME=0xD0<br>
+_INETSMTPE_COMMAND_AUTH_CRAMMD5=0x130<br>
+_INETSMTPE_COMMAND_AUTH_DIGESTMD5=0x131<br>
+_INETSMTPE_COMMAND_AUTH_LOGIN=0x12F<br>
+_INETSMTPE_COMMAND_AUTH_PLAIN=0x12E<br>
+_INETSMTPE_COMMAND_DATA=0x133<br>
+_INETSMTPE_COMMAND_DATABLOCK=0x19F<br>
+_INETSMTPE_COMMAND_DIGESTMD5=0x132<br>
+_INETSMTPE_COMMAND_EHLO=0x12D<br>
+_INETSMTPE_COMMAND_EHLO_STARTTLS=0x19D<br>
+_INETSMTPE_COMMAND_MAIL_FROM=0x12C<br>
+_INETSMTPE_COMMAND_QUIT=0x134<br>
+_INETSMTPE_COMMAND_RCPT_TO=0x135<br>
+_INETSMTPE_CONNECTION_CLOSED=0x190<br>
+_INETSMTPE_CSMTP_NO_ERROR=0<br>
+_INETSMTPE_FILE_NOT_EXIST=0x194<br>
+_INETSMTPE_LACK_OF_MEMORY=0x198<br>
+_INETSMTPE_LOGIN_NOT_SUPPORTED=0x1A1<br>
+_INETSMTPE_MSG_BODY_ERROR=0x136<br>
+_INETSMTPE_MSG_TOO_BIG=0x195<br>
+_INETSMTPE_OUT_OF_MSG_RANGE=0x19C<br>
+_INETSMTPE_RECVBUF_IS_EMPTY=0x19A<br>
+_INETSMTPE_SELECT_TIMEOUT=0x193<br>
+_INETSMTPE_SENDBUF_IS_EMPTY=0x19B<br>
+_INETSMTPE_SERVER_NOT_READY=0x191<br>
+_INETSMTPE_SERVER_NOT_RESPONDING=0x192<br>
+_INETSMTPE_SSL_PROBLEM=0x19E<br>
+_INETSMTPE_STARTTLS_NOT_SUPPORTED=0x1A0<br>
+_INETSMTPE_TIME_ERROR=0x199<br>
+_INETSMTPE_UNDEF_LOGIN=0xCC<br>
+_INETSMTPE_UNDEF_MAIL_FROM=0xC9<br>
+_INETSMTPE_UNDEF_MSG_HEADER=0xC8<br>
+_INETSMTPE_UNDEF_PASSWORD=0xCD<br>
+_INETSMTPE_UNDEF_RECIPIENTS=0xCB<br>
+_INETSMTPE_UNDEF_RECIPIENT_MAIL=0xD1<br>
+_INETSMTPE_UNDEF_SUBJECT=0xCA<br>
+_INETSMTPE_UNDEF_XYZ_RESPONSE=0x197<br>
+_INETSMTPE_WSA_CONNECT=0x68<br>
+_INETSMTPE_WSA_GETHOSTBY_NAME_ADDR=0x69<br>
+_INETSMTPE_WSA_HOSTNAME=0x6B<br>
+_INETSMTPE_WSA_INVALID_SOCKET=0x6A<br>
+_INETSMTPE_WSA_IOCTLSOCKET=0x6C<br>
+_INETSMTPE_WSA_RECV=0x67<br>
+_INETSMTPE_WSA_SELECT=0x6D<br>
+_INETSMTPE_WSA_SEND=0x66<br>
+_INETSMTPE_WSA_STARTUP=0x64<br>
+_INETSMTPE_WSA_VER=0x65<br>
+_INETSMTP_SECURITY_DO_NOT_SET=3<br>
+_INETSMTP_SECURITY_NO_SECURITY=0<br>
+_INETSMTP_SECURITY_USE_SSL=2<br>
+_INETSMTP_SECURITY_USE_TLS=1<br>
+_INETSMTP_XPRIORITY_HIGH=2<br>
+_INETSMTP_XPRIORITY_LOW=4<br>
+_INETSMTP_XPRIORITY_NORMAL=3  </p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/inet/smtp/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/inet/smtp/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/inet/smtp/_.md">Markdown 格式</a></p>
+
+</body> 
+</html>

@@ -1,0 +1,151 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - fsys.res 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - fsys.res 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>fsys.res 库模块帮助文档</h1>
+
+<p><a id="fsys.res"></a></p>
+
+<h2>fsys.res 成员列表</h2>
+
+<p><a id="fsys.res.enum"></a></p>
+
+<h3>fsys.res.enum(回调函数,资源类型,模块句柄或路径)</h3>
+
+<pre><code class="aardio language-aardio">fsys.res.enum(  
+    function(module,resType,resName){   
+        var res = string.load(resName,resType,module);  
+        return true;  
+    }  
+)
+</code></pre>
+
+<p><a id="fsys.res.free"></a></p>
+
+<h3>fsys.res.free(dll句柄)</h3>
+
+<p>释放DLL</p>
+
+<p><a id="fsys.res.load"></a></p>
+
+<h3>fsys.res.load(&quot;DLL路径&quot;)</h3>
+
+<p>加载资源DLL并返回句柄<br>
+仅加载资源不会执行DLL代码<br>
+返回值可作为fsys.res.enum或string.load的最后一个参数<br>
+注意必须调用fsys.res.free函数释放返回的句柄</p>
+
+<p><a id="fsys.res.loadRes"></a></p>
+
+<h3>fsys.res.loadRes(资源名,资源类型,模块句柄或路径)</h3>
+
+<p>加载资源文件,返回buffer<br>
+除参数@1外的其他参数可省略</p>
+
+<p><a id="fsys.res.makeIntResource"></a></p>
+
+<h3>fsys.res.makeIntResource()</h3>
+
+<p>将数值类型资源名转换为指针,字符串类型名直接返回</p>
+
+<p><a id="fsys.res.open"></a></p>
+
+<h3>fsys.res.open()</h3>
+
+<p><a href="#fsysResUpdaterObject">返回对象:fsysResUpdaterObject</a></p>
+
+<p><a id="fsys.res.open"></a></p>
+
+<h3>fsys.res.open(执行文件路径,是否删除旧的资源)</h3>
+
+<p>打开资源准备更新</p>
+
+<p><a id="fsys.res.saveAppData"></a></p>
+
+<h3>fsys.res.saveAppData(资源目录,目标目录)</h3>
+
+<p>保存内嵌资源目录到系统AppData目录<br>
+源目录可指定源目录路径<br>
+目标目录必须指定子目录路径,不能指定完整路径,<br>
+所有参数可省略</p>
+
+<p><a id="fsys.res.saveRes"></a></p>
+
+<h3>fsys.res.saveRes(源目录,目标目录)</h3>
+
+<p>保存内嵌资源目录为硬盘文件<br>
+源目录可指定源目录路径<br>
+所有参数可省略。  </p>
+
+<p>资源路径自动转为大写（必须大写）。<br>
+如果一定要小写，aardio 里可以打包解包的库太多了。<br>
+例如:  sevenZip.lzma.tar($&quot;\你要嵌入的打包文件.tar.lzma&quot;,&quot;\运行时解包路径&quot;)</p>
+
+<p><a id="global"></a></p>
+
+<h2>全局对象 成员列表</h2>
+
+<p><a id="_RT_TYPELIB"></a></p>
+
+<h3>_RT_TYPELIB</h3>
+
+<pre><code class="aardio language-aardio">&quot;TYPELIB&quot;
+</code></pre>
+
+<p><a id="fsysResUpdaterObject"></a></p>
+
+<h2>fsysResUpdaterObject 成员列表</h2>
+
+<p><a id="fsysResUpdaterObject.close"></a></p>
+
+<h3>fsysResUpdaterObject.close(是否丢弃更改)</h3>
+
+<p>关闭并更新资源,<br>
+参数可选,默认为false</p>
+
+<p><a id="fsysResUpdaterObject.update"></a></p>
+
+<h3>fsysResUpdaterObject.update(资源类型,资源名,数据)</h3>
+
+<p>更新或添加资源</p>
+
+<h3>全局常量</h3>
+
+<p><a id="_RT_TYPELIB"></a></p>
+
+<h3>_RT_TYPELIB</h3>
+
+<pre><code class="aardio language-aardio">&quot;TYPELIB&quot;
+</code></pre>
+
+<h3>自动完成常量</h3>
+
+<p>_RT_ACCELERATOR=0x9<br>
+_RT_BITMAP=0x2<br>
+_RT_CURSOR=0x1<br>
+_RT_DIALOG=0x5<br>
+_RT_FONT=0x8<br>
+_RT_FONTDIR=0x7<br>
+_RT_GROUP_ICON=0xE<br>
+_RT_ICON=0x3<br>
+_RT_MENU=0x4<br>
+_RT_RCDATA=0xA<br>
+_RT_STRING=0x6<br>
+_RT_VERSION=0x10<br>
+_VS_VERSION_INFO=0x1  </p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/fsys/res.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/fsys/res.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/fsys/res.md">Markdown 格式</a></p>
+
+</body> 
+</html>

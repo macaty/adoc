@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - inet.conn 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - inet.conn 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>inet.conn 库模块帮助文档</h1>
+
+<p><a id="inet.conn"></a></p>
+
+<h2>inet.conn 成员列表</h2>
+
+<p><a id="inet.conn.setProxy"></a></p>
+
+<h3>inet.conn.setProxy</h3>
+
+<p>为指定连接设置代理<br>
+如果要设置拔号连接代理，请使用 inet.ras.setProxy 函数<br>
+设置进程内代理请使用 inet.setProxy 函数</p>
+
+<p><a id="inet.conn.setProxy"></a></p>
+
+<h3>inet.conn.setProxy(&quot;连接名&quot;)</h3>
+
+<p>指定连接不使用代理</p>
+
+<p><a id="inet.conn.setProxy"></a></p>
+
+<h3>inet.conn.setProxy(&quot;连接名&quot;,&quot;SOCKS=代理服务器地址:端口&quot;,&quot;绕过代理地址&quot;)</h3>
+
+<p>省略连接名表示默认连接,<br>
+设置SOCKS4代理服务器,不支持登录<br>
+绕过代理地址可在域名或IP中使用通配符,多个以分号分隔</p>
+
+<p><a id="inet.conn.setProxy"></a></p>
+
+<h3>inet.conn.setProxy(&quot;连接名&quot;,&quot;代理服务器地址:端口&quot;,&quot;绕过代理地址&quot;)</h3>
+
+<p>省略连接名表示默认连接,<br>
+设置所有协议走 HTTP 代理服务器，  </p>
+
+<p>└── 指定 SOCKS 代理格式：&quot;socks=代理服务器地址:端口&quot;<br>
+└──  <a href="../../library-guide/std/inet/proxy.html" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/std/inet/proxy.html">代理格式说明</a><br>
+绕过代理地址已自动设置，建议省略保持默认即可。</p>
+
+<p><a id="inet.conn.setProxy"></a></p>
+
+<h3>inet.conn.setProxy()</h3>
+
+<p>默认连接不使用代理</p>
+
+<p><a id="inet.conn.setProxyAutoConfig"></a></p>
+
+<h3>inet.conn.setProxyAutoConfig(&quot;连接名&quot;, &quot;HTTP://主机地址:端口号&quot;)</h3>
+
+<p>为指定连接设置自动配置代理（PAC）地址，<br>
+省略连接名表示默认连接</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/inet/conn.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/inet/conn.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/inet/conn.md">Markdown 格式</a></p>
+
+</body> 
+</html>

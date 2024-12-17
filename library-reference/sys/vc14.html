@@ -1,0 +1,138 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - sys.vc14 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - sys.vc14 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>sys.vc14 库模块帮助文档</h1>
+
+<p><a id="sys.vc14"></a></p>
+
+<h2>sys.vc14 成员列表</h2>
+
+<p><a id="sys.vc14.isInstalled"></a></p>
+
+<h3>sys.vc14.isInstalled</h3>
+
+<p>是否安装 VC++14 运行时<br>
+注意 VC2015、2017、2019、2022 都是使用同一运行库<br>
+检测 VS 开发环境安装信息请使用库 process.vswhere</p>
+
+<p><a id="sys.vc14.isInstalled"></a></p>
+
+<h3>sys.vc14.isInstalled(&quot;2017&quot;)</h3>
+
+<p>是否安装 VC2015 运行时</p>
+
+<p><a id="sys.vc14.isInstalled"></a></p>
+
+<h3>sys.vc14.isInstalled(&quot;2019&quot;)</h3>
+
+<p>是否安装 VC2019 运行时</p>
+
+<p><a id="sys.vc14.isInstalled"></a></p>
+
+<h3>sys.vc14.isInstalled(&quot;2022&quot;)</h3>
+
+<p>是否安装 VC2022 运行时</p>
+
+<p><a id="sys.vc14.isInstalled"></a></p>
+
+<h3>sys.vc14.isInstalled()</h3>
+
+<p>是否安装 VC2015 运行时</p>
+
+<p><a id="sys.vc14.isInstalled"></a></p>
+
+<h3>sys.vc14.isInstalled(minorVersion,buildNumber)</h3>
+
+<p>可选在参数中指定最低 C++ 运行时版本的 minorVersion 或 buildNumber,<br>
+也可以直接在 minorVersion 中用字符串指定&quot;2019&quot;,&quot;2017&quot;,&quot;2015&quot;</p>
+
+<p><a id="sys.vc14.isInstalled64"></a></p>
+
+<h3>sys.vc14.isInstalled64(&quot;2017&quot;)</h3>
+
+<p>是否安装 VC2017 64位运行时</p>
+
+<p><a id="sys.vc14.isInstalled64"></a></p>
+
+<h3>sys.vc14.isInstalled64(&quot;2019&quot;)</h3>
+
+<p>是否安装 VC2019 64位运行时</p>
+
+<p><a id="sys.vc14.isInstalled64"></a></p>
+
+<h3>sys.vc14.isInstalled64(&quot;2022&quot;)</h3>
+
+<p>是否安装 VC2022 64位运行时</p>
+
+<p><a id="sys.vc14.isInstalled64"></a></p>
+
+<h3>sys.vc14.isInstalled64()</h3>
+
+<p>是否安装 VC2015 64位运行时</p>
+
+<p><a id="sys.vc14.require"></a></p>
+
+<h3>sys.vc14.require</h3>
+
+<p>如果未安装 VC++14（VC2015、2017、2019） 运行时，则安装，<br>
+注意VC2015、2017、2019都是使用同一运行库</p>
+
+<p><a id="sys.vc14.require"></a></p>
+
+<h3>sys.vc14.require(&quot;2017&quot;)</h3>
+
+<p>如果未安装 VC++14（2017） 运行时，则安装</p>
+
+<p><a id="sys.vc14.require"></a></p>
+
+<h3>sys.vc14.require(&quot;2019&quot;)</h3>
+
+<p>如果未安装 VC++14（2019） 运行时，则安装</p>
+
+<p><a id="sys.vc14.require"></a></p>
+
+<h3>sys.vc14.require()</h3>
+
+<p>如果未安装 VC++14（VC2015） 运行时，则安装</p>
+
+<p><a id="sys.vc14.require"></a></p>
+
+<h3>sys.vc14.require(minorVersion,buildNumber)</h3>
+
+<p>可选在参数中指定最低 minorVersion 或 buildNumber,<br>
+也可以直接在 minorVersion 中用字符串指定&quot;2019&quot;,&quot;2017&quot;,&quot;2015&quot;</p>
+
+<p><a id="sys.vc14.require64"></a></p>
+
+<h3>sys.vc14.require64(&quot;2017&quot;)</h3>
+
+<p>如果未安装 VC++14（2017） 64位运行时，则安装</p>
+
+<p><a id="sys.vc14.require64"></a></p>
+
+<h3>sys.vc14.require64(&quot;2019&quot;)</h3>
+
+<p>如果未安装 VC++14（2019） 64位运行时，则安装</p>
+
+<p><a id="sys.vc14.require64"></a></p>
+
+<h3>sys.vc14.require64()</h3>
+
+<p>如果未安装 VC++14（VC2015） 64位运行时，则安装</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/sys/vc14.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/sys/vc14.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/sys/vc14.md">Markdown 格式</a></p>
+
+</body> 
+</html>

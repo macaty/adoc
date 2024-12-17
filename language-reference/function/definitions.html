@@ -1,0 +1,298 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - 定义函数'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - 定义函数</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>定义函数</h1>
+
+<h2>函数</h2>
+
+<p>函数是预定义子程序，封装一段可复用的代码，接受零个或多个参数，计算并返回零个或多个值。  </p>
+
+<p>函数体包含一组语句、以执行预定义的程序指令，实现程序员定义的算法，并返回计算结果。 </p>
+
+<p>函数的作用类似操作符，接受操作数作为参数，应用算法，执行指令，并返回结果，与操作符不同的是参数的数目不限，且返回值的数目不限。并且函数可以有自定义的名字。</p>
+
+<h2>定义函数</h2>
+
+<p>定义函数的基本语法：</p>
+
+<pre><code class="aardio language-aardio">function name(parameter1, parameter2, parameter3,...) { 
+  //函数内部代码 
+
+  //返回一个或多个值
+  return result1,result2;
+}
+</code></pre>
+
+<ul>
+<li>函数可以指定零个或多个参数，例如上面的 <code>parameter1</code> 到 <code>parameterN</code> 称为<code>函数形参</code>,<code>函数形参</code>实际上是函数内部作用域的一种局部变量。</li>
+<li>函数形参的最后可以使用 <code>...</code> 接受不定个数的参数，在定义了不定参数的函数内部 <code>...</code> 可以作为返回多个值的表达式使用，可以用 <code>{...}</code> 将不定个数的参数转换为普通数组。</li>
+<li>函数可以选用 return 语句返回一个或多个值，例如上面的  <code>result1</code> 到 <code>resultN</code>，如果不返回任何值或者不调用 return 语句函数会默认返回 null 值。return 语句之后直到函数结束的代码将视为注释注略不执行，</li>
+</ul>
+
+<p>函数定义可以不指定名字 - 即匿名函数　。匿名函数可以赋值给其他的变量或常量，例如：</p>
+
+<pre><code class="aardio language-aardio">func = function() { 
+
+}
+</code></pre>
+
+<p>后面一种写法在 aardio　中更为常见，在类或表构造器中只能写&quot;匿名函数&quot;，例如：</p>
+
+<pre><code class="aardio language-aardio">class cls {
+  func = function() { 
+
+  }
+}
+</code></pre>
+
+<p>下面的代码则存在语法错误：</p>
+
+<pre><code class="aardio language-aardio">class cls {
+
+  //在类或表构造器中如下写&quot;具名函数&quot;是错误的
+  function func() { 
+
+  }
+}
+</code></pre>
+
+<p>注意：匿名函数是一个表达式，而具名函数是一个语句，在 aardio 中语句不能作为表达式使用，表达式也不可作为语句使用。</p>
+
+<p>参考： <a href="../basic-syntax.html#stat-vs-exp" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/basic-syntax.html#stat-vs-exp">语句与表达式的区别</a></p>
+
+<h2>定义局部函数</h2>
+
+<p>函数也可以定义为局部变量。局部函数像局部变量一样作用域限于当前语句块。</p>
+
+<p>用具名函数定义局部函数的基本语法：</p>
+
+<pre><code class="aardio language-aardio">var function func() { 
+
+}
+</code></pre>
+
+<p>用匿名函数赋值到局部变量以定义局部函数的语法：</p>
+
+<pre><code class="aardio language-aardio">var func = function() { 
+
+}
+</code></pre>
+
+<p>在 aardio 中第二种写法更为常见，第一种写法较少使用。 </p>
+
+<h2>局部函数的递归问题</h2>
+
+<p>如果使用 var 语句中将&quot;匿名函数&quot;定义为局部变量，那么
+当局部函数递归调用自身时，&quot;匿名函数&quot;本身并不认识在它的定义之后才创建的局部变量，会导致出现找不到函数的错误。</p>
+
+<p>例如：</p>
+
+<pre><code class="aardio language-aardio">var func = function ( i ){ 
+    if (  i &lt;= 0   ) return  i 
+    else return func(  i-1 )  //报错找不到 fun 函数  
+}
+
+//调用递归函数
+var n = func( 5 )
+</code></pre>
+
+<p>解决办法是先声明局部变量再赋值，如下：  </p>
+
+<pre><code class="aardio language-aardio">var func;
+func = function ( i ){ 
+    if (  i &lt;= 0   ) return  i 
+    else return func(  i-1 )  //报错找不到 fun 函数  
+}
+
+//调用递归函数
+var n = func( 5 )
+</code></pre>
+
+<p>等价的写法是直接用 var 语句定义&quot;具名函数&quot;，如下：</p>
+
+<pre><code class="aardio language-aardio">var function func( i ){ 
+    if (  i &lt;= 0   ) return  i 
+    else return func(  i-1 )  //报错找不到 fun 函数  
+}
+
+//调用递归函数
+var n = func( 5 )
+</code></pre>
+
+<h2>调用函数  <a id="call" href="#call">&#x23;</a></h2>
+
+<pre><code class="aardio language-aardio">result1,result2 = func(arg1,arg2,arg3)
+</code></pre>
+
+<ul>
+<li><p>在函数对象后添加调用操作符 <code>()</code> 写为 <code>func()</code> 格式表示调用函数。</p>
+
+<p>说明：</p>
+
+<ul>
+<li>调用<a href="../class/class.html#new" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/class/class.html#new">类构造函数</a>、调用 <a href="lambda.html" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/function/lambda.html">lambda 函数</a> 的语法与调用普通函数完全一样。</li>
+<li>调用操作符 <code>()</code>  不允许直接写在函数定义或字面量后面，也不能直接写在类或 lambda 定义后面。如果要立即调用匿名函数或 lambda 表达式则必须将其置于一对括号内，例如 <code>( function(){} )()</code>。</li>
+</ul></li>
+<li><p>在调用函数时可以指定零个或多个调用实参，例如上面的  <code>arg1</code> 到 <code>argN</code>。调用实参的数目如果多于形参的数目，多余部分被丢弃。  调用实参的数目如果少于形参的个数，不足的部分添加 null 值。 </p></li>
+<li><p>函数可以返回零个或多个值，例如上面的，例如上面的  <code>result1</code> 到 <code>resultN</code>。</p></li>
+<li><p>调用函数的代码是一个语句，但函数的返回值是右值表达式。</p></li>
+</ul>
+
+<p>可以丢弃返回值，使用单独的函数调用构成独立语句，如下：</p>
+
+<pre><code class="aardio language-aardio">functionName(arg1,arg2,arg3)
+</code></pre>
+
+<p>可以省略部分返回值，如下：</p>
+
+<pre><code class="aardio language-aardio">result1, , ,result4,result5 = functionName(arg1,arg2,arg3)
+</code></pre>
+
+<p>可以省略部分参数，如下：</p>
+
+<pre><code class="aardio language-aardio">result1 = functionName(arg1, ,arg3,,arg5)
+</code></pre>
+
+<p>调用函数时，不管有没有参数，都要在函数名后面放一对圆括号，如下是错误的写法;</p>
+
+<p><code>io.open;</code> <img src="../../icon/error.gif" tppabs="https://www.aardio.com/zh-cn/doc/icon/error.gif" alt=""></p>
+
+<p>在 aardio 中函数必须先定义后使用。</p>
+
+<p>aardio 在运行时创建函数对象，代码执行顺序决定了函数定义的顺序。在 aardio 中不能调用尚未定义的函数对象。</p>
+
+<h2>函数参数</h2>
+
+<p>形参 ( parameter ) 指函数定义参数列表中预定义的形式参数，形参可以在函数体内部作为局部变量使用。  </p>
+
+<p>示例：</p>
+
+<pre><code class="aardio language-aardio">//这里的a,b,c称为形参，可以将形参看成函数内部的局部变量名字  
+function test(a,b,c){ 
+    return a+b+c; //形参可以在函数体内部作为局部变量使用 
+} 
+</code></pre>
+
+<p>实参（ argument）指调用时括号中指定的实际调用参数。</p>
+
+<p>示例：</p>
+
+<pre><code class="aardio language-aardio">print(1,2,3); //这里的 1,2,3,4 称为调用实参 
+</code></pre>
+
+<p>更多关于函数参数的使用技巧请参考：<a href="parameter.html" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/function/parameter.html">函数参数用法</a>  </p>
+
+<h2>函数局部变量  <a id="var" href="#var">&#x23;</a></h2>
+
+<p>在函数体中可以用 var 语句定义局部变量，函数的形参也可以作为局部变量使用。  </p>
+
+<p>函数中的局部变量与外部变量命名相同时，在各自的作用域内生效，并不冲突。  </p>
+
+<p>例如：  </p>
+
+<pre><code class="aardio language-aardio">import console; 
+
+str = &quot;我是外部变量&quot;
+
+//定义函数
+function func() {
+    var str = &quot;我是局部变量&quot; 
+    console.log( str , ..str ) //显示变量值
+}
+
+//调用函数
+func();
+
+//显示全局变量值
+console.log(str);
+
+console.pause();
+</code></pre>
+
+<p>可以用 <code>..str</code> 访问全局变量 str，使用  <code>self.str</code> 访问当前名字空间的变量 str 。不加任何前缀时则优先获取最近的同名局部变量。</p>
+
+<p>注意 aardio 中的局部变量拥有块级作用域，aardio 根据标志符查找命名对象的顺序依次为：  </p>
+
+<ul>
+<li>  当前语句块局部变量。</li>
+<li>  向上搜索上层语句块或外部函数的局部变量( upvar )。</li>
+<li>  当前名字空间( self )成员变量。</li>
+</ul>
+
+<p>根据最少知道原则，在函数中应尽量避免使用全局对象，尤其要避免修改全局对象。而且局部变量存取速度更快。无论是为了效率，还是降低程序复杂度，都应当优先使用局部变量。  </p>
+
+<p>更多关于局部变量的内容请参考：</p>
+
+<ul>
+<li><a href="../variables-and-constants.html#var" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/variables-and-constants.html#var">局部变量</a> </li>
+<li><a href="../statements/assignment.html#var" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/statements/assignment.html#var">定义局部变量</a><br></li>
+</ul>
+
+<h2>成员函数</h2>
+
+<ol>
+<li><p>定义成员函数  </p>
+
+<p>定义成员函数原型：</p>
+
+<pre><code class="aardio language-aardio">var tab = {};
+
+tab.method = function( param1,param2,param3 ) {
+  //函数内部内码
+}
+</code></pre>
+
+<p>也可以使用下面的格式定义成员函数：</p>
+
+<pre><code class="aardio language-aardio">var tab = {};
+
+function tab.method( param1,param2,param3  ) {
+  //函数内部内码
+}
+</code></pre></li>
+<li><p>调用成员函数格式</p>
+
+<pre><code class="aardio language-aardio">tab.method( arg1,arg2,arg3 );
+</code></pre>
+
+<p>调用成员函数时可选指定任意个参数，例如上面的 <code>arg1</code> 到 <code>argN</code> 。</p></li>
+<li><p>成员函数的 owner 对象  </p>
+
+<p>aardio 中所有函数都有一个隐藏的 owner 参数，可以认为是第 1 个调用参数前面隐藏的第 0 个参数。</p>
+
+<p>owner 参数不用写在调用参数列表里，由 aardio 自动传递并接收 owner 参数。</p>
+
+<p>owner 指的是在调用成员函数时拥有该成员函数的所有者。</p>
+
+<p>例如执行 <code>object1.method()</code> 时，object1.method 函数接收到的 owner 参数就指向 object1 。  </p>
+
+<p>如果我们先写 <code>object2.method = object1.method()</code> ，然后再调用  <code>object2.method()</code> 时，object2.method 函数接收到的 owner 参数就指向 object2 。</p>
+
+<p>onwer 参数可能指向不同的对象。</p>
+
+<p>在调用一个类构造实例对象时，如果实例对象的成员函数不改变所有者，则调用实例对象的成员函数时，owner 默认指向类的实例对象 - 也就是类主体内的 this 对象。区别在于 this 无法在外部改变，而 owner 可以在外部改变的。</p>
+
+<p>请参考：</p>
+
+<ul>
+<li><a href="owner.html" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/function/owner.html">owner 对象</a></li>
+<li><a href="../class/class.html#this" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/class/class.html#this">this 对象</a></li>
+</ul></li>
+</ol>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/language-reference/function/definitions.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/language-reference/function/definitions.md'" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/function/definitions.md">Markdown 格式</a></p>
+
+</body> 
+</html>

@@ -1,0 +1,85 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - COM 接口 - shell 外壳'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - COM 接口 - shell 外壳</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: COM 接口 - shell 外壳</h1><pre><code class="aardio language-aardio">//COM 接口 - shell 外壳
+//外壳指的是操作系统与用户交互的界面，主要指资源管理器、桌面等。
+
+import com.shell;
+import process;
+import sys.networkIsolation;
+import console;
+
+var shell = com.shell();//等价于 shell = com.CreateObject(&quot;Shell.Application&quot;);
+/*
+shell.CascadeWindows() //层叠窗口
+shell.TileHorizontally(); //横向平铺窗口
+shell.TileVertically(); //纵向平铺窗口
+shell.MinimizeAll(); //最小化所有窗口
+shell.UndoMinimizeALL(); //撤消全部最小化
+*/
+
+//获取目录对象
+var folder = shell.Namespace( io.fullpath(&quot;~/config&quot;));
+
+//获取文件对象
+var file = folder.ParseName(&quot;SYS.CFG&quot;);
+
+/*
+调用菜单命令。
+菜单命令并不完全等价于菜单显示文本，而且与语言无关。
+所以在中文系统上不需要改为中文字符串。
+*/
+file.InvokeVerb(&quot;Copy&quot;);
+
+if( _WIN10_LATER ){
+    for i,item in com.shell.eachApp(){ 
+        console.log( item.name, item.path );
+    }
+
+    //获取所有应用容器,参考范例：&quot;~/example/Windows/ListView/uwpExemption.aardio&quot;
+    var containers = sys.networkIsolation.getAppContainers() 
+
+    com.shell.activateApp(&#39;Microsoft.MicrosoftEdge_8wekyb3d8bbwe!MicrosoftEdge&#39;
+        , &#39;https://www.aardio.com&#39;);
+
+    // 下面这样也可以打开WIN10应用   
+    // process.explore(&quot;shell:appsFolder\Microsoft.MicrosoftEdge_8wekyb3d8bbwe!MicrosoftEdge&quot;)
+
+    //打开应用商店，且修复 ms-windows-store:// 协议
+    com.shell.activateApp(&quot;Microsoft.WindowsStore_8wekyb3d8bbwe!App&quot;);
+
+    /*
+    有时候系统出现问题 ms-windows-store 协议可能用不了，下面的方法就打不开。
+    但 com.shell.activateApp(&quot;Microsoft.WindowsStore_8wekyb3d8bbwe!App&quot;) 可以打开。
+    而且打开一次，ms-windows-store 协议就正常了。
+    */
+    //process.execute(&quot;ms-windows-store://home&quot;)
+}
+
+/***********************
+实际是 shell32.dll 也提供很多与外壳操作有关的 API 函数。
+aardio 已默认加载了 shell32.dll 并创建了 ::Shell32 对象。
+
+例如调用 SHChangeNotify 刷新：
+::Shell32.SHChangeNotify(0x8000000/*_SHCNE_ASSOCCHANGED*/,0,0,0);
+
+更多函数参考：
+https://learn.microsoft.com/zh-cn/windows/win32/api/shlobj_core
+***********************/
+
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/COM/Others/Shell.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/COM/Others/Shell.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/COM/Others/Shell.md">Markdown 格式</a>
+</body> 
+</html>

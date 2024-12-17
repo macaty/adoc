@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - julia.process 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - julia.process 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>julia.process 库模块帮助文档</h1>
+
+<p><a id="julia"></a></p>
+
+<h2>julia 成员列表</h2>
+
+<p><a id="julia.process"></a></p>
+
+<h3>julia.process()</h3>
+
+<p>创建 Julia 进程，打开控制台窗口。<br>
+返回进程（ process ）对象。<br>
+可以用一个字符串参数指定多个启动参数，用空格分隔多个参数，<br>
+也可以传入多个参数由 aardio 自动合并（空格分隔参数），<br>
+合并多参数时，单参数含空格或需转义时自动加双引号并自动转义</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/process/_.html  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/process/_.html#processObject'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/process/_.html#processObject">返回对象:processObject</a></p>
+
+<p><a id="julia.process"></a></p>
+
+<h2>julia.process 成员列表</h2>
+
+<p><a id="julia.process.eval"></a></p>
+
+<h3>julia.process.eval()</h3>
+
+<p>创建 Julia 进程执行参数指定的 Julia 代码。<br>
+不打开控制台窗口，返回进程所有输出以及表达式的值。<br>
+主进程退出时此函数创建的 Julia 进程会自动退出。  </p>
+
+<p>也可以传入多个参数由 aardio 自动合并（空格分隔参数），<br>
+合并多参数时，单参数含空格或需转义时自动加双引号并自动转义。<br>
+在 Julia 代码中可以用 ARGS 获取参数</p>
+
+<p><a id="julia.process.exec"></a></p>
+
+<h3>julia.process.exec()</h3>
+
+<p>创建 Julia 进程执行参数指定的 Julia 代码。<br>
+打开新的控制台窗口。返回进程（ process ）对象。<br>
+也可以传入多个参数由 aardio 自动合并（空格分隔参数），<br>
+合并多参数时，单参数含空格或需转义时自动加双引号并自动转义。<br>
+在 Julia 代码中可以用 ARGS 获取参数</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/process/_.html  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/process/_.html#processObject'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/process/_.html#processObject">返回对象:processObject</a></p>
+
+<p><a id="julia.process.popen"></a></p>
+
+<h3>julia.process.popen()</h3>
+
+<p>创建 Julia 进程，不打开控制台窗口。<br>
+返回进程管道（ process.popen ）对象。<br>
+主进程退出时此函数创建的 Julia 进程会自动退出。<br>
+可以用一个字符串参数指定多个启动参数，用空格分隔多个参数，<br>
+也可以传入多个参数由 aardio 自动合并（空格分隔参数），<br>
+合并多参数时，单参数含空格或需转义时自动加双引号并自动转义</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html#processPopenObject'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html#processPopenObject">返回对象:processPopenObject</a></p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/julia/process.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/julia/process.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/julia/process.md">Markdown 格式</a></p>
+
+</body> 
+</html>

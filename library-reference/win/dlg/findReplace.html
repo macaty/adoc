@@ -1,0 +1,141 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - win.dlg.findReplace 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - win.dlg.findReplace 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>win.dlg.findReplace 库模块帮助文档</h1>
+
+<p><a id="win.dlg"></a></p>
+
+<h2>win.dlg 成员列表</h2>
+
+<p><a id="win.dlg.findReplace"></a></p>
+
+<h3>win.dlg.findReplace</h3>
+
+<p>查找替换对话框</p>
+
+<p><a id="win.dlg.findReplace"></a></p>
+
+<h3>win.dlg.findReplace()</h3>
+
+<p>创建查找替换对话框<br>
+参数中指定父窗口对象,注意不能仅指定父窗口句柄。<br>
+一个父窗口上不要创建多个查找对话框</p>
+
+<p><a href="#windlgfindReplaceObject">返回对象:windlgfindReplaceObject</a></p>
+
+<p><a id="windlgfindReplaceObject"></a></p>
+
+<h2>windlgfindReplaceObject 成员列表</h2>
+
+<p><a id="windlgfindReplaceObject.close"></a></p>
+
+<h3>windlgfindReplaceObject.close()</h3>
+
+<p>关闭对话框</p>
+
+<p><a id="windlgfindReplaceObject.find"></a></p>
+
+<h3>windlgfindReplaceObject.find()</h3>
+
+<p>打开查找文本对话框<br>
+可选在参数中指定findWhat属性为空时的默认查找文本</p>
+
+<p><a id="windlgfindReplaceObject.findWhat"></a></p>
+
+<h3>windlgfindReplaceObject.findWhat</h3>
+
+<p>要查找的文本<br>
+用户输入过的查找文本会放在这里,<br>
+下次打开对话框作为默认查找字符串</p>
+
+<p><a id="windlgfindReplaceObject.flags"></a></p>
+
+<h3>windlgfindReplaceObject.flags</h3>
+
+<p>查找替换选项,<br>
+此属性可以作为richedit的findText,replaceText函数参数使用</p>
+
+<p><a id="windlgfindReplaceObject.onReplace"></a></p>
+
+<h3>windlgfindReplaceObject.onReplace</h3>
+
+<pre><code class="aardio language-aardio">windlgfindReplaceObject.onReplace = function(findWhat,replaceWith,down,matchCase,wholeWord){
+    /*替换触发此事件,参数：  
+findWhat 正在查找的字符串  
+replaceWith 替换字符串  
+down 是否向下查找  
+matchCase 是否区分大小写  
+wholeWord 是否全字匹配*/  
+}
+</code></pre>
+
+<p><a id="windlgfindReplaceObject.onReplaceAll"></a></p>
+
+<h3>windlgfindReplaceObject.onReplaceAll</h3>
+
+<pre><code class="aardio language-aardio">windlgfindReplaceObject.onReplaceAll = function(findWhat,replaceWith,down,matchCase,wholeWord){
+    /*全部替换触发此事件,参数：  
+findWhat 查找字符串  
+replaceWith 替换字符串  
+down 是否向下查找  
+matchCase 是否区分大小写  
+wholeWord 是否全字匹配*/
+}
+</code></pre>
+
+<p><a id="windlgfindReplaceObject.onSearch"></a></p>
+
+<h3>windlgfindReplaceObject.onSearch</h3>
+
+<pre><code class="aardio language-aardio">windlgfindReplaceObject.onSearch = function(findWhat,down,matchCase,wholeWord){
+    /*查找触发此事件,参数：  
+findWhat 正在查找的字符串  
+down 是否向下查找  
+matchCase 是否区分大小写  
+wholeWord 是否全字匹配*/  
+}
+</code></pre>
+
+<p><a id="windlgfindReplaceObject.replace"></a></p>
+
+<h3>windlgfindReplaceObject.replace()</h3>
+
+<p>打开替换文本对话框<br>
+可选在参数中指定findWhat属性为空时的默认查找文本</p>
+
+<p><a id="windlgfindReplaceObject.replaceWith"></a></p>
+
+<h3>windlgfindReplaceObject.replaceWith</h3>
+
+<p>要替换的文本<br>
+用户输入过的替换文本会放在这里,<br>
+下次打开对话框作为默认替换字符串</p>
+
+<p><a id="windlgfindReplaceObject.show"></a></p>
+
+<h3>windlgfindReplaceObject.show(false)</h3>
+
+<p>隐藏对话框</p>
+
+<p><a id="windlgfindReplaceObject.title"></a></p>
+
+<h3>windlgfindReplaceObject.title</h3>
+
+<p>窗口标题,需要在首次打开对话框以前设置</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/dlg/findReplace.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/dlg/findReplace.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/dlg/findReplace.md">Markdown 格式</a></p>
+
+</body> 
+</html>

@@ -1,0 +1,370 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - asynHttpServer - 扫码快传'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - asynHttpServer - 扫码快传</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: asynHttpServer - 扫码快传</h1><pre><code class="aardio language-aardio">//扫码传文件
+import fonts.fontAwesome;
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;asynHttpServer - 扫码快传&quot;;right=807;bottom=465;bgcolor=16777215;border=&quot;none&quot;;max=false)
+winform.add(
+bk={cls=&quot;bk&quot;;left=-2;top=-5;right=810;bottom=29;bgcolor=12639424;z=9};
+bkplus={cls=&quot;bkplus&quot;;text=&quot;asynHttpServer - 扫码传文件&quot;;left=18;top=4;right=203;bottom=26;align=&quot;left&quot;;color=5921370;z=10};
+btnOpen={cls=&quot;plus&quot;;text=&#39;\uF115&#39;;left=444;top=50;right=479;bottom=75;dr=1;dt=1;font=LOGFONT(h=-16;name=&#39;FontAwesome&#39;);notify=1;z=5};
+btnOpenUpload={cls=&quot;plus&quot;;text=&quot;打开上传目录&quot;;left=568;top=429;right=709;bottom=458;dr=1;dt=1;font=LOGFONT(h=-15);iconStyle={align=&quot;left&quot;;font=LOGFONT(h=-15;name=&#39;FontAwesome&#39;);padding={left=8;top=2}};iconText=&#39;\uF115&#39;;notify=1;textPadding={left=20};z=11};
+btnStart={cls=&quot;plus&quot;;text=&quot;重启服务&quot;;left=655;top=47;right=755;bottom=76;bgcolor=14935259;dr=1;dt=1;font=LOGFONT(h=-15);iconStyle={align=&quot;left&quot;;font=LOGFONT(h=-15;name=&#39;FontAwesome&#39;);padding={left=8;top=2}};iconText=&#39;\uF233&#39;;notify=1;textPadding={left=20};z=4};
+editDocumentRoot={cls=&quot;plus&quot;;left=131;top=49;right=430;bottom=73;align=&quot;right&quot;;border={bottom=1;color=-8355712};dl=1;dr=1;dt=1;editable=1;font=LOGFONT(h=-16);z=7};
+editPassword={cls=&quot;plus&quot;;left=441;top=84;right=632;bottom=108;align=&quot;left&quot;;border={bottom=1;color=-8355712};dl=1;dr=1;dt=1;editable=1;font=LOGFONT(h=-16);z=13};
+editPort={cls=&quot;plus&quot;;left=550;top=49;right=628;bottom=73;align=&quot;left&quot;;border={bottom=1;color=-8355712};dl=1;dr=1;dt=1;editable=1;font=LOGFONT(h=-16);z=8};
+plus={cls=&quot;plus&quot;;text=&quot;访问密码：&quot;;left=332;top=90;right=433;bottom=114;align=&quot;right&quot;;dr=1;dt=1;font=LOGFONT(h=-15);transparent=1;z=12};
+qr={cls=&quot;plus&quot;;left=499;top=132;right=760;bottom=418;db=1;dr=1;dt=1;repeat=&quot;scale&quot;;z=6};
+static={cls=&quot;plus&quot;;text=&quot;端口：&quot;;left=484;top=52;right=547;bottom=76;align=&quot;right&quot;;dr=1;dt=1;font=LOGFONT(h=-15);transparent=1;z=2};
+static2={cls=&quot;plus&quot;;text=&quot;网站根目录：&quot;;left=15;top=52;right=129;bottom=76;align=&quot;right&quot;;dl=1;dt=1;font=LOGFONT(h=-15);transparent=1;z=3};
+txtMessage={cls=&quot;richedit&quot;;left=42;top=132;right=469;bottom=418;autohscroll=false;db=1;dl=1;dr=1;dt=1;link=1;multiline=1;vscroll=1;z=1}
+)
+/*}}*/
+
+winform.btnStart.skin( {
+    background={
+        default=0x668FB2B0;
+        hover=0xFF928BB3;
+        disabled=0xFFCCCCCC; 
+    }
+})
+
+winform.btnOpen.skin( {
+    background={
+        default=0;
+        hover=0xFF928BB3;
+        disabled=0xFFCCCCCC; 
+    }
+})
+
+winform.btnOpenUpload.skin( {
+    background={
+        default=0;
+        hover=0xFF928BB3;
+        disabled=0xFFCCCCCC; 
+    }
+})
+
+import fsys.config;
+config = fsys.config(&quot;/config/&quot;); 
+if( io.exist(config.winform.txtMessage) ){
+    winform.txtMessage.text = config.winform.txtMessage;
+}
+else {
+    winform.txtMessage.text = io.getSpecial(0x5/*_CSIDL_MYDOCUMENTS*/)
+}
+
+
+import web.socket.server;
+var wsrv = web.socket.server();
+
+var srvHttp = wsrv.httpServer;
+/*
+wsrv.httpServer 是实现单线程异步 HTTP 服务端的 wsock.tcp.asynHttpServer 对象。
+浏览器组件发起异步 HTTP 请求支持 wsock.tcp.asynHttpServer。请不要用 inet.http 等
+阻塞请求同一线程创建的 asynHttpServer,这会导致 asynHttpServer 没有机会响应请求而导致死锁，
+如果确有这样的需求，可创建线程发起请求，或改用基于多线程的 wsock.tcp.simpleHttpServer。
+*/
+srvHttp.documentRoot = winform.txtMessage.text;
+srvHttp.userToken = string.random(18);
+winform.editPassword.text = srvHttp.userToken;
+
+
+import fsys.info; 
+var cacheSysIcons = {}
+var getSysIconIndex = function(path){ 
+    var sfi = fsys.info.get(path, 0x100/*_SHGFI_ICON*/ | 0x4000/*_SHGFI_SYSICONINDEX*/);
+    if( !(sfi.returnValue ) ) {
+        return; 
+    }
+
+    if(!cacheSysIcons[sfi.iIcon]){
+        var dataUrl;
+        var bmp = ..gdip.bitmap(sfi.hIcon,1/*_IMAGE_ICON*/);
+        if(bmp){
+            cacheSysIcons[sfi.iIcon] = bmp.saveToBuffer(&quot;.png&quot;); 
+            bmp.dispose();
+        }
+    }
+    if(sfi.hIcon)::DestroyIcon(sfi.hIcon);  
+    return sfi.iIcon;
+}
+
+var cacheClientIps = {}
+srvHttp.run( 
+    function(response,request,session){ 
+
+        var token = request.get[&quot;t&quot;] : session[&quot;token&quot;];
+        if( #srvHttp.userToken &amp;&amp; (token != srvHttp.userToken) ){
+            winform.txtMessage.printf(&quot;客户端：%s 连接被拒绝&quot;,request.remoteAddr); 
+            response.errorStatus(401)
+            return;
+        }
+        session[&quot;token&quot;] = token;
+
+        if(!cacheClientIps[request.remoteAddr]){
+            winform.txtMessage.printf(&quot;客户端：%s 已连接&quot;,request.remoteAddr);   
+            cacheClientIps[request.remoteAddr] = true;
+        }
+
+        response.headers[&quot;Access-Control-Allow-Origin&quot;] = &quot;*&quot;;
+        response.headers[&quot;Access-Control-Allow-Headers&quot;] = &quot;*&quot;
+
+        if(request.path==&quot;/main.aardio&quot; &amp;&amp; request.get[&quot;icon&quot;]){
+            var iconIdx = tonumber(request.get[&quot;icon&quot;]);
+            if(iconIdx!==null){
+                if(cacheSysIcons[iconIdx]){
+                    response.contentType = &quot;image/png&quot;;
+                    response.write(cacheSysIcons[iconIdx])
+                    return;
+                }
+            }
+            response.errorStatus(404);
+            return;
+        }
+
+        if(request.path==&quot;/upload/main.aardio&quot;){
+            if(request.method==&quot;DELETE&quot;){
+                var path = request.postData();
+                if(path &amp;&amp; string.startWith(path,&quot;/upload/&quot;)){
+                    path = ..io.joinpath(srvHttp.documentRoot,path)
+
+                    if(io.exist(path)){
+                        io.remove(path);
+                        winform.txtMessage.print(&quot;已删除：&quot; + path);
+                        response.close();
+                        return; 
+                    }
+                }
+
+                response.errorStatus(404);
+                return;
+            }
+
+            fileData = request.postFileData()
+            if(fileData){
+                io.createDir(..io.joinpath(srvHttp.documentRoot,&quot;upload&quot;))
+                winform.txtMessage.print(..io.joinpath(srvHttp.documentRoot,&quot;upload&quot;))
+
+                var fileName = ..io.joinpath(srvHttp.documentRoot,&quot;upload&quot;,fileData.filepond.filename) 
+                var ok,err = fileData.filepond.save(fileName); 
+                if(!ok){ response.error(err); }
+
+                winform.txtMessage.text = &#39;http服务端已启动: \n&#39;; 
+                winform.txtMessage.print( srvHttp.getUrl(,true) + &quot;/?t=&quot; + srvHttp.userToken  );
+
+                winform.txtMessage.print( &quot;&quot; );     
+                winform.txtMessage.print( &quot;上传成功：&quot; + fileName );   
+
+                response.contentType = &quot;text/plain&quot;;
+                response.write(&quot;/upload/&quot;,fileData.filepond.filename)
+                return response.close() 
+            }       
+        }
+
+        if(!fsys.isDir(request.path) ) {
+            if( ..io.exist(request.path) 
+                &amp;&amp; (!_STUDIO_INVOKED || request.path!=&quot;/main.aardio&quot;) )
+                return response.loadcode(request.path)
+            else {
+                request.path = fsys.getParentDir(request.path)
+            }
+        } 
+
+        response.write(`
+&lt;!doctype html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;utf-8&quot;&gt;
+&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot; /&gt;
+&lt;title&gt;asynHttpServer - 扫码快传&lt;/title&gt;
+&lt;link href=&quot;https://lib.baomitu.com/filepond/4.28.2/filepond.min.css&quot; rel=&quot;stylesheet&quot;&gt;
+&lt;script src=&quot;https://lib.baomitu.com/filepond/4.28.2/filepond.min.js&quot;&gt;&lt;/script&gt; 
+&lt;script&gt;
+(function (doc, win) {
+    var docEl = doc.documentElement, 
+        recalc = function () {
+            var clientWidth = docEl.clientWidth;
+            if (!clientWidth) return;
+
+            clientWidth=(clientWidth&gt;640)?640:clientWidth;
+            docEl.style.fontSize = ( (docEl.clientWidth&gt;docEl.clientHeight) ? 12 : 20) * (clientWidth / 320) + &#39;px&#39;;
+        };
+
+    if (!doc.addEventListener) return;
+    win.addEventListener(&#39;orientationchange&#39; in window ? &#39;orientationchange&#39; : &#39;resize&#39;, recalc, false);
+    doc.addEventListener(&#39;DOMContentLoaded&#39;, recalc, false);
+})(document, window);
+&lt;/script&gt;
+&lt;style&gt;
+html {
+    padding:20px 0 0;
+}
+li{ list-style-type:none; }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt; 
+
+&lt;input type=&quot;file&quot; class=&quot;filepond&quot; name=&quot;filepond&quot; multiple&gt;
+&lt;script crossorigin=&quot;anonymous&quot;&gt; 
+if(document.body.style.order === undefined){
+    alert(&quot;浏览器版本过低,请使用Chrome或IE11以上版本浏览器打开此页面!&quot;)
+}
+
+var inputElement = document.querySelector(&#39;input[type=&quot;file&quot;]&#39;);
+FilePond.create(inputElement);
+FilePond.setOptions({
+    server: &#39;/upload/?t=` + srvHttp.userToken + `&#39;,
+    labelIdle: &#39;拖放需要上传的文件到这里或者 &lt;span class=&quot;filepond--label-action&quot;&gt; 浏览文件 &lt;/span&gt;&#39;,
+    labelFileProcessing: &#39;上传中...&#39;,
+    labelFileProcessingComplete: &#39;上传成功&#39;
+});
+
+websocket = new WebSocket(&quot;`+wsrv.getUrl(&quot;ws&quot;,true)+`&quot;);
+websocket.onmessage = function(evt) {
+    if(evt.data==&quot;reload&quot;){
+        window.location.pathname = &quot;/&quot;;
+        window.location.reload(true)
+    }
+};   
+&lt;/script&gt; 
+
+&lt;h2&gt;当前目录：`
+            ,request.path,`&lt;/h2&gt;&lt;hr&gt;&lt;ul&gt;`)
+
+        if(request.path==&quot;/&quot; &amp;&amp; ..io.exist(&quot;/upload/&quot;)){
+            response.write(&#39;&lt;li&gt;&lt;img src=&quot;/?icon=&#39;++getSysIconIndex(&quot;/upload/&quot;)+&#39;&quot;&gt;&lt;a href=&quot;/upload?t=&#39; + srvHttp.userToken + &#39;&quot;&gt;上传目录&lt;/a&gt;&lt;br&gt;\r\n&#39;);    
+        }
+
+        var file,dir = fsys.list(request.path,,&quot;*.*&quot;);
+        for(i=1;#dir;1){
+            if(dir[i]===&quot;upload&quot; &amp;&amp; request.path==&quot;/&quot;) continue;
+
+            var iconIdex = getSysIconIndex(dir[dir[ i ]])
+            response.write(&#39;&lt;li&gt;&lt;img src=&quot;/?icon=&#39;++(iconIdex)+&#39;&quot;&gt;&lt;a href=&quot;&#39;
+                ,inet.url.append(request.path,dir[ i ])
+                ,&#39;?t=&#39; + srvHttp.userToken + &#39;&quot;&gt;&#39;,dir[ i ],&#39;&lt;/a&gt;&lt;br&gt;\r\n&#39;);
+        }
+
+        for(i=1;#file;1){
+            var iconIdex = getSysIconIndex(file[file[ i ]])
+            response.write(&#39;&lt;li&gt;&lt;img src=&quot;/?icon=&#39;++(iconIdex)+&#39;&quot;&gt;&lt;a href=&quot;&#39;
+                    ,inet.url.append(request.path,file[ i ])
+                    ,&#39;?t=&#39; + srvHttp.userToken + &#39;&quot;&gt;&#39;,file[ i ],&#39;&lt;/a&gt;&lt;br&gt;\r\n&#39;);
+        }
+
+        response.write(&quot;&lt;/ul&gt;&lt;/body&gt;&lt;/html&gt;&quot;)
+    }   
+);
+
+import qrencode.bitmap;
+var serverInfo = function(){
+    var ip,port = srvHttp.getLocalIp();
+    winform.editPort.text = port;
+    winform.editDocumentRoot.text = io.fullpath(srvHttp.documentRoot)
+
+    var url = srvHttp.getUrl(,true);
+    if(#srvHttp.userToken){
+        url = url + &quot;/?t=&quot; + srvHttp.userToken;
+    } 
+
+    winform.txtMessage.text = &#39;http服务端已启动: \n&#39;; 
+    winform.txtMessage.print(  url );
+
+    var qrBmp = qrencode.bitmap( url );
+    winform.qr.setBackground(qrBmp.copyBitmap(winform.qr.width)); 
+
+    winform.txtMessage.print( 
+        &quot;手机扫码可自动打开此网页，可以方便地上传下载文件。
+拖动文件或目录到窗口上客户端网页会自动刷新。
+
+asynHttpServer 体积很小可嵌入任何 aardio 程序，
+asynHttpServer 可以创建单线程异步模式的 HTTP 服务端，并可以同时创建 WebSocket 服务端（与HTTP服务端共享端口）。asynHttpServer 支持保持连接（Keep Alive），分块传输协议，支持断点续传，支持304缓存，支持文件表单上传，支持使用aardio编写的网站（ 接口可兼容IIS/FastCGI下）。
+&quot;
+    );  
+}
+serverInfo();
+
+winform.btnStart.oncommand = function(id,event){
+    winform.txtMessage.text = &quot;&quot;;
+    winform.btnStart.disabledText = {&#39;\uF254&#39;;&#39;\uF251&#39;;&#39;\uF252&#39;;&#39;\uF253&#39;;&#39;\uF250&#39;}
+    win.delay(500);
+
+    var port = tonumber(winform.editPort.text);
+    srvHttp.documentRoot = fsys.isDir(winform.editDocumentRoot.text) ? winform.editDocumentRoot.text;
+    srvHttp.userToken = winform.editPassword.text;
+    srvHttp.start(&quot;0.0.0.0&quot;,port);
+    serverInfo();
+
+    winform.btnStart.disabledText = null;
+}
+
+import win.ui.menu;
+winform.txtMessage.enablePopMenu();
+winform.txtMessage.onHyperlink = function(message,href){
+    if( message = 0x202/*_WM_LBUTTONUP*/ ) {
+        import process;
+        process.openUrl(href);
+    }
+}
+
+winform.onDropFiles = function(files){
+    var path = files[1]
+    if(!fsys.isDir(path)){
+        path = fsys.getParentDir(path)
+    }
+    winform.editDocumentRoot.text = path;
+    srvHttp.documentRoot = path;
+    config.winform.txtMessage = path;
+    config.winform.save();
+
+    wsrv.publish(&quot;reload&quot;);
+}
+
+import fsys.dlg.dir;
+winform.btnOpen.oncommand = function(id,event){
+    var dir = fsys.dlg.dir(winform.editDocumentRoot.text,winform)
+    if(dir){
+        winform.editDocumentRoot.text = dir;
+        srvHttp.documentRoot = dir;
+
+        config.winform.txtMessage = dir;
+        config.winform.save();
+        wsrv.publish(&quot;reload&quot;);
+    }
+}
+
+import process;
+winform.btnOpenUpload.oncommand = function(id,event){
+    var path = io.joinpath(winform.editDocumentRoot.text,&quot;upload&quot;)
+    if(io.createDir(path)){
+        process.explore(path)
+    }
+}
+
+import win.ui.simpleWindow2;
+win.ui.simpleWindow2(winform);
+winform.show(); 
+
+import fsys;
+fsys.attrib(&quot;/config/&quot;,,2/*_FILE_ATTRIBUTE_HIDDEN*/)
+
+win.loopMessage();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Web/HTTPServer/asynHttpServer.file.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Web/HTTPServer/asynHttpServer.file.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Web/HTTPServer/asynHttpServer.file.md">Markdown 格式</a>
+</body> 
+</html>

@@ -1,0 +1,112 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - mouse.draw 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - mouse.draw 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>mouse.draw 库模块帮助文档</h1>
+
+<p><a id="mouse.draw"></a></p>
+
+<h2>mouse.draw 成员列表</h2>
+
+<p><a id="mouse.draw.ellipse"></a></p>
+
+<h3>mouse.draw.ellipse(x,y,a,b,precision)</h3>
+
+<p>x,y 中心所在的屏幕坐标(像素)<br>
+a,b 长轴和短轴的长度(像素)<br>
+precision   边缘精细度</p>
+
+<p><a id="mouse.draw.involute"></a></p>
+
+<h3>mouse.draw.involute(fx,fy)</h3>
+
+<p>画渐开线<br>
+fx,fy   宽高,参数可以忽略(默认为屏幕范围)</p>
+
+<p><a id="mouse.draw.involute2"></a></p>
+
+<h3>mouse.draw.involute2(x,y,R,n)</h3>
+
+<p>画渐开线2<br>
+x,y   基圆圆心<br>
+R   基圆半径<br>
+n   渐开线周波数</p>
+
+<p><a id="mouse.draw.line"></a></p>
+
+<h3>mouse.draw.line(x1,y1,x2,y2)</h3>
+
+<p>画直线<br>
+x1,y1 起始坐标<br>
+x2,y2结束坐标</p>
+
+<p><a id="mouse.draw.move"></a></p>
+
+<h3>mouse.draw.move</h3>
+
+<pre><code class="aardio language-aardio">mouse.draw.move = function(x,y){ 
+
+    mouse.move(x,y,true)
+    sleep(10) 
+
+    return true;/*继续画线*/
+}
+</code></pre>
+
+<p><a id="mouse.draw.poly"></a></p>
+
+<h3>mouse.draw.poly(x,y,r,n)</h3>
+
+<p>x,y 中心所在的屏幕坐标(像素)<br>
+r   多边形外接圆半径(像素)<br>
+n   多边形的边数</p>
+
+<p><a id="mouse.draw.rect"></a></p>
+
+<h3>mouse.draw.rect(x1,y1,x2,y2)</h3>
+
+<p>画矩形<br>
+x1,y1 起始坐标<br>
+x2,y2结束坐标</p>
+
+<p><a id="mouse.draw.rectInvolute"></a></p>
+
+<h3>mouse.draw.rectInvolute(step,n,x1,y1,x2,y2)</h3>
+
+<p>画方形仿渐开线<br>
+step   步长<br>
+n       起始正方形边长,指定中间忽略不扫描的正方形边长(默认等于20)<br>
+x1,y1   扫描范围坐标,参数可省略(默认等于 1 X 1)<br>
+x2,y2   扫描范围坐标2,参数可省略(默认等于屏幕大小)</p>
+
+<p><a id="mouse.draw.rectInvolute2"></a></p>
+
+<h3>mouse.draw.rectInvolute2(x,y,m,n=5,k=50)</h3>
+
+<p>x,y   坐标<br>
+m   扫描范围<br>
+n   扫描速度,可省略(默认等于5)<br>
+k   扫描密度,可省略(默认等于50)</p>
+
+<p><a id="mouse.draw.sin"></a></p>
+
+<h3>mouse.draw.sin(w,h)</h3>
+
+<p>画正弦曲线<br>
+w,h 宽,高,可省略(默认取屏幕范围)</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/mouse/draw.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/mouse/draw.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/mouse/draw.md">Markdown 格式</a></p>
+
+</body> 
+</html>

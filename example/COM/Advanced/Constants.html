@@ -1,0 +1,44 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - COM 常量'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - COM 常量</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: COM 常量</h1><pre><code class="aardio language-aardio">//COM 常量
+import console;
+import com;
+
+var conn = com.CreateObject(&quot;ADODB.Connection&quot;) 
+
+//这种方式污染名字空间，不推荐使用
+var tlb = com.GetTypeInfo(conn).GetTypeLib()
+var constants = tlb.ExportConstants()
+table.mix(self,constants)
+
+//测试一下
+console.log( adChar );
+
+/*
+更推荐的是下面这种方式：
+aardio 里任何 COM 对象都可通过属性的方式直接读取相关的常量，例如：
+*/
+console.log( conn.adChar ); 
+console.log( conn.adStateFetching )
+
+//下面这样写也是可以的,这个速度最快,当然一般可以不用这么精打细算
+console.log( 129/*adChar*/)
+
+console.pause();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/COM/Advanced/Constants.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/COM/Advanced/Constants.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/COM/Advanced/Constants.md">Markdown 格式</a>
+</body> 
+</html>

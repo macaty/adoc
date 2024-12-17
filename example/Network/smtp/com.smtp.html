@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio ç¼–ç¨‹è¯­è¨€èŒƒä¾‹ - com.smtp'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio ç¼–ç¨‹è¯­è¨€èŒƒä¾‹ - com.smtp</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio ç¼–ç¨‹è¯­è¨€æ–‡æ¡£é¦–é¡µ"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio æ–‡æ¡£</span></a>
+<h1>aardio èŒƒä¾‹: com.smtp</h1><pre><code class="aardio language-aardio">//com.smtp
+import console;
+import com.smtp;
+
+var smtp = com.smtp();
+
+smtp.from=&quot;1000@qq.com&quot; //å‘ä»¶äºº
+smtp.to=&quot;1000@qq.com&quot; //æ”¶ä»¶äºº
+smtp.ssl = true; 
+
+smtp.server=&quot;smtp.qq.com&quot; //é‚®ä»¶æœåŠ¡å™¨
+smtp.username=&quot;1000@qq.com&quot; //ç”¨æˆ·å
+smtp.password = &quot;1000100010001000&quot; //å¯†ç 
+smtp.subject=&quot;æ ‡é¢˜&quot; //é‚®ä»¶æ ‡é¢˜
+smtp.html=&quot;é‚®ä»¶å†…å®¹&quot; //é‚®ä»¶å†…å®¹
+
+io.open()
+try{
+    console.log(&quot;æ­£åœ¨å‘é€é‚®ä»¶...&quot;)
+    smtp.send();//å‘é€é‚®ä»¶ 
+}
+catch(e){
+    console.log(&quot;å‡ºé”™äº†,è¯·æ­£ç¡®è®¾ç½®smtpæœåŠ¡å™¨ç™»å½•ä¿¡æ¯,å¦‚å¯†ç ç­‰.&quot;,e)
+}
+
+console.pause();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Network/smtp/com.smtp.md  \n\n¸ÃÎÄ¼şÎŞ·¨ÓÃ Teleport Ultra ÏÂÔØ, ÒòÎª ·şÎñÆ÷±¨¸æ·ÃÎÊµÄÎÄ¼şÊÇÒş²ØµÄ¡£  \n\nÄãÏëÔÚ·şÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='https://www.aardio.com/zh-cn/doc/example/Network/smtp/com.smtp.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Network/smtp/com.smtp.md">Markdown æ ¼å¼</a>
+</body> 
+</html>

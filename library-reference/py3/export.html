@@ -1,0 +1,80 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - py3.export 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - py3.export 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>py3.export 库模块帮助文档</h1>
+
+<p><details>  <summary>重要说明</summary>  <p></p>
+
+<h2>一、简介</h2>
+
+<p>当 py3.export() 作为对象构造函数使用时，
+可用于导入参数指定的 aardio 对象为 Python 对象。
+这种「代理对象」在 Python 中将保持对原始 aardio 对象的引用，也就是传址而非传值。</p>
+
+<h2>二、解决了什么问题</h2>
+
+<p>aardio 在与 Python 交互时，
+默认除了布尔值、浮点数值、小于53位的整数值，布尔值转换为纯 aardio 值以外。
+在 aardio 这些对象存为 pyObject，并保留对原始 Python 对象的引用。</p>
+
+<p>而 aardio 对象在自动转换为 Python 对象时，
+默认是传值而非传址，Python 中不保留对 aardio  对象的引用。</p>
+
+<p>py3.export 的特别之处在于可以导出 aardio 模块到 Python，
+在 Python 中引用与操作原始的 aardio 对象。</p>
+
+<p>例如：</p>
+
+<pre><code>py3.export.aardio = {
+    exportFunction = function(){
+
+    } 
+}
+</code></pre>
+
+<p>然后可以在 Python 中 import aardio，调用这个模块的所有成员函数。</p>
+
+<h2>三、py3.export( aardioObject ) 使用要点</h2>
+
+<p>py3.export( aardioObject ) 
+可以导出 aardio 中的 table,cdata,class,function 等 aardio 对象，
+也可以自动导出 aardio 迭代器，适用于 Python 的 for 语句（aardio 迭代器在 Python 中返回 tuple 而非单个值)</p>
+
+<p>对于整型数值 py3.export( number ) 默认转换为 Python 中的整型，而非浮点数。
+其他类型（例如字符串） py3.export 不作转换直接返回。</p>
+
+<p>Python 调用导出函数的返回值也会由 py3.export() 再次导出 。
+Python 调用 aardio 导出函数的参数会自动调用 parseValue() 解析为纯 aardio 值。</p>
+
+<h2>四、使用限制</h2>
+
+<p>注意 py3.export 只能在 Python 启动线程中使用,
+这是 Python 的限制与 aardio 无关！ </p>
+
+<p>aardio 可以支持真多线程，
+也提供了 py3.lock 简化了 Python 全局锁操作，支持除 py3.export 以外的接口。
+但是：py3.export 不支持多线程。</p>
+
+<p>在非 Python 主线程下，py3.export 为 null 值,
+使用 py3.mainThread 也可以检测是否  Python 主线程， </p>
+
+<p>其实 Python 因为有全局锁 —— 无法实现真正的多线程， 
+调用 process.python 创建多进程来替代多线程可能更方便一些。
+</p></details></p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/py3/export.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/py3/export.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/py3/export.md">Markdown 格式</a></p>
+
+</body> 
+</html>

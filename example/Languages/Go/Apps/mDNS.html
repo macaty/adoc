@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - aardio 调用 Go 语言 - mDNS 发现设备'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - aardio 调用 Go 语言 - mDNS 发现设备</title> 
+<link rel="stylesheet" href="../../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 调用 Go 语言 - mDNS 发现设备</h1><pre><code class="aardio language-aardio">//aardio 调用 Go 语言 - mDNS 发现设备
+/*
+请参考：范例 &gt; 网络应用 &gt; wsock &gt; udp &gt; SSDP 发现设备，
+以及 process.adb 扩展库范例。
+*/
+import console.int;
+import golang.mdns;//DLL 源码：\lib\golang\mdns\.go\build.aardio
+
+console.showLoading(&quot; 扫描&quot;)
+//------------------------------------------
+var serviceInfos = golang.mdns.scan()
+console.dumpJson(serviceInfos)
+
+console.showLoading(&quot; 查询&quot;)
+//------------------------------------------
+var serviceInfos = golang.mdns.query(
+    service=&quot;_test._udp&quot;;
+    domain = &quot;local&quot;;
+    timeout = 3000;
+)
+console.dumpJson(serviceInfos)
+
+console.showLoading(&quot; 简单查询&quot;)
+//------------------------------------------
+var serviceInfos = golang.mdns.lookup(&quot;_test._udp&quot;)
+console.dumpJson(serviceInfos) 
+
+//发布 mDNS 服务，注意本机查询不到本机服务
+golang.mdns.startService( 
+    instance = &quot;name&quot;;
+    service = &quot;_httpabcdefg._tcp&quot;; 
+    port = 8888;
+    txt = {&quot;文本&quot;}
+)
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/Go/Apps/mDNS.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/Go/Apps/mDNS.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Languages/Go/Apps/mDNS.md">Markdown 格式</a>
+</body> 
+</html>

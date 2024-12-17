@@ -1,0 +1,104 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 使用 chrome.driver 实现网页自动化操作'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 使用 chrome.driver 实现网页自动化操作</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 使用 chrome.driver 实现网页自动化操作</h1><pre><code class="aardio language-aardio">//使用 chrome.driver 实现网页自动化操作
+import chrome.driver;
+
+/*
+创建 chromeDriver 对象，支 Chrome，Edge（Chromium），Supermium 等相同内核浏览器。 
+自动检测 chromeDriver 版本，并在必要时自动下载匹配版本的chromeDriver。
+*/
+var driver = chrome.driver();  
+//协议文档 https://w3c.github.io/webdriver
+//更多用法 https://bbs.aardio.com/forum.php?mod=viewthread&amp;tid=22544
+
+//排除参数，不显示&quot;正受到自动测试软件的控制&quot;，老版本 Chrome 可能会有更大的弹框，新版没问题
+//driver.removeArguments(&quot;--enable-automation&quot;)
+
+//添加 Chrome 启动参数
+//driver.addArguments(&quot;--start-maximized&quot;) 
+//driver.addArguments(&quot;--incognito&quot;) //无痕模式
+//driver.addArguments(&quot;--headless&quot;) //无痕模式，看不到界面
+
+/*
+Chrome 启动参数参考:
+https://peter.sh/experiments/chromium-command-line-switches/
+*/
+
+//创建会话，打开chrome浏览器，调用参数仅用于演示( 可以省略 )。
+var browser = driver.startBrowser( {
+    loggingPrefs  = { browser = &#39;ALL&#39;, performance = &#39;ALL&#39;, };
+    perfLoggingPrefs = {
+        enableNetwork = true,
+        enablePage= false,
+        enableTimeline = false
+    } 
+});
+
+//打开网页
+browser.go(&quot;https://www.aardio.com/zh-cn/doc/&quot;)
+
+//查找文本输入框,返回的 DOM 对象也可以使用ququerySelector继续查找子节点
+var ele = browser.querySelector(&quot;body&quot;).querySelector(&quot;#search-input&quot;); 
+
+//在网页输入文本，并发送按键。
+ele.sendKeys( &quot;多线程&quot; ,&quot;ENTER&quot;  ) 
+
+/*
+可用键名定义于 chrome.driver.keys ，键名与 key,key.VK 库基本兼容。
+如果要将键名设为普通文本，可改用 ele.setValue( &quot;ChromeDriver&quot;,&quot;ENTER&quot; )
+*/
+
+//调用 JS，并且可以返回值（也可以返回 DOM 节点对象）
+var searchButton = browser.doScript(` 
+        //可以使用arguments访问aardio传来的参数
+        return arguments[0].querySelector(&quot;#search-button&quot;);
+    `
+    ,browser.querySelector(&quot;body&quot;)//可以传任意个调用参数给JS,还可以直接传DOM节点对象
+)
+
+
+//JS 返回的 DOM 节点对象也可以操作控制
+searchButton.click();
+
+//等待网址
+browser.waitUrl(&quot;多线程&quot;);
+
+//打开新窗口(标签页)
+browser.doScript(&quot;window.open(&#39;https://httpbin.org/cookies&#39;)&quot;);
+
+//关闭原来的窗口(标签页)
+browser.close();
+
+//等待网址
+browser.waitUrl(&quot;httpbin&quot;);
+
+//修改 cookie
+var ret,err = browser.cookie( { 
+    cookie = { name = &quot;GUID&quot;,value = &quot;09031171412667840400&quot;,domain=&quot;httpbin.org&quot;} 
+} )
+
+//调用 CDP 命令
+var ret,err = browser.cdp(&quot;Network.getCookies&quot;,{urls={&quot;https://httpbin.org&quot;}},);
+var cookies = ret[[&quot;value&quot;]];
+
+//driver.startBrowser() 指定 loggingPrefs, perfLoggingPrefs
+//var log = browser.se.log(type=&quot;performance&quot;); //获取日志
+
+browser.refresh();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Automation/Web/driver.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Automation/Web/driver.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Automation/Web/driver.md">Markdown 格式</a>
+</body> 
+</html>

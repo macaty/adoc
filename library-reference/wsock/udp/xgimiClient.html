@@ -1,0 +1,220 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - wsock.udp.xgimiClient 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - wsock.udp.xgimiClient 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>wsock.udp.xgimiClient 库模块帮助文档</h1>
+
+<p><a id="wsock.udp.xgimiClient"></a></p>
+
+<h2>wsock.udp.xgimiClient 成员列表</h2>
+
+<p><a id="wsock.udp.xgimiClient.enumDevice"></a></p>
+
+<h3>wsock.udp.xgimiClient.enumDevice(proc)</h3>
+
+<pre><code class="aardio language-aardio">wsock.udp.xgimiClient.enumDevice(  
+    function(deviceIp,friendlyName){  
+
+    }  
+)
+</code></pre>
+
+<p><a id="wsock.udp"></a></p>
+
+<h2>wsock.udp 成员列表</h2>
+
+<p><a id="wsock.udp.xgimiClient"></a></p>
+
+<h3>wsock.udp.xgimiClient()</h3>
+
+<p><a href="#wsockUdpXgimiClientObject">返回对象:wsockUdpXgimiClientObject</a></p>
+
+<p><a id="wsock.udp.xgimiClient"></a></p>
+
+<h3>wsock.udp.xgimiClient(deviceIp)</h3>
+
+<p>创建极米客户端</p>
+
+<p><a id="wsockUdpXgimiClientObject"></a></p>
+
+<h2>wsockUdpXgimiClientObject 成员列表</h2>
+
+<p><a id="wsockUdpXgimiClientObject.clearMemory"></a></p>
+
+<h3>wsockUdpXgimiClientObject.clearMemory()</h3>
+
+<p>清理内存</p>
+
+<p><a id="wsockUdpXgimiClientObject.close"></a></p>
+
+<h3>wsockUdpXgimiClientObject.close()</h3>
+
+<p>关闭客户端对象</p>
+
+<p><a id="wsockUdpXgimiClientObject.controlCmd"></a></p>
+
+<h3>wsockUdpXgimiClientObject.controlCmd(cmd,delayTime)</h3>
+
+<p>发送 controlCmd 消息<br>
+可选用 @delayTime 参数指定执行后等待时间，单位毫秒</p>
+
+<p><a id="wsockUdpXgimiClientObject.delayedShutdown"></a></p>
+
+<h3>wsockUdpXgimiClientObject.delayedShutdown(time)</h3>
+
+<p>延迟关机,参数：<br>
+0=&gt;取消，1=&gt;15分钟，2=&gt;30分钟，3=&gt;60分钟，4=&gt;120分钟</p>
+
+<p><a id="wsockUdpXgimiClientObject.mute"></a></p>
+
+<h3>wsockUdpXgimiClientObject.mute()</h3>
+
+<p>切换静音</p>
+
+<p><a id="wsockUdpXgimiClientObject.openApp"></a></p>
+
+<h3>wsockUdpXgimiClientObject.openApp(app)</h3>
+
+<p>打开 APP</p>
+
+<p><a id="wsockUdpXgimiClientObject.pressBack"></a></p>
+
+<h3>wsockUdpXgimiClientObject.pressBack(repeat)</h3>
+
+<p>按后退键<br>
+可选指定重复次数</p>
+
+<p><a id="wsockUdpXgimiClientObject.pressDown"></a></p>
+
+<h3>wsockUdpXgimiClientObject.pressDown(repeat)</h3>
+
+<p>按下方向键<br>
+可选指定重复次数</p>
+
+<p><a id="wsockUdpXgimiClientObject.pressHome"></a></p>
+
+<h3>wsockUdpXgimiClientObject.pressHome()</h3>
+
+<p>按主页键</p>
+
+<p><a id="wsockUdpXgimiClientObject.pressLeft"></a></p>
+
+<h3>wsockUdpXgimiClientObject.pressLeft(repeat)</h3>
+
+<p>按左方向键<br>
+可选指定重复次数</p>
+
+<p><a id="wsockUdpXgimiClientObject.pressMenu"></a></p>
+
+<h3>wsockUdpXgimiClientObject.pressMenu()</h3>
+
+<p>按菜单键</p>
+
+<p><a id="wsockUdpXgimiClientObject.pressOk"></a></p>
+
+<h3>wsockUdpXgimiClientObject.pressOk(delayTime)</h3>
+
+<p>按确定键<br>
+可选用 @delayTime 参数指定执行后等待时间，单位毫秒</p>
+
+<p><a id="wsockUdpXgimiClientObject.pressPower"></a></p>
+
+<h3>wsockUdpXgimiClientObject.pressPower()</h3>
+
+<p>按电源键</p>
+
+<p><a id="wsockUdpXgimiClientObject.pressRight"></a></p>
+
+<h3>wsockUdpXgimiClientObject.pressRight(repeat)</h3>
+
+<p>按右方向键<br>
+可选指定重复次数</p>
+
+<p><a id="wsockUdpXgimiClientObject.pressUp"></a></p>
+
+<h3>wsockUdpXgimiClientObject.pressUp(repeat)</h3>
+
+<p>按上方向键<br>
+可选指定重复次数</p>
+
+<p><a id="wsockUdpXgimiClientObject.pressVolumeDown"></a></p>
+
+<h3>wsockUdpXgimiClientObject.pressVolumeDown(repeat)</h3>
+
+<p>按降低音量键<br>
+可选指定重复次数</p>
+
+<p><a id="wsockUdpXgimiClientObject.pressVolumeUp"></a></p>
+
+<h3>wsockUdpXgimiClientObject.pressVolumeUp(repeat)</h3>
+
+<p>按增加音量键<br>
+可选指定重复次数</p>
+
+<p><a id="wsockUdpXgimiClientObject.printScreen"></a></p>
+
+<h3>wsockUdpXgimiClientObject.printScreen()</h3>
+
+<p>截屏</p>
+
+<p><a id="wsockUdpXgimiClientObject.reboot"></a></p>
+
+<h3>wsockUdpXgimiClientObject.reboot()</h3>
+
+<p>重启</p>
+
+<p><a id="wsockUdpXgimiClientObject.search"></a></p>
+
+<h3>wsockUdpXgimiClientObject.search(data,delayTime)</h3>
+
+<p>语音搜索，参数指定要搜索的文本<br>
+可选用 @delayTime 参数指定执行后等待时间，单位毫秒</p>
+
+<p><a id="wsockUdpXgimiClientObject.sendKey"></a></p>
+
+<h3>wsockUdpXgimiClientObject.sendKey(keyId,repeat,delayTime)</h3>
+
+<p>发送按键<br>
+可选用 @repeat 参数指定重复次数<br>
+可选用 @delayTime 参数指定执行后等待时间，单位毫秒</p>
+
+<p><a id="wsockUdpXgimiClientObject.sendMessage"></a></p>
+
+<h3>wsockUdpXgimiClientObject.sendMessage(delayTime)</h3>
+
+<p>发送消息,参数可以是 JSON 或表对象<br>
+可选用 @delayTime 参数指定执行后等待时间，单位毫秒</p>
+
+<p><a id="wsockUdpXgimiClientObject.setting"></a></p>
+
+<h3>wsockUdpXgimiClientObject.setting()</h3>
+
+<p>打开设置</p>
+
+<p><a id="wsockUdpXgimiClientObject.shutdown"></a></p>
+
+<h3>wsockUdpXgimiClientObject.shutdown()</h3>
+
+<p>直接关机</p>
+
+<p><a id="wsockUdpXgimiClientObject.turnOfScreen"></a></p>
+
+<h3>wsockUdpXgimiClientObject.turnOfScreen()</h3>
+
+<p>关闭屏幕</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/wsock/udp/xgimiClient.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/wsock/udp/xgimiClient.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/wsock/udp/xgimiClient.md">Markdown 格式</a></p>
+
+</body> 
+</html>

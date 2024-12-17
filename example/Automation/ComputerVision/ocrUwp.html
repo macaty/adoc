@@ -1,0 +1,55 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 屏幕找字简版'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 屏幕找字简版</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 屏幕找字简版</h1><pre><code class="aardio language-aardio">//屏幕找字简版
+
+if( _WIN10_LATER ){ 
+    //注意现在低于 Win10 的系统已经很罕见，并且越来越少。
+
+    //下面调用 Win10 自带 OCR 组件
+    //这实际上是一个 UWP 组件，但没关系 aardio 可以轻松打破此限制。
+    import mouse;
+    import dotNet.ocr;
+    var ocr = dotNet.ocr();
+
+    var ocrResult = ocr.detectScreen()
+    var x,y = ocrResult.findPoint(&quot;把鼠标移动到这里&quot;,0.1);
+    mouse.moveTo(x,y,true)
+
+    /*
+    如果要后台找图、模拟鼠标点击，
+    可以改用 ocr.detectWindow(hwnd) 在指定的窗口找字, 
+    找到按钮以后，可以用 winex.mouse.click(hwnd,x,y) 函数后台点击。
+    这种方法适用很多无句柄窗口（无法通过传统的窗口句柄控制）。
+    */
+}
+else {
+    //调用免费开源的 chineseocr_lite，不要求必须 Win10 系统
+    import mouse;
+    import string.ocrLite;
+    import string.ocrLite.defaultModels;
+
+    //string.ocrLite 主要用于识别中文，识别数字建议改用 dotNet.ocr 或 tesseract 
+    var ocr = string.ocrLite();
+    var ocrResult = ocr.detectScreen();
+    var x,y = ocrResult.findPoint(&quot;把鼠标移动到这里&quot;,0.1);
+    mouse.moveTo(x,y,true);
+}
+
+
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Automation/ComputerVision/ocrUwp.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Automation/ComputerVision/ocrUwp.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Automation/ComputerVision/ocrUwp.md">Markdown 格式</a>
+</body> 
+</html>

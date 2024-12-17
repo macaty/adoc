@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 裁剪图像'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 裁剪图像</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 裁剪图像</h1><pre><code class="aardio language-aardio">//裁剪图像
+import gdip.path;
+import gdip.bitmap;
+import gdip.graphics;
+
+//加载图像
+var srcImage = gdip.bitmap(&quot;C:\Users\jacen\Desktop\abc.png&quot;);
+
+//创建输出图像
+var destImage = gdip.bitmap(srcImage.width, srcImage.height);
+
+//创建画板
+var graphics = destImage.getGraphics();
+
+//创建路径
+var path = gdip.path();
+
+//指定要裁剪的 4 个点，支持不规则形状。
+path.addPolygon({
+    {20,20},
+    {100,100},
+    {100,300},
+    {20,300}
+});
+
+//设置裁剪路径
+graphics.setClipPath(path);
+
+//绘图
+graphics.drawImage(srcImage, 0, 0);
+
+//保存输出图像
+destImage.save(&quot;/裁剪后的图像.png&quot;); 
+
+//释放对象
+path.delete();
+graphics.delete();
+srcImage.dispose();
+destImage.dispose();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Graphics/setClipPath.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Graphics/setClipPath.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Graphics/setClipPath.md">Markdown 格式</a>
+</body> 
+</html>

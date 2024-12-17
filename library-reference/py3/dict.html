@@ -1,0 +1,203 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - py3.dict 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - py3.dict 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>py3.dict 库模块帮助文档</h1>
+
+<p><a id="py3"></a></p>
+
+<h2>py3 成员列表</h2>
+
+<p><a id="py3.dict"></a></p>
+
+<h3>py3.dict</h3>
+
+<p>创建新的字典对象<br>
+此对象继承自 py3.object,<br>
+一般不需要手动创建此对象,aardio 会在传参数时自动转换</p>
+
+<p><a id="py3.dict"></a></p>
+
+<h3>py3.dict()</h3>
+
+<p>创建新字典</p>
+
+<p><a href="#py3DictObject">返回对象:py3DictObject</a></p>
+
+<p><a id="py3.dict"></a></p>
+
+<h3>py3.dict(aardio表)</h3>
+
+<p>数为未指定元表的 aardio 表则转换为 Python 字典</p>
+
+<p><a id="py3.dict"></a></p>
+
+<h3>py3.dict(pyObject对象)</h3>
+
+<p>如果传入 Python 对象是一个 dict,<br>
+返回绑定相同对象的 py3.dict 对象,添加引用计数,对象销毁时负责释放引用计数<br>
+否则将传入对象作为 python 内置函数 dict 的参数并返回 py3.dict 对象<br>
+失败返回 null</p>
+
+<p><a id="py3.dict"></a></p>
+
+<h3>py3.dict(pyObject指针)</h3>
+
+<p>参数为指针则作为 Python 字典指针构建对象,<br>
+不会添加引用计数,但对象销毁时负责释放引用计数</p>
+
+<p><a id="py3DictObject"></a></p>
+
+<h2>py3DictObject 成员列表</h2>
+
+<p><a id="py3DictObject.?"></a></p>
+
+<h3>py3DictObject.?</h3>
+
+<p><a href="object.html#py3Object" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/py3/object.html#py3Object">返回对象:py3Object</a></p>
+
+<p><a id="py3DictObject.checkDict"></a></p>
+
+<h3>py3DictObject.checkDict()</h3>
+
+<p>检测是否字典</p>
+
+<p><a id="py3DictObject.each"></a></p>
+
+<h3>py3DictObject.each()</h3>
+
+<pre><code class="aardio language-aardio">for( kObject,vObject in py3DictObject.each() ){  
+    /*两个都是py.object对象*/  
+}  
+
+[返回对象:py3Object](https://www.aardio.com/zh-cn/doc/library-reference/py3/object.html#py3Object)
+</code></pre>
+
+<p><a id="py3DictObject.eval"></a></p>
+
+<h3>py3DictObject.eval(&quot;python表达式&quot;,locals)</h3>
+
+<p>以该字典为名字空间运行代码并返回值,locals省略则默认为当前字典<br>
+类似python代码中的 execfile(&quot;test.py&quot;, globals, locals)</p>
+
+<p><a id="py3DictObject.eval"></a></p>
+
+<h3>py3DictObject.eval()</h3>
+
+<p><a href="object.html#py3Object" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/py3/object.html#py3Object">返回对象:py3Object</a></p>
+
+<p><a id="py3DictObject.exec"></a></p>
+
+<h3>py3DictObject.exec(&quot;python代码&quot;,locals)</h3>
+
+<p>以该字典为名字空间运行代码,locals省略则默认为当前字典<br>
+类似python代码中的 exec &quot;...&quot; in globals, locals 语句</p>
+
+<p><a id="py3DictObject.getAttr"></a></p>
+
+<h3>py3DictObject.getAttr(&quot;字符串参数&quot;)</h3>
+
+<p>读属性值，也可以用成员操作符获取。<br>
+除数值、布尔值、字符串、字节数组以外的值在 aardio 中存为 py.object 对象</p>
+
+<p><a id="py3DictObject.getAttr"></a></p>
+
+<h3>py3DictObject.getAttr()</h3>
+
+<p><a href="object.html#py3Object" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/py3/object.html#py3Object">返回对象:py3Object</a></p>
+
+<p><a id="py3DictObject.getItem"></a></p>
+
+<h3>py3DictObject.getItem(&quot;键名&quot;)</h3>
+
+<p>返回指定索引的项，也可以用索引下标操作符 [] 取值。<br>
+除数值、布尔值、字符串、字节数组以外的值在 aardio 中存为 py.object 对象</p>
+
+<p><a id="py3DictObject.getItem"></a></p>
+
+<h3>py3DictObject.getItem()</h3>
+
+<p><a href="object.html#py3Object" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/py3/object.html#py3Object">返回对象:py3Object</a></p>
+
+<p><a id="py3DictObject.has"></a></p>
+
+<h3>py3DictObject.has(&quot;字符串参数&quot;)</h3>
+
+<p>是否存在指定的属性</p>
+
+<p><a id="py3DictObject.parseValue"></a></p>
+
+<h3>py3DictObject.parseValue()</h3>
+
+<p>转换为 aardio 表对象</p>
+
+<p><a id="py3DictObject.setAttr"></a></p>
+
+<h3>py3DictObject.setAttr(&quot;字符串参数&quot;,)</h3>
+
+<p>写属性成员的值，也可以用成员操作符赋值。</p>
+
+<p><a id="py3DictObject.setItem"></a></p>
+
+<h3>py3DictObject.setItem(&quot;键名&quot;,)</h3>
+
+<p>修改指定索引的项，也可以用索引下标操作符 [] 赋值。</p>
+
+<p><a id="py3DictObject.statement"></a></p>
+
+<h3>py3DictObject.statement(&quot;python语句&quot;,locals)</h3>
+
+<p>以该字典为名字空间运行单个python语句</p>
+
+<p><a id="py3DictObject.stealPtr"></a></p>
+
+<h3>py3DictObject.stealPtr()</h3>
+
+<p>接管此对象的指针并盗用一次引用计数<br>
+原对象的内部指针被清空,并不再负责释放引用计数<br>
+ steal references</p>
+
+<p><a id="py3DictObject.toList"></a></p>
+
+<h3>py3DictObject.toList()</h3>
+
+<p>转换为 Python 列表  </p>
+
+<p><a href="#py3ListObject">返回对象:py3ListObject</a></p>
+
+<p><a id="py3DictObject.toString"></a></p>
+
+<h3>py3DictObject.toString()</h3>
+
+<p>转换为 aardio 字符串<br>
+也可以直接将对象作为参数传入 tostring 函数转换为字符串</p>
+
+<p><a id="py3DictObject.toTuple"></a></p>
+
+<h3>py3DictObject.toTuple()</h3>
+
+<p>转换为 Python 元组  </p>
+
+<p><a href="#py3TupleObject">返回对象:py3TupleObject</a></p>
+
+<p><a id="py3DictObject.type"></a></p>
+
+<h3>py3DictObject.type()</h3>
+
+<p>返回类型名字</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/py3/dict.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/py3/dict.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/py3/dict.md">Markdown 格式</a></p>
+
+</body> 
+</html>

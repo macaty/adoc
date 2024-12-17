@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - 尾调用优化'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - 尾调用优化</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>尾调用优化</h1>
+
+<p>请看下面的例子：</p>
+
+<pre><code class="aardio language-aardio">function tailCaller (x){ 
+     return tailCallee(x) //调用另外一个函数以后不再做任何事称为尾调用
+}
+</code></pre>
+
+<p>如果一个函数（tailCaller）在调用另外一个函数(tailCallee)以后不再做任何事称为尾调用。被调用函数(tailCallee)结束后不再需要返回原来的函数（tailCaller），所以不需要额外的栈保留调用函数（tailCaller）的数据。</p>
+
+<p>正确的尾调用：</p>
+
+<ul>
+<li>  尾调用必须是在最后一个 return 语句中</li>
+<li>  return 语句后面只能有一个独立的函数调用语句，不能调函数调用作为其他表达式的一部分，例如 <code>return g(x) + 1</code> 不是尾调用。</li>
+<li>  调用参数中可以包含其他表达式。</li>
+</ul>
+
+<p>递归调用函数是很浪费资源的，但是如果使用尾调用就不再需要大量的压栈，无论递归多少次都不会导致栈溢出。</p>
+
+<p>下面是一个递归尾调用的示例：</p>
+
+<pre><code class="aardio language-aardio">import console;
+
+//递归函数
+var function recursion( count ){
+
+    if( count &lt;= 0 ) return count; 
+    else {
+        // 这是一个的尾调用
+        return recursion(  count-1 ); 
+    }
+}
+
+//调用递归函数 
+console.log( recursion( 99999  )  )
+console.pause()
+</code></pre>
+
+<p>如果我们把 <code>return recursion(a-1)</code> 改成 <code>return recursion(a-1)+1</code> 就不再是尾调用了，这会导致内存不断地增加直到栈溢出，然后报错无法继续运行。</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/language-reference/function/tailcall.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/language-reference/function/tailcall.md'" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/function/tailcall.md">Markdown 格式</a></p>
+
+</body> 
+</html>

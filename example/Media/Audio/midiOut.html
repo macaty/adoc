@@ -1,0 +1,85 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 合成并输出音乐'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 合成并输出音乐</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 合成并输出音乐</h1><pre><code class="aardio language-aardio">//合成并输出音乐
+//教程链接:  https://mp.weixin.qq.com/s/Feq3dT7r7G6F0cXlpXpRZQ
+import win.util.lyric;
+var lyric = win.util.lyric();
+lyric.show();
+
+//打开播放设备
+import sys.midiOut;
+var midiOut = sys.midiOut();
+
+/*
+可以在主线程里直接演奏音乐。
+也可以将 midiOut 对象传入一个或多个独立线程，
+要注意 close 函数会同时关闭所有线程的同一设备对象。
+*/
+thread.invoke( function(midiOut,lyric){
+
+    //指定字幕回显函数
+    midiOut.log = function(v) lyric.text = v;
+
+    //不同线程指定不同通道，就可以轻松实现多乐器同时合奏。
+    midiOut.channel = 1;
+
+    //切换乐器，默认设置当前通道（不要用参数@2指定其他通道）
+    midiOut.changeInstrument(12);
+
+    midiOut.play(&quot;
+        两只老虎,
+        1__,2__,3__,1__
+        两只老虎,
+        1__,2__,3__,1__
+        跑得快,
+        3__,4__,5__,__
+        跑得快,
+        3__,4__,5__,__
+        一只没有耳朵
+        5_,6_,5_,4_,3__,1__
+        一只没有尾巴,
+        5_,6_,5_,4_,3__,1__
+        真奇怪
+        2__,&#39;5__,1__,__
+    &quot;,&quot;C4&quot;/* 1=C */,250/* ♩=120 */);  
+
+    /*
+    所有音符、指令、字幕使用逗号、竖线、换行（兼容任何换行符格式）之一分隔。
+    忽略空格、制表符。
+    支持 sys.midiOut.notes 名字空间指定的全部 SPN 音名，SPN音名中的 -1 必须省略，并用小写 s 代替升音符 ♯（Sharp）。
+    支持简谱数字音符记号：1 2 3 4 5 6 7
+    数字音符后可加1~5个单引号以提升 1~5 个八度音高，例如: 1&#39; 2&#39; 3&#39; 4&#39; 5&#39; 6&#39; 7&#39; 
+    数字音符前可加1~5个单引号以降低 1~5 个八度音高，例如：&#39;1 &#39;2 &#39;3 &#39;4 &#39;5 &#39;6 &#39;7 
+    可在音符前加 # 号表示升高半个音，例如：&quot;#1,__,#&#39;5___,#6&#39;___&quot;
+    0 或 REST 为休止符
+    可选在上面用参数 @2 指定音符 1 的实际音高，该参数可用字符串指定 sys.midiOut.notes 定义的音名。
+    一个下划线表示表示一个延时单位：可选在上面用参数 @3 指定延时单位的毫秒数，默认为 250 毫秒
+    前面的音符（或下划线）与后面的下划线可以连起来写，例如 &quot;5,__,_,5___&quot;
+    双下划线 ‗ 表示半个下划线表示的延时，例如&quot;5,‗,5‗&quot;，多个 ‗ 不允许连着写。
+    音符前加前面加负号表示消音（停止演奏指定音符），例如：&quot;5___,-5,#&#39;5___,-#&#39;5&quot;
+    可以直接写函数，函数名后必须有括号 () 且必须有参数，例如：&quot;changeInstrument(10),1__,2__,3__&quot;
+    直接写其他字符串表示字幕。
+    */
+
+    lyric.close();
+
+},midiOut,lyric);
+
+win.loopMessage();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Media/Audio/midiOut.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Media/Audio/midiOut.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Media/Audio/midiOut.md">Markdown 格式</a>
+</body> 
+</html>

@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - HTMLayout behavior用法演示'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - HTMLayout behavior用法演示</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: HTMLayout behavior用法演示</h1><pre><code class="aardio language-aardio">//自定义 behavior
+import win.ui;
+/*DSG{{*/
+winform = win.form(text=&quot;HTMLayout behavior用法演示&quot;;right=599;bottom=399;)
+winform.add()
+/*}}*/
+
+import web.sciter;
+var sciter = web.sciter(winform);
+
+//在 web.sciter.behavior 名字空间添加自定义 behavior
+namespace web.sciter.behavior.sysdnd {  
+
+    onExchangeAcceptDrop = function( ltTarget,ltOwner,x,y,mode,scValueObject,exParams ) {
+        return true; // 返回true表示接受系统拖放
+    }
+
+    onExchangeDrag =  function( ltTarget,ltOwner,x,y,mode,scValueObject,exParams ) { 
+        return true; // 拖而未放时触发，返回true表示支持继续拖放操作
+    }
+
+    onExchangeDrop =  function( ltTarget,ltOwner,x,y,mode,scValueObject,exParams ) {
+        // scValueObject 参数是 web.sciter.valueObject 对象
+        if(mode&amp;2/*_SC_DD_MODE_MOVE*/){
+            ltOwner.innerText = tostring(scValueObject)
+            return true; // 返回true表示支持系统拖放          
+        } 
+    }   
+
+}
+
+sciter.html =/***
+&lt;div class=&quot;sysdnd&quot; 属性=&quot;值&quot;&gt;请将外部文件等内容拖放到这里&lt;/div&gt; 
+***/
+
+sciter.css = /**
+.sysdnd{ 
+    behavior:sysdnd;
+    height:100%%;
+}
+**/
+
+winform.show() 
+win.loopMessage(); 
+
+
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/WebUI/Sciter.JS/exchange.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/WebUI/Sciter.JS/exchange.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/WebUI/Sciter.JS/exchange.md">Markdown 格式</a>
+</body> 
+</html>

@@ -1,0 +1,293 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - 使用函数参数'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - 使用函数参数</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<p>使用函数参数 </p>
+
+<h1>使用函数参数</h1>
+
+<p>请参考：<a href="definitions.html" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/function/definitions.html">定义函数</a></p>
+
+<h2>形参、实参</h2>
+
+<p>形参 ( parameter ) 指函数定义时被包含在括号中具名参数，形参名也是局部有效的变量名字。  </p>
+
+<p>实参（ argument）指调用时括号中包含的实际参数，实际参数是一个右值表达式。</p>
+
+<p>示例：</p>
+
+<pre><code class="aardio language-aardio">//这里的 param1,param2,param3 称为形参，可以将形参看成函数内部的局部变量名字  
+var func = function(param1,param2,param3){ 
+    //形参可以在函数体内部作为局部变量使用 
+    return param1+param2+param3; 
+} 
+
+//这里的2,3,4 称为实参 
+var result = func(2,3,4); 
+</code></pre>
+
+<p>实参的数目如果多于形参的数目，多余部分被丢弃。<br>
+实参的数目如果少于形参的个数，不足的部分添加 null 值。</p>
+
+<p>请参考：<a href="definitions.html#call" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/function/definitions.html#call">调用函数</a>  </p>
+
+<h2>可变参数</h2>
+
+<ol>
+<li><p>在形参列表尾部定义可变参数</p>
+
+<p>在定数定义的**形参**列表尾部，可以用三个连续的圆点（<code>...</code>）表示可变参数（不定参数）。  </p>
+
+<p>可变参数必须是最后一个参数，如下：  </p>
+
+<pre><code class="aardio language-aardio">import console.int;
+
+//使用三个连续的圆点表示任意个数、任意类型的参数
+func = function( a,b, ... ){ 
+
+  //不定参数转换为数组
+  var args = { ... }
+
+  /*
+  args 是典型的可能包含 null 值的稀疏数组（数组索引不连续）。
+  所以应使用 table.range() 取最小最大索引，而不是用 # 取数组长度。 
+  */ 
+  var _,len = table.range(args)
+  console.log(len + &quot;个参数&quot;)
+
+  //遍历这种稀疏数组应当使用 table.eachArgs() 创建迭代器。
+  for i,v in table.eachArgs(args){
+    console.log(i,v)
+  } 
+}
+
+func(1,2,99,888,null,777);
+</code></pre></li>
+<li><p>在调用实参列表尾部指定可变参数</p>
+
+<p>在实参列表尾部可以使用可变参数  </p>
+
+<pre><code class="aardio language-aardio">import console; 
+
+var str =&quot;abcd&quot;
+
+//在实参尾部可以使用不定参数
+console.log( &quot;string.unpack有多个返回值&quot;,string.unpack(str) );
+
+//可变参数不放在最后面就只能取第一个值
+console.log( string.unpack(str) ,&quot;string.unpack的第一个返回值&quot;);
+</code></pre>
+
+<p>注意上面的 <code>string.unpack(str) )</code> 会返回多个值。</p></li>
+</ol>
+
+<h2>在形参中指定默认值参数</h2>
+
+<p>实参可以省略，省略的实参传递 null 空值。如下：  </p>
+
+<pre><code class="aardio language-aardio">import console; 
+
+console.log( , ,2,3,) //下面都是等价的写法
+console.log( null , null , 2 , 3 , null ) //与上面一行的作用相同
+console.log( null , null , 2 , 3  ) //与上面一行的作用相同
+
+console.pause();
+</code></pre>
+
+<p>在调用实参的尾部指定 null 值是无意义的，在 aardio 中 null 等价于未指定任何值。</p>
+
+<p>在函数定义的形参表中，可以为任意位置的参数指定默认值。
+如果省略相应实参，或调用实参为 null 值时，则将对应形参指定的默认值作为实参。  </p>
+
+<p>在其他一些编程语言中，只能为尾部的参数的指定默认参数，而在 aardio 中没有这个限制。</p>
+
+<p>示例如下： </p>
+
+<pre><code class="aardio language-aardio">import console;
+
+//在函数定义的形参中，使用等号指定形参的默认值;
+function func(a,b=123,c=&quot;字符串&quot;,d=2,e=true) {
+  console.log(a,b,c,d,e)
+}
+
+//调用函数
+func(1,,,4,5 )
+</code></pre>
+
+<p>形参默认值仅允许使用以上示例中演示的字面值常量(数值、字符串、布尔值)，不可使用其他变量或表达式。  </p>
+
+<h2>在函数实参中构造表</h2>
+
+<p>当函数的调用实参有且只有一个表构造器（并且表不是结构体），并且第一个名值对使用等号<code>=</code>分隔时，则可以省略外层的 <code>{}</code> 符号。</p>
+
+<p>例如 <code>func( k=1,k2=2 )</code> 等价于   <code>func({ k=1,k2=2 })</code> 。</p>
+
+<p>只要参数中的第一个表构造器的第一个名值对使用<code>=</code>分隔，后面再指定其他表成员时只要符合构造表的语法就可以了。</p>
+
+<p>例如在表参数中添加数组成员可以这样写：</p>
+
+<p><code>func( k=&quot;值&quot;,123,456,789 )</code></p>
+
+<blockquote>
+<p>注意这种写法不是其他编程语言里的&quot;命名参数&quot;, aardio 语言并不存在&quot;命名参数&quot;这个特性。但利用这种语法确实可以模拟命名参数的效果，例如 aardio 在调用 Python 时如果在 Python 函数名前加一个 <code>$</code> 字符就可以利用 aardio 省略  <code>{}</code> 的表参数特性模拟出 Python 命名参数的效果，示例：</p>
+
+<pre><code class="aardio language-aardio">import py3;
+
+var requests = py3.import(&quot;requests&quot;);
+var ses = requests.Session(); 
+var res = ses.$get(verify=false,&quot;https://www.aardio.com&quot;);
+</code></pre>
+</blockquote>
+
+<p>如果一个函数需要较复杂的经常变动的参数，使用表作为参数可以增强函数的可扩展性与可读性。</p>
+
+<p>示例：</p>
+
+<pre><code class="aardio language-aardio">函数调用( 
+    名字 = &quot;某某&quot;; 
+    住址 = &quot;北京&quot;; 
+    家庭成员 =  统计函数( 
+        男 = 6, 
+        女 = 3, 
+        老 = 1, 
+        幼 = 1, 
+    ) 
+);
+</code></pre>
+
+<h2>table 参数的副作用</h2>
+
+<ol>
+<li><p>纯函数</p>
+
+<p>在 aardio 中函数是纯函数（Pure Function）- 输入输出数据流都是显式（Explicit）的。函数从函数外部接受的所有输入信息都通过参数传递到该函数内部；函数输出到函数外部的所有信息都通过返回值传递到该函数外部，即函数的数据只有一个入口( 参数 )，一个出口( 返回值 )。函数可以返回多个值。</p>
+
+<p>aardio 的函数只有输入参数，没有输出参数，不能在函数体中改变实参的数据。 原生 API 函数中的输出参数同样被转换为返回值 - 然后附加到返回值列表中。  </p></li>
+<li><p>具有副作用的 table 参数</p>
+
+<p>在虚函数中传址参数仍然具有副作用。</p>
+
+<p>table 对象在赋值或传参中都是传址的，传递过程中并不改变指向的对象，而table 的成员又是可修改的，这就使 table 对象在函数的传参过程中具有副作用，对 table 参数的成员进行修改会作用到外部对象，并不局限于函数体内部。</p>
+
+<p>如果需要在函数内部改变外部变量的值，那么应当把数据封装到一个 table 对象中。</p>
+
+<pre><code class="aardio language-aardio">import console;
+
+// tab 参数指定 table 对象时具有副作用 
+var set = function (tab) { 
+  //改变 tab 对象的成员值会作用到函数外部
+  tab.x = 256; 
+
+  //输出参数针对的是参数本身，副作用影响的是参数指向的数据
+  //tab 不是输出参数，下面的代码仍然不能改变外部 table 对象
+  t = 123;
+}
+
+var tab ={x=10,y=20}
+
+//table 对象作为参数是按引用传递的
+set(tab); 
+
+//tab.x 被 set 函数改变了
+console.dumpTable(tab); 
+
+console.pause();
+</code></pre>
+
+<p>这个有一点利用潜规则走后门的意思，不声不响的修改了外部的对象，又没有显式的交待，应当尽量避免这么做。</p>
+
+<p>当然，我们也没有必要总是墨守成规，可以使用更友好的函数命名，清晰地注明副作用。</p>
+
+<p>例如：</p>
+
+<pre><code class="aardio language-aardio">import win;
+
+var rc = ::RECT(1,2,3,4);
+
+//函数命名注明了它会改变 rc 中的坐标 
+win.toScreenRect(0,rc);
+</code></pre>
+
+<p>有经验的程序员总是不断提醒我们，多打几个字，减少大堆的麻烦！</p></li>
+</ol>
+
+<h2>输出参数</h2>
+
+<p>虽然从语法上说,aardio 函数没有定义输出参数的这个概念，但是 aardio 函数支持在函数中返回多个返回值，通过返回值也可以实现修改输出参数的值，举个例子：  </p>
+
+<pre><code class="aardio language-aardio">var test = function(x,y){
+    x = x + 1;
+    y = y + 1;
+    return x,y;
+}
+
+var x,y = 1,2;
+
+//通过返回值接收了 x,y 的新值
+x,y = test(x,y);
+
+</code></pre>
+
+<p>aardio 在调用外部 COM 函数，或者外部 API 函数时，同样是使用上面的方法来支持输出参数。  </p>
+
+<p>例如调用 COM 函数时，所有输出参数都会增加一个返回值（ 按参数的前后位置排序返回 ）。调用外部 API 函数时同样的可以自返回值获取输出参数的值，在 API 函数声明中定义为输出参数的参数(参数的原生类型后面加 <code>&amp;</code>，例如<code>int &amp;</code>) - 都会增加一个对应的返回值。  </p>
+
+<p>如果在 aardio 中定义外部 COM 函数或外部API函数需要用到的回调函数时，同样使用多个返回值来修改输出参数的值。  </p>
+
+<p>例如，在调用API函数时定义 stdcall 回调函数，下面的 x 就是输出参数：  </p>
+
+<pre><code class="aardio language-aardio">var stdCallback = raw.tostdcall( 
+    function(x){
+        x = x + 1; 
+        return 123,x;
+    },&quot;int(int &amp;x)&quot; )
+</code></pre>
+
+<p>或者在调用 COM 控件时定义各种回调函数（例如定义 COM 事件）同样是在返回值中指定输出参数的新值。</p>
+
+<p>例如在使用 web.form 时如下定义 NewWindow3 事件：  </p>
+
+<pre><code class="aardio language-aardio">wb.NewWindow3 = function(ppDisp,cancel,flags,urlContext,url ) { 
+
+  //这里 ppDisp,cancel 都是输出参数，下面修改了cancel 的值为true
+  return ppDisp,true;
+};
+</code></pre>
+
+<h2>owner 参数 <a id="owner" href="#owner">&#x23;</a></h2>
+
+<p>aardio 中所有函数都有一个隐藏的 <a href="owner.html" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/function/owner.html">owner 参数</a>，可以认为是第 1 个调用参数前面隐藏的第 0 个参数。</p>
+
+<p>owner 参数不用写在调用参数列表里，由 aardio 自动传递并接收 owner 参数。</p>
+
+<p>owner 指的是在调用成员函数时拥有该成员函数的所有者。</p>
+
+<p>例如执行 <code>object1.method()</code> 时，object1.method 函数接收到的 owner 参数就指向 object1 。  </p>
+
+<p>如果我们先写 <code>object2.method = object1.method()</code> ，然后再调用  <code>object2.method()</code> 时，object2.method 函数接收到的 owner 参数就指向 object2 。</p>
+
+<p>onwer 参数可能指向不同的对象。</p>
+
+<p>请参考：<a href="owner.html" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/function/owner.html">owner</a></p>
+
+<p>在调用一个类构造实例对象时，如果实例对象的成员函数不改变所有者，则调用实例对象的成员函数时，owner 默认指向类的实例对象 - 也就是类主体内的 <a href="../class/class.html#this" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/class/class.html#this">this</a> 对象。区别在于 this 无法在外部改变，而 owner 可以在外部改变的。</p>
+
+<p>在 <a href="../datatype/table/meta.html" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/datatype/table/meta.html">元方法</a> 中 owner  表示左操作数。</p>
+
+<p>在 <a href="../../library-guide/builtin/table/_.html#sort" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/builtin/table/_.html#sort">数组排序</a> 序时，owner 参数表示将要与下一个参数比较的元素。</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/language-reference/function/parameter.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/language-reference/function/parameter.md'" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/function/parameter.md">Markdown 格式</a></p>
+
+</body> 
+</html>

@@ -1,0 +1,343 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 壁纸切换工具'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 壁纸切换工具</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 壁纸切换工具</h1><pre><code class="aardio language-aardio">//壁纸切换工具
+import fonts.fontAwesome;
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;壁纸切换工具&quot;;right=1110;bottom=649;bgcolor=16777215;border=&quot;none&quot;)
+winform.add(
+bk={cls=&quot;bk&quot;;left=-10;top=-4;right=1113;bottom=39;bgcolor=16777215;dl=1;dr=1;dt=1;forecolor=12632256;linearGradient=0;z=2};
+btnBingToday={cls=&quot;plus&quot;;text=&quot;当前图像简介&quot;;left=52;top=614;right=244;bottom=644;border={color=-4144960;radius=8;width=1};color=3947580;db=1;dl=1;font=LOGFONT(h=-13);hide=1;notify=1;z=20};
+btnExplorer={cls=&quot;plus&quot;;text=&quot;在资源管理器中查看&quot;;left=415;top=614;right=607;bottom=644;align=&quot;left&quot;;color=3947580;db=1;dr=1;font=LOGFONT(h=-13);iconStyle={align=&quot;left&quot;;font=LOGFONT(h=-13;name=&#39;FontAwesome&#39;);padding={left=8}};iconText=&#39;\uF0C9&#39;;notify=1;textPadding={left=25};z=14};
+btnFullScreen={cls=&quot;plus&quot;;text=&quot;全屏查看图像&quot;;left=613;top=614;right=742;bottom=644;align=&quot;left&quot;;color=3947580;db=1;dr=1;font=LOGFONT(h=-13);iconStyle={align=&quot;left&quot;;font=LOGFONT(h=-13;name=&#39;FontAwesome&#39;);padding={left=8}};iconText=&#39;\uF109&#39;;notify=1;textPadding={left=25};z=11};
+btnOpen={cls=&quot;plus&quot;;text=&quot;选择新图像&quot;;left=509;top=10;right=621;bottom=40;align=&quot;left&quot;;color=3947580;dl=1;dt=1;font=LOGFONT(h=-13);iconStyle={align=&quot;left&quot;;font=LOGFONT(h=-13;name=&#39;FontAwesome&#39;);padding={left=8}};iconText=&#39;\uF115&#39;;notify=1;textPadding={left=25};z=13};
+btnSetCurrent={cls=&quot;plus&quot;;text=&quot;设为桌面&quot;;left=622;top=10;right=733;bottom=40;align=&quot;left&quot;;color=3947580;dl=1;dt=1;font=LOGFONT(h=-13);iconStyle={align=&quot;left&quot;;font=LOGFONT(h=-13;name=&#39;FontAwesome&#39;);padding={left=8}};iconText=&#39;\uF108&#39;;notify=1;textPadding={left=25};z=10};
+btnSetting={cls=&quot;plus&quot;;text=&quot;系统设置&quot;;left=934;top=614;right=1046;bottom=644;align=&quot;left&quot;;color=3947580;db=1;dr=1;font=LOGFONT(h=-13);iconStyle={align=&quot;left&quot;;font=LOGFONT(h=-13;name=&#39;FontAwesome&#39;);padding={left=8}};iconText=&#39;\uF013&#39;;notify=1;textPadding={left=25};z=15};
+btnView={cls=&quot;plus&quot;;text=&quot;打开图像&quot;;left=748;top=614;right=860;bottom=644;align=&quot;left&quot;;color=3947580;db=1;dr=1;font=LOGFONT(h=-13);iconStyle={align=&quot;left&quot;;font=LOGFONT(h=-13;name=&#39;FontAwesome&#39;);padding={left=8}};iconText=&#39;\uF045&#39;;notify=1;textPadding={left=25};z=12};
+editPath={cls=&quot;plus&quot;;left=14;top=9;right=506;bottom=35;align=&quot;right&quot;;border={bottom=1;color=-6908266};dl=1;dt=1;editable=1;font=LOGFONT(h=-13);textPadding={top=6;bottom=2};z=9};
+imgHistory1={cls=&quot;plus&quot;;left=930;top=94;right=1081;bottom=176;dr=1;dt=1;edge=1;notify=1;z=4};
+imgHistory2={cls=&quot;plus&quot;;left=930;top=193;right=1081;bottom=275;dr=1;dt=1;edge=1;z=5};
+imgHistory3={cls=&quot;plus&quot;;left=930;top=291;right=1081;bottom=373;dr=1;dt=1;edge=1;z=6};
+imgHistory4={cls=&quot;plus&quot;;left=930;top=390;right=1081;bottom=472;dr=1;dt=1;edge=1;z=7};
+imgHistory5={cls=&quot;plus&quot;;left=930;top=488;right=1081;bottom=570;dr=1;dt=1;edge=1;z=8};
+imgWallpaper={cls=&quot;custom&quot;;left=11;top=46;right=903;bottom=609;bgcolor=16777215;db=1;dl=1;dr=1;dt=1;repeat=&quot;stretch&quot;;z=3};
+navBing={cls=&quot;plus&quot;;text=&quot;网络壁纸&quot;;left=995;top=47;right=1072;bottom=70;bgcolor=16777215;border={bottom=1;color=-16744448};dr=1;dt=1;font=LOGFONT(name=&#39;FontAwesome&#39;);z=17};
+navHistory={cls=&quot;plus&quot;;text=&quot;历史记录&quot;;left=918;top=47;right=995;bottom=70;bgcolor=16777215;border={bottom=1;color=-16744448};dr=1;dt=1;font=LOGFONT(name=&#39;FontAwesome&#39;);z=16};
+pageDown={cls=&quot;plus&quot;;text=&#39;\uF0D7&#39;;left=990;top=574;right=1018;bottom=589;color=32768;db=1;dr=1;font=LOGFONT(h=-24;name=&#39;FontAwesome&#39;);hide=1;notify=1;z=19};
+pageUp={cls=&quot;plus&quot;;text=&#39;\uF0D8&#39;;left=987;top=75;right=1015;bottom=90;color=32768;disabled=1;dr=1;dt=1;font=LOGFONT(h=-24;name=&#39;FontAwesome&#39;);hide=1;notify=1;z=18};
+plus3={cls=&quot;plus&quot;;left=918;top=69;right=1096;bottom=594;border={color=-16744448;width=1};clipBk=false;db=1;dr=1;dt=1;z=1}
+)
+/*}}*/
+
+import win.ui.simpleWindow;
+win.ui.simpleWindow(winform);
+winform.show();
+
+var styles = {
+    button = {
+        color={
+            active=0xFF00FF00;
+            default=0xFF3C3C3C;
+            disabled=0xFF6D6D6D;
+            hover=0xFFFF0000
+        }
+    }
+    history = {
+        foreground={ 
+            default=0x00FFA07A;
+            active=0xAAFFA07A;
+            hover=0x66FFA07A
+        }
+    }
+    pageUpDown={
+        color={
+            active=0xFF00FF00;
+            default=0xFF008000;
+            disabled=0xFF6D6D6D;
+            hover=0xFFFF0000
+        }
+    }
+}
+
+for(name,ctrl in winform.eachControl(&quot;plus&quot;,&quot;^btn\w+&quot;) ){
+    ctrl.skin(styles.button)
+}
+
+for(name,ctrl in winform.eachControl(&quot;plus&quot;,&quot;^imgHistory\w+&quot;) ){
+    ctrl.skin(styles.history)
+}
+
+import win.ui.tabs;
+var tbs = win.ui.tabs(winform.navHistory,winform.navBing);
+
+//选项卡样式   
+tbs.skin({
+    foreground={
+        active=0xFFFFFFFF;
+        default=0x00FFFFFF;
+        hover=0xFFCCCCCC; 
+    };
+    border = { 
+        default = {bottom=1;color=0xFF008000} 
+        disabled = {bottom=1;color=0xFF008000} 
+    };
+    checked={
+        foreground={ 
+            default=0x00FFFFFF; 
+        };
+        border = { 
+            default = {left=1;right=1;top=1;color=0xFF008000} 
+            disabled = {left=1;right=1;top=1;color=0xFF008000} 
+        }; 
+    }
+}); 
+
+tbs.selIndex = 1;
+
+import web.rest.jsonLiteClient;
+var http = web.rest.jsonLiteClient();
+var bingImage = http.api(&quot;https://cn.bing.com/HPImageArchive.aspx?format=js&amp;mkt=zh-CN&quot;,&quot;GET&quot;);
+
+var reloadBing = function(){
+    winform.navBing.disabledText = {&#39;\uF254&#39;;&#39;\uF251&#39;;&#39;\uF252&#39;;&#39;\uF253&#39;;&#39;\uF250&#39;;text=&#39;&#39;} 
+    winform.navHistory.disabled = true;
+    winform.pageUp.disabled = true;
+    winform.pageDown.disabled = true;
+
+    var data = bingImage(idx=winform.binWallpaperIndex,n=5);
+    if(data &amp;&amp; data.images){
+        for(i=1;5;1){
+            var img = data.images[i];
+            if(img){ 
+                winform[&quot;imgHistory&quot;+i].backgroundTodayPath = img.copyrightlink
+                    + &quot;&amp;filters=HpDate:%22&quot;+string.replace(img.fullstartdate,&quot;^&quot;+img.startdate,img.startdate+&quot;_&quot;)+&quot;%22&quot;;
+
+                winform[&quot;imgHistory&quot;+i].backgroundUhdPath = &quot;https://cn.bing.com&quot; + img.urlbase + &quot;_UHD.jpg&quot;;
+                winform[&quot;imgHistory&quot;+i].backgroundPath = &quot;https://cn.bing.com&quot; + img.urlbase + &quot;_1920x1080.jpg&quot;;
+                winform[&quot;imgHistory&quot;+i].background = &quot;https://cn.bing.com&quot; + img.urlbase + &quot;_1366x768.jpg&quot;;
+                winform[&quot;imgHistory&quot;+i].tooltip = img.copyright;
+                winform[&quot;imgHistory&quot;+i].tooltipTitle = img.title
+            } 
+        }
+    }
+
+    winform.navBing.disabledText = null;
+    winform.navHistory.disabled = false;
+
+    if(winform.binWallpaperIndex &gt; 0){
+        winform.pageUp.disabled = false;
+    }
+
+    if(winform.binWallpaperIndex &lt; 7){
+        winform.pageDown.disabled = false;
+    }
+}
+winform.binWallpaperIndex = 0;
+
+import sys.wallpaper;
+var reloadHistory = function(init){
+    var history = sys.wallpaper.getHistory();
+
+    for(i=1;5;1){
+        winform[&quot;imgHistory&quot;+i].backgroundUhdPath = null;
+        if(!#history[i]) {
+            winform[&quot;imgHistory&quot;+i].background = null;
+            winform[&quot;imgHistory&quot;+i].backgroundPath = null;
+        }
+        else {
+            winform[&quot;imgHistory&quot;+i].background = history[i];
+            winform[&quot;imgHistory&quot;+i].backgroundPath = history[i] 
+
+            if(i==1 &amp;&amp; init){ 
+                winform.imgWallpaper.image = history[1]; 
+                winform.imgWallpaper.redrawBackground();    
+            }   
+        } 
+    }
+}
+
+reloadHistory(true);
+
+tbs.onSelchange = function(idx,strip,form){
+    if(idx==1){
+        winform.pageUp.hide = true;
+        winform.pageDown.hide = true;
+        winform.btnBingToday.hide = true;
+
+        reloadHistory();
+    }
+    else {
+        winform.pageUp.hide = false;
+        winform.pageDown.hide = false;
+
+        reloadBing();
+    } 
+}
+
+import fsys.dlg;
+winform.btnOpen.oncommand = function(id,event){
+    var path = fsys.dlg.open(&quot;*.jpg|*.jpg&quot;,&quot;请选择图像&quot;);
+    if(path){
+        winform.editPath.text = path;
+        winform.imgWallpaper.image = path;
+        winform.imgWallpaper.redrawBackground();
+    }
+}
+
+import win.ui.tooltip;
+var tooltipCtrl = win.ui.tooltip.balloon(winform);
+var tooltipInfo = tooltipCtrl.addTool(winform.btnBingToday);
+for(name,ctrl in winform.eachControl(&quot;plus&quot;,&quot;^imgHistory\w+&quot;) ){
+    ctrl.oncommand = function(id,event){
+        winform.editPath.text = ctrl.backgroundUhdPath || ctrl.backgroundPath;
+        winform.imgWallpaper.image = ctrl.backgroundPath;
+        winform.imgWallpaper.backgroundTodayPath = ctrl.backgroundTodayPath;
+
+        winform.imgWallpaper.redrawBackground(); 
+        tooltipInfo.setText(ctrl.tooltip:&quot;&quot;);
+        tooltipCtrl.setTitle(ctrl.tooltipTitle:&quot;&quot;);
+
+        winform.btnBingToday.hide = !ctrl.backgroundUhdPath;
+    }
+}
+
+winform.btnSetCurrent.oncommand = function(id,event){
+    var path = winform.editPath.text;
+    if(!#path) return winform.msgboxErr(&quot;请选择图像&quot;);
+
+    winform.btnSetCurrent.disabledText = {&#39;\uF254&#39;;&#39;\uF251&#39;;&#39;\uF252&#39;;&#39;\uF253&#39;;&#39;\uF250&#39;}
+    thread.invokeEx( 
+        function(winform,path){
+            import sys.wallpaper;
+            import inet.http;
+
+            if(string.startWith(path,&quot;http&quot;,true)){ 
+                var filename = string.match(path,&quot;\w+.jpg&quot;);
+                if(!filename) {
+                    winform.btnSetCurrent.disabledText = null;
+                    return winform.msgboxErr(&quot;文件名错误&quot;);
+                } 
+
+                var imgPath = io.appData(&quot;/aardio/wallpaper/&quot; + filename);
+                if(!io.exist(imgPath)){
+                    var data = inet.http.get(path);
+                    if(!data) {
+                        winform.btnSetCurrent.disabledText = null;
+                        return winform.msgboxErr(&quot;下载图像失败&quot;);
+                    }
+                    string.save(imgPath,data); 
+                } 
+
+                path = imgPath;
+            } 
+
+            if(io.exist(path)){
+                sys.wallpaper.setCurrent(path);
+                winform.reloadHistory()
+                thread.delay(500);
+            }
+            else {
+                winform.editPath.editBox.showWarningTip(&quot;请指定正确的图像图像&quot;);
+            }   
+
+        },winform,path
+    )
+
+    winform.btnSetCurrent.disabledText = null;
+}
+
+winform.reloadHistory = function(){
+    if(tbs.selIndex==1){
+        winform.setTimeout( 
+            function(){
+                reloadHistory();
+            },500
+        )               
+    }   
+}
+
+import process;
+winform.btnExplorer.oncommand = function(id,event){
+    var path = winform.editPath.text;
+    if(!#path) return winform.msgboxErr(&quot;请选择图像&quot;);
+
+    if(string.startWith(path,&quot;http&quot;,true)){
+        process.execute(path);
+    }
+    else {
+        process.exploreSelect(path)
+    } 
+}
+
+import process.imageView;
+winform.btnView.oncommand = function(id,event){
+    process.imageView(winform.editPath.text);
+}
+
+winform.btnFullScreen.oncommand = function(id,event){
+    //用 custom 控件显示图像,custom 控件自带全屏功能
+    winform.imgWallpaper.fullscreen(true);
+}
+
+import process.wow64;
+winform.btnSetting.oncommand = function(id,event){
+    process.wow64.explore(&quot;shell:::{ED834ED6-4B5A-4bfe-8F11-A626DCB6A921} -Microsoft.Personalization\pageWallpaper&quot;);
+}
+
+winform.pageUp.skin(styles.pageUpDown)
+winform.pageUp.oncommand = function(id,event){
+
+    winform.binWallpaperIndex = winform.binWallpaperIndex - 1;
+    reloadBing();
+}
+
+winform.pageDown.skin(styles.pageUpDown)
+winform.pageDown.oncommand = function(id,event){
+    winform.binWallpaperIndex = winform.binWallpaperIndex + 1;
+    winform.pageUp.disabled = false;
+
+    reloadBing(); 
+}
+
+winform.btnBingToday.skin(styles.button)
+winform.btnBingToday.oncommand = function(id,event){
+
+    if(winform.imgWallpaper.backgroundTodayPath){
+        thread.invoke( 
+            function(winform,url){
+                winform.btnBingToday.disabledText = {&quot;✶&quot;;&quot;✸&quot;;&quot;✹&quot;;&quot;✺&quot;;&quot;✹&quot;;&quot;✷&quot;};
+
+                import web.rest.htmlClient;
+                var htmlDoc = web.rest.htmlClient.get(url);
+                winform.btnBingToday.disabledText = null;
+
+                if(htmlDoc){
+                    var str = htmlDoc.getEle(&quot;ency_desc_full&quot;).innerText()
+                    winform.msgbox(str)
+                }
+
+
+            },winform,winform.imgWallpaper.backgroundTodayPath
+        )
+
+    } 
+}
+
+win.loopMessage();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/System/Desktop/Wallpapers.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/System/Desktop/Wallpapers.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/System/Desktop/Wallpapers.md">Markdown 格式</a>
+</body> 
+</html>

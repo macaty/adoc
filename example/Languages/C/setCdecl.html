@@ -1,0 +1,55 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - C 语言调用 aardio'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - C 语言调用 aardio</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: C 语言调用 aardio</h1><pre><code class="aardio language-aardio">//C 语言调用 aardio
+
+import tcc;  
+var c = tcc();  
+c.code = /*** 
+    #include &lt;stdio.h&gt;
+    #include &lt;windows.h&gt;
+
+    //该函数在C语言中声明,在aardio中定义 
+    void func_aardio(const wchar_t *u16,const char * u8);
+
+    int main ()
+    {      
+        func_aardio(L&quot;这是C语言中的Unicode(UTF16)字符串&quot;,&quot;这是C语言中的UTF8字符串&quot;);  
+        return 1;
+    } 
+***/
+
+
+//定义一个aardio函数
+import win; 
+aardio_func = function(u16,u8){ 
+    win.msgbox(u16,u8);
+} 
+
+//导入为C语言函数定义
+c.setCdecl(
+    aardio_func, //aardio函数名字
+    &quot;func_aardio&quot;, //在C语言中调用的函数名字 
+    &quot;void(ustring u16,str u8)&quot; //函数原型,与C语言中的声明必须一致.
+)
+
+//链接并运行C语言main()函数
+c.run();
+c.close(); 
+
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/C/setCdecl.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/C/setCdecl.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Languages/C/setCdecl.md">Markdown 格式</a>
+</body> 
+</html>

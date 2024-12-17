@@ -1,0 +1,194 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 系统已注册 COM 类名列表（ 点列标题排序，双击列显示编辑框，右键菜单查看对象文档 ）'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 系统已注册 COM 类名列表（ 点列标题排序，双击列显示编辑框，右键菜单查看对象文档 ）</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 系统已注册 COM 类名列表（ 点列标题排序，双击列显示编辑框，右键菜单查看对象文档 ）</h1><pre><code class="aardio language-aardio">//COM 类名列表
+import win.ui;
+import win.ui.menu;
+import fonts.fontAwesome;
+/*DSG{{*/
+var winform = win.form(text=&quot;系统已注册 COM 类名列表（ 点列标题排序，双击列显示编辑框，右键菜单查看对象文档 ）&quot;;right=1109;bottom=656;bgcolor=16777215;)
+winform.add(
+listview={cls=&quot;listview&quot;;left=17;top=40;right=1094;bottom=640;acceptfiles=1;asel=false;bgcolor=16777215;db=1;dl=1;dr=1;dt=1;edge=1;font=LOGFONT(name=&#39;SimSun&#39;);fullRow=1;gridLines=1;hide=1;msel=false;z=1};
+plusLoading={cls=&quot;plus&quot;;left=372;top=188;right=743;bottom=450;color=15780518;db=1;dl=1;dr=1;dt=1;font=LOGFONT(h=-96;name=&#39;FontAwesome&#39;);iconStyle={font=LOGFONT(h=-96;name=&#39;FontAwesome&#39;)};iconText=&#39;\uF254&#39;;z=2};
+plusSearch={cls=&quot;plus&quot;;left=690;top=6;right=1094;bottom=36;align=&quot;right&quot;;autohscroll=false;autovscroll=false;border={bottom=1;color=-4144960};dr=1;dt=1;editable=1;font=LOGFONT(h=-13);hide=1;textPadding={top=10;bottom=3};valign=&quot;top&quot;;z=3}
+)
+/*}}*/
+
+winform.listview.insertColumn(&quot;类名&quot;,250) 
+winform.listview.insertColumn(&quot;CLSID&quot;,250)
+winform.listview.insertColumn(&quot;控件&quot;,70)  
+winform.listview.insertColumn(&quot;描述&quot;,70)  
+winform.listview.insertColumn(&quot;路径&quot;,-1) 
+
+thread.invoke( 
+    function(winform){
+        import win.reg;
+        import win.guid;
+
+        winform.plusLoading.hide = false;
+        winform.plusSearch.hide = true;
+        winform.listview.hide = true;
+        winform.plusLoading.disabledText = {&#39;\uF254&#39;;&#39;\uF251&#39;;&#39;\uF252&#39;;&#39;\uF253&#39;;&#39;\uF250&#39;} 
+
+        var items = {}; 
+        var progIds = {}
+        var onOpenRegClsId = function(regClsId,clsId){
+            var regClsIdProgId = regClsId.open(&quot;ProgID&quot;,true) 
+            if(regClsIdProgId){ 
+
+                var progId = regClsIdProgId.queryValue(&quot;&quot;) 
+                if(progId &amp;&amp; !progIds[progId]){ 
+                    progIds[progId] = true;
+
+                    var description;
+                    var regProgId = win.regReader(&quot;HKEY_CLASSES_ROOT\&quot;+progId) 
+                    if(regProgId){
+                        description = regProgId.queryValue(&quot;&quot;); 
+                        regProgId.close();
+                    }
+
+                    var path
+                    var regServer32 = regClsId.open(&quot;InprocServer32&quot;,true) || regClsId.open(&quot;LocalServer32&quot;,true) 
+                    if(regServer32){
+                        path = regServer32.queryValue(&quot;&quot;); 
+                        regServer32.close();
+                    }
+
+                    var clsIdKeys = regClsId.keys(); 
+                    table.push(items,{progId;clsId;
+                                (table.find(clsIdKeys,&quot;Control&quot;)||table.find(clsIdKeys,&quot;ToolboxBitmap32&quot;))?&quot;是&quot;:&quot;否&quot;;
+                                description||&quot;&quot;;
+                                path||&quot;&quot;;
+                    });      
+                }
+                regClsIdProgId.close() 
+            }   
+            regClsId.close()
+        }
+
+        var clsIds = {}
+        var reg = win.regReader(&quot;HKEY_CLASSES_ROOT\CLSID\&quot;) 
+        for(clsId,writetime in reg.eachKey() ){ 
+            if(!string.match(clsId,&quot;%{}&quot;)){
+                continue ;
+            }
+
+            try{
+                var regClsId = reg.open(clsId,true);    
+                if(regClsId) onOpenRegClsId(regClsId,clsId); 
+                clsIds[clsId] = true;
+            }
+        }
+
+        var reg = win.regReaderWow64(&quot;HKEY_CLASSES_ROOT\CLSID\&quot;) 
+        for(clsId,writetime in reg.eachKey() ){ 
+            if(!string.match(clsId,&quot;%{}&quot;)){
+                continue ;
+            }
+
+            if(clsIds[clsId]){
+                continue ;
+            }
+
+            try{
+                var regClsId = reg.open(clsId,true);    
+                if(regClsId) onOpenRegClsId(regClsId,clsId); 
+            }
+        }
+
+        ..table.sort(items,lambda(a) owner[1]&lt;a[1])
+        winform.listview.items = items;
+        winform.listview.itemData = items;
+        winform.listview.itemSortColumn = 1;
+        winform.plusLoading.disabledText = null;
+        winform.plusLoading.hide = true;
+        winform.listview.hide = false;
+        winform.plusSearch.hide = false;
+        winform.plusSearch.setFocus();
+    },winform
+)
+
+import win.imageList;
+var iml = win.imageList(16, 15);
+iml.add(&#39;GIF\56\57a \0\15\0\x80\0\0\x80\x80\x80\xff\0\xff\33\xf9\4\0\0\0\0\0\44\0\0\0\0 \0\15\0\0\2\31\x8c
+\x8f\xa9\xcb\xed\15\xa3\x9c\xb4N\xf0\x80\xde\56k\xbfA\\\xd7\x84 \x97Y\xea\xca\xb6\xee\11\xc7F\1\0;&#39;, 0xff00ff);
+winform.listview.setColumnImageList(iml);
+
+var reloadItemData = function(){
+    var sortColumn = winform.listview.itemSortColumn;
+    var word = string.trim(winform.plusSearch.text);
+    var itemData = winform.listview.itemData;
+    if(#word){
+        word = &quot;@@&quot; + word;
+        itemData = table.filter(itemData
+                ,lambda(v) string.find(v[1],word) || string.find(v[2],word) || string.find(v[4],word) || string.find(v[5],word) ) 
+    }
+
+    if(sortColumn&lt;0){
+        var i = math.abs(sortColumn)
+        ..table.sort(itemData,lambda(a) owner[i]&gt;a[i])
+    }
+    else {
+        ..table.sort(itemData,lambda(a) owner[sortColumn]&lt;a[sortColumn])
+    } 
+
+    winform.listview.replaceItems(itemData)
+}
+winform.listview.enableDoubleBuffering();
+
+import com.tlbDoc;
+winform.popmenu = win.ui.popmenu(winform);//创建弹出菜单
+winform.popmenu.add(&#39;创建控件并列出成员&#39;,function(id){
+    var clsId = winform.listview.getItemText( winform.listview.selIndex,2 );
+    if(clsId){  
+        var obj = com.CreateObject(clsId)
+        if(obj){
+            import console 
+            console.setTitle(&quot;COM对象:&quot; +  winform.listview.getItemText( winform.listview.selIndex,1 ) + &quot; &quot; + clsId)
+            com.tlbDoc.dump(obj);
+        }
+    }
+});
+
+import win.ui.grid;
+var grid = win.ui.grid(winform.listview);
+/*
+用户点击列头排序时会触发下面的事件，
+column 为例号，desc 参数指定是否倒序，返回 true 允许当前列排序
+*/
+grid.onSortColumn = function(column,desc){
+    winform.listview.itemSortColumn = desc ?-column : column;
+    reloadItemData();
+    return true;
+}
+
+//右键菜单
+grid.onRightClick = function(){
+    winform.popmenu.popup();
+}
+
+winform.plusSearch.setCueBannerText(&quot;输入类名关键字（支持模式匹配）&quot;)
+
+import win.debounce;
+winform.plusSearch.editBox.onChange = win.debounce(function(){
+    if(#winform.plusSearch.text) reloadItemData();
+},500) 
+
+winform.show();
+win.loopMessage();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/COM/ProgIDs.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/COM/ProgIDs.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/COM/ProgIDs.md">Markdown 格式</a>
+</body> 
+</html>

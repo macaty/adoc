@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 控制台程序范例 - 出牌'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 控制台程序范例 - 出牌</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 控制台程序范例 - 出牌</h1><pre><code class="aardio language-aardio">//控制台程序范例 - 出牌
+import console;
+
+//组合（笛卡尔积）
+import table.product;
+product = function(a,b){
+    var t = {};
+    for(c in table.product(a,b) )
+        table.push(t,c[1] ++ c[2] );
+
+    return t;
+}
+
+//洗牌（ 数组乱序 ）
+var cards = table.shuffle( product(
+     {&quot;红桃&quot;; &quot;方块&quot;; &quot;黑桃&quot;; &quot;梅花&quot;},
+     {&quot;A&quot;; &quot;2&quot;; &quot;3&quot;; &quot;4&quot;; &quot;5&quot;; &quot;6&quot;; &quot;7&quot;; &quot;8&quot;; &quot;9&quot;; &quot;10&quot;; &quot;J&quot;; &quot;Q&quot;; &quot;K&quot; }
+) );
+
+
+for( i=1;5 ){ 
+    console.log( table.remove(cards) );//下一张牌 
+    sleep(300);
+} 
+
+console.pause();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Console/PlayCards.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Console/PlayCards.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Console/PlayCards.md">Markdown 格式</a>
+</body> 
+</html>

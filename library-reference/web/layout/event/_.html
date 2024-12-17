@@ -1,0 +1,1052 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - web.layout.event 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - web.layout.event 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>web.layout.event 库模块帮助文档</h1>
+
+<p><a id="web.layout.event"></a></p>
+
+<h2>web.layout.event 成员列表</h2>
+
+<p><a id="web.layout.event.KEY_PARAMS"></a></p>
+
+<h3>web.layout.event.KEY_PARAMS()</h3>
+
+<p>创建鼠标事件结构体参数,  </p>
+
+<p><a href="#hlKeyParamsObject">返回对象:hlKeyParamsObject</a></p>
+
+<p><a id="web.layout.event.MOUSE_PARAMS"></a></p>
+
+<h3>web.layout.event.MOUSE_PARAMS()</h3>
+
+<p>创建鼠标事件结构体参数,  </p>
+
+<p><a href="#hlMouseParamsObject">返回对象:hlMouseParamsObject</a></p>
+
+<p><a id="hlKeyParamsObject"></a></p>
+
+<h2>hlKeyParamsObject 成员列表</h2>
+
+<p><a id="hlKeyParamsObject.alt_state"></a></p>
+
+<h3>hlKeyParamsObject.alt_state</h3>
+
+<p>控制键状态</p>
+
+<p><a id="hlKeyParamsObject.cmd"></a></p>
+
+<h3>hlKeyParamsObject.cmd</h3>
+
+<p>命令ID</p>
+
+<p><a id="hlKeyParamsObject.key_code"></a></p>
+
+<h3>hlKeyParamsObject.key_code</h3>
+
+<p>虚拟键码</p>
+
+<p><a id="hlKeyParamsObject.pointer"></a></p>
+
+<h3>hlKeyParamsObject.pointer</h3>
+
+<p>结构体指针地址</p>
+
+<p><a id="hlKeyParamsObject.target"></a></p>
+
+<h3>hlKeyParamsObject.target</h3>
+
+<p>触发事件节点</p>
+
+<p><a id="hlMouseParamsObject"></a></p>
+
+<h2>hlMouseParamsObject 成员列表</h2>
+
+<p><a id="hlMouseParamsObject.alt_state"></a></p>
+
+<h3>hlMouseParamsObject.alt_state</h3>
+
+<p>控制键状态</p>
+
+<p><a id="hlMouseParamsObject.button_state"></a></p>
+
+<h3>hlMouseParamsObject.button_state</h3>
+
+<p>按键状态<br>
+在onMouseWheel事件中表示滚轮数据</p>
+
+<p><a id="hlMouseParamsObject.cmd"></a></p>
+
+<h3>hlMouseParamsObject.cmd</h3>
+
+<p>命令ID</p>
+
+<p><a id="hlMouseParamsObject.cursor_type"></a></p>
+
+<h3>hlMouseParamsObject.cursor_type</h3>
+
+<p>指针</p>
+
+<p><a id="hlMouseParamsObject.dragging"></a></p>
+
+<h3>hlMouseParamsObject.dragging</h3>
+
+<p>正在被拖放的节点,节点要在CSS属性draggable中启用拖动<br>
+该节点不为空值是,isdragging为真</p>
+
+<p><a id="hlMouseParamsObject.dragging_mode"></a></p>
+
+<h3>hlMouseParamsObject.dragging_mode</h3>
+
+<p>拖动类型,<br>
+1 _HL_DRAGGING_MOVE 或 _HL_DRAGGING_COPY</p>
+
+<p><a id="hlMouseParamsObject.is_on_icon"></a></p>
+
+<h3>hlMouseParamsObject.is_on_icon</h3>
+
+<p>是否位于图标上,<br>
+这里指的是前景图片,并具有 no-repeat 样式</p>
+
+<p><a id="hlMouseParamsObject.isdragging"></a></p>
+
+<h3>hlMouseParamsObject.isdragging</h3>
+
+<p>是否正在拖动,无论节点CSS是否指定draggable属性</p>
+
+<p><a id="hlMouseParamsObject.pointer"></a></p>
+
+<h3>hlMouseParamsObject.pointer</h3>
+
+<p>结构体指针地址</p>
+
+<p><a id="hlMouseParamsObject.pos"></a></p>
+
+<h3>hlMouseParamsObject.pos</h3>
+
+<p>节点坐标  </p>
+
+<p><a href="#pointObject">返回对象:pointObject</a></p>
+
+<p><a id="hlMouseParamsObject.pos_document"></a></p>
+
+<h3>hlMouseParamsObject.pos_document</h3>
+
+<p>文档坐标  </p>
+
+<p><a href="#pointObject">返回对象:pointObject</a></p>
+
+<p><a id="hlMouseParamsObject.target"></a></p>
+
+<h3>hlMouseParamsObject.target</h3>
+
+<p>触发事件节点</p>
+
+<p><a id="weblayoutObject"></a></p>
+
+<h2>weblayoutObject 成员列表</h2>
+
+<p><a id="weblayoutObject.onActiveChild"></a></p>
+
+<h3>weblayoutObject.onActiveChild</h3>
+
+<pre><code class="aardio language-aardio">weblayoutObject.onActiveChild = function (ltTarget,ltOwner,reason,behaviorParams) {  
+
+}
+</code></pre>
+
+<p><a id="weblayoutObject.onAnimation"></a></p>
+
+<h3>weblayoutObject.onAnimation</h3>
+
+<pre><code class="aardio language-aardio">weblayoutObject.onAnimation = function (ltTarget,ltOwner,reason,behaviorParams) {  
+
+}
+</code></pre>
+
+<p><a id="weblayoutObject.onApplicationEvent"></a></p>
+
+<h3>weblayoutObject.onApplicationEvent</h3>
+
+<pre><code class="aardio language-aardio">weblayoutObject.onApplicationEvent = function (ltTarget,ltOwner,reason,behaviorParams) {  
+    /*postEvent或sendEvent发出一大于0x100的消息*/  
+}
+</code></pre>
+
+<p><a id="weblayoutObject.onAttach"></a></p>
+
+<h3>weblayoutObject.onAttach</h3>
+
+<pre><code class="aardio language-aardio">weblayoutObject.onAttach = function( ltOwner ){
+
+    return true 
+}
+</code></pre>
+
+<p><a id="weblayoutObject.onButtonClick"></a></p>
+
+<h3>weblayoutObject.onButtonClick</h3>
+
+<pre><code class="aardio language-aardio">weblayoutObject.onButtonClick = function (ltTarget,ltOwner,reason,behaviorParams) {  
+
+}
+</code></pre>
+
+<p><a id="weblayoutObject.onButtonPress"></a></p>
+
+<h3>weblayoutObject.onButtonPress</h3>
+
+<pre><code class="aardio language-aardio">weblayoutObject.onButtonPress = function (ltTarget,ltOwner,reason,behaviorParams) {  
+
+}
+</code></pre>
+
+<p><a id="weblayoutObject.onButtonStateChanged"></a></p>
+
+<h3>weblayoutObject.onButtonStateChanged</h3>
+
+<pre><code class="aardio language-aardio">weblayoutObject.onButtonStateChanged = function (ltTarget,ltOwner,reason,behaviorParams) {  
+
+}
+</code></pre>
+
+<p><a id="weblayoutObject.onClosePopup"></a></p>
+
+<h3>weblayoutObject.onClosePopup</h3>
+
+<pre><code class="aardio language-aardio">weblayoutObject.onClosePopup = function (ltTarget,ltOwner,reason,behaviorParams) {  
+
+}
+</code></pre>
+
+<p><a id="weblayoutObject.onContextMenuRequest"></a></p>
+
+<h3>weblayoutObject.onContextMenuRequest</h3>
+
+<pre><code class="aardio language-aardio">weblayoutObject.onContextMenuRequest = function (ltTarget,ltOwner,reason,behaviorParams) {  
+    var ltPopupOwner = ..web.layout.element( behaviorParams.he )  
+
+}
+</code></pre>
+
+<p><a id="weblayoutObject.onContextMenuSetup"></a></p>
+
+<h3>weblayoutObject.onContextMenuSetup</h3>
+
+<pre><code class="aardio language-aardio">weblayoutObject.onContextMenuSetup = function (ltTarget,ltOwner,reason,behaviorParams) {  
+    var ltPopupOwner = ..web.layout.element( behaviorParams.he )  
+
+}
+</code></pre>
+
+<p><a id="weblayoutObject.onDataArrived"></a></p>
+
+<h3>weblayoutObject.onDataArrived</h3>
+
+<pre><code class="aardio language-aardio">weblayoutObject.onDataArrived = function(ltTarget,ltOwner,data,dataType,status,url){  
+    return true;/*返回true撤消数据不显示内容*/  
+}
+</code></pre>
+
+<p><a id="weblayoutObject.onDetach"></a></p>
+
+<h3>weblayoutObject.onDetach</h3>
+
+<pre><code class="aardio language-aardio">weblayoutObject.onDetach = function( ltOwner ){
+
+    return true 
+}
+</code></pre>
+
+<p><a id="weblayoutObject.onDisabledStateChanged"></a></p>
+
+<h3>weblayoutObject.onDisabledStateChanged</h3>
+
+<pre><code class="aardio language-aardio">weblayoutObject.onDisabledStateChanged = function (ltTarget,ltOwner,reason,behaviorParams) {  
+
+}
+</code></pre>
+
+<p><a id="weblayoutObject.onDragEnter"></a></p>
+
+<h3>weblayoutObject.onDragEnter</h3>
+
+<pre><code class="aardio language-aardio">weblayoutObject.onDragEnter = function (ltTarget,ltOwner,x,y,ltMouseParams) {  
+
+}
+</code></pre>
+
+<p><a id="weblayoutObject.onDragLeave"></a></p>
+
+<h3>weblayoutObject.onDragLeave</h3>
+
+<pre><code class="aardio language-aardio">weblayoutObject.onDragLeave = function (ltTarget,ltOwner,x,y,ltMouseParams) {  
+
+}
+</code></pre>
+
+<p><a id="weblayoutObject.onDragRequest"></a></p>
+
+<h3>weblayoutObject.onDragRequest</h3>
+
+<pre><code class="aardio language-aardio">weblayoutObject.onDragRequest = function (ltTarget,ltOwner,x,y,ltMouseParams) {  
+
+}
+</code></pre>
+
+<p><a id="weblayoutObject.onDrawBackground"></a></p>
+
+<h3>weblayoutObject.onDrawBackground</h3>
+
+<pre><code class="aardio language-aardio">weblayoutObject.onDrawBackground = function(ltOwner,hdc,rc){
+
+}
+</code></pre>
+
+<p><a id="weblayoutObject.onDrawContent"></a></p>
+
+<h3>weblayoutObject.onDrawContent</h3>
+
+<pre><code class="aardio language-aardio">weblayoutObject.onDrawContent = function(ltOwner,hdc,rc){
+
+}
+</code></pre>
+
+<p><a id="weblayoutObject.onDrawForeground"></a></p>
+
+<h3>weblayoutObject.onDrawForeground</h3>
+
+<pre><code class="aardio language-aardio">weblayoutObject.onDrawForeground = function(ltOwner,hdc,rc){
+
+}
+</code></pre>
+
+<p><a id="weblayoutObject.onDrop"></a></p>
+
+<h3>weblayoutObject.onDrop</h3>
+
+<pre><code class="aardio language-aardio">weblayoutObject.onDrop = function (ltTarget,ltOwner,x,y,ltMouseParams) {  
+
+}
+</code></pre>
+
+<p><a id="weblayoutObject.onEditValueChanged"></a></p>
+
+<h3>weblayoutObject.onEditValueChanged</h3>
+
+<pre><code class="aardio language-aardio">weblayoutObject.onEditValueChanged = function (ltTarget,ltOwner,reason,behaviorParams) {  
+
+}
+</code></pre>
+
+<p><a id="weblayoutObject.onEditValueChanging"></a></p>
+
+<h3>weblayoutObject.onEditValueChanging</h3>
+
+<pre><code class="aardio language-aardio">weblayoutObject.onEditValueChanging = function (ltTarget,ltOwner,reason,behaviorParams) {  
+
+}
+</code></pre>
+
+<p><a id="weblayoutObject.onElementCollapsed"></a></p>
+
+<h3>weblayoutObject.onElementCollapsed</h3>
+
+<pre><code class="aardio language-aardio">weblayoutObject.onElementCollapsed = function (ltTarget,ltOwner,reason,behaviorParams) {  
+
+}
+</code></pre>
+
+<p><a id="weblayoutObject.onElementControlCreated"></a></p>
+
+<h3>weblayoutObject.onElementControlCreated</h3>
+
+<pre><code class="aardio language-aardio">weblayoutObject.onElementControlCreated = function (ltTarget,ltOwner,reason,behaviorParams) {  
+    var ltCtrl = ltOwner.getCtrl();/*自定义控件已创建*/  
+}
+</code></pre>
+
+<p><a id="weblayoutObject.onElementExpanded"></a></p>
+
+<h3>weblayoutObject.onElementExpanded</h3>
+
+<pre><code class="aardio language-aardio">weblayoutObject.onElementExpanded = function (ltTarget,ltOwner,reason,behaviorParams) {  
+
+}
+</code></pre>
+
+<p><a id="weblayoutObject.onExchangeDrag"></a></p>
+
+<h3>weblayoutObject.onExchangeDrag</h3>
+
+<pre><code class="aardio language-aardio">weblayoutObject.onExchangeDrag = function( ltTarget,ltOwner,x,y,cmd,dataTypes,fetchData,exParams ) {    
+    return true;/*这里返回true才会显示可拖放鼠标指针*/  
+}
+</code></pre>
+
+<p><a id="weblayoutObject.onExchangeDragEnter"></a></p>
+
+<h3>weblayoutObject.onExchangeDragEnter</h3>
+
+<pre><code class="aardio language-aardio">weblayoutObject.onExchangeDragEnter = function( ltTarget,ltOwner,x,y,cmd,dataTypes,fetchData,exParams ) {    
+    return true;  
+}
+</code></pre>
+
+<p><a id="weblayoutObject.onExchangeDragLeave"></a></p>
+
+<h3>weblayoutObject.onExchangeDragLeave</h3>
+
+<pre><code class="aardio language-aardio">weblayoutObject.onExchangeDragLeave = function( ltTarget,ltOwner,x,y,cmd,dataTypes,fetchData,exParams ) {    
+    return true;  
+}
+</code></pre>
+
+<p><a id="weblayoutObject.onExchangeDrop"></a></p>
+
+<h3>weblayoutObject.onExchangeDrop</h3>
+
+<pre><code class="aardio language-aardio">weblayoutObject.onExchangeDrop = function( ltTarget,ltOwner,x,y,cmd,dataTypes,fetchData,exParams ) {   
+    var data,dataType = fetchData( _HL_EXF/*可选指定支持的拖放数据类型*/ );  
+    if( data ) {  
+        return true;  
+    }  
+}
+</code></pre>
+
+<p><a id="weblayoutObject.onFocusGot"></a></p>
+
+<h3>weblayoutObject.onFocusGot</h3>
+
+<pre><code class="aardio language-aardio">weblayoutObject.onFocusGot = function (ltTarget,ltOwner,focusParams) {  
+
+}
+</code></pre>
+
+<p><a id="weblayoutObject.onFocusLost"></a></p>
+
+<h3>weblayoutObject.onFocusLost</h3>
+
+<pre><code class="aardio language-aardio">weblayoutObject.onFocusLost = function (ltTarget,ltOwner,focusParams) {  
+
+}
+</code></pre>
+
+<p><a id="weblayoutObject.onFormReset"></a></p>
+
+<h3>weblayoutObject.onFormReset</h3>
+
+<pre><code class="aardio language-aardio">weblayoutObject.onFormReset = function (ltTarget,ltOwner,reason,behaviorParams) {  
+
+}
+</code></pre>
+
+<p><a id="weblayoutObject.onFormSubmit"></a></p>
+
+<h3>weblayoutObject.onFormSubmit</h3>
+
+<pre><code class="aardio language-aardio">weblayoutObject.onFormSubmit = function (ltTarget,ltOwner,reason,behaviorParams) {  
+    var formData = behaviorParams.data.getValue();  
+}
+</code></pre>
+
+<p><a id="weblayoutObject.onFrameDocumentComplete"></a></p>
+
+<h3>weblayoutObject.onFrameDocumentComplete</h3>
+
+<pre><code class="aardio language-aardio">weblayoutObject.onFrameDocumentComplete = function (ltTarget,ltOwner,reason,behaviorParams) {  
+
+}
+</code></pre>
+
+<p><a id="weblayoutObject.onGesturePan"></a></p>
+
+<h3>weblayoutObject.onGesturePan</h3>
+
+<pre><code class="aardio language-aardio">weblayoutObject.onGesturePan = function (ltTarget,ltOwner,ltGestureParams) {  
+    /*平移*/  
+}
+</code></pre>
+
+<p><a id="weblayoutObject.onGestureRequest"></a></p>
+
+<h3>weblayoutObject.onGestureRequest</h3>
+
+<pre><code class="aardio language-aardio">weblayoutObject.onGestureRequest = function (ltTarget,ltOwner,ltGestureParams) {  
+    ltGestureParams.flags = 0xFFFF/*_HL_GESTURE_FLAGS_ALL*/  
+    return true;  
+}
+</code></pre>
+
+<p><a id="weblayoutObject.onGestureRotate"></a></p>
+
+<h3>weblayoutObject.onGestureRotate</h3>
+
+<pre><code class="aardio language-aardio">weblayoutObject.onGestureRotate = function (ltTarget,ltOwner,ltGestureParams) {  
+    /*旋转*/  
+}
+</code></pre>
+
+<p><a id="weblayoutObject.onGestureTap1"></a></p>
+
+<h3>weblayoutObject.onGestureTap1</h3>
+
+<pre><code class="aardio language-aardio">weblayoutObject.onGestureTap1 = function (ltTarget,ltOwner,ltGestureParams) {  
+    /*单击*/  
+}
+</code></pre>
+
+<p><a id="weblayoutObject.onGestureTap2"></a></p>
+
+<h3>weblayoutObject.onGestureTap2</h3>
+
+<pre><code class="aardio language-aardio">weblayoutObject.onGestureTap2 = function (ltTarget,ltOwner,ltGestureParams) {  
+    /*双击*/  
+}
+</code></pre>
+
+<p><a id="weblayoutObject.onGestureZoom"></a></p>
+
+<h3>weblayoutObject.onGestureZoom</h3>
+
+<pre><code class="aardio language-aardio">weblayoutObject.onGestureZoom = function (ltTarget,ltOwner,ltGestureParams) {  
+    /*缩放*/  
+}
+</code></pre>
+
+<p><a id="weblayoutObject.onHyperlinkClick"></a></p>
+
+<h3>weblayoutObject.onHyperlinkClick</h3>
+
+<pre><code class="aardio language-aardio">weblayoutObject.onHyperlinkClick = function (ltTarget,ltOwner,reason,behaviorParams) {  
+
+}
+</code></pre>
+
+<p><a id="weblayoutObject.onInitDataView"></a></p>
+
+<h3>weblayoutObject.onInitDataView</h3>
+
+<pre><code class="aardio language-aardio">weblayoutObject.onInitDataView = function (ltTarget,ltOwner,reason,behaviorParams) {  
+
+}
+</code></pre>
+
+<p><a id="weblayoutObject.onKeyChar"></a></p>
+
+<h3>weblayoutObject.onKeyChar</h3>
+
+<pre><code class="aardio language-aardio">weblayoutObject.onKeyChar = function (ltTarget,ltOwner,keyCode, altState, ltKeyParams) {  
+
+}
+</code></pre>
+
+<p><a id="weblayoutObject.onKeyDown"></a></p>
+
+<h3>weblayoutObject.onKeyDown</h3>
+
+<pre><code class="aardio language-aardio">weblayoutObject.onKeyDown = function (ltTarget,ltOwner,keyCode, altState, ltKeyParams) {  
+
+}
+</code></pre>
+
+<p><a id="weblayoutObject.onKeyUp"></a></p>
+
+<h3>weblayoutObject.onKeyUp</h3>
+
+<pre><code class="aardio language-aardio">weblayoutObject.onKeyUp = function (ltTarget,ltOwner,keyCode, altState, ltKeyParams) {  
+
+}
+</code></pre>
+
+<p><a id="weblayoutObject.onMenuItemActive"></a></p>
+
+<h3>weblayoutObject.onMenuItemActive</h3>
+
+<pre><code class="aardio language-aardio">weblayoutObject.onMenuItemActive = function (ltTarget,ltOwner,reason,behaviorParams) {  
+    var ltPopupOwner = ..web.layout.element( behaviorParams.he )  
+
+}
+</code></pre>
+
+<p><a id="weblayoutObject.onMenuItemClick"></a></p>
+
+<h3>weblayoutObject.onMenuItemClick</h3>
+
+<pre><code class="aardio language-aardio">weblayoutObject.onMenuItemClick = function (ltTarget,ltOwner,reason,behaviorParams) {  
+    var ltPopupOwner = ..web.layout.element( behaviorParams.he )  
+
+}
+</code></pre>
+
+<p><a id="weblayoutObject.onMouseClick"></a></p>
+
+<h3>weblayoutObject.onMouseClick</h3>
+
+<pre><code class="aardio language-aardio">weblayoutObject.onMouseClick = function (ltTarget,ltOwner,x,y,ltMouseParams) {  
+
+}
+</code></pre>
+
+<p><a id="weblayoutObject.onMouseDblClick"></a></p>
+
+<h3>weblayoutObject.onMouseDblClick</h3>
+
+<pre><code class="aardio language-aardio">weblayoutObject.onMouseDblClick = function (ltTarget,ltOwner,x,y,ltMouseParams) {  
+
+}
+</code></pre>
+
+<p><a id="weblayoutObject.onMouseDown"></a></p>
+
+<h3>weblayoutObject.onMouseDown</h3>
+
+<pre><code class="aardio language-aardio">weblayoutObject.onMouseDown = function (ltTarget,ltOwner,x,y,ltMouseParams) {  
+
+}
+</code></pre>
+
+<p><a id="weblayoutObject.onMouseEnter"></a></p>
+
+<h3>weblayoutObject.onMouseEnter</h3>
+
+<pre><code class="aardio language-aardio">weblayoutObject.onMouseEnter = function (ltTarget,ltOwner,x,y,ltMouseParams) {  
+
+}
+</code></pre>
+
+<p><a id="weblayoutObject.onMouseIdle"></a></p>
+
+<h3>weblayoutObject.onMouseIdle</h3>
+
+<pre><code class="aardio language-aardio">weblayoutObject.onMouseIdle = function (ltTarget,ltOwner,x,y,ltMouseParams) {  
+
+}
+</code></pre>
+
+<p><a id="weblayoutObject.onMouseLeave"></a></p>
+
+<h3>weblayoutObject.onMouseLeave</h3>
+
+<pre><code class="aardio language-aardio">weblayoutObject.onMouseLeave = function (ltTarget,ltOwner,x,y,ltMouseParams) {  
+
+}
+</code></pre>
+
+<p><a id="weblayoutObject.onMouseMove"></a></p>
+
+<h3>weblayoutObject.onMouseMove</h3>
+
+<pre><code class="aardio language-aardio">weblayoutObject.onMouseMove = function (ltTarget,ltOwner,x,y,ltMouseParams) {  
+
+}
+</code></pre>
+
+<p><a id="weblayoutObject.onMouseTick"></a></p>
+
+<h3>weblayoutObject.onMouseTick</h3>
+
+<pre><code class="aardio language-aardio">weblayoutObject.onMouseTick = function (ltTarget,ltOwner,x,y,ltMouseParams) {  
+
+}
+</code></pre>
+
+<p><a id="weblayoutObject.onMouseUp"></a></p>
+
+<h3>weblayoutObject.onMouseUp</h3>
+
+<pre><code class="aardio language-aardio">weblayoutObject.onMouseUp = function (ltTarget,ltOwner,x,y,ltMouseParams) {  
+
+}
+</code></pre>
+
+<p><a id="weblayoutObject.onMouseWheel"></a></p>
+
+<h3>weblayoutObject.onMouseWheel</h3>
+
+<pre><code class="aardio language-aardio">weblayoutObject.onMouseWheel = function (ltTarget,ltOwner,x,y,ltMouseParams) {  
+
+}
+</code></pre>
+
+<p><a id="weblayoutObject.onPopupDismissed"></a></p>
+
+<h3>weblayoutObject.onPopupDismissed</h3>
+
+<pre><code class="aardio language-aardio">weblayoutObject.onPopupDismissed = function (ltTarget,ltOwner,reason,behaviorParams) {  
+    var ltPopupOwner = ..web.layout.element( behaviorParams.he )  
+
+}
+</code></pre>
+
+<p><a id="weblayoutObject.onPopupDismissing"></a></p>
+
+<h3>weblayoutObject.onPopupDismissing</h3>
+
+<pre><code class="aardio language-aardio">weblayoutObject.onPopupDismissing = function (ltTarget,ltOwner,reason,behaviorParams) {  
+
+}
+</code></pre>
+
+<p><a id="weblayoutObject.onPopupReady"></a></p>
+
+<h3>weblayoutObject.onPopupReady</h3>
+
+<pre><code class="aardio language-aardio">weblayoutObject.onPopupReady = function (ltTarget,ltOwner,reason,behaviorParams) {  
+    var ltPopupOwner = ..web.layout.element( behaviorParams.he )  
+
+}
+</code></pre>
+
+<p><a id="weblayoutObject.onPopupRequest"></a></p>
+
+<h3>weblayoutObject.onPopupRequest</h3>
+
+<pre><code class="aardio language-aardio">weblayoutObject.onPopupRequest = function (ltTarget,ltOwner,reason,behaviorParams) {  
+    var ltPopupOwner = ..web.layout.element( behaviorParams.he )  
+
+}
+</code></pre>
+
+<p><a id="weblayoutObject.onRequestTooltip"></a></p>
+
+<h3>weblayoutObject.onRequestTooltip</h3>
+
+<pre><code class="aardio language-aardio">weblayoutObject.onRequestTooltip = function (ltTarget,ltOwner,reason,behaviorParams) {  
+
+}
+</code></pre>
+
+<p><a id="weblayoutObject.onRowsDataRequest"></a></p>
+
+<h3>weblayoutObject.onRowsDataRequest</h3>
+
+<pre><code class="aardio language-aardio">weblayoutObject.onRowsDataRequest = function (ltTarget,ltOwner,reason,behaviorParams) {  
+
+}
+</code></pre>
+
+<p><a id="weblayoutObject.onScrollEnd"></a></p>
+
+<h3>weblayoutObject.onScrollEnd</h3>
+
+<pre><code class="aardio language-aardio">weblayoutObject.onScrollEnd = function (ltTarget,ltOwner,pos,scrollParams) {  
+
+}
+</code></pre>
+
+<p><a id="weblayoutObject.onScrollHome"></a></p>
+
+<h3>weblayoutObject.onScrollHome</h3>
+
+<pre><code class="aardio language-aardio">weblayoutObject.onScrollHome = function (ltTarget,ltOwner,pos,scrollParams) {  
+
+}
+</code></pre>
+
+<p><a id="weblayoutObject.onScrollPageMinus"></a></p>
+
+<h3>weblayoutObject.onScrollPageMinus</h3>
+
+<pre><code class="aardio language-aardio">weblayoutObject.onScrollPageMinus = function (ltTarget,ltOwner,pos, scrollParams) {  
+
+}
+</code></pre>
+
+<p><a id="weblayoutObject.onScrollPagePlus"></a></p>
+
+<h3>weblayoutObject.onScrollPagePlus</h3>
+
+<pre><code class="aardio language-aardio">weblayoutObject.onScrollPagePlus = function (ltTarget,ltOwner,pos, scrollParams) {  
+
+}
+</code></pre>
+
+<p><a id="weblayoutObject.onScrollPos"></a></p>
+
+<h3>weblayoutObject.onScrollPos</h3>
+
+<pre><code class="aardio language-aardio">weblayoutObject.onScrollPos = function (ltTarget,ltOwner,pos, scrollParams) {  
+
+}
+</code></pre>
+
+<p><a id="weblayoutObject.onScrollStepMinus"></a></p>
+
+<h3>weblayoutObject.onScrollStepMinus</h3>
+
+<pre><code class="aardio language-aardio">weblayoutObject.onScrollStepMinus = function (ltTarget,ltOwner,pos, scrollParams) {  
+
+}
+</code></pre>
+
+<p><a id="weblayoutObject.onScrollStepPlus"></a></p>
+
+<h3>weblayoutObject.onScrollStepPlus</h3>
+
+<pre><code class="aardio language-aardio">weblayoutObject.onScrollStepPlus = function (ltTarget,ltOwner,pos, scrollParams) {  
+
+}
+</code></pre>
+
+<p><a id="weblayoutObject.onSelectSelectionChanged"></a></p>
+
+<h3>weblayoutObject.onSelectSelectionChanged</h3>
+
+<pre><code class="aardio language-aardio">weblayoutObject.onSelectSelectionChanged = function (ltTarget,ltOwner,reason,behaviorParams) {  
+    var ltOption = ..web.layout.element( behaviorParams.he )  
+
+}
+</code></pre>
+
+<p><a id="weblayoutObject.onSelectStateChanged"></a></p>
+
+<h3>weblayoutObject.onSelectStateChanged</h3>
+
+<pre><code class="aardio language-aardio">function (ltTarget,ltOwner,reason,behaviorParams) {  
+    var ltOption = ..web.layout.element( behaviorParams.he )  
+    __  
+}
+</code></pre>
+
+<p><a id="weblayoutObject.onSize"></a></p>
+
+<h3>weblayoutObject.onSize</h3>
+
+<pre><code class="aardio language-aardio">weblayoutObject.onSize = function (ltOwner) {  
+
+}
+</code></pre>
+
+<p><a id="weblayoutObject.onSliderRelease"></a></p>
+
+<h3>weblayoutObject.onSliderRelease</h3>
+
+<pre><code class="aardio language-aardio">weblayoutObject.onSliderRelease = function (ltTarget,ltOwner,pos, scrollParams) {  
+
+}
+</code></pre>
+
+<p><a id="weblayoutObject.onTableHeaderClick"></a></p>
+
+<h3>weblayoutObject.onTableHeaderClick</h3>
+
+<pre><code class="aardio language-aardio">weblayoutObject.onTableHeaderClick = function (ltTarget,ltOwner,cellIndex,behaviorParams) {  
+
+}
+</code></pre>
+
+<p><a id="weblayoutObject.onTableRowClick"></a></p>
+
+<h3>weblayoutObject.onTableRowClick</h3>
+
+<pre><code class="aardio language-aardio">weblayoutObject.onTableRowClick = function (ltTarget,ltOwner,rowIndex,behaviorParams) {  
+
+}
+</code></pre>
+
+<p><a id="weblayoutObject.onTableRowDblClick"></a></p>
+
+<h3>weblayoutObject.onTableRowDblClick</h3>
+
+<pre><code class="aardio language-aardio">weblayoutObject.onTableRowDblClick = function (ltTarget,ltOwner,rowIndex,behaviorParams) {  
+
+}
+</code></pre>
+
+<p><a id="weblayoutObject.onTimer"></a></p>
+
+<h3>weblayoutObject.onTimer</h3>
+
+<pre><code class="aardio language-aardio">weblayoutObject.onTimer = function (ltOwner,timerId) {  
+
+}
+</code></pre>
+
+<p><a id="weblayoutObject.onUiStateChanged"></a></p>
+
+<h3>weblayoutObject.onUiStateChanged</h3>
+
+<pre><code class="aardio language-aardio">weblayoutObject.onUiStateChanged = function (ltTarget,ltOwner,reason,behaviorParams) {  
+
+}
+</code></pre>
+
+<p><a id="weblayoutObject.onVisualStateChanged"></a></p>
+
+<h3>weblayoutObject.onVisualStateChanged</h3>
+
+<pre><code class="aardio language-aardio">weblayoutObject.onVisualStateChanged = function (ltTarget,ltOwner,shown,behaviorParams) {  
+
+}
+</code></pre>
+
+<h3>自动完成常量</h3>
+
+<p>_HL_ACTIVATE_CHILD=0x92<br>
+_HL_ALT_KEY_PRESSED=4<br>
+_HL_ANIMATION=0xA0<br>
+_HL_BUBBLING=0<br>
+_HL_BUTTON_CLICK=0<br>
+_HL_BUTTON_PRESS=1<br>
+_HL_BUTTON_STATE_CHANGED=2<br>
+_HL_BY_CODE=0<br>
+_HL_BY_DEL_CHAR=5<br>
+_HL_BY_DEL_CHARS=6<br>
+_HL_BY_INS_CHAR=3<br>
+_HL_BY_INS_CHARS=4<br>
+_HL_BY_KEY_CLICK=1<br>
+_HL_BY_KEY_NEXT=2<br>
+_HL_BY_KEY_PREV=3<br>
+_HL_BY_MOUSE=1<br>
+_HL_BY_MOUSE_CLICK=0<br>
+_HL_CLOSE_POPUP=0x9E<br>
+_HL_CONTEXT_MENU_REQUEST=0x10<br>
+_HL_CONTEXT_MENU_SETUP=0xF<br>
+_HL_CONTROL_KEY_PRESSED=1<br>
+_HL_CURSOR_APPSTARTING=0xB<br>
+_HL_CURSOR_ARROW=0<br>
+_HL_CURSOR_CROSS=3<br>
+_HL_CURSOR_DRAG_COPY=0xF<br>
+_HL_CURSOR_DRAG_MOVE=0xE<br>
+_HL_CURSOR_HAND=0xD<br>
+_HL_CURSOR_HELP=0xC<br>
+_HL_CURSOR_IBEAM=1<br>
+_HL_CURSOR_NO=0xA<br>
+_HL_CURSOR_SIZEALL=9<br>
+_HL_CURSOR_SIZENESW=6<br>
+_HL_CURSOR_SIZENS=8<br>
+_HL_CURSOR_SIZENWSE=5<br>
+_HL_CURSOR_SIZEWE=7<br>
+_HL_CURSOR_UPARROW=4<br>
+_HL_CURSOR_WAIT=2<br>
+_HL_DISABLED_STATUS_CHANGED=0x12<br>
+_HL_DOCUMENT_COMPLETE=0x98<br>
+_HL_DO_CLICK=0<br>
+_HL_DO_SWITCH_TAB=0x92<br>
+_HL_DRAGGING=0x100<br>
+_HL_DRAGGING_COPY=2<br>
+_HL_DRAGGING_MOVE=1<br>
+_HL_DRAG_ENTER=0xA<br>
+_HL_DRAG_LEAVE=0xB<br>
+_HL_DRAG_REQUEST=0xC<br>
+_HL_DRAW_BACKGROUND=0<br>
+_HL_DRAW_CONTENT=1<br>
+_HL_DRAW_FOREGROUND=2<br>
+_HL_DROP=9<br>
+_HL_EDIT_VALUE_CHANGED=4<br>
+_HL_EDIT_VALUE_CHANGING=3<br>
+_HL_ELEMENT_COLLAPSED=0x90<br>
+_HL_ELEMENT_EXPANDED=0x91<br>
+_HL_EXC_COPY=1<br>
+_HL_EXC_LINK=4<br>
+_HL_EXC_MOVE=2<br>
+_HL_EXC_NONE=0<br>
+_HL_EXF_FILE=0x10<br>
+_HL_EXF_HTML=2<br>
+_HL_EXF_HYPERLINK=4<br>
+_HL_EXF_JSON=8<br>
+_HL_EXF_TEXT=1<br>
+_HL_EXF_UNDEFINED=0<br>
+_HL_FIRST_APPLICATION_EVENT_CODE=0x100<br>
+_HL_FIRST_APPLICATION_METHOD_ID=0x100<br>
+_HL_FORM_RESET=0x97<br>
+_HL_FORM_SUBMIT=0x96<br>
+_HL_GESTURE_FLAGS_ALL=0xFFFF<br>
+_HL_GESTURE_FLAG_PAN_HORIZONTAL=8<br>
+_HL_GESTURE_FLAG_PAN_VERTICAL=4<br>
+_HL_GESTURE_FLAG_PAN_WITH_GUTTER=0x4000<br>
+_HL_GESTURE_FLAG_PAN_WITH_INERTIA=0x8000<br>
+_HL_GESTURE_FLAG_ROTATE=2<br>
+_HL_GESTURE_FLAG_TAP1=0x10<br>
+_HL_GESTURE_FLAG_TAP2=0x20<br>
+_HL_GESTURE_FLAG_ZOOM=1<br>
+_HL_GESTURE_PAN=2<br>
+_HL_GESTURE_REQUEST=0<br>
+_HL_GESTURE_ROTATE=3<br>
+_HL_GESTURE_STATE_BEGIN=1<br>
+_HL_GESTURE_STATE_END=4<br>
+_HL_GESTURE_STATE_INERTIA=2<br>
+_HL_GESTURE_TAP1=4<br>
+_HL_GESTURE_TAP2=5<br>
+_HL_GESTURE_ZOOM=1<br>
+_HL_GET_TEXT_VALUE=1<br>
+_HL_GET_VALUE=0xFD<br>
+_HL_HANDLED=0x10000<br>
+_HL_HISTORY_DROP=0x9A<br>
+_HL_HISTORY_NEXT=0x9C<br>
+_HL_HISTORY_PRIOR=0x9B<br>
+_HL_HISTORY_PUSH=0x99<br>
+_HL_HISTORY_STATE_CHANGED=0x9D<br>
+_HL_HYPERLINK_CLICK=0x80<br>
+_HL_INIT_DATA_VIEW=0x93<br>
+_HL_IS_EMPTY=0xFC<br>
+_HL_KEY_CHAR=2<br>
+_HL_KEY_DOWN=0<br>
+_HL_KEY_UP=1<br>
+_HL_MAIN_MOUSE_BUTTON=1<br>
+_HL_MENU_ITEM_ACTIVE=0xA<br>
+_HL_MENU_ITEM_CLICK=0xB<br>
+_HL_MIDDLE_MOUSE_BUTTON=4<br>
+_HL_MOUSE_CLICK=0xFF<br>
+_HL_MOUSE_DCLICK=5<br>
+_HL_MOUSE_DOWN=4<br>
+_HL_MOUSE_ENTER=0<br>
+_HL_MOUSE_IDLE=8<br>
+_HL_MOUSE_LEAVE=1<br>
+_HL_MOUSE_MOVE=2<br>
+_HL_MOUSE_TICK=7<br>
+_HL_MOUSE_UP=3<br>
+_HL_MOUSE_WHEEL=6<br>
+_HL_NO_DRAGGING=0<br>
+_HL_POPUP_DISMISSED=9<br>
+_HL_POPUP_DISMISSING=0x13<br>
+_HL_POPUP_READY=8<br>
+_HL_POPUP_REQUEST=7<br>
+_HL_PROP_MOUSE_BUTTON=2<br>
+_HL_REQUEST_TOOLTIP=0x9F<br>
+_HL_ROWS_DATA_REQUEST=0x94<br>
+_HL_SCROLL_BAR_GET_VALUE=6<br>
+_HL_SCROLL_BAR_SET_VALUE=7<br>
+_HL_SELECT_SELECTION_CHANGED=5<br>
+_HL_SELECT_STATE_CHANGED=6<br>
+_HL_SET_TEXT_VALUE=2<br>
+_HL_SET_VALUE=0xFE<br>
+_HL_SHIFT_KEY_PRESSED=2<br>
+_HL_SINKING=0x8000<br>
+_HL_SYNTHESIZED=2<br>
+_HL_TABLE_HEADER_CLICK=0x81<br>
+_HL_TABLE_ROW_CLICK=0x82<br>
+_HL_TABLE_ROW_DBL_CLICK=0x83<br>
+_HL_TEXT_EDIT_CHAR_POS_AT_XY=0xB<br>
+_HL_TEXT_EDIT_GET_CARET_POSITION=8<br>
+_HL_TEXT_EDIT_GET_SELECTION=3<br>
+_HL_TEXT_EDIT_GET_SELECTION_HTML=0xA<br>
+_HL_TEXT_EDIT_GET_SELECTION_TEXT=9<br>
+_HL_TEXT_EDIT_REPLACE_SELECTION=5<br>
+_HL_TEXT_EDIT_SET_SELECTION=4<br>
+_HL_UI_STATE_CHANGED=0x95<br>
+_HL_VISIUAL_STATUS_CHANGED=0x11<br>
+_HL_X1_MOUSE_BUTTON=8<br>
+_HL_X2_MOUSE_BUTTON=0x10<br>
+_HL_XCALL=0xFF<br>
+_HL_X_DRAG=2<br>
+_HL_X_DRAG_ENTER=0<br>
+_HL_X_DRAG_LEAVE=1<br>
+_HL_X_DROP=3  </p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/web/layout/event/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/web/layout/event/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/web/layout/event/_.md">Markdown 格式</a></p>
+
+</body> 
+</html>

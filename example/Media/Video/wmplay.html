@@ -1,0 +1,187 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - mediaplayer 视频播放器控件'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - mediaplayer 视频播放器控件</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: mediaplayer 视频播放器控件</h1><pre><code class="aardio language-aardio">import fonts.fontAwesome;
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;mediaplayer 视频播放器控件&quot;;right=896;bottom=662;bgcolor=16777215)
+winform.add(
+btnFullScreen={cls=&quot;plus&quot;;text=&#39;\uF047&#39;;left=842;top=627;right=883;bottom=657;color=1938422;db=1;dr=1;font=LOGFONT(h=-16;name=&#39;FontAwesome&#39;);notify=1;repeat=&quot;center&quot;;z=7};
+btnPause={cls=&quot;plus&quot;;text=&quot;暂停&quot;;left=416;top=629;right=506;bottom=655;align=&quot;left&quot;;bgcolor=-5197169;db=1;disabled=1;dl=1;dr=1;font=LOGFONT(h=-16);iconStyle={align=&quot;left&quot;;font=LOGFONT(h=-16;name=&#39;FontAwesome&#39;);padding={left=14;top=2}};iconText=&#39;\uF04C&#39;;notify=1;textPadding={left=35};z=5};
+btnPlay={cls=&quot;plus&quot;;text=&quot;播放&quot;;left=533;top=629;right=623;bottom=655;align=&quot;left&quot;;bgcolor=-5197169;db=1;dr=1;font=LOGFONT(h=-16);iconStyle={align=&quot;left&quot;;font=LOGFONT(h=-16;name=&#39;FontAwesome&#39;);padding={left=14;top=2}};iconText=&#39;\uF04B&#39;;notify=1;textPadding={left=35};z=2};
+plus2={cls=&quot;plus&quot;;text=&#39;\uF027&#39;;left=690;top=632;right=715;bottom=655;color=1938422;db=1;dr=1;font=LOGFONT(h=-19;name=&#39;FontAwesome&#39;);repeat=&quot;scale&quot;;z=4};
+progress={cls=&quot;plus&quot;;left=29;top=612;right=879;bottom=616;bgcolor=6447459;db=1;dl=1;dr=1;forecolor=9959653;hide=1;notify=1;z=3};
+video={cls=&quot;custom&quot;;left=30;top=16;right=880;bottom=611;bgcolor=0;db=1;dl=1;dr=1;dt=1;edge=1;z=1};
+volume={cls=&quot;plus&quot;;left=720;top=636;right=836;bottom=648;bgcolor=-2512093;border={radius=-1};color=23807;db=1;dr=1;foreRepeat=&quot;expand&quot;;foreRight=13;forecolor=-14911489;notify=1;paddingBottom=5;paddingTop=5;z=6}
+)
+/*}}*/
+
+//创建控件
+//https://docs.microsoft.com/zh-cn/windows/win32/wmp/object-model-reference-for-scripting
+var wmp = winform.video.createEmbedEx(&quot;wmplayer.OCX&quot;);    
+
+//打开音视频触发此事件
+wmp.MediaChange = function(item){ 
+    winform.progress.setProgressRange(0,wmp.currentMedia.duration); 
+    winform.progress.hide = false;
+}
+
+//播放状态变更触发此事件
+wmp.PlayStateChange = function(state) { 
+    if(state==3){
+        winform.btnPause.disabled = false;
+        winform.btnPlay.checked = true;
+    }
+    elseif(state&lt;=1){ 
+        winform.btnPause.disabled = true; 
+        winform.btnPause.checked = false;
+        winform.btnPlay.checked = false; 
+    } 
+};
+
+//打开视频
+wmp.Url  = &quot;http://download.aardio.com/demo/video.aardio&quot;;
+wmp.stretchToFit = true;
+wmp.uiMode = &quot;none&quot;;//隐藏默认控制条（不支持高分屏，自己实现一个比较好）
+
+//暂停按钮事件
+winform.btnPause.oncommand = function(id,event){
+        if(wmp.playState==3){
+        wmp.Controls.pause();
+    }
+    elseif(wmp.playState==2){
+        wmp.Controls.play();
+    }
+}
+
+//播放按钮事件
+winform.btnPlay.oncommand = function(id,event){
+
+    if(!winform.btnPlay.checked){
+        if(wmp.playState&gt;1){
+            wmp.Controls.stop();
+            winform.progress.progressPos = 0; 
+        }
+        return;
+    }
+
+    wmp.Controls.play();  
+}
+
+//使用定时器同步显示视频进度
+winform.setInterval(  
+    function(){ 
+        if(winform.btnPlay.checked &amp;&amp; !winform.progress.hide){
+            winform.progress.progressPos = wmp.controls.currentPosition;
+
+        } 
+    },200 
+); 
+
+//显示声音大小
+winform.volume.setTrackbarRange(1,100);
+winform.volume.progressPos = 100;
+
+//调整声音大小
+winform.volume.onPosChanged = function( pos,triggeredByUser ){ 
+    if(triggeredByUser){
+        wmp.settings.volume = winform.volume.progressPos;
+    }
+}
+
+//全屏按钮
+winform.btnFullScreen.oncommand = function(id,event){
+    wmp.fullScreen = true;
+}
+
+winform.volume.skin({
+    background={
+        default=0xFF23ABD9
+    };
+    foreground={
+        default=0xFFFF771C;
+        hover=0xFFFF6600
+    };
+    color={
+        default=0xFFFF5C00;
+        hover=0xFFFF6600
+    }
+})
+
+winform.btnPause.skin({
+    background={
+        default=0x668FB2B0;
+        disabled=0xFFCCCCCC;
+        hover=0xFF928BB3
+    };
+    color={
+        default=0xFF000000;
+        disabled=0xFF6D6D6D
+    };
+    checked = {
+        iconText = &#39;\uF04B&#39;;
+        text = &quot;继续&quot;;
+        background={
+            default=0x668FB2B0;
+            disabled=0xFFCCCCCC;
+            hover=0xFF928BB3
+        };
+        color={
+            default=0xFF000000;
+            disabled=0xFF6D6D6D
+        };
+    }
+})
+
+winform.btnPlay.skin({
+    background={
+        default=0x668FB2B0;
+        disabled=0xFFCCCCCC;
+        hover=0xFF928BB3
+    };
+    color={
+        default=0xFF000000;
+        disabled=0xFF6D6D6D
+    };
+    checked = {
+        iconText = &#39;\uF04D&#39;;
+        text = &quot;停止&quot;;
+        background={
+            default=0x668FB2B0;
+            disabled=0xFFCCCCCC;
+            hover=0xFF928BB3
+        };
+        color={
+            default=0xFF000000;
+            disabled=0xFF6D6D6D
+        };
+    }
+})
+
+winform.btnFullScreen.skin({
+    color={
+        active=0xFF00FF00;
+        default=0xFFF6931D;
+        disabled=0xFF6D6D6D;
+        hover=0xFFFF0000
+    }
+})
+
+winform.show(true) 
+win.loopMessage();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Media/Video/wmplay.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Media/Video/wmplay.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Media/Video/wmplay.md">Markdown 格式</a>
+</body> 
+</html>

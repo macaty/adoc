@@ -1,0 +1,319 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - 执行命令'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - 执行命令</title> 
+<link rel="stylesheet" href="../../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>执行命令</h1>
+
+<p>执行命令以前必须调用 <a href="wait.html#wait" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/std/web/form/wait.html#wait">wb.wait()</a> 等待网页打开.</p>
+
+<h2>wb.exec</h2>
+
+<ol>
+<li><p>函数原型：   </p>
+
+<p><code>wb.exec( &quot;命令&quot;,参数,是否显示UI )</code></p></li>
+<li><p>函数说明：   </p>
+
+<p>在网页上执行命令,除第一个参数必须以外,其他参数可选.可选命令如下:</p>
+
+<p>2D-Position 允许通过拖曳移动绝对定位的对象。<br>
+AbsolutePosition 设定元素的 position 属性为&quot;absolute&quot;(绝对)。<br>
+BackColor 设置或获取当前选中区的背景颜色。<br>
+BlockDirLTR 目前尚未支持。<br>
+BlockDirRTL 目前尚未支持。<br>
+Bold 切换当前选中区的粗体显示与否。<br>
+BrowseMode 目前尚未支持。<br>
+Copy 将当前选中区复制到剪贴板。<br>
+CreateBookmark 创建一个书签锚或获取当前选中区或插入点的书签锚的名称。<br>
+CreateLink 在当前选中区上插入超级链接，或显示一个对话框允许用户指定要为当前选中区插入的超级链接的 URL。<br>
+Cut 将当前选中区复制到剪贴板并删除之。<br>
+Delete 删除当前选中区。<br>
+DirLTR 目前尚未支持。<br>
+DirRTL 目前尚未支持。<br>
+EditMode 目前尚未支持。<br>
+FontName 设置或获取当前选中区的字体。<br>
+FontSize 设置或获取当前选中区的字体大小。<br>
+ForeColor 设置或获取当前选中区的前景(文本)颜色。<br>
+FormatBlock 设置当前块格式化标签。<br>
+Indent 增加选中文本的缩进。<br>
+InlineDirLTR 目前尚未支持。<br>
+InlineDirRTL 目前尚未支持。<br>
+InsertButton 用按钮控件覆盖当前选中区。<br>
+InsertFieldset 用方框覆盖当前选中区。<br>
+InsertHorizontalRule 用水平线覆盖当前选中区。<br>
+InsertIFrame 用内嵌框架覆盖当前选中区。<br>
+InsertImage 用图像覆盖当前选中区。<br>
+InsertInputButton 用按钮控件覆盖当前选中区。<br>
+InsertInputCheckbox 用复选框控件覆盖当前选中区。<br>
+InsertInputFileUpload 用文件上载控件覆盖当前选中区。<br>
+InsertInputHidden 插入隐藏控件覆盖当前选中区。<br>
+InsertInputImage 用图像控件覆盖当前选中区。<br>
+InsertInputPassword 用密码控件覆盖当前选中区。<br>
+InsertInputRadio 用单选钮控件覆盖当前选中区。<br>
+InsertInputReset 用重置控件覆盖当前选中区。<br>
+InsertInputSubmit 用提交控件覆盖当前选中区。<br>
+InsertInputText 用文本控件覆盖当前选中区。<br>
+InsertMarquee 用空字幕覆盖当前选中区。<br>
+InsertOrderedList 切换当前选中区是编号列表还是常规格式化块。<br>
+InsertParagraph 用换行覆盖当前选中区。<br>
+InsertSelectDropdown 用下拉框控件覆盖当前选中区。<br>
+InsertSelectListbox 用列表框控件覆盖当前选中区。<br>
+InsertTextArea 用多行文本输入控件覆盖当前选中区。<br>
+InsertUnorderedList 切换当前选中区是项目符号列表还是常规格式化块。<br>
+Italic 切换当前选中区斜体显示与否。<br>
+JustifyCenter 将当前选中区在所在格式化块置中。<br>
+JustifyFull 目前尚未支持。<br>
+JustifyLeft 将当前选中区所在格式化块左对齐。<br>
+JustifyNone 目前尚未支持。<br>
+JustifyRight 将当前选中区所在格式化块右对齐。<br>
+LiveResize 迫使 MSHTML 编辑器在缩放或移动过程中持续更新元素外观，而不是只在移动或缩放完成后更新。<br>
+MultipleSelection 允许当用户按住 Shift 或 Ctrl 键时一次选中多于一个站点可选元素。<br>
+Open 目前尚未支持。<br>
+Outdent 减少选中区所在格式化块的缩进。<br>
+OverWrite 切换文本状态的插入和覆盖。<br>
+Paste 用剪贴板内容覆盖当前选中区。<br>
+PlayImage 目前尚未支持。<br>
+Print 打开打印对话框以便用户可以打印当前页。<br>
+Redo 目前尚未支持。<br>
+Refresh 刷新当前文档。<br>
+RemoveFormat 从当前选中区中删除格式化标签。<br>
+RemoveParaFormat 目前尚未支持。<br>
+SaveAs 将当前 Web 页面保存为文件。<br>
+SelectAll 选中整个文档。<br>
+SizeToControl 目前尚未支持。<br>
+SizeToControlHeight 目前尚未支持。<br>
+SizeToControlWidth 目前尚未支持。<br>
+Stop 目前尚未支持。<br>
+StopImage 目前尚未支持。<br>
+StrikeThrough 目前尚未支持。<br>
+Subscript 目前尚未支持。<br>
+Superscript 目前尚未支持。<br>
+UnBookmark 从当前选中区中删除全部书签。<br>
+Underline 切换当前选中区的下划线显示与否。<br>
+Undo 目前尚未支持。<br>
+Unlink 从当前选中区中删除全部超级链接。<br>
+Unselect 清除当前选中区的选中状态。</p></li>
+<li><p>调用示例： </p>
+
+<pre><code class="aardio language-aardio">//用于取消选中的阴影部分
+wb.exec(&#39;Unselect&#39;);
+
+//选中页面上的所有元素
+wb.exec(&#39;SelectAll&#39;);
+
+//复制
+wb.exec(&#39;Copy&#39;);
+
+//删除选中的区块
+wb.exec(&#39;Delete&#39;);
+
+//剪下选中的区块
+wb.exec(&#39;Cut&#39;);
+
+//打印整个页面
+wb.exec(&#39;print&#39;);
+
+//第二个参数为欲保存的文件名
+wb.exec(&#39;SaveAs&#39;,&#39;my.html&#39;);
+
+//将选中的区块设为指定的背景色
+wb.exec(&#39;BackColor&#39;,&#39;#FFbbDD&#39;);
+
+//指定前景色
+wb.exec(&#39;ForeColor&#39;,&#39;#BBDDCC&#39;);
+
+//指定字体大小
+wb.exec(&#39;FontSize&#39;,7);
+
+//字体必须是系统支持的字体
+wb.exec(&#39;FontName&#39;,&#39;标楷体&#39;);
+
+//字体变粗
+wb.exec(&#39;Bold&#39;);
+
+//变斜体
+wb.exec(&#39;Italic&#39;);
+
+//将选中的文字加下划线
+wb.exec(&#39;Underline&#39;);
+
+//在选中的文字上划粗线
+wb.exec(&#39;StrikeThrough&#39;);
+
+//将选中的部分文字变细
+wb.exec(&#39;SuperScript&#39;);
+
+//将选中区块的下划线取消掉
+wb.exec(&#39;Underline&#39;);
+
+//有序列表
+wb.exec(&#39;InsertOrderedList&#39;);
+
+//无序列表
+wb.exec(&#39;InsertUnorderedList&#39;);
+
+//缩进
+wb.exec(&#39;Indent&#39;);
+
+//插入超链接，弹出一个对话框输入URL
+wb.exec(&#39;CreateLink&#39;,&#39;true&#39;,true);
+
+//直接插入超链接
+wb.exec(&#39;CreateLink&#39;,http://www.aardio.com&#39;);
+//重设为button
+wb.exec(&#39;InsertButton&#39;,&quot;ID&quot;);
+
+//重设为一个fieldset
+wb.exec(&#39;InsertFieldSet&#39;,&quot;ID&quot;);
+
+//插入一个水平线
+wb.exec(&#39;InsertHorizontalRule&#39;,&quot;ID&quot;);
+
+//插入一个iframe
+wb.exec(&#39;InsertIFrame&#39;,&quot;ID&quot;);
+
+//插入一个image,参数三为true需要图片，为false不需要图片
+wb.exec(&#39;InsertImage&#39;,&quot;ID&quot;,true); 
+
+//插入一个checkbox
+wb.exec(&#39;InsertInputCheckbox&#39;,&quot;ID&quot;);
+
+//插入一个file类型的object
+wb.exec(&#39;InsertInputFileUpload&#39;,&quot;ID&quot;);
+
+//插入一个hidden
+wb.exec(&#39;InsertInputHidden&#39;,&quot;ID&quot;);
+
+//插入一个InputImage
+wb.exec(&#39;InsertInputImage&#39;,&quot;ID&quot;);
+
+//插入一个Password
+wb.exec(&#39;InsertInputPassword&#39;,&quot;ID&quot;);
+
+//插入一个Radio
+wb.exec(&#39;InsertInputRadio&#39;,&quot;ID&quot;);
+
+//插入一个Reset
+wb.exec(&#39;InsertInputReset&#39;,&quot;ID&quot;);
+
+//插入一个Submit
+wb.exec(&#39;InsertInputSubmit&#39;,&quot;ID&quot;);
+
+//插入一个inputtext
+wb.exec(&#39;InsertInputText&#39;,&quot;ID&quot;);
+
+//插入一个textarea
+wb.exec(&#39;InsertTextArea&#39;,&quot;ID&quot;);
+
+//插入一个selectlistbox
+wb.exec(&#39;InsertSelectListbox&#39;,&quot;ID&quot;);
+
+//插入一个singleselect
+wb.exec(&#39;InsertSelectDropdown&#39;,&quot;ID&quot;);
+
+//插入一个换行
+wb.exec(&#39;InsertParagraph&#39;);
+
+//插入一个marquee
+wb.exec(&#39;InsertMarquee&#39;,&quot;ID&quot;);
+</code></pre></li>
+</ol>
+
+<h2>wb.execEle</h2>
+
+<ol>
+<li><p>函数原型：   </p>
+
+<p><code>wb.execEle( ele,&quot;命令&quot;,参数,是否显示UI )</code></p></li>
+<li><p>函数说明：   </p>
+
+<p>该函数用法与 wb.exec 完全相同.唯一的区别是需要在第一个参数中指定节点(HTML DOM Element)对象.而且函数对指定的节点执行命令,而不是针对整个网页执行命象.  </p>
+
+<p>请参考: <a href="getele.html" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/std/web/form/getele.html">使用 wb.getEle(&quot;id&quot;) 获取节点</a></p></li>
+</ol>
+
+<h2>wb.execWb</h2>
+
+<ol>
+<li><p>函数原型：   </p>
+
+<p><code>返回值 = wb.execWb( 命令ID,参数=null,选项=1 )</code></p></li>
+<li><p>函数说明：   </p>
+
+<p>第一个参数命令ID是一个数值,可选值如下:  </p>
+
+<p>_OLECMDID_OPEN = 1;<br>
+  _OLECMDID_NEW = 2;<br>
+  _OLECMDID_SAVE = 3;<br>
+  _OLECMDID_SAVEAS = 4;<br>
+  _OLECMDID_SAVECOPYAS = 5;<br>
+  _OLECMDID_PRINT = 6;<br>
+  _OLECMDID_PRINTPREVIEW = 7;<br>
+  _OLECMDID_PAGESETUP = 8;<br>
+  _OLECMDID_SPELL = 9;<br>
+  _OLECMDID_PROPERTIES = 10;<br>
+  _OLECMDID_CUT = 11;<br>
+  _OLECMDID_COPY = 12;<br>
+  _OLECMDID_PASTE = 13;<br>
+  _OLECMDID_PASTESPECIAL = 14;<br>
+  _OLECMDID_UNDO = 15;<br>
+  _OLECMDID_REDO = 16;<br>
+  _OLECMDID_SELECTALL = 17;<br>
+  _OLECMDID_CLEARSELECTION = 18;<br>
+  _OLECMDID_ZOOM = 19;<br>
+  _OLECMDID_GETZOOMRANGE = 20<br>
+  _OLECMDID_UPDATECOMMANDS = 21<br>
+  _OLECMDID_REFRESH = 22<br>
+  _OLECMDID_STOP = 23<br>
+  _OLECMDID_HIDETOOLBARS = 24<br>
+  _OLECMDID_SETPROGRESSMAX = 25<br>
+  _OLECMDID_SETPROGRESSPOS = 26<br>
+  _OLECMDID_SETPROGRESSTEXT = 27<br>
+  _OLECMDID_SETTITLE = 28<br>
+  _OLECMDID_SETDOWNLOADSTATE = 29<br>
+  _OLECMDID_STOPDOWNLOAD = 30</p>
+
+<p>第二个参数是该命令需要的参数,这是一个可选参数,一般不需要指定.</p>
+
+<p>第三个参数可选项如下:  </p>
+
+<p>_OLECMDEXECOPT_DODEFAULT = 0;<br>
+  _OLECMDEXECOPT_PROMPTUSER = 1;<br>
+  _OLECMDEXECOPT_DONTPROMPTUSER = 2;<br>
+  _OLECMDEXECOPT_SHOWHELP = 3 </p>
+
+<p>这是一个可选参数,默认参数为1</p>
+
+<p>该函数一般无返回值.  </p></li>
+<li><p>调用示例： </p>
+
+<pre><code class="aardio language-aardio">wb.execWb(1,1)   //打开 
+wb.execWb(4,1)   //另存为  
+wb.execWb(10,1)   //属性  
+wb.execWb(6,1)   //打印  
+wb.execWb(6,6)   //打印&gt;不会弹出打印机窗口&lt;/td&gt;&lt;/tr&gt;   
+wb.execWb(7,1)   //打印预览     
+wb.execWb(8,1)   //页面设置  
+wb.execWb(10,1)   //查看页面属性  
+wb.execWb(15,1)   //撤销  
+wb.execWb(17,1)   //全选  
+wb.execWb(22,1)   //刷新  
+wb.execWb(45,1)   //关闭窗体无提示&gt;&lt;/td&gt;&lt;/
+</code></pre></li>
+</ol>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-guide/std/web/form/exec.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-guide/std/web/form/exec.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/std/web/form/exec.md">Markdown 格式</a></p>
+
+</body> 
+</html>

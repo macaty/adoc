@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - time.period 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - time.period 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>time.period 库模块帮助文档</h1>
+
+<p><details>  <summary>相关库与函数</summary>  <p>
+time.performance, time.timer, time.tick, sleep 
+</p></details></p>
+
+<p><a id="time"></a></p>
+
+<h2>time 成员列表</h2>
+
+<p><a id="time.period"></a></p>
+
+<h3>time.period</h3>
+
+<p>修改 sleep 函数精度。<br>
+ Win10 2004 以前会影响系统全局设置。<br>
+Win11 开始如果拥有窗口的进程最小化或不可见，则不保证设置的精度有效。<br>
+关于此功能的注意事项，请查看系统 API timeBeginPeriod 的文档。<br>
+<a href="javascript:if(confirm('https://learn.microsoft.com/zh-cn/windows/win32/api/timeapi/nf-timeapi-timebeginperiod  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='https://learn.microsoft.com/zh-cn/windows/win32/api/timeapi/nf-timeapi-timebeginperiod'" tppabs="https://learn.microsoft.com/zh-cn/windows/win32/api/timeapi/nf-timeapi-timebeginperiod">https://learn.microsoft.com/zh-cn/windows/win32/api/timeapi/nf-timeapi-timebeginperiod</a></p>
+
+<p><a id="time.period"></a></p>
+
+<h3>time.period(精度,调用函数,其他调用参数)</h3>
+
+<p>执行调用函数，并在执行期间修改系统定时器精度。<br>
+精度参数以毫秒为单位。  </p>
+
+<p>如果需要使用 time.period ，<br>
+请调用 sleep 而非可能指向 win.delay 的 thread.delay 函数。<br>
+此函数主要影响 sleep 函数，对 win.delay 函数作用不大。<br>
+应避免在界面线程使用 time.period 或 sleep 函数，以防止卡界面无法处理消息。  </p>
+
+<p>如果需要高精度计时，请使用 time.performance.tick 函数。</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/time/period.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/time/period.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/time/period.md">Markdown 格式</a></p>
+
+</body> 
+</html>

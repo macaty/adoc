@@ -1,0 +1,257 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - inet.adapter 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - inet.adapter 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>inet.adapter 库模块帮助文档</h1>
+
+<p><a id="inet.adapter"></a></p>
+
+<h2>inet.adapter 成员列表</h2>
+
+<p>用于获取网络适配器信息（不含禁用的网卡与回环网卡）  </p>
+
+<p>inet.adapterAddresses 可以得到更多信息。<br>
+sys.networkCards 取网卡硬件信息（含禁用的网卡）。  </p>
+
+<p>可使用 com.wmi 查询 Win32_NetworkAdapter 得到网卡信息,<br>
+ com.wmi 查询 Win32_NetworkAdapterConfiguration 得到网络适配器连接配置</p>
+
+<p><a id="inet.adapter.each"></a></p>
+
+<h3>inet.adapter.each()</h3>
+
+<pre><code class="aardio language-aardio">//遍历所有连接  
+for adptInfo in inet.adapter.each() {   
+    /*adptInfo 为网络连接信息*/  
+}  
+
+[返回对象:netAdptInfoObject](#netAdptInfoObject)
+</code></pre>
+
+<p><a id="inet.adapter.get"></a></p>
+
+<h3>inet.adapter.get</h3>
+
+<p>查找并返回网络适配器与配置信息</p>
+
+<p><a id="inet.adapter.get"></a></p>
+
+<h3>inet.adapter.get()</h3>
+
+<p><a href="#netAdptInfoObject">返回对象:netAdptInfoObject</a></p>
+
+<p><a id="inet.adapter.get"></a></p>
+
+<h3>inet.adapter.get(adapterName)</h3>
+
+<p>查找并返回网络适配器与配置信息。<br>
+@adapterName 用字符串指定 GUID 格式适配器</p>
+
+<p><a id="ipaddrStringObject"></a></p>
+
+<h2>ipaddrStringObject 成员列表</h2>
+
+<p><a id="ipaddrStringObject.context"></a></p>
+
+<h3>ipaddrStringObject.context</h3>
+
+<pre><code class="aardio language-aardio">_MIB_IF_TYPE_OTHER=@1/*_MIB_IF_TYPE_OTHER*/
+</code></pre>
+
+<p><a id="ipaddrStringObject.eachAddress"></a></p>
+
+<h3>ipaddrStringObject.eachAddress()</h3>
+
+<p>遍历IP列表  </p>
+
+<p><a href="#ipaddrStringObject">返回对象:ipaddrStringObject</a></p>
+
+<p><a id="ipaddrStringObject.getNextIpAddrString"></a></p>
+
+<h3>ipaddrStringObject.getNextIpAddrString()</h3>
+
+<p>获取下一个IP地址  </p>
+
+<p><a href="#ipaddrStringObject">返回对象:ipaddrStringObject</a></p>
+
+<p><a id="ipaddrStringObject.ipAddress"></a></p>
+
+<h3>ipaddrStringObject.ipAddress</h3>
+
+<p>IP地址</p>
+
+<p><a id="ipaddrStringObject.ipMask"></a></p>
+
+<h3>ipaddrStringObject.ipMask</h3>
+
+<p>掩码</p>
+
+<p><a id="netAdptInfoObject"></a></p>
+
+<h2>netAdptInfoObject 成员列表</h2>
+
+<p><a id="netAdptInfoObject.adapterName"></a></p>
+
+<h3>netAdptInfoObject.adapterName</h3>
+
+<p>网卡名称</p>
+
+<p><a id="netAdptInfoObject.address"></a></p>
+
+<h3>netAdptInfoObject.address</h3>
+
+<p>MAC地址,数值格式</p>
+
+<p><a id="netAdptInfoObject.addressLength"></a></p>
+
+<h3>netAdptInfoObject.addressLength</h3>
+
+<p>网卡地址长度</p>
+
+<p><a id="netAdptInfoObject.description"></a></p>
+
+<h3>netAdptInfoObject.description</h3>
+
+<p>网卡描述</p>
+
+<p><a id="netAdptInfoObject.dhcpEnabled"></a></p>
+
+<h3>netAdptInfoObject.dhcpEnabled</h3>
+
+<p>是否启用DHCP</p>
+
+<p><a id="netAdptInfoObject.dhcpServer"></a></p>
+
+<h3>netAdptInfoObject.dhcpServer</h3>
+
+<p><a href="#ipaddrStringObject">返回对象:ipaddrStringObject</a></p>
+
+<p><a id="netAdptInfoObject.eachAddress"></a></p>
+
+<h3>netAdptInfoObject.eachAddress()</h3>
+
+<pre><code class="aardio language-aardio">for addr,strAddr in netAdptInfoObject.eachAddress(){
+    /*遍历 IP 地址，strAddr 为字符串格式 IP 地址。  
+addr 为当前 IP_ADAPTER_INFO 结构体，不用管。*/
+}
+</code></pre>
+
+<p><a id="netAdptInfoObject.eachDhcpServer"></a></p>
+
+<h3>netAdptInfoObject.eachDhcpServer()</h3>
+
+<pre><code class="aardio language-aardio">for addr,strAddr in netAdptInfoObject.eachDhcpServer(){
+    /*遍历 DHCP 服务器地址，strAddr 为字符串格式 IP 地址。  
+addr 为当前 IP_ADAPTER_INFO 结构体，不用管。*/
+}
+</code></pre>
+
+<p><a id="netAdptInfoObject.eachGateway"></a></p>
+
+<h3>netAdptInfoObject.eachGateway()</h3>
+
+<pre><code class="aardio language-aardio">for addr,strAddr in netAdptInfoObject.eachGateway(){
+    /*遍历网关地址，strAddr 为字符串格式 IP 地址。  
+addr 为当前 IP_ADAPTER_INFO 结构体，不用管。*/
+}
+</code></pre>
+
+<p><a id="netAdptInfoObject.gatewayList"></a></p>
+
+<h3>netAdptInfoObject.gatewayList</h3>
+
+<p><a href="#ipaddrStringObject">返回对象:ipaddrStringObject</a></p>
+
+<p><a id="netAdptInfoObject.haveWins"></a></p>
+
+<h3>netAdptInfoObject.haveWins</h3>
+
+<p>是否启动了Wins服务</p>
+
+<p><a id="netAdptInfoObject.index"></a></p>
+
+<h3>netAdptInfoObject.index</h3>
+
+<p>网络接口索引号</p>
+
+<p><a id="netAdptInfoObject.ipAddressList"></a></p>
+
+<h3>netAdptInfoObject.ipAddressList</h3>
+
+<p><a href="#ipaddrStringObject">返回对象:ipaddrStringObject</a></p>
+
+<p><a id="netAdptInfoObject.leaseExpires"></a></p>
+
+<h3>netAdptInfoObject.leaseExpires</h3>
+
+<p>DHCP租赁失效时间</p>
+
+<p><a id="netAdptInfoObject.leaseObtained"></a></p>
+
+<h3>netAdptInfoObject.leaseObtained</h3>
+
+<p>DHCP租赁时间</p>
+
+<p><a id="netAdptInfoObject.mac"></a></p>
+
+<h3>netAdptInfoObject.mac</h3>
+
+<p>MAC地址,文本格式</p>
+
+<p><a id="netAdptInfoObject.netConnectionId"></a></p>
+
+<h3>netAdptInfoObject.netConnectionId</h3>
+
+<p>网络连接名</p>
+
+<p><a id="netAdptInfoObject.pnpInstanceId"></a></p>
+
+<h3>netAdptInfoObject.pnpInstanceId</h3>
+
+<p>设备实例 ID，由&quot;设备ID\实例ID&quot;组成,<br>
+设备实例 ID用于 process.devcon 作为参数时前面要添加@</p>
+
+<p><a id="netAdptInfoObject.primaryWinsServer"></a></p>
+
+<h3>netAdptInfoObject.primaryWinsServer</h3>
+
+<p><a href="#ipaddrStringObject">返回对象:ipaddrStringObject</a></p>
+
+<p><a id="netAdptInfoObject.secondaryWinsServer"></a></p>
+
+<h3>netAdptInfoObject.secondaryWinsServer</h3>
+
+<p><a href="#ipaddrStringObject">返回对象:ipaddrStringObject</a></p>
+
+<p><a id="netAdptInfoObject.type"></a></p>
+
+<h3>netAdptInfoObject.type</h3>
+
+<p>网络接口类型<br>
+例如 _MIB_IF_TYPE_ETHERNET</p>
+
+<h3>自动完成常量</h3>
+
+<p>_IF_TYPE_IEEE80211=71<br>
+_MIB_IF_TYPE_ETHERNET=6<br>
+_MIB_IF_TYPE_FDDI=0xF<br>
+_MIB_IF_TYPE_LOOPBACK=0x18<br>
+_MIB_IF_TYPE_PPP=0x17<br>
+_MIB_IF_TYPE_SLIP=0x1C<br>
+_MIB_IF_TYPE_TOKENRING=9  </p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/inet/adapter.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/inet/adapter.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/inet/adapter.md">Markdown 格式</a></p>
+
+</body> 
+</html>

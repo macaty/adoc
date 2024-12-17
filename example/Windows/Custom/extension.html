@@ -1,0 +1,72 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 窗口程序 - 使用自定义控件作为宿主窗口创建扩展控件'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 窗口程序 - 使用自定义控件作为宿主窗口创建扩展控件</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 窗口程序 - 使用自定义控件作为宿主窗口创建扩展控件</h1><pre><code class="aardio language-aardio">//窗口程序 - 使用自定义控件作为宿主窗口创建扩展控件
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;aardio form&quot;;right=759;bottom=469)
+winform.add(
+button={cls=&quot;button&quot;;text=&quot;全屏&quot;;left=523;top=415;right=630;bottom=460;db=1;dr=1;z=2};
+custom={cls=&quot;custom&quot;;text=&quot;自定义控件&quot;;left=17;top=26;right=732;bottom=380;db=1;dl=1;dr=1;dt=1;z=1}
+)
+/*}}*/
+
+/*
+在 aardio 中我们还可以对任何一个窗口、或窗口上的子窗件进行扩展，
+这种用法在 aardio 中被大量使用，例如让窗口嵌入浏览器控件，以增加显示网页的功能。
+这样的库非常多，例如 web.form,web.view,web.sysView,web.layout,web.sciter,chrome.app  ……
+*/
+import web.form;
+var wb  = web.form( winform.custom )
+/*
+如果我们想用整个窗体显示网页，
+可以这样写： var wb  = web.form( winform )
+
+但如果我们只是希望窗体上某个子窗口显示网页，
+我们可以在 web.form 的构造参数中指定子窗口控件，
+通常我们会使用 custom 或 static 这种简单的控件，因为控件的其他功能通常是多余的。
+*/
+
+wb.html = /**
+&lt;!doctype html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot; /&gt;
+    &lt;style type=&quot;text/css&quot;&gt;
+    html,body{ margin:50; } 
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;这是一个网页 &lt;button id=&quot;fullscreen&quot; onclick=&quot;external.close()&quot;&gt;关闭&lt;/button&gt;
+**/
+
+wb.external={
+    close = function(){ winform.close()}
+}
+
+winform.button.oncommand = function(id,event){
+    /*
+    因为默认的 custom 控件就是 win.form 窗体对象，窗体对象有一个非常好用的全屏函数。
+    */
+    winform.custom.fullscreen()
+}
+
+
+winform.show();
+win.loopMessage();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Windows/Custom/extension.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Windows/Custom/extension.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Windows/Custom/extension.md">Markdown 格式</a>
+</body> 
+</html>

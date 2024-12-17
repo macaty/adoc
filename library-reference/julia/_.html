@@ -1,0 +1,157 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - julia 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - julia 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>julia 库模块帮助文档</h1>
+
+<p><details>  <summary>说明，点这里展开</summary>  <p>
+在导入 julia 扩展库前打开控制台，
+julia 代码才能在控制台输出内容
+</p></details></p>
+
+<p><a id="julia"></a></p>
+
+<h2>julia 成员列表</h2>
+
+<p>Julia 语言扩展库。<br>
+可在导入此扩展库以前用 string.setenv 设置以下环境变量：<br>
+JULIA_VERSION 指定 Julia 版本，默认为 1.9.4。\b支持 1.6 ~1.9。暂不支持 1.10 及之后版本。<br>
+JULIA_PROJECT 指定工程目录。<br>
+如果指定的工程目录为无效路径，则默认设为 aardio 应用程序根目录 &quot;/&quot;  </p>
+
+<p>在导入 julia 扩展库前打开控制台<br>
+julia 代码才能在控制台输出内容</p>
+
+<p><a id="julia.?"></a></p>
+
+<h3>julia.?</h3>
+
+<p>访问 Julia 的 Main 模块下的成员。<br>
+ 输入 Main 模块的全局变量名或者函数名。<br>
+可以直接调用模块下的函数</p>
+
+<p><a id="julia.Base"></a></p>
+
+<h3>julia.Base</h3>
+
+<p>Base 模块  </p>
+
+<p><a href="#juliaModuleObject">返回对象:juliaModuleObject</a></p>
+
+<p><a id="julia.Core"></a></p>
+
+<h3>julia.Core</h3>
+
+<p>Core 模块  </p>
+
+<p><a href="#juliaModuleObject">返回对象:juliaModuleObject</a></p>
+
+<p><a id="julia.appendLoadPath"></a></p>
+
+<h3>julia.appendLoadPath(...)</h3>
+
+<p>添加一个或多个查找模块的目录到 LOAD_PATH</p>
+
+<p><a id="julia.binDir"></a></p>
+
+<h3>julia.binDir</h3>
+
+<p>Julia 执行文件所在目录</p>
+
+<p><a id="julia.eval"></a></p>
+
+<h3>julia.eval(code,...)</h3>
+
+<p>执行 Julia 代码,<br>
+尝试将返回值转为 aardio 对象,<br>
+如果有多个参数，将首先使用这些参数调用 string.format 格式化代码</p>
+
+<p><a id="julia.evalRaw"></a></p>
+
+<h3>julia.evalRaw(code,...)</h3>
+
+<p>执行 Julia 代码,<br>
+返回 Julia 对象的原始指针,<br>
+如果有多个参数，将首先使用这些参数调用 string.format 格式化代码</p>
+
+<p><a id="julia.evalStruct"></a></p>
+
+<h3>julia.evalStruct</h3>
+
+<p>执行返回结构体的 Julia 代码，返回 raw.struct 对象</p>
+
+<p><a id="julia.evalStruct"></a></p>
+
+<h3>julia.evalStruct(code,struct)</h3>
+
+<p>参数 @1 指定行返回结构体的 Julia 代码。<br>
+Julia 返回值并不会添加引用计数，最好写个全局变量赋值语句以避免被回收。<br>
+参数 @2 指定 aardio 定义的结构体类或结构体对象。<br>
+返回 raw.struct 对象。  </p>
+
+<p>返回的结构体共享 Julia 结构体内存。<br>
+读写结构体成员会直接更新 Julia 的结构体<br>
+可以调用返回对象的 get 或 set 函数一次性读写多个字段以优化性能</p>
+
+<p><a id="julia.exceptionOccurred"></a></p>
+
+<h3>julia.exceptionOccurred()</h3>
+
+<p>如果有错误发生,<br>
+返回错误对象指针,以及错误对象类型字符串</p>
+
+<p><a id="julia.import"></a></p>
+
+<h3>julia.import()</h3>
+
+<p>使用 import 语句导入 Julia 模块到 julia 名字空间，n此函数返回模块对象。</p>
+
+<p><a id="julia.lasterr"></a></p>
+
+<h3>julia.lasterr()</h3>
+
+<p>如果有错误发生，返回错误信息文本</p>
+
+<p><a id="julia.typeof"></a></p>
+
+<h3>julia.typeof()</h3>
+
+<p>返回 Julia 对象指针的数据类型,返回值为字符串,<br>
+参数@2为true是返回类型对象的原始指针而不会返回字符串,<br>
+如果传入参数不是指针，返回 null</p>
+
+<p><a id="julia.using"></a></p>
+
+<h3>julia.using()</h3>
+
+<p>使用 using 语句导入 Julia 模块到 julia 名字空间，<br>
+此函数返回模块对象。</p>
+
+<p><a id="julia.module"></a></p>
+
+<h2>julia.module 成员列表</h2>
+
+<p><a id="julia.module.Main"></a></p>
+
+<h3>julia.module.Main</h3>
+
+<p>Main 是 Julia 主模块。<br>
+代码默认在此模块下运行  </p>
+
+<p><a href="#juliaModuleObject">返回对象:juliaModuleObject</a></p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/julia/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/julia/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/julia/_.md">Markdown 格式</a></p>
+
+</body> 
+</html>

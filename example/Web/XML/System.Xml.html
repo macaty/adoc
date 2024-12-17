@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - /XPath: System.Xml'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - /XPath: System.Xml</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: /XPath: System.Xml</h1><pre><code class="aardio language-aardio">///XPath: System.Xml
+import console.int;
+import dotNet;
+
+//导入 .NET 名字空间（Win7 或 .NET 2.0 开始已经自带 System.Xml ）
+dotNet.import(&quot;System.Xml&quot;);
+
+//文档: https://learn.microsoft.com/zh-cn/dotnet/api/system.xml.xmldocument?view=netframework-2.0
+var xmlDoc = System.Xml.XmlDocument();
+
+xmlDoc.LoadXml(`&lt;?xml version=&quot;1.0&quot; ?&gt;
+&lt;国家 id=&quot;china&quot;&gt;
+    &lt;省份&gt;
+        &lt;省份详情 id=&quot;shanxi&quot;&gt;陕西&lt;/省份详情&gt;
+        &lt;地区&gt;
+            &lt;市 id=&quot;xian&quot;&gt;西安&lt;/市&gt;
+            &lt;市 id=&quot;xianyang&quot;&gt;咸阳&lt;/市&gt;
+        &lt;/地区&gt;
+    &lt;/省份&gt;
+    &lt;省份&gt;
+        &lt;省份详情 id=&quot;hunan&quot;&gt;湖南&lt;/省份详情&gt;
+        &lt;地区&gt;
+            &lt;市 id=&quot;changsha&quot;&gt;长沙&lt;/市&gt;
+            &lt;市 id=&quot;zhuzhou&quot;&gt;株洲&lt;/市&gt;
+        &lt;/地区&gt;
+    &lt;/省份&gt;
+&lt;/国家&gt;`)
+
+//XPath 查询
+var ele = xmlDoc.SelectSingleNode(`//省份/省份详情[@id=&quot;shanxi&quot;]`);
+console.log(ele.OuterXml);
+
+/*
+XPath 语法速查
+https://quickref.me/zh-CN/docs/xpath.html
+
+`//省份/省份详情[@id=&quot;shanxi&quot;]`
+表示在『省份』下面去找『省份详情』，用斜杆分隔上下级关级。
+两个 // 表示任意子级（忽略中间隔了多少层）。
+最开始如果是单个 / 表示根节点。
+
+`省份详情[@id=&quot;shanxi&quot;] `
+表示『省份详情』必须有一个 id 属性，值为 &quot;shanxi&quot; 。
+属性名前面加一个 @ 符号。
+*/
+
+
+
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Web/XML/System.Xml.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Web/XML/System.Xml.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Web/XML/System.Xml.md">Markdown 格式</a>
+</body> 
+</html>

@@ -1,0 +1,1378 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - win.ui.ctrl.treeview 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - win.ui.ctrl.treeview 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>win.ui.ctrl.treeview 库模块帮助文档</h1>
+
+<p><a id="win.ui.ctrl"></a></p>
+
+<h2>win.ui.ctrl 成员列表</h2>
+
+<p><a id="win.ui.ctrl.treeview"></a></p>
+
+<h3>win.ui.ctrl.treeview()</h3>
+
+<p>树形视图控件  </p>
+
+<p><a href="#treeviewObject">返回对象:treeviewObject</a></p>
+
+<p><a id="treeviewObject"></a></p>
+
+<h2>treeviewObject 成员列表</h2>
+
+<p><a id="treeviewObject._parentForm"></a></p>
+
+<h3>treeviewObject._parentForm</h3>
+
+<p>控件所在的父窗口(指win.form对象)  </p>
+
+<p><a href="../_.html#winform" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/_.html#winform">返回对象:winform</a></p>
+
+<p><a id="treeviewObject.addCtrl"></a></p>
+
+<h3>treeviewObject.addCtrl</h3>
+
+<pre><code class="aardio language-aardio">treeviewObject.addCtrl(  
+    button={ cls=&quot;button&quot;;text=&quot;button&quot;;left=33;top=32;right=126;bottom=81;autoResize=false }    
+)
+</code></pre>
+
+<p><a id="treeviewObject.adjust"></a></p>
+
+<h3>treeviewObject.adjust</h3>
+
+<pre><code class="aardio language-aardio">treeviewObject.adjust = function( cx,cy,wParam ) {     
+    /*窗口缩放时会自动触发此函数。  
+cx 参数为窗口宽度,cy 参数为窗口高度,  
+wParam 参数请参考 _WM_SIZE 消息参数说明,一般不用管。  
+
+所有 win.form 创建的窗体和控件都支持此事件,  
+重复赋值只会追加而不会覆盖此事件。  
+一般不建议添加一个 wndproc 仅仅是为了处理  _WM_SIZE 消息，  
+定义 adjust 事件是更好的选择。  
+
+可主动调用此事件,省略参数时 cx,cy 参数默认设为窗口大小*/    
+};
+</code></pre>
+
+<p><a id="treeviewObject.bottom"></a></p>
+
+<h3>treeviewObject.bottom</h3>
+
+<p>底部坐标</p>
+
+<p><a id="treeviewObject.capture"></a></p>
+
+<h3>treeviewObject.capture</h3>
+
+<p>是否捕获全局鼠标消息</p>
+
+<p><a id="treeviewObject.checkAll"></a></p>
+
+<h3>treeviewObject.checkAll(节点句柄,是否选中)</h3>
+
+<p>勾选或取消勾选所有下级子节点<br>
+并且更新所有上级父节点的勾选状态为：是否有任意的子节点是勾选状态<br>
+参数@1如果不指定则表示根节点(_TVI_ROOT)<br>
+参数@2不指定则默认赋值为true</p>
+
+<p><a id="treeviewObject.className"></a></p>
+
+<h3>treeviewObject.className</h3>
+
+<p>运行时类名</p>
+
+<p><a id="treeviewObject.clear"></a></p>
+
+<h3>treeviewObject.clear</h3>
+
+<p>清空节点</p>
+
+<p><a id="treeviewObject.clear"></a></p>
+
+<h3>treeviewObject.clear()</h3>
+
+<p>清空所有节点</p>
+
+<p><a id="treeviewObject.clear"></a></p>
+
+<h3>treeviewObject.clear(hItem)</h3>
+
+<p>清空参数指定节点的所有子节点,<br>
+@hItem 参数指定节点句柄</p>
+
+<p><a id="treeviewObject.close"></a></p>
+
+<h3>treeviewObject.close()</h3>
+
+<p>关闭控件窗口</p>
+
+<p><a id="treeviewObject.cls"></a></p>
+
+<h3>treeviewObject.cls</h3>
+
+<p>设计时类名</p>
+
+<p><a id="treeviewObject.collapse"></a></p>
+
+<h3>treeviewObject.collapse(hItem)</h3>
+
+<p>折叠项<br>
+参数为节点句柄,省略则取当前选中项</p>
+
+<p><a id="treeviewObject.collapseReset"></a></p>
+
+<h3>treeviewObject.collapseReset(hItem)</h3>
+
+<p>折叠并删除子项<br>
+参数为节点句柄,省略则取当前选中项</p>
+
+<p><a id="treeviewObject.count"></a></p>
+
+<h3>treeviewObject.count</h3>
+
+<p>获取项目总数</p>
+
+<p><a id="treeviewObject.delItem"></a></p>
+
+<h3>treeviewObject.delItem(hItem节点句柄)</h3>
+
+<p>删除节点<br>
+参数:节点句柄</p>
+
+<p><a id="treeviewObject.disabled"></a></p>
+
+<h3>treeviewObject.disabled</h3>
+
+<p>是否禁用</p>
+
+<p><a id="treeviewObject.each"></a></p>
+
+<h3>treeviewObject.each(父节点句柄)</h3>
+
+<pre><code class="aardio language-aardio">for hChild in treeviewObject.each(){
+    /*遍历父节点句柄的下级子级点  
+不包含子节点的子节点*/
+}
+</code></pre>
+
+<p><a id="treeviewObject.editLabel"></a></p>
+
+<h3>treeviewObject.editLabel(hItem)</h3>
+
+<p>开始编辑项,参数为节点句柄</p>
+
+<p><a id="treeviewObject.endEdit"></a></p>
+
+<h3>treeviewObject.endEdit()</h3>
+
+<p>结束编辑并</p>
+
+<p><a id="treeviewObject.endEdit"></a></p>
+
+<h3>treeviewObject.endEdit(true)</h3>
+
+<p>结束编辑并取消</p>
+
+<p><a id="treeviewObject.ensureVisible"></a></p>
+
+<h3>treeviewObject.ensureVisible(hItem)</h3>
+
+<p>确保指定项目是可见的,通过展开父项目或滚动树型控件窗,<br>
+参数为节点句柄</p>
+
+<p><a id="treeviewObject.enum"></a></p>
+
+<h3>treeviewObject.enum(回调函数,节点句柄)</h3>
+
+<pre><code class="aardio language-aardio">treeviewObject.enum(  
+    function(hItem,parent){  
+        /*枚举所有下级子节点,  
+hItem为当前节点,parent为当前节点的父节点  
+返回false停止枚举*/  
+    }  
+)
+</code></pre>
+
+<p><a id="treeviewObject.enumParent"></a></p>
+
+<h3>treeviewObject.enumParent(回调函数,节点句柄)</h3>
+
+<pre><code class="aardio language-aardio">treeviewObject.enumParent(  
+    function(parent,child){  
+        /*枚举所有上级父节点,  
+parent为当前父节点,child为该节点的子节点  
+child是上一次枚举到的父节点或者自身  
+返回false停止枚举*/  
+    }  
+)
+</code></pre>
+
+<p><a id="treeviewObject.expand"></a></p>
+
+<h3>treeviewObject.expand(hItem)</h3>
+
+<p>展开项<br>
+参数为节点句柄,省略则取当前选中项</p>
+
+<p><a id="treeviewObject.expandAll"></a></p>
+
+<h3>treeviewObject.expandAll(hItem)</h3>
+
+<p>展开指定项,并展开指定项的所有下级子级点<br>
+包含子级点的所有下级子节点都会被展开</p>
+
+<p><a id="treeviewObject.expandPartial"></a></p>
+
+<h3>treeviewObject.expandPartial(hItem)</h3>
+
+<p>部分展开<br>
+参数为节点句柄,省略则取当前选中项</p>
+
+<p><a id="treeviewObject.expandTo"></a></p>
+
+<h3>treeviewObject.expandTo(hItem)</h3>
+
+<p>展开项以及其所有上级父节点<br>
+参数为节点句柄,省略则取当前选中项</p>
+
+<p><a id="treeviewObject.find"></a></p>
+
+<h3>treeviewObject.find(父节点,&quot;子项标题&quot;,...)</h3>
+
+<p>查找子项,展开上级父节点,<br>
+可以用多个文本参数多级向下查找子项,<br>
+父节点参数可省略,参数也可以是一个字符串数组</p>
+
+<p><a id="treeviewObject.findPath"></a></p>
+
+<h3>treeviewObject.findPath(父节点,&quot;路径\子项&quot;)</h3>
+
+<p>按路径查找子项,展开上级父节点<br>
+父节点参数可省略不写,默认为根节点,</p>
+
+<p><a id="treeviewObject.getChecked"></a></p>
+
+<h3>treeviewObject.getChecked(hItem节点句柄)</h3>
+
+<p>返回指定项的复选框是否勾选</p>
+
+<p><a id="treeviewObject.getChildItem"></a></p>
+
+<h3>treeviewObject.getChildItem(hItem节点句柄)</h3>
+
+<p>返回子节点<br>
+参数:节点句柄</p>
+
+<p><a id="treeviewObject.getChildren"></a></p>
+
+<h3>treeviewObject.getChildren(hItem)</h3>
+
+<p>返回包含节点所有子节点句柄的数组,<br>
+@hItem 参数指定节点句柄</p>
+
+<p><a id="treeviewObject.getClientRect"></a></p>
+
+<h3>treeviewObject.getClientRect()</h3>
+
+<p>控件客户区块位置(::RECT结构体)  </p>
+
+<p><a href="../../../global/_.html#rectObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/global/_.html#rectObject">返回对象:rectObject</a></p>
+
+<p><a id="treeviewObject.getEditControl"></a></p>
+
+<h3>treeviewObject.getEditControl()</h3>
+
+<p>开始编辑时返回编辑控件,<br>
+此控件在完成编辑后会自动销毁,不必手动销毁<br>
+取消发送_WM_CANCELMODE消息即可  </p>
+
+<p><a href="edit.html#editObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/edit.html#editObject">返回对象:editObject</a></p>
+
+<p><a id="treeviewObject.getEditHwnd"></a></p>
+
+<h3>treeviewObject.getEditHwnd()</h3>
+
+<p>返回编辑文本框句柄;</p>
+
+<p><a id="treeviewObject.getFirst"></a></p>
+
+<h3>treeviewObject.getFirst()</h3>
+
+<p>返回树视图中的第一个节点<br>
+也即_TVI_ROOT的第一个子节点</p>
+
+<p><a id="treeviewObject.getFirstVisible"></a></p>
+
+<h3>treeviewObject.getFirstVisible()</h3>
+
+<p>返回第一个可见节点<br>
+参数:节点句柄</p>
+
+<p><a id="treeviewObject.getFont"></a></p>
+
+<h3>treeviewObject.getFont()</h3>
+
+<p>控件字体(::LOGFONT结构体)  </p>
+
+<p><a href="#logfontObject">返回对象:logfontObject</a></p>
+
+<p><a id="treeviewObject.getImageList"></a></p>
+
+<h3>treeviewObject.getImageList( _TVSIL )</h3>
+
+<p>获取图像列表,<br>
+可选使用 <em>LVSIL</em> 前缀常量指定类型</p>
+
+<p><a id="treeviewObject.getItem"></a></p>
+
+<h3>treeviewObject.getItem()</h3>
+
+<p>返回TVITEM对象,参数为TVITEM结构体或指定部分成员的table对象.<br>
+参数一也可以是空值,或树节点句柄<br>
+如果参数未指定节点句柄,则取当前选中节点</p>
+
+<p><a href="#tvitemObject">返回对象:tvitemObject</a></p>
+
+<p><a id="treeviewObject.getItemData"></a></p>
+
+<h3>treeviewObject.getItemData(hItem)</h3>
+
+<p>返回节点关联数据</p>
+
+<p><a id="treeviewObject.getItemPath"></a></p>
+
+<h3>treeviewObject.getItemPath(节点句柄)</h3>
+
+<p>返回节点路径,以反斜杠分隔父子项目文本<br>
+省略节点参数则取当前选中节点</p>
+
+<p><a id="treeviewObject.getItemRect"></a></p>
+
+<h3>treeviewObject.getItemRect(hItem)</h3>
+
+<p>返回句柄指定节点整行区块(RECT对象)<br>
+省略节点句柄则取当前选中节点</p>
+
+<p><a id="treeviewObject.getItemRect"></a></p>
+
+<h3>treeviewObject.getItemRect(hItem,true)</h3>
+
+<p>返回句柄指定节点文本区块(RECT对象)<br>
+省略节点句柄则取当前选中节点</p>
+
+<p><a id="treeviewObject.getItemText"></a></p>
+
+<h3>treeviewObject.getItemText(节点句柄,缓冲区长度)</h3>
+
+<p>返回节点文本<br>
+省略节点参数则取当前选中节点<br>
+缓冲区长度参数可省略,默认为100</p>
+
+<p><a id="treeviewObject.getNextItem"></a></p>
+
+<h3>treeviewObject.getNextItem(hItem节点句柄)</h3>
+
+<p>返回下一个节点,<br>
+第二个参数可选使用 <em>TVNI</em> 前缀的常量指定选项</p>
+
+<p><a id="treeviewObject.getNextSibling "></a></p>
+
+<h3>treeviewObject.getNextSibling (hItem节点句柄)</h3>
+
+<p>返回后面的兄弟节点<br>
+参数:节点句柄</p>
+
+<p><a id="treeviewObject.getNextVisible"></a></p>
+
+<h3>treeviewObject.getNextVisible(hItem节点句柄)</h3>
+
+<p>返回下一个可见节点<br>
+参数:节点句柄</p>
+
+<p><a id="treeviewObject.getNotifyCustomDraw"></a></p>
+
+<h3>treeviewObject.getNotifyCustomDraw()</h3>
+
+<p><a href="#NMTVCUSTOMDRAWObject">返回对象:NMTVCUSTOMDRAWObject</a></p>
+
+<p><a id="treeviewObject.getNotifyCustomDraw"></a></p>
+
+<h3>treeviewObject.getNotifyCustomDraw(code,ptr)</h3>
+
+<p>NM_CUSTOMDRAW通知消息返回NMLVCUSTOMDRAW结构体</p>
+
+<p><a id="treeviewObject.getNotifyDispInfo"></a></p>
+
+<h3>treeviewObject.getNotifyDispInfo()</h3>
+
+<p><a href="#TVDISPINFOObject">返回对象:TVDISPINFOObject</a></p>
+
+<p><a id="treeviewObject.getNotifyDispInfo"></a></p>
+
+<h3>treeviewObject.getNotifyDispInfo(code,ptr)</h3>
+
+<p>该函数限用于onnotify通知回调函数中<br>
+code参数为通知码,ptr参数为NMHDR指针<br>
+如果NMHDR指针指向TV_DISPINFO对象则返回该对象,否则返回空值</p>
+
+<p><a id="treeviewObject.getNotifyMessage"></a></p>
+
+<h3>treeviewObject.getNotifyMessage()</h3>
+
+<p><a href="#NMTREEVIEWObject">返回对象:NMTREEVIEWObject</a></p>
+
+<p><a id="treeviewObject.getNotifyMessage"></a></p>
+
+<h3>treeviewObject.getNotifyMessage(code,ptr)</h3>
+
+<p>该函数限用于onnotify通知回调函数中<br>
+code参数为通知码,ptr参数为NMHDR指针<br>
+如果code不是大于_TVN_FIRST,并小于_TVN_LAST的消息,<br>
+该函数返回空值,否则返回NMTREEVIEW对象.</p>
+
+<p><a id="treeviewObject.getParent"></a></p>
+
+<h3>treeviewObject.getParent()</h3>
+
+<p>返回父窗口</p>
+
+<p><a id="treeviewObject.getParentItem"></a></p>
+
+<h3>treeviewObject.getParentItem(hItem节点句柄)</h3>
+
+<p>返回父节点<br>
+参数:节点句柄</p>
+
+<p><a id="treeviewObject.getParentItemData"></a></p>
+
+<h3>treeviewObject.getParentItemData(hItem)</h3>
+
+<p>返回父节点关联数据</p>
+
+<p><a id="treeviewObject.getPos"></a></p>
+
+<h3>treeviewObject.getPos()</h3>
+
+<p>返回相对坐标,宽,高<br>
+x,y,cx,cy=win.getPos(hwnd)</p>
+
+<p><a id="treeviewObject.getPrevSibling"></a></p>
+
+<h3>treeviewObject.getPrevSibling(hItem节点句柄)</h3>
+
+<p>返回前面的兄弟节点<br>
+参数:节点句柄</p>
+
+<p><a id="treeviewObject.getPrevVisible"></a></p>
+
+<h3>treeviewObject.getPrevVisible(hItem节点句柄)</h3>
+
+<p>返回上一个可见节点<br>
+参数:节点句柄</p>
+
+<p><a id="treeviewObject.getRect"></a></p>
+
+<h3>treeviewObject.getRect()</h3>
+
+<p>控件区块位置(::RECT结构体)</p>
+
+<p><a id="treeviewObject.getRect"></a></p>
+
+<h3>treeviewObject.getRect(true)</h3>
+
+<p>控件屏幕区块位置(::RECT结构体)</p>
+
+<p><a id="treeviewObject.getRoot"></a></p>
+
+<h3>treeviewObject.getRoot()</h3>
+
+<p>返回根节点( TVI_ROOT )<br>
+注意TVI_ROOT的子节点并没有父节点</p>
+
+<p><a id="treeviewObject.getSelection"></a></p>
+
+<h3>treeviewObject.getSelection()</h3>
+
+<p>返回当前选中节点</p>
+
+<p><a id="treeviewObject.height"></a></p>
+
+<h3>treeviewObject.height</h3>
+
+<p>高度</p>
+
+<p><a id="treeviewObject.hide"></a></p>
+
+<h3>treeviewObject.hide</h3>
+
+<p>控件是否隐藏</p>
+
+<p><a id="treeviewObject.hitTest"></a></p>
+
+<h3>treeviewObject.hitTest(x坐标,y坐标,是否屏幕坐标)</h3>
+
+<p>该函数返回指定坐标的句柄,参数三可省略,默认为false.<br>
+如果不指定任何参数,则自动调用 win.getMessagePos() 获取消息坐标<br>
+第二个返回值指定测试结果,该值可以是一个或多个_TVHT_开头的常量组合</p>
+
+<p><a id="treeviewObject.hwnd"></a></p>
+
+<h3>treeviewObject.hwnd</h3>
+
+<p>控件句柄</p>
+
+<p><a id="treeviewObject.id"></a></p>
+
+<h3>treeviewObject.id</h3>
+
+<p>控件ID</p>
+
+<p><a id="treeviewObject.imageList"></a></p>
+
+<h3>treeviewObject.imageList</h3>
+
+<p>获取设置图像列个<br>
+支持 win.imageList 对象</p>
+
+<p><a id="treeviewObject.insertItem"></a></p>
+
+<h3>treeviewObject.insertItem(&quot;插入文本&quot;,父项,前面的子项)</h3>
+
+<p>参数@1可以是普通文本,<br>
+可使用数组添加多个兄弟节点,使用children成员添加多个子节点<br>
+参数@2指定父项(可省略),参数@3指定插入位置前面的子项(可省略)<br>
+返回新节点句柄,示例<br>
+var item = winform.treeview.insertItem(&quot;子节点&quot;,item)</p>
+
+<p><a id="treeviewObject.insertItem"></a></p>
+
+<h3>treeviewObject.insertItem(插入TVITEM结构体,父项,前面的子项)</h3>
+
+<p>参数@1可以是TVITEM结构体或指定部分成员的table对象<br>
+参数@1可使用数组添加多个兄弟节点,使用children成员添加多个子节点<br>
+此函数可自动检测非空成员并自动设定相应mask位<br>
+参数@2指定父项(可省略),参数@3指定插入位置前面的子项(可省略)<br>
+返回新节点句柄,示例  </p>
+
+<p>var item = winform.treeview.insertItem( text = &quot;根目录&quot; )</p>
+
+<p><a id="treeviewObject.insertItem"></a></p>
+
+<h3>treeviewObject.insertItem(数据表,父项,前面的子项)</h3>
+
+<p>参数@1可以使用string.xml对象,<br>
+或者使用相同结构的普通表对象,<br>
+每个节点对象必须指定tagName或text属性,<br>
+treeview按text,label,title,name,tagName的顺序确定显示标题<br>
+每个节点可以用数组包含子节点(但节点本身必须指定tagName或text属性)<br>
+也可以使用children成员指向一个数组表示多个子节点<br>
+参数@2指定父项(可省略),参数@3指定插入位置前面的子项(可省略)<br>
+返回新节点句柄,  </p>
+
+<p>此用法请参考aardio范例中的treeview控件演示、<br>
+以及fsys.asar下面几个库的treeData函数</p>
+
+<p><a id="treeviewObject.insertTable"></a></p>
+
+<h3>treeviewObject.insertTable</h3>
+
+<p>显示表对象中的名值对以及数组</p>
+
+<p><a id="treeviewObject.insertTable"></a></p>
+
+<h3>treeviewObject.insertTable(tab,hParent)</h3>
+
+<p>显示表对象中的名值对以及数组,<br>
+支持显示嵌套表，表中不应出现循环引用的成员,<br>
+可选用hParent指定父节点句柄</p>
+
+<p><a id="treeviewObject.invalidate(/*可选使用::RECT"></a></p>
+
+<h3>treeviewObject.invalidate(/*可选使用::RECT()对象指定客户区*/)</h3>
+
+<p>使窗口绘图区无效</p>
+
+<p><a id="treeviewObject.invalidate(/*可选使用::RECT"></a></p>
+
+<h3>treeviewObject.invalidate(/*可选使用::RECT()对象指定客户区*/,0)</h3>
+
+<p>使窗口绘图区无效<br>
+不刷新背景</p>
+
+<p><a id="treeviewObject.isExpanded"></a></p>
+
+<h3>treeviewObject.isExpanded(hItem)</h3>
+
+<p>节点是否展开状态</p>
+
+<p><a id="treeviewObject.isExpandedOnce"></a></p>
+
+<h3>treeviewObject.isExpandedOnce(hItem)</h3>
+
+<p>节点是否至少展开过一次</p>
+
+<p><a id="treeviewObject.left"></a></p>
+
+<h3>treeviewObject.left</h3>
+
+<p>左侧坐标</p>
+
+<p><a id="treeviewObject.modifyStyle"></a></p>
+
+<h3>treeviewObject.modifyStyle(remove,add,swpFlags)</h3>
+
+<p>修改窗口样式,所有参数都是可选参数,<br>
+@remove 用数值指定要移除的样式,可使用 <em>WS</em> 前缀的常量<br>
+@add 用数值指定要添加的样式,可使用 <em>WS</em> 前缀的常量<br>
+@swpFlags 可选用数值指定调整窗口选项,可使用 <em>SWP</em> 前缀的常量<br>
+如果指定了 @swpFlag ,则使用该参数调用::SetWindowPos<br>
+细节请参考 win.modifyStyle 函数源码</p>
+
+<p><a id="treeviewObject.modifyStyleEx"></a></p>
+
+<h3>treeviewObject.modifyStyleEx(remove,add,swpFlags)</h3>
+
+<p>修改窗口扩展样式,所有参数都是可选参数,<br>
+@remove 用数值指定要移除的样式,可使用 <em>WS_EX</em> 前缀的常量<br>
+@add 用数值指定要添加的样式,可使用 <em>WS_EX</em> 前缀的常量<br>
+@swpFlags 可选用数值指定调整窗口选项,可使用 <em>SWP</em> 前缀的常量<br>
+如果指定了 @swpFlag ,则使用该参数调用::SetWindowPos<br>
+细节请参考 win.modifyStyle 函数源码</p>
+
+<p><a id="treeviewObject.onClick"></a></p>
+
+<h3>treeviewObject.onClick</h3>
+
+<pre><code class="aardio language-aardio">treeviewObject.onClick = function(hItem,data){
+    /*单击节点触发此事件，  
+hItem 为当前节点句柄，data 为该节点绑定的自定义数据。  
+可返回 true 阻止默认处理。  
+注意在双击后控件自动获取焦点。*/ 
+}
+</code></pre>
+
+<p><a id="treeviewObject.onDestroy"></a></p>
+
+<h3>treeviewObject.onDestroy</h3>
+
+<pre><code class="aardio language-aardio">treeviewObject.onDestroy = function(){  
+    /*窗口销毁前触发*/  
+}
+</code></pre>
+
+<p><a id="treeviewObject.onDoubleClick"></a></p>
+
+<h3>treeviewObject.onDoubleClick</h3>
+
+<pre><code class="aardio language-aardio">treeviewObject.onDoubleClick = function(hItem,data){
+    /*双击节点触发此事件，  
+hItem 为当前节点句柄，data 为该节点绑定的自定义数据。  
+可返回 true 阻止默认处理*/
+}
+</code></pre>
+
+<p><a id="treeviewObject.onRightClick"></a></p>
+
+<h3>treeviewObject.onRightClick</h3>
+
+<pre><code class="aardio language-aardio">treeviewObject.onRightClick = function(hItem,data){
+    /*右键点击节点触发此事件，  
+hItem 为当前节点句柄，data 为该节点绑定的自定义数据*/   
+}
+</code></pre>
+
+<p><a id="treeviewObject.onSelChanged"></a></p>
+
+<h3>treeviewObject.onSelChanged</h3>
+
+<pre><code class="aardio language-aardio">treeviewObject.onSelChanged = function(hItem,data,nmTreeView){
+    /*改娈当前节点触发此事件，  
+hItem 为当前节点句柄，data 为该节点绑定的自定义数据。  
+nmTreeView 为 NMTREEVIEW 结构体参数*/
+}
+</code></pre>
+
+<p><a id="treeviewObject.onStateImageChanging"></a></p>
+
+<h3>treeviewObject.onStateImageChanging</h3>
+
+<pre><code class="aardio language-aardio">treeviewObject.onStateImageChanging = function(hItem,checked,newImgIndex,oldImgIndex){
+
+     /*状态图像（通常指复选框）变更触发此事件。  
+hItem 为树视图的变更节点句柄。  
+checked 为是否切换到勾选图像索引，也就是 2。  
+newImgIndex,oldImgIndex 分别为新旧状态图像索引。  
+注意勾选操作并不改变当前节点，默认勾选完成会弹回原来的选中节点。  
+可调用 setSelected 函数选中当前操作的节点 */
+     //选定节点
+     winform.treeview.setSelected(hItem);
+}
+</code></pre>
+
+<p><a id="treeviewObject.oncommand"></a></p>
+
+<h3>treeviewObject.oncommand</h3>
+
+<pre><code class="aardio language-aardio">treeviewObject.oncommand = function(id,event){  
+    /*命令事件触发*/  
+}
+</code></pre>
+
+<p><a id="treeviewObject.onnotify"></a></p>
+
+<h3>treeviewObject.onnotify</h3>
+
+<pre><code class="aardio language-aardio">treeviewObject.onnotify = function(id,code,ptr){  
+    /*通知事件触发*/  
+}
+</code></pre>
+
+<p><a id="treeviewObject.orphanWindow"></a></p>
+
+<h3>treeviewObject.orphanWindow(transparent,hwndBuddy)</h3>
+
+<p>创建悬浮窗口,<br>
+悬浮窗口仍然显示在原来的位置,<br>
+悬浮窗口如影随形的跟随父窗口移动或改变大小,控件原来的固定边距等参数仍然有效<br>
+此控件不建议指定参数</p>
+
+<p><a id="treeviewObject.postMessage"></a></p>
+
+<h3>treeviewObject.postMessage(msg,wParam,lParam)</h3>
+
+<p>投递窗口消息到消息队列中<br>
+此函数用法请参考 ::User32.PostMessage</p>
+
+<p><a id="treeviewObject.redraw"></a></p>
+
+<h3>treeviewObject.redraw()</h3>
+
+<p>刷新</p>
+
+<p><a id="treeviewObject.right"></a></p>
+
+<h3>treeviewObject.right</h3>
+
+<p>右侧坐标</p>
+
+<p><a id="treeviewObject.selDropHiLite"></a></p>
+
+<h3>treeviewObject.selDropHiLite(hItem)</h3>
+
+<p>选定节点<br>
+似拖放操作的目标项目高亮显示<br>
+参数指定节点句柄</p>
+
+<p><a id="treeviewObject.selFirstVisible"></a></p>
+
+<h3>treeviewObject.selFirstVisible(hItem)</h3>
+
+<p>选定节点并设置到可视区第一行<br>
+参数指定节点句柄</p>
+
+<p><a id="treeviewObject.sendMessage"></a></p>
+
+<h3>treeviewObject.sendMessage(msg,wParam,lParam)</h3>
+
+<p>发送窗口消息<br>
+此函数用法请参考 ::User32.SendMessage</p>
+
+<p><a id="treeviewObject.setChecked"></a></p>
+
+<h3>treeviewObject.setChecked(节点句柄,是否选中)</h3>
+
+<p>勾选指定项的复选框<br>
+参数@2,默认值是true</p>
+
+<p><a id="treeviewObject.setFocus"></a></p>
+
+<h3>treeviewObject.setFocus()</h3>
+
+<p>设置焦点</p>
+
+<p><a id="treeviewObject.setFont"></a></p>
+
+<h3>treeviewObject.setFont(指定字体)</h3>
+
+<p>指定LOGFONT字体对象,或逻辑字体句柄</p>
+
+<p><a id="treeviewObject.setFont"></a></p>
+
+<h3>treeviewObject.setFont(混入字体属性)</h3>
+
+<pre><code class="aardio language-aardio">treeviewObject.setFont(point=10;name=&quot;宋体&quot;);
+</code></pre>
+
+<p><a id="treeviewObject.setImageList"></a></p>
+
+<h3>treeviewObject.setImageList( imageList,_TVSIL )</h3>
+
+<p>指定图像列表,<br>
+可选使用 <em>LVSIL</em> 前缀常量指定类型<br>
+treeview控件不负责销毁图像列表，用户应在控件不再使用图像列表后释放图像列表。</p>
+
+<p><a id="treeviewObject.setItem"></a></p>
+
+<h3>treeviewObject.setItem()</h3>
+
+<p>更新项节点,参数为TVITEM结构体或指定部分成员的table对象<br>
+如果参数未指定节点句柄,则取当前选中节点<br>
+成功返回true;<br>
+此函数可自动检测非空成员并自动设定相应mask位</p>
+
+<p><a id="treeviewObject.setItemData"></a></p>
+
+<h3>treeviewObject.setItemData(hItem,data)</h3>
+
+<p>设置关联数据<br>
+data可以是任意对象<br>
+如果添加项时使用的参数是表而不是结构体,默认设置为关联数据</p>
+
+<p><a id="treeviewObject.setItemText"></a></p>
+
+<h3>treeviewObject.setItemText(节点句柄,文本)</h3>
+
+<p>设置节点文本<br>
+省略节点参数则取当前选中节点</p>
+
+<p><a id="treeviewObject.setParent"></a></p>
+
+<h3>treeviewObject.setParent(控件对象)</h3>
+
+<p>改变父窗口</p>
+
+<p><a id="treeviewObject.setPos"></a></p>
+
+<h3>treeviewObject.setPos(x坐标,y坐标,宽,高,插入位置,参数)</h3>
+
+<p>调整窗口位置或排序,所有参数可选<br>
+同时指定x,y坐标则移动位置<br>
+同时指定宽高则改变大小<br>
+指定插入位置(句柄或_HWND前缀常量)则调整Z序</p>
+
+<p><a id="treeviewObject.setRect"></a></p>
+
+<h3>treeviewObject.setRect(rc)</h3>
+
+<p>设置控件区块位置(::RECT结构体)</p>
+
+<p><a id="treeviewObject.setRect"></a></p>
+
+<h3>treeviewObject.setRect(rc,true)</h3>
+
+<p>设置控件屏幕区块位置(::RECT结构体)</p>
+
+<p><a id="treeviewObject.setRedraw"></a></p>
+
+<h3>treeviewObject.setRedraw(false)</h3>
+
+<p>禁止重绘</p>
+
+<p><a id="treeviewObject.setRedraw"></a></p>
+
+<h3>treeviewObject.setRedraw(true)</h3>
+
+<p>恢复重绘</p>
+
+<p><a id="treeviewObject.setSelected"></a></p>
+
+<h3>treeviewObject.setSelected()</h3>
+
+<p>不选定任何节点</p>
+
+<p><a id="treeviewObject.setSelected"></a></p>
+
+<h3>treeviewObject.setSelected(hItem)</h3>
+
+<p>选定节点<br>
+参数指定节点句柄</p>
+
+<p><a id="treeviewObject.show"></a></p>
+
+<h3>treeviewObject.show(true)</h3>
+
+<p>显示控件</p>
+
+<p><a id="treeviewObject.text"></a></p>
+
+<h3>treeviewObject.text</h3>
+
+<p>控件文本</p>
+
+<p><a id="treeviewObject.theme"></a></p>
+
+<h3>treeviewObject.theme</h3>
+
+<p>外观主题,例如<br>
+winform.button.theme = &quot;Explorer&quot;<br>
+winform.button.theme = false</p>
+
+<p><a id="treeviewObject.threadCallable"></a></p>
+
+<h3>treeviewObject.threadCallable()</h3>
+
+<p>开启此控件的跨线程调用功能</p>
+
+<p><a id="treeviewObject.toggle"></a></p>
+
+<h3>treeviewObject.toggle(hItem)</h3>
+
+<p>折叠的就展开,展开的就折叠<br>
+参数为节点句柄,省略则取当前选中项</p>
+
+<p><a id="treeviewObject.top"></a></p>
+
+<h3>treeviewObject.top</h3>
+
+<p>顶部坐标</p>
+
+<p><a id="treeviewObject.translateCommand"></a></p>
+
+<h3>treeviewObject.translateCommand()</h3>
+
+<p>允许转发转发子窗口的命令（_WM_COMMAND）与通知（_WM_NOTIFY）消息，<br>
+避免子窗口 oncommand，onnotify 等回调失效。<br>
+同时会处理子窗口的 _WM_CTLCOLORSTATIC 等消息，<br>
+以避免部分外观属性失效</p>
+
+<p><a id="treeviewObject.update"></a></p>
+
+<h3>treeviewObject.update()</h3>
+
+<p>重绘invalidate函数指定的区块</p>
+
+<p><a id="treeviewObject.valid"></a></p>
+
+<h3>treeviewObject.valid</h3>
+
+<p>窗口是否有效，<br>
+窗口未关闭返回 true ，<br>
+窗口已关闭或正在关闭返回 false</p>
+
+<p><a id="treeviewObject.visibleCount"></a></p>
+
+<h3>treeviewObject.visibleCount</h3>
+
+<p>获取可见项总数</p>
+
+<p><a id="treeviewObject.width"></a></p>
+
+<h3>treeviewObject.width</h3>
+
+<p>宽度</p>
+
+<p><a id="treeviewObject.wndproc"></a></p>
+
+<h3>treeviewObject.wndproc</h3>
+
+<pre><code class="aardio language-aardio">treeviewObject.wndproc = function(hwnd,message,wParam,lParam){  
+    /*窗口消息回调，返回任意非null值阻止默认回调  
+wndproc重复赋值时追加函数而不是覆盖之前的回调  
+设为null添除所有消息回调函数  
+wndproc也可以是一个表,键要为处理的消息,值为对应的消息回调函数*/     
+}
+</code></pre>
+
+<p><a id="global"></a></p>
+
+<h2>全局对象 成员列表</h2>
+
+<p><a id="_LPSTR_TEXTCALLBACK"></a></p>
+
+<h3>_LPSTR_TEXTCALLBACK</h3>
+
+<pre><code class="aardio language-aardio">topointer(-1)
+</code></pre>
+
+<p><a id="_TVI_FIRST"></a></p>
+
+<h3>_TVI_FIRST</h3>
+
+<p>treeview中表示同级节点中第一个节点的伪句柄</p>
+
+<p><a id="_TVI_LAST"></a></p>
+
+<h3>_TVI_LAST</h3>
+
+<p>treeview中表示同级节点中最后一个节点的伪句柄</p>
+
+<p><a id="_TVI_ROOT"></a></p>
+
+<h3>_TVI_ROOT</h3>
+
+<p>treeview中表示根节点的伪句柄</p>
+
+<p><a id="_TVI_SORT"></a></p>
+
+<h3>_TVI_SORT</h3>
+
+<pre><code class="aardio language-aardio">topointer(-0x0FFFD)/*_TVI_SORT*/
+</code></pre>
+
+<p><a id="NMTREEVIEWObject"></a></p>
+
+<h2>NMTREEVIEWObject 成员列表</h2>
+
+<p><a id="NMTREEVIEWObject.action"></a></p>
+
+<h3>NMTREEVIEWObject.action</h3>
+
+<pre><code class="aardio language-aardio">0;
+</code></pre>
+
+<p><a id="NMTREEVIEWObject.hdr"></a></p>
+
+<h3>NMTREEVIEWObject.hdr</h3>
+
+<p><a href="#nmhdrObject">返回对象:nmhdrObject</a></p>
+
+<p><a id="NMTREEVIEWObject.itemNew"></a></p>
+
+<h3>NMTREEVIEWObject.itemNew</h3>
+
+<p><a href="#tvitemObject">返回对象:tvitemObject</a></p>
+
+<p><a id="NMTREEVIEWObject.itemOld"></a></p>
+
+<h3>NMTREEVIEWObject.itemOld</h3>
+
+<p><a href="#tvitemObject">返回对象:tvitemObject</a></p>
+
+<p><a id="NMTREEVIEWObject.ptDrag"></a></p>
+
+<h3>NMTREEVIEWObject.ptDrag</h3>
+
+<p><a href="#pointObject">返回对象:pointObject</a></p>
+
+<p><a id="NMTVCUSTOMDRAWObject"></a></p>
+
+<h2>NMTVCUSTOMDRAWObject 成员列表</h2>
+
+<p><a id="NMTVCUSTOMDRAWObject.clrText"></a></p>
+
+<h3>NMTVCUSTOMDRAWObject.clrText</h3>
+
+<p>文字颜色</p>
+
+<p><a id="NMTVCUSTOMDRAWObject.clrTextBk"></a></p>
+
+<h3>NMTVCUSTOMDRAWObject.clrTextBk</h3>
+
+<p>文字背景色</p>
+
+<p><a id="NMTVCUSTOMDRAWObject.iLevel"></a></p>
+
+<h3>NMTVCUSTOMDRAWObject.iLevel</h3>
+
+<p>嵌套级别</p>
+
+<p><a id="NMTVCUSTOMDRAWObject.nmcd.dwDrawStage"></a></p>
+
+<h3>NMTVCUSTOMDRAWObject.nmcd.dwDrawStage</h3>
+
+<p>绘图状态</p>
+
+<p><a id="NMTVCUSTOMDRAWObject.nmcd.dwItemSpec"></a></p>
+
+<h3>NMTVCUSTOMDRAWObject.nmcd.dwItemSpec</h3>
+
+<p>行序号</p>
+
+<p><a id="NMTVCUSTOMDRAWObject.nmcd.hdc"></a></p>
+
+<h3>NMTVCUSTOMDRAWObject.nmcd.hdc</h3>
+
+<p>设置句柄</p>
+
+<p><a id="NMTVCUSTOMDRAWObject.nmcd.hdr"></a></p>
+
+<h3>NMTVCUSTOMDRAWObject.nmcd.hdr</h3>
+
+<p><a href="#nmhdrObject">返回对象:nmhdrObject</a></p>
+
+<p><a id="NMTVCUSTOMDRAWObject.nmcd.lItemlParam"></a></p>
+
+<h3>NMTVCUSTOMDRAWObject.nmcd.lItemlParam</h3>
+
+<pre><code class="aardio language-aardio">lItemlParam
+</code></pre>
+
+<p><a id="NMTVCUSTOMDRAWObject.nmcd.rc"></a></p>
+
+<h3>NMTVCUSTOMDRAWObject.nmcd.rc</h3>
+
+<p><a href="../../../global/_.html#rectObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/global/_.html#rectObject">返回对象:rectObject</a></p>
+
+<p><a id="NMTVCUSTOMDRAWObject.nmcd.uItemState"></a></p>
+
+<h3>NMTVCUSTOMDRAWObject.nmcd.uItemState</h3>
+
+<pre><code class="aardio language-aardio">uItemState
+</code></pre>
+
+<p><a id="NMTVCUSTOMDRAWObject.update"></a></p>
+
+<h3>NMTVCUSTOMDRAWObject.update()</h3>
+
+<p>更新数据</p>
+
+<p><a id="TVDISPINFOObject"></a></p>
+
+<h2>TVDISPINFOObject 成员列表</h2>
+
+<p><a id="TVDISPINFOObject.hdr"></a></p>
+
+<h3>TVDISPINFOObject.hdr</h3>
+
+<p><a href="#nmhdrObject">返回对象:nmhdrObject</a></p>
+
+<p><a id="TVDISPINFOObject.item"></a></p>
+
+<h3>TVDISPINFOObject.item</h3>
+
+<p><a href="#tvitemObject">返回对象:tvitemObject</a></p>
+
+<p><a id="tvitemObject"></a></p>
+
+<h2>tvitemObject 成员列表</h2>
+
+<p><a id="tvitemObject.cChildren"></a></p>
+
+<h3>tvitemObject.cChildren</h3>
+
+<p>子项目数目<br>
+如果为-1则向父窗体发送_TVN_GETDISPINFO通知消息</p>
+
+<p><a id="tvitemObject.cchTextMax"></a></p>
+
+<h3>tvitemObject.cchTextMax</h3>
+
+<p>取文本时可在此指定缓冲区长度</p>
+
+<p><a id="tvitemObject.hItem"></a></p>
+
+<h3>tvitemObject.hItem</h3>
+
+<p>节点句柄</p>
+
+<p><a id="tvitemObject.iImage"></a></p>
+
+<h3>tvitemObject.iImage</h3>
+
+<p>项目非选取状态下,要使用的image在图象列表中的索引</p>
+
+<p><a id="tvitemObject.iSelectedImage"></a></p>
+
+<h3>tvitemObject.iSelectedImage</h3>
+
+<p>项目选取状态下,要使用的image在图象列表中的索引</p>
+
+<p><a id="tvitemObject.lParam"></a></p>
+
+<h3>tvitemObject.lParam</h3>
+
+<p>数值</p>
+
+<p><a id="tvitemObject.mask"></a></p>
+
+<h3>tvitemObject.mask</h3>
+
+<p>可使用一个或多个TVIF_开头的常量组合<br>
+以指定当前结构体哪些成员有效</p>
+
+<p><a id="tvitemObject.state"></a></p>
+
+<h3>tvitemObject.state</h3>
+
+<p>可使用一个或多上TVIS_开头的常量组合</p>
+
+<p><a id="tvitemObject.stateMask"></a></p>
+
+<h3>tvitemObject.stateMask</h3>
+
+<p>数值</p>
+
+<p><a id="tvitemObject.text"></a></p>
+
+<h3>tvitemObject.text</h3>
+
+<p>文本</p>
+
+<h3>全局常量</h3>
+
+<p><a id="_LPSTR_TEXTCALLBACK"></a></p>
+
+<h3>_LPSTR_TEXTCALLBACK</h3>
+
+<pre><code class="aardio language-aardio">topointer(-1)
+</code></pre>
+
+<p><a id="_TVI_FIRST"></a></p>
+
+<h3>_TVI_FIRST</h3>
+
+<p>treeview中表示同级节点中第一个节点的伪句柄</p>
+
+<p><a id="_TVI_LAST"></a></p>
+
+<h3>_TVI_LAST</h3>
+
+<p>treeview中表示同级节点中最后一个节点的伪句柄</p>
+
+<p><a id="_TVI_ROOT"></a></p>
+
+<h3>_TVI_ROOT</h3>
+
+<p>treeview中表示根节点的伪句柄</p>
+
+<p><a id="_TVI_SORT"></a></p>
+
+<h3>_TVI_SORT</h3>
+
+<pre><code class="aardio language-aardio">topointer(-0x0FFFD)/*_TVI_SORT*/
+</code></pre>
+
+<h3>自动完成常量</h3>
+
+<p>_I_CHILDRENCALLBACK=-1<br>
+_I_IMAGECALLBACK=-1<br>
+_TVE_COLLAPSE=1<br>
+_TVE_EXPAND=2<br>
+_TVE_TOGGLE=3<br>
+_TVGN_CARET=9<br>
+_TVGN_CHILD=4<br>
+_TVGN_DROPHILITE=8<br>
+_TVGN_FIRSTVISIBLE=5<br>
+_TVGN_LASTVISIBLE=0xA<br>
+_TVGN_NEXT=1<br>
+_TVGN_NEXTSELECTED=0xB<br>
+_TVGN_NEXTVISIBLE=6<br>
+_TVGN_PARENT=3<br>
+_TVGN_PREVIOUS=2<br>
+_TVGN_PREVIOUSVISIBLE=7<br>
+_TVGN_ROOT=0<br>
+_TVHT_ABOVE=0x100<br>
+_TVHT_BELOW=0x200<br>
+_TVHT_NOWHERE=1<br>
+_TVHT_ONITEM=0x46<br>
+_TVHT_ONITEMBUTTON=0x10<br>
+_TVHT_ONITEMICON=2<br>
+_TVHT_ONITEMINDENT=8<br>
+_TVHT_ONITEMLABEL=4<br>
+_TVHT_ONITEMRIGHT=0x20<br>
+_TVHT_ONITEMSTATEICON=0x40<br>
+_TVHT_TOLEFT=0x800<br>
+_TVHT_TORIGHT=0x400<br>
+_TVIF_CHILDREN=0x40<br>
+_TVIF_EXPANDEDIMAGE=0x200<br>
+_TVIF_HANDLE=0x10<br>
+_TVIF_IMAGE=2<br>
+_TVIF_INTEGRAL=0x80<br>
+_TVIF_PARAM=4<br>
+_TVIF_SELECTEDIMAGE=0x20<br>
+_TVIF_STATE=8<br>
+_TVIF_STATEEX=0x100<br>
+_TVIF_TEXT=1<br>
+_TVIS_BOLD=0x10<br>
+_TVIS_CUT=4<br>
+_TVIS_DROPHILITED=8<br>
+_TVIS_EXPANDED=0x20<br>
+_TVIS_EXPANDEDONCE=0x40<br>
+_TVIS_EXPANDPARTIAL=0x80<br>
+_TVIS_EX_ALL=2<br>
+_TVIS_EX_DISABLED=2<br>
+_TVIS_EX_FLAT=1<br>
+_TVIS_OVERLAYMASK=0xF00<br>
+_TVIS_SELECTED=2<br>
+_TVIS_STATEIMAGEMASK=0xF000<br>
+_TVIS_USERMASK=0xF000<br>
+_TVM_CREATEDRAGIMAGE=0x1112<br>
+_TVM_DELETEITEM=0x1101<br>
+_TVM_EDITLABELW=0x1141<br>
+_TVM_ENDEDITLABELNOW=0x1116<br>
+_TVM_ENSUREVISIBLE=0x1114<br>
+_TVM_GETCOUNT=0x1105<br>
+_TVM_GETIMAGELIST=0x1108<br>
+_TVM_GETINDENT=0x1106<br>
+_TVM_GETINSERTMARKCOLOR=0x1126<br>
+_TVM_GETISEARCHSTRINGA=0x1117<br>
+_TVM_GETISEARCHSTRINGW=0x1140<br>
+_TVM_GETITEMHEIGHT=0x111C<br>
+_TVM_GETITEMRECT=0x1104<br>
+_TVM_GETITEMSTATE=0x1127<br>
+_TVM_GETITEMW=0x113E<br>
+_TVM_GETLINECOLOR=0x1129<br>
+_TVM_GETNEXTITEM=0x110A<br>
+_TVM_GETSCROLLTIME=0x1122<br>
+_TVM_GETTOOLTIPS=0x1119<br>
+_TVM_GETVISIBLECOUNT=0x1110<br>
+_TVM_HITTEST=0x1111<br>
+_TVM_INSERTITEMW=0x1132<br>
+_TVM_SETIMAGELIST=0x1109<br>
+_TVM_SETINDENT=0x1107<br>
+_TVM_SETINSERTMARK=0x111A<br>
+_TVM_SETINSERTMARKCOLOR=0x1125<br>
+_TVM_SETITEMHEIGHT=0x111B<br>
+_TVM_SETITEMW=0x113F<br>
+_TVM_SETLINECOLOR=0x1128<br>
+_TVM_SETSCROLLTIME=0x1121<br>
+_TVM_SETTOOLTIPS=0x1118<br>
+_TVM_SORTCHILDREN=0x1113<br>
+_TVM_SORTCHILDRENCB=0x1115<br>
+_TVNRET_DEFAULT=0<br>
+_TVNRET_SKIPNEW=2<br>
+_TVNRET_SKIPOLD=1<br>
+_TVN_ASYNCDRAW=0xFFFFFE5C<br>
+_TVN_BEGINDRAGW=0xFFFFFE38<br>
+_TVN_BEGINLABELEDITW=0xFFFFFE35<br>
+_TVN_BEGINRDRAGW=0xFFFFFE37<br>
+_TVN_DELETEITEMW=0xFFFFFE36<br>
+_TVN_ENDLABELEDITW=0xFFFFFE34<br>
+_TVN_FIRST=0xFFFFFE70<br>
+_TVN_GETDISPINFOW=0xFFFFFE3C<br>
+_TVN_GETINFOTIPW=0xFFFFFE62<br>
+_TVN_ITEMCHANGEDW=0xFFFFFE5D<br>
+_TVN_ITEMCHANGINGW=0xFFFFFE5F<br>
+_TVN_ITEMEXPANDEDW=0xFFFFFE39<br>
+_TVN_ITEMEXPANDINGW=0xFFFFFE3A<br>
+_TVN_KEYDOWN=0xFFFFFE64<br>
+_TVN_LAST=0xFFFFFE0D<br>
+_TVN_SELCHANGEDW=0xFFFFFE3D<br>
+_TVN_SELCHANGINGW=0xFFFFFE3E<br>
+_TVN_SINGLEEXPAND=0xFFFFFE61<br>
+_TVSIL_NORMAL=0<br>
+_TVSIL_STATE=2<br>
+_TVSI_NOSINGLEEXPAND=0x8000<br>
+_TVS_DISABLEDRAGDROP=0x10<br>
+_TVS_EX_AUTOHSCROLL=0x20<br>
+_TVS_EX_DIMMEDCHECKBOXES=0x200<br>
+_TVS_EX_DOUBLEBUFFER=4<br>
+_TVS_EX_DRAWIMAGEASYNC=0x400<br>
+_TVS_EX_EXCLUSIONCHECKBOXES=0x100<br>
+_TVS_EX_FADEINOUTEXPANDOS=0x40<br>
+_TVS_EX_MULTISELECT=2<br>
+_TVS_EX_NOINDENTSTATE=8<br>
+_TVS_EX_PARTIALCHECKBOXES=0x80<br>
+_TVS_EX_RICHTOOLTIP=0x10<br>
+_TVS_NONEVENHEIGHT=0x4000<br>
+_TVS_RTLREADING=0x40<br>
+_TVS_SHOWSELALWAYS=0x20<br>
+_TVS_TRACKSELECT=0x200<br>
+_TV_FIRST=0x1100  </p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/treeview.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/treeview.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/treeview.md">Markdown 格式</a></p>
+
+</body> 
+</html>

@@ -1,0 +1,478 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - win.ui.ctrl.atlax 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - win.ui.ctrl.atlax 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>win.ui.ctrl.atlax 库模块帮助文档</h1>
+
+<p><a id="win.ui.ctrl"></a></p>
+
+<h2>win.ui.ctrl 成员列表</h2>
+
+<p><a id="win.ui.ctrl.atlax"></a></p>
+
+<h3>win.ui.ctrl.atlax</h3>
+
+<p>静态文本控件支持库</p>
+
+<p><a id="win.ui.ctrl.atlax"></a></p>
+
+<h3>win.ui.ctrl.atlax()</h3>
+
+<p>静态文本控件  </p>
+
+<p><a href="#atlAxWinObject">返回对象:atlAxWinObject</a></p>
+
+<p><a id="atlAxWinObject"></a></p>
+
+<h2>atlAxWinObject 成员列表</h2>
+
+<p><a id="atlAxWinObject._defWindowProc"></a></p>
+
+<h3>atlAxWinObject._defWindowProc(hwnd,message,wParam,lParam)</h3>
+
+<p>用于在 wndproc 回调中提前调用默认消息回调函数,<br>
+所有窗口和控件定义了 wndproc 回调以后会自动创建这个函数,<br>
+调用此函数以后,wndproc 必须指定非 null 返回值,<br>
+以避免再次重复调用默认回调函数</p>
+
+<p><a id="atlAxWinObject._embedObject"></a></p>
+
+<h3>atlAxWinObject._embedObject</h3>
+
+<p>嵌入 COM 控件的容器对象  </p>
+
+<p><a href="../../../com/_.html#embedObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/com/_.html#embedObject">返回对象:embedObject</a></p>
+
+<p><a id="atlAxWinObject._parentForm"></a></p>
+
+<h3>atlAxWinObject._parentForm</h3>
+
+<p>创建该控件的父窗口（win.form对象）,<br>
+设计时窗体容器是所有拖放在窗体上的控件的 _parentForm,  </p>
+
+<p>即使窗口移除子窗口样式、更改父子关系，或以 orphanWindow显示,<br>
+控件的 _parentForm 始终都不会改变  </p>
+
+<p><a href="../_.html#winform" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/_.html#winform">返回对象:winform</a></p>
+
+<p><a id="atlAxWinObject.addCtrl"></a></p>
+
+<h3>atlAxWinObject.addCtrl</h3>
+
+<pre><code class="aardio language-aardio">atlAxWinObject.addCtrl(  
+    button={ cls=&quot;button&quot;;text=&quot;button&quot;;left=33;top=32;right=126;bottom=81;autoResize=false }    
+)
+</code></pre>
+
+<p><a id="atlAxWinObject.adjust"></a></p>
+
+<h3>atlAxWinObject.adjust</h3>
+
+<pre><code class="aardio language-aardio">atlAxWinObject.adjust = function( cx,cy,wParam ) {     
+
+};
+</code></pre>
+
+<p><a id="atlAxWinObject.adjust"></a></p>
+
+<h3>atlAxWinObject.adjust()</h3>
+
+<p>调整窗口 - 自定义事件函数</p>
+
+<p><a id="atlAxWinObject.bgcolor"></a></p>
+
+<h3>atlAxWinObject.bgcolor</h3>
+
+<p>获取或修改景颜色数值</p>
+
+<p><a id="atlAxWinObject.bottom"></a></p>
+
+<h3>atlAxWinObject.bottom</h3>
+
+<p>底部坐标</p>
+
+<p><a id="atlAxWinObject.capture"></a></p>
+
+<h3>atlAxWinObject.capture</h3>
+
+<p>是否捕获全局鼠标消息</p>
+
+<p><a id="atlAxWinObject.changeInterval"></a></p>
+
+<h3>atlAxWinObject.changeInterval(定时器ID,间隔时间,回调函数)</h3>
+
+<p>重新设置间隔时间或回调函数</p>
+
+<p><a id="atlAxWinObject.className"></a></p>
+
+<h3>atlAxWinObject.className</h3>
+
+<p>运行时类名</p>
+
+<p><a id="atlAxWinObject.clearInterval"></a></p>
+
+<h3>atlAxWinObject.clearInterval(定时器ID)</h3>
+
+<p>删除定时器</p>
+
+<p><a id="atlAxWinObject.close"></a></p>
+
+<h3>atlAxWinObject.close()</h3>
+
+<p>关闭控件窗口</p>
+
+<p><a id="atlAxWinObject.cls"></a></p>
+
+<h3>atlAxWinObject.cls</h3>
+
+<p>设计时类名</p>
+
+<p><a id="atlAxWinObject.color"></a></p>
+
+<h3>atlAxWinObject.color</h3>
+
+<p>获取或修改字体颜色数值</p>
+
+<p><a id="atlAxWinObject.disabled"></a></p>
+
+<h3>atlAxWinObject.disabled</h3>
+
+<p>是否禁用</p>
+
+<p><a id="atlAxWinObject.getClientRect"></a></p>
+
+<h3>atlAxWinObject.getClientRect()</h3>
+
+<p>控件客户区块位置(::RECT结构体)  </p>
+
+<p><a href="../../../global/_.html#rectObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/global/_.html#rectObject">返回对象:rectObject</a></p>
+
+<p><a id="atlAxWinObject.getControl"></a></p>
+
+<h3>atlAxWinObject.getControl()</h3>
+
+<p>返回com控件对象<br>
+aardio默认会尝试将atlax创建控件自身注册为默认事件接口</p>
+
+<p><a id="atlAxWinObject.getControlClsId"></a></p>
+
+<h3>atlAxWinObject.getControlClsId()</h3>
+
+<p>返回COM对象类名</p>
+
+<p><a id="atlAxWinObject.getControlTypeName"></a></p>
+
+<h3>atlAxWinObject.getControlTypeName()</h3>
+
+<p>返回COM接口名</p>
+
+<p><a id="atlAxWinObject.getFont"></a></p>
+
+<h3>atlAxWinObject.getFont()</h3>
+
+<p>控件字体(::LOGFONT结构体)  </p>
+
+<p><a href="#logfontObject">返回对象:logfontObject</a></p>
+
+<p><a id="atlAxWinObject.getForm"></a></p>
+
+<h3>atlAxWinObject.getForm()</h3>
+
+<p>如果是窗体返回自身<br>
+如果是控件则返回_parentForm  </p>
+
+<p><a href="../_.html#winform" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/_.html#winform">返回对象:winform</a></p>
+
+<p><a id="atlAxWinObject.getParent"></a></p>
+
+<h3>atlAxWinObject.getParent()</h3>
+
+<p>返回父窗口  </p>
+
+<p><a href="#atlAxWinObject">返回对象:atlAxWinObject</a></p>
+
+<p><a id="atlAxWinObject.getPos"></a></p>
+
+<h3>atlAxWinObject.getPos()</h3>
+
+<p>返回相对坐标,宽,高<br>
+x,y,cx,cy=win.getPos(hwnd)</p>
+
+<p><a id="atlAxWinObject.getRect"></a></p>
+
+<h3>atlAxWinObject.getRect()</h3>
+
+<p>控件区块位置(::RECT结构体)</p>
+
+<p><a id="atlAxWinObject.getRect"></a></p>
+
+<h3>atlAxWinObject.getRect(true)</h3>
+
+<p>控件屏幕区块位置(::RECT结构体)</p>
+
+<p><a id="atlAxWinObject.height"></a></p>
+
+<h3>atlAxWinObject.height</h3>
+
+<p>高度</p>
+
+<p><a id="atlAxWinObject.hide"></a></p>
+
+<h3>atlAxWinObject.hide</h3>
+
+<p>控件是否隐藏</p>
+
+<p><a id="atlAxWinObject.hwnd"></a></p>
+
+<h3>atlAxWinObject.hwnd</h3>
+
+<p>控件句柄</p>
+
+<p><a id="atlAxWinObject.id"></a></p>
+
+<h3>atlAxWinObject.id</h3>
+
+<p>控件ID</p>
+
+<p><a id="atlAxWinObject.invalidate(/*可选使用::RECT"></a></p>
+
+<h3>atlAxWinObject.invalidate(/*可选使用::RECT()对象指定客户区*/)</h3>
+
+<p>使窗口绘图区无效</p>
+
+<p><a id="atlAxWinObject.invalidate(/*可选使用::RECT"></a></p>
+
+<h3>atlAxWinObject.invalidate(/*可选使用::RECT()对象指定客户区*/,0)</h3>
+
+<p>使窗口绘图区无效<br>
+不刷新背景</p>
+
+<p><a id="atlAxWinObject.isForm"></a></p>
+
+<h3>atlAxWinObject.isForm</h3>
+
+<p>窗体返回true,控件返回false</p>
+
+<p><a id="atlAxWinObject.left"></a></p>
+
+<h3>atlAxWinObject.left</h3>
+
+<p>左侧坐标</p>
+
+<p><a id="atlAxWinObject.messageOnly"></a></p>
+
+<h3>atlAxWinObject.messageOnly()</h3>
+
+<p>将窗口转换为message-only window<br>
+该窗口不可见,仅用于消息分发</p>
+
+<p><a id="atlAxWinObject.modifyStyle"></a></p>
+
+<h3>atlAxWinObject.modifyStyle(remove,add,swpFlags)</h3>
+
+<p>修改窗口样式,所有参数都是可选参数,<br>
+@remove 用数值指定要移除的样式,可使用 <em>WS</em> 前缀的常量<br>
+@add 用数值指定要添加的样式,可使用 <em>WS</em> 前缀的常量<br>
+@swpFlags 可选用数值指定调整窗口选项,可使用 <em>SWP</em> 前缀的常量<br>
+如果指定了 @swpFlag ,则使用该参数调用::SetWindowPos<br>
+细节请参考 win.modifyStyle 函数源码</p>
+
+<p><a id="atlAxWinObject.modifyStyleEx"></a></p>
+
+<h3>atlAxWinObject.modifyStyleEx(remove,add,swpFlags)</h3>
+
+<p>修改窗口扩展样式,所有参数都是可选参数,<br>
+@remove 用数值指定要移除的样式,可使用 <em>WS_EX</em> 前缀的常量<br>
+@add 用数值指定要添加的样式,可使用 <em>WS_EX</em> 前缀的常量<br>
+@swpFlags 可选用数值指定调整窗口选项,可使用 <em>SWP</em> 前缀的常量<br>
+如果指定了 @swpFlag ,则使用该参数调用::SetWindowPos<br>
+细节请参考 win.modifyStyle 函数源码</p>
+
+<p><a id="atlAxWinObject.msgbox"></a></p>
+
+<h3>atlAxWinObject.msgbox(&quot;字符串参数&quot;)</h3>
+
+<p>弹出对话框,可选用参数@2指定标题</p>
+
+<p><a id="atlAxWinObject.msgboxErr"></a></p>
+
+<h3>atlAxWinObject.msgboxErr(&quot;字符串参数&quot;)</h3>
+
+<p>弹出错误对话框,可选用参数@2指定标题</p>
+
+<p><a id="atlAxWinObject.msgboxTest"></a></p>
+
+<h3>atlAxWinObject.msgboxTest(&quot;字符串参数&quot;)</h3>
+
+<p>弹出询问对话框,可选用参数@2指定标题</p>
+
+<p><a id="atlAxWinObject.orphanWindow"></a></p>
+
+<h3>atlAxWinObject.orphanWindow(transparent,hwndBuddy,borderless)</h3>
+
+<p>创建悬浮窗口。<br>
+悬浮窗口是模仿子窗口外观效果的独立窗口，父窗口可自动调整子窗口到设定位置。<br>
+可选参数 @transparent 为 true 则转换为分层透明窗口。<br>
+可选利用 @hwndBuddy 参数指定外部进程窗口句柄的并附加在内部控件上以实现相同的效果。<br>
+伙伴窗口总是会保持在悬浮窗口前面，并保持相同的大小、位置。<br>
+可重复调用此函数更换伙伴窗口，旧的伙伴窗口必须自行关闭。<br>
+可选指定 @borderless 参数 为 true 以移除 @hwndBuddy  的窗口边框。</p>
+
+<p><a id="atlAxWinObject.redraw"></a></p>
+
+<h3>atlAxWinObject.redraw()</h3>
+
+<p>刷新</p>
+
+<p><a id="atlAxWinObject.redrawTransparent"></a></p>
+
+<h3>atlAxWinObject.redrawTransparent()</h3>
+
+<p>刷新<br>
+透明背景时请使用此函数替代redraw()</p>
+
+<p><a id="atlAxWinObject.right"></a></p>
+
+<h3>atlAxWinObject.right</h3>
+
+<p>右侧坐标</p>
+
+<p><a id="atlAxWinObject.setFocus"></a></p>
+
+<h3>atlAxWinObject.setFocus()</h3>
+
+<p>设置焦点</p>
+
+<p><a id="atlAxWinObject.setFont"></a></p>
+
+<h3>atlAxWinObject.setFont(指定字体)</h3>
+
+<p>指定LOGFONT字体对象,或逻辑字体句柄</p>
+
+<p><a id="atlAxWinObject.setFont"></a></p>
+
+<h3>atlAxWinObject.setFont(混入字体属性)</h3>
+
+<pre><code class="aardio language-aardio">atlAxWinObject.setFont(point=10;name=&quot;宋体&quot;);
+</code></pre>
+
+<p><a id="atlAxWinObject.setInterval"></a></p>
+
+<h3>atlAxWinObject.setInterval(回调函数,延时毫秒数,...)</h3>
+
+<pre><code class="aardio language-aardio">atlAxWinObject.setInterval(回调函数,延时毫秒数,...setInterval(   
+    function(){  
+        /*参数@1指定执行函数,参数@2指定执行间隔，  
+可选指定一个或多个回调参数，不指定回调参数则默认为:  
+ hwnd,message,timerId,tick,  
+
+如果在定时器中执行了win.delay等继续消息循环的代码，  
+在定时器退出前不会再触发同一定时器（重入）。  
+
+定时器回调函数返回数值可修改时间间隔,  
+返回false取消该定时器*/  
+    },1000   
+)
+</code></pre>
+
+<p><a id="atlAxWinObject.setParent"></a></p>
+
+<h3>atlAxWinObject.setParent(控件对象)</h3>
+
+<p>改变父窗口</p>
+
+<p><a id="atlAxWinObject.setPos"></a></p>
+
+<h3>atlAxWinObject.setPos(x坐标,y坐标,宽,高,插入位置,参数)</h3>
+
+<p>调整窗口位置或排序,所有参数可选<br>
+同时指定x,y坐标则移动位置<br>
+同时指定宽高则改变大小<br>
+指定插入位置(句柄或_HWND前缀常量)则调整Z序</p>
+
+<p><a id="atlAxWinObject.setRect"></a></p>
+
+<h3>atlAxWinObject.setRect(rc)</h3>
+
+<p>设置控件区块位置(::RECT结构体)</p>
+
+<p><a id="atlAxWinObject.setRect"></a></p>
+
+<h3>atlAxWinObject.setRect(rc,true)</h3>
+
+<p>设置控件屏幕区块位置(::RECT结构体)</p>
+
+<p><a id="atlAxWinObject.setRedraw"></a></p>
+
+<h3>atlAxWinObject.setRedraw(false)</h3>
+
+<p>禁止重绘</p>
+
+<p><a id="atlAxWinObject.setRedraw"></a></p>
+
+<h3>atlAxWinObject.setRedraw(true)</h3>
+
+<p>恢复重绘</p>
+
+<p><a id="atlAxWinObject.show"></a></p>
+
+<h3>atlAxWinObject.show(true)</h3>
+
+<p>显示控件</p>
+
+<p><a id="atlAxWinObject.text"></a></p>
+
+<h3>atlAxWinObject.text</h3>
+
+<p>控件文本</p>
+
+<p><a id="atlAxWinObject.theme"></a></p>
+
+<h3>atlAxWinObject.theme</h3>
+
+<p>外观主题,例如<br>
+winform.button.theme = &quot;Explorer&quot;<br>
+winform.button.theme = false</p>
+
+<p><a id="atlAxWinObject.top"></a></p>
+
+<h3>atlAxWinObject.top</h3>
+
+<p>顶部坐标</p>
+
+<p><a id="atlAxWinObject.translateAccelerator"></a></p>
+
+<h3>atlAxWinObject.translateAccelerator</h3>
+
+<pre><code class="aardio language-aardio">atlAxWinObject.translateAccelerator = function(msg){   
+    /*返回是否快捷键*/  
+}
+</code></pre>
+
+<p><a id="atlAxWinObject.update"></a></p>
+
+<h3>atlAxWinObject.update()</h3>
+
+<p>重绘invalidate函数指定的区块</p>
+
+<p><a id="atlAxWinObject.width"></a></p>
+
+<h3>atlAxWinObject.width</h3>
+
+<p>宽度</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/atlax.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/atlax.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/atlax.md">Markdown 格式</a></p>
+
+</body> 
+</html>

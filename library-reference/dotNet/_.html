@@ -1,0 +1,842 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - dotNet 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - dotNet 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>dotNet 库模块帮助文档</h1>
+
+<p><a href="../../library-guide/std/dotNet/clr.html" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/std/dotNet/clr.html">创建.NET 运行时</a></p>
+
+<p><a id="dotNet"></a></p>
+
+<h2>dotNet 成员列表</h2>
+
+<p>支持库<br>
+此名字空间下的函数由当前线程默认应用程序域提供,<br>
+使用无参数调用 dotNet.appDomain 获取当前线程默认应用程序域</p>
+
+<p><a id="dotNet.buffer"></a></p>
+
+<h3>dotNet.buffer</h3>
+
+<p>调用 raw.buffer 分配可读写的、固定长度的字节数组，  </p>
+
+<p>并返回封包 buffer 的 dotNet.object 对象。  </p>
+
+<p>可用[]下标操作符读写 8 位无符号字节数值。<br>
+ 可用 Value 属性获取 buffer 对象，用法请参考 raw.buffer 文档。<br>
+ 可用 Length 属性获取数组长度。  </p>
+
+<p>在 .NET 中对应类型为 byte[] 字节数组。<br>
+ 可作为 .NET 引用、输出参数使用。</p>
+
+<p><a id="dotNet.buffer"></a></p>
+
+<h3>dotNet.buffer()</h3>
+
+<p><a href="#dotNetObject">返回对象:dotNetObject</a></p>
+
+<p><a id="dotNet.buffer"></a></p>
+
+<h3>dotNet.buffer(初始值)</h3>
+
+<p>分配可读写的、固定长度的字节数组。<br>
+参数可以是一个结构体、字符串、或 buffer,传入{ }返回null,<br>
+重新分配内存并复制初始值指定的数据。<br>
+返回封包 buffer 的 dotNet.object 对象</p>
+
+<p><a id="dotNet.buffer"></a></p>
+
+<h3>dotNet.buffer(长度,初始值)</h3>
+
+<p>分配可读写的、固定长度的字节数组。  </p>
+
+<p>参数一指定需要分配的内存大小,<br>
+,内存初始值可以用结构体、指针、buffer、或字符串指定一段内存数据,<br>
+也可用一个数值指定所有字节的初始值,不指定默认初始化所有字节为0,  </p>
+
+<p>如果初始值指定为字符串或buffer类型，<br>
+填充初始数据以后剩余的字节会全部初始为为0<br>
+返回封包 buffer 的 dotNet.object 对象</p>
+
+<p><a id="dotNet.byte"></a></p>
+
+<h3>dotNet.byte</h3>
+
+<p>创建 .NET System.SByte 类型数值或数组</p>
+
+<p><a id="dotNet.byte"></a></p>
+
+<h3>dotNet.byte()</h3>
+
+<p><a href="#dotNetObject">返回对象:dotNetObject</a></p>
+
+<p><a id="dotNet.byte"></a></p>
+
+<h3>dotNet.byte(value,byRef)</h3>
+
+<p>创建 .NET System.SByte 类型数值或数组，<br>
+用于存储8位整数。  </p>
+
+<p>参数 @value 可以为数值或数组，<br>
+参数 @byRef 为 true 则支持 .NET 的输出或引用参数</p>
+
+<p><a id="dotNet.createArray"></a></p>
+
+<h3>dotNet.createArray</h3>
+
+<p>创建 .NET 类型化数组。<br>
+.NET 通常要求数组类型完全匹配，可以用这个函数创建类型匹配的数组。  </p>
+
+<p>包含.NET 对象的普通 aardio 数组在传入 .NET 时也会临时转换为类型化数组<br>
+默认的普通数值数组传入 .NET 为 double 数组，但支持自适应转换类型。<br>
+也可以用 dotNet.double,dotNet.int 等函数创建类型化数值数组。  </p>
+
+<p>注意 .NET 数组对象应当用 Length 属性取数组长度而非用 #号取长度，<br>
+.NET 中的简单值类型数组在 aardio 中会转换为 com.SafeArray 数组，<br>
+com.SafeArray 数组可以用 &num; 取长度</p>
+
+<p><a id="dotNet.createArray"></a></p>
+
+<h3>dotNet.createArray(数组)</h3>
+
+<p>参数 @1 请指定数组。<br>
+包含.NET 对象的普通数组返回为 .NET 类型化数组，<br>
+传入其他任何类型参数直接返回</p>
+
+<p><a id="dotNet.createArray"></a></p>
+
+<h3>dotNet.createArray(类型,长度...)</h3>
+
+<p>参数 @1 请指定 .NET 类型，<br>
+类型通常由 dotNet.import 导入，或用 .NET 对象的 GetType 函数获取。<br>
+至少指定一个数组长度参数，可指定多个长度参数以创建多维数组</p>
+
+<p><a id="dotNet.createArrayList"></a></p>
+
+<h3>dotNet.createArrayList()</h3>
+
+<p><a href="#dotNetCrlArrayListObject">返回对象:dotNetCrlArrayListObject</a></p>
+
+<p><a id="dotNet.createArrayList"></a></p>
+
+<h3>dotNet.createArrayList(初始化数组)</h3>
+
+<p>创建 System.Collections.ArrayList 对象<br>
+可传递到C#函数中,C#中应声明为 object 类型,然后强制转换为 ArrayList,<br>
+可选参数一指定 table 数组用于初始化对象</p>
+
+<p><a id="dotNet.createCompiler"></a></p>
+
+<h3>dotNet.createCompiler(&quot;C#&quot;)</h3>
+
+<p>使用当前线程默认应用程序域创建C#编译器</p>
+
+<p><a id="dotNet.createCompiler"></a></p>
+
+<h3>dotNet.createCompiler(&quot;VB&quot;)</h3>
+
+<p>使用当前线程默认应用程序域创建VB编译器</p>
+
+<p><a id="dotNet.createCompiler"></a></p>
+
+<h3>dotNet.createCompiler()</h3>
+
+<p><a href="#dotNetCompilerObject">返回对象:dotNetCompilerObject</a></p>
+
+<p><a id="dotNet.createNameValueList"></a></p>
+
+<h3>dotNet.createNameValueList(names,values)</h3>
+
+<p>创建 List<NameValue<K,V>&gt; 列表对象,<br>
+参数@name,@value 必须是长度相等的非空数组,<br>
+返回 List 对象的每个元素都具有 Name,Value 属性，<br>
+其值由 @names,@values 参数按数组索引顺序分配</p>
+
+<p><a id="dotNet.createWebService"></a></p>
+
+<h3>dotNet.createWebService</h3>
+
+<p>使用当前线程默认应用程序域创建Web服务程序集</p>
+
+<p><a id="dotNet.createWebService"></a></p>
+
+<h3>dotNet.createWebService()</h3>
+
+<p><a href="#dotNetCrlAssemblyObject">返回对象:dotNetCrlAssemblyObject</a></p>
+
+<p><a id="dotNet.createWebService"></a></p>
+
+<h3>dotNet.createWebService(服务网址,名字空间,协议名,DLL路径)</h3>
+
+<p>使用当前线程默认应用程序域创建 Web 服务程序集,<br>
+可选在参数@2中指定一个自定义的名字空间<br>
+协议名默认为&quot;Soap&quot;,可选值&quot;Soap12&quot;,<br>
+如果使用参数@4指定输出DLL路径则在内存中编译程序集</p>
+
+<p><a id="dotNet.delegate"></a></p>
+
+<h3>dotNet.delegate</h3>
+
+<p>用于操作 .NET 委托（Delegate）或事件（event），<br>
+在 .NET 里函数要转换为委托对象才能作为回调函数传输，<br>
+在 aardio 里对所有 .NET 对象的委托字段直接赋值总是覆盖而不是追加，<br>
+对所有 .NET 事件赋值时总是追加而不是覆盖，  </p>
+
+<p><a href="#dotNetDelegateObject">返回对象:dotNetDelegateObject</a></p>
+
+<p><a id="dotNet.dict"></a></p>
+
+<h3>dotNet.dict</h3>
+
+<p>将非空表转换为 .NET 字典。<br>
+如果要创建空字典，调用返回对象的 Clear 函数清空即可。<br>
+返回对象支持用下标操作符访问键值对。<br>
+可用 dotNet.each 遍历字典。</p>
+
+<p><a id="dotNet.dict"></a></p>
+
+<h3>dotNet.dict()</h3>
+
+<p><a href="#NetDictionaryObject">返回对象:NetDictionaryObject</a></p>
+
+<p><a id="dotNet.dict"></a></p>
+
+<h3>dotNet.dict(tab,byRef)</h3>
+
+<p>将非空表转换为 .NET 字典（Dictionary）对象。  </p>
+
+<p>如果传入空表或 null 返回 null 值。<br>
+否则必须传入非空表，表中所有的键必须是相同类型。<br>
+表中所有的值必须是相同类型。  </p>
+
+<p>参数 @byRef 为可选参数，如果 @byRef 为 true，<br>
+则返回对象可作为 .NET 输出与引用参数使用</p>
+
+<p><a id="dotNet.double"></a></p>
+
+<h3>dotNet.double</h3>
+
+<p>创建 .NET System.Double 类型数值或数组</p>
+
+<p><a id="dotNet.double"></a></p>
+
+<h3>dotNet.double()</h3>
+
+<p><a href="#dotNetObject">返回对象:dotNetObject</a></p>
+
+<p><a id="dotNet.double"></a></p>
+
+<h3>dotNet.double(value,byRef)</h3>
+
+<p>创建 .NET System.Double 类型数值或数组，<br>
+用于存储64位浮点数。  </p>
+
+<p>参数 @value 可以为数值或数组，<br>
+参数 @byRef 为 true 则支持 .NET 的输出或引用参数,  </p>
+
+<p>注意普通数值传入 .NET 函数时，<br>
+整数默认转为32位整数,小数默认按double类型处理</p>
+
+<p><a id="dotNet.each"></a></p>
+
+<h3>dotNet.each(netObj)</h3>
+
+<pre><code class="aardio language-aardio">for i,v in dotNet.each(/*输入需要遍历的 .NET 对象或普通数组，  
+返回值 i 为当前索引,v 为当前值，  
+注意并非所有 .NET 类型都支持此接口*/) {
+
+}
+</code></pre>
+
+<p><a id="dotNet.float"></a></p>
+
+<h3>dotNet.float</h3>
+
+<p>创建 .NET System.Single 类型数值或数组</p>
+
+<p><a id="dotNet.float"></a></p>
+
+<h3>dotNet.float()</h3>
+
+<p><a href="#dotNetObject">返回对象:dotNetObject</a></p>
+
+<p><a id="dotNet.float"></a></p>
+
+<h3>dotNet.float(value,byRef)</h3>
+
+<p>创建 .NET System.Single 类型数值或数组，<br>
+用于存储32位浮点数。  </p>
+
+<p>参数 @value 可以为数值或数组，<br>
+参数 @byRef 为 true 则支持 .NET 的输出或引用参数</p>
+
+<p><a id="dotNet.getObject"></a></p>
+
+<h3>dotNet.getObject()</h3>
+
+<p>如果对象是 dotNet.object 对象<br>
+返回被封装的原生 com.NetObject 对象,<br>
+传入其他类型对象或原生 com.NetObject 对象会返回 null<br>
+如果参数 @2 为 true，则解开 DispatchableObject 封包对象。  </p>
+
+<p>原生 com.NetObject 对象传入 com.IsNetObject 函数应返回非 0 值</p>
+
+<p><a id="dotNet.import"></a></p>
+
+<h3>dotNet.import</h3>
+
+<p>加载程序集，导入 .NET 名字空间、类、枚举。<br>
+在当前应用程序域 import,load 等函数不会导入重复的程序集，<br>
+同一程序集中不会重复导入相同的名字空间。   </p>
+
+<p>如果已存在同名的全局名字空间但元表为空（并未导入 .NET 名字空间），<br>
+则导入 .NET 名字空间到已存在的名字空间。  </p>
+
+<p>如果已存在同名的全局名字空间但元表非空（通常为已导入的  .NET 名字空间 ），<br>
+则不会覆盖已存在的名字间，而是在返回值返回当前调用实际创建的名字空间。<br>
+加载程序集或依赖程序集失败时此函数会抛出异常。</p>
+
+<p><a id="dotNet.import"></a></p>
+
+<h3>dotNet.import(名字空间)</h3>
+
+<p>参数 @1 必须用字符串指定要名载的名字空间。<br>
+首先加载与名字空间同名的程序集，然后导入同名的 .NET 名字空间或类。<br>
+当程序集文件名与导入名字相同时，参数 @2 不必指定程序集名称。  </p>
+
+<p>返回名字空间可作为类构造函数调用并创建对象。<br>
+也可以用成员操作符获取静态成员，或调用静态函数。  </p>
+
+<p>导入的 .NET 名字空间在正常访问其成员时会触发元方法以获取并创建下级名字空间、类、枚举等。<br>
+但导入名字空间的函数（以及 namespace 语句）创建的上级名字空间并不会主动导入同名 .NET 名字空间\。  </p>
+
+<p>此函数会尽可能重用已存在的 aardio 全局名字空间导入 .NET 名字空间。<br>
+如果该全局名字空间已导入其他 .NET 名字空间则不会覆盖已存在的名空间。<br>
+此函数总是会返回当前调用实际创建的名字空间。</p>
+
+<p><a id="dotNet.import"></a></p>
+
+<h3>dotNet.import(名字空间,程序集名)</h3>
+
+<p>加载参数 @2 指定文件名字的程序集。<br>
+将参数 @1 指定的空间、类、枚举等导入 aardio 全局名字空间。<br>
+必须指定完整名字空间。<br>
+参数 @1 可指定名字空间也可以指定要导入的名字空间数组。  </p>
+
+<p>在当前应用程序域 import,load 等函数不会导入重复的程序集，<br>
+同一程序集中不会重复导入相同的名字空间。   </p>
+
+<p>返回名字空间可作为类构造函数调用并创建对象。<br>
+也可以用成员操作符返回静态成员，或调用静态函数。  </p>
+
+<p>导入的 .NET 名字空间在正常访问其成员时会触发元方法以获取并创建下级名字空间、类、枚举等。<br>
+但导入名字空间的函数（以及 namespace 语句）创建的上级名字空间并不会主动导入同名 .NET 名字空间。  </p>
+
+<p>此函数会尽可能重用已存在的 aardio 全局名字空间导入 .NET 名字空间。<br>
+如果该全局名字空间已导入其他 .NET 名字空间则不会覆盖已存在的名空间。<br>
+此函数总是会返回当前调用实际创建的名字空间。</p>
+
+<p><a id="dotNet.int"></a></p>
+
+<h3>dotNet.int</h3>
+
+<p>创建 .NET System.Int32 类型数值或数组</p>
+
+<p><a id="dotNet.int"></a></p>
+
+<h3>dotNet.int()</h3>
+
+<p><a href="#dotNetObject">返回对象:dotNetObject</a></p>
+
+<p><a id="dotNet.int"></a></p>
+
+<h3>dotNet.int(value,byRef)</h3>
+
+<p>创建 .NET System.Int32 类型数值或数组，<br>
+用于存储32位整数。  </p>
+
+<p>参数 @value 可以为数值或数组，<br>
+参数 @byRef 为 true 则支持 .NET 的输出或引用参数,  </p>
+
+<p>注意普通数值传入 .NET 函数时，<br>
+整数默认转为32位整数,小数默认按double类型处理</p>
+
+<p><a id="dotNet.load"></a></p>
+
+<h3>dotNet.load</h3>
+
+<p>使用当前线程默认应用程序域载入并返回程序集（DLL）。<br>
+在当前应用程序域如果已使用此函数导入同名程序集，<br>
+则直接返回该程序集</p>
+
+<p><a id="dotNet.load"></a></p>
+
+<h3>dotNet.load(&quot;程序集名&quot;)</h3>
+
+<p>使用当前线程默认应用程序域载入并返回程序集。<br>
+参数可以是程序集（DLL）名称或路径。  </p>
+
+<p>此函数会按以下顺序调用 .NET 函数尝试加载程序集：<br>
+└── Assembly.LoadWithPartialName<br>
+└── Assembly.Load<br>
+└── Assembly.LoadFrom<br>
+└── Assembly.LoadFile</p>
+
+<p><a id="dotNet.load"></a></p>
+
+<h3>dotNet.load(&quot;程序集名&quot;,虚拟程序集数据或路径)</h3>
+
+<p>首先在『虚拟程序集引用表』中注册程序集名，<br>
+参数 @2 指定对应的内存 DLL 数据或 DLL 路径（支持 EXE 内嵌资源）。<br>
+然后再调用 load 函数加载并返回该虚拟程序集。  </p>
+
+<p>注意参数 @1 指定的是程序集的文件名，不是写导入的名字空间。<br>
+调用返回程序集对象的 import 成员函数再导入名字空间</p>
+
+<p><a id="dotNet.load"></a></p>
+
+<h3>dotNet.load()</h3>
+
+<p><a href="#dotNetCrlAssemblyObject">返回对象:dotNetCrlAssemblyObject</a></p>
+
+<p><a id="dotNet.loadAppData"></a></p>
+
+<h3>dotNet.loadAppData</h3>
+
+<p>可用于嵌入并自 %appData% 目录加载<br>
+不支持通过 loadFile 函数内存加载的程序集</p>
+
+<p><a id="dotNet.loadAppData"></a></p>
+
+<h3>dotNet.loadAppData()</h3>
+
+<p><a href="#dotNetCrlAssemblyObject">返回对象:dotNetCrlAssemblyObject</a></p>
+
+<p><a id="dotNet.loadAppData"></a></p>
+
+<h3>dotNet.loadAppData(path,data)</h3>
+
+<p>用 @path 指定 %appData% 目录下的相对路径,<br>
+将 @data 参数指定的内存程序集数据释放到该路径,<br>
+并使用 load 函数加载此程序集,<br>
+@data 参数应在路径前加$符号使文件数据嵌入到代码中</p>
+
+<p><a id="dotNet.loadFile"></a></p>
+
+<h3>dotNet.loadFile</h3>
+
+<p>使用当前线程默认应用程序域载入程序集（DLL）。<br>
+参数可以是 DLL 路径，内存 DLL，或 EXE 内嵌资源。<br>
+此函数并不支持 『虚拟程序集引用表』，无法在内存添加依赖 DLL<br>
+程序集如果引用了自身路径必须改用 load 函数加载</p>
+
+<p><a id="dotNet.loadFile"></a></p>
+
+<h3>dotNet.loadFile(&quot;程序集路径&quot;)</h3>
+
+<p>使用当前线程默认应用程序域载入程序集,<br>
+参数可以是 DLL 路径，内存 DLL，或 EXE 内嵌资源。  </p>
+
+<p>在路径字符串前加$符号可将文件编译并嵌入 aardio 代码,<br>
+可选在第 2 个参数中指定 pdb 调试数据或 pdb 调试文件路径。<br>
+可用 com.dte 对象提供的 AttachProcesses 自动附加到 VS 开发环境调试进程。</p>
+
+<p><a id="dotNet.loadFile"></a></p>
+
+<h3>dotNet.loadFile()</h3>
+
+<p><a href="#dotNetCrlAssemblyObject">返回对象:dotNetCrlAssemblyObject</a></p>
+
+<p><a id="dotNet.long"></a></p>
+
+<h3>dotNet.long</h3>
+
+<p>创建 .NET System.Int64 类型数值或数组</p>
+
+<p><a id="dotNet.long"></a></p>
+
+<h3>dotNet.long()</h3>
+
+<p><a href="#dotNetObject">返回对象:dotNetObject</a></p>
+
+<p><a id="dotNet.long"></a></p>
+
+<h3>dotNet.long(value,byRef)</h3>
+
+<p>创建 .NET System.Int64 类型数值或数组，<br>
+用于存储64位整数。  </p>
+
+<p>参数 @value 可以为数值或数组，<br>
+参数 @byRef 为 true 则支持 .NET 的输出或引用参数</p>
+
+<p><a id="dotNet.object"></a></p>
+
+<h3>dotNet.object</h3>
+
+<p>转换参数 @1 指定的 aardio 值或数组为 .NET 原生 DispatchableObject 对象，<br>
+并返回为 aardio 可操作的 dotNet.object 对象。  </p>
+
+<p>也可用于转换 原生 .NET 对象为 dotNet.object ，<br>
+或转换 dotNet.object 为支持引用 dotNet.object。  </p>
+
+<p>dotNet.object 如果存储的是 Primitive,enum,string 类型或这些类型的数组，<br>
+则可以使用 Value 属性读写值。  </p>
+
+<p>dotnet.object 对象支持用 tostring 转换为字符串，<br>
+如果存储的是数值则支持调用 tonumber 函数转为普通数值。</p>
+
+<p><a id="dotNet.object"></a></p>
+
+<h3>dotNet.object()</h3>
+
+<p><a href="#dotNetObject">返回对象:dotNetObject</a></p>
+
+<p><a id="dotNet.object"></a></p>
+
+<h3>dotNet.object(value,byRef)</h3>
+
+<p>参数 @byRef 为 true 则支持 .NET 的输出或引用参数  </p>
+
+<p>参数 @value 如果指定纯 aardio 对象或数组。<br>
+则转换为 .NET 原生 DispatchableObject 对象，并封装为 dotNet.object 后返回。  </p>
+
+<p>如果参数 @1 指定 dotNet.object 对象且参数 @2 不为 true 则直接返回。<br>
+如果参数传入原生 .NET 对象且参数 @2 不为 true 则仅转换为 dotNet.object。<br>
+如果参数 @2 为 true，则这些对象都会转换为 DispatchableObject 并返回新的 dotNet.object</p>
+
+<p><a id="dotNet.reference"></a></p>
+
+<h3>dotNet.reference</h3>
+
+<p>在『虚拟程序集引用表』注册一个或多个虚拟程序集，<br>
+这些虚拟程序集可以是内存程序集、本地程序集、EXE 内嵌资源中的程序集。  </p>
+
+<p>aardio 加载的 .NET 程序找不到程序集（DLL）时，<br>
+会查找『虚拟程序集引用表』并加载已注册的虚拟 DLL。  </p>
+
+<p>同时复制多个 DLL 路径的方法：<br>
+在资源管理器多选 DLL 文件，按住 Shift 点右键菜单项『复制为路径』</p>
+
+<p><a id="dotNet.reference"></a></p>
+
+<h3>dotNet.reference(assemblyName2pathOrData)</h3>
+
+<p>在『虚拟程序集引用表』注册多个虚拟程序集（DLL）。<br>
+@assemblyName2pathOrData 指定一个表：<br>
+表的「键」为虚拟程序集短名称（ DLL 文件名 ），  </p>
+
+<p>键对应的「值」指定程序集内存数据或程序集路径（支持内嵌资源）。  </p>
+
+<p>同时复制多个 DLL 路径的方法：<br>
+在资源管理器多选 DLL 文件，按住 Shift 点右键菜单项『复制为路径』</p>
+
+<p><a id="dotNet.reference"></a></p>
+
+<h3>dotNet.reference(simpleAssemblyName,pathOrData)</h3>
+
+<p>在『虚拟程序集引用表』注册虚拟程序集（DLL）。<br>
+@simpleAssemblyName 指定程序集短名称（虚拟 DLL 文件名）<br>
+@pathOrData 指定程序集路径或内存数据，支持内嵌资源路径<br>
+@pathOrData 也可以是返回程序集路径或数据的回调函数</p>
+
+<p><a id="dotNet.setParent"></a></p>
+
+<h3>dotNet.setParent</h3>
+
+<p>嵌入 .NET 窗口到 aardio 窗口，作用类似 win.setParent 函数。<br>
+此函数必须在导入 win.ui 的界面线程中使用  </p>
+
+<p>嵌入 .NET 控件而不是窗口对象，<br>
+请改用 System.Windows.Forms.CreateEmbed 函数</p>
+
+<p><a id="dotNet.setParent"></a></p>
+
+<h3>dotNet.setParent(netForm,aarForm)</h3>
+
+<p>嵌入 .NET 窗口到 aardio 窗口，并完全覆盖 aardio 窗口。<br>
+@netForm 参数指定 System.Windows.Forms.Form 对象，不能是控件，<br>
+@aarForm 参数指定 aardio 中的窗体对象或 custom 控件对象,  </p>
+
+<p>此函数设置 aarForm 为 netForm 的父窗口，<br>
+并禁止 aarForm 窗口绘制窗口背景，<br>
+控件自动填满 aarForm 内部并自适应窗口缩放  </p>
+
+<p>也可在 win.ui.ctrl 名字空间下创建自定义控件</p>
+
+<p><a id="dotNet.setParent"></a></p>
+
+<h3>dotNet.setParent(netForm,aarForm,false)</h3>
+
+<p>仅嵌入 .NET 窗口到 aardio 窗口。<br>
+不覆盖 aardio 窗口，不自动设置窗口位置，用于创建自定义控件。<br>
+@netForm 参数指定 System.Windows.Forms.Form 对象，不能是控件，<br>
+@aarForm 参数指定 aardio 中的窗体对象或 custom 控件对象,  </p>
+
+<p>此函数设置 aarForm 为 netForm 的父窗口，<br>
+并禁止 aarForm 窗口绘制窗口背景，<br>
+控件自动填满 aarForm 内部并自适应窗口缩放  </p>
+
+<p>也可在 win.ui.ctrl 名字空间下创建自定义控件</p>
+
+<p><a id="dotNet.ubyte"></a></p>
+
+<h3>dotNet.ubyte</h3>
+
+<p>创建 .NET System.Byte 类型数值或数组</p>
+
+<p><a id="dotNet.ubyte"></a></p>
+
+<h3>dotNet.ubyte()</h3>
+
+<p><a href="#dotNetObject">返回对象:dotNetObject</a></p>
+
+<p><a id="dotNet.ubyte"></a></p>
+
+<h3>dotNet.ubyte(value,byRef)</h3>
+
+<p>创建 .NET System.Byte 类型数值或数组，<br>
+用于存储8位无符号整数。  </p>
+
+<p>参数 @value 可以为数值或数组，<br>
+参数 @byRef 为 true 则支持 .NET 的输出或引用参数</p>
+
+<p><a id="dotNet.uint"></a></p>
+
+<h3>dotNet.uint</h3>
+
+<p>创建 .NET System.UInt32 类型数值或数组</p>
+
+<p><a id="dotNet.uint"></a></p>
+
+<h3>dotNet.uint()</h3>
+
+<p><a href="#dotNetObject">返回对象:dotNetObject</a></p>
+
+<p><a id="dotNet.uint"></a></p>
+
+<h3>dotNet.uint(value,byRef)</h3>
+
+<p>创建 .NET System.UInt32 类型数值或数组，<br>
+用于存储32位无符号整数。  </p>
+
+<p>参数 @value 可以为数值或数组，<br>
+参数 @byRef 为 true 则支持 .NET 的输出或引用参数</p>
+
+<p><a id="dotNet.ulong"></a></p>
+
+<h3>dotNet.ulong</h3>
+
+<p>创建 .NET System.UInt64 类型数值或数组</p>
+
+<p><a id="dotNet.ulong"></a></p>
+
+<h3>dotNet.ulong()</h3>
+
+<p><a href="#dotNetObject">返回对象:dotNetObject</a></p>
+
+<p><a id="dotNet.ulong"></a></p>
+
+<h3>dotNet.ulong(value,byRef)</h3>
+
+<p>创建 .NET System.UInt64 类型数值或数组，<br>
+用于存储64位无符号整数。  </p>
+
+<p>参数 @value 可以为数值或数组，<br>
+参数 @byRef 为 true 则支持 .NET 的输出或引用参数</p>
+
+<p><a id="dotNet.unwrapObject"></a></p>
+
+<h3>dotNet.unwrapObject()</h3>
+
+<p>如果对象是 dotNet.object 对象<br>
+返回被封装的原生 com.NetObject 对象,<br>
+否则直接返回参数<br>
+n<br>
+原生 com.NetObject 对象传入 com.IsNetObject 函数应返回非 0 值</p>
+
+<p><a id="dotNet.uword"></a></p>
+
+<h3>dotNet.uword</h3>
+
+<p>创建 .NET System.UInt16 类型数值或数组</p>
+
+<p><a id="dotNet.uword"></a></p>
+
+<h3>dotNet.uword()</h3>
+
+<p><a href="#dotNetObject">返回对象:dotNetObject</a></p>
+
+<p><a id="dotNet.uword"></a></p>
+
+<h3>dotNet.uword(value,byRef)</h3>
+
+<p>创建 .NET System.UInt16 类型数值或数组，<br>
+用于存储16位无符号整数。  </p>
+
+<p>参数 @value 可以为数值或数组，<br>
+参数 @byRef 为 true 则支持 .NET 的输出或引用参数</p>
+
+<p><a id="dotNet.wait"></a></p>
+
+<h3>dotNet.wait</h3>
+
+<p>等待 .NET 异步任务执行完成。<br>
+如果任务执行成功返回 true ，取消或出错返回 false 。</p>
+
+<p><a id="dotNet.wait"></a></p>
+
+<h3>dotNet.wait(task,winform,...)</h3>
+
+<p>参数 @1 指定异步函数返回的 System.Threading.Tasks.Task 对象。<br>
+参数 @2 指定 win.form 对象，其他可选参数传给 winform.wait 函数。<br>
+异步任务的 Result 属性可取返回值，Exception.Message 属性可取错误信息。<br>
+也可以用异步任务的 ContinueWith 方法指定异步回调函数，在任务完成后触发。</p>
+
+<p><a id="dotNet.word"></a></p>
+
+<h3>dotNet.word</h3>
+
+<p>创建 .NET System.Int16 类型数值或数组</p>
+
+<p><a id="dotNet.word"></a></p>
+
+<h3>dotNet.word()</h3>
+
+<p><a href="#dotNetObject">返回对象:dotNetObject</a></p>
+
+<p><a id="dotNet.word"></a></p>
+
+<h3>dotNet.word(value,byRef)</h3>
+
+<p>创建 .NET System.Int16 类型数值或数组，<br>
+用于存储16位整数。  </p>
+
+<p>参数 @value 可以为数值或数组，<br>
+参数 @byRef 为 true 则支持 .NET 的输出或引用参数</p>
+
+<p><a id="dotNet.wrapObject"></a></p>
+
+<h3>dotNet.wrapObject()</h3>
+
+<p>如参数是原生 com.NetObject 对象,则返回 dotNet.object 对象，否则直接返回参数。  </p>
+
+<p>所有 .NET 原生对象已经自动转换为 dotNet.object 对象，<br>
+除非 .NET 调用普通 aardio 对象的成员函数而非回调特定的委托或事件函数。<br>
+这时候回调参数中的 .NET 对象需要用此函数转换，但数值和字符串不需要转换。  </p>
+
+<p>参数传入 com.IsNetObject 函数会返回非 0 值即为原生 com.NetObject 对象，<br>
+非原生 com.NetObject 对象转换为 dotNet.object 应当直接调用 dotNet.object 函数。</p>
+
+<p><a id="dotNetObject"></a></p>
+
+<h2>dotNetObject 成员列表</h2>
+
+<p><a id="dotNetObject.Length"></a></p>
+
+<h3>dotNetObject.Length</h3>
+
+<p>如果 dotNet.object 对象存储的是数组，可用些属性获取数组长度。<br>
+并可以用数值下标读写指定索引的值</p>
+
+<p><a id="dotNetObject.Value"></a></p>
+
+<h3>dotNetObject.Value</h3>
+
+<p>如果 dotNet.object 对象存储的是<br>
+ .NET 中的 Primitive,enum,string 类型或这些类型的数组，<br>
+则可以使用 Value 属性读写值</p>
+
+<p><a id="dotNetObject.byRef"></a></p>
+
+<h3>dotNetObject.byRef(true)</h3>
+
+<p>如果 dotNet.object 对象存储的是 DispatchableObject 。<br>
+则可调用此函数修改传参方式，参数用布尔值指定是否支持参数传址（作为引用或输出参数）。<br>
+如果不指定参数则获取一个表示是否支持参数传址的值。<br>
+指定参数 @1 则返回对象自身。  </p>
+
+<p>.NET 返回的 aardio 无法直接使用的对象会自动封包为 DispatchableObject 。<br>
+调用 dotNet.object 也可以创建 DispatchableObject。</p>
+
+<p><a id="dotNetCrlAssemblyObject"></a></p>
+
+<h2>dotNetCrlAssemblyObject 成员列表</h2>
+
+<p><a id="dotNetCrlAssemblyObject.FullName"></a></p>
+
+<h3>dotNetCrlAssemblyObject.FullName</h3>
+
+<p>获取程序集的全名</p>
+
+<p><a id="dotNetCrlAssemblyObject.Location"></a></p>
+
+<h3>dotNetCrlAssemblyObject.Location</h3>
+
+<p>获取完整路径</p>
+
+<p><a id="dotNetCrlAssemblyObject.getStaticMember"></a></p>
+
+<h3>dotNetCrlAssemblyObject.getStaticMember(&quot;类名.字段名&quot;)</h3>
+
+<p>获取字段或属性值、或枚举值</p>
+
+<p><a id="dotNetCrlAssemblyObject.import"></a></p>
+
+<h3>dotNetCrlAssemblyObject.import(&quot;字符串参数&quot;)</h3>
+
+<p>参数 @1 指定要导入 .NET 名字空间、类、枚举，<br>
+与程序集名称相同的名字空间前缀可省略。<br>
+不传入参数则默认指定参数为程序集名称。  </p>
+
+<p>在当前应用程序域 import,load 等函数不会导入重复的程序集，<br>
+同一程序集中不会重复导入相同的名字空间。   </p>
+
+<p>返回名字空间可作为类构造函数调用并创建对象。<br>
+也可以用成员操作符返回静态成员，或调用静态函数。  </p>
+
+<p>导入的 .NET 名字空间在正常访问其成员时会触发元方法以获取并创建下级名字空间、类、枚举等。<br>
+但导入名字空间的函数（以及 namespace 语句）创建的上级名字空间并不会主动导入同名 .NET 名字空间\。  </p>
+
+<p>此函数会尽可能重用已存在的 aardio 全局名字空间导入 .NET 名字空间。<br>
+如果该全局名字空间已导入其他 .NET 名字空间则不会覆盖已存在的名空间。<br>
+此函数总是会返回当前调用实际创建的名字空间</p>
+
+<p><a id="dotNetCrlAssemblyObject.invokeMember"></a></p>
+
+<h3>dotNetCrlAssemblyObject.invokeMember(&quot;类名.方法名&quot;,BindingFlags)</h3>
+
+<p>调用类的方法,<br>
+可添加不定个数调用参数<br>
+失败返回空值,以及错误信息</p>
+
+<p><a id="dotNetCrlAssemblyObject.invokeStaticMember"></a></p>
+
+<h3>dotNetCrlAssemblyObject.invokeStaticMember(&quot;类名.方法名&quot;,... )</h3>
+
+<p>调用类的静态方法,<br>
+可添加不定个数调用参数<br>
+失败返回空值,以及错误信息</p>
+
+<p><a id="dotNetCrlAssemblyObject.new"></a></p>
+
+<h3>dotNetCrlAssemblyObject.new(&quot;类名&quot;,... )</h3>
+
+<p>创建对象实例,<br>
+可添加不定个数构造参数<br>
+失败返回空值,以及错误信息</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/dotNet/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/dotNet/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/dotNet/_.md">Markdown 格式</a></p>
+
+</body> 
+</html>

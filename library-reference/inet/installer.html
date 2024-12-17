@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - inet.installer 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - inet.installer 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>inet.installer 库模块帮助文档</h1>
+
+<p><a id="inet"></a></p>
+
+<h2>inet 成员列表</h2>
+
+<p><a id="inet.installer"></a></p>
+
+<h3>inet.installer(appName,url,parameters,savePath,winform)</h3>
+
+<p>下载并启动安装程序,以管理权限启动安装,<br>
+@appName 参数下载窗口标题显示的应用程序名,<br>
+@url 参数为下载地址,允许传入一个动态返回 url 的线程函数,<br>
+@url 参数也可以传入一个表,使用x64,x86键值分别指定64位、32位系统下载网址，<br>
+@parameters 参数为运行安装程序的参数,可选参数,<br>
+@savePath 参数为存储路径,可选参数,<br>
+@winform 用于指定父窗口,可选参数<br>
+用户阻止安装程序以管理权限启动返回false,成功启动并关闭返回true<br>
+返回true并不表明安装过程中没有出错</p>
+
+<p><a id="inet.installer"></a></p>
+
+<h2>inet.installer 成员列表</h2>
+
+<p>下载并启动安装程序<br>
+通常启动安装程序加上 /? 参数可以查看该安装程序支持的参数</p>
+
+<p><a id="inet.installer.asInvoker"></a></p>
+
+<h3>inet.installer.asInvoker(appName,url,parameters,savePath,winform)</h3>
+
+<p>下载并启动安装程序,以当前进程权限启动安装,<br>
+@appName 参数下载窗口标题显示的应用程序名,<br>
+@url 参数为下载地址,允许传入一个动态返回 url 的线程函数,<br>
+@parameters 参数为运行安装程序的参数,可选参数,<br>
+@savePath 参数为存储路径,可选参数,<br>
+@winform 用于指定父窗口,可选参数<br>
+安装程序未正常启动返回false,成功启动并关闭返回true<br>
+返回 true 并不表明安装过程中没有出错</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/inet/installer.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/inet/installer.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/inet/installer.md">Markdown 格式</a></p>
+
+</body> 
+</html>

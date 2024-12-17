@@ -1,0 +1,51 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 窗口程序 - 入门'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 窗口程序 - 入门</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 窗口程序 - 入门</h1><pre><code class="aardio language-aardio">//窗口程序 - 入门
+//请按 F5 运行查看教程
+
+/*
+窗口程序入门指南：
+https://www.aardio.com/zh-cn/doc/library-guide/std/win/ui/basic.html
+
+创建窗口与控件入门教程：
+https://www.aardio.com/zh-cn/doc/library-guide/std/win/ui/create-winform.html
+*/
+
+var fb = fiber.create( 
+    function(){  
+        import win.ui;
+        mainForm = win.form(text=&quot;窗口程序入门&quot;;right=959;bottom=591)
+
+        mainForm.add(
+        custom={cls=&quot;\dlg\main\userInfo.aardio&quot;;text=&quot;custom&quot;;left=568;top=944;right=944;bottom=584;db=1;dr=1;z=1};
+        tab={cls=&quot;tab&quot;;left=8;top=16;right=944;bottom=536;db=1;dl=1;dr=1;dt=1;edge=1;z=2}
+        )
+
+        mainForm.tab.loadForm(&quot;\dlg\main\tabs1.aardio&quot;);
+        mainForm.tab.loadForm(&quot;\dlg\main\tabs2.aardio&quot;);
+        mainForm.tab.loadForm(&quot;\dlg\main\tabs3.aardio&quot;);
+
+        mainForm.show();
+        win.loopMessage();
+
+    },&quot;~\extensions\wizard\project2\template\winform\&quot;
+)
+
+fiber.resume(fb)
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Windows/QuickStart.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Windows/QuickStart.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Windows/QuickStart.md">Markdown 格式</a>
+</body> 
+</html>

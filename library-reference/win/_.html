@@ -1,0 +1,1289 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - win 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - win 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>win 库模块帮助文档</h1>
+
+<p><a id="win"></a></p>
+
+<h2>win 成员列表</h2>
+
+<p><a id="win._form"></a></p>
+
+<h3>win._form</h3>
+
+<p>常量对象,可用于替换表示原始 win.form 对象,<br>
+并禁止用户修改其定义.</p>
+
+<p><a id="win._parseMessage"></a></p>
+
+<h3>win._parseMessage(MSG结构体)</h3>
+
+<p>处理消息函数原始版本,慎用</p>
+
+<p><a id="win.center"></a></p>
+
+<h3>win.center(窗口句柄,目标窗口句柄)</h3>
+
+<p>居中窗口,并调整以保证显示在可见范围内<br>
+目标窗口句柄如果为空则取父窗口或所有者窗口,为0表示桌面</p>
+
+<p><a id="win.clearTimeout"></a></p>
+
+<h3>win.clearTimeout(定时器ID)</h3>
+
+<p>删除定时器<br>
+参数如果为null则忽略不执行<br>
+否则定时器ID必须是setTimeout函数的返回值</p>
+
+<p><a id="win.close"></a></p>
+
+<h3>win.close(输入窗口句柄)</h3>
+
+<p>关闭窗口<br>
+关闭外部进程窗口请使用winex.close()替代</p>
+
+<p><a id="win.delay"></a></p>
+
+<h3>win.delay()</h3>
+
+<p>在界面线程中延时并同时处理窗口消息,<br>
+如果程序退出返回null,否则返回true,  </p>
+
+<p>第一个可选参数指定延时值(毫秒),<br>
+即使无参数或参数为0,此函数仍然会至少执行一次消息检查),<br>
+该参数如果为0则忽略第二个参数(此时处理速度最快),默认值为0,  </p>
+
+<p>第二个可选参数指定插入的休眠时间(毫秒),<br>
+休眠时间越小则处理速度越快,休眠时间越大则占用CPU就越少  </p>
+
+<p>如果不需要消息循环时(例如控制台程序),建议使用sleep函数延时,  </p>
+
+<p>如果用于耗时循环中响应用户操作,<br>
+建议使用速度更快的win.peekPumpMessage 或 win.peekPumpInputMessage</p>
+
+<p><a id="win.eachChild"></a></p>
+
+<h3>win.eachChild(父窗口句柄,窗口类名)</h3>
+
+<pre><code class="aardio language-aardio">for hwnd in win.eachChild(/*按Z序遍历所有子窗口,  
+省略父窗口句柄遍历桌面顶层窗口,  
+窗口类名是可选参数，支持模式匹配语法  
+
+此函数忽略UWP应用窗口,  
+如果需要包含 UWP 窗口请改用 winex.eachFindEx 函数*/) {
+
+}
+</code></pre>
+
+<p><a id="win.enable"></a></p>
+
+<h3>win.enable(输入窗口句柄,false)</h3>
+
+<p>禁用窗口</p>
+
+<p><a id="win.enable"></a></p>
+
+<h3>win.enable(输入窗口句柄,true)</h3>
+
+<p>启用窗口</p>
+
+<p><a id="win.enum"></a></p>
+
+<h3>win.enum(callback)</h3>
+
+<pre><code class="aardio language-aardio">win.enum(  
+    function(hwnd){  
+        return true; /*枚举所有桌面顶层窗口,并回调此函数,  
+忽略UWP窗口,如果需要包含UWP窗口请改用 winex.enum 函数*/  
+    }  
+)
+</code></pre>
+
+<p><a id="win.find"></a></p>
+
+<h3>win.find(类名,标题)</h3>
+
+<p>查找顶层窗口,参数都是可选参数</p>
+
+<p><a id="win.findEx"></a></p>
+
+<h3>win.findEx(父窗口句柄,上一个窗口句柄,类名,标题)</h3>
+
+<p>查找子窗口<br>
+除父窗口句柄以外,其他参数都是可选参数,<br>
+类名和标题不支持模式匹配,<br>
+如果需要支持模式匹配,请改用 winex.findEx 或 winex.findEx2</p>
+
+<p><a id="win.flash"></a></p>
+
+<h3>win.flash(句柄,次数,时间间隔,选项)</h3>
+
+<p>闪烁窗口</p>
+
+<p><a id="win.getActive"></a></p>
+
+<h3>win.getActive()</h3>
+
+<p>获取当前线程激活窗口句柄,如果要获取全局激活窗口请使用win.getForeground()</p>
+
+<p><a id="win.getAncestor"></a></p>
+
+<h3>win.getAncestor</h3>
+
+<p>获取上层父窗口</p>
+
+<p><a id="win.getAncestor"></a></p>
+
+<h3>win.getAncestor(hwnd, _GA_PARENT )</h3>
+
+<p>返回父窗口,<br>
+与getParent函数相比主要有三个区别<br>
+1、不会返回所有者窗口<br>
+2、不考虑窗口样式是不是有WS_CHILD<br>
+3、顶层窗口返回桌面窗口句柄而不是0</p>
+
+<p><a id="win.getAncestor"></a></p>
+
+<h3>win.getAncestor(hwnd, _GA_ROOT )</h3>
+
+<p>返回最上层父窗口,不包含桌面窗口<br>
+此函数与getRoot函数返回值相同</p>
+
+<p><a id="win.getChild"></a></p>
+
+<h3>win.getChild(输入窗口句柄)</h3>
+
+<p>获取子窗口句柄</p>
+
+<p><a id="win.getClass"></a></p>
+
+<h3>win.getClass(输入窗口句柄)</h3>
+
+<p>获取窗口类名</p>
+
+<p><a id="win.getClassLong"></a></p>
+
+<h3>win.getClassLong( hwnd,_GCL )</h3>
+
+<p>返回窗体WNDCLASSEX结构的32位值</p>
+
+<p><a id="win.getClassPointer"></a></p>
+
+<h3>win.getClassPointer( hwnd,_GCL )</h3>
+
+<p>返回窗体WNDCLASSEX结构的句柄值</p>
+
+<p><a id="win.getClientPos"></a></p>
+
+<h3>win.getClientPos(输入窗口句柄)</h3>
+
+<p>返回客户区相对窗口的坐标 x,y,宽,高</p>
+
+<p><a id="win.getClientRect"></a></p>
+
+<h3>win.getClientRect()</h3>
+
+<p><a href="../global/_.html#rectObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/global/_.html#rectObject">返回对象:rectObject</a></p>
+
+<p><a id="win.getClientRect"></a></p>
+
+<h3>win.getClientRect(输入窗口句柄)</h3>
+
+<p>获取窗口客户区的坐标位置矩形区块，不包括边框。<br>
+返回值为 ::RECT 结构体</p>
+
+<p><a id="win.getCopyData"></a></p>
+
+<h3>win.getCopyData(lParam)</h3>
+
+<p>获取 _WM_COPYDATA 消息发送的数据<br>
+lParam 为窗口消息回调 wndproc 函数的回调参数  </p>
+
+<p>此函数有2个返回值,分别为接收到的字符串值、表示数据类型的数值</p>
+
+<p><a id="win.getCursorPos"></a></p>
+
+<h3>win.getCursorPos()</h3>
+
+<p>返回当前鼠标所在位置的x,y坐标,<br>
+返回值有两个</p>
+
+<p><a id="win.getDesktop"></a></p>
+
+<h3>win.getDesktop()</h3>
+
+<p>获取桌面句柄</p>
+
+<p><a id="win.getDropFile"></a></p>
+
+<h3>win.getDropFile(wParam)</h3>
+
+<p>用于消息回调函数中获取拖放文件列表  </p>
+
+<p>以管理权限启动的进程操作系统会禁止拖放操作，<br>
+标准库提供了 process.admin.enableDropMsg 函数可以设置这个权限，<br>
+但现在这个设置有可能也是不被允许的</p>
+
+<p><a id="win.getFocus"></a></p>
+
+<h3>win.getFocus()</h3>
+
+<p>获取输入焦点所在窗口句柄</p>
+
+<p><a id="win.getForeground"></a></p>
+
+<h3>win.getForeground()</h3>
+
+<p>获取前台窗口句柄</p>
+
+<p><a id="win.getFullscreen"></a></p>
+
+<h3>win.getFullscreen()</h3>
+
+<p>返回当前全屏窗口</p>
+
+<p><a id="win.getId"></a></p>
+
+<h3>win.getId(输入窗口句柄)</h3>
+
+<p>获取控件ID</p>
+
+<p><a id="win.getIdleTime"></a></p>
+
+<h3>win.getIdleTime()</h3>
+
+<p>获取用户未进行任何操作的空闲时间<br>
+单位毫秒，1000 毫秒为 1秒</p>
+
+<p><a id="win.getLeaf"></a></p>
+
+<h3>win.getLeaf(输入窗口句柄)</h3>
+
+<p>窗口的最梢节子窗口(没有子窗口的控件窗口)</p>
+
+<p><a id="win.getMessage"></a></p>
+
+<h3>win.getMessage(msg,窗口句柄,最小消息,最大消息,选项)</h3>
+
+<p>检查并获取窗口消息,<br>
+msg参数可以是MSG结构体，也可以是一个空表用于接收新的MSG结构体,也可以省略<br>
+成功返回已填充消息的MSG结构体（如果指定了msg参数则该参数就是此返回值),<br>
+无消息返回false,程序退出返回null  </p>
+
+<p>所有参数都是可选参数<br>
+选项不指定则默认为 _PM_REMOVE 表示自消息队列移除该消息<br>
+其他选项请参考同名WINAPI的说明</p>
+
+<p><a id="win.getMessagePos"></a></p>
+
+<h3>win.getMessagePos()</h3>
+
+<p>返回鼠标所在屏幕坐标,<br>
+表示上一次获取的窗口消息时鼠标占用的点</p>
+
+<p><a id="win.getMessagePos"></a></p>
+
+<h3>win.getMessagePos(lParam)</h3>
+
+<p>返回鼠标所在窗口坐标,<br>
+lParam必须是窗口回调函数中的lParam参数</p>
+
+<p><a id="win.getMonitorInfo"></a></p>
+
+<h3>win.getMonitorInfo</h3>
+
+<p>获取窗口所在显示器信息<br>
+sys.monitor 提供更多与显示器有关的函数</p>
+
+<p><a id="win.getMonitorInfo"></a></p>
+
+<h3>win.getMonitorInfo()</h3>
+
+<p><a href="#MONITORINFOObject">返回对象:MONITORINFOObject</a></p>
+
+<p><a id="win.getMonitorInfo"></a></p>
+
+<h3>win.getMonitorInfo(坐标,选项)</h3>
+
+<p>获取指定坐标所在的显示器信息<br>
+参数@1可指定 ::POINT 结构体，或包含 x,y 成员的表,\选项默认为 _MONITOR_DEFAULTTONEAREST,即获取最靠近的显示器</p>
+
+<p><a id="win.getMonitorInfo"></a></p>
+
+<h3>win.getMonitorInfo(窗口句柄,选项)</h3>
+
+<p>获取窗口所在显示器信息,所有参数可选,\选项默认为 _MONITOR_DEFAULTTONEAREST,即获取最靠近的显示器</p>
+
+<p><a id="win.getOwner"></a></p>
+
+<h3>win.getOwner(输入窗口句柄)</h3>
+
+<p>获取所有者窗口句柄<br>
+注意子窗口没有所有者窗口  </p>
+
+<p>下属窗口总是显示在所有者窗口前面<br>
+例如模态对话框通常会指定一个所有者窗口</p>
+
+<p><a id="win.getParent"></a></p>
+
+<h3>win.getParent(输入窗口句柄)</h3>
+
+<p>返回父窗口<br>
+父窗口为桌面且自身不是具有WS_CHELD样式的子窗口返回0<br>
+该函数返回值为0表示窗口是一个顶层独立窗口[TopLevelWindow]<br>
+注意WINAPI中的GetParent函数在aardio中被命名为win.getParentOwner</p>
+
+<p><a id="win.getParentOwner"></a></p>
+
+<h3>win.getParentOwner(输入窗口句柄)</h3>
+
+<p>拥有WS_CHILD样式的子窗口返回其父窗口<br>
+拥有WS_POPUP样式的弹出对话框返回无WS_POPUP样式所有者窗口<br>
+三种情况下该函数失败返回0<br>
+1、如果有父窗口但是自身没有WS_CHILD样式返回0,<br>
+2、有所有者窗口但自身没有WS_POPUP样式也返回0<br>
+3、所有者窗口具有WS_POPUP也返回0<br>
+此函数为WINAPI中的GetParent函数,原名字有误导性在aardio中已改名</p>
+
+<p><a id="win.getPlacement"></a></p>
+
+<h3>win.getPlacement()</h3>
+
+<p><a href="#WINDOWPLACEMENTObject">返回对象:WINDOWPLACEMENTObject</a></p>
+
+<p><a id="win.getPlacement"></a></p>
+
+<h3>win.getPlacement(输入窗口句柄)</h3>
+
+<p>可省略参数<br>
+返回WINDOWPLACEMENT结构体<br>
+包含窗口最大化、最小化、还原状态的位置信息</p>
+
+<p><a id="win.getPos"></a></p>
+
+<h3>win.getPos(输入窗口句柄)</h3>
+
+<p>返回相对坐标 x,y,宽,高</p>
+
+<p><a id="win.getPos"></a></p>
+
+<h3>win.getPos(输入窗口句柄,true)</h3>
+
+<p>返回屏幕坐标 x,y,宽,高</p>
+
+<p><a id="win.getRect"></a></p>
+
+<h3>win.getRect(输入窗口句柄)</h3>
+
+<p>返回窗体相对坐标位置矩形区块<br>
+对于顶层窗口则等同于屏幕绝对坐标位置矩形区块</p>
+
+<p><a id="win.getRect"></a></p>
+
+<h3>win.getRect(输入窗口句柄,true)</h3>
+
+<p>返回窗体屏幕坐标位置矩形区块<br>
+返回值为 ::RECT 结构体</p>
+
+<p><a id="win.getRoot"></a></p>
+
+<h3>win.getRoot(输入窗口句柄)</h3>
+
+<p>获取顶层父窗口句柄<br>
+没有上层父窗口该函数返回自身句柄</p>
+
+<p><a id="win.getRootOwner"></a></p>
+
+<h3>win.getRootOwner(输入窗口句柄)</h3>
+
+<p>获取顶层父窗口句柄或所有者窗口<br>
+没有上层父窗口或所者者该函数返回自身句柄</p>
+
+<p><a id="win.getScreen"></a></p>
+
+<h3>win.getScreen()</h3>
+
+<p>返回主屏幕宽度、高度，<br>
+win.getScreenPos 函数可获取所有显示器组成的虚拟屏幕位置与大小</p>
+
+<p><a id="win.getScreenPos"></a></p>
+
+<h3>win.getScreenPos</h3>
+
+<p>获取指定屏幕或所有屏幕位置与大小</p>
+
+<p><a id="win.getScreenPos"></a></p>
+
+<h3>win.getScreenPos()</h3>
+
+<p>返回所有显示器组成的虚拟屏幕位置与大小<br>
+此函数返回多个值，分别为：x坐标，y坐标，宽，高。<br>
+因为多个显示器的可能设置不同的排序，屏幕起始坐标并不总是 0,0，<br>
+注意单个显示器仍然可以使用此函数获取</p>
+
+<p><a id="win.getScreenPos"></a></p>
+
+<h3>win.getScreenPos(坐标,选项)</h3>
+
+<p>获取指定坐标所在的显示器在屏幕位置与大小，<br>
+此函数返回多个值，分别为：x坐标，y坐标，宽，高。<br>
+参数@1可指定 ::POINT 结构体，或包含 x,y 成员的表,<br>
+参数 @2 默认为 _MONITOR_DEFAULTTONEAREST,即获取最靠近的显示器，<br>
+如果失败则返回所有显示器组成的虚拟屏幕位置与大小</p>
+
+<p><a id="win.getScreenPos"></a></p>
+
+<h3>win.getScreenPos(窗口句柄,选项)</h3>
+
+<p>获取窗口所在屏幕位置与大小，<br>
+此函数返回多个值，分别为：x坐标，y坐标，宽，高。<br>
+参数 @2 默认为 _MONITOR_DEFAULTTONEAREST,即获取最靠近的显示器，<br>
+如果失败则返回所有显示器组成的虚拟屏幕位置与大小</p>
+
+<p><a id="win.getStyle"></a></p>
+
+<h3>win.getStyle(窗口句柄,限定样式,不允许包含的样式)</h3>
+
+<p>获取指定窗口样式,除句柄外其他参数可选</p>
+
+<p><a id="win.getStyleEx"></a></p>
+
+<h3>win.getStyleEx(窗口句柄,限定样式,不允许包含的样式)</h3>
+
+<p>获取窗口扩展样式,除句柄外其他参数可选</p>
+
+<p><a id="win.getText"></a></p>
+
+<h3>win.getText(输入窗口句柄)</h3>
+
+<p>获取窗口文本<br>
+外部进程窗口请使用winex.getText()函数替代</p>
+
+<p><a id="win.getText"></a></p>
+
+<h3>win.getText(输入窗口句柄,20)</h3>
+
+<p>获取窗口文本,并指定缓冲区大小  </p>
+
+<p>如果目标窗口属于外部进程并可能失去响应导致此函数阻塞,<br>
+请改用winex.getText函数获取窗口文本</p>
+
+<p><a id="win.getTextById"></a></p>
+
+<h3>win.getTextById(hwnd,id,len=256)</h3>
+
+<p>获取窗口上控件的文本<br>
+参数(窗口句柄,控件ID,缓冲区大小)</p>
+
+<p><a id="win.getThreadProcessId"></a></p>
+
+<h3>win.getThreadProcessId(输入窗口句柄)</h3>
+
+<p>返回线程ID,进程ID<br>
+var tid,pid=win.getThreadProcessId(hwnd)</p>
+
+<p><a id="win.getWindow"></a></p>
+
+<h3>win.getWindow( hwnd, _GW )</h3>
+
+<p>获取相关窗口</p>
+
+<p><a id="win.getWorkArea"></a></p>
+
+<h3>win.getWorkArea</h3>
+
+<p>返回屏幕上窗口最大化时可使用的显示区块。<br>
+返回值为 ::RECT 结构体  </p>
+
+<p><a href="../global/_.html#rectObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/global/_.html#rectObject">返回对象:rectObject</a></p>
+
+<p><a id="win.getWorkArea"></a></p>
+
+<h3>win.getWorkArea()</h3>
+
+<p><a href="../global/_.html#rectObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/global/_.html#rectObject">返回对象:rectObject</a></p>
+
+<p><a id="win.getWorkArea"></a></p>
+
+<h3>win.getWorkArea(坐标,选项)</h3>
+
+<p>返回屏幕上窗口最大化时可使用的显示区块<br>
+参数@1可指定 ::POINT 结构体，或包含 x,y 成员的表,<br>
+省略参数@1 则自动获取鼠标当前坐标作为参数。<br>
+选项默认为 _MONITOR_DEFAULTTONEAREST,即获取最靠近的显示器</p>
+
+<p><a id="win.getWorkArea"></a></p>
+
+<h3>win.getWorkArea(窗口句柄,选项)</h3>
+
+<p>返回屏幕上窗口最大化时可使用的显示区块,所有参数可选,<br>
+选项默认为 _MONITOR_DEFAULTTONEAREST,即获取最靠近的显示器</p>
+
+<p><a id="win.hitBorder"></a></p>
+
+<h3>win.hitBorder</h3>
+
+<p>用法同ptInBorder函数,<br>
+但返回值转换为_WM_NCHITTEST消息返回值</p>
+
+<p><a id="win.hitBorder"></a></p>
+
+<h3>win.hitBorder(RECT矩形,x坐标,y坐标,上,右,下,左)</h3>
+
+<p>可以使用一个参数指定四周边框宽度</p>
+
+<p><a id="win.hookMessage"></a></p>
+
+<h3>win.hookMessage(消息钩子函数)</h3>
+
+<pre><code class="aardio language-aardio">win.hookMessage(   
+    function(msg){  
+
+    }   
+)
+</code></pre>
+
+<p><a id="win.hookMessage"></a></p>
+
+<h3>win.hookMessage(消息钩子函数,false)</h3>
+
+<p>移除消息钩子函数<br>
+消息钩子在分发窗口消息以前触发<br>
+可返回值以阻止消息处理</p>
+
+<p><a id="win.invoke"></a></p>
+
+<h3>win.invoke(func,...)</h3>
+
+<pre><code class="aardio language-aardio">thread.invokeAndWait(  
+    function(){  
+        import win;  
+        /*创建工作线程执行参数@1指定的线程函数,  
+参数@1之后的其他可选参数会作为调用线程函数的参数。  
+调用并等待线程函数执行完毕,然后获取此线程函数的返回值,  
+在界面线程等待时界面仍可响应用户操作，线程函数的返回值会返回给调用线程,  
+线程函数拥有独立的全局变量，并应遵守多线程调用规则*/  
+    }   
+)
+</code></pre>
+
+<p><a id="win.isChild"></a></p>
+
+<h3>win.isChild(父窗口句柄,子窗口句柄)</h3>
+
+<p>判断参数二指定的窗口是否参数一指定窗口的子窗口或间接子窗口<br>
+任何一个参数为null或0返回false</p>
+
+<p><a id="win.isClosed"></a></p>
+
+<h3>win.isClosed()</h3>
+
+<p>用户是否关闭了全部窗口</p>
+
+<p><a id="win.isDialogMessage"></a></p>
+
+<h3>win.isDialogMessage(hwnd,msg)</h3>
+
+<p>处理对话框控制键消息</p>
+
+<p><a id="win.isEnable"></a></p>
+
+<h3>win.isEnable(输入窗口句柄)</h3>
+
+<p>判断窗口是否启用状态</p>
+
+<p><a id="win.isIconic"></a></p>
+
+<h3>win.isIconic(输入窗口句柄)</h3>
+
+<p>判断窗口是否最小化为任务栏图标。<br>
+如果参数可能为子窗口句柄，应调用 win.getRoot 函数先转换为顶层窗口。<br>
+注意：对最小化窗口获取 ::RECT 或坐标时会包含类似 -32000 这种超大的伪坐标。</p>
+
+<p><a id="win.isVisible"></a></p>
+
+<h3>win.isVisible(输入窗口句柄)</h3>
+
+<p>判断窗口是否可见。<br>
+如果上级父窗口不可见，则此函数仍然会返回 false。<br>
+如果要检查子窗口本身的可见样式，<br>
+可用 win.getStyle 函数检查是否设置 _WS_VISIBLE 样式。<br>
+如果是 aardio 创建的窗口对象，通过 hide 属性可检查是否设置 _WS_VISIBLE 样式。   </p>
+
+<p>此函数不会检查伪装为可见的窗口隐形状态（Cloaked）,<br>
+winex.isVisible 支持检测隐形状态</p>
+
+<p><a id="win.isWindow"></a></p>
+
+<h3>win.isWindow(输入窗口句柄)</h3>
+
+<p>判断是否有效窗口<br>
+注意 aardio 创建的窗体或控件请使用 valid 属性判断，<br>
+aardio 创建的所有控件都有 valid 属性（不一定会出现在提示中）</p>
+
+<p><a id="win.isZoomed"></a></p>
+
+<h3>win.isZoomed(输入窗口句柄)</h3>
+
+<p>判断窗口是否最大化</p>
+
+<p><a id="win.loadForm"></a></p>
+
+<h3>win.loadForm</h3>
+
+<p>加载窗体代码文件</p>
+
+<p><a id="win.loadForm"></a></p>
+
+<h3>win.loadForm()</h3>
+
+<p><a href="ui/_.html#winform" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/_.html#winform">返回对象:winform</a></p>
+
+<p><a id="win.loadForm"></a></p>
+
+<h3>win.loadForm(创建窗体参数,构造函数,父窗体)</h3>
+
+<p>加载窗体代码文件<br>
+参数@1为窗体代码文件路径,工程内代码文件路径必须以斜杠开始,<br>
+参数@2为选参数,可用于替换win.form构造函数,<br>
+可选添加不定个数调用参数,在被加载的窗体文件内使用...操作符接收参数  </p>
+
+<p>返回窗体代码文件的返回值,<br>
+如果未返回值则返回执行该文件创建的首个win.form对象</p>
+
+<p><a id="win.loopMessage"></a></p>
+
+<h3>win.loopMessage()</h3>
+
+<p>如果当前消息循环未启动则启动消息循环,<br>
+返回退出代码（可用于 return 语句退出当前线程并设置为线程返回值）  </p>
+
+<p>此函数会启动界面线程的消息循环，循环处理并分发所有窗口消息，<br>
+直到应用程序调用 win.quitMessage 才会退出。  </p>
+
+<p>所有非模态、非 MessageOnly 的独立窗口（ 或 mainForm 窗口 ）都关闭后，<br>
+将会自动终止 win.loopMessage 创建的消息循环（通常也就是退出界面线程）。<br>
+因为关闭消息是异步处理，所以即使是在调用 win.loopMessage 前关闭窗口，<br>
+仍然可能导致退出消息循环</p>
+
+<p><a id="win.lowerRight"></a></p>
+
+<h3>win.lowerRight(hwnd,x,y)</h3>
+
+<p>移动窗口到右下角,<br>
+可选使用x参数指定右边距,y参数指定下边距</p>
+
+<p><a id="win.mapPoint"></a></p>
+
+<h3>win.mapPoint</h3>
+
+<p>转换窗口坐标</p>
+
+<p><a id="win.mapPoint"></a></p>
+
+<h3>win.mapPoint(源窗口句柄,目标窗口句柄,POINT对象)</h3>
+
+<p>省略的句柄默认以桌面句柄替代</p>
+
+<p><a id="win.mapRect"></a></p>
+
+<h3>win.mapRect</h3>
+
+<p>转换窗口矩形</p>
+
+<p><a id="win.mapRect"></a></p>
+
+<h3>win.mapRect(源窗口句柄,目标窗口句柄,RECT对象)</h3>
+
+<p>省略的句柄默认以桌面句柄替代</p>
+
+<p><a id="win.modifyStyle"></a></p>
+
+<h3>win.modifyStyle(hwnd,remove,add,swpFlags)</h3>
+
+<p>修改窗口样式,所有参数都是可选参数,<br>
+@hwnd 指定目标窗口句柄<br>
+@remove 用数值指定要移除的样式,可使用 <em>WS</em> 前缀的常量<br>
+@add 用数值指定要添加的样式,可使用 <em>WS</em> 前缀的常量<br>
+@swpFlags 可选用数值指定调整窗口选项,可使用 <em>SWP</em> 前缀的常量<br>
+如果指定了 @swpFlag ,则使用该参数调用::SetWindowPos<br>
+细节请参考函数源码</p>
+
+<p><a id="win.modifyStyleEx"></a></p>
+
+<h3>win.modifyStyleEx(hwnd,remove,add,swpFlags)</h3>
+
+<p>修改窗口扩展样式,所有参数都是可选参数,<br>
+@hwnd 指定目标窗口句柄<br>
+@remove 用数值指定要移除的样式,可使用 <em>WS_EX</em> 前缀的常量<br>
+@add 用数值指定要添加的样式,可使用 <em>WS_EX</em> 前缀的常量<br>
+@swpFlags 可选用数值指定调整窗口选项,可使用 <em>SWP</em> 前缀的常量<br>
+如果指定了 @swpFlag ,则使用该参数调用::SetWindowPos<br>
+细节请参考函数源码</p>
+
+<p><a id="win.msgbox"></a></p>
+
+<h3>win.msgbox</h3>
+
+<p>弹出对话框</p>
+
+<p><a id="win.msgbox"></a></p>
+
+<h3>win.msgbox(&quot;文本&quot;,&quot;标题&quot;,样式,所有者窗口句柄,显示时间)</h3>
+
+<p>弹出对话框<br>
+除 参数@1 以外,所有参数可选<br>
+如果 参数@1 是表对象,自动调用 table.tostring 序列化为文本<br>
+其他类型调用 tostring 转为字符串。<br>
+可选用参数@5限定显示时间，以毫秒为单位，超时自动关闭。  </p>
+
+<p>一般不必指定对话框样式，不必了解该参数用法</p>
+
+<p><a id="win.msgboxErr"></a></p>
+
+<h3>win.msgboxErr</h3>
+
+<p>弹出错误对话框</p>
+
+<p><a id="win.msgboxErr"></a></p>
+
+<h3>win.msgboxErr(&quot;文本&quot;,&quot;标题&quot;,所有者窗口)</h3>
+
+<p>弹出错误对话框<br>
+所有者窗口参数可选<br>
+如果参数@1是表对象,自动调用 table.tostring 序列化为文本<br>
+其他类型调用 tostring 转为字符串</p>
+
+<p><a id="win.msgboxTest"></a></p>
+
+<h3>win.msgboxTest</h3>
+
+<p>弹出确认对话框</p>
+
+<p><a id="win.msgboxTest"></a></p>
+
+<h3>win.msgboxTest(&quot;文本&quot;,&quot;标题&quot;,所有者窗口)</h3>
+
+<p>弹出确认对话框，<br>
+返回布尔值表示用户是否按了“确定”按钮。<br>
+标题,所有者窗口参数可选<br>
+如果参数@1是表对象,自动调用 table.tostring 序列化为文本<br>
+其他类型调用 tostring 转为字符串</p>
+
+<p><a id="win.msgboxTimeout"></a></p>
+
+<h3>win.msgboxTimeout(&quot;文本&quot;,&quot;标题&quot;,超时值,样式,所有者窗口句柄)</h3>
+
+<p>弹出对话框,超时自动关闭<br>
+超时值以毫秒为单位(可选参数),<br>
+除参数@1以外,其他所有参数可选。<br>
+如果参数@1是表对象,自动调用 table.tostring 序列化为文本<br>
+其他类型调用 tostring 转为字符串  </p>
+
+<p>一般不必指定对话框样式，不必了解该参数用法</p>
+
+<p><a id="win.parseMessage"></a></p>
+
+<h3>win.parseMessage</h3>
+
+<pre><code class="aardio language-aardio">win.parseMessage = win._parseMessage
+</code></pre>
+
+<p><a id="win.parseMessage_lite"></a></p>
+
+<h3>win.parseMessage_lite</h3>
+
+<pre><code class="aardio language-aardio">win.parseMessage = messageTranslateDispatch;
+</code></pre>
+
+<p><a id="win.peekMessage"></a></p>
+
+<h3>win.peekMessage(msg,窗口句柄,最小消息,最大消息,选项)</h3>
+
+<p>等待并获取窗口消息,<br>
+msg参数可以是MSG结构体，也可以是一个空表用于接收新的MSG结构体,也可以省略<br>
+成功返回已填充消息的MSG结构体（如果指定了msg参数则该参数就是此返回值),<br>
+失败返回false,程序退出返回null</p>
+
+<p><a id="win.peekPumpInputMessage"></a></p>
+
+<h3>win.peekPumpInputMessage(msg)</h3>
+
+<p>检测消息队列,如果有键盘鼠标、或绘图消息则处理消息并返回传入的消息对象,<br>
+如果程序退出返回null,如果无消息返回false,  </p>
+
+<p>可选使用参数@1指定MSG结构体或空表,重用同一MSG结构体,  </p>
+
+<p>此函数如果没有检查到消息会直接返回而不是等待,<br>
+可用于在耗时循环中避免界面不能响应用户操作</p>
+
+<p><a id="win.peekPumpMessage"></a></p>
+
+<h3>win.peekPumpMessage(msg,窗口句柄,最小消息,最大消息,选项)</h3>
+
+<p>检测消息队列,如果有消息则处理消息并返回传入的消息对象,<br>
+如果程序退出返回null,如果无消息返回false,  </p>
+
+<p>所有参数可选,参数用法请参考win.peekMessage<br>
+可选使用参数@1指定MSG结构体或空表,重用同一MSG结构体,  </p>
+
+<p>此函数如果没有检查到消息会直接返回而不是等待,<br>
+可用于在耗时循环中避免界面不能响应用户操作</p>
+
+<p><a id="win.ptInBorder"></a></p>
+
+<h3>win.ptInBorder</h3>
+
+<p>如果坐标在边框范围内返回以下边框名字之一<br>
+top,topleft,topright,bottom,bottomleft,bottomright</p>
+
+<p><a id="win.ptInBorder"></a></p>
+
+<h3>win.ptInBorder(RECT矩形,x坐标,y坐标,上,右,下,左)</h3>
+
+<p>上,右,下,左参数指定边框宽度<br>
+可以使用一个参数指定四周边框宽度</p>
+
+<p><a id="win.pumpMessage"></a></p>
+
+<h3>win.pumpMessage()</h3>
+
+<p>等待并处理一个窗口消息<br>
+注意如果没有参数,此函数会一直等待</p>
+
+<p><a id="win.quitMessage"></a></p>
+
+<h3>win.quitMessage()</h3>
+
+<p>退出消息循环<br>
+可在参数中指定loopMessage退出代码</p>
+
+<p><a id="win.registerClassEx"></a></p>
+
+<h3>win.registerClassEx(&quot;类名&quot;,类参数表,&quot;源类名&quot;)</h3>
+
+<p>注册新类名<br>
+如果参数@3指定了源类名则复制该类<br>
+可选用参数@2指定 WNDCLASSEX的部分字段值</p>
+
+<p><a id="win.registerFormClass"></a></p>
+
+<h3>win.registerFormClass(cls,param,className)</h3>
+
+<p>注意窗口类名,  </p>
+
+<p>如果指定了cls，则使用线程ID格式化为伪类名<br>
+此时className为源类名  </p>
+
+<p>如果未指定cls,则直接注册className为类名<br>
+如果该窗口类已存在则直接返回该类名  </p>
+
+<p>此函数返回注册成功的窗口类名</p>
+
+<p><a id="win.releaseCapture"></a></p>
+
+<h3>win.releaseCapture()</h3>
+
+<p>释放鼠标捕获,成功返回true</p>
+
+<p><a id="win.resetMessage"></a></p>
+
+<h3>win.resetMessage()</h3>
+
+<p>自消息队列中移除_WM_QUIT消息,<br>
+使消息循环重置为未退出状态</p>
+
+<p><a id="win.sendCopyData"></a></p>
+
+<h3>win.sendCopyData(窗口句柄,发送数据,数据类型)</h3>
+
+<p>使用 _WM_COPYDATA 消息发送字符串到其他进程窗口。<br>
+发送数据可以是字符串或 table 对象,<br>
+数据类型可选指定一个数值</p>
+
+<p><a id="win.setActive"></a></p>
+
+<h3>win.setActive(输入窗口句柄)</h3>
+
+<p>设置激活窗口</p>
+
+<p><a id="win.setCapture"></a></p>
+
+<h3>win.setCapture(窗口句柄)</h3>
+
+<p>开始捕获鼠标消息,返回上次调用该函数的窗口句柄</p>
+
+<p><a id="win.setFocus"></a></p>
+
+<h3>win.setFocus(输入窗口句柄)</h3>
+
+<p>设置输入焦点。<br>
+附加外部输入线程后立即调用此函数可能偶尔会无效，可延时至少几十毫秒</p>
+
+<p><a id="win.setForeground"></a></p>
+
+<h3>win.setForeground(窗口句柄,禁止从最小化恢复)</h3>
+
+<p>前置窗口并获取输入焦点。<br>
+如果参数 @2 未指定为 true ，且窗口已最小化，则先恢复并显示窗口。<br>
+当前程序是背景窗口时，win7以上系统在任务栏闪烁。</p>
+
+<p><a id="win.setOwner"></a></p>
+
+<h3>win.setOwner</h3>
+
+<p>设置所有者窗口<br>
+下属窗口总是显示在所有者窗口前面<br>
+例如模态对话框通常会指定一个所有者窗口  </p>
+
+<p>设置了所有者(也没有指定appwindows样式的)的下属窗口不会显示在任务栏<br>
+所有者窗口管理下属窗口的生存期</p>
+
+<p><a id="win.setOwner"></a></p>
+
+<h3>win.setOwner(窗口句柄,所有者窗口句柄)</h3>
+
+<p>成功返回原来的所有者窗口句柄<br>
+窗口拥有WS_CHILD样式时不执行并返回空值</p>
+
+<p><a id="win.setParent"></a></p>
+
+<h3>win.setParent</h3>
+
+<p>设置父窗口<br>
+子窗口显示在父窗口客户区<br>
+父窗口管理子窗口的生存期</p>
+
+<p><a id="win.setParent"></a></p>
+
+<h3>win.setParent(子窗口句柄,父窗口句柄)</h3>
+
+<p>设置父窗口<br>
+子窗口显示在父窗口客户区</p>
+
+<p><a id="win.setPos"></a></p>
+
+<h3>win.setPos(窗口句柄,x坐标,y坐标,宽,高,插入位置,选项)</h3>
+
+<p>调整窗口坐标位置或排序,除句柄外所有参数可选<br>
+同时指定x,y坐标则移动位置<br>
+同时指定宽高则改变大小<br>
+指定插入位置&lt;句柄或_HWND前缀常量&gt;则调整Z序<br>
+选项不用指定，可参考此函数源码了解细节</p>
+
+<p><a id="win.setRect"></a></p>
+
+<h3>win.setRect(输入窗口句柄,rc)</h3>
+
+<p>设置窗口相对坐标位置矩形区块。<br>
+参数 @rc 为 ::RECT 结构</p>
+
+<p><a id="win.setRect"></a></p>
+
+<h3>win.setRect(输入窗口句柄,rc,true)</h3>
+
+<p>设置窗口屏幕绝对坐标位置矩形区块。<br>
+参数 @rc 为 ::RECT 结构</p>
+
+<p><a id="win.setText"></a></p>
+
+<h3>win.setText(hwnd,lpString)</h3>
+
+<p>参数(窗口句柄,要设置的文本)<br>
+外部进程窗口请使用winex.setText()函数替代</p>
+
+<p><a id="win.setTextById"></a></p>
+
+<h3>win.setTextById(hwnd,id,str)</h3>
+
+<p>设置窗口上控件的文本<br>
+参数(窗口句柄,控件ID,文本)</p>
+
+<p><a id="win.setTimeout"></a></p>
+
+<h3>win.setTimeout(回调函数,延时,其他调用参数)</h3>
+
+<pre><code class="aardio language-aardio">win.setTimeout(  
+    function(){  
+        /*在已经导入win.ui的界面线程内异步延时执行这里的代码  
+除回调函数以外,其他参数都是可选参数  
+延时默认为0*/  
+    }  
+)
+</code></pre>
+
+<p><a id="win.setTop"></a></p>
+
+<h3>win.setTop(输入窗口句柄)</h3>
+
+<p>前置窗口到当前线程Z序顶部<br>
+顶层窗口或者设置了 _WS_CLIPSIBLINGS 重叠裁剪样式的窗口向前移动<br>
+子窗口会向后面移动.</p>
+
+<p><a id="win.setTopmost"></a></p>
+
+<h3>win.setTopmost(输入窗口句柄)</h3>
+
+<p>置顶并显示窗口</p>
+
+<p><a id="win.setTopmost"></a></p>
+
+<h3>win.setTopmost(输入窗口句柄,false)</h3>
+
+<p>取消置顶窗口</p>
+
+<p><a id="win.setWindowTheme"></a></p>
+
+<h3>win.setWindowTheme(hwnd,subAppName,subIdList)</h3>
+
+<p>设置主题样式<br>
+参数 @2,@3 可传字符串或 null 值</p>
+
+<p><a id="win.show"></a></p>
+
+<h3>win.show(hwnd,false)</h3>
+
+<p>隐藏窗口</p>
+
+<p><a id="win.show"></a></p>
+
+<h3>win.show(hwnd,可选输入显示参数)</h3>
+
+<p>显示窗口,可选输入以_SW_为前缀的显示参数性，<br>
+使用 win.show( hwnd,3/*_SW_MAXIMIZE*/ ) 最大化显示,<br>
+使用 win.show( hwnd,6/*_SW_MINIMIZE*/ ) 最小化显示,<br>
+使用 win.show( hwnd,9/*_SW_RESTORE*/ ) 自最大化或最小化恢复显示。</p>
+
+<p><a id="win.showForeground"></a></p>
+
+<h3>win.showForeground(窗口句柄,x,y,cx,cy)</h3>
+
+<p>把窗口显示在屏幕最前面,最小化窗口自动还原<br>
+类似setForeground但不会改变输入焦点,<br>
+除句柄外,其他参数为可选参数</p>
+
+<p><a id="win.title"></a></p>
+
+<h3>win.title</h3>
+
+<p>窗口默认标题<br>
+如果不指定则自动指定为第一个winform对象的标题</p>
+
+<p><a id="win.toClient"></a></p>
+
+<h3>win.toClient(输入窗口句柄,x,y)</h3>
+
+<p>将坐标转换为客户坐标，返回 x,y 坐标值<br>
+::POINT 结构体请直接使用 ::ScreenToClient</p>
+
+<p><a id="win.toClientRect"></a></p>
+
+<h3>win.toClientRect(输入窗口句柄,rc)</h3>
+
+<p>将::RECT 结构体转换为客户坐标。<br>
+返回值为 ::RECT 结构体</p>
+
+<p><a id="win.toScreen"></a></p>
+
+<h3>win.toScreen(输入窗口句柄,x,y)</h3>
+
+<p>将坐标转换为屏幕坐标，返回 x,y 坐标值<br>
+::POINT 结构体请直接使用 ::ClientToScreen</p>
+
+<p><a id="win.toScreenRect"></a></p>
+
+<h3>win.toScreenRect()</h3>
+
+<p><a href="../global/_.html#rectObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/global/_.html#rectObject">返回对象:rectObject</a></p>
+
+<p><a id="win.toScreenRect"></a></p>
+
+<h3>win.toScreenRect(输入窗口句柄,rc)</h3>
+
+<p>将::RECT 结构体转换为屏幕坐标。<br>
+返回值为 ::RECT 结构体</p>
+
+<p><a id="win.wait"></a></p>
+
+<h3>win.wait(等待函数,窗口句柄,超时,延时间隔)</h3>
+
+<p>循环执行等待函数,并等待返回值<br>
+直到等待函数返回非空值,或存在第二个返回值,或参数@2指定的窗口关闭<br>
+等待函数返回的值就是win.wait的返回值,<br>
+如果指定超时,超过指定毫秒时返回null,<br>
+除等待函数以外,所有参数可选</p>
+
+<p><a id="MsgObject"></a></p>
+
+<h2>MsgObject 成员列表</h2>
+
+<p><a id="MsgObject.hwnd"></a></p>
+
+<h3>MsgObject.hwnd</h3>
+
+<p>窗口句柄</p>
+
+<p><a id="MsgObject.lParam"></a></p>
+
+<h3>MsgObject.lParam</h3>
+
+<p>附加参数</p>
+
+<p><a id="MsgObject.message"></a></p>
+
+<h3>MsgObject.message</h3>
+
+<p>消息ID</p>
+
+<p><a id="MsgObject.pt"></a></p>
+
+<h3>MsgObject.pt</h3>
+
+<p><a href="#pointObject">返回对象:pointObject</a></p>
+
+<p><a id="MsgObject.time"></a></p>
+
+<h3>MsgObject.time</h3>
+
+<p>时间</p>
+
+<p><a id="MsgObject.wParam"></a></p>
+
+<h3>MsgObject.wParam</h3>
+
+<p>附加参数</p>
+
+<p><a id="WINDOWPLACEMENTObject"></a></p>
+
+<h2>WINDOWPLACEMENTObject 成员列表</h2>
+
+<p><a id="WINDOWPLACEMENTObject.ptMaxPosition"></a></p>
+
+<h3>WINDOWPLACEMENTObject.ptMaxPosition</h3>
+
+<p>最大化左上角左标  </p>
+
+<p><a href="#pointObject">返回对象:pointObject</a></p>
+
+<p><a id="WINDOWPLACEMENTObject.ptMinPosition"></a></p>
+
+<h3>WINDOWPLACEMENTObject.ptMinPosition</h3>
+
+<p>最小化左上角坐标  </p>
+
+<p><a href="#pointObject">返回对象:pointObject</a></p>
+
+<p><a id="WINDOWPLACEMENTObject.rcNormalPosition"></a></p>
+
+<h3>WINDOWPLACEMENTObject.rcNormalPosition</h3>
+
+<p>还原状态位置  </p>
+
+<p><a href="../global/_.html#rectObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/global/_.html#rectObject">返回对象:rectObject</a></p>
+
+<p><a id="WINDOWPLACEMENTObject.showCmd"></a></p>
+
+<h3>WINDOWPLACEMENTObject.showCmd</h3>
+
+<p>_SW_SHOWMAXIMIZED 等表示窗口状态</p>
+
+<p><a id="WINDOWPLACEMENTObject.update"></a></p>
+
+<h3>WINDOWPLACEMENTObject.update()</h3>
+
+<p>更新窗口位置信息,可选指定一个目标窗口句柄参数</p>
+
+<p><a id="nmhdrObject"></a></p>
+
+<h2>nmhdrObject 成员列表</h2>
+
+<p><a id="nmhdrObject.code"></a></p>
+
+<h3>nmhdrObject.code</h3>
+
+<p>通知代码</p>
+
+<p><a id="nmhdrObject.hwndFrom"></a></p>
+
+<h3>nmhdrObject.hwndFrom</h3>
+
+<p>发送消息的控件句柄</p>
+
+<p><a id="nmhdrObject.idFrom"></a></p>
+
+<h3>nmhdrObject.idFrom</h3>
+
+<p>发送消息的控件ID</p>
+
+<h3>全局常量</h3>
+
+<p><a id="::MSG"></a></p>
+
+<h3>::MSG</h3>
+
+<pre><code class="aardio language-aardio">class{ 
+    addr hwnd;
+    INT message;
+    ADDR wParam;
+    addr lParam;
+    INT time;
+    int x;
+    int y;
+}
+</code></pre>
+
+<p><a id="::NMHDR"></a></p>
+
+<h3>::NMHDR</h3>
+
+<pre><code class="aardio language-aardio">class {
+    addr hwndFrom;
+    ADDR idFrom;
+    INT code;
+}
+</code></pre>
+
+<p><a id="::NMHDR()"></a></p>
+
+<h3>::NMHDR()</h3>
+
+<p>通知消息结构体  </p>
+
+<p><a href="#nmhdrObject">返回对象:nmhdrObject</a></p>
+
+<p><a id="::WNDCLASSEX"></a></p>
+
+<h3>::WNDCLASSEX</h3>
+
+<pre><code class="aardio language-aardio">class{ 
+    INT cbSize = 48; 
+    INT style = 0xB;//_CS_HREDRAW | _CS_VREDRAW | _CS_DBLCLKS;
+    pointer lpfnWndProc;
+    int cbClsExtra;
+    int cbWndExtra;
+    pointer hInstance;
+    pointer hIcon;
+    pointer hCursor;
+    pointer hbrBackground;
+    ustring lpszMenuName;
+    ustring lpszClassName;
+    pointer hIconSm;
+}
+</code></pre>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/_.md">Markdown 格式</a></p>
+
+</body> 
+</html>

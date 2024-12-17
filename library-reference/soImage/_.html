@@ -1,0 +1,722 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - soImage 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - soImage 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>soImage 库模块帮助文档</h1>
+
+<p><a id="soImage"></a></p>
+
+<h2>soImage 成员列表</h2>
+
+<p><a id="soImage()"></a></p>
+
+<h3>soImage()</h3>
+
+<p>创建图像  </p>
+
+<p><a href="#soImageObject">返回对象:soImageObject</a></p>
+
+<p><a id="soImage.checkType"></a></p>
+
+<h3>soImage.checkType(&quot;*.bmp&quot;)</h3>
+
+<p>参数为图像路径或文件名,<br>
+返回数值格式的图像数型</p>
+
+<p><a id="soImage.gifFile"></a></p>
+
+<h3>soImage.gifFile(&quot;GIF文件路径&quot;,循环次数,注释)</h3>
+
+<p>创建GIF文件<br>
+消除方法指的是下一帧擦除上帧背景的方法,可选1,2,3</p>
+
+<p><a id="soImage.gifFile"></a></p>
+
+<h3>soImage.gifFile()</h3>
+
+<p><a href="#soImageGifFileObject">返回对象:soImageGifFileObject</a></p>
+
+<p><a id="soImageObject"></a></p>
+
+<h2>soImageObject 成员列表</h2>
+
+<p><a id="soImageObject.bpp"></a></p>
+
+<h3>soImageObject.bpp</h3>
+
+<p>修改或获取图像位宽</p>
+
+<p><a id="soImageObject.bpp"></a></p>
+
+<h3>soImageObject.bpp(8)</h3>
+
+<p>修改图像位宽<br>
+参数为0是获取图像当前位宽</p>
+
+<p><a id="soImageObject.bpp"></a></p>
+
+<h3>soImageObject.bpp(8,true)</h3>
+
+<p>修改图像位宽，允许误差扩散</p>
+
+<p><a id="soImageObject.capture"></a></p>
+
+<h3>soImageObject.capture(窗口句柄,x坐标,y坐标,宽度,高度,鼠标放大百分比)</h3>
+
+<p>抓屏,所有参数可选,<br>
+如果不指定鼠标放大百分比则不截图不含鼠标指针,<br>
+放大百分比为 100 表示指针原始大小,忽略系统鼠标放大设置,<br>
+此函数会自动清屏并调整为合适图像位宽（BPP）<br>
+明确指定窗口或坐标缩小抓屏面积可优化性能，<br>
+使用 win.getScreenPos 可获取一个或多个显示器组成的虚拟屏幕位置与大小</p>
+
+<p><a id="soImageObject.captureWindow"></a></p>
+
+<h3>soImageObject.captureWindow</h3>
+
+<p>在屏幕上抓取指定窗口的图像。<br>
+当指定窗口句柄时 capture 函数在窗口内截图。<br>
+但 captureWindow 是在屏幕上截取指定窗口区域的图像。<br>
+这两个函数的实现是不同的，对于窗口截图，captureWindow 的兼容性更好。</p>
+
+<p><a id="soImageObject.captureWindow"></a></p>
+
+<h3>soImageObject.captureWindow(窗口句柄,x坐标,y坐标,宽度,高度)</h3>
+
+<p>在屏幕上抓取指定窗口客户区（不含标题栏）的图像。<br>
+除窗口句柄以外其他参数可选。</p>
+
+<p><a id="soImageObject.captureWindow"></a></p>
+
+<h3>soImageObject.captureWindow(窗口句柄,x坐标,y坐标,宽度,高度,true)</h3>
+
+<p>在屏幕上抓取指定窗口（含标题栏）的图像。<br>
+除窗口句柄以外其他参数可选。</p>
+
+<p><a id="soImageObject.clear"></a></p>
+
+<h3>soImageObject.clear()</h3>
+
+<p>清空图像</p>
+
+<p><a id="soImageObject.cmp"></a></p>
+
+<h3>soImageObject.cmp(匹配图像)</h3>
+
+<p>返回图像差异值，完全相似返回0 完全不相似为两个图片的面积相加,<br>
+精确匹配能力一般，模糊识别的能力较强</p>
+
+<p><a id="soImageObject.cmp2"></a></p>
+
+<h3>soImageObject.cmp2(匹配图像)</h3>
+
+<p>返回差异值，完全一样为0，完全不一样为1，通常返回的是1到0之间的小数，数字越小表示两个图片越接近相似,<br>
+精确匹配能力较差，模糊识别的能力一般</p>
+
+<p><a id="soImageObject.cmp3"></a></p>
+
+<h3>soImageObject.cmp3(匹配图像)</h3>
+
+<p>返回相似度，完全一样为0，完全相似返回0 完全不相似为单个图片的面积<br>
+精确匹配能力最强，模糊识别的能力最差</p>
+
+<p><a id="soImageObject.copy"></a></p>
+
+<h3>soImageObject.copy</h3>
+
+<p>复制图像</p>
+
+<p><a id="soImageObject.copy"></a></p>
+
+<h3>soImageObject.copy()</h3>
+
+<p>复制图像  </p>
+
+<p><a href="#soImageObject">返回对象:soImageObject</a></p>
+
+<p><a id="soImageObject.copy"></a></p>
+
+<h3>soImageObject.copy(左,上,右,下)</h3>
+
+<p>复制并剪切图像，<br>
+返回新图像，不会修改原图</p>
+
+<p><a id="soImageObject.crop"></a></p>
+
+<h3>soImageObject.crop(左,上,右,下)</h3>
+
+<p>剪切图像</p>
+
+<p><a id="soImageObject.decreaseBpp"></a></p>
+
+<h3>soImageObject.decreaseBpp</h3>
+
+<p>生成最优调色版并降低像素位宽为 8 位。<br>
+此函数专用于生成颜色更加自然的 GIF 文件。</p>
+
+<p><a id="soImageObject.decreaseBpp"></a></p>
+
+<h3>soImageObject.decreaseBpp(bpp,colors,colorBits,errorDiffusion)</h3>
+
+<p>生成最优调色版并降低像素位宽为 8 位。<br>
+此函数专用于生成颜色更加自然的 GIF 文件。  </p>
+
+<p>@bpp 参数请指定为 8，其他参数不必指定。<br>
+可选用 @colors 参数指定最大颜色数。<br>
+@colorBits 指定颜色分量有效位数，应指定为 8 或省略。<br>
+@errorDiffusion 可选指定是否允许误差扩散</p>
+
+<p><a id="soImageObject.delete"></a></p>
+
+<h3>soImageObject.delete()</h3>
+
+<p>删除图像</p>
+
+<p><a id="soImageObject.findColor"></a></p>
+
+<h3>soImageObject.findColor(匹配颜色,x坐标,y坐标,结束x坐标,结束y坐标)</h3>
+
+<p>找色，除参数@1以外，所有参数可选,<br>
+参数@1使用RGB颜色数值<br>
+成功返回2个值，分别为最接近颜色的x坐标,y坐标,<br>
+失败返回null</p>
+
+<p><a id="soImageObject.findImage"></a></p>
+
+<h3>soImageObject.findImage</h3>
+
+<p>找图。<br>
+注意这是找图,不能用来找文字,找验证码,<br>
+也不是提供任何样本图像都能有完美的、百分百的成功率,<br>
+查找的样本图像要尽可能的小,并尽可能裁剪去掉背景,突出查找特征</p>
+
+<p><a id="soImageObject.findImage"></a></p>
+
+<h3>soImageObject.findImage(屏幕图像,x坐标,y坐标,结束x坐标,结束y坐标,搜索步进)</h3>
+
+<p>找图，除参数一以外，所有参数可选,<br>
+成功返回相似度,匹配图像的右下角坐标<br>
+└── 相似度为 0 到 100 之间的值，100 为完全相似,0 为完全不相似。</p>
+
+<p><a id="soImageObject.findImageInWindow"></a></p>
+
+<h3>soImageObject.findImageInWindow</h3>
+
+<p>指定窗口找图<br>
+注意这是找图,不能用来找文字,找验证码,<br>
+也不是提供任何样本图像都能有完美的、百分百的成功率,<br>
+查找的样本图像要尽可能的小,并尽可能裁剪去掉背景,突出查找特征</p>
+
+<p><a id="soImageObject.findImageInWindow"></a></p>
+
+<h3>soImageObject.findImageInWindow(窗口句柄,x坐标,y坐标,结束x坐标,结束y坐标,搜索步进)</h3>
+
+<p>找图，所有参数可选,<br>
+成功返回相似度,匹配图像的右下角坐标<br>
+└── 相似度为 0 到 100 之间的值，100 为完全相似,0 为完全不相似</p>
+
+<p><a id="soImageObject.flip"></a></p>
+
+<h3>soImageObject.flip()</h3>
+
+<p>垂直翻转</p>
+
+<p><a id="soImageObject.fromBitmap"></a></p>
+
+<h3>soImageObject.fromBitmap(位图句柄,色板句柄)</h3>
+
+<p>自位图句柄创建图像,<br>
+参数2可选</p>
+
+<p><a id="soImageObject.fromClipBD"></a></p>
+
+<h3>soImageObject.fromClipBD()</h3>
+
+<p>自剪板板获取图像</p>
+
+<p><a id="soImageObject.fromIcon"></a></p>
+
+<h3>soImageObject.fromIcon(图标句柄,是否透明图标)</h3>
+
+<p>自图标句柄创建图像,<br>
+参数@2为可选参数</p>
+
+<p><a id="soImageObject.getBinString"></a></p>
+
+<h3>soImageObject.getBinString</h3>
+
+<p>以 0 表示黑色像素，1 表示白色像素，返回一个包含所有像素的字符串。<br>
+图像应为黑白图像，可调用 bpp 函数将图像转换为 1 位黑白图像，</p>
+
+<p><a id="soImageObject.getBinString"></a></p>
+
+<h3>soImageObject.getBinString(width,height)</h3>
+
+<p>返回一个包含所有像素的字符串，<br>
+以 0 表示黑色像素，1 表示白色像素。  </p>
+
+<p>可选用参数指定缩放大小，省略参数则不缩放。<br>
+@width 指定宽度，@height 指定高度，宽高必须同时指定。</p>
+
+<p><a id="soImageObject.getBits"></a></p>
+
+<h3>soImageObject.getBits(行号)</h3>
+
+<p>返回指定行图像数据,指定参数时返回值为buffer类型数组<br>
+不指定参数时直接返回全部图像原始数据指针值</p>
+
+<p><a id="soImageObject.getBytes"></a></p>
+
+<h3>soImageObject.getBytes(&quot;*.bmp&quot;)</h3>
+
+<p>返回图像数据</p>
+
+<p><a id="soImageObject.getData"></a></p>
+
+<h3>soImageObject.getData()</h3>
+
+<p>返回图像行列数据<br>
+返回值为buffer数组</p>
+
+<p><a id="soImageObject.getDib"></a></p>
+
+<h3>soImageObject.getDib()</h3>
+
+<p>返回 DIB 指针</p>
+
+<p><a id="soImageObject.getFrame"></a></p>
+
+<h3>soImageObject.getFrame()</h3>
+
+<p>返回图像活动帧</p>
+
+<p><a id="soImageObject.getFrameDelay"></a></p>
+
+<h3>soImageObject.getFrameDelay()</h3>
+
+<p>返回帧延时</p>
+
+<p><a id="soImageObject.getHeight"></a></p>
+
+<h3>soImageObject.getHeight()</h3>
+
+<p>获取高度</p>
+
+<p><a id="soImageObject.getJpegQuality"></a></p>
+
+<h3>soImageObject.getJpegQuality()</h3>
+
+<p>返回JPGE图像质量</p>
+
+<p><a id="soImageObject.getNumFrames"></a></p>
+
+<h3>soImageObject.getNumFrames()</h3>
+
+<p>返回图像帧数目</p>
+
+<p><a id="soImageObject.getPixel"></a></p>
+
+<h3>soImageObject.getPixel(x,y)</h3>
+
+<p>返回指定坐标点 RGB 颜色数值。<br>
+坐标参数为 0,0 返回第一个点的颜色。</p>
+
+<p><a id="soImageObject.getPixelIndex"></a></p>
+
+<h3>soImageObject.getPixelIndex(x,y)</h3>
+
+<p>获取指定坐标颜色索引</p>
+
+<p><a id="soImageObject.getTransColor"></a></p>
+
+<h3>soImageObject.getTransColor()</h3>
+
+<p>获取透明颜色</p>
+
+<p><a id="soImageObject.getWidth"></a></p>
+
+<h3>soImageObject.getWidth()</h3>
+
+<p>获取宽度</p>
+
+<p><a id="soImageObject.grayScale"></a></p>
+
+<h3>soImageObject.grayScale()</h3>
+
+<p>转换为灰度图</p>
+
+<p><a id="soImageObject.init"></a></p>
+
+<h3>soImageObject.init(宽,高,位宽,&quot;*.bmp&quot;)</h3>
+
+<p>所有参数可选</p>
+
+<p><a id="soImageObject.isValid"></a></p>
+
+<h3>soImageObject.isValid()</h3>
+
+<p>图像是否有效</p>
+
+<p><a id="soImageObject.load"></a></p>
+
+<h3>soImageObject.load</h3>
+
+<p>载入图像文件。</p>
+
+<p><a id="soImageObject.load"></a></p>
+
+<h3>soImageObject.load(&quot;路径&quot;)</h3>
+
+<p>载入图像文件。</p>
+
+<p><a id="soImageObject.loadUrl"></a></p>
+
+<h3>soImageObject.loadUrl()</h3>
+
+<p>自参数 @1 指定的网址加载图像，成功返回 true 。<br>
+必须提前导入 inet.http 库才能使用此函数。</p>
+
+<p><a id="soImageObject.median"></a></p>
+
+<h3>soImageObject.median(2)</h3>
+
+<p>中值滤波,参数指定半径</p>
+
+<p><a id="soImageObject.mirror"></a></p>
+
+<h3>soImageObject.mirror()</h3>
+
+<p>左右翻转</p>
+
+<p><a id="soImageObject.mix"></a></p>
+
+<h3>soImageObject.mix(混合图像,x坐标,y坐标,混合样式)</h3>
+
+<p>除参数1以外，其他参数可选,<br>
+混合样式请使用_MIX_前缀的常量</p>
+
+<p><a id="soImageObject.negative"></a></p>
+
+<h3>soImageObject.negative()</h3>
+
+<p>反相</p>
+
+<p><a id="soImageObject.ocr"></a></p>
+
+<h3>soImageObject.ocr</h3>
+
+<p>基于种子连通算法的简单文本识别。<br>
+这个函数的好处是不需要其他 OCR 组件，函数实现与用法都很简单。<br>
+但仅限用于基于特定字库识别较规则的文本。<br>
+无法识别的图像请改用其他 OCR 组件。  </p>
+
+<p>soImage 扩展库范例中提供自动生成字库与 OCR 范例代码的工具。</p>
+
+<p><a id="soImageObject.ocr"></a></p>
+
+<h3>soImageObject.ocr(dict,length)</h3>
+
+<p>参数 @dict 必须指定由 splitBinString 函数返回值生成的字库。<br>
+可选用 @length 参数指定最大字符长度。</p>
+
+<p><a id="soImageObject.paint"></a></p>
+
+<h3>soImageObject.paint(hdc,x坐标,y坐标,宽度,高度)</h3>
+
+<p>在指定GDI设备句柄上绘图,所有参数可选</p>
+
+<p><a id="soImageObject.repair"></a></p>
+
+<h3>soImageObject.repair(修复半径,修复次数)</h3>
+
+<p>修复被破坏的图片</p>
+
+<p><a id="soImageObject.resize"></a></p>
+
+<h3>soImageObject.resize(宽,高,插值方法)</h3>
+
+<p>调整图像大小,<br>
+可选用参数@3指定插值方法，可选值：<br>
+0 双线性插值，较慢<br>
+1 邻近插值，最快，效果差<br>
+2 双立方法，效果最好<br>
+默认使用双线性插值</p>
+
+<p><a id="soImageObject.resize2("></a></p>
+
+<h3>soImageObject.resize2((宽,高,插值方法,边缘方法,禁止平均法)</h3>
+
+<p>调整图像大小<br>
+可选用参数@2指定插值方法,可选值如下：<br>
+1 NEIGHBOUR;2 BILINEAR;3 BSPLINE;4 BICUBIC;5 BICUBIC2;LANCZOS 6;<br>
+7 BOX;8 HERMITE;9 HAMMING;10 SINC;11 BLACKMAN;12 BESSEL; 13 GAUSSIAN;<br>
+14 QUADRATIC;15 MITCHELL;16 CATROM;17 HANNING;18 POWER;<br>
+默认值为 BICUBIC2  </p>
+
+<p>边缘取值可选方法如下：<br>
+1 COLOR;2 BACKGROUND;3 TRANSPARENT;4 WRAP;5 REPEAT;6 MIRROR;<br>
+默认值为 REPEAT  </p>
+
+<p>可选指定参数@5为 true 以禁用平均法缩小图像</p>
+
+<p><a id="soImageObject.rotateLeft"></a></p>
+
+<h3>soImageObject.rotateLeft()</h3>
+
+<p>左旋</p>
+
+<p><a id="soImageObject.rotateRight"></a></p>
+
+<h3>soImageObject.rotateRight()</h3>
+
+<p>右旋</p>
+
+<p><a id="soImageObject.save"></a></p>
+
+<h3>soImageObject.save</h3>
+
+<p>保存图像文件。</p>
+
+<p><a id="soImageObject.save"></a></p>
+
+<h3>soImageObject.save(&quot;路径&quot;)</h3>
+
+<p>保存图像文件。</p>
+
+<p><a id="soImageObject.setBits"></a></p>
+
+<h3>soImageObject.setBits(行号,数据)</h3>
+
+<p>修改图像指定行数据</p>
+
+<p><a id="soImageObject.setBytes"></a></p>
+
+<h3>soImageObject.setBytes(数据,&quot;*.bmp&quot;)</h3>
+
+<p>修改图像数据，成功返回 true。<br>
+参数@1可以是字符串对象、buffer缓区、或普通指针<br>
+如果参数@1为普通指针,则必须在参数@3中指定内存长度<br>
+否则参数@3为可选参数（用于指定图像数据长度）。<br>
+可选在参数 @2 中用文件后缀名指定图像格式，可省略。</p>
+
+<p><a id="soImageObject.setDisposalMethod"></a></p>
+
+<h3>soImageObject.setDisposalMethod(disposalMethod)</h3>
+
+<p>定义 GIF 图像的背景清除方法<br>
+Potoshop 动画帧右键菜单里「处理」「不处理」其实就是这里说的背景清除方法,<br>
+0、不定义清除方法<br>
+1、不清除背景，下一帧的内容显示在当前帧的内容上面，<br>
+2、恢复背景色，然后再显示下一帧的内容<br>
+3、恢复上一帧，然后再显示下一帧的内容  </p>
+
+<p><a href="javascript:if(confirm('http://www.theimage.com/animation/pages/disposal.html  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://www.theimage.com/animation/pages/disposal.html'" tppabs="http://www.theimage.com/animation/pages/disposal.html">可以看这里的动画演示了解这个属性的作用</a></p>
+
+<p><a id="soImageObject.setFrame"></a></p>
+
+<h3>soImageObject.setFrame()</h3>
+
+<p>设置图像活动帧,起始索引为1,<br>
+此函数并不影响当前加载的图像,<br>
+而是在下次加载图像时起作用</p>
+
+<p><a id="soImageObject.setFrameDelay"></a></p>
+
+<h3>soImageObject.setFrameDelay(10)</h3>
+
+<p>修改帧延时,以0.01秒为单位</p>
+
+<p><a id="soImageObject.setJpegQuality"></a></p>
+
+<h3>soImageObject.setJpegQuality(80)</h3>
+
+<p>修改JPGE图像质量,参数为1到100之间</p>
+
+<p><a id="soImageObject.setPixel"></a></p>
+
+<h3>soImageObject.setPixel(x,y,颜色)</h3>
+
+<p>修改指定坐标点RGB颜色数值。<br>
+坐标参数为 0,0 设置第一个点的颜色。</p>
+
+<p><a id="soImageObject.setRetreiveAllFrames"></a></p>
+
+<h3>soImageObject.setRetreiveAllFrames(flag)</h3>
+
+<p>允许载入所有帧</p>
+
+<p><a id="soImageObject.setTransColor"></a></p>
+
+<h3>soImageObject.setTransColor(是否透明,透明颜色)</h3>
+
+<p>修改透明颜色,参数@2使用RGB颜色数值<br>
+GIF 应当改用 setTransIndex</p>
+
+<p><a id="soImageObject.setTransIndex"></a></p>
+
+<h3>soImageObject.setTransIndex(index)</h3>
+
+<p>设置透明索引</p>
+
+<p><a id="soImageObject.split"></a></p>
+
+<h3>soImageObject.split(行,列)</h3>
+
+<p>按指定的行,列数目拆分并返回多个图像，<br>
+返回值为数组</p>
+
+<p><a id="soImageObject.splitAuto"></a></p>
+
+<h3>soImageObject.splitAuto(杂点系列)</h3>
+
+<p>自动拆分并返回多个图像。<br>
+返回值为图像数组</p>
+
+<p><a id="soImageObject.splitBinString"></a></p>
+
+<h3>soImageObject.splitBinString</h3>
+
+<p>图像转为黑白并返回包含所有像素的字符串，以 0 表示黑色像素，1 表示白色像素。</p>
+
+<p><a id="soImageObject.splitBinString"></a></p>
+
+<h3>soImageObject.splitBinString(length,width,height)</h3>
+
+<p>用种子连通算法分割为多个图像。<br>
+参数 @1 指定最大返回图像数目，可选用 @width,@height 参数指定图像缩放到指定大小。<br>
+图像转为黑白并返回包含所有像素的字符串，以 0 表示黑色像素，1 表示白色像素。</p>
+
+<p><a id="soImageObject.splitCmyk"></a></p>
+
+<h3>soImageObject.splitCmyk()</h3>
+
+<p>拆分为CMYK四个图像</p>
+
+<p><a id="soImageObject.splitHsl"></a></p>
+
+<h3>soImageObject.splitHsl()</h3>
+
+<p>拆分为HSL三个图像</p>
+
+<p><a id="soImageObject.splitRgb"></a></p>
+
+<h3>soImageObject.splitRgb()</h3>
+
+<p>拆分为RGB三个图像</p>
+
+<p><a id="soImageObject.splitSeed"></a></p>
+
+<h3>soImageObject.splitSeed()</h3>
+
+<p>使用种子连通算法分割为多个图像。<br>
+参数指定最大返回图像数目，返回值为图像数组。</p>
+
+<p><a id="soImageObject.splitXyz"></a></p>
+
+<h3>soImageObject.splitXyz()</h3>
+
+<p>拆分为XYZ三个图像</p>
+
+<p><a id="soImageObject.splitYiq"></a></p>
+
+<h3>soImageObject.splitYiq()</h3>
+
+<p>拆分为YIQ三个图像</p>
+
+<p><a id="soImageObject.splitYuv"></a></p>
+
+<h3>soImageObject.splitYuv()</h3>
+
+<p>拆分YUV三个图像</p>
+
+<p><a id="soImageObject.toClipBD"></a></p>
+
+<h3>soImageObject.toClipBD()</h3>
+
+<p>图像复制到剪贴板</p>
+
+<p><a id="soImageGifFileObject"></a></p>
+
+<h2>soImageGifFileObject 成员列表</h2>
+
+<p><a id="soImageGifFileObject.close"></a></p>
+
+<h3>soImageGifFileObject.close()</h3>
+
+<p>写入GIF文件结束标记,并关闭文件</p>
+
+<p><a id="soImageGifFileObject.count"></a></p>
+
+<h3>soImageGifFileObject.count()</h3>
+
+<p>获取当前已写入的图像帧数</p>
+
+<p><a id="soImageGifFileObject.disposalMethod"></a></p>
+
+<h3>soImageGifFileObject.disposalMethod</h3>
+
+<p>定义默认的背景清除方法<br>
+Potoshop 动画帧右键菜单里「处理」「不处理」其实就是这里说的背景清除方法,<br>
+0、不定义清除方法<br>
+1、不清除背景，下一帧的内容显示在当前帧的内容上面，<br>
+2、恢复背景色，然后再显示下一帧的内容<br>
+3、恢复上一帧，然后再显示下一帧的内容  </p>
+
+<p><a href="javascript:if(confirm('http://www.theimage.com/animation/pages/disposal.html  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://www.theimage.com/animation/pages/disposal.html'" tppabs="http://www.theimage.com/animation/pages/disposal.html">可以看这里的动画演示了解这个属性的作用</a></p>
+
+<p><a id="soImageGifFileObject.frameDelay"></a></p>
+
+<h3>soImageGifFileObject.frameDelay</h3>
+
+<p>默认每帧延时，以0.01秒为单位,默认为0.1秒</p>
+
+<p><a id="soImageGifFileObject.transColor"></a></p>
+
+<h3>soImageGifFileObject.transColor</h3>
+
+<p>指定默认透明色<br>
+如果为null表示不透明</p>
+
+<p><a id="soImageGifFileObject.write"></a></p>
+
+<h3>soImageGifFileObject.write(图像,保留局部调色板,本帧延时,保留局部处理方法)</h3>
+
+<p>参数@1必须是 soImage 对象，<br>
+此函数会自动检测图像，图像无效则不写入，<br>
+其他参数为可选参数,不指定则使用默认值<br>
+保留局部调色板增大体积但是图像颜色更丰富,  </p>
+
+<p>如果图像位宽高于8位则会降至8位，<br>
+建议事先调用 decreaseBpp 函数降低位宽可获得更好的输出效果。</p>
+
+<h3>自动完成常量</h3>
+
+<p>_MIX_ADD=7<br>
+_MIX_AND=9<br>
+_MIX_AVG=0xC<br>
+_MIX_BLENDALPHA=4<br>
+_MIX_DEFAULT=0<br>
+_MIX_DSTCOPY=3<br>
+_MIX_MASK=1<br>
+_MIX_OR=0xB<br>
+_MIX_SCREEN=6<br>
+_MIX_SRCBLEND=5<br>
+_MIX_SRCCOPY=2<br>
+_MIX_SUB=8<br>
+_MIX_XOR=0xA  </p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/soImage/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/soImage/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/soImage/_.md">Markdown 格式</a></p>
+
+</body> 
+</html>

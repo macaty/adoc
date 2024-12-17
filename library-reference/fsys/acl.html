@@ -1,0 +1,120 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - fsys.acl 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - fsys.acl 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>fsys.acl 库模块帮助文档</h1>
+
+<p><a id="fsys.acl"></a></p>
+
+<h2>fsys.acl 成员列表</h2>
+
+<p>管理文件权限<br>
+当前进程需要通过管理权限启动</p>
+
+<p><a id="fsys.acl.cacls"></a></p>
+
+<h3>fsys.acl.cacls(filePath,...)</h3>
+
+<p>执行 cacls 命令修改文件权限,<br>
+参数 @filePath 指定文件路径，<br>
+可附加不定个数的字符串参数指定命令行参数,<br>
+参数 @2 也可以传入一个文本参数并用空格分隔多个命令行参数,<br>
+省略命令行参数时默认为当前登录用户添加全部权限,<br>
+失败返回 false,错误信息,成功返回进程标准输出文本</p>
+
+<p><a id="fsys.acl.icacls"></a></p>
+
+<h3>fsys.acl.icacls(filePath,...)</h3>
+
+<p>执行 icacls 命令修改文件权限,<br>
+参数 @filePath 指定文件路径，<br>
+可附加不定个数的字符串参数指定命令行参数,<br>
+参数 @2 也可以传入一个文本参数并用空格分隔多个命令行参数,<br>
+省略命令行参数时默认为当前登录用户添加全部权限,<br>
+失败返回 false,错误信息,成功返回进程标准输出文本</p>
+
+<p><a id="fsys.acl.ownCacls"></a></p>
+
+<h3>fsys.acl.ownCacls(filePath,...)</h3>
+
+<p>执行 takeown 命令获取文件所有权限,<br>
+如果成功再执行 cacls 命令修改文件权限,<br>
+参数 @filePath 指定文件路径，<br>
+可附加不定个数的字符串参数指定命令行参数,<br>
+省略命令行参数时默认为当前登录用户添加全部权限,<br>
+失败返回 false,错误信息,成功返回进程标准输出文本</p>
+
+<p><a id="fsys.acl.ownICacls"></a></p>
+
+<h3>fsys.acl.ownICacls(filePath,...)</h3>
+
+<p>执行 takeown 命令获取文件所有权限,<br>
+如果成功再执行icacls命令修改文件权限,<br>
+参数 @filePath 指定文件路径，<br>
+可附加不定个数的字符串参数指定命令行参数,<br>
+省略命令行参数时默认为当前登录用户添加全部权限,<br>
+失败返回 false,错误信息,成功返回进程标准输出文本</p>
+
+<p><a id="fsys.acl.restore"></a></p>
+
+<h3>fsys.acl.restore(filePath,aclPath)</h3>
+
+<p>执行 icacls 命令导入文件权限,<br>
+参数 @filePath 指定文件路径,<br>
+失败返回 false,错误信息,成功返回进程标准输出文本</p>
+
+<p><a id="fsys.acl.save"></a></p>
+
+<h3>fsys.acl.save(filePath,aclPath)</h3>
+
+<p>执行 icacls 命令导出文件权限,<br>
+参数 @filePath 指定文件路径,<br>
+失败返回 false,错误信息,成功返回进程标准输出文本</p>
+
+<p><a id="fsys.acl.takeOwn"></a></p>
+
+<h3>fsys.acl.takeOwn(filePath,...)</h3>
+
+<p>执行 takeown 命令获取文件所有权限,<br>
+参数@ filePath 指定文件路径，<br>
+可附加不定个数的字符串参数指定命令行参数,<br>
+省略命令行参数时默认为当前登录用户获取权限,<br>
+失败返回 false ,错误信息,成功返回进程标准输出文本</p>
+
+<p><a id="fsys.acl.takeOwnBySid"></a></p>
+
+<h3>fsys.acl.takeOwnBySid(filePath,sid)</h3>
+
+<p>使用安全标识符获取文件或目录的所有者权限,<br>
+@sid 参数省略时默认取运行当前进程的用户SID,<br>
+这个函数由纯 aardio 代码实现，不需要调用 takeown.exe，<br>
+可以解决XP等系统上没有 takeown.exe 的问题</p>
+
+<p><a id="fsys.acl.temp"></a></p>
+
+<h3>fsys.acl.temp(filePath,proc)</h3>
+
+<pre><code class="aardio language-aardio">fsys.acl.temp(/*指定目标文件路径，  
+执行 icacls 命令备份权限后调用参数 @2 指定的回调函数,  
+回调函数执行完自动恢复权限,  
+如果文件不存在，仍然会回调此函数,但回调参数为 null  
+成功返回回调函数的返回值,失败返回false,错误信息*/,function(filePath){  
+
+})
+</code></pre>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/fsys/acl.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/fsys/acl.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/fsys/acl.md">Markdown 格式</a></p>
+
+</body> 
+</html>

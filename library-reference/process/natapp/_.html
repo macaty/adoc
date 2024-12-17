@@ -1,0 +1,84 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - process.natapp 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - process.natapp 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>process.natapp 库模块帮助文档</h1>
+
+<p><a id="process"></a></p>
+
+<h2>process 成员列表</h2>
+
+<p><a id="process.natapp"></a></p>
+
+<h3>process.natapp</h3>
+
+<p>用于创建 NATAPP 进程,<br>
+可通过 URL 参数获取映射 URL</p>
+
+<p><a id="process.natapp"></a></p>
+
+<h3>process.natapp()</h3>
+
+<p><a href="#processNatappObject">返回对象:processNatappObject</a></p>
+
+<p><a id="process.natapp"></a></p>
+
+<h3>process.natapp(authtoken,logger,logLevel)</h3>
+
+<p>后台启动 NATAPP 进程,<br>
+参数@1指定authtoken,可选用参数@2指定回显文本框控件,<br>
+logLevel默认为INFO，改为DEBUG可获取更多信息</p>
+
+<p><a id="processNatappObject"></a></p>
+
+<h2>processNatappObject 成员列表</h2>
+
+<p><a id="processNatappObject.close"></a></p>
+
+<h3>processNatappObject.close()</h3>
+
+<p>释放对象</p>
+
+<p><a id="processNatappObject.ctrlEvent"></a></p>
+
+<h3>processNatappObject.ctrlEvent(0)</h3>
+
+<p>发送Ctrl+C(SIGINT信号)<br>
+信号将传递到与目标进程控制台连接的所有非分离控制台进程<br>
+64位目标进程会导致当前控制台暂时关闭</p>
+
+<p><a id="processNatappObject.process"></a></p>
+
+<h3>processNatappObject.process</h3>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/process/_.html  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/process/_.html#processObject'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/process/_.html#processObject">返回对象:processObject</a></p>
+
+<p><a id="processNatappObject.tunnelUrl"></a></p>
+
+<h3>processNatappObject.tunnelUrl</h3>
+
+<p>当前穿透网址</p>
+
+<p><a id="processNatappObject.waitOne"></a></p>
+
+<h3>processNatappObject.waitOne()</h3>
+
+<p>等待进程关闭,不阻塞UI消息循环,可选使用一个毫秒值参数设定超时<br>
+超时或失败返回 null,<br>
+进程已退出则返回值1为true,返回值2为标准输出,返回值3为错误输出,返回值4为退出代码</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/process/natapp/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/process/natapp/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/process/natapp/_.md">Markdown 格式</a></p>
+
+</body> 
+</html>

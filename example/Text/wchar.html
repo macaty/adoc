@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 多字节字符'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 多字节字符</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 多字节字符</h1><pre><code class="aardio language-aardio">//多字节字符
+import console;
+
+var str = /**
+取出所有的中文字符
+在模式匹配中,圆点&#39;.&#39;表示任意单字节字符,而冒号&#39;:&#39;表示任意多字节字符(例如中文)
+abcddddddddddddd这是一个中文字符串adfasdfasdf这又是一个中文字符串&lt;a href=&quot;&quot;&gt;这是超链接标题&lt;/a&gt;字符串**/ 
+
+for str in string.gmatch(str,&#39;:+&#39;) { 
+   console.log(str) 
+} 
+console.more(1);
+
+console.log(&quot;取左侧3个汉字&quot;,string.left(str,3,true) );
+console.log(&quot;取右侧3个汉字&quot;,string.right(str,3,true) );
+console.log(&quot;取第2到第5个汉字&quot;,string.slice(str,2,5,true) );
+console.more(1);
+
+//将中文字符串转换为数组
+var tab = string.split(str )
+for(i=1;#tab;1){ 
+    console.log( tab[i] ) //显示第i个字符
+}
+console.more(1)
+
+//转换为Uniocde( UTF-16 )
+var ustring = string.toUtf16(str);
+for(i=1;#ustring / 2 ;1){ //UTF-16每个字符串固定为两个字节
+    console.log( ustring[i],ustring[[i]] ) //下标操作符可以方便的支持Unicode双字节
+}
+
+//转换为拼音
+import string.conv.pinyin;
+console.log( string.conv.pinyin(&quot;新年好&quot;) )
+console.pause();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Text/wchar.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Text/wchar.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Text/wchar.md">Markdown 格式</a>
+</body> 
+</html>

@@ -1,0 +1,319 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - gdip.path 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - gdip.path 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>gdip.path 库模块帮助文档</h1>
+
+<p><a id="gdip"></a></p>
+
+<h2>gdip 成员列表</h2>
+
+<p><a id="gdip.AddPathArc"></a></p>
+
+<h3>gdip.AddPathArc</h3>
+
+<pre><code class="aardio language-aardio">$.api(&quot;GdipAddPathArc&quot;,&quot;int(PTR path,float x,float y,float width,float height,float startAngle,float sweepAngle)&quot;)
+</code></pre>
+
+<p><a id="gdip.AddPathBezier"></a></p>
+
+<h3>gdip.AddPathBezier</h3>
+
+<pre><code class="aardio language-aardio">$.api(&quot;GdipAddPathBezier&quot;,&quot;int(PTR path,float x1,float y1,float x2,float y2,float x3,float y3,float x4,float y4)&quot;)
+</code></pre>
+
+<p><a id="gdip.AddPathClosedCurve"></a></p>
+
+<h3>gdip.AddPathClosedCurve</h3>
+
+<pre><code class="aardio language-aardio">$.api(&quot;GdipAddPathClosedCurve&quot;,&quot;int(PTR path,struct Points,int count)&quot;)
+</code></pre>
+
+<p><a id="gdip.AddPathCurve"></a></p>
+
+<h3>gdip.AddPathCurve</h3>
+
+<pre><code class="aardio language-aardio">$.api(&quot;GdipAddPathCurve&quot;,&quot;int(PTR path,struct Points,int count)&quot;)
+</code></pre>
+
+<p><a id="gdip.AddPathEllipse"></a></p>
+
+<h3>gdip.AddPathEllipse</h3>
+
+<pre><code class="aardio language-aardio">$.api(&quot;GdipAddPathEllipse&quot;,&quot;int(PTR path,float x,float y,float width,float height)&quot;)
+</code></pre>
+
+<p><a id="gdip.AddPathLine"></a></p>
+
+<h3>gdip.AddPathLine</h3>
+
+<pre><code class="aardio language-aardio">$.api(&quot;GdipAddPathLine&quot;,&quot;int(PTR path,float x1,float y1,float x2,float y2)&quot;)
+</code></pre>
+
+<p><a id="gdip.AddPathPath"></a></p>
+
+<h3>gdip.AddPathPath</h3>
+
+<pre><code class="aardio language-aardio">$.api(&quot;GdipAddPathPath&quot;,&quot;int(PTR path,pointer addingPath,int bConnect)&quot;)
+</code></pre>
+
+<p><a id="gdip.AddPathPie"></a></p>
+
+<h3>gdip.AddPathPie</h3>
+
+<pre><code class="aardio language-aardio">$.api(&quot;GdipAddPathPie&quot;,&quot;int(PTR path,float x,float y,float width,float height,float startAngle,float sweepAngle)&quot;)
+</code></pre>
+
+<p><a id="gdip.AddPathPolygon"></a></p>
+
+<h3>gdip.AddPathPolygon</h3>
+
+<pre><code class="aardio language-aardio">$.api(&quot;GdipAddPathPolygon&quot;,&quot;int(PTR path,struct Points,int count)&quot;)
+</code></pre>
+
+<p><a id="gdip.AddPathRectangle"></a></p>
+
+<h3>gdip.AddPathRectangle</h3>
+
+<pre><code class="aardio language-aardio">$.api(&quot;GdipAddPathRectangle&quot;,&quot;int(PTR path,float x,float y,float width,float height)&quot;)
+</code></pre>
+
+<p><a id="gdip.AddPathString"></a></p>
+
+<h3>gdip.AddPathString</h3>
+
+<pre><code class="aardio language-aardio">$.api(&quot;GdipAddPathString&quot;,&quot;int(PTR path,string str,int Length,pointer family,int style,float emSize,struct&amp; layoutRect,ptr strFmt)&quot;)
+</code></pre>
+
+<p><a id="gdip.ClonePath"></a></p>
+
+<h3>gdip.ClonePath</h3>
+
+<pre><code class="aardio language-aardio">$.api(&quot;GdipClonePath&quot;,&quot;int(PTR path,int&amp; clonePath)&quot;)
+</code></pre>
+
+<p><a id="gdip.ClosePathFigure"></a></p>
+
+<h3>gdip.ClosePathFigure</h3>
+
+<pre><code class="aardio language-aardio">$.api(&quot;GdipClosePathFigure&quot;,&quot;int(PTR path)&quot;)
+</code></pre>
+
+<p><a id="gdip.ClosePathFigures"></a></p>
+
+<h3>gdip.ClosePathFigures</h3>
+
+<pre><code class="aardio language-aardio">$.api(&quot;GdipClosePathFigures&quot;,&quot;int(PTR path)&quot;)
+</code></pre>
+
+<p><a id="gdip.CreatePath"></a></p>
+
+<h3>gdip.CreatePath</h3>
+
+<pre><code class="aardio language-aardio">$.api(&quot;GdipCreatePath&quot;,&quot;int(int brushmode,pointer&amp; Path)&quot;)
+</code></pre>
+
+<p><a id="gdip.DeletePath"></a></p>
+
+<h3>gdip.DeletePath</h3>
+
+<pre><code class="aardio language-aardio">$.api(&quot;GdipDeletePath&quot;,&quot;int(PTR path)&quot;)
+</code></pre>
+
+<p><a id="gdip.ResetPath"></a></p>
+
+<h3>gdip.ResetPath</h3>
+
+<pre><code class="aardio language-aardio">$.api(&quot;GdipResetPath&quot;,&quot;int(PTR path)&quot;)
+</code></pre>
+
+<p><a id="gdip.StartPathFigure"></a></p>
+
+<h3>gdip.StartPathFigure</h3>
+
+<pre><code class="aardio language-aardio">$.api(&quot;GdipStartPathFigure&quot;,&quot;int(PTR path)&quot;)
+</code></pre>
+
+<p><a id="gdip.path"></a></p>
+
+<h3>gdip.path()</h3>
+
+<p><a href="#gdippathObject">返回对象:gdippathObject</a></p>
+
+<p><a id="gdip.path"></a></p>
+
+<h3>gdip.path(_GdipFillMode)</h3>
+
+<p>创建路径对象</p>
+
+<p><a id="gdip.path"></a></p>
+
+<h2>gdip.path 成员列表</h2>
+
+<p><a id="gdip.path.is"></a></p>
+
+<h3>gdip.path.is()</h3>
+
+<p>参数 @1 是否 gdip.bitmap 对象</p>
+
+<p><a id="gdippathObject"></a></p>
+
+<h2>gdippathObject 成员列表</h2>
+
+<p><a id="gdippathObject.addArc"></a></p>
+
+<h3>gdippathObject.addArc(x,y,width,height,startAngle,sweepAngle)</h3>
+
+<p>添加椭圆弧<br>
+startAngle:起始角度,以度为单位从X轴顺时针测量<br>
+sweepAngle:startAngle 和弧线末尾之间的角度</p>
+
+<p><a id="gdippathObject.addBezier"></a></p>
+
+<h3>gdippathObject.addBezier(x1,y1,x2,y2,x3,y3,x4,y4)</h3>
+
+<p>添加贝塞尔曲线<br>
+4个坐标点分别为：起始锚点，起始控制点，结束锚点，结束控制点</p>
+
+<p><a id="gdippathObject.addClosedCurve"></a></p>
+
+<h3>gdippathObject.addClosedCurve(points)</h3>
+
+<p>添加闭合曲线。<br>
+参数 @points 传入一个数值数组，每 2 个数值指定一个坐标点的 x,y 坐标。<br>
+数组可包含任意个数坐标点。  </p>
+
+<p>@points 的数组成员如果是包含成对数值的数组，<br>
+则调用 table.flat 函数自动展开。</p>
+
+<p><a id="gdippathObject.addClosedCurve"></a></p>
+
+<h3>gdippathObject.addClosedCurve(x1,y1,x2,y2,...)</h3>
+
+<p>添加闭合曲线。<br>
+指定多个数值参数，每 2 个数值指定一个坐标点的 x,y 坐标。<br>
+可指定任意个数坐标点</p>
+
+<p><a id="gdippathObject.addCurve"></a></p>
+
+<h3>gdippathObject.addCurve(points)</h3>
+
+<p>添加曲线。<br>
+参数 @points 传入一个数值数组，每 2 个数值指定一个坐标点的 x,y 坐标。<br>
+数组可包含任意个数坐标点。  </p>
+
+<p>@points 的数组成员如果是包含成对数值的数组，<br>
+则调用 table.flat 函数自动展开。</p>
+
+<p><a id="gdippathObject.addCurve"></a></p>
+
+<h3>gdippathObject.addCurve(x1,y1,x2,y2,...)</h3>
+
+<p>添加曲线。<br>
+指定多个数值参数，每 2 个数值指定一个坐标点的 x,y 坐标。<br>
+可指定任意个数坐标点</p>
+
+<p><a id="gdippathObject.addEllipse"></a></p>
+
+<h3>gdippathObject.addEllipse(x,y,width,height)</h3>
+
+<p>添加椭圆</p>
+
+<p><a id="gdippathObject.addLine"></a></p>
+
+<h3>gdippathObject.addLine(x1,y1,x2,y2)</h3>
+
+<p>添加直线</p>
+
+<p><a id="gdippathObject.addPie"></a></p>
+
+<h3>gdippathObject.addPie(x,y,width,height,startAngle,sweepAngle)</h3>
+
+<p>添加一个扇形轮廓<br>
+startAngle:起始角度,以度为单位从X轴顺时针测量<br>
+sweepAngle:startAngle 和弧线末尾之间的角度</p>
+
+<p><a id="gdippathObject.addPolygon"></a></p>
+
+<h3>gdippathObject.addPolygon(points)</h3>
+
+<p>添加多边形。<br>
+参数 @points 传入一个数值数组，每 2 个数值指定一个坐标点的 x,y 坐标。<br>
+数组可包含任意个数坐标点。  </p>
+
+<p>@points 的数组成员如果是包含成对数值的数组，<br>
+则调用 table.flat 函数自动展开。</p>
+
+<p><a id="gdippathObject.addPolygon"></a></p>
+
+<h3>gdippathObject.addPolygon(x1,y1,x2,y2,...)</h3>
+
+<p>添加多边形。<br>
+指定多个数值参数，每 2 个数值指定一个坐标点的 x,y 坐标。<br>
+可指定任意个数坐标点</p>
+
+<p><a id="gdippathObject.addRectangle"></a></p>
+
+<h3>gdippathObject.addRectangle(x,y,width,height)</h3>
+
+<p>添加矩形</p>
+
+<p><a id="gdippathObject.addRoundRect"></a></p>
+
+<h3>gdippathObject.addRoundRect(RECT,圆角大小)</h3>
+
+<p>添加圆角矩形<br>
+圆角大小也可以使用四个值,自左上角开始顺时针为序:<br>
+左上,右上,右下,左下</p>
+
+<p><a id="gdippathObject.addstring"></a></p>
+
+<h3>gdippathObject.addstring(str,family,style,emSize,rclayout,strformat )</h3>
+
+<p>添加字符串</p>
+
+<p><a id="gdippathObject.closeAllFigure"></a></p>
+
+<h3>gdippathObject.closeAllFigure()</h3>
+
+<p>闭合所有图形开始新图</p>
+
+<p><a id="gdippathObject.closeFigure"></a></p>
+
+<h3>gdippathObject.closeFigure()</h3>
+
+<p>闭合当前图形开始新图</p>
+
+<p><a id="gdippathObject.delete"></a></p>
+
+<h3>gdippathObject.delete()</h3>
+
+<p>释放路径对象</p>
+
+<p><a id="gdippathObject.reset"></a></p>
+
+<h3>gdippathObject.reset()</h3>
+
+<p>重置为空路径</p>
+
+<p><a id="gdippathObject.startFigure"></a></p>
+
+<h3>gdippathObject.startFigure()</h3>
+
+<p>不闭合开始新图形</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/gdip/path.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/gdip/path.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/gdip/path.md">Markdown 格式</a></p>
+
+</body> 
+</html>

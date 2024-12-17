@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 文件读写'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 文件读写</title> 
+<link rel="stylesheet" href="../../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 文件读写</h1><pre><code class="aardio language-aardio">//文件读写
+import console;
+import inet.ftp;
+
+console.log(&quot;正在连接&quot;)
+ftp = inet.ftp(&quot;服务器IP&quot;,&quot;用户名&quot;,&quot;密码&quot;);
+if(!ftp){
+    console.log(&quot;请输入正确的服务器参数&quot;);
+    console.pause();
+    return;
+}
+
+//显示当前目录
+console.log( ftp.getCurDir() )
+
+//关闭服务器UTF8编码
+ftp.command(&quot;OPTS UTF8 off&quot;)
+
+file = ftp.open(&quot;/目录/文件名.txt&quot;,&quot;wb&quot;) 
+
+//支持文件流方式上传数据,使用循环即可控制上传进度
+file.write(&quot;写数据&quot;,&quot;写更多数据&quot;,&#39;\r\n&#39;) 
+file.write(&quot;写数据&quot;,&quot;写更多数据&quot;,&#39;\r\n&#39;) 
+
+ftp.close();
+console.pause();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Network/inet/ftp/ftp.file.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Network/inet/ftp/ftp.file.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Network/inet/ftp/ftp.file.md">Markdown 格式</a>
+</body> 
+</html>

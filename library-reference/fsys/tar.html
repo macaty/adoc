@@ -1,0 +1,108 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - fsys.tar 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - fsys.tar 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>fsys.tar 库模块帮助文档</h1>
+
+<p><a id="fsys"></a></p>
+
+<h2>fsys 成员列表</h2>
+
+<p><a id="fsys.tar"></a></p>
+
+<h3>fsys.tar</h3>
+
+<p>tar文件打包</p>
+
+<p><a id="fsys.tar"></a></p>
+
+<h3>fsys.tar(&quot;tar文件路径&quot;,&quot;打包根目录&quot;)</h3>
+
+<p>参数一可以是tar文件或tar.gz文件路径,<br>
+如果省略根目录参数,打包首个文件则取其父目录为根目录</p>
+
+<p><a id="fsys.tar"></a></p>
+
+<h3>fsys.tar()</h3>
+
+<p><a href="#fsysTarfileObject">返回对象:fsysTarfileObject</a></p>
+
+<p><a id="fsysTarfileObject"></a></p>
+
+<h2>fsysTarfileObject 成员列表</h2>
+
+<p><a id="fsysTarfileObject.addFile"></a></p>
+
+<h3>fsysTarfileObject.addFile(&quot;文件路径&quot;)</h3>
+
+<p>添加文件,<br>
+必须是指定根目录下的文件</p>
+
+<p><a id="fsysTarfileObject.addFolder"></a></p>
+
+<h3>fsysTarfileObject.addFolder(&quot;文件路径&quot;)</h3>
+
+<p>添加文件,<br>
+必须是指定根目录下的子目录</p>
+
+<p><a id="fsysTarfileObject.close"></a></p>
+
+<h3>fsysTarfileObject.close()</h3>
+
+<p>关闭文件</p>
+
+<p><a id="fsysTarfileObject.onWriteDir"></a></p>
+
+<h3>fsysTarfileObject.onWriteDir</h3>
+
+<pre><code class="aardio language-aardio">fsysTarfileObject.onWriteDir = function( filename ){
+    /*添加目录回调函数*/
+}
+</code></pre>
+
+<p><a id="fsysTarfileObject.onWriteFile"></a></p>
+
+<h3>fsysTarfileObject.onWriteFile</h3>
+
+<pre><code class="aardio language-aardio">fsysTarfileObject.onWriteFile = function( filename ){
+    /*添加目录回调函数*/
+}
+</code></pre>
+
+<p><a id="fsysTarfileObject.onWriteFileBock"></a></p>
+
+<h3>fsysTarfileObject.onWriteFileBock</h3>
+
+<pre><code class="aardio language-aardio">fsysTarfileObject.onWriteFileBock = function( filename,writeSize,fileSize){
+    io.print( filename,writeSize,fsys.formatSize(fileSize) );/*写入文件块回调函数*/
+}
+</code></pre>
+
+<p><a id="fsysTarfileObject.pack"></a></p>
+
+<h3>fsysTarfileObject.pack(目录路径,文件通配符,是否添加该目录名字)</h3>
+
+<p>打包目录下的所有文件</p>
+
+<p><a id="fsysTarfileObject.utf8"></a></p>
+
+<h3>fsysTarfileObject.utf8</h3>
+
+<p>是否使用 UTF8 编码文件名。<br>
+默认启用 UTF8 编码，建议保持默认值。</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/fsys/tar.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/fsys/tar.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/fsys/tar.md">Markdown 格式</a></p>
+
+</body> 
+</html>

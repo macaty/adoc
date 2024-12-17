@@ -1,0 +1,376 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - sys.midiOut 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - sys.midiOut 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>sys.midiOut 库模块帮助文档</h1>
+
+<p><a id="sys"></a></p>
+
+<h2>sys 成员列表</h2>
+
+<p><a id="sys.midiOut"></a></p>
+
+<h3>sys.midiOut()</h3>
+
+<p><a href="#sysMidiOutObject">返回对象:sysMidiOutObject</a></p>
+
+<p><a id="sys.midiOut"></a></p>
+
+<h3>sys.midiOut(deviceId,callback,flags)</h3>
+
+<p>打开 MIDI 输出设备。<br>
+所有参数都可以省略，一般不需要了解，用法细节请查看源码。  </p>
+
+<p>可选用 @deviceId 指定设备 ID<br>
+设备 ID 从 0 开始且小于 sys.midiOut.numDevice 函数返回值，<br>
+省略则为默认值 -1，也就是 _MIDI_MAPPER</p>
+
+<p><a id="sys.midiOut"></a></p>
+
+<h3>sys.midiOut(sysMidiOutObject)</h3>
+
+<p>参数指定其他 sys.midiOut 对象，<br>
+返回复制的副本对象。<br>
+副本对象可指定不同的 channel 属性，<br>
+并可调用 changeInstrument 函数切换不同的乐器</p>
+
+<p><a id="sys.midiOut"></a></p>
+
+<h2>sys.midiOut 成员列表</h2>
+
+<p>MIDI 音乐输出设备操作<br>
+<a href="javascript:if(confirm('https://mp.weixin.qq.com/s/Feq3dT7r7G6F0cXlpXpRZQ  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='https://mp.weixin.qq.com/s/Feq3dT7r7G6F0cXlpXpRZQ'" tppabs="https://mp.weixin.qq.com/s/Feq3dT7r7G6F0cXlpXpRZQ">教程链接</a></p>
+
+<p>打开 MIDI 音乐输出设备。<br>
+成功返回设备对象，失败返回 null,错误信息。<br>
+返回的设备对象可传到其他线程，或复制多个副本对象，<br>
+副本对象可指定不同的 channel 属性，<br>
+并可调用 changeInstrument 函数切换不同的乐器，<br>
+可实现多线程多乐器多通道合奏  </p>
+
+<p>在同一进程中如果未关闭设备则不能重复打开，<br>
+不同进程可以打开同一设备</p>
+
+<p><a id="sys.midiOut.eachDevice"></a></p>
+
+<h3>sys.midiOut.eachDevice()</h3>
+
+<pre><code class="aardio language-aardio">for deviceId,capabilities in sys.midiOut.eachDevice(){
+    /*循环遍历所有 MIDI 输出设备，  
+deviceId 为设备 ID,capabilities 为 MIDIOUTCAPS 结构体*/
+}
+</code></pre>
+
+<p><a id="sys.midiOut.notes"></a></p>
+
+<h3>sys.midiOut.notes</h3>
+
+<p>定义了全部音符的名字空间，<br>
+键为 SPN 音名，值为音高（pitch）。<br>
+音名中的 -1 省略，升号 ♯（Sharp） 用小写 s 替代。<br>
+例如：C-1♯ 略写为 Cs  </p>
+
+<p>可用 namespace sys.midiOut.notes { } 语句打开此名字空间使用音名  </p>
+
+<p>此名字空间还包含所有音名的小写音名，<br>
+小写音名为对应音高取负并减 1。<br>
+正值作为音符参数传给 note 函数演奏该音符，<br>
+负值作为音符参数传给 note 函数停止演奏对应音符  </p>
+
+<p>此名字空间的下划线 _ 的值为 250，<br>
+传入 note,xcal 等函数可延时 250 毫秒</p>
+
+<p><a id="sys.midiOut.parseNotes"></a></p>
+
+<h3>sys.midiOut.parseNotes</h3>
+
+<p>解析字符串格式乐谱并返回 play 函数支持的音符数组，<br>
+所有音符或指令使用逗号、竖线、换行之一分开，忽略空格与制表符。<br>
+不符合格式要求的项一律作为字幕传给 log 函数输出</p>
+
+<p><a id="sys.midiOut.parseNotes"></a></p>
+
+<h3>sys.midiOut.parseNotes(notes,do,delay)</h3>
+
+<p>解析字符串格式乐谱并返回 play 函数支持的音符数组。<br>
+参数 @notes 指定一个字符串，<br>
+在字符串中所有音符或指令使用逗号、竖线、换行之一分开，忽略空格与制表符。<br>
+除了支持 sys.midiOut.notes 定义的全部音名，<br>
+也可以使用简谱记号 1,2,3,4,5,6,7 表示音符，<br>
+数字音符后加 N（小于 5 ）个单引号表示提高 N 个八度音，<br>
+数字音符前加 N（小于 5 ）个单引号表示降低 N 个八度音。<br>
+数字音符前再加 &num; 号表示升高半个音，0 为休止符。<br>
+下划线则表示一个延时单位，其他数值也表示延时（毫秒），<br>
+前面的音符（或下划线）与后面的下划线可以连起来写。<br>
+双下划线 ‗ 表示 _ 的延时取半，多个 ‗ 不能连着写。<br>
+支持函数语法，例如 &quot;1,delay(120)&quot;   </p>
+
+<p>如果 @notes 为字符串，可选用 @duo 参数指定 1 音的音高，默认为&quot;C4&quot;，<br>
+可选用 @delay 参数指定下划线表示的延时单位，默认 250 毫秒</p>
+
+<p><a id="sysMidiOutObject"></a></p>
+
+<h2>sysMidiOutObject 成员列表</h2>
+
+<p><a id="sysMidiOutObject.afterTouch"></a></p>
+
+<h3>sysMidiOutObject.afterTouch(pitch,touch,channel)</h3>
+
+<p>触后效果，<br>
+指击键后通过改变对键盘的压力来改变音色符<br>
+@pitch 可用 0~127 范围的值指定音高。<br>
+@channel 可用 0~16 范围的值指定通道，省略则默认为当前通道。<br>
+注意指定 @channel 并不会修改当前通道</p>
+
+<p><a id="sysMidiOutObject.cc"></a></p>
+
+<h3>sysMidiOutObject.cc(number,value,channel)</h3>
+
+<p>发送 CC（Continuous controller） 消息<br>
+@number 指定编号，@value 指定值，<br>
+可选用 @channel 指定通道，省略则默认为当前通道。<br>
+注意指定 @channel 并不会修改当前通道</p>
+
+<p><a id="sysMidiOutObject.changeInstrument"></a></p>
+
+<h3>sysMidiOutObject.changeInstrument(instrument,channel)</h3>
+
+<p>切换乐器,<br>
+@instrument 指定乐器编号，可选编号为 0~127 范围的值。<br>
+乐器编号就搜索 MIDI 资料。<br>
+@channel 可用 0~16 范围的值指定通道，省略则默认为当前通道。<br>
+注意指定 @channel 并不会修改当前通道</p>
+
+<p><a id="sysMidiOutObject.channel"></a></p>
+
+<h3>sysMidiOutObject.channel</h3>
+
+<p>默认通道，可指定 0~16 范围的值。<br>
+如果将 sys.midiOut 传入不同的线程，<br>
+或以 sys.midiOut 为构造参数复制对象，<br>
+则可指定不同的 channel 属性，切换不同的乐器，<br>
+实现多通道合奏</p>
+
+<p><a id="sysMidiOutObject.channelPressure("></a></p>
+
+<h3>sysMidiOutObject.channelPressure((pressure,channel)</h3>
+
+<p>触后通道压力<br>
+@pressure 指定压力，<br>
+可选用 @channel 指定通道，省略则默认为当前通道</p>
+
+<p><a id="sysMidiOutObject.close"></a></p>
+
+<h3>sysMidiOutObject.close()</h3>
+
+<p>关闭所有线程的同一设备对象，<br>
+不应关闭在其他线程已关闭的对象。<br>
+对象回收时不会自动调用此函数。  </p>
+
+<p>在同一进程中如果未关闭设备则不能重复打开，<br>
+不同进程可以打开同一设备</p>
+
+<p><a id="sysMidiOutObject.delay"></a></p>
+
+<h3>sysMidiOutObject.delay()</h3>
+
+<p>延迟参数 @1 指定的毫秒数</p>
+
+<p><a id="sysMidiOutObject.getVolume"></a></p>
+
+<h3>sysMidiOutObject.getVolume()</h3>
+
+<p>获取音量，0xFFFF 为最大值，0 为静音</p>
+
+<p><a id="sysMidiOutObject.log"></a></p>
+
+<h3>sysMidiOutObject.log</h3>
+
+<p>用于输出字幕，默认是一个空函数。<br>
+可指定为其他可输出内容的函数。<br>
+此函数仅接受一个要输出的字符串参数</p>
+
+<p><a id="sysMidiOutObject.msg"></a></p>
+
+<h3>sysMidiOutObject.msg(msg,dw1,dw2)</h3>
+
+<p>发送消息，<br>
+@msg 指定消息 ID，其他参数为数值</p>
+
+<p><a id="sysMidiOutObject.note"></a></p>
+
+<h3>sysMidiOutObject.note</h3>
+
+<p>演奏或停止演奏</p>
+
+<p><a id="sysMidiOutObject.note"></a></p>
+
+<h3>sysMidiOutObject.note(pitch,velocity,channel)</h3>
+
+<p>演奏或停止演奏<br>
+@pitch 如果指定 0~127 范围的值指定音高，则演奏指定音符。<br>
+如果指定 -1~-128之间的值，则取正数并减一，然后停止演奏音高的音符。<br>
+@velocity 指定按键速度（音量强度），可指定 0~127 范围的值。<br>
+@channel 可用 0~16 范围的值指定通道，省略则默认为 0</p>
+
+<p><a id="sysMidiOutObject.noteOff"></a></p>
+
+<h3>sysMidiOutObject.noteOff</h3>
+
+<p>停止演奏音符</p>
+
+<p><a id="sysMidiOutObject.noteOff"></a></p>
+
+<h3>sysMidiOutObject.noteOff(pitch,velocity,channel)</h3>
+
+<p>停止演奏音符<br>
+@pitch 可用 0~127 范围的值指定音高。<br>
+@channel 可用 0~16 范围的值指定通道，省略则默认为当前通道</p>
+
+<p><a id="sysMidiOutObject.noteOn"></a></p>
+
+<h3>sysMidiOutObject.noteOn</h3>
+
+<p>演奏音符</p>
+
+<p><a id="sysMidiOutObject.noteOn"></a></p>
+
+<h3>sysMidiOutObject.noteOn(pitch,velocity,channel)</h3>
+
+<p>演奏音符。<br>
+@pitch 可用 0~127 范围的值指定音高，相邻为半音，隔一为全音。<br>
+@velocity 指定按键速度（音量强度），可指定 0~127 范围的值。<br>
+@channel 可用 0~16 范围的值指定通道，省略则默认为当前通道</p>
+
+<p><a id="sysMidiOutObject.onNote"></a></p>
+
+<h3>sysMidiOutObject.onNote</h3>
+
+<pre><code class="aardio language-aardio">sysMidiOutObject.onNote = function(pitch,velocity,channel){
+    /*演奏指定音符时回调此函数，  
+回调参数为 noteOn 函数的调用参数。  
+这里最好不要阻塞线程，可用 thread.command 异步调用界面线程函数*/
+}
+</code></pre>
+
+<p><a id="sysMidiOutObject.pitchBend"></a></p>
+
+<h3>sysMidiOutObject.pitchBend(value,channel)</h3>
+
+<p>调整弯音轮<br>
+@value 用一个小数指定音高弯曲比例。<br>
+0 ~ 0.5 表示向下弯曲，0.5 ~ 1 表示向上弯曲</p>
+
+<p><a id="sysMidiOutObject.pitchBend2"></a></p>
+
+<h3>sysMidiOutObject.pitchBend2(value,channel)</h3>
+
+<p>调整弯音轮<br>
+@value 用 14 位整数指定 0~16383 范围的音高弯曲值。<br>
+0表示向下弯曲2个半音，16383表示向上弯曲2个半音</p>
+
+<p><a id="sysMidiOutObject.play"></a></p>
+
+<h3>sysMidiOutObject.play</h3>
+
+<p>解析并播放所有音符与指令，<br>
+如果参数 @1 传入字符串格式的乐谱，<br>
+则所有音符或指令使用逗号、竖线、换行之一分开，忽略空格与制表符。<br>
+不符合格式要求的项一律作为字幕传给 log 函数输出</p>
+
+<p><a id="sysMidiOutObject.play"></a></p>
+
+<h3>sysMidiOutObject.play(notes,do,delay)</h3>
+
+<p>解析并播放所有音符。<br>
+如果参数 @note 是一个数组，则循环调用 xcall 函数解析并播放音符。<br>
+如果参数 @notes 是一个字符串，<br>
+则首先调用 sys.midiOut.parseNotes 解析为音符数组，<br>
+在字符串中所有音符或指令使用逗号、竖线、换行之一分开，忽略空格与制表符。<br>
+除了支持 sys.midiOut.notes 定义的全部音名，<br>
+也可以使用简谱记号 1,2,3,4,5,6,7 表示音符。<br>
+数字音符后加 N（小于 5 ）个单引号表示提高 N 个八度音，<br>
+数字音符前加 N（小于 5 ）个单引号表示降低 N 个八度音。<br>
+数字音符前再加 &num; 号表示升高半个音，0 为休止符。<br>
+下划线则表示一个延时单位，其他数值也表示延时（毫秒），<br>
+前面的音符（或下划线）与后面的下划线可以连起来写。<br>
+双下划线 ‗ 表示 _ 的延时取半，多个 ‗ 不能连着写。<br>
+支持函数语法，例如 &quot;1,delay(120)&quot;   </p>
+
+<p>如果 @notes 为字符串，可选用 @duo 参数指定 1 音的音高，默认为&quot;C4&quot;，<br>
+可选用 @delay 参数指定下划线表示的延时单位，默认 250 毫秒</p>
+
+<p><a id="sysMidiOutObject.reset"></a></p>
+
+<h3>sysMidiOutObject.reset()</h3>
+
+<p>关闭所有音符</p>
+
+<p><a id="sysMidiOutObject.setVelocity"></a></p>
+
+<h3>sysMidiOutObject.setVelocity()</h3>
+
+<p>使用参数 @1 设置 xcall,play 函数默认按键速度（音量），<br>
+参数可指定 0~127 范围的值</p>
+
+<p><a id="sysMidiOutObject.setVolume"></a></p>
+
+<h3>sysMidiOutObject.setVolume()</h3>
+
+<p>指定音量，0xFFFF 为最大值，0 为静音</p>
+
+<p><a id="sysMidiOutObject.shortMsg"></a></p>
+
+<h3>sysMidiOutObject.shortMsg</h3>
+
+<p>发送短消息</p>
+
+<p><a id="sysMidiOutObject.shortMsg"></a></p>
+
+<h3>sysMidiOutObject.shortMsg(status,data1,data2)</h3>
+
+<p>发送短消息。<br>
+@status 指定数值，0xC0 为切换乐器，0x90 为发送音符。<br>
+@data1,@data2 可选指定数值</p>
+
+<p><a id="sysMidiOutObject.velocity"></a></p>
+
+<h3>sysMidiOutObject.velocity</h3>
+
+<p>xcall,play 函数默认按键速度（音量），<br>
+参数可指定 0~127 范围的值</p>
+
+<p><a id="sysMidiOutObject.xcall"></a></p>
+
+<h3>sysMidiOutObject.xcall()</h3>
+
+<p>如果参数指定一个数组，<br>
+则数组的第 1 个元素指定要调用的成员函数名，<br>
+其他元素为调用参数  </p>
+
+<p>例如： {&quot;pitchBend&quot;,0.3}  </p>
+
+<p>如果参数指定一个大于 127 的数值，则延时指定的时间，<br>
+如果为 0~127 间的数值则按下指定音符。<br>
+如果为 -1 到 -128 的数值则消音指定的音符。<br>
+按下音符与消音可以使用 sys.midiOut.notes 名字空间的音名表示。<br>
+如果为字符串则调用 log 函数输出。  </p>
+
+<p>指定上述参数函数返回 true，指定其他数值返回 null，<br>
+参数为其他数据类型会报错</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/sys/midiOut.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/sys/midiOut.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/sys/midiOut.md">Markdown 格式</a></p>
+
+</body> 
+</html>

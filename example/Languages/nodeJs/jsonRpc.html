@@ -1,0 +1,60 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - aardio 通过 JSON-RPC(HTTP) 调用 Node.js'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - aardio 通过 JSON-RPC(HTTP) 调用 Node.js</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 通过 JSON-RPC(HTTP) 调用 Node.js</h1><pre><code class="aardio language-aardio">//aardio 通过 JSON-RPC(HTTP) 调用 Node.js
+import nodeJs;
+
+//自动安装node.js模块
+nodeJs.require(&#39;jayson&#39;);
+
+var js = /***
+var startEnviron = require(&#39;startEnviron&#39;)
+var jayson = require(&#39;jayson&#39;)
+
+//创建服务端
+var server = jayson.server({
+  brest: function (args, callback) {
+    callback(null, startEnviron) 
+    listener.close() ; 
+  }
+})
+
+//启动服务端
+var listener = server.http().listen(startEnviron.port);
+***/
+
+//运行JS代码创建 RPC 服务端，nodeJs.execLimit 函数会保证在退出时退出 Node 进程
+var node = nodeJs.execLimit(js); 
+
+import console;
+import web.rpc.jsonClient;
+var jsonRpc = web.rpc.jsonClient(&quot;http://localhost:&quot; + nodeJs.port);
+
+//使用aardio调用node.js函数
+var jsonData = jsonRpc.brest(&quot;admin&quot;,&quot;123123&quot;);
+
+//显示node.js返回值
+if( jsonData.result ){
+    console.dump( jsonData.result );
+} 
+else {
+    console.dump( jsonData.error.message );
+} 
+
+console.pause(true);
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/nodeJs/jsonRpc.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/nodeJs/jsonRpc.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Languages/nodeJs/jsonRpc.md">Markdown 格式</a>
+</body> 
+</html>

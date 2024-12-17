@@ -1,0 +1,240 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - aria2 下载 —— 如果 BT 下载没速度，先找个热门种子下载就可以了'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - aria2 下载 —— 如果 BT 下载没速度，先找个热门种子下载就可以了</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: aria2 下载 —— 如果 BT 下载没速度，先找个热门种子下载就可以了</h1><pre><code class="aardio language-aardio">//BT 下载 / WinForm
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;aria2 下载 —— 如果 BT 下载没速度，先找个热门种子下载就可以了&quot;;right=921;bottom=537;bgcolor=16777215;)
+winform.add(
+btnAdd={cls=&quot;button&quot;;text=&quot;调用 aria2 下载文件&quot;;left=605;top=332;right=747;bottom=368;db=1;dr=1;z=3;};
+listview={cls=&quot;listview&quot;;left=12;top=7;right=912;bottom=318;bgcolor=16777215;db=1;dl=1;dr=1;dt=1;edge=1;fullRow=1;z=1;};
+txtData={cls=&quot;edit&quot;;left=32;top=336;right=585;bottom=367;align=&quot;right&quot;;db=1;dl=1;dr=1;edge=1;z=2;};
+txtMessage={cls=&quot;edit&quot;;left=8;top=380;right=909;bottom=523;db=1;dl=1;dr=1;edge=1;hscroll=1;multiline=1;vscroll=1;z=4;};
+
+)
+/*}}*/
+
+//启动 aria2 服务器
+import process.aria2;
+var aria2 = process.aria2();  
+
+//注意看错误信息。
+aria2.onError = function(errMsg,rpcErr){
+    winform.txtMessage.print(errMsg);
+}
+
+//启动下载服务器
+aria2.startServer( maxConcurrentDownloads = 10 );
+
+winform.listview.insertColumn(&quot;文件&quot;,250); 
+winform.listview.insertColumn(&quot;速度&quot;,80);
+winform.listview.insertColumn(&quot;已下载&quot;,120); 
+winform.listview.insertColumn(&quot;状态&quot;,-1); 
+winform.listview.insertColumn(&quot;连接数&quot;,120); 
+
+var aria2Ui = {
+    downloadData = {};
+
+    getGid = function(item){
+        return table.find(owner.downloadData,item); 
+    }
+
+    addTaskInfo = function(gid,url,status){
+        if(!gid){
+            var name = bencoding.magnet.getName(url);
+            winform.listview.addItem({
+                name,null,null,&quot;出错了：&quot;+ (status:&quot;未知错误&quot;);
+            });
+        } 
+        else {
+            var taskName = aria2.taskName(gid) 
+
+            var item = owner.downloadData[gid];
+            if(!item){ 
+                var item = winform.listview.addItem({
+                    taskName,null,null,status || &quot;正在下载&quot; 
+                }); 
+                owner.downloadData[gid] =  item;
+            }
+            else {
+                winform.listview.setItemText(taskName,item,1); 
+                winform.listview.setItemText(status : &quot;正在下载&quot;,item,4); 
+            } 
+        }
+    } 
+
+    updateStatus = function(gid,status){
+        var item = owner.downloadData[gid]
+        if(!item){
+            owner.addTaskInfo(gid);
+            item = owner.downloadData[gid]
+        }
+
+        winform.listview.setItemText(status,item,4); 
+    }
+
+    updateProgress = function(gid,progress){
+        var item = owner.downloadData[gid]
+        if(!item){
+            owner.addTaskInfo(gid);
+            item = owner.downloadData[gid]
+        }
+
+        if(progress){
+            winform.listview.setItemText(progress.connections,item,5); 
+            winform.listview.setItemText(math.size64(progress.downloadSpeed,item).format() + &quot;/s&quot;,item,2); 
+            winform.listview.setItemText(math.size64(progress.completedLength).format() 
+                + &quot;/&quot; + math.size64(progress.totalLength).format(),item,3);     
+        }
+        else {
+            winform.listview.setItemText(&quot;&quot;,item,2); 
+            winform.listview.setItemText(&quot;&quot;,item,5); 
+            var progress = aria2.tellStatus(gid,&quot;totalLength&quot;);
+            winform.listview.setItemText( math.size64(progress.totalLength).format(),item,3);   
+        } 
+    }  
+}
+
+//监听 aria2 事件
+aria2.onDownloadStart = function(task){
+    aria2Ui.addTaskInfo(task.gid,,&quot;正在下载&quot;)   
+}
+
+aria2.onDownloadPause = function(task){ 
+    aria2Ui.updateStatus(task.gid,&quot;暂停下载&quot;);  
+}
+
+aria2.onDownloadStop = function(task){
+    aria2Ui.updateStatus(task.gid,&quot;已停止&quot;); 
+} 
+
+aria2.onDownloadComplete = function(task){
+    aria2Ui.updateStatus(task.gid,&quot;已完成&quot;);     
+    aria2Ui.updateProgress(task.gid);
+} 
+
+aria2.onDownloadError = function(task){
+    var errMsg = aria2.taskErrorMessage(param.gid); 
+    aria2Ui.updateStatus(task.gid,errMsg);  
+} 
+
+//调用 aria2 下载
+winform.btnAdd.oncommand = function(id,event){
+    var url = winform.txtData.text;
+    if(!#url){
+        winform.msgboxErr(&quot;请输入下载地址或种子文件路径&quot;)
+    }
+
+    aria2.taskAdd(url,function(gid,err){
+
+        if(err){
+            aria2Ui.addTaskInfo(null,url,err[[&quot;message&quot;]]); 
+        } 
+        else {
+            aria2Ui.addTaskInfo(gid,url,&quot;添加成功&quot; ); 
+        }    
+    });
+}
+winform.txtData.setCueBannerText(&quot;请输入下载地址或种子文件路径&quot;);
+
+//获取进度
+//https://aria2.github.io/manual/en/html/aria2c.html#aria2.tellStatus 
+updateDownloadStatus = function(){
+
+    aria2.tellActive(function(result,err){
+        if(result) { 
+            for(k,v in result){ 
+                aria2Ui.updateProgress(v.gid,v); 
+            } 
+        }  
+    },&quot;gid&quot;,&quot;status&quot;,&quot;connections&quot;,&quot;downloadSpeed&quot;,&quot;totalLength&quot;,&quot;completedLength&quot;); 
+
+    aria2.tellWaiting(0,10,function(result,err){
+        if(result) {
+            for(k,v in result){
+                aria2Ui.updateProgress(v.gid,v); 
+            } 
+        }  
+    },&quot;gid&quot;,&quot;status&quot;,&quot;connections&quot;,&quot;downloadSpeed&quot;,&quot;totalLength&quot;,&quot;completedLength&quot;);  
+}
+
+//启动就绪执行
+aria2.ready(
+    function(){
+
+        //查看默认配置。 
+        //winform.txtMessage.print(aria2.getGlobalOption());
+
+        //创建定时器，更新下载进度
+        winform.setInterval(updateDownloadStatus,1500);  
+    }
+)
+
+//下载任务右键管理菜单
+import win.ui.menu;
+winform.listview.onRightClick = function(item,subItem,nmListView){ 
+
+        //创建弹出菜单
+        var gid = aria2Ui.getGid(nmListView.iItem);
+        if(!gid) return;
+
+        var statusInfo = aria2.tellStatus(gid,&quot;status&quot;,&quot;belongsTo&quot;);
+        if(!statusInfo) return;
+
+        var popmenu = win.ui.popmenu(winform); 
+        popmenu.add(&#39;移除&#39;,function(id){
+            aria2.taskRemove(gid);
+            winform.listview.delItem(nmListView.iItem); 
+        } ) 
+
+        if(statusInfo.status == &quot;active&quot;){
+            popmenu.add(&#39;暂停&#39;,function(id){ 
+                var gid = aria2Ui.getGid(nmListView.iItem);
+                aria2.taskPause(gid); 
+            } ) 
+        }
+        if(statusInfo.status == &quot;paused&quot;){
+            popmenu.add(&#39;开始下载&#39;,function(id){ 
+                var gid = aria2Ui.getGid(nmListView.iItem);
+                aria2.taskUnpause(gid); 
+            } ) 
+        }
+
+        var path = aria2.taskFilePath(gid)
+        if(#path){
+            popmenu.add(&#39;浏览文件&#39;,function(id){
+                process.exploreSelect(path)
+            } ) 
+        }
+
+        popmenu.add(&#39;复制链接&#39;,function(id){
+            var url = aria2.taskUrl(gid);
+            if(url){
+                import win.clip;
+                win.clip.write(url);
+            }
+        } ) 
+
+        popmenu.popup(); 
+} 
+
+winform.listview.enableDoubleBuffering();
+
+winform.show(); 
+win.loopMessage();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Network/Transfer/bt.win.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Network/Transfer/bt.win.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Network/Transfer/bt.win.md">Markdown 格式</a>
+</body> 
+</html>

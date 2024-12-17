@@ -1,0 +1,55 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 文本框换行规则'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 文本框换行规则</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 文本框换行规则</h1><pre><code class="aardio language-aardio">//文本框换行规则
+//文本框, 编辑框, 富文本框, edit, richedit
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;文本框换行规则&quot;;right=314;bottom=342;border=&quot;dialog frame&quot;;max=false)
+winform.add(
+edit={cls=&quot;edit&quot;;text=&quot;edit&quot;;left=39;top=129;right=278;bottom=210;edge=1;multiline=1;z=1};
+edit2={cls=&quot;edit&quot;;text=&quot;自动换行&quot;;left=39;top=29;right=278;bottom=110;autohscroll=false;edge=1;multiline=1;z=3};
+richedit={cls=&quot;richedit&quot;;text=&quot;richedit&quot;;left=39;top=228;right=278;bottom=309;edge=1;multiline=1;z=2}
+)
+/*}}*/
+
+winform.edit2.text = &#39;
+控件属性中，设置【垂直自动滚动】为true,设置【水平自动滚动】为false，即可支持自动换行
+&#39;
+
+//EDIT控件的换行必须是&#39;\r\n&#39;
+winform.edit.text = &#39;第一行\r\n第二行&#39; 
+
+//因为块注释用来表示字符串时，换行总是&#39;\r\n&#39;，所以可以这样赋值
+winform.edit.text = /*
+第一行
+第二行
+*/
+
+//richedit控件要不要回车都可以，换行可以是&#39;\n&#39;，也可以是&#39;\r\n&#39;
+winform.richedit.text = &#39;第一行\n第二行&#39;
+
+//因为双引号（或反引号）包含字符串时，换行总是解析为&#39;\n&#39;，所以可以这样赋值
+winform.richedit.text = &quot;第一行
+第二行&quot;
+
+
+winform.show() 
+win.loopMessage();
+
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Windows/Edit/line.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Windows/Edit/line.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Windows/Edit/line.md">Markdown 格式</a>
+</body> 
+</html>

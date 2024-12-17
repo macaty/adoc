@@ -1,0 +1,107 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 在 aardio 中安装 Python 模块'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 在 aardio 中安装 Python 模块</title> 
+<link rel="stylesheet" href="../../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 在 aardio 中安装 Python 模块</h1><pre><code class="aardio language-aardio">//在 aardio 中安装 Python 模块
+import console;
+
+import py3.pip;//如果程序中用的是 py3.10，这一句也要改为 py3.10.pip，Python 3.7 以下版本不支持 pip 工具
+py3.pip.setIndexUrl(&quot;aliyun&quot;);//切换国内镜像源，参数为空恢复
+
+/*
+进程外安装模块到 /py/Python+版本号/site-packages 目录，
+多个 pip 参数用逗号分开（用法与原版一样），含空格参数自动加双引号，并根据需要自动处理转义。
+*/
+py3.pip.process(&quot;install&quot;,&quot;安装模块名称&quot;); 
+
+//用一个空格分开所有参数的字符串也可以，其他参数用法与原版 pip 一样
+//py3.pip.process(&quot;install 模块名称&quot;); 
+
+//进程内安装模块(不适用安装时误将 aardio.exe 作为 python.exe 启动的模块)
+//py3.pip(&quot;install&quot;,&quot;模块名称&quot;);
+//py3.pip(&quot;install 模块名称&quot;); 
+
+/*
+1、请使用工程向导创建的 Python 3 工程。
+Python3 范例工程内已自带 pip 工具，可直接安装 Python 模块到工程内。
+请不要有现成的不用，自己配置出错，又说找不到范例。
+
+2、py3.pip 只能在 aardio 开发环境内使用。
+process.python.pip 可以在发布后的程序中使用。
+
+获取帮助：
+-------------------------------------
+1、查看 py3.pip 的智能提示
+2、查看 py3.pip 的库函数文档
+3、查看 py3.pip 的源代码
+
+相关教程与文档：
+-------------------------------------
+https://mp.weixin.qq.com/mp/appmsgalbum?__biz=MzA3Njc1MDU0OQ==&amp;action=getalbum&amp;album_id=2270340412479438855#wechat_redirect
+https://pip.pypa.io/en/stable/cli/pip_install/
+*/
+
+/*
+也可以用 aardio 扩展库自动安装、按需引用、按需发布 Python 模块，
+方法很简单 - 请查看 py2.lib.numpy 源代码
+*/
+//import py3.lib.numpy; 
+//console.log(py3.lib.numpy.__version__);
+
+//如下查看 py3 扩展库使用的 Python 运行时版本信息，注意是 32 位！是 32 位！
+console.log( py3.sysObject(&quot;version&quot;),&#39;\n&#39; );
+
+//如果安装模块失败，请用下面这段代码仔细测试第三方模块的依赖关系
+var moduleName = &quot;jsonrpclib&quot;;
+var pyModule = py3.import(moduleName); 
+if(pyModule){
+    console.log(moduleName + &quot;已安装，版本：&quot;, pyModule.__version__);
+}
+else { 
+    console.printf(&quot;安装模块 ‘%s’ 失败&quot;,moduleName);
+    console.log(py3.lasterr()); //查看导入模块失败的错误原因。
+    /*
+    1、低级错误，模块放错了位置。
+    2、模块的版本与 Python 版本不兼容。
+    3、可能缺少了其他依赖模块和依赖文件，而依赖模块又可能重复出现这几个问题。
+    */
+}
+
+/*
+系统 Python 用 pip 安装的模块只能在你自己电脑上用，
+而 aardio 安装的模块可以随自带的 Python 运行时分发到其他电脑，用户不用再安装，也不会出现版本冲突。
+请理解 Python 模块安装比 aardio 装扩展库要复杂，
+如果安装 Python 模块遇到点问题就那个啥 …… 这样你很难继续前进。
+如果是手动添加第三方模块，要注意 Python 模块与 Python 环境的版本一定要匹配。 
+*/
+
+/*
+aardio 内默认的 Python 搜索模块的路径为:
+&quot;~\lib\py3\.res\Lib.zip&quot; //为避免升级时被替换,不建议在这里添加模块，而且有些模块放到 zip 文件加载里会出错。
+&quot;~\lib\py3\.res\DLLs&quot; //在这个目录下添加的文件会在发布时复制到发布目录。
+&quot;\&quot;
+&quot;\py&quot;
+&quot;\py\Python+版本号\site-packages&quot; py3.pip 安装的模块默认放这里
+
+aardio 规定文件路径开始为波浪线表示 EXE 所在的目录（开发时为 aardio.exe 所在目录），
+文件路径开始为斜杠（或反斜杠）表示应用程序根目录，应用程序根目录在开发时指工程根目录（工程外单独启动代码则为文件所在目录），
+发布后应用程序根目录就是指 EXE 所在的目录。
+*/
+
+console.pause();
+
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/Python/Python 3.x/import.install.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/Python/Python 3.x/import.install.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Languages/Python/Python 3.x/import.install.md">Markdown 格式</a>
+</body> 
+</html>

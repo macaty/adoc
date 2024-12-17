@@ -1,0 +1,102 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - process.ollama 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - process.ollama 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>process.ollama 库模块帮助文档</h1>
+
+<p><a id="process"></a></p>
+
+<h2>process 成员列表</h2>
+
+<p><a id="process.ollama"></a></p>
+
+<h3>process.ollama()</h3>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/process/_.html  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/process/_.html#processObject'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/process/_.html#processObject">返回对象:processObject</a></p>
+
+<p><a id="process.ollama"></a></p>
+
+<h3>process.ollama(命令行参数,STARTUPINFO)</h3>
+
+<p>命令行参数可以是字符串或由多个字符串组成的数组,<br>
+数组参数调用 process.joinArguments 合并,<br>
+不在双引号内、且包含空白或需要转义的参数转义处理后首尾添加双引号,<br>
+命令参数最大长度为 32765 个字符。<br>
+STARTUPINFO参数为process.STARTUPINFO 结构体,可选参数<br>
+如果该参数是普通table对象.将自动创建为STARTUPINFO结构体</p>
+
+<p><a id="process.ollama"></a></p>
+
+<h3>process.ollama(命令行参数,更多命令行参数,...)</h3>
+
+<p>命令行参数可以是一个数组、一个或多个字符串参数,  </p>
+
+<p>数组或多个命令行参数调用 process.joinArguments 合并,<br>
+不在双引号内、且包含空白或需要转义的参数转义处理后首尾添加双引号,<br>
+命令参数最大长度为 32765 个字符</p>
+
+<p><a id="process.ollama"></a></p>
+
+<h2>process.ollama 成员列表</h2>
+
+<p>运行 Ollama 指令</p>
+
+<p><a id="process.ollama.importFile"></a></p>
+
+<h3>process.ollama.importFile()</h3>
+
+<p>导入 gguf 模型，<br>
+可到 huggingface.co 或国内 modelscope.cn 下载</p>
+
+<p><a id="process.ollama.popen"></a></p>
+
+<h3>process.ollama.popen</h3>
+
+<p>创建进程管道并调用 Ollama，<br>
+隐藏子进程的控制台黑窗口。  </p>
+
+<p>成功返回可读写的进程管道对象，<br>
+失败返回 3 个值：null,错误信息,错误代码</p>
+
+<p><a id="process.ollama.popen"></a></p>
+
+<h3>process.ollama.popen()</h3>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html#processPopenObject'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html#processPopenObject">返回对象:processPopenObject</a></p>
+
+<p><a id="process.ollama.popen"></a></p>
+
+<h3>process.ollama.popen(命令行参数,startupInfo)</h3>
+
+<p>命令行参数可以是字符串或由多个字符串组成的数组,<br>
+数组参数调用 process.joinArguments 合并,<br>
+不在双引号内、且包含空白或需要转义的参数转义处理后首尾添加双引号,<br>
+命令参数最大长度为 32765 个字符。<br>
+STARTUPINFO参数为 process.STARTUPINFO 结构体,可选参数<br>
+如果该参数是普通 table 对象.将自动转换为 STARTUPINFO 结构体</p>
+
+<p><a id="process.ollama.popen"></a></p>
+
+<h3>process.ollama.popen(命令行参数,更多命令行参数,...)</h3>
+
+<p>命令行参数可以是一个数组、一个或多个字符串参数,  </p>
+
+<p>数组或多个命令行参数调用 process.joinArguments 合并,<br>
+不在双引号内、且包含空白或需要转义的参数转义处理后首尾添加双引号,<br>
+命令参数最大长度为 32765 个字符</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/process/ollama/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/process/ollama/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/process/ollama/_.md">Markdown 格式</a></p>
+
+</body> 
+</html>

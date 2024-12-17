@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 缂栫▼璇█鑼冧緥 - 鎵樼洏鍥炬爣璺冲姩'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 缂栫▼璇█鑼冧緥 - 鎵樼洏鍥炬爣璺冲姩</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 缂栫▼璇█鏂囨。棣栭〉"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 鏂囨。</span></a>
+<h1>aardio 鑼冧緥: 鎵樼洏鍥炬爣璺冲姩</h1><pre><code class="aardio language-aardio">//鎵樼洏鍥炬爣璺冲姩
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;鎵樼洏鍥炬爣璺冲姩&quot;;right=759;bottom=469)
+winform.add(
+button={cls=&quot;button&quot;;text=&quot;鍋滄&quot;;left=386;top=250;right=534;bottom=339;z=1}
+)
+/*}}*/
+
+import win.util.tray;
+var tray = win.util.tray(winform,hIcon);
+var hIcon = ::LoadIcon(null, topointer(0x7F00/*_IDI_APPLICATION*/)); 
+
+winform.reduce( { hIcon;},
+    function(value,index){
+        tray.icon = value;
+        return 500;
+    } 
+)
+
+winform.button.oncommand = function(id,event){
+    winform.reduce(false);
+    tray.icon = hIcon;
+}
+
+winform.show() 
+win.loopMessage();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Windows/TrayIcon/flash.md  \n\n该文件无法用 Teleport Ultra 下载, 因为 它不在项目文件类型规范内。  \n\n你想在服务器上打开它?'))window.location='https://www.aardio.com/zh-cn/doc/example/Windows/TrayIcon/flash.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Windows/TrayIcon/flash.md">Markdown 鏍煎紡</a>
+</body> 
+</html>

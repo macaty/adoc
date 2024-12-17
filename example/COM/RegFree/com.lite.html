@@ -1,0 +1,72 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 免注册调用 COM 控件'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 免注册调用 COM 控件</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 免注册调用 COM 控件</h1><pre><code class="aardio language-aardio">//免注册调用 COM 控件
+import fonts.fontAwesome;
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;免注册嵌入 VB 控件&quot;;right=700;bottom=266)
+winform.add(
+edit={cls=&quot;edit&quot;;left=356;top=20;right=665;bottom=243;db=1;dl=1;dr=1;dt=1;edge=1;hscroll=1;multiline=1;vscroll=1;z=2};
+static={cls=&quot;static&quot;;text=&quot;Static&quot;;left=21;top=20;right=330;bottom=243;dl=1;dt=1;transparent=1;z=1}
+)
+/*}}*/
+
+import com.lite; 
+/* 
+支持内存加载的 COM 控件可以写为 com.lite($&quot;ocx 或 dll 文件路径&quot;) ，
+发布后就不需要原 OCX 了。
+
+不支持内存加载的 COM 控件，
+也可在发布完成界面点击『转换为独立 EXE』按钮。 
+
+可以免注册调用 VB6 写的 OCX，但 VB 控件不支持内存加载。 
+不支持免注册的控件也可以用 com.activeX.regsvr32 静默注册,不需要管理权限。
+或者 com.activeX.appData() 释放到 appData 目录并且自动注册（发布后不需要原 OCX）。
+*/
+var dll = com.lite.appData(&quot;aardio\vb6\Vb6Control.ocx&quot; //dll 后缀名也可以
+    ,$&quot;~/example/Languages/VB/.vb6/Vb6Control.ocx&quot;)
+
+//不需要注册直接创建控件,不是内存 DLL可省略参数@2里指定的类名
+var vbCtrl = dll.createEmbedEx(winform.static);
+
+//响应 COM 事件
+vbCtrl.OnImageClick = function(value){
+    winform.edit.print(&quot;VB控件里点击了图像,事件参数:&quot;+value)
+    return 100; //VB里这个事件的参数声明为 ByRef,所以添加返回值可以修改参数
+}
+
+//修改 VB 控件的属性
+vbCtrl.Picture = com.picture.loadObject( &quot;~/example/Graphics/.gdip.jpg&quot; )
+winform.show();
+
+//调用 VB 函数，aardio 对象可以直接作为参数传给 VB
+vbCtrl.CallAnything({
+    Name = &quot;aardio&quot;;
+    Log = function(str){
+        //VB  中访问  obj.Log  也会自动调自  obj.Log() 
+        if(str === null ) return;
+
+        //winform.msgbox(str,&quot;在 VB 中可以直接调用 aardio 对象&quot;)
+    } 
+})
+
+winform.edit.print(&quot;请点击图像试试&quot;);
+
+win.loopMessage();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/COM/RegFree/com.lite.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/COM/RegFree/com.lite.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/COM/RegFree/com.lite.md">Markdown 格式</a>
+</body> 
+</html>

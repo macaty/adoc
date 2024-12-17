@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - BT 下载 / Web'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - BT 下载 / Web</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: BT 下载 / Web</h1><pre><code class="aardio language-aardio">//BT 下载 / Web
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;aria下载器&quot;;right=1010;bottom=607;border=&quot;none&quot;;)
+winform.add(
+bk={cls=&quot;bk&quot;;left=0;top=0;right=1012;bottom=31;bgcolor=11841964;dl=1;dr=1;dt=1;forecolor=5392444;linearGradient=0;z=2;};
+custom={cls=&quot;custom&quot;;text=&quot;自定义控件&quot;;left=0;top=30;right=1012;bottom=609;bgcolor=16777215;db=1;dl=1;dr=1;dt=1;z=1;};
+
+)
+/*}}*/
+
+//启动 aria2 
+import process.aria2;
+var aria2 = process.aria2(); 
+aria2.startServer( maxConcurrentDownloads = 10 );
+
+//导入网页前端
+import web.ariaNg;   
+
+//打开网页
+import web.view;
+var wb = web.view(winform.custom); 
+wb.go( web.ariaNg.defaultUrl );
+
+//自绘标题栏、阴影边框
+import win.ui.simpleWindow;
+win.ui.simpleWindow(winform);
+
+//支持拖放 torrent 或 aria2 文件创建或恢复下载
+wb.onNewWindow = function(url){
+
+    //如果打开的是 file: 前缀网址。
+    var filePath = inet.url.getFilePath(url)
+    if(filePath){
+        if( ..string.endWith(filePath,&quot;.torrent&quot;,true)
+            || ..string.endWith(filePath,&quot;.aria2&quot;,true)
+        ){
+            aria2.taskAdd(filePath);
+            return true;
+        } 
+    }  
+}
+
+
+winform.show();
+win.loopMessage();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Network/Transfer/bt.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Network/Transfer/bt.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Network/Transfer/bt.md">Markdown 格式</a>
+</body> 
+</html>

@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - aardio 通过 Node.js 安装并调用 uglifyjs 命令'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - aardio 通过 Node.js 安装并调用 uglifyjs 命令</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 通过 Node.js 安装并调用 uglifyjs 命令</h1><pre><code class="aardio language-aardio">//aardio 通过 Node.js 安装并调用 uglifyjs 命令
+import nodeJs;
+import console.int; 
+
+//打开控制台，回显 Node.js 命令输出
+console.open();
+
+//如果未安装 uglify-js 模块则安装
+nodeJs.require(&quot;uglify-js&quot;);
+
+/*
+执行 uglify-js 命令，
+请参考文档: https://github.com/mishoo/UglifyJS?tab=readme-ov-file#command-line-usage
+
+nodJs.cmd 的第一个参数指这下命令程序文件名。
+如果指定三个以上的参数，则用逗号分开多个参数，
+由 string.args 自动处理命令行转义，按需添加首尾双引号。
+*/ 
+nodeJs.cmd(&quot;uglifyjs&quot;, 
+    &quot;js-yaml.js&quot;, //输入 js 文件路径，当前目录由 nodeJs.workDir 指定
+    &quot;--compress&quot;,//压缩
+    &quot;--beautify&quot;,&quot;max_line_len=1000,indent_level=0&quot;, //限制单行最大字符数，并且取消缩进
+    //&quot;--mangle&quot;,
+    &quot;--ie&quot;,//兼容 web.script,web.form
+    &quot;--verbose&quot;,
+    &quot;--output&quot;,&quot;your-filename.min.js&quot;,
+) 
+
+/*
+nodJs.cmd 如果仅用第二个字符串参数指定命令行参数，
+可在一个字符串里用空格分开多个参数。由 string.cmdline 按命令行规则解析该参数。
+*/
+//nodeJs.cmd(&quot;uglifyjs&quot;,&quot;js-yaml.js --compress --beautify max_line_len=1000,indent_level=0 --ie --verbose --output your-filename.min.js&quot;);
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/nodeJs/cmd.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/nodeJs/cmd.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Languages/nodeJs/cmd.md">Markdown 格式</a>
+</body> 
+</html>

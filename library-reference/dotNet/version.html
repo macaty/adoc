@@ -1,0 +1,104 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - dotNet.version 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - dotNet.version 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>dotNet.version 库模块帮助文档</h1>
+
+<p><a id="dotNet.version"></a></p>
+
+<h2>dotNet.version 成员列表</h2>
+
+<p>检测 .NET Framework 安装版本。<br>
+检测 CLR 加载版本可参考 System.Environment 库源代码。</p>
+
+<p><a id="dotNet.version.getFrameworks"></a></p>
+
+<h3>dotNet.version.getFrameworks()</h3>
+
+<p>获取安装的 .Net Framework 版本信息列表<br>
+可选用参数@1指定注册表版本主键匹配模式串，默认为 &quot;^v\d&quot;</p>
+
+<p><a id="dotNet.version.getVersions"></a></p>
+
+<h3>dotNet.version.getVersions()</h3>
+
+<p>返回已安装的 .Net Framework 版本<br>
+版本号一律规范为 vN.N 格式,例如 v2.0 v4.0 等等  </p>
+
+<p>注意 .NET 3.5的运行时是 v2.0，.Net 4.5 的运行时是 v4.0，<br>
+Win7 自带 .NET2.0 运行时，Win10 自带 .NET4.0 运行时。  </p>
+
+<p>aardio 可以自适应不同的版本，<br>
+所以大多时候不需要去指定版本</p>
+
+<p><a id="dotNet.version.v450PlusCheck"></a></p>
+
+<h3>dotNet.version.v450PlusCheck()</h3>
+
+<p>是否已安装大于等于 v4.5.0 版本的 .NET Framework。<br>
+并检查Release 版本号是否大于等于参数指定的数值。<br>
+参数指定为 0 则只检查已安装版本是否大于等于 v4.5.0</p>
+
+<p><a id="dotNet.version.v460Later"></a></p>
+
+<h3>dotNet.version.v460Later()</h3>
+
+<p>是否已安装大于等于 v4.6.0 版本的 .NET Framework</p>
+
+<p><a id="dotNet.version.v461Later"></a></p>
+
+<h3>dotNet.version.v461Later()</h3>
+
+<p>是否已安装大于等于 v4.6.1 版本的 .NET Framework</p>
+
+<p><a id="dotNet.version.v462Later"></a></p>
+
+<h3>dotNet.version.v462Later()</h3>
+
+<p>是否已安装大于等于 v4.6.2 版本的 .NET Framework</p>
+
+<p><a id="dotNet.version.v470Later"></a></p>
+
+<h3>dotNet.version.v470Later()</h3>
+
+<p>是否已安装大于等于 v4.7.0 版本的 .NET Framework</p>
+
+<p><a id="dotNet.version.v471Later"></a></p>
+
+<h3>dotNet.version.v471Later()</h3>
+
+<p>是否已安装大于等于 v4.7.1 版本的 .NET Framework</p>
+
+<p><a id="dotNet.version.v472Later"></a></p>
+
+<h3>dotNet.version.v472Later()</h3>
+
+<p>是否已安装大于等于 v4.7.2 版本的 .NET Framework</p>
+
+<p><a id="dotNet.version.v480Later"></a></p>
+
+<h3>dotNet.version.v480Later()</h3>
+
+<p>是否已安装大于等于 v4.8.0 版本的 .NET Framework</p>
+
+<p><a id="dotNet.version.v481Later"></a></p>
+
+<h3>dotNet.version.v481Later()</h3>
+
+<p>是否已安装大于等于 v4.8.1 版本的 .NET Framework</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/dotNet/version.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/dotNet/version.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/dotNet/version.md">Markdown 格式</a></p>
+
+</body> 
+</html>

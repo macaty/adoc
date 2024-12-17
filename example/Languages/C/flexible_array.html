@@ -1,0 +1,77 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - aardio 调用 C 语言之弹性数组'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - aardio 调用 C 语言之弹性数组</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 调用 C 语言之弹性数组</h1><pre><code class="aardio language-aardio">//aardio 调用 C 语言之弹性数组 
+import tcc; 
+tcc.build( &quot;/.flexible_array.dll&quot;).code = /** 
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+
+typedef struct{
+    int length;
+    char bytes[];
+} TestStruct;
+
+__declspec(dllexport) TestStruct* createTestStruct(){ 
+    TestStruct *ts = (TestStruct *) malloc (sizeof (TestStruct) + 100);
+    ts-&gt;length = strlen(&quot;测试一下&quot;);
+    strcpy(ts-&gt;bytes, &quot;测试一下&quot;);
+    return ts;
+}
+
+__declspec(dllexport) void freeTestStruct(TestStruct* p){
+    free(p);
+} 
+**/
+
+//加载生成的DLL
+var dll = raw.loadDll( &quot;/.flexible_array.dll&quot;,,&quot;cdecl&quot; );
+
+//方法1
+var pStruct = dll.createTestStructP();
+
+    //首先得到弹性数组的长度
+    var header = raw.convert(pStruct,{int length});
+
+    //获取弹性数组
+    var struct = raw.convert(pStruct,{
+        int length;
+        BYTE bytes[/*不能指定变量值*/] = {
+            length=header.length; //弹性数组的长度必须用 length 属性指定
+        }
+    }); 
+
+    //上面的两步也可以合并为下面的一句代码
+    var struct = raw.convert(pStruct,{ 
+        int length;
+        BYTE bytes[] = raw.convert(pStruct,{int length;/*如果是结构体数组，这里放一个结构体 —— 作为数组元素类型声明*/}) 
+    }); 
+
+    import console; 
+    console.log( string.pack( struct.bytes ) );
+
+    //也可以直接计算指针地址，直接获取数据
+    var struct = raw.convert(pStruct,{int length});
+    var offset = raw.sizeof({int length});
+    var str = raw.tostring(pStruct,offset,offset + struct.length);  
+    console.log( str );
+
+dll.freeTestStruct(pStruct);
+
+console.pause(true);
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/C/flexible_array.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/C/flexible_array.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Languages/C/flexible_array.md">Markdown 格式</a>
+</body> 
+</html>

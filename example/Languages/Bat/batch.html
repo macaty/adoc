@@ -1,0 +1,99 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 批处理代码支持用 aardio 模板语法嵌入 aardio 代码'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 批处理代码支持用 aardio 模板语法嵌入 aardio 代码</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 批处理代码支持用 aardio 模板语法嵌入 aardio 代码</h1><pre><code class="aardio language-aardio">//aardio 调用批处理入门
+import fonts.fontAwesome;
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;批处理代码支持用 aardio 模板语法嵌入 aardio 代码&quot;;right=875;bottom=625)
+winform.add(
+editBat={cls=&quot;edit&quot;;left=27;top=14;right=848;bottom=312;db=1;dl=1;dr=1;dt=1;edge=1;hscroll=1;multiline=1;vscroll=1;z=1};
+editResult={cls=&quot;edit&quot;;left=26;top=392;right=848;bottom=569;db=1;dl=1;dr=1;edge=1;hscroll=1;multiline=1;vscroll=1;z=2};
+plus={cls=&quot;plus&quot;;text=&quot;执行批处理&quot;;left=606;top=326;right=778;bottom=371;align=&quot;left&quot;;bgcolor=-5197169;db=1;dr=1;font=LOGFONT(h=-16);iconStyle={align=&quot;left&quot;;font=LOGFONT(h=-16;name=&#39;FontAwesome&#39;);padding={left=20}};iconText=&#39;\uF17A&#39;;notify=1;textPadding={left=42};z=3}
+)
+/*}}*/
+
+//批处理混合编程指南 https://www.aardio.com/zh-cn/doc/library-guide/std/process/batch.html
+import process.batch;
+winform.plus.oncommand = function(id,event){
+
+    //优先调用 64 位命令或有些命令只有 64 位请改为 process.batch.wow64 
+    var prcs = process.batch(winform.editBat.text/*批处理文件或代码*/,{
+        exepath = io._exepath; //传命名参数给批处理内的 aardio 代码，使用 owner.exepath 接收
+        &quot;批处理启动参数1&quot;; //批处理使用 %1 接收第一个参数
+        &quot;批处理启动参数2&quot;; //批处理使用 %2 接收第一个参数
+    })
+
+    winform.plus.disabledText = {&#39;\uF254&#39;;&#39;\uF251&#39;;&#39;\uF252&#39;;&#39;\uF253&#39;;&#39;\uF250&#39;;text=&#39;&#39;}
+
+    //out 用于接收批处理的全部输出(包含错误输出), err 为错误信息（无错误为 null ）
+    var out,err = prcs.readAll(); //可在参数 @1 中指定匹配模式查找指定字符串
+    //prcs.close();//上面的函数已经自动调用了 close 函数
+
+    winform.editResult.print(out);
+    winform.plus.disabledText = null;
+}
+
+//支持模板语法： https://www.aardio.com/zh-cn/doc/language-reference/templating/syntax.html
+winform.editBat.text = /*
+@echo off 
+for %%i in (&lt;?
+
+//这里可以嵌入 aardio 代码，使用 print 函数动态生成批处理代码
+import fsys;
+fsys.enum( &quot;/&quot;, &quot;*.*&quot;,
+    function(dir,filename,fullpath,findData){ 
+        if(filename){ 
+               print(filename,&quot; &quot;)
+        }
+        else {
+
+        }
+    },false
+);
+
+?&gt;) do echo %%i 
+
+echo &lt;?= time() ?&gt;
+echo &lt;?= owner.exepath ?&gt;
+
+echo 此批处理接收到的第一个参数：&quot;%1&quot;
+echo 此批处理接收到的第二个参数：&quot;%2&quot;
+
+rem 批处理延时
+ping 127.0.0.1 -n 3 &gt;nul
+
+rem 下面自定义批处理进程退出代码
+exit /B 123
+*/
+
+winform.plus.skin({
+    background={
+        default=0x668FB2B0;
+        disabled=0xFFCCCCCC;
+        hover=0xFF928BB3
+    };
+    color={
+        default=0xFF000000;
+        disabled=0xFF6D6D6D
+    }
+})
+
+winform.show();
+win.loopMessage();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/Bat/batch.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/Bat/batch.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Languages/Bat/batch.md">Markdown 格式</a>
+</body> 
+</html>

@@ -1,0 +1,85 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - aardio 调用 Go 语言之字符串操作'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - aardio 调用 Go 语言之字符串操作</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 调用 Go 语言之字符串操作</h1><pre><code class="aardio language-aardio">//aardio 调用 Go 语言之字符串操作
+import golang;
+var go = golang();  
+
+go.main = /**********
+package main 
+
+import &quot;C&quot; 
+import &quot;fmt&quot;   
+
+//export TestString
+func TestString(str  string)  {  
+    fmt.Printf(&quot;Go 直接收到 aardio 字符串: %s!\n&quot;,  str) ; 
+}
+
+//export TestStringPtr
+func TestStringPtr(str *string)  {  
+    fmt.Printf(&quot;Go 通过 *string 收到 aardio 字符串: %s!\n&quot;,  *str) ; 
+    *str = &quot;这是新的字符串&quot;;
+} 
+
+//export TestCCharPtr 
+func TestCCharPtr(pStr *C.char) {
+
+    //aardio 字符串指针转换为 Go 字符串
+    var str = C.GoString(pStr);
+
+    //Go 包公开的函数首字母必须是大写。
+    fmt.Printf(&quot;Go 通过 *C.char 收到 aardio 字符串: %s\n&quot;, str) 
+}
+
+func main() {} 
+**********/ 
+
+go.buildShared(&quot;/.go/TestString.go&quot;);
+
+//------------------下面调用 DLL-----------------------
+
+import console.int; 
+var goDll = raw.loadDll(&quot;/.go/TestString.dll&quot;,,&quot;cdecl&quot;);
+
+/*
+传一个字符串 + 一个字符串长度，
+2 个参数就等价于 Go 中一个 string 类型参数
+*/
+var str = &quot;2 个参数就等价于 Go 中一个 string 类型参数&quot;
+goDll.TestString(str,#str);//不要在 Go 中保存 aardio 传过去的字符串
+
+//创建 Go 字符串结构体
+import golang.string;  
+var goStr = golang.string(&quot;这是 aardio 字符串，UTF-8 编码&quot;);
+
+//在 Go 里这个参数应当声明为 *string 指针类型（aardio 结构体总是传址）
+goDll.TestStringPtr(goStr);//不要在 Go 中保存 aardio 传过去的字符串
+
+/*
+如果 Go 代码里修改了字符串。
+那么在调用后应立即转换为 aardio 字符串（因为 Go 会回收内存）。
+只要转换一次，golang.string 内部就会重新指向 aardio 分配的内存。
+*/
+var str = tostring(goStr); 
+console.log(goStr,str);
+
+//传 C 指针，这是原始的方法
+goDll.TestCCharPtr(&quot;这是 aardio 字符串，UTF-8 编码&quot;);
+
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/Go/string.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/Go/string.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Languages/Go/string.md">Markdown 格式</a>
+</body> 
+</html>

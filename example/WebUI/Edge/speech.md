@@ -1,0 +1,228 @@
+[aardio 鏂囨。](../../../index.htm "aardio 缂栫▼璇█鏂囨。棣栭〉")
+
+# aardio 鑼冧緥: 璇煶鍚堟垚
+
+```aardio aardio
+//璇煶鍚堟垚
+import chrome.edge;
+var theApp = chrome.edge.app();
+
+import sys.audioVolume;
+var volumeCtrl = sys.audioVolume();
+
+import dotNet.waveIn;
+theApp.external = {
+    getVolume = function(){
+        return volumeCtrl.volume;
+    }
+    setVolume = function(v){
+        v = tonumber(v)
+        if(volumeCtrl.volume = v) return;
+        volumeCtrl.volume = v;
+        volumeCtrl.mute = !v;
+    }
+    startRecording = function(){
+        dotNet.waveIn.startLoopback("/edge.wav");
+    }
+    stopRecording = function(){
+        dotNet.waveIn.stop();
+    }
+    openWav = function(){
+        if(!io.exist("/edge.wav")){
+            return theApp.msgboxErr("璇峰厛褰曢煶");
+        }
+
+        process.exploreSelect("/edge.wav")
+    }
+}
+
+//鍥犱负 /res/ 宸茶涓?theApp.http.documentBase锛岃繖閲屼笉鐢ㄥ啀鍐?"/res/index.aardio"
+theApp.httpHandler["/index.aardio" ] = function(response,request){
+    response.write(`
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Edge 璇煶鍚堟垚</title>
+    <script src="/aardio.js"></script>
+    <style>
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+        }
+    </style>
+</head>
+<body style="margin:0;line-height:180%;height:100%">
+    <form
+        style="height:100%;display:flex;flex-direction:column;justify-content:flex-start;align-content:stretch;padding:15px;box-sizing:border-box">
+        <div style="flex:0 1 auto;">
+            <label>璇烽�夋嫨璇煶锛?select> </select></lable><br>
+                <label for="volume">绯荤粺闊抽噺:<input type="range" min="0" max="100" step="1" id="volume"><span
+                        class="volume-value">1</span></label>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <label for="rate">閫熷害:<input type="range" min="0.5" max="2" value="1" step="0.1" id="rate"><span
+                        class="rate-value">1</span></label>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <label for="pitch">闊宠皟:<input type="range" min="0" max="2" value="1" step="0.1" id="pitch"> <span
+                        class="pitch-value">1</span></label>
+        </div>
+
+        <div class="controls" style="flex:0 1 auto;">
+            <button id="play" type="submit" style="margin-top:5px">澶у０鏈楄涓嬮潰杈撳叆鐨勬枃鏈?/button> <label><input type="checkbox"
+                    id="recording">褰曢煶鍒?<a href="javascript:void(0)" onclick="aardio.openWav()">/edge.wav</a></label>
+        </div>
+
+        <textarea rows="20" cols="100" id="txt" name="txt" autofocus
+            style="margin-top:10px;width:100%;flex:1 1 auto;"></textarea>
+
+    </form>
+
+    <script>
+        var synth = window.speechSynthesis;
+
+        var inputForm = document.querySelector('form');
+        var inputTxt = document.querySelector('#txt');
+        var voiceSelect = document.querySelector('select');
+
+        var volume = document.querySelector('#volume');
+        var volumeValue = document.querySelector('.volume-value');
+        var pitch = document.querySelector('#pitch');
+        var pitchValue = document.querySelector('.pitch-value');
+        var rate = document.querySelector('#rate');
+        var rateValue = document.querySelector('.rate-value');
+
+        var voices = [];
+
+        function populateVoiceList() {
+            voices = synth.getVoices().sort(function (a, b) {
+                const aname = a.name.toUpperCase(), bname = b.name.toUpperCase();
+                if (aname < bname) return -1;
+                else if (aname == bname) return 0;
+                else return +1;
+            });
+
+            voiceSelect.innerHTML = '';
+
+            var selectedIndex = 0;
+            var voiceCount = 0;
+            for (i = 0; i < voices.length; i++) {
+                var option = document.createElement('option');
+                if (voices[i].name.indexOf("Chinese") < 0) {
+                    continue;
+                }
+                option.textContent = voices[i].name + ' (' + voices[i].lang + ')';
+
+                if (voices[i].default) {
+                    option.textContent += ' -- DEFAULT';
+                }
+
+                option.setAttribute('data-lang', voices[i].lang);
+                option.setAttribute('data-name', voices[i].name);
+                if (voices[i].name.indexOf("Xiaoxiao") > 0) {
+                    selectedIndex = voiceCount;
+                }
+                voiceSelect.appendChild(option);
+                voiceCount++;
+            }
+            voiceSelect.selectedIndex = selectedIndex;
+        }
+
+        populateVoiceList();
+        if (speechSynthesis.onvoiceschanged !== undefined) {
+            speechSynthesis.onvoiceschanged = populateVoiceList;
+        }
+
+        function speak2() {
+            var txt = inputTxt.value;
+            if (txt === '') txt = "璇峰厛杈撳叆瑕佹湕璇荤殑鏂囨湰";
+            document.getElementById("play").disabled = true;
+
+            var utterThis = new SpeechSynthesisUtterance(txt);
+            utterThis.onend = function (event) {
+                document.getElementById("play").disabled = false;
+                aardio.stopRecording();
+            }
+            utterThis.onerror = function (event) {
+                document.getElementById("play").disabled = false;
+            }
+            var selectedOption = voiceSelect.selectedOptions[0].getAttribute('data-name');
+            for (i = 0; i < voices.length; i++) {
+                if (voices[i].name === selectedOption) {
+                    utterThis.voice = voices[i];
+                    break;
+                }
+            }
+            utterThis.pitch = pitch.value;
+            utterThis.rate = rate.value;
+            synth.speak(utterThis);
+        }
+
+        function speak() {
+            if (synth.speaking) {
+                console.error('speechSynthesis.speaking');
+                return;
+            }
+
+            if (document.getElementById("recording").checked) {
+                aardio.startRecording().then(speak2)
+            }
+            else {
+                speak2();
+            }
+        }
+
+        inputForm.onsubmit = function (event) {
+            event.preventDefault();
+
+            speak();
+
+            inputTxt.blur();
+        }
+
+        pitch.onchange = function () {
+            pitchValue.textContent = pitch.value;
+        }
+
+        rate.onchange = function () {
+            rateValue.textContent = rate.value;
+        }
+
+        volume.onchange = function () {
+            volumeValue.textContent = volume.value;
+            aardio.setVolume(volume.value);
+        }
+
+        aardio.getVolume().then(v => { volume.value = v; volume.onchange() })
+
+        voiceSelect.onchange = function () {
+            //speak();
+        }
+    </script>
+</body>
+</html>`)
+}
+
+//姝ゅ嚱鏁板弬鏁版寚瀹氱殑鍥炶皟鍑芥暟浼氬湪缃戦〉绔噯澶囧氨缁悗鎵ц
+theApp.indexReady(
+    function($){ //鍙傛暟 $ 琛ㄧず褰撳墠杩炴帴鍒?aardio 鐨勭綉椤靛鎴风
+        theApp.doScript($,`
+            document.getElementById("txt").innerText = "杩欐槸娴嬭瘯鏂囨湰";
+        `)
+    }
+)
+
+//鍙�夊湪璋冪敤 start 鍑芥暟鍓嶇敤 theApp.setPos 鎴?theApp.center 璋冩暣绐楀彛浣嶇疆
+theApp.setPos(20,20,1080,720)
+
+/*
+姝ｅ紡鍚姩 Edge 杩涚▼锛?濡傛灉鏂囦欢鍚嶄负 index.html 鎴?index.aardio锛岀洰褰?"/res/" 浼氳嚜鍔ㄨ涓?theApp.http.documentBase銆?涔嬪悗缃戦〉璁块棶 "/index.aardio" 浼氳嚜鍔ㄨ浆涓?"/res/index.aardio" 銆?*/
+theApp.start("/res/index.aardio")
+
+//缃戦〉涓彲浠ヨ皟鐢?aardio.quit() 閫�鍑?涔熷彲浠ョ洿鎺ュ叧闂?Edge 绐楀彛閫�鍑?win.loopMessage();
+
+```
+
+[Markdown 鏍煎紡](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/WebUI/Edge/speech.md  \n\n该文件无法用 Teleport Ultra 下载, 因为 它不在项目文件类型规范内。  \n\n你想在服务器上打开它?'))window.location='https://www.aardio.com/zh-cn/doc/example/WebUI/Edge/speech.md')
+

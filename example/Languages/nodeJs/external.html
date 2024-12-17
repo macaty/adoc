@@ -1,0 +1,91 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - RPC 服务端 - 支持任意本地网页调用 aardio 函数'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - RPC 服务端 - 支持任意本地网页调用 aardio 函数</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: RPC 服务端 - 支持任意本地网页调用 aardio 函数</h1><pre><code class="aardio language-aardio">//Node.js 回调 aardio
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;RPC 服务端 - 支持任意本地网页调用 aardio 函数&quot;;right=759;bottom=469)
+winform.add(
+button={cls=&quot;button&quot;;text=&quot;调用 Node.js 函数&quot;;left=480;top=410;right=630;bottom=449;db=1;dr=1;z=2};
+edit={cls=&quot;richedit&quot;;left=23;top=24;right=730;bottom=380;db=1;dl=1;dr=1;dt=1;edge=1;hscroll=1;multiline=1;vscroll=1;z=1}
+)
+/*}}*/
+
+winform.edit.print(&quot;正在启动 Node.js&quot;);
+winform.show();
+
+import web.rpc.externalServer;
+var externalServer = web.rpc.externalServer();
+
+//定义允许 Node.js 调用的 aardio 函数
+externalServer.external = {
+    test = function(...){
+        winform.button.disabled = false;
+        winform.edit.print(&quot;external.test 被调用&quot;,...)
+        return &quot;aardio 函数返回的值&quot;
+    }
+    tag = function(strs,...){
+        var args = {...}
+        for(i=#args;1;-1){
+            table.insert(strs,args[i],i+1);
+        }
+
+        strs = string.join(strs);
+        return strs;
+    }
+}
+
+//启动 aardio-rpc 服务端
+externalServer.start();
+
+winform.button.disabled = true;
+winform.button.oncommand = function(id,event){
+    externalServer.publish(&quot;testJs&quot;,1,2,3);
+}
+
+import nodeJs;
+
+var js  =/*
+var aardio = require(&#39;aardio&#39;) 
+aardio.test(123).then( v=&gt;{ console.log(v) } );
+
+aardio.on(&quot;testJs&quot;,function(...values){
+    console.log(&quot;Node.js 函数 testJs 被调用&quot;,...values) 
+})
+
+//用 aardio 解析模板字符串
+const $ = aardio.tag;
+$`abc${123}ddd${456}`.then( v=&gt; console.log(&quot;模板字符串:&quot;,v)  )
+*/
+
+//自动安装 JS 代码中引用的模块，如果已经安装了模块，这句代码会自动忽略不执行
+nodeJs.prequireByJs(winform.edit,js);
+
+//运行 Node.js 代码，如果改用 nodeJs.startRpc() 则 JS 里 console.log 不可用
+var node = nodeJs.exec(js); 
+
+//窗体退出时结束 nodeJs 进程
+winform.onDestroy = function(){
+    node.ctrlEvent(0)
+}
+
+//将 Node.js 进程输出显示到文本框，不会阻塞进程
+node.logResponse(winform.edit);
+
+win.loopMessage();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/nodeJs/external.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/nodeJs/external.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Languages/nodeJs/external.md">Markdown 格式</a>
+</body> 
+</html>

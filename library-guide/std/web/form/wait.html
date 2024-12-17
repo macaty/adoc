@@ -1,0 +1,109 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - 等待网页下载'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - 等待网页下载</title> 
+<link rel="stylesheet" href="../../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>等待网页下载</h1>
+
+<p>参考: <a href="webform.html" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/std/web/form/webform.html">创建 Web 窗体</a>  <a href="getele.html" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/std/web/form/getele.html">获取DOM节点对象</a></p>
+
+<h2>等待网页下载</h2>
+
+<p>我们需要控制网页上的DOM对象,就需要等待网页下载,DOM对象成功创建,否则获取节点将会失败,网页等待是web模拟控制技术的重要组成部分,下面我们介绍 Web 窗体提供的等待下载有关的函数.</p>
+
+<p>本手册中约定使用 wb 变量名表示 web.form 类创建的 Web 窗体对象.使用ele表示 Web 窗体中的元素对象,这也是aardio中默认约定具有特殊意义的变量名,不应将这些默认变量名用于其他目的.</p>
+
+<h2>wb.wait <a id="wait" href="#wait">&#x23;</a></h2>
+
+<ol>
+<li><p>函数原型：   </p>
+
+<p><code>是否成功下载 = wb.wait( 等待的网址 )</code></p></li>
+<li><p>函数说明：   </p>
+
+<p>这是很重要的一个函数,在调用wb.go或wb.post打开网页以后,使用此函数可以等待目标网页完全打开.在页面完全打开以后,我们才能获取并控制网页节点对象.</p>
+
+<p>等待的网址是一个可选参数,支持 <a href="../../../builtin/string/patterns.html" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/builtin/string/patterns.html">模式查找语法</a><br>
+如果不指定参数,则等待当前网页完全下载完毕.  </p>
+
+<p>如果打开网址时遇到错误,该函数返回 false  </p></li>
+</ol>
+
+<h2>wb.waitDoc <a id="waitDoc" href="#waitDoc">&#x23;</a></h2>
+
+<ol>
+<li><p>函数原型：   </p>
+
+<p><code>document = wb.waitDoc( 框架名 )</code></p></li>
+<li><p>函数说明：   </p>
+
+<p>此函数内部循环调用 <a href="getele.html#getDoc" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/std/web/form/getele.html#getDoc">wb.getDoc</a> ,如果发现文档对象已成功创建就立即返回,而不是等到整个网页下载完毕.  </p>
+
+<p>因为网络的原因,或者网站本身设计的问题,有一些网页可能很久都显示&quot;正在下载中......&quot;,而实际上网页已经全部显示了,正在下载的可能是一些我们根本用不到的HTML节点.这时候这个函数就很有用.  </p>
+
+<p>如果关闭 Web 窗体, wb.waitDoc 则返回 null 。</p></li>
+<li><p>调用示例   </p>
+
+<pre><code class="aardio language-aardio">//....省略创建 Web 窗体的代码 
+
+//打开目标网站
+wb.go(&quot;http://www.aardio.com/&quot;)
+//显示窗体
+winform.show(true) 
+
+doc = wb.waitDoc();
+</code></pre></li>
+</ol>
+
+<h2>wb.waitEle <a id="waitEle" href="#waitEle">&#x23;</a></h2>
+
+<ol>
+<li><p>函数原型：   </p>
+
+<p><code>是否成功下载 = wb.waitEle( HTML节点的ID名name, 框架名 )</code></p></li>
+<li><p>函数说明：   </p>
+
+<p>此函数内部循环调用 <a href="getele.html#getEle" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/std/web/form/getele.html#getEle">wb.getEle</a> ,如果发现该节点已成功创建就立即返回,而不是等到整个网页下载完毕.<br>
+因为网络的原因,或者网站本身设计的问题,有一些网页可能很久都显示&quot;正在下载中......&quot;,而实际上网页已经全部显示了,正在下载的可能是一些我们根本用不到的HTML节点.这时候这个函数就很有用.  </p>
+
+<p>如果关闭 Web 窗体,wb.waitEle则返回null,否则该函数一直尝试获取指定的节点,一旦获取成功就返回该节点.</p></li>
+<li><p>调用示例   </p>
+
+<pre><code class="aardio language-aardio">//....省略创建 Web 窗体的代码 
+
+//打开目标网站
+wb.go(&quot;http://www.aardio.com/&quot;)
+//显示窗体
+winform.show(true) 
+ele = wb.waitEle( &quot;__VIEWSTATE&quot; );//等待指定网址,可以使用模式匹配语法
+
+import console;
+console.log( ele.outerHTML )
+</code></pre></li>
+</ol>
+
+<h2>wb.waitClose <a id="waitClose" href="#waitClose">&#x23;</a></h2>
+
+<ol>
+<li><p>函数原型：   </p>
+
+<p>wb.waitClose()</p></li>
+<li><p>函数说明：   </p>
+
+<p>等待 Web 窗体关闭.</p></li>
+</ol>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-guide/std/web/form/wait.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-guide/std/web/form/wait.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/std/web/form/wait.md">Markdown 格式</a></p>
+
+</body> 
+</html>

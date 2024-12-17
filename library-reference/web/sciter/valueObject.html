@@ -1,0 +1,371 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - web.sciter.valueObject 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - web.sciter.valueObject 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>web.sciter.valueObject 库模块帮助文档</h1>
+
+<p><a id="web.sciter"></a></p>
+
+<h2>web.sciter 成员列表</h2>
+
+<p><a id="web.sciter.isValueObject"></a></p>
+
+<h3>web.sciter.isValueObject()</h3>
+
+<p>检测一个值是否web.sciter.valueObject对象</p>
+
+<p><a id="web.sciter.makeError"></a></p>
+
+<h3>web.sciter.makeError()</h3>
+
+<p>此函数返回错误值对象（ web.sciter.valueObject 对象 ）<br>
+参数指定要设置的错误信息</p>
+
+<p><a href="#webSciterValueObject">返回对象:webSciterValueObject</a></p>
+
+<p><a id="web.sciter.valueObject"></a></p>
+
+<h3>web.sciter.valueObject()</h3>
+
+<p><a href="#webSciterValueObject">返回对象:webSciterValueObject</a></p>
+
+<p><a id="web.sciter.valueObject"></a></p>
+
+<h3>web.sciter.valueObject(初始值,单位,类型)</h3>
+
+<p>创建并返回动态值类型,<br>
+所有参数可选</p>
+
+<p><a id="web.sciter.valueObjectLite"></a></p>
+
+<h3>web.sciter.valueObjectLite()</h3>
+
+<p>无GC值对象,避免自动释放,  </p>
+
+<p><a href="#webSciterValueObject">返回对象:webSciterValueObject</a></p>
+
+<p><a id="webSciterValueObject"></a></p>
+
+<h2>webSciterValueObject 成员列表</h2>
+
+<p><a id="webSciterValueObject.addRef"></a></p>
+
+<h3>webSciterValueObject.addRef()</h3>
+
+<p>添加引用计数</p>
+
+<p><a id="webSciterValueObject.clear"></a></p>
+
+<h3>webSciterValueObject.clear()</h3>
+
+<p>清空值</p>
+
+<p><a id="webSciterValueObject.clone"></a></p>
+
+<h3>webSciterValueObject.clone()</h3>
+
+<p>复制值  </p>
+
+<p><a href="#webSciterValueObject">返回对象:webSciterValueObject</a></p>
+
+<p><a id="webSciterValueObject.enum"></a></p>
+
+<h3>webSciterValueObject.enum(枚举函数)</h3>
+
+<pre><code class="aardio language-aardio">webSciterValueObject.enum(   
+    function(k,v ){  
+        io.print( k,v )   
+    }  
+)
+</code></pre>
+
+<p><a id="webSciterValueObject.getBinary"></a></p>
+
+<h3>webSciterValueObject.getBinary()</h3>
+
+<p>返回 buffer 类型字节数组<br>
+零长度数组返回 null</p>
+
+<p><a id="webSciterValueObject.getEle"></a></p>
+
+<h3>webSciterValueObject.getEle()</h3>
+
+<p>返回节点对象,<br>
+注意:节点类型只能读取不能写入</p>
+
+<p><a id="webSciterValueObject.getInt32"></a></p>
+
+<h3>webSciterValueObject.getInt32()</h3>
+
+<p>返回整型数值<br>
+如果值类型不是整型值,取值返回空</p>
+
+<p><a id="webSciterValueObject.getItem"></a></p>
+
+<h3>webSciterValueObject.getItem()</h3>
+
+<p><a href="#webSciterValueObject">返回对象:webSciterValueObject</a></p>
+
+<p><a id="webSciterValueObject.getItem"></a></p>
+
+<h3>webSciterValueObject.getItem(索引)</h3>
+
+<p>获取成员</p>
+
+<p><a id="webSciterValueObject.getLong64"></a></p>
+
+<h3>webSciterValueObject.getLong64()</h3>
+
+<p>返回长整型数值<br>
+如果值类型不是长整型数值,取值返回空</p>
+
+<p><a id="webSciterValueObject.getNumber"></a></p>
+
+<h3>webSciterValueObject.getNumber()</h3>
+
+<p>返回浮点数值<br>
+如果值类型不是浮点数,取值返回空<br>
+使用 tonumber() 函数可强制返回数值</p>
+
+<p><a id="webSciterValueObject.getString"></a></p>
+
+<h3>webSciterValueObject.getString()</h3>
+
+<p>返回字符串值<br>
+如果值类型字符串值,取值返回空<br>
+使用 tostring() 函数可强制返回数值</p>
+
+<p><a id="webSciterValueObject.getTime"></a></p>
+
+<h3>webSciterValueObject.getTime()</h3>
+
+<p>返回时间值<br>
+如果值类型不是时间值,取值返回空</p>
+
+<p><a id="webSciterValueObject.getType"></a></p>
+
+<h3>webSciterValueObject.getType()</h3>
+
+<p>返回值类型 <em>HL_T</em> 前缀常量表示</p>
+
+<p><a id="webSciterValueObject.getValue"></a></p>
+
+<h3>webSciterValueObject.getValue()</h3>
+
+<p>返回字符串值、数值、时间值</p>
+
+<p><a id="webSciterValueObject.isArray"></a></p>
+
+<h3>webSciterValueObject.isArray()</h3>
+
+<p>是否数组对象</p>
+
+<p><a id="webSciterValueObject.isDomObject"></a></p>
+
+<h3>webSciterValueObject.isDomObject()</h3>
+
+<p>是否节点对象,<br>
+使用 getEle()函数转换为节点对象</p>
+
+<p><a id="webSciterValueObject.isErrorString"></a></p>
+
+<h3>webSciterValueObject.isErrorString()</h3>
+
+<p>值是错误信息</p>
+
+<p><a id="webSciterValueObject.isMap"></a></p>
+
+<h3>webSciterValueObject.isMap()</h3>
+
+<p>是否键值表对象</p>
+
+<p><a id="webSciterValueObject.isScriptArray"></a></p>
+
+<h3>webSciterValueObject.isScriptArray()</h3>
+
+<p>值是脚本返回的数组对象</p>
+
+<p><a id="webSciterValueObject.isScriptClass"></a></p>
+
+<h3>webSciterValueObject.isScriptClass()</h3>
+
+<p>值是脚本返回的类对象</p>
+
+<p><a id="webSciterValueObject.isScriptError"></a></p>
+
+<h3>webSciterValueObject.isScriptError()</h3>
+
+<p>脚本类型错误</p>
+
+<p><a id="webSciterValueObject.isScriptFunction"></a></p>
+
+<h3>webSciterValueObject.isScriptFunction()</h3>
+
+<p>值是脚本返回的函数对象</p>
+
+<p><a id="webSciterValueObject.isScriptNative"></a></p>
+
+<h3>webSciterValueObject.isScriptNative()</h3>
+
+<p>值是脚本返回的本地函数对象</p>
+
+<p><a id="webSciterValueObject.isScriptObject"></a></p>
+
+<h3>webSciterValueObject.isScriptObject()</h3>
+
+<p>值是脚本返回的对象</p>
+
+<p><a id="webSciterValueObject.isScriptValue"></a></p>
+
+<h3>webSciterValueObject.isScriptValue()</h3>
+
+<p>值是脚本返回的对象<br>
+所有脚本类型都返回 true</p>
+
+<p><a id="webSciterValueObject.isSymbolString"></a></p>
+
+<h3>webSciterValueObject.isSymbolString()</h3>
+
+<p>值是符号</p>
+
+<p><a id="webSciterValueObject.jsonParse"></a></p>
+
+<h3>webSciterValueObject.jsonParse(&#39;{ k:&quot;v&quot; }&#39;)</h3>
+
+<p>解析JSON字符串</p>
+
+<p><a id="webSciterValueObject.jsonStringify"></a></p>
+
+<h3>webSciterValueObject.jsonStringify()</h3>
+
+<p>转换并返回JSON字符串</p>
+
+<p><a id="webSciterValueObject.length"></a></p>
+
+<h3>webSciterValueObject.length</h3>
+
+<p>数组长度</p>
+
+<p><a id="webSciterValueObject.makeError"></a></p>
+
+<h3>webSciterValueObject.makeError()</h3>
+
+<p>返回 JavaScript 错误对象,参数指定要设置的错误信息,<br>
+此函数返回自身</p>
+
+<p><a href="#webSciterValueObject">返回对象:webSciterValueObject</a></p>
+
+<p><a id="webSciterValueObject.parse"></a></p>
+
+<h3>webSciterValueObject.parse(&quot;10pt&quot;)</h3>
+
+<p>解析字符串</p>
+
+<p><a id="webSciterValueObject.scriptIsolate"></a></p>
+
+<h3>webSciterValueObject.scriptIsolate()</h3>
+
+<p>脚本对象转换为MAP,或ARRAY类型</p>
+
+<p><a id="webSciterValueObject.setBinary"></a></p>
+
+<h3>webSciterValueObject.setBinary(buffer,len)</h3>
+
+<p>设置二进制字节数组,<br>
+如果参数@1是buffer、字符串,可选用参数@2指定长度,<br>
+如果参数@1是指针,则必须指定长度</p>
+
+<p><a id="webSciterValueObject.setInt32"></a></p>
+
+<h3>webSciterValueObject.setInt32(数值)</h3>
+
+<p>写入整型数值</p>
+
+<p><a id="webSciterValueObject.setItem"></a></p>
+
+<h3>webSciterValueObject.setItem(索引,值)</h3>
+
+<p>设置成员值</p>
+
+<p><a id="webSciterValueObject.setLong64"></a></p>
+
+<h3>webSciterValueObject.setLong64(数值)</h3>
+
+<p>写入长整型数值</p>
+
+<p><a id="webSciterValueObject.setNumber"></a></p>
+
+<h3>webSciterValueObject.setNumber(数值)</h3>
+
+<p>写入浮点数值</p>
+
+<p><a id="webSciterValueObject.setString"></a></p>
+
+<h3>webSciterValueObject.setString(字符串值)</h3>
+
+<p>写入字符串值</p>
+
+<p><a id="webSciterValueObject.setTime"></a></p>
+
+<h3>webSciterValueObject.setTime(时间值)</h3>
+
+<p>写入时间值</p>
+
+<p><a id="webSciterValueObject.setValue"></a></p>
+
+<h3>webSciterValueObject.setValue(值,单位,类型)</h3>
+
+<p>写入字符串值、数值、时间值<br>
+参数2,参数3为可选参数</p>
+
+<p><a id="webSciterValueObject.stringify"></a></p>
+
+<h3>webSciterValueObject.stringify()</h3>
+
+<p>转换并返回字符串</p>
+
+<p><a id="webSciterValueObject.value"></a></p>
+
+<h3>webSciterValueObject.value</h3>
+
+<p>读取或写入字符串值、数值、时间值</p>
+
+<p><a id="webSciterValueObject.xcall"></a></p>
+
+<h3>webSciterValueObject.xcall</h3>
+
+<p>调用 Javascript 函数</p>
+
+<p><a id="webSciterValueObject.xcall"></a></p>
+
+<h3>webSciterValueObject.xcall(urlOrScriptName,thisObject,...)</h3>
+
+<p>调用 Javascript 函数,<br>
+urlOrScriptName,thisObject 可省略,<br>
+thisObject 可选用于指定 JS 函数的 this 对象,<br>
+可添加任意个调用参数  </p>
+
+<p>可以省略 xcall 函数名，直接将对象作为函数调用,<br>
+省略 xcall 函数名时不需要指定 urlOrScriptName,thisObject 参数</p>
+
+<h3>自动完成常量</h3>
+
+<p>_HL_CVT_JSON_LITERAL=1<br>
+_HL_CVT_JSON_MAP=2<br>
+_HL_CVT_SIMPLE=0  </p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/web/sciter/valueObject.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/web/sciter/valueObject.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/web/sciter/valueObject.md">Markdown 格式</a></p>
+
+</body> 
+</html>

@@ -1,0 +1,72 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - aardio 调用 PHP - SSE 之 事件流（event-stream）'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - aardio 调用 PHP - SSE 之 事件流（event-stream）</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 调用 PHP - SSE 之 事件流（event-stream）</h1><pre><code class="aardio language-aardio">//aardio 调用 PHP - SSE 之 事件流（event-stream）
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;PHP - event-stream&quot;;right=753;bottom=434)
+winform.add(
+edit={cls=&quot;edit&quot;;left=20;top=12;right=734;bottom=404;edge=1;multiline=1;z=1}
+)
+/*}}*/
+
+//导入 php 扩展库
+import process.php;
+
+//生成测试 PHP 文件。
+process.php.code[&quot;/test-sse.php&quot;] =/********
+&lt;?php
+header(&quot;Content-Type: text/event-stream&quot;);
+header(&quot;Cache-Control:no-cache,must-revalidate,no-store&quot;);
+header(&quot;Pragma:no-cache&quot;); //禁止缓存  
+ignore_user_abort(true); //后台运行  
+set_time_limit(0); //取消脚本运行时间的超时上限
+
+while (true) {  
+
+  //服务器事件推送
+  echo &quot;event: ping\n&quot;;
+  $curDate = date(DATE_ISO8601);
+  echo &#39;data: {&quot;time&quot;: &quot;&#39; . $curDate . &#39;&quot;}&#39;;
+  echo &quot;\n\n&quot;; //每个事件以 2 个换行结束
+
+  if (ob_get_level() &gt; 0) ob_end_flush();
+  flush();
+  sleep(1);
+} 
+?&gt;********/
+
+var url = process.php(&quot;/test-sse.php&quot;)
+
+thread.invoke( 
+    function(url,winform){ 
+        import web.rest.jsonLiteClient;
+        var http = web.rest.jsonLiteClient();
+
+        var eventSource = http.api(url,&quot;GET&quot;)
+
+        eventSource.get(,, function(message){   
+            winform.edit.print(&quot;HTTP 服务端推送了事件&quot;)
+            winform.edit.print(message);
+        } ); 
+
+    },url,winform
+)
+winform.show();
+win.loopMessage();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/PHP/sse.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/PHP/sse.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Languages/PHP/sse.md">Markdown 格式</a>
+</body> 
+</html>

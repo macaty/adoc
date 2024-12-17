@@ -1,0 +1,92 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - 远程CALL'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - 远程CALL</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>远程CALL</h1>
+
+<p>使用raw库函数raw.remoteApi可以在外部进程中创建远程CALL函数.</p>
+
+<h2>什么是CALL</h2>
+
+<p>CALL 的本意在编程术语中指的是函数调用,用于将程序的执行交给其他的代码段，通常是一个子程序(函数)，同时保存必要的信息，从而使被调用段执行完毕后返回到调用点继续执行。 请参考:<a href="../../../language-reference/function/definitions.html" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/function/definitions.html">函数</a></p>
+
+<p>这里我们提到的 CALL 是指 REMOTE CALL、游戏 CALL，指一种注入外部 EXE 程序从外部调用函数的技术.找 CALL 一般使用 OD 等工具，而 CALL 的使用一般需要编写复杂的汇编代码，在aardio 中推出了一种通用 CAL L技术，可以象声明普通 API 函数一样声明 CALL,并且使用该 CALL 函数就象普通函数一样简单。</p>
+
+<p>请参考:<a href="../../std/process/process.html" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/std/process/process.html">进程</a>  </p>
+
+<h2>raw.remoteApi</h2>
+
+<h3>1. 声明 CALL</h3>
+
+<p>语法：   </p>
+
+<p><code>func_call = raw.remoteApi( 进程ID|进程句柄,函数原型, 这里是函数地址,调用约定=&quot;stdcall&quot; )</code></p>
+
+<p>说明： </p>
+
+<p>第一个参数为进程ID或进程句柄。  </p>
+
+<p>函数原型、调用约定的使用方法与声明API的语法完全一致。</p>
+
+<p>请参考: <a href="api.html" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/builtin/raw/api.html">定义API函数</a> <a href="datatype.html" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/builtin/raw/datatype.html">原生数据类型</a></p>
+
+<h3>2. 在目标进程创建 DLL API</h3>
+
+<p>语法：   </p>
+
+<p><code>var func_call = raw.remoteApi(  进程ID|进程句柄,函数原型, DLL文件名,函数名字,调用约定=&quot;stdcall&quot;)</code></p>
+
+<p>说明： </p>
+
+<p>第一个参数为进程 ID 或进程句柄.<br>
+函数原型、调用约定的使用方法与声明API的语法完全一致,请参考: <a href="api.html" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/builtin/raw/api.html">定义API函数</a> <a href="datatype.html" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/builtin/raw/datatype.html">原生数据类型</a></p>
+
+<p>调用约定默认为stdcall</p>
+
+<h2>示例</h2>
+
+<pre><code class="aardio language-aardio">import winex;   
+
+//遍历桌面所有窗口
+for hwnd,title,tid,pid in winex.each() {
+
+     if(  title!=&quot;&quot; &amp;&amp; winex.isVisible(hwnd) /*不然下面的看不到了*/){ 
+
+          var messageBox_call;
+
+          try{   
+             //在目标进程内声明一个函数，加载 user.dll，并获取 user.dll 中的 MessageBoxW 函数指针
+            messageBox_call = raw.remoteApi(pid 
+                 ,&quot;void ( int hWnd, ustring text,ustring caption ,INT uType )&quot;
+                 ,&quot;User32.dll&quot;,&quot;MessageBoxW&quot;);//DLL名以及函数名也可以更换为一个函数地址
+         }
+
+          if(messageBox_call){ 
+             //象普通函数一样使用
+            messageBox_call(0,&quot;这是一个外部进程！在此进程加载了User32.dll，并获取执行了MessageBoxW 函数指针&quot;,&quot;aardio call&quot; ,0)
+
+             break ;
+          }
+     } 
+ } 
+</code></pre>
+
+<h2>使用 process 库创建 CALL</h2>
+
+<p>使用 process 库创建的进程对象拥有更高的权限，请参考:<a href="../../std/process/process.html#remoteApi" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/std/process/process.html#remoteApi">prcs.remoteApi</a></p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-guide/builtin/raw/remoteApi.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-guide/builtin/raw/remoteApi.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/builtin/raw/remoteApi.md">Markdown 格式</a></p>
+
+</body> 
+</html>

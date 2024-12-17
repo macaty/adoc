@@ -1,0 +1,200 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - win.taskScheduler 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - win.taskScheduler 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>win.taskScheduler 库模块帮助文档</h1>
+
+<p><a id="win"></a></p>
+
+<h2>win 成员列表</h2>
+
+<p><a id="win.taskScheduler"></a></p>
+
+<h3>win.taskScheduler</h3>
+
+<p>计划任务</p>
+
+<p><a id="win.taskScheduler"></a></p>
+
+<h3>win.taskScheduler()</h3>
+
+<p><a href="#winTaskSchedulerObject">返回对象:winTaskSchedulerObject</a></p>
+
+<p><a id="win.taskScheduler"></a></p>
+
+<h3>win.taskScheduler(窗体对象)</h3>
+
+<p>参数可省略<br>
+注意仅在线程启动消息循环后起作用<br>
+执行计划任务会阻塞定时器直到任务执行完成<br>
+不希望阻塞定时器可使用 winform.setTimeout、或多线程异步执行代码</p>
+
+<p><a id="winTaskSchedulerObject"></a></p>
+
+<h2>winTaskSchedulerObject 成员列表</h2>
+
+<p><a id="winTaskSchedulerObject.create"></a></p>
+
+<h3>winTaskSchedulerObject.create(&quot;名字&quot;,执行函数)</h3>
+
+<pre><code class="aardio language-aardio">winTaskSchedulerObject.create(&quot;计划任务名字&quot;,function( arguments ){  
+
+} , /*其他调用任务的参数*/ )
+</code></pre>
+
+<p><a id="winTaskSchedulerObject.create"></a></p>
+
+<h3>winTaskSchedulerObject.create()</h3>
+
+<p><a href="#winTaskSchedulerTaskObject">返回对象:winTaskSchedulerTaskObject</a></p>
+
+<p><a id="winTaskSchedulerObject.delete"></a></p>
+
+<h3>winTaskSchedulerObject.delete(&quot;任务名字&quot;)</h3>
+
+<p>删除指定任务</p>
+
+<p><a id="winTaskSchedulerObject.deserialize"></a></p>
+
+<h3>winTaskSchedulerObject.deserialize</h3>
+
+<p>反序列化计划任务</p>
+
+<p><a id="winTaskSchedulerObject.deserialize"></a></p>
+
+<h3>winTaskSchedulerObject.deserialize(字符串,默认回调函数)</h3>
+
+<p>反序列化计划任务,并指定默认回调函数</p>
+
+<p><a id="winTaskSchedulerObject.get"></a></p>
+
+<h3>winTaskSchedulerObject.get(&quot;任务名字&quot;)</h3>
+
+<p>读取指定任务</p>
+
+<p><a id="winTaskSchedulerObject.get"></a></p>
+
+<h3>winTaskSchedulerObject.get()</h3>
+
+<p><a href="#winTaskSchedulerTaskObject">返回对象:winTaskSchedulerTaskObject</a></p>
+
+<p><a id="winTaskSchedulerObject.serialize"></a></p>
+
+<h3>winTaskSchedulerObject.serialize()</h3>
+
+<p>序列化计划任务配置并返回字符串</p>
+
+<p><a id="winTaskSchedulerObject.set"></a></p>
+
+<h3>winTaskSchedulerObject.set(&quot;任务名字&quot;,执行函数)</h3>
+
+<p>修改任务执行函数</p>
+
+<p><a id="winTaskSchedulerObject.start"></a></p>
+
+<h3>winTaskSchedulerObject.start(任务检测间隔)</h3>
+
+<p>开始运行计划任务<br>
+注意仅在线程启动消息循环后起作用<br>
+检测间隔参数可选,默认为1000毫秒  </p>
+
+<p>执行计划任务会阻塞定时器直到任务执行完成<br>
+如果在计划任务中执行了win.delay等继续消息循环的代码，<br>
+在计划任务退出前不会再触发同一计划任务（重入）。  </p>
+
+<p>不希望阻塞定时器可使用 winform.setTimeout、或多线程异步执行代码</p>
+
+<p><a id="winTaskSchedulerObject.stop"></a></p>
+
+<h3>winTaskSchedulerObject.stop()</h3>
+
+<p>停止计划任务</p>
+
+<p><a id="winTaskSchedulerTaskObject"></a></p>
+
+<h2>winTaskSchedulerTaskObject 成员列表</h2>
+
+<p><a id="winTaskSchedulerTaskObject.beginTime"></a></p>
+
+<h3>winTaskSchedulerTaskObject.beginTime</h3>
+
+<p>开始时间<br>
+该值默认为空</p>
+
+<p><a id="winTaskSchedulerTaskObject.enabled"></a></p>
+
+<h3>winTaskSchedulerTaskObject.enabled</h3>
+
+<p>是否允许执行</p>
+
+<p><a id="winTaskSchedulerTaskObject.expirationTime"></a></p>
+
+<h3>winTaskSchedulerTaskObject.expirationTime</h3>
+
+<p>结束时间<br>
+该值默认为空</p>
+
+<p><a id="winTaskSchedulerTaskObject.interval"></a></p>
+
+<h3>winTaskSchedulerTaskObject.interval</h3>
+
+<pre><code class="aardio language-aardio">winTaskSchedulerTaskObject.interval = { 
+    second = 间隔秒数 /*请指定间隔执行的时间字段值*/;
+    minute = 间隔分钟数 ;
+    hour = 间隔小时数 ;
+    day = 间隔天数 ;
+    month = 间隔月数 ;
+}
+</code></pre>
+
+<p><a id="winTaskSchedulerTaskObject.lastResult"></a></p>
+
+<h3>winTaskSchedulerTaskObject.lastResult</h3>
+
+<p>最后一次执行的返回值</p>
+
+<p><a id="winTaskSchedulerTaskObject.lastRunTime"></a></p>
+
+<h3>winTaskSchedulerTaskObject.lastRunTime</h3>
+
+<p>任务最后运行的时间</p>
+
+<p><a id="winTaskSchedulerTaskObject.pending"></a></p>
+
+<h3>winTaskSchedulerTaskObject.pending</h3>
+
+<p>任务是否在等待状态<br>
+如果正在执行任务，此属性返回false</p>
+
+<p><a id="winTaskSchedulerTaskObject.time"></a></p>
+
+<h3>winTaskSchedulerTaskObject.time</h3>
+
+<pre><code class="aardio language-aardio">winTaskSchedulerTaskObject.time = { 
+    second =  秒 /*请指定准时启动任务的时间字段值,  
+可以指定数值,也可以用数组指定多个值,  
+不作为条件匹配的时间字段不用指定  
+即使任务在启动时间内完成也不会重新启动任务*/;
+    minute = 分钟 ; 
+    hour = 小时 ;
+    day = 日 ;
+    month = 月 ;
+    dayofweek = {1,2,3,4,5,6,0}
+}
+</code></pre>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/taskScheduler.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/taskScheduler.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/taskScheduler.md">Markdown 格式</a></p>
+
+</body> 
+</html>

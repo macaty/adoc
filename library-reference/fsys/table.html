@@ -1,0 +1,137 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - fsys.table 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - fsys.table 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>fsys.table 库模块帮助文档</h1>
+
+<p><a id="fsys"></a></p>
+
+<h2>fsys 成员列表</h2>
+
+<p><a id="fsys.table"></a></p>
+
+<h3>fsys.table</h3>
+
+<p>支持将 table 对象自动序列化为硬盘文件。<br>
+fsys.table 可作为普通 table 对象使用，<br>
+在线程退出时将会同步存储到文件中。  </p>
+
+<p>一般建议直接使用 fsys.config</p>
+
+<p><a id="fsys.table"></a></p>
+
+<h3>fsys.table(&quot;/config/setting.table&quot;,默认配置表 )</h3>
+
+<p>创建 table 对象，在线程退出时将会同步存储到文件中。<br>
+可选使用 参数@2 指定一个 table 对象指定字段的默认值。  </p>
+
+<p>fsys.table 并非实时读写，而是将配置读入内存。<br>
+所以请不要多对象、多线程、多进程打开同一配置文件。<br>
+这会导致多份不同步的配置写入存储设备时会相互覆盖。  </p>
+
+<p>注意此对象不可跨线程传递。<br>
+多线程可通过 winform 成员函数转发到界面线程操作配置文件即可，<br>
+多进程可利用原子窗体、进程互斥体避免冲突</p>
+
+<p><a id="fsys.table"></a></p>
+
+<h3>fsys.table()</h3>
+
+<p><a href="table.html#fsysTableObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/fsys/table.html#fsysTableObject">返回对象:fsysTableObject</a></p>
+
+<p><a id="fsysTableObject"></a></p>
+
+<h2>fsysTableObject 成员列表</h2>
+
+<p><a id="fsysTableObject.?"></a></p>
+
+<h3>fsysTableObject.?</h3>
+
+<p>自配置文件读写属性。<br>
+使用 table.tostring 函数序列化配置表。  </p>
+
+<p>仅序列化以字符串、数值为键的元素，<br>
+仅序列化值为字符串、数值、buffer 以及定义了 _serialize 元方法的成员。<br>
+循环引用的值转换为 null，序列化时忽略成员函数。  </p>
+
+<p>配置文件在首次使用时自动加载,退出程序时自动保存.</p>
+
+<p><a id="fsysTableObject.afterLoad"></a></p>
+
+<h3>fsysTableObject.afterLoad</h3>
+
+<p>指定一个函数,在下次重新加载配置文件时调用<br>
+此函数默认为空函数,在调用 winform.bindConfig 后会被自动赋值用于写入控件值</p>
+
+<p><a id="fsysTableObject.assign"></a></p>
+
+<h3>fsysTableObject.assign()</h3>
+
+<p><a href="table.html#fsysTableObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/fsys/table.html#fsysTableObject">返回对象:fsysTableObject</a></p>
+
+<p><a id="fsysTableObject.assign"></a></p>
+
+<h3>fsysTableObject.assign(混入表)</h3>
+
+<pre><code class="aardio language-aardio">fsysTableObject.assign(  
+   键名 = 值;  
+   键名2 = 值;  
+);//该数会自动调用 save 函数保存配置到文件
+</code></pre>
+
+<p><a id="fsysTableObject.beforeSave"></a></p>
+
+<h3>fsysTableObject.beforeSave</h3>
+
+<p>指定一个函数,在保存配置以前自动调用<br>
+此函数默认为空函数,在调用 winform.bindConfig 后会被自动赋值用于读取控件值</p>
+
+<p><a id="fsysTableObject.load"></a></p>
+
+<h3>fsysTableObject.load()</h3>
+
+<p>从文件载入<br>
+加载成功返回对象,加载失败返回null空值  </p>
+
+<p><a href="table.html#fsysTableObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/fsys/table.html#fsysTableObject">返回对象:fsysTableObject</a></p>
+
+<p><a id="fsysTableObject.mix"></a></p>
+
+<h3>fsysTableObject.mix()</h3>
+
+<p><a href="table.html#fsysTableObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/fsys/table.html#fsysTableObject">返回对象:fsysTableObject</a></p>
+
+<p><a id="fsysTableObject.mix"></a></p>
+
+<h3>fsysTableObject.mix(混入默认值表)</h3>
+
+<pre><code class="aardio language-aardio">fsysTableObject.mix(  
+   键名 = 默认值;  
+   键名2 = 默认值;  
+);//该函数用于设定默认值,但不会修改已存在的值
+</code></pre>
+
+<p><a id="fsysTableObject.save"></a></p>
+
+<h3>fsysTableObject.save()</h3>
+
+<p>存储到文件<br>
+在线程退出时也会自动调用该函数  </p>
+
+<p><a href="table.html#fsysTableObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/fsys/table.html#fsysTableObject">返回对象:fsysTableObject</a></p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/fsys/table.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/fsys/table.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/fsys/table.md">Markdown 格式</a></p>
+
+</body> 
+</html>

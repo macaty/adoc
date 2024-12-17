@@ -1,0 +1,64 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 浏览网页'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 浏览网页</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 浏览网页</h1><pre><code class="aardio language-aardio">//浏览网页
+//请改用微软的 WebView2（也就是 aardio 标准库里的 web.view ）
+
+import electron.app; 
+var theApp = electron.app(); // 创建electron进程,如果第3个参数为true，可以UTF8模式打开控制台 - 用于查看electron主进程输出
+
+//启动主进程的 main.js
+theApp.jsMain =/**  
+    // 启动RPC服务允许aardio/electron互调函数,创建BrowserWindow主窗口
+    const aardio = require(&#39;aardio&#39;) 
+
+    // 管理electron进程的生命周期 
+    const app = require(&#39;electron&#39;).app 
+
+    aardio.ready( win=&gt; { 
+        win.removeMenu()
+
+        win.on(&#39;closed&#39;, () =&gt; {  
+
+        })      
+    } )
+
+    app.on(&#39;window-all-closed&#39;, () =&gt; {
+        app.quit(); // 退出electron进程
+    }) 
+**/
+
+//启用远程调试，并自动分配空闲不会冲突的端口
+theApp.remoteDebuggingPort = 0;
+
+//直接打开网页
+theApp.start(&quot;http://bbs.aardio.com&quot;) 
+
+
+import web.socket.chrome;
+var wsRemotetDebugging = web.socket.chrome();
+
+//等待electron打开远程调试服务
+wsRemotetDebugging.waitForConnected();
+
+//使用远程调试端口控制网页
+wsRemotetDebugging.Page.navigate( url = &quot;http://bbs.aardio.com/forum.php?mod=viewthread&amp;tid=11486&amp;from=portal&quot;)
+
+win.loopMessage();
+
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/WebUI/Electron/go.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/WebUI/Electron/go.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/WebUI/Electron/go.md">Markdown 格式</a>
+</body> 
+</html>

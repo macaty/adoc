@@ -1,0 +1,91 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - aardio 调用 Go 语言 - 进程启动参数'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - aardio 调用 Go 语言 - 进程启动参数</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 调用 Go 语言 - 进程启动参数</h1><pre><code class="aardio language-aardio">//aardio 调用 Go 语言 - 进程启动参数
+import golang;
+var go = golang();//创建 Go 编译器（ 仅仅调用编译后的 EXE 不需要 ）
+
+//Go源码与字符串都是 UTF-8 编码，跟 aardio 一样很方便
+go.main  = /****************
+package main
+
+import (
+    &quot;flag&quot;
+    &quot;fmt&quot; 
+    &quot;encoding/json&quot; 
+)
+
+//结构体，字符后的字符串 tag 可用于辅助 JSON 转换。
+type Args struct {
+    Num int  `json:&quot;num&quot;`
+    Url string  `json:&quot;url&quot;`
+    H bool  `json:&quot;h&quot;`
+}
+
+//用于获取命令行参数
+var args = Args{}
+
+//在 main 函数前执行
+func init() { 
+    flag.BoolVar(&amp;args.H, &quot;H&quot;, false, &quot;帮助&quot;)
+    flag.IntVar(&amp;args.Num, &quot;num&quot;, 0, &quot;请输入数值&quot;)
+    flag.StringVar(&amp;args.Url, &quot;url&quot;, &quot;https://www.aardio.com&quot;, &quot;请输入网址&quot;)
+}
+
+func main() {
+    flag.Parse() //解析命令行参数
+
+    if args.H {
+        flag.Usage()
+    } else { 
+        //结构体输出为 JSON
+        var jsonParam, _ = json.Marshal(args) 
+        fmt.Println(string(jsonParam)) 
+    }
+}
+****************/ 
+
+//编译 Go 源码生成 EXE 文件
+go.build(&quot;/.go/flag.go&quot;);
+
+//-------------------------调用 Go 程序-----------------------
+
+import console.int;
+import process.popen;
+import process.job.limitKill;
+
+//打开 Go 进程返回管道对象，路径首字符为单个斜杆或反斜杆表示应用程序根目录。
+var prcs,err = process.popen(&quot;/.go/flag.exe&quot;,{
+    &quot;--num&quot;:123;
+    &quot;--url&quot;:&quot;https://example.com&quot;
+})
+
+//加入作业对象。主进程退出时退出 Go 程序自动退出。
+prcs.assignToJobObject(process.job.limitKill);
+
+//读取 Go 程序输出的 JSON，JSON 后必须有换行符
+var data = prcs.json();
+console.dump(data);
+
+/*
+请参考：
+范例 &gt; 调用其他语言 &gt; Go &gt; RPC
+范例 &gt; 进程 &gt; 管道
+*/
+
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/Go/flag.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/Go/flag.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Languages/Go/flag.md">Markdown 格式</a>
+</body> 
+</html>

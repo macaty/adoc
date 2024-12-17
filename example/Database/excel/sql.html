@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - access 库 - SQL 操作 Excel'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - access 库 - SQL 操作 Excel</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: access 库 - SQL 操作 Excel</h1><pre><code class="aardio language-aardio">//access 库 - SQL 操作 Excel
+import access;//仅使用系统组件,不需要安装 Access / Excel
+//import access.oleDb; //导入此库支持 *.xlsx ，可按需安装 Microsoft.Ace.OLEDB.16 驱动。
+
+//可自动创建文件，系统自带驱动可支持 *.xls 文件 Excel 8.0( 97-2003 )  格式。
+var db,err = access( &quot;/test.xls&quot;) 
+
+/* 
+//默认自动配置连接参数，但也可以如下显式指定参数
+var db,err = access( &quot;/test.xlsx&quot;,
+    {  
+        [&quot;Provider&quot;] = &quot;Microsoft.Ace.OLEDB.16.0&quot;; 
+        [&quot;Extended Properties&quot;] = &quot;Excel 12.0 Xml;HDR=YES&quot;; //XML 格式版本只有 12.0，不存在 16.0 
+    }  
+)
+
+关于列数据类型不统一时值丢失或字符串被截断,或使用 Excel 源的其他问题,可参考以下链接：
+https://learn.microsoft.com/zh-cn/sql/integration-services/data-flow/excel-source?view=sql-server-ver16
+http://www.connectionstrings.com/excel/
+*/
+
+//创建表 
+if( ! db.existsTable( &quot;sheet1&quot; ) ){
+    db.exec(&quot;CREATE TABLE sheet1 (username VARCHAR(255),comment MEMO,num double )&quot;);
+}
+
+//插入数据,注意访问excel里的表名后面加$并用放到方括号里
+db.exec( &quot;INSERT INTO [sheet1$](username,comment,num)values(&#39;aardio&#39;,&#39;www.aardio.com&#39;,123)&quot;);
+
+//查询
+import console;
+for(rs in db.each(&quot;SELECT * FROM [sheet1$]&quot;) ){  
+    console.log( rs(&quot;username&quot;).value );
+    console.log( rs(&quot;comment&quot;).value );
+    console.log( rs(&quot;num&quot;).value )
+}
+
+//关闭数据库
+db.close();
+console.pause();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Database/excel/sql.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Database/excel/sql.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Database/excel/sql.md">Markdown 格式</a>
+</body> 
+</html>

@@ -1,0 +1,83 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - aardio 通过进程管道调用 PowerShell'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - aardio 通过进程管道调用 PowerShell</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 通过进程管道调用 PowerShell</h1><pre><code class="aardio language-aardio">//aardio 通过进程管道调用 PowerShell
+import console.int;
+import process.popen;
+
+/*
+调用 PowerShell.exe 执行 PowerShell 命令，
+参数说明请参考 https://learn.microsoft.com/powershell/module/microsoft.powershell.core/about/about_powershell_exe
+*/
+var ps = process.popen.ps(&quot;-Command&quot;,&quot;Write-Output $PSVersionTable.PSVersion&quot;); 
+
+//这样写为之个参数也可以
+var ps = process.popen.ps(&quot;-Command&quot;,&quot;Write-Output&quot;,&quot;$PSVersionTable.PSVersion&quot;); 
+
+/*
+传多个命令行参数时，
+单个参数如果首尾没有双引号，且包含空白字符、双引号等需要转义的字符，
+aardio 会自动在首尾添加双引号并进行尾要的转义。
+
+将 PowerShell 命令首尾用 { } 包起来，表示这是一个 PowerShell 语句。 
+最前面再加上 &amp; 表示执行 PowerShell 语句。
+
+这时候因为在 { } 内部的双引号并没有出现在参数首尾，
+aardio 就会自动处理命令行参数转义并再次在参数首尾添加双引号。
+PowerShell 就可以得到正确参数。
+*/
+var ps = process.popen.ps(`-Command`,`&amp;{Get-FileHash &quot;` + io._exepath + `&quot;}`);
+
+/*
+返回的 ps 是 process.popen 对象，提供大量读写与操作进程管道的函数。
+例如直接读取 PowerShell 进程全部输出：
+*/
+//var str = ps.readAll();
+
+//自动输出到控制台
+ps.logResponse(); //也可以输出到文本框 ps.logResponse(winform.edit)
+
+//将 PowerShell 输出转换为 JSON
+var ps  = process.popen.ps(`-Command`,`&amp;{
+    # PowerShell 会将仅用大括号包含的 PowerShell 作为字符串输出​，
+    # 在前面加上一个 &amp; 字符才会执行该语句块。
+
+    # PowerShell 2.0 不支持 ConvertTo-Json，这里先打个补丁
+    # Win10/Win11 已经自带 PowerShell 5.x，如果不想支持古老的 Win7，这段兼容代码可以不加。
+    if ($PSVersionTable.PSVersion.Major -lt 3){
+        Add-Type -assembly system.web.extensions
+        function ConvertTo-Json([object] $item){ 
+            $jss=New-Object system.web.script.serialization.javascriptSerializer
+            return $jss.Serialize($item)
+        }
+    };
+
+    function Get-Version {
+        ConvertTo-Json( $PSVersionTable.PSVersion )
+    }
+
+    Get-Version
+
+}`);
+
+//读取进程 JSON 输出 
+var psVersion = ps.jsonAll() 
+
+console.dump(psVersion);
+console.pause();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/PowerShell/process.popen.ps.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/PowerShell/process.popen.ps.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Languages/PowerShell/process.popen.ps.md">Markdown 格式</a>
+</body> 
+</html>

@@ -1,0 +1,120 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - py3.pip 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - py3.pip 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>py3.pip 库模块帮助文档</h1>
+
+<p><details>  <summary>参考文档</summary>  <p>
+<a href="javascript:if(confirm('https://pip.pypa.io/en/stable/cli/pip_install/  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='https://pip.pypa.io/en/stable/cli/pip_install/'" tppabs="https://pip.pypa.io/en/stable/cli/pip_install/">https://pip.pypa.io/en/stable/cli/pip_install/</a>
+</p></details></p>
+
+<p><a id="py3"></a></p>
+
+<h2>py3 成员列表</h2>
+
+<p><a id="py3.pip"></a></p>
+
+<h3>py3.pip(&quot;install&quot;,&quot;字符串参数&quot;)</h3>
+
+<p>执行 pip 命令，只能在开发环境单独运行。<br>
+可以用一个字符串参数指定多个 pip 参数，用空格分格多个参数，<br>
+也可以传入多个参数由 aardio 自动合并（空格分格参数），<br>
+合并多参数时，单参数含空格或需转义时自动加双引号并自动转义。<br>
+也可以将多个字符串参数放到一个数组里作为调用参数。  </p>
+
+<p>默认安装模块到 &quot;/py/Python+版本号/site-packages&quot; 目录下  </p>
+
+<p>如果不指定任何参数，直接返回 pip 模块对象</p>
+
+<p><a id="py3.pip"></a></p>
+
+<h3>py3.pip()</h3>
+
+<p><a href="#py3ModuleObject">返回对象:py3ModuleObject</a></p>
+
+<p><a id="py3.pip"></a></p>
+
+<h2>py3.pip 成员列表</h2>
+
+<p>aardio 自带绿色版 Python 模块安装工具，<br>
+只能在开发环境中使用。  </p>
+
+<p>导入 py3,py3.10 扩展库后可用，<br>
+其他 Python 环境版本低于 3.7 的扩展库不可用。  </p>
+
+<p>注意只能在导入库时写 py3.10.pip 这种带版本号的库，<br>
+在调用时不能写为 py3.10.pip，应始终写为 py3.pip  </p>
+
+<p>个别模块在安装时调用 python.exe 会导致错误打开 aardio.exe，<br>
+这些模块建议改用 process.python.pip 安装同版本的模块，<br>
+然后复制到/py/site-packages 目录下就可以了</p>
+
+<p><a id="py3.pip.process"></a></p>
+
+<h3>py3.pip.process(&quot;install&quot;,&quot;字符串参数&quot;)</h3>
+
+<p>执行 pip 命令，只能在开发环境单独运行。<br>
+可用一个字符串参数指定多个 pip 参数，空格分隔多个参数，<br>
+也可以传入多个参数由 aardio 自动合并（空格分隔参数），<br>
+合并多参数时，单参数含空格或需转义时自动加双引号并自动转义。  </p>
+
+<p>默认安装模块到 &quot;/py/Python+版本号/site-packages&quot; 目录下</p>
+
+<p><a id="py3.pip.setIndexUrl"></a></p>
+
+<h3>py3.pip.setIndexUrl(&quot;aliyun&quot;)</h3>
+
+<p>设置镜像源。<br>
+参数指定源网址，支持常用镜像源缩写。<br>
+&quot;aliyun&quot; 表示阿里云源，<br>
+&quot;tsinghua&quot; 表示清化源，<br>
+&quot;tencent&quot; 表示腾讯源，<br>
+&quot;douban&quot; 表示豆瓣源</p>
+
+<p><a id="py3.pip.upgrade"></a></p>
+
+<h3>py3.pip.upgrade()</h3>
+
+<p>更新 pip</p>
+
+<p><a id="py3.pip.process"></a></p>
+
+<h2>py3.pip.process 成员列表</h2>
+
+<p>进程外 Python 模块安装工具，<br>
+调用相同版本 python.exe 安装模块。<br>
+适用于安装时会调用 python.exe 创建子进程的 Python 模块。<br>
+避免用 py3.pip 安装模块时重复打开 aardio.exe 且安装失败</p>
+
+<p><a id="py3.pip.process.require"></a></p>
+
+<h3>py3.pip.process.require(&quot;字符串参数&quot;)</h3>
+
+<p>如果没有安装指定的模块，则调用 pip 安装</p>
+
+<p><a id="py3.pip.process.setIndexUrl"></a></p>
+
+<h3>py3.pip.process.setIndexUrl(&quot;aliyun&quot;)</h3>
+
+<p>设置镜像源。<br>
+参数指定源网址，支持常用镜像源缩写。<br>
+&quot;aliyun&quot; 表示阿里云源，<br>
+&quot;tsinghua&quot; 表示清化源，<br>
+&quot;tencent&quot; 表示腾讯源，<br>
+&quot;douban&quot; 表示豆瓣源</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/py3/pip.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/py3/pip.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/py3/pip.md">Markdown 格式</a></p>
+
+</body> 
+</html>

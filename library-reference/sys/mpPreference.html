@@ -1,0 +1,150 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - sys.mpPreference 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - sys.mpPreference 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>sys.mpPreference 库模块帮助文档</h1>
+
+<p><details>  <summary>打开 Defender 设置</summary>  <p>
+raw.execute(&quot;windowsdefender://Threat&quot;);               # Virus &amp; Threat Protection
+raw.execute(&quot;windowsdefender://ThreatSettings&quot;);       # Virus &amp; Threat Protection Settings
+raw.execute(&quot;windowsdefender://Account&quot;);              # Account Protection
+raw.execute(&quot;windowsdefender://Network&quot;);              # Firewall &amp; network Protection
+raw.execute(&quot;windowsdefender://Hardware&quot;);             # Device Security
+raw.execute(&quot;windowsdefender://DeviceSecurity&quot;);       # Device Security
+raw.execute(&quot;windowsdefender://Family&quot;);               # Family Option
+raw.execute(&quot;windowsdefender://AppBrowser&quot;);           # App &amp; Browser Control
+raw.execute(&quot;windowsdefender://Settings&quot;);             # Manage Notifications
+raw.execute(&quot;windowsdefender://History&quot;);              # Protection History
+raw.execute(&quot;windowsdefender://RansomwareProtection&quot;); # Ransomware Protection
+raw.execute(&quot;windowsdefender://ProtectedFolders&quot;);     # Ransomware Protection
+raw.execute(&quot;windowsdefender://SecurityProcessor&quot;);    # Security Processor Details
+raw.execute(&quot;windowsdefender://SecurityProcessorTroubleshooting&quot;); #  Security Processor Troubleshooting
+raw.execute(&quot;windowsdefender://SmartScreenPua&quot;);       # Smart Screen (Reputation Based Protection)
+raw.execute(&quot;windowsdefender://AccountProtection&quot;);    # Account Protection
+raw.execute(&quot;windowsdefender://ExploitProtection&quot;);    # Exploit Protection
+raw.execute(&quot;windowsdefender://exclusions&quot;);           # exclusions
+raw.execute(&quot;windowsdefender://fullscan&quot;);             # Select fullscan
+raw.execute(&quot;windowsdefender://quickscan&quot;);            # Start quickscan </p>
+
+<p>或：
+com.shell.findActivateApp(,&quot;Microsoft.+!SecHealthUI&quot;)
+</p></details></p>
+
+<p><a id="sys.mpPreference"></a></p>
+
+<h2>sys.mpPreference 成员列表</h2>
+
+<p>Windows Defender 设置，<br>
+注意修改 Defender 设置需要管理权限。<br>
+请参考相关扩展库 process.mpCmdRun</p>
+
+<p><a id="sys.mpPreference.add"></a></p>
+
+<h3>sys.mpPreference.add()</h3>
+
+<p>调用 Add-MpPreference 修改 Windows Defender 设置，<br>
+参数 @1 指定包含配置项名值对的表，配置项名称前不必加短横线。<br>
+可用配置项参考 <a href="javascript:if(confirm('https://docs.microsoft.com/en-us/powershell/module/defender/add-mppreference  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='https://docs.microsoft.com/en-us/powershell/module/defender/add-mppreference'" tppabs="https://docs.microsoft.com/en-us/powershell/module/defender/add-mppreference">https://docs.microsoft.com/en-us/powershell/module/defender/add-mppreference</a></p>
+
+<p><a id="sys.mpPreference.addExclusionPath"></a></p>
+
+<h3>sys.mpPreference.addExclusionPath()</h3>
+
+<p>添加一个路径到例外目录列表</p>
+
+<p><a id="sys.mpPreference.disableRealtimeMonitoring"></a></p>
+
+<h3>sys.mpPreference.disableRealtimeMonitoring(true)</h3>
+
+<p>关闭实时保护。<br>
+需要用 thread.trustedInstaller 扩展库获取权限。<br>
+需要事先关闭 Tamper Protection，<br>
+可用 sys.mpPreference.isTamperProtection 函数检测该设置。<br>
+Tamper Protection 只能手动关闭，<br>
+可调用 raw.execute(&quot;windowsdefender://ThreatSettings&quot;) 打开设置页</p>
+
+<p><a id="sys.mpPreference.get"></a></p>
+
+<h3>sys.mpPreference.get()</h3>
+
+<p>调用 Get-MpPreferenc 获取 Windows Defender 设置，<br>
+返回包含配置项名值对的表</p>
+
+<p><a id="sys.mpPreference.getExclusionPaths"></a></p>
+
+<h3>sys.mpPreference.getExclusionPaths()</h3>
+
+<p>获取例外目录列表，返回路径数组,<br>
+可选在参数中指定要添加到返回列表中的路径,<br>
+如果参数中传入的目录或该目录的父目录已经在排除列表中，则自动排除</p>
+
+<p><a id="sys.mpPreference.getThreat"></a></p>
+
+<h3>sys.mpPreference.getThreat()</h3>
+
+<p>返回检测到的威胁的历史记录</p>
+
+<p><a id="sys.mpPreference.getThreatDetection"></a></p>
+
+<h3>sys.mpPreference.getThreatDetection()</h3>
+
+<p>返回所有检测到的威胁明细</p>
+
+<p><a id="sys.mpPreference.isExclusionPath"></a></p>
+
+<h3>sys.mpPreference.isExclusionPath()</h3>
+
+<p>参数指定的路径是否属于例外目录</p>
+
+<p><a id="sys.mpPreference.isRealtimeMonitoring"></a></p>
+
+<h3>sys.mpPreference.isRealtimeMonitoring()</h3>
+
+<p>当前是否开启实时保护</p>
+
+<p><a id="sys.mpPreference.isTamperProtection"></a></p>
+
+<h3>sys.mpPreference.isTamperProtection()</h3>
+
+<p>是否关闭 Tamper Protection<br>
+Tamper Protection 只能手动关闭，<br>
+可调用 raw.execute(&quot;windowsdefender://ThreatSettings&quot;) 打开设置页</p>
+
+<p><a id="sys.mpPreference.remove"></a></p>
+
+<h3>sys.mpPreference.remove()</h3>
+
+<p>调用 Remove-MpPreference 移除 Windows Defender 设置，<br>
+参数 @1 指定包含配置项名值对的表，配置项名称前不必加短横线。<br>
+可用配置项参考 <a href="javascript:if(confirm('https://docs.microsoft.com/en-us/powershell/module/defender/remove-mppreference  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='https://docs.microsoft.com/en-us/powershell/module/defender/remove-mppreference'" tppabs="https://docs.microsoft.com/en-us/powershell/module/defender/remove-mppreference">https://docs.microsoft.com/en-us/powershell/module/defender/remove-mppreference</a></p>
+
+<p><a id="sys.mpPreference.set"></a></p>
+
+<h3>sys.mpPreference.set()</h3>
+
+<p>调用 Set-MpPreferenc 修改 Windows Defender 设置，<br>
+参数 @1 指定包含配置项名值对的表，配置项名称前不必加短横线。<br>
+可用配置项参考 <a href="javascript:if(confirm('https://docs.microsoft.com/en-us/powershell/module/defender/set-mppreference  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='https://docs.microsoft.com/en-us/powershell/module/defender/set-mppreference'" tppabs="https://docs.microsoft.com/en-us/powershell/module/defender/set-mppreference">https://docs.microsoft.com/en-us/powershell/module/defender/set-mppreference</a></p>
+
+<p><a id="sys.mpPreference.setExclusionPaths"></a></p>
+
+<h3>sys.mpPreference.setExclusionPaths()</h3>
+
+<p>修改例外目录列表，参数传入路径数组,<br>
+此函数自动除重</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/sys/mpPreference.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/sys/mpPreference.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/sys/mpPreference.md">Markdown 格式</a></p>
+
+</body> 
+</html>

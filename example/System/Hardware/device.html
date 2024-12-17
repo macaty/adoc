@@ -1,0 +1,75 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 硬件信息'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 硬件信息</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 硬件信息</h1><pre><code class="aardio language-aardio">//硬件信息
+//相关范例: 范例\COM 组件\WMI\获取系统信息;范例\操作系统\系统版本信息
+
+import console; 
+
+import sys.baseBoard;
+console.log(&quot;主板&quot;,sys.baseBoard.getFullName())
+
+import sys.cpu;
+console.log(&quot;CPU:&quot;,sys.cpu.getBrand());
+console.log(&quot;CPU 当前速度:&quot;,sys.cpu.getFrequence(true));
+
+var cpu = sys.cpu.getInfoByWmi()
+console.log(cpu.DeviceID );//CPU
+console.log(cpu.Name);//
+console.log(&quot;CPU 核心数：&quot;+ cpu.NumberOfLogicalProcessors);
+console.log(&quot;CPU 逻辑核心数：&quot;+ cpu.NumberOfLogicalProcessors);
+console.log(&quot;CPU 最大速度：&quot;+ math.round(cpu.MaxClockSpeed/1000,2) + &quot;GHz&quot;);
+console.log(&quot;CPU 当前速度：&quot;+ math.round(cpu.CurrentClockSpeed/1000,2) + &quot;GHz&quot;);
+console.log(&quot;CPU 位宽：&quot; + cpu.AddressWidth);
+console.more()
+
+import sys.mem;
+console.log(&quot;Total Memory:&quot;,sys.mem.getInfo().totalPhys.formatSize);
+
+import sys.display;
+console.log(&quot;Display Adapter:&quot;,sys.display.getAdapter().Description)
+
+import sys.device;
+var devInfo = sys.device(/*&quot;{4d36e96c-e325-11ce-bfc1-08002be10318}&quot;*/,&quot;PCI&quot;);
+for( index,classGuid,deviceDesc in devInfo.each(
+    8/*_SPDRP_CLASSGUID*/,
+    0/*_SPDRP_DEVICEDESC*/
+    ) ){
+    console.log( index,classGuid,deviceDesc );
+}
+
+//查找 USB 网卡
+var devices = sys.device(&quot;{4d36e972-e325-11ce-bfc1-08002be10318}&quot;/*_GUID_DEVCLASS_NET*/,&quot;USB&quot;);
+for( index,classGuid,deviceDesc,hardwareId in devices.each(
+    8/*_SPDRP_CLASSGUID*/,
+    0/*_SPDRP_DEVICEDESC*/,
+    1/*_SPDRP_HARDWAREID*/
+    ) ){ 
+
+    console.log( index,classGuid,deviceDesc,hardwareId[1] );
+}
+
+/*
+相关范例：
+范例\COM 组件\WMI\获取系统信息
+范例\操作系统\硬件信息\查询硬件信息
+*/
+
+console.pause(true);
+
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/System/Hardware/device.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/System/Hardware/device.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/System/Hardware/device.md">Markdown 格式</a>
+</body> 
+</html>

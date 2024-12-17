@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 计数排序'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 计数排序</title> 
+<link rel="stylesheet" href="../../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 计数排序</h1><pre><code class="aardio language-aardio">import console;
+
+/*
+假设 n 个 0 到 k 之间的整数。
+对于每一个输入元素 x ,确定出小于 x 的元素个数 lt ,则 x 可直接放于输出位置 lt + 1 上。
+*/
+
+//计数排序算法
+var countingSort = function( array ,k){
+    array_sorted ={};
+
+    count ={};
+    for(i=0;k ){
+      count[i] = 0;
+    }
+
+    for(i=1;#array;1){
+        count[ array[i] ] = count[ array[i] ] + 1; //count[n] 包含等于n的个数
+
+    }
+
+    //统计位置
+    for(i=1;k;1){
+        count[i] += count[i-1]; //count[i] 包含小于等于i的个数 
+    }
+
+    var n;
+    for(i=#array;1;-1){
+        n = array[i]
+        array_sorted[ count[n] ] = n;
+        count[n]--;//防止相同的元素n再次出现,将计数减一 
+    }
+
+    return array_sorted; 
+}
+
+console.log(&quot;----------------&quot;)
+console.log(&quot;计数排序( 线性时间排序 )&quot;)
+console.log(&quot;----------------&quot;)
+
+var array = {12;3;22;7;6;23;26};
+
+//取出最大的数
+var max = math.max( table.unpack(array) ) ;
+
+//排序
+array = countingSort(array,max  )
+
+//输出结果
+for(i=1;#array;1){
+    console.log( array[i] )
+}
+
+execute(&quot;pause&quot;)
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/aardio/Array/Non-CompareSort/CountingSort.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/aardio/Array/Non-CompareSort/CountingSort.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/aardio/Array/Non-CompareSort/CountingSort.md">Markdown 格式</a>
+</body> 
+</html>

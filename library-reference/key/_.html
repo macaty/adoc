@@ -1,0 +1,289 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - key 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - key 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>key 库模块帮助文档</h1>
+
+<p><a id="key"></a></p>
+
+<h2>key 成员列表</h2>
+
+<p><a id="key.block"></a></p>
+
+<h3>key.block()</h3>
+
+<p>锁定键盘鼠标</p>
+
+<p><a id="key.block"></a></p>
+
+<h3>key.block(false)</h3>
+
+<p>解锁键盘鼠标</p>
+
+<p><a id="key.capsLk"></a></p>
+
+<h3>key.capsLk()</h3>
+
+<p>打开Caps Lock,切找到大写状态</p>
+
+<p><a id="key.capsLk"></a></p>
+
+<h3>key.capsLk(false)</h3>
+
+<p>关闭Caps Lock,切换到小写状态</p>
+
+<p><a id="key.char"></a></p>
+
+<h3>key.char(字符编码)</h3>
+
+<p>直接用编码发送字符,例:<br>
+key.char(65)</p>
+
+<p><a id="key.combine"></a></p>
+
+<h3>key.combine(&quot;CTRL&quot;,&quot;字符串参数&quot;)</h3>
+
+<p>发送组合热键,参数个数不限.<br>
+参数可以是键名字,或者按键的虚拟码(_VK前缀常量)</p>
+
+<p><a id="key.delayDown"></a></p>
+
+<h3>key.delayDown</h3>
+
+<p>每次调用key.down函数的默认时间间隔,默认为5毫秒<br>
+在调用press以及pressEx函数时,按下松开键之间也会按此设定延时</p>
+
+<p><a id="key.delayPress"></a></p>
+
+<h3>key.delayPress</h3>
+
+<p>更改每次击键并松开后的时间间隔,默认为5毫秒</p>
+
+<p><a id="key.delayUp"></a></p>
+
+<h3>key.delayUp</h3>
+
+<p>每次调用key.up函数后的时间间隔,默认为1毫秒</p>
+
+<p><a id="key.down"></a></p>
+
+<h3>key.down()</h3>
+
+<p>发送键按下指令,参数个数不限<br>
+参数可以是键名字,或者按键的虚拟码(_VK前缀常量)</p>
+
+<p><a id="key.extraInfo"></a></p>
+
+<h3>key.extraInfo</h3>
+
+<p>发送消息的自定义附加值<br>
+该值会传入键盘钩子的extraInfo参数</p>
+
+<p><a id="key.getCode"></a></p>
+
+<h3>key.getCode(&quot;字符串参数&quot;)</h3>
+
+<p>返回虚拟键码、是否扩展键</p>
+
+<p><a id="key.getName"></a></p>
+
+<h3>key.getName(vk,ext,noLocation)</h3>
+
+<p>返回虚拟键码对应的键名,<br>
+除参数@vk以外，其他参数为可选参数<br>
+如果@ext为true，允许返回扩展键名，主要指小键盘的回车键<br>
+如果参数@noLocation为true，返回键名不区分左右控制键</p>
+
+<p><a id="key.getState"></a></p>
+
+<h3>key.getState()</h3>
+
+<p>自当前线程消息队列中检测指定按键的是否按下，不一定是物理按键的真实状态。<br>
+仅可用于 U I线程，即使线徎或进程不是前台焦点，函数仍然可以工作，<br>
+对于 NumLk,CapsLk,ScrLk 返回按键的开关状态。</p>
+
+<p><a id="key.getStateX"></a></p>
+
+<h3>key.getStateX()</h3>
+
+<p>返回指定物理按键的的真实按下弹起状态。<br>
+物理按键状态并不一定等于特定界面线程中的按键状态。  </p>
+
+<p>此函数忽略键盘映射，可用于非 UI 线程，<br>
+并且不能用于检测按键开关状态（nmlk,scrlk,capslk）。</p>
+
+<p><a id="key.isCapsLk"></a></p>
+
+<h3>key.isCapsLk()</h3>
+
+<p>判断Caps Lock键是否打开大写状态</p>
+
+<p><a id="key.nmLk"></a></p>
+
+<h3>key.nmLk()</h3>
+
+<p>打开Num Lock(数字键盘功能切换)</p>
+
+<p>关闭Num Lock(数字键盘功能切换)</p>
+
+<p><a id="key.press"></a></p>
+
+<h3>key.press()</h3>
+
+<p>发送按键,参数个数不限<br>
+参数可以是键名字,或者按键的虚拟码(_VK前缀常量)</p>
+
+<p><a id="key.removeLocation"></a></p>
+
+<h3>key.removeLocation()</h3>
+
+<p>对传入的虚拟键码，移除左右控制键的差别,<br>
+返回转换后的虚拟键码，例如_VK_LCTRL转换_VK_为CTRL</p>
+
+<p><a id="key.repeat"></a></p>
+
+<h3>key.repeat(键名或键码,重复次数)</h3>
+
+<p>重复发送指定的击键<br>
+参数可以是键名字,或者按键的虚拟码(_VK前缀常量)</p>
+
+<p><a id="key.repeat"></a></p>
+
+<h3>key.repeat(键名或键码,重复次数,间隔毫秒)</h3>
+
+<p>重复发送指定的击键<br>
+参数可以是键名字,或者按键的虚拟码(_VK前缀常量)</p>
+
+<p><a id="key.scan2v"></a></p>
+
+<h3>key.scan2v()</h3>
+
+<p>参数@1指定的键盘扫描码转换为虚拟码<br>
+如果参数@2为 true，则返回虚拟码区分左手键右手键</p>
+
+<p><a id="key.scrLk"></a></p>
+
+<h3>key.scrLk()</h3>
+
+<p>打开Scroll Lock(翻页键功能切换)</p>
+
+<p><a id="key.scrLk"></a></p>
+
+<h3>key.scrLk(false)</h3>
+
+<p>关闭Scroll Lock(翻页键功能切换)</p>
+
+<p><a id="key.send"></a></p>
+
+<h3>key.send</h3>
+
+<p>发送键名串指定的按键,<br>
+发送按键而非字符串,不区分双字符键,<br>
+发送字符串请改用 key.sendString 函数</p>
+
+<p><a id="key.send"></a></p>
+
+<h3>key.send(&quot;键名串&quot;,延时)</h3>
+
+<p>发送键名串指定的按键<br>
+每个键名都只能使用单个字符,<br>
+此函数发送按键而不是发送字符串,<br>
+键名串包含双字符键上任一字符发送的是相同按键而非对应字符,<br>
+如果打开了输入法,则由输入法确定输入的字符,<br>
+单纯发送字符串请使用 key.sendString 函数（不受输入法影响）<br>
+可选用参数@2指定每次按键之间的延时（以毫秒为单位）</p>
+
+<p><a id="key.sendString"></a></p>
+
+<h3>key.sendString(&quot;字符串参数&quot;)</h3>
+
+<p>发送字符串,支持中英文字符串,<br>
+此函数不受输入法影响直接发送字符</p>
+
+<p><a id="key.sendString"></a></p>
+
+<h3>key.sendString(&quot;字符串参数&quot;,100)</h3>
+
+<p>发送字符串,支持中英文字符串<br>
+并在每次按键添加指定的延时(以毫秒为单位),<br>
+此函数不受输入法影响直接发送字符</p>
+
+<p><a id="key.setState"></a></p>
+
+<h3>key.setState(false,键名或键码)</h3>
+
+<p>设置一个或多个键为松开状态。<br>
+NumLk,CapsLk,ScrLk等键则置为关闭状态。</p>
+
+<p><a id="key.setState"></a></p>
+
+<h3>key.setState(true,键名或键码)</h3>
+
+<p>设置一个或多个键为按下状态。<br>
+NumLk,CapsLk,ScrLk等键则置为开启状态。<br>
+该函数仅影响当前输入队列,外部线程应先调用 winex.attach 共享输入状态</p>
+
+<p><a id="key.up"></a></p>
+
+<h3>key.up()</h3>
+
+<p>发送键弹起指令,参数个数不限<br>
+参数可以是键名字,或者按键的虚拟码(_VK前缀常量)</p>
+
+<p><a id="key.v2scan"></a></p>
+
+<h3>key.v2scan()</h3>
+
+<p>参数@1指定的键盘虚拟码转换为扫描码<br>
+如果参数@2为 true，则返回扫描码区分左手键右手键</p>
+
+<p><a id="key.wait"></a></p>
+
+<h3>key.wait()</h3>
+
+<p>等待指定按键<br>
+参数可以是键名字,或者按键的虚拟码(_VK前缀常量</p>
+
+<p><a id="key.waitUp"></a></p>
+
+<h3>key.waitUp()</h3>
+
+<p>等待一个按下的键放开<br>
+参数可以是键名字,或者按键的虚拟码(_VK前缀常量</p>
+
+<h3>全局常量</h3>
+
+<p><a id="::GetAsyncKeyState()"></a></p>
+
+<h3>::GetAsyncKeyState()</h3>
+
+<p>此 API 在标准库 win 或 key 中声明,<br>
+参数@1使用数值指定虚拟键码,返回值为 16位数值,<br>
+应当使用返回值与 0x8000 做位与运算取最高位,<br>
+最高位表示指定按键是否按下<br>
+用法请参考 key.getStateX 函数源码</p>
+
+<p><a id="::GetKeyState()"></a></p>
+
+<h3>::GetKeyState()</h3>
+
+<p>此 API 在标准库 win 或 key 中声明,<br>
+参数@1使用数值指定虚拟键码,返回值为 16位数值,<br>
+最高位表示指定按键是否按下,最低位表示 NumLk,CapsLk,ScrLk 是否按下<br>
+用法请参考 key.getState 函数源码</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/key/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/key/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/key/_.md">Markdown 格式</a></p>
+
+</body> 
+</html>

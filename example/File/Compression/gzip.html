@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - gzip 解压网页'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - gzip 解压网页</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: gzip 解压网页</h1><pre><code class="aardio language-aardio">//gzip 解压网页
+
+/*
+如果已导入zlib库(解压gzip格式的网页需要用到 zlib.gzCompress 函数),
+inet.http,inet.whttp 在readAll() get() post() 等一次读取全部下载数据的函数中支持自动解压gzip格式数据。
+web.res.client以及继承自web.res.client的库因为使用 inet.http ，所以同样可以导入zlib支持gzip解压。
+
+因为并不是所有程序都一定需要 zlib模块，所以请自行决定是需要添加 import zlib;
+*/
+
+import zlib;
+import inet.http;
+
+import console;
+console.log(&quot;正在下载gzip数据&quot;)
+
+var http = inet.http();
+
+/*
+服务器并不一定理会 Accept-Encoding,
+客户端仍然要在响应HTTP头中读取 Content-Encoding 的值判断返回的压缩格式。
+*/
+var str = http.get(&quot;http://eu.httpbin.org/gzip&quot;,&quot;Accept-Encoding:gzip&quot;); 
+//注意Accept-Encoding:deflate 在服务端、客户端兼容性都不好,一般不会使用
+
+console.log(str);
+console.pause();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/File/Compression/gzip.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/File/Compression/gzip.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/File/Compression/gzip.md">Markdown 格式</a>
+</body> 
+</html>

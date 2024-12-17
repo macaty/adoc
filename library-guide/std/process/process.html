@@ -1,0 +1,390 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - process库'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - process库</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>process库</h1>
+
+<p>process库提供进程管理函数。</p>
+
+<h2>进程</h2>
+
+<ol>
+<li><p>什么是进程</p>
+
+<p>进程( process )是指一个正在执行的程序，一个计算机中的可执行 EXE 文件在运行后创建的程序实例。进程是由进程控制块、程序段、数据段组成。一个进程可以包含若干线程(Thread)，线程可以并发执行。</p></li>
+<li><p>进程ID</p>
+
+<p>进程被创建时，系统会赋给它一个唯一的标识符，这就是进程 ID。系统中运行的其他进程不会有相同的 ID 值，这个值也是可以被使用的，例如父进程可以通过创建子进程时得到的 ID 来和子进程通信。 </p>
+
+<p>在 aardio 中进程 ID 是一个数值。</p></li>
+<li><p>进程句柄</p>
+
+<p>进程对象是一种内核对象，每个内核对象实际上是由内核分配的一块内存，而且只能由内核来访问。这一内存块是一个数据结构，它的成员包含有关于该对象的信息。当调用创建内核对象的函数时，函数返回一个标志该对象的句柄。进程句柄可以被进程中的任意线程使用，可以把它传给各种 WIN32 函数，这样系统就知道想要操纵的是哪一个内核对象.  </p></li>
+</ol>
+
+<p>在 aardio 中进程句柄是一个指针对象。</p>
+
+<ol>
+<li><p>进程对象</p>
+
+<p>aardio 的 process 库提供 process 类可以创建进程控制对象，可以启动进程或打开现有进程，获取进程内核对象的句，并提供一系列管理、控制目标进程的函数。</p></li>
+</ol>
+
+<h2>创建进程对象</h2>
+
+<ol>
+<li><p>函数原型：    </p>
+
+<pre><code class="aardio language-aardio">//无参数返回当前进程对象
+prcs = process() 
+
+//传入进程ID打开已运行的进程对象
+prcs = process( 进程ID ) 
+
+//运行可执行文件,创建新的进程,可选传入任意个数文本参数
+prcs = process( &quot;exe执行2文件路径&quot;,&quot;启动参数1&quot;, &quot;启动参数2&quot; ... ) 
+
+//运行可执行文件,创建新的进程,可选用 startInfo 参数指定启动选项
+prcs = process( &quot;exe执行2文件路径&quot;,启动参数, startInfo)
+</code></pre></li>
+<li><p>函数说明：   </p>
+
+<p>process 是一个类，用于创建进程对象。
+而process 类的构造函数支持动态的参数，有四种用法：</p>
+
+<ul>
+<li>无参数,打开当前进程</li>
+<li>第一个参数指定进程 ID，打开指定进程。</li>
+<li>第一个参数指定可执行文件路径，并可选指定一个或多个字符串参数作为启动参数。如果传入多个启动参数，则包含空格的参数会在首尾加上双引号，并进行适当的转义处理，并最终合并为一个启动参数。</li>
+<li>使用可执行文件路径作为参数，第二个参数为启动参数， 启动参数可以是一个字符串，也可以指定一个参数表对象，参数表可以包含指定命名参数的名值对参数，也可以包含指定多个启动参数的字符串数组，参数表会自动合并为一个参数，带空格的参数首尾会自能加双引号并进行适当的转义处理。 第三个参数可选传入一个表指定启动选项，此表参数可指定 process.STARTUPINFO 结构体， 或者指定 process.STARTUPINFO 结构体的一部分字段。</li>
+</ul></li>
+<li><p>调用示例：   </p>
+
+<pre><code class="aardio language-aardio">import process;
+
+//创建进程并且暂停进程
+var prcs = process(  &quot;请指定程序路径.exe&quot;,,{suspended = true /*启动后停止运行*/} ) 
+
+//继续执行线程 
+thread.resume( prcs.thandle )
+</code></pre></li>
+</ol>
+
+<p>在本文档中,使用 prcs 表示 process 类构造的进程实例。</p>
+
+<h2>进程对象属性</h2>
+
+<p>更多进程属性请参考 <a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/process/_.html  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/process/_.html#processObject'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/process/_.html#processObject">《 process 库参考 》</a> </p>
+
+<ul>
+<li>prcs.id 表示进程ID</li>
+<li>prcs.handle 表示进程句柄</li>
+<li>prcs.tid 表示线程 ID</li>
+</ul>
+
+<h2>prcs.free()</h2>
+
+<ol>
+<li><p>函数原型：   </p>
+
+<p><code>prcs.free()</code></p></li>
+<li><p>函数说明：   </p>
+
+<p>关闭进程对象，指释放进程句柄，并非关闭目标进程(停止运行)。 </p></li>
+</ol>
+
+<h2>prcs.terminate()</h2>
+
+<ol>
+<li><p>函数原型：   </p>
+
+<p><code>prcs.terminate()</code></p></li>
+<li><p>函数说明：   </p>
+
+<p>强制杀除目标进程，使之停止运行。
+这是暴力中断进程，不宜太多使用，因为目标进程没有机会去做退出时释放资源保存数据的操作。 </p>
+
+<p>如果是窗口程序，可尝试调用 prcs.closeMainWindow() 函数关闭进程主窗口能否退出程序。</p></li>
+<li><p>调用示例：</p>
+
+<pre><code class="aardio language-aardio">import process; 
+
+//创建进程对象
+var prcs = process( &quot;目标程序路径.exe&quot;  ) //注意这里必须要是绝对路径
+
+thread.delay(1000)
+
+//杀除进程
+prcs.terminate()
+</code></pre></li>
+</ol>
+
+<h2>prcs.readNumber</h2>
+
+<ol>
+<li><p>函数原型：   </p>
+
+<p><code>num =  prcs.readNumber ( 目标进程内存地址,&quot;原生数据类型&quot; )</code></p></li>
+<li><p>函数说明：   </p>
+
+<p>自目标进程的指定内存地址,读取指定类型据类型的数字值.请参考:<a href="../../builtin/raw/datatype.html" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/builtin/raw/datatype.html">原生数据类型</a></p>
+
+<p>可选的类型有:&quot;int&quot; &quot;byte&quot;,&quot;word&quot;,&quot;long&quot; 以及无符号数值数据 &quot;INT&quot;,&quot;BYTE&quot;,&quot;WORD&quot;,&quot;LONG&quot;。</p></li>
+</ol>
+
+<h2>prcs.writeNumber</h2>
+
+<ol>
+<li><p>函数原型：   </p>
+
+<p><code>prcs.writeNumber ( 目标进程内存地址,要写入的数值,&quot;原生数据类型&quot; )</code></p></li>
+<li><p>函数说明：   </p>
+
+<p>向目标进程的指定内存地址,写入指定类型据类型的数字值.请参考:<a href="../../builtin/raw/datatype.html" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/builtin/raw/datatype.html">原生数据类型</a></p>
+
+<p>可选的类型有:&quot;int&quot; &quot;byte&quot;,&quot;word&quot;,&quot;long&quot;以及无符号数值数据&quot;INT&quot;,&quot;BYTE&quot;,&quot;WORD&quot;,&quot;LONG&quot;。</p></li>
+<li><p>调用示例： </p>
+
+<pre><code class="aardio language-aardio">import process; 
+import fsys; 
+
+//创建进程对象
+var prcs = process( &quot;目标程序路径.exe&quot;  ) //注意这里必须要是绝对路径
+
+var n = prcs.readNumber( 0x101d1,&quot;word&quot; );  //读内存 word 类型数值
+prcs.writeNumber(0x101d1,n,&quot;word&quot;);  //写入内存 word 类型数值
+</code></pre></li>
+</ol>
+
+<h2>prcs.readString</h2>
+
+<ol>
+<li><p>函数原型：   </p>
+
+<p><code>prcs.readString(目标进程内存地址,要读取的字符串长度)</code></p></li>
+<li><p>函数说明：   </p>
+
+<p>自目标进程的指定内存地址，读取指定长度的字符串值。</p></li>
+</ol>
+
+<h2>prcs.writeString</h2>
+
+<ol>
+<li><p>函数原型：   </p>
+
+<p><code>prcs.writeString(目标进程内存地址,要写入的字符串)</code></p></li>
+<li><p>函数说明：   </p>
+
+<p>向目标进程的指定内存地址，写入指定长度的字符串值。</p></li>
+</ol>
+
+<h2>prcs.readStruct</h2>
+
+<ol>
+<li><p>函数原型：   </p>
+
+<p><code>num =  prcs.readStruct ( 目标进程内存地址,结构体 )</code></p></li>
+<li><p>函数说明：   </p>
+
+<p>自目标进程的指定内存地址，读取自定义的 struct 结构体。</p>
+
+<p>参考:</p>
+
+<p><a href="../../builtin/raw/datatype.html" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/builtin/raw/datatype.html">原生数据类型</a></p>
+
+<p><a href="../../builtin/raw/struct.html" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/builtin/raw/struct.html">使用结构体</a></p></li>
+</ol>
+
+<h2>prcs.malloc</h2>
+
+<ol>
+<li><p>函数原型：   </p>
+
+<p><code>addr = prcs.malloc ( 要分配的内存长度,访问类型,分配类型 )</code></p></li>
+<li><p>函数说明：   </p>
+
+<p>在目标进程分配内存，分配类型与访问类型可省略。此函数分配的内存默认可读写、可执行，可以用于写入机器码等。</p>
+
+<p>也可以显式指定分配类型与访问类型(一般无此必要)，访问类型为 <em>PAGE</em> 前缀的常量,而分配类型为 <em>MEM</em> 前缀的常量。</p>
+
+<p>在『开发环境』中输入该前缀可自动显示相关常量。</p></li>
+</ol>
+
+<h2>prcs.mfree</h2>
+
+<ol>
+<li><p>函数原型：   </p>
+
+<p><code>prcs.mfree( 内存地址,释放长度=0,释放类型=0x8000 )</code></p></li>
+<li><p>函数说明：   </p>
+
+<p>该函数用于释放 prcs.malloc 分配的内存地址。
+请注意此函数名字为 memery free 的缩写,首字母 m 表示memery(内存)，注意与 prcs.free() 区别。</p>
+
+<p>第二个参数,第三个参数通常不需要指定。
+如果将第三个参数指定为 0x4000，则仅仅释放指定长度的内存，这种方式释放不彻底，内存页还将存在。一般不应显式指定第二个参数以及第三个参数。</p></li>
+</ol>
+
+<h2>prcs.remoteApi</h2>
+
+<ol>
+<li><p>函数原型：   </p>
+
+<pre><code class="aardio language-aardio">remoteFunc = prcs.remoteApi( 函数原型, 这里是函数地址,调用约定=&quot;stdcall&quot; )
+remoteFunc = prcs.remoteApi( 函数原型, DLL文件名,函数名字,调用约定=&quot;stdcall&quot; )
+</code></pre></li>
+<li><p>函数说明：   </p>
+
+<p>该函数内部实际上是调用 raw.remoteApi，
+所有参数用法与 raw.remoteApi 相同，唯一的区别是不需要使用进程 ID 参数。</p>
+
+<p>请参考: <a href="../../builtin/raw/remoteApi.html" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/builtin/raw/remoteApi.html">raw.remoteApi</a></p>
+
+<p>使用 process 库启动的进程对象可以获取更高的权限，因此推荐使用 prcs.remoteApi 来代替 raw.remoteApi 。</p>
+
+<p>注意：不是所有目标进程能都支持这个功能。</p></li>
+</ol>
+
+<h2>process.execute</h2>
+
+<ol>
+<li><p>函数原型：   </p>
+
+<p><code>process.execute( EXE文件路径, 启动参数=&quot;&quot;,操作类型 = &quot;open&quot;,显示属性,工作目录=&quot;&quot;,调用窗口句柄=0  )</code></p></li>
+<li><p>函数说明：   </p>
+
+<p>运行EXE程序,除第一个参数以外，其他参数可选。
+aardio 应用程序根目录路径，也支持系统目录下的相对路径。
+此函数与 Windows 开始菜单里的&quot;运行&quot;功能类似，在&quot;开始菜单-&gt;运行&quot;中可以输入的指令，在这里也可以直接输入。</p>
+
+<p>第三个参数可选的操作类型:</p>
+
+<ul>
+<li>&quot;edit&quot;<br>
+打开编辑器编辑文档，如果 lpFile 不是一个文档，则这个函数会失败<br></li>
+<li>&quot;explore&quot;<br>
+以 lpFile 为路径打开资源管理器<br></li>
+<li>&quot;find&quot;<br>
+从指定目录开始搜索<br></li>
+<li>&quot;open&quot;<br>
+根据 lpFile 打开对应文件，该文件可以为可执行文件、文档或者文件夹<br></li>
+<li>&quot;print&quot;<br>
+根据 lpFile 打印文档，若lpFile不是一个文档则该函数会失败<br></li>
+<li>&quot;properties&quot;<br>
+显示文件或文件夹的属性</li>
+</ul>
+
+<p>第四个参数:显示属性使用 <code>_SW_</code> 开头的常量,在开发环境中输入 <code>_SW_</code> 会自动提示可用的常量。例如 <code>0/*_SW_HIDE*/</code> 表示隐藏窗口。</p></li>
+<li><p>调用示例 </p>
+
+<pre><code class="aardio language-aardio">import process 
+
+//直接运行,系统程序可以使用相对路径
+process.execute(  &quot;Explorer.exe&quot;,&quot; /select,&quot; + io._exepath )
+</code></pre></li>
+</ol>
+
+<h2>process.executeWait</h2>
+
+<ol>
+<li><p>函数原型：   </p>
+
+<p><code>process.executeWait( EXE文件路径, 启动参数=&quot;&quot;,操作类型 = &quot;open&quot;,显示属性 ,工作目录=&quot;&quot;,调用窗口句柄=0  )</code></p></li>
+<li><p>函数说明：   </p>
+
+<p>此函数与 process.execute用法完全相同，唯一的区别是会等待目标程序关闭再返回。</p></li>
+</ol>
+
+<h2>process.exploreSelect</h2>
+
+<ol>
+<li><p>函数原型：   </p>
+
+<p><code>process.exploreSelect( 文件路径  )</code></p></li>
+<li><p>函数说明：   </p>
+
+<p>打开资源管理器,并选定该文件.</p></li>
+<li><p>调用示例：   </p>
+
+<p>以下示例打开资源管理器，并选定截屏图像文件。</p>
+
+<pre><code class="aardio language-aardio">import process
+import com.picture;
+
+var pic = com.picture.snap()//抓屏 
+pic.Save( &quot;/抓屏.jpg&quot; )
+
+//打开浏览器,选定该文件
+process.exploreSelect(&quot;/抓屏.jpg&quot;)
+</code></pre></li>
+</ol>
+
+<h2>process.kill</h2>
+
+<ol>
+<li><p>函数原型：   </p>
+
+<p><code>process.kill( exe文件名 )</code></p></li>
+<li><p>函数说明：   </p>
+
+<p>根据 EXE 文件名杀除进程。</p></li>
+<li><p>调用示例：   </p>
+
+<pre><code class="aardio language-aardio">import process 
+
+//关闭所有同名进程 
+process.kill( &quot;指定要关闭的执行程序名称.exe&quot; )
+</code></pre></li>
+</ol>
+
+<h2>process.each</h2>
+
+<ol>
+<li><p>函数原型：   </p>
+
+<pre><code class="aardio language-aardio">for processEntry in process.each( exeFileName ) { 
+
+}
+</code></pre></li>
+<li><p>函数说明：   </p>
+
+<p>查找参数 @exeFileName 指定 EXE 文件名的进程，并且循环遍历找到的进程。</p>
+
+<p>查找时支持完全匹配、模式匹配，并且忽略大小写。</p>
+
+<p>参考:</p>
+
+<p><a href="../../builtin/string/patterns.html" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/builtin/string/patterns.html">模式查找语法</a></p>
+
+<p><a href="../../../language-reference/function/enum-and-each.html" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/function/enum-and-each.html">枚举与遍历的区别</a> </p>
+
+<p><a href="../../../language-reference/statements/iterator.html" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/statements/iterator.html">迭代器</a></p></li>
+<li><p>调用示例：   </p>
+
+<pre><code class="aardio language-aardio">import console;
+import process;
+
+for processEntry in process.each( &quot;.*.exe&quot; ) {  
+    console.log(&quot;进程ID&quot;,processEntry.th32ProcessID); 
+    console.log(&quot;进程文件名&quot;, processEntry.szExeFile);
+}
+
+console.pause();
+</code></pre></li>
+</ol>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-guide/std/process/process.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-guide/std/process/process.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/std/process/process.md">Markdown 格式</a></p>
+
+</body> 
+</html>

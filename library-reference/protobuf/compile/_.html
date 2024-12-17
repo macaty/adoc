@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - protobuf.compile 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - protobuf.compile 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>protobuf.compile 库模块帮助文档</h1>
+
+<p><a id="protobuf"></a></p>
+
+<h2>protobuf 成员列表</h2>
+
+<p><a id="protobuf.compile"></a></p>
+
+<h3>protobuf.compile</h3>
+
+<p>Protobuf 编译器。<br>
+aardio 可直接调用标准库中的 protobuf.parser</p>
+
+<p><a id="protobuf.compile"></a></p>
+
+<h3>protobuf.compile(&quot;--help&quot;)</h3>
+
+<p>返回帮助文档</p>
+
+<p><a id="protobuf.compile"></a></p>
+
+<h3>protobuf.compile(&quot;--version&quot;)</h3>
+
+<p>返回版本信息</p>
+
+<p><a id="protobuf.compile"></a></p>
+
+<h3>protobuf.compile()</h3>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html#processPopenObject'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html#processPopenObject">返回对象:processPopenObject</a></p>
+
+<p><a id="protobuf.compile"></a></p>
+
+<h3>protobuf.compile(language,outDir,workDir,...)</h3>
+
+<p>调用 Protobuf 编译 *.proto 文件。<br>
+返回进程输出字符串，错误输出字符串，无错误时只有一个返回值。  </p>
+
+<p>@language 指定语言，例如 &quot;cpp&quot;,&quot;java&quot;,&quot;python&quot;,&quot;csharp&quot;。<br>
+@outDir 指定生成的源码文件输出目录，设为 &quot;.&quot;表示 @workDir 。<br>
+@workDir 指定包含 proto 文件的工作目录或 proto 文件路径（可包含中文）。<br>
+后面可添加不定个数的其他参数，或不定个数 proto 文件名。<br>
+@outDir 或 proto 文件路径可使用相对于@workDir 的路径。<br>
+@outDir 或除 @workDir 以外的 proto 文件路径都不能包含中文，<br>
+这个是 protoc.exe 的限制，只能帮到这里了</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/protobuf/compile/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/protobuf/compile/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/protobuf/compile/_.md">Markdown 格式</a></p>
+
+</body> 
+</html>

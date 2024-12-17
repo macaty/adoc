@@ -1,0 +1,193 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - win.imageList 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - win.imageList 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>win.imageList 库模块帮助文档</h1>
+
+<p><a id="win"></a></p>
+
+<h2>win 成员列表</h2>
+
+<p><a id="win.imageList"></a></p>
+
+<h3>win.imageList()</h3>
+
+<p><a href="#imageListObject">返回对象:imageListObject</a></p>
+
+<p><a id="win.imageList"></a></p>
+
+<h3>win.imageList(句柄)</h3>
+
+<p>通过句柄创建一个 imageList</p>
+
+<p><a id="win.imageList"></a></p>
+
+<h3>win.imageList(宽度,高度)</h3>
+
+<p>创建一个 imageList</p>
+
+<p><a id="win.imageList"></a></p>
+
+<h2>win.imageList 成员列表</h2>
+
+<p>图像列表，<br>
+可用于工具条、树形控件等。  </p>
+
+<p>图像列表默认并不会自适应 DPI 缩放（控件已实现缩放的除外），<br>
+可在窗口或控件的 onDpiChanged 事件内更换不同大小的图像列表。  </p>
+
+<p>建议改用 plus 控件、 win.ui.tabs 等，<br>
+这些控件可以支持适合缩放的字体图标</p>
+
+<p><a id="win.imageList.shell"></a></p>
+
+<h3>win.imageList.shell( <em>SHIL</em> )</h3>
+
+<p>调用SHGetImageList获取系统图像列表</p>
+
+<p><a id="win.imageList.shell"></a></p>
+
+<h3>win.imageList.shell()</h3>
+
+<p><a href="#imageListObject">返回对象:imageListObject</a></p>
+
+<p><a id="imagelistObject"></a></p>
+
+<h2>imagelistObject 成员列表</h2>
+
+<p><a id="imagelistObject.add"></a></p>
+
+<h3>imagelistObject.add</h3>
+
+<p>添加图像</p>
+
+<p><a id="imagelistObject.add"></a></p>
+
+<h3>imagelistObject.add(图像路径,透明色)</h3>
+
+<p>添加图像,<br>
+成功返回自身,失败抛出异常</p>
+
+<p><a id="imagelistObject.addBitmap"></a></p>
+
+<h3>imagelistObject.addBitmap</h3>
+
+<p>添加位图</p>
+
+<p><a id="imagelistObject.addBitmap"></a></p>
+
+<h3>imagelistObject.addBitmap(位图句柄,透明色)</h3>
+
+<p>添加位图,<br>
+成功返回自身,失败抛出异常,<br>
+该函数会复制位图,不会接管或销毁传入的位图<br>
+如果传入的位图句柄不再使用,应使用::DeleteObject销毁</p>
+
+<p><a id="imagelistObject.addIcon"></a></p>
+
+<h3>imagelistObject.addIcon</h3>
+
+<p>添加图标</p>
+
+<p><a id="imagelistObject.addIcon"></a></p>
+
+<h3>imagelistObject.addIcon(图标数据)</h3>
+
+<p>参数可指定图标数据或文件路径,支持资源路径,<br>
+成功返回自身,失败返回null</p>
+
+<p><a id="imagelistObject.destroy"></a></p>
+
+<h3>imagelistObject.destroy()</h3>
+
+<p>删除对象<br>
+这个函数不会被在对象释放时被自动调用,<br>
+应用程序应在图像列表不再使用时调用此函数销毁对象，<br>
+注意treeview控件不负责自动销毁图像列表，<br>
+而listview控件在销毁时负责自动销毁正在使用的图像列表.</p>
+
+<p><a id="imagelistObject.draw"></a></p>
+
+<h3>imagelistObject.draw(索引,hDC,x,y,fStyle)</h3>
+
+<p>绘图</p>
+
+<p><a id="imagelistObject.getIcon"></a></p>
+
+<h3>imagelistObject.getIcon(索引,1/*_ILD_TRANSPARENT*/)</h3>
+
+<p>返回图标句柄<br>
+该句柄应使用 ::DestroyIcon 函数释放</p>
+
+<p><a id="imagelistObject.height"></a></p>
+
+<h3>imagelistObject.height</h3>
+
+<p>高度</p>
+
+<p><a id="imagelistObject.loadIcon"></a></p>
+
+<h3>imagelistObject.loadIcon(资源名,模块ID)</h3>
+
+<p>自图标资源载入图标,<br>
+参数@1可指定资源名或资源ID,<br>
+参数@2可省略,<br>
+成功返回自身,失败返回null</p>
+
+<p><a id="imagelistObject.width"></a></p>
+
+<h3>imagelistObject.width</h3>
+
+<p>宽度</p>
+
+<h3>自动完成常量</h3>
+
+<p>_ILC_COLOR=0<br>
+_ILC_COLOR16=0x10<br>
+_ILC_COLOR24=0x18<br>
+_ILC_COLOR32=0x20<br>
+_ILC_COLOR4=4<br>
+_ILC_COLOR8=8<br>
+_ILC_COLORDDB=0xFE<br>
+_ILC_MASK=1<br>
+_ILC_MIRROR=0x2000<br>
+_ILC_PALETTE=0x800<br>
+_ILC_PERITEMMIRROR=0x8000<br>
+_ILD_ASYNC=0x8000<br>
+_ILD_BLEND25=2<br>
+_ILD_BLEND50=4<br>
+_ILD_DPISCALE=0x4000<br>
+_ILD_IMAGE=0x20<br>
+_ILD_MASK=0x10<br>
+_ILD_NORMAL=0<br>
+_ILD_OVERLAYMASK=0xF00<br>
+_ILD_PRESERVEALPHA=0x1000<br>
+_ILD_ROP=0x40<br>
+_ILD_SCALE=0x2000<br>
+_ILD_TRANSPARENT=1<br>
+_ILS_ALPHA=8<br>
+_ILS_GLOW=1<br>
+_ILS_NORMAL=0<br>
+_ILS_SATURATE=4<br>
+_ILS_SHADOW=2<br>
+_SHIL_EXTRALARGE=2<br>
+_SHIL_JUMBO=4<br>
+_SHIL_LARGE=0<br>
+_SHIL_SMALL=1<br>
+_SHIL_SYSSMALL=3  </p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/imageList.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/imageList.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/imageList.md">Markdown 格式</a></p>
+
+</body> 
+</html>

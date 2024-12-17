@@ -1,0 +1,120 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - RUNAS//网卡切换'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - RUNAS//网卡切换</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: RUNAS//网卡切换</h1><pre><code class="aardio language-aardio">//RUNAS//网卡切换
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;网络连接&quot;;right=537;bottom=206)
+winform.add()
+/*}}*/
+
+if(!_STUDIO_INVOKED){
+    if(!_ARGV.task){
+        import sys.runAsTask;
+        var task = sys.runAsTask(&quot;MyNetworkManager&quot;,&quot;网卡自动切换程序&quot;);
+        task.register(&quot;/task&quot;); 
+
+        win.msgbox(&quot;本程序已设置为登录时自动以管理权限运行（无确认对话框）&quot;);
+        return;
+    }
+}
+
+import inet.connView;
+var wb = inet.connView(winform);
+wb.shellFolderSelectionChanged = function(itemPath,itemName) {  
+
+}
+
+var iconNetWork = ::User32.LoadIconP(::Shell32,18);
+winform.setIcon(iconNetWork);
+
+import win.util.tray;
+winform.tray = win.util.tray(winform,iconNetWork);
+
+winform.onMinimize = function(lParam){ 
+    winform.show(false); //隐藏窗口
+    return true;//阻击默认消息传递,取消最小化过程
+}
+
+import win.ui.menu;
+import sys.networkCards;
+import com.wmi;
+
+reloadNetworkAdapters = function(){
+    winform.popmenu = win.ui.popmenu(winform);
+
+    var adAct,adActMenuId; 
+    for networkCard in sys.networkCards.each(){       
+        var adCur = com.wmi.get(&quot;SELECT * FROM Win32_NetworkAdapter WHERE NetConnectionId =@netConnectionId&quot;,networkCard)
+        if(!adCur){ 
+            continue;       
+        }
+
+        var idCur;
+        idCur = winform.popmenu.add(&#39;切换到：&#39; + networkCard.netConnectionId,function(){
+            if(adAct){  
+                //有些驱动或硬件有问题的网卡，可能要用 process.devcon.disable() 才能禁用 
+                adAct.Disable(); //禁用网卡
+                winform.popmenu.check(adActMenuId,false,0/*_MF_BYCOMMAND*/);
+
+                if(adAct == adCur){
+                    adAct = null;
+                    adActMenuId = null;     
+                    return;
+                }
+            }
+
+            adAct = adCur; 
+            adCur.Enable(); //启用网卡
+
+            adActMenuId = idCur;
+            winform.popmenu.check(adActMenuId,true,0/*_MF_BYCOMMAND*/);
+        }); 
+
+        if(adCur.NetEnabled){
+             adAct = adCur; 
+             adActMenuId = idCur;
+             winform.popmenu.check(idCur,true,0/*_MF_BYCOMMAND*/);
+        }
+    }
+
+    winform.popmenu.add();
+    winform.popmenu.add(&#39;浏览网络连接……&#39;,function(){ 
+        import process;
+        process.explore(&quot;shell:::{7007ACC7-3202-11D1-AAD2-00805FC1270E}&quot;);
+    }); 
+    winform.popmenu.add(&#39;退出&#39;,function(){ winform.close() });    
+}
+
+winform.wndproc = {
+    [0xACCF/*_WM_TRAYMESSAGE*/ ] = function(hwnd,message,wParam,lParam){
+        if( lParam = 0x205/*_WM_RBUTTONUP*/ ){
+            //弹出托盘菜单以前,一定要前置主窗口中,不然不点击菜单不会消失
+            win.setForeground(winform.hwnd)
+            winform.popmenu.popup()
+        }
+        elseif( lParam = 0x203/*_WM_LBUTTONDBLCLK*/ ){
+            winform.show(true);
+        }   
+    }
+}
+
+reloadNetworkAdapters();
+winform.show(true);
+win.loopMessage();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Network/Manage/connections.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Network/Manage/connections.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Network/Manage/connections.md">Markdown 格式</a>
+</body> 
+</html>

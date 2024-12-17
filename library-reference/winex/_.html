@@ -1,0 +1,679 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - winex 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - winex 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>winex 库模块帮助文档</h1>
+
+<p><a id="winex"></a></p>
+
+<h2>winex 成员列表</h2>
+
+<p><a id="winex.attach"></a></p>
+
+<h3>winex.attach</h3>
+
+<p>绑定外部窗口所属线程到当前线程并共享输入处理机制。<br>
+注意此函数会重置键盘状态  </p>
+
+<p>附加输入线程后立即调用 win.setFocus 可能偶尔会无效，可延时至少几十毫秒</p>
+
+<p><a id="winex.attach"></a></p>
+
+<h3>winex.attach(hwndAttach,enabled)</h3>
+
+<p>绑定当前线程到外部窗口所属线程并共享输入处理机制。<br>
+@hwndAttach 指定外部线程的目标窗口句柄<br>
+参数 @enabled 省略或为 true 绑定线程,为 false 取消绑定。<br>
+返回值为是否成功</p>
+
+<p><a id="winex.attach"></a></p>
+
+<h3>winex.attach(hwndAttach,proc)</h3>
+
+<p>执行参数@proc指定的回调函数,<br>
+@hwndAttach 指定外部线程窗口句柄。<br>
+执行回调函数时绑定当前线程到外部窗口所属线程并共享输入处理机制。<br>
+执行完取消绑定，并返回该函数的返回值</p>
+
+<p><a id="winex.attachThread"></a></p>
+
+<h3>winex.attachThread(外部线程ID)</h3>
+
+<p>绑定当前线程到外部线程并共享输入处理机制。<br>
+返回值为是否成功附加。<br>
+注意此函数会重置键盘状态。  </p>
+
+<p>附加输入线程后立即调用 win.setFocus 可能偶尔会无效，可延时至少几十毫秒</p>
+
+<p><a id="winex.attachThread"></a></p>
+
+<h3>winex.attachThread(外部线程ID,false)</h3>
+
+<p>解除附加<br>
+返回值为是否成功解除</p>
+
+<p><a id="winex.click"></a></p>
+
+<h3>winex.click(按钮窗口句柄)</h3>
+
+<p>模拟点击按钮</p>
+
+<p><a id="winex.click"></a></p>
+
+<h3>winex.click(窗口句柄,&quot;菜单标题&quot;,...)</h3>
+
+<p>如果参数@2为字符串,<br>
+或者指定了参数@3,<br>
+则先使用所有传入参数调用 winex.findMenu 查找菜单项,<br>
+如果找到则模拟点击该菜单项</p>
+
+<p><a id="winex.click"></a></p>
+
+<h3>winex.click(窗口句柄,命令ID)</h3>
+
+<p>模拟点击命令</p>
+
+<p><a id="winex.close"></a></p>
+
+<h3>winex.close(输入窗口句柄)</h3>
+
+<p>关闭窗口,发送 _WM_CLOSE 消息<br>
+不等待消息处理完成</p>
+
+<p><a id="winex.closeAndWait"></a></p>
+
+<h3>winex.closeAndWait(输入窗口句柄)</h3>
+
+<p>关闭窗口,发送 _WM_CLOSE 消息<br>
+等待消息处理完成,且不阻塞当前线程消息循环</p>
+
+<p><a id="winex.each"></a></p>
+
+<h3>winex.each(&quot;类名&quot;,&quot;查找标题&quot;)</h3>
+
+<pre><code class="aardio language-aardio">for hwnd,title,threadId,processId in winex.each( &quot;&quot;, &quot;.*/*请输入标题包含字符串  
+可使用模式匹配语法*/&quot; ) {   
+//遍历所有顶层窗口以及UWP应用顶层窗口并查找匹配窗口  
+
+}
+</code></pre>
+
+<p><a id="winex.each"></a></p>
+
+<h3>winex.each(&quot;类名&quot;,&quot;查找标题&quot;,父窗口,超时毫秒)</h3>
+
+<pre><code class="aardio language-aardio">for hwnd,title,threadId,processId in winex.each(&quot;&quot;, ,/*请输入桌面父窗口句柄  
+省略父窗口则父窗口为顶层桌面窗口,*/) {   
+//遍历指定父窗口中的直接子窗口，不含子间接子窗口  
+
+}
+</code></pre>
+
+<p><a id="winex.each"></a></p>
+
+<h3>winex.each()</h3>
+
+<pre><code class="aardio language-aardio">for hwnd,title,threadId,processId in winex.each( /*无参数则返回桌面所有顶层窗口以及UWP应用顶层窗口,  
+可在此输入类名,标题包含字符串  
+可使用模式匹配语法*/ ) {   
+//遍历所有顶层窗口  
+
+}
+</code></pre>
+
+<p><a id="winex.eachFindEx"></a></p>
+
+<h3>winex.eachFindEx</h3>
+
+<p>返回一个迭代器,<br>
+按Z序遍历所有子窗口,支持 UWP 应用窗口,<br>
+迭代器每次遍历返回2个值：找到的子窗口句柄,父窗口句柄</p>
+
+<p><a id="winex.eachFindEx"></a></p>
+
+<h3>winex.eachFindEx(控件类名,控件文本,父窗口)</h3>
+
+<p>查找类名,查找标题都是可选参数，都不支持模式匹配语法,<br>
+省略父窗口句柄遍历全部顶层窗口</p>
+
+<p><a id="winex.eachFindEx"></a></p>
+
+<h3>winex.eachFindEx(控件类名,控件文本,父窗口类名,父窗口标题)</h3>
+
+<p>查找类名,查找标题都是可选参数，都不支持模式匹配语法,<br>
+省略父窗口句柄遍历全部顶层窗口</p>
+
+<p><a id="winex.enum"></a></p>
+
+<h3>winex.enum(onfind)</h3>
+
+<pre><code class="aardio language-aardio">winex.enum(   
+    function(hwnd,depth){  
+        ..io.print( depth/*深度*/,hwnd/*窗口*/,winex.getText(hwnd)/*标题*/ )  
+        /*此函数深度枚举所有窗口(包括窗口的直接子窗口、间接子窗口）,  
+不指定父窗口会枚举所有桌面窗口,以及UWP应用窗口,  
+返回false停止枚举*/  
+    }   
+)
+</code></pre>
+
+<p><a id="winex.enum"></a></p>
+
+<h3>winex.enum(onfind,parent)</h3>
+
+<pre><code class="aardio language-aardio">winex.enum(   
+    function(hwnd,depth){  
+        ..io.print( depth/*深度*/,hwnd/*窗口*/,winex.getText(hwnd)/*标题*/ )  
+        /*此函数深度枚举指定父窗口的所有下级窗口(包括直接子窗口、间接子窗口）,  
+省略父窗口则默认为桌面窗口,  
+返回false停止枚举*/  
+    }   
+    ,父窗口  
+    ,要查找的类名  
+    ,要查找的标题  
+    ,要查找的控件ID  
+)
+</code></pre>
+
+<p><a id="winex.enumTop"></a></p>
+
+<h3>winex.enumTop(onFind,cls,title)</h3>
+
+<pre><code class="aardio language-aardio">winex.enumTop(  
+    function(hwnd){  
+        /*枚举桌面顶层窗口,  
+@onFind 参数为枚举回调函数,  
+@cls 参数指定要查找的类名,不支持模式匹配,可省略,  
+@title 参数指定要查找的标题,不支持模式匹配,可省略  
+
+回调参数 @hwnd 为当前找到的窗口句柄*/  
+    }  
+)
+</code></pre>
+
+<p><a id="winex.find"></a></p>
+
+<h3>winex.find(类名模式串,标题模式串,进程ID,线程ID,超时毫秒)</h3>
+
+<p>查找顶层窗口,所有参数都是可选参数<br>
+可选指定读取窗口文本超时毫秒数<br>
+返回值为：句柄,线程ID,进程ID</p>
+
+<p><a id="winex.findActivate"></a></p>
+
+<h3>winex.findActivate(父窗口标题,控件文本,父窗口类名,控件类名,控件ID,进程ID,第几个匹配控件)</h3>
+
+<p>调用winex.findExists查找并激活包含指定控件窗口的父窗口,所有参数可选<br>
+控件窗口可以是指定父窗口的所有下级窗口(包括直接子窗口,间接子窗口),<br>
+也可以用参数@1指定所有窗口并查找独立窗口,<br>
+返回值为:窗口句柄,控件句柄,线程ID,进程ID</p>
+
+<p><a id="winex.findEx"></a></p>
+
+<h3>winex.findEx</h3>
+
+<p>在指定父窗口内查找子窗口,<br>
+使用句柄指定父窗口,<br>
+使用类名和标题查找子窗口,支持模式匹配</p>
+
+<p><a id="winex.findEx"></a></p>
+
+<h3>winex.findEx(所有窗口句柄, ,窗口模式串,标题模式串,控件ID)</h3>
+
+<p>使用参数@1指定所有窗口,除所有窗口句柄外所有参数可选，<br>
+使用winex.enum枚举指定所有独立窗口,<br>
+并且该窗口的所有窗口为参数@1指定的句柄,<br>
+返回值为句柄</p>
+
+<p><a id="winex.findEx"></a></p>
+
+<h3>winex.findEx(父窗口句柄,第几个匹配,类名模式串,标题模式串,控件ID)</h3>
+
+<p>在指定父窗口内查找子窗口,除父窗口句柄外所有参数可选，<br>
+使用winex.enum枚举指定父窗口的所有下级窗口(包括直接子窗口,间接子窗口),<br>
+返回值为句柄</p>
+
+<p><a id="winex.findEx2"></a></p>
+
+<h3>winex.findEx2</h3>
+
+<p>在指定父窗口内查找并等待子窗口,<br>
+通过类名和标题查找父窗口与子窗口,不支持模式匹配</p>
+
+<p><a id="winex.findEx2"></a></p>
+
+<h3>winex.findEx2(子窗口类名,子窗口标题,父窗口类名,父窗口标题,子窗口进程ID)</h3>
+
+<p>查找指定的子窗口,所有参数不支持模式匹配,<br>
+所有参数都可以省略</p>
+
+<p><a id="winex.findExists"></a></p>
+
+<h3>winex.findExists(父窗口标题,控件文本,父窗口类名,控件类名,控件ID,进程ID,第几个匹配控件)</h3>
+
+<p>查找包含指定控件窗口的父窗口,所有参数可选<br>
+控件窗口可以是指定父窗口的所有下级窗口(包括直接子窗口,间接子窗口),<br>
+也可以用参数@1指定所有窗口并查找独立窗口,<br>
+返回值为:窗口句柄,控件句柄,线程ID,进程ID</p>
+
+<p><a id="winex.findMainWnd"></a></p>
+
+<h3>winex.findMainWnd(类名模式串,标题模式串,进程ID,线程ID,超时毫秒)</h3>
+
+<p>查找独立不属于其他窗口所有的顶层窗口所有参数都是可选参数<br>
+可选指定读取窗口文本超时毫秒数<br>
+返回值为：句柄,线程ID,进程ID</p>
+
+<p><a id="winex.findMenu"></a></p>
+
+<h3>winex.findMenu(窗口句柄,&quot;菜单标题&quot;,...)</h3>
+
+<p>参数@2开始可以指定1个或任意个菜单匹配参数,<br>
+菜单匹配参数可以是菜单项标题,也可以是菜单项序号,<br>
+第一个菜单项序号为1<br>
+找到子菜单则返回子菜单,<br>
+否则返回当前菜单句柄与菜单项命令ID</p>
+
+<p><a id="winex.findSubMenu"></a></p>
+
+<h3>winex.findSubMenu(菜单句柄,&quot;菜单标题&quot;,...)</h3>
+
+<p>参数@2开始可以指定1个或任意个菜单匹配参数,<br>
+菜单匹配参数可以是菜单项标题,也可以是菜单项序号,<br>
+第一个菜单项序号为1<br>
+找到子菜单则返回子菜单,<br>
+否则返回当前菜单句柄与菜单项命令ID</p>
+
+<p><a id="winex.fromClientPoint"></a></p>
+
+<h3>winex.fromClientPoint(窗口句柄,x坐标,y坐标)</h3>
+
+<p>从指定的窗口坐标查找子窗口<br>
+仅子窗口,非叶级窗口</p>
+
+<p><a id="winex.fromClientPoint"></a></p>
+
+<h3>winex.fromClientPoint(窗口句柄,x坐标,y坐标,_CWP_ALL)</h3>
+
+<p>从指定的窗口坐标查找子窗口<br>
+_CWP_ALL指定包含隐藏、禁用控件</p>
+
+<p><a id="winex.fromClientPointReal"></a></p>
+
+<h3>winex.fromClientPointReal(窗口句柄,x坐标,y坐标)</h3>
+
+<p>从指定的窗口坐标查找子窗口<br>
+仅子窗口,非叶级窗口,穿透groupbox。</p>
+
+<p><a id="winex.fromPoint"></a></p>
+
+<h3>winex.fromPoint(x坐标,y坐标)</h3>
+
+<p>从指定的屏幕坐标查找窗口<br>
+获取叶级子窗口，忽略static控件,隐藏或被禁用的控件</p>
+
+<p><a id="winex.fromPointReal"></a></p>
+
+<h3>winex.fromPointReal(x坐标,y坐标)</h3>
+
+<p>从指定的屏幕坐标查找窗口<br>
+获取叶级子窗口,不忽略static控件,可穿透groupbox<br>
+可选在参数@4中_CWP_ALL允许获取隐藏、禁用控件,<br>
+更多选项请参考此函数源码</p>
+
+<p><a id="winex.getCaret"></a></p>
+
+<h3>winex.getCaret()</h3>
+
+<p><a href="../global/_.html#rectObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/global/_.html#rectObject">返回对象:rectObject</a></p>
+
+<p><a id="winex.getCaret"></a></p>
+
+<h3>winex.getCaret(可选指定窗口句柄)</h3>
+
+<p>获取指定参数@1指定句柄的窗口光标区块位置，<br>
+不指定参数获取前台窗口光标区块位置。<br>
+成功返回 ::RECT 结构体，该结构体增加 hwnd 属性存放光标所在窗口句柄。<br>
+失败返回 null  </p>
+
+<p>不是所有窗口都支持，<br>
+winex.caret.get 函数会尝试以更多的方法获取输入光标</p>
+
+<p><a id="winex.getFocus"></a></p>
+
+<h3>winex.getFocus(可选指定父窗口句柄)</h3>
+
+<p>获取输指定参数@1指定句柄的窗口输入焦点所在的控件句柄，<br>
+不指定参数@1获取前台窗口、输入焦点所在的控件句柄。  </p>
+
+<p>如果参数@2为 true 则取不到输入焦点时返回 null，<br>
+否则返回叶级窗口或自身</p>
+
+<p><a id="winex.getText"></a></p>
+
+<h3>winex.getText(窗口句柄,缓冲区长度,超时值)</h3>
+
+<p>取外部程序窗口标题或控件文本,失败或超时返回 null,<br>
+缓冲区长度为可选参数,默认自动获取文本长度<br>
+超时值为可选参数,默认为 500 毫秒</p>
+
+<p><a id="winex.getUiInfo"></a></p>
+
+<h3>winex.getUiInfo()</h3>
+
+<p>获取UI线程窗口焦点,光标等信息<br>
+可选使用参数@1指定目标窗口,省略则默认指定为前景窗口  </p>
+
+<p><a href="#guithreadinfoObject">返回对象:guithreadinfoObject</a></p>
+
+<p><a id="winex.isHung"></a></p>
+
+<h3>winex.isHung</h3>
+
+<p>判断窗口是否失去响应</p>
+
+<p><a id="winex.isHung"></a></p>
+
+<h3>winex.isHung(窗口句柄,超时)</h3>
+
+<p>判断窗口是否失去响应<br>
+超时为可选参数,默认为500毫秒</p>
+
+<p><a id="winex.isUtf16"></a></p>
+
+<h3>winex.isUtf16(窗口句柄)</h3>
+
+<p>判断窗口是否Unicode窗口</p>
+
+<p><a id="winex.isVisible"></a></p>
+
+<h3>winex.isVisible(窗口句柄)</h3>
+
+<p>如果窗口可见并且不是伪装为可见的隐形状态（Cloaked）,<br>
+返回 true,否则不可见返回 flase，隐形返回 null</p>
+
+<p><a id="winex.match"></a></p>
+
+<h3>winex.match(句柄,文本,类名,ID,超时毫秒)</h3>
+
+<p>指定一个窗口句柄,检测是否符合给定参数<br>
+所有参数可选,类名与文本支持模式串,  </p>
+
+<p>可选指定读取窗口文本超时毫秒数,<br>
+超时返回 null 值，否则返回非 null 值</p>
+
+<p><a id="winex.orphanWindow"></a></p>
+
+<h3>winex.orphanWindow(ctrl,hwnd)</h3>
+
+<p>使用 @hwnd 指定句柄的外部窗口作为参数,<br>
+调用 aardio 控件对象的 orphanWindow 函数。<br>
+使外部窗口附加为控件的悬浮影子窗口,<br>
+悬浮影子窗口可将外部进程窗口附加到 @ctrl 并如影随形的自适应缩放调整位置<br>
+此函数同时移除外窗口边框，并附加输入线程</p>
+
+<p><a id="winex.quit"></a></p>
+
+<h3>winex.quit(输入窗口句柄)</h3>
+
+<p>退出程序,发送 _WM_QUIT 消息</p>
+
+<p><a id="winex.removeBorder"></a></p>
+
+<h3>winex.removeBorder()</h3>
+
+<p>移除窗体边框样式,<br>
+参数 @1 指定目标窗口句柄。<br>
+如果参数 @2 为 false 则恢复窗口边框</p>
+
+<p><a id="winex.say"></a></p>
+
+<h3>winex.say(&quot;发送文本&quot;,窗口句柄)</h3>
+
+<p>向指定控件窗口发送Unicode编码文本,<br>
+省略窗口句柄自动获取焦点窗口</p>
+
+<p><a id="winex.sayAnsi"></a></p>
+
+<h3>winex.sayAnsi(&quot;发送文本&quot;,窗口句柄)</h3>
+
+<p>向指定控件窗口发送ANSI编码文本,<br>
+省略窗口句柄自动获取焦点窗口</p>
+
+<p><a id="winex.sayIme"></a></p>
+
+<h3>winex.sayIme(&quot;发送文本&quot;,窗口句柄)</h3>
+
+<p>向指定控件窗口发送Unicode编码文本,<br>
+省略窗口句柄自动获取焦点窗口</p>
+
+<p><a id="winex.sayImeAnsi"></a></p>
+
+<h3>winex.sayImeAnsi(&quot;发送文本&quot;,窗口句柄)</h3>
+
+<p>向指定控件窗口发送ANSI编码文本,<br>
+省略窗口句柄自动获取焦点窗口</p>
+
+<p><a id="winex.sendString"></a></p>
+
+<h3>winex.sendString(&quot;发送文本&quot;,窗口句柄)</h3>
+
+<p>向指定窗口上的文本框发送文本,<br>
+省略窗口句柄自动获取焦点窗口</p>
+
+<p><a id="winex.setText"></a></p>
+
+<h3>winex.setText(窗口句柄,文本)</h3>
+
+<p>修改外部程序窗口标题或控件文本</p>
+
+<p><a id="winex.wait"></a></p>
+
+<h3>winex.wait(父窗口标题,控件文本,父窗口类名,控件类名,控件ID,进程ID,第几个匹配)</h3>
+
+<p>等待指定窗口创建,所有参数可选<br>
+父窗口也可以是所有窗口,参数与winex.findExists相同<br>
+成功返回窗口句柄,控件句柄,线程ID,进程ID,超时返回空值</p>
+
+<p><a id="winex.waitActive"></a></p>
+
+<h3>winex.waitActive(父窗口标题,控件文本,父窗口类名,控件类名,控件ID,进程ID,第几个匹配)</h3>
+
+<p>等待指定窗口激活为前台窗口,所有参数可选<br>
+控件窗口可以是指定父窗口的所有下级窗口(包括直接子窗口,间接子窗口),<br>
+成功返回窗口句柄,控件句柄,线程ID,进程ID,超时返回false</p>
+
+<p><a id="winex.waitActive"></a></p>
+
+<h3>winex.waitActive(窗口句柄)</h3>
+
+<p>等待指定窗口激活为前台窗口,所有参数可选<br>
+成功返回窗口句柄,超时返回false</p>
+
+<p><a id="winex.waitClose"></a></p>
+
+<h3>winex.waitClose(父窗口标题,控件文本,父窗口类名,控件类名,控件ID,进程ID,第几个匹配)</h3>
+
+<p>等待指定窗口关闭,所有参数可选<br>
+成功返回true,超时返回false</p>
+
+<p><a id="winex.waitClose"></a></p>
+
+<h3>winex.waitClose(窗口句柄)</h3>
+
+<p>等待指定窗口关闭,所有参数可选<br>
+成功返回true,超时返回false</p>
+
+<p><a id="winex.waitDelay"></a></p>
+
+<h3>winex.waitDelay</h3>
+
+<p>指定winex库所有wait前缀的等待函数的的检测时间间隔;<br>
+以毫秒为单位,默认为100毫秒</p>
+
+<p><a id="winex.waitEnabled"></a></p>
+
+<h3>winex.waitEnabled(父窗口标题,控件文本,父窗口类名,控件类名,控件ID,进程ID,第几个匹配)</h3>
+
+<p>等待指定窗口启用,所有参数可选<br>
+成功返回窗口句柄,控件句柄,线程ID,进程ID,超时返回false</p>
+
+<p><a id="winex.waitEnabled"></a></p>
+
+<h3>winex.waitEnabled(窗口句柄)</h3>
+
+<p>等待指定窗口启有,所有参数可选<br>
+成功返回窗口句柄,超时返回false</p>
+
+<p><a id="winex.waitEx"></a></p>
+
+<h3>winex.waitEx</h3>
+
+<p>在指定父窗口内查找并等待子窗口,</p>
+
+<p><a id="winex.waitEx"></a></p>
+
+<h3>winex.waitEx(所有窗口句柄, ,窗口模式串,标题模式串,控件ID)</h3>
+
+<p>使用参数@1指定所有窗口,除所有窗口句柄外所有参数可选，<br>
+使用winex.enum枚举指定所有独立窗口,<br>
+并且该窗口的所有窗口为参数@1指定的句柄,<br>
+返回值为句柄</p>
+
+<p><a id="winex.waitEx"></a></p>
+
+<h3>winex.waitEx(父窗口句柄,第几个匹配,类名模式串,标题模式串,控件ID)</h3>
+
+<p>除父窗口句柄外所有参数可选，<br>
+使用winex.enum枚举指定父窗口的所有下级窗口(包括直接子窗口,间接子窗口),<br>
+返回值为句柄</p>
+
+<p><a id="winex.waitMainWnd"></a></p>
+
+<h3>winex.waitMainWnd</h3>
+
+<p>查询符合条件,并且独立不属于其窗口所有的窗体</p>
+
+<p><a id="winex.waitMainWnd"></a></p>
+
+<h3>winex.waitMainWnd(类名模式串,标题模式串,进程ID,线程ID,最大超时)</h3>
+
+<p>所有参数都是可选参数<br>
+超时以毫秒为单位</p>
+
+<p><a id="winex.waitStyle"></a></p>
+
+<h3>winex.waitStyle(父窗口标题,控件文本,父窗口类名,控件类名,控件ID,进程ID,第几个匹配,指定样式,否定样式)</h3>
+
+<p>等待指定的窗口和控件出现指定样式并且移除否定样式<br>
+控件窗口可以是指定父窗口的所有下级窗口(包括直接子窗口,间接子窗口),<br>
+所有查找参数可选,应至少指定一个选项,<br>
+指定样式或否定样式应至少指定一个.</p>
+
+<p><a id="winex.waitStyle"></a></p>
+
+<h3>winex.waitStyle(窗口句柄,指定样式,否定样式)</h3>
+
+<p>等待指定的窗口和控件出现指定样式并且移除否定样式<br>
+指定样式或否定样式应至少指定一个</p>
+
+<p><a id="winex.waitTimeout"></a></p>
+
+<h3>winex.waitTimeout</h3>
+
+<p>指定winex库所有wait前缀的等待函数的默认超时值<br>
+以毫秒为单位,默认为null表示永不超时.</p>
+
+<p><a id="winex.waitVisible"></a></p>
+
+<h3>winex.waitVisible(父窗口标题,控件文本,父窗口类名,控件类名,控件ID,进程ID,第几个匹配)</h3>
+
+<p>等待指定窗口显示,所有参数可选<br>
+控件窗口可以是指定父窗口的所有下级窗口(包括直接子窗口,间接子窗口),<br>
+父窗口也可以是所有窗口,参数与winex.findExists相同,<br>
+成功返回窗口句柄,控件句柄,线程ID,进程ID,超时返回false</p>
+
+<p><a id="winex.waitVisible"></a></p>
+
+<h3>winex.waitVisible(窗口句柄)</h3>
+
+<p>等待指定窗口显示,所有参数可选<br>
+成功返回窗口句柄,超时返回false</p>
+
+<p><a id="guithreadinfoObject"></a></p>
+
+<h2>guithreadinfoObject 成员列表</h2>
+
+<p><a id="guithreadinfoObject.flags"></a></p>
+
+<h3>guithreadinfoObject.flags</h3>
+
+<p>窗口状态 <em>GUI</em> 前缀常量</p>
+
+<p><a id="guithreadinfoObject.hwndActive"></a></p>
+
+<h3>guithreadinfoObject.hwndActive</h3>
+
+<p>活动窗口</p>
+
+<p><a id="guithreadinfoObject.hwndCapture"></a></p>
+
+<h3>guithreadinfoObject.hwndCapture</h3>
+
+<p>捕获鼠标事件窗口</p>
+
+<p><a id="guithreadinfoObject.hwndCaret"></a></p>
+
+<h3>guithreadinfoObject.hwndCaret</h3>
+
+<p>光标所在窗口</p>
+
+<p><a id="guithreadinfoObject.hwndFocus"></a></p>
+
+<h3>guithreadinfoObject.hwndFocus</h3>
+
+<p>键盘输入焦点窗口</p>
+
+<p><a id="guithreadinfoObject.hwndMenuOwner"></a></p>
+
+<h3>guithreadinfoObject.hwndMenuOwner</h3>
+
+<p>拥有活动菜单的窗口</p>
+
+<p><a id="guithreadinfoObject.hwndMoveSize"></a></p>
+
+<h3>guithreadinfoObject.hwndMoveSize</h3>
+
+<p>正在被拖动或调整大小的窗口</p>
+
+<p><a id="guithreadinfoObject.rcCaret"></a></p>
+
+<h3>guithreadinfoObject.rcCaret</h3>
+
+<p>光标位置  </p>
+
+<p><a href="../global/_.html#rectObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/global/_.html#rectObject">返回对象:rectObject</a></p>
+
+<h3>自动完成常量</h3>
+
+<p>_GUI_CARETBLINKING=0x1<br>
+_GUI_INMENUMODE=0x4<br>
+_GUI_INMOVESIZE=0x2<br>
+_GUI_POPUPMENUMODE=0x10<br>
+_GUI_SYSTEMMENUMODE=0x8  </p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/winex/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/winex/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/winex/_.md">Markdown 格式</a></p>
+
+</body> 
+</html>

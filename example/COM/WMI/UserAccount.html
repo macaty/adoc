@@ -1,0 +1,98 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - RUNAS//系统账号管理'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - RUNAS//系统账号管理</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: RUNAS//系统账号管理</h1><pre><code class="aardio language-aardio">//RUNAS//WMI - 系统账号管理
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;账号管理&quot;;right=602;bottom=379;max=false;)
+winform.add(
+btnDisablePasswordExpires={cls=&quot;button&quot;;text=&quot;设为密码永不过期&quot;;left=241;top=322;right=387;bottom=361;z=3};
+btnEnablePasswordExpires={cls=&quot;button&quot;;text=&quot;取消密码永不过期&quot;;left=414;top=322;right=560;bottom=361;z=4};
+btnOpenSetting={cls=&quot;button&quot;;text=&quot;打开系统账号设置&quot;;left=38;top=322;right=184;bottom=361;z=2};
+listview={cls=&quot;listview&quot;;left=22;top=20;right=580;bottom=308;acceptfiles=1;bgcolor=16777215;dl=1;dr=1;edge=1;font=LOGFONT(name=&#39;SimSun&#39;);fullRow=1;gridLines=1;msel=false;z=1}
+)
+/*}}*/
+
+winform.listview.insertColumn(&quot;用户名&quot;,150 )  
+winform.listview.insertColumn(&quot;密码永不过期&quot;,-1 )  
+
+import com.wmi;
+var reload = function(){
+
+    var index = 0;
+    for item in com.wmi.eachProperties(&quot;SELECT * FROM Win32_UserAccount WHERE Status=@status&quot;
+            ,{status=&quot;OK&quot;}) {
+
+        index++;
+
+        if(index&gt;winform.listview.count){
+            winform.listview.addItem({
+                item.Name, 
+                !item.PasswordExpires
+            })  
+        }   
+        else {
+            //原地修改，避免闪烁
+            winform.listview.setItemText({
+                item.Name, 
+                !item.PasswordExpires
+            },index)        
+        } 
+    }
+
+    for(i=winform.listview.count;index+1;-1){
+        winform.listview.delItem(i)
+    } 
+}
+
+import process.control;
+winform.btnOpenSetting.oncommand = function(id,event){
+    process.control(&quot;userpasswords2&quot;);
+}
+
+setPasswordExpires = function(enabled){
+    var selIndex = winform.listview.selIndex;
+    if(!selIndex) return winform.msgboxErr(&quot;请选定要设置的用户!&quot;)
+
+    var name  = winform.listview.getItemText(selIndex,1) 
+    var user  = com.wmi.get(&quot;SELECT * FROM Win32_UserAccount WHERE Name=@name&quot;
+            ,{status=&quot;OK&quot;,name=name})
+
+    if(!user){
+        return winform.msgboxErr(&quot;查询用户失败!&quot;)
+    }
+
+    user.PasswordExpires = enabled;
+    user.Put_();
+    reload();   
+}
+
+
+winform.btnDisablePasswordExpires.oncommand = function(id,event){
+    setPasswordExpires(false);
+}
+
+winform.btnEnablePasswordExpires.oncommand = function(id,event){
+    setPasswordExpires(true);
+}
+
+reload();
+
+winform.show() 
+win.loopMessage();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/COM/WMI/UserAccount.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/COM/WMI/UserAccount.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/COM/WMI/UserAccount.md">Markdown 格式</a>
+</body> 
+</html>

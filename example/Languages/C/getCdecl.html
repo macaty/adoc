@@ -1,0 +1,102 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - aardio 调用 C 语言函数'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - aardio 调用 C 语言函数</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 调用 C 语言函数</h1><pre><code class="aardio language-aardio">//aardio 调用 C 语言函数
+import console;
+import tcc;  
+
+var c = tcc(); 
+c.enableIoPrintf(); //启用 io_print 函数
+
+c.code = /****
+    #include &lt;stdio.h&gt;
+    #include &lt;stdlib.h&gt; 
+
+    //C99 __VA_ARGS__ 默认至少匹配1个参数,匹配0个参数时,需要用 ## 去掉前面的逗号
+    #define dprintf(level, ...) io_printf(__VA_ARGS__) 
+
+    typedef struct {
+        int x;
+        int y;
+    }  Point;
+
+    int helloW (char a,int b, unsigned long long c,Point * ppt,Point pt,double * pd)  
+    {   
+        io_printf(&quot;C语言接收到参数 a: %d b:%d c: %llu ppt-&gt;x: %d ppt-&gt;y:%d pt.x: %d pt.y:%d pd:%g\n&quot;,a,b,c,ppt-&gt;x,ppt-&gt;y,pt.x,pt.y,*pd);
+
+        int n = 10;//变量声明可以放函数中间
+        long long ln = 100;//64位整数(也就是aardio中的long),C99
+        char s[n]; //变长数组,C99 VLA  
+
+        //C99标准引入了Designated Initializers特性使得数组、结构体和联合体的初始化更加灵活和方便。
+        struct { int x, y; } st[10] = { [0].x = 1, [0].y = 2 }; 
+        int tab[10] = { 1, 2, [5] = 5, [9] = 9};
+
+        //C99 compound literal 
+        int *p = (int []){ 1, 2, 3 };
+
+        //GCC 数组初始化 
+        struct { int x, y; } st2 = { x: 1, y: 1};
+        struct { int x, y; } st3 = { .x = 1, .y = 1};
+
+        //GCC case ranges
+        int v = 2;
+        switch(v) {
+            case 1 ... 9:
+                io_printf(&quot;range 1 to 9\n&quot;);
+                break;
+            default:
+                io_printf(&quot;unexpected\n&quot;);
+                break;
+        }
+
+        //GCC __attribute__语句
+        int a2 __attribute__ ( ( aligned(8) ) );
+        //参考: https://bellard.org/tcc/tcc-doc.html
+
+        return 0; 
+    } 
+
+****/ 
+
+//声明C函数，与声明 API 类似
+//https://www.aardio.com/zh-cn/doc/library-guide/builtin/raw/api.html
+var helloW = c.getCdecl(&quot;helloW&quot;,&quot;void(byte a,int b,LONG c,struct ppt,int pt_x,int pt_y,double &amp;pd)&quot;)
+helloW(1,2,3,{int x = 4;int y = 5},6,7,8.1);
+
+//也可以不声明，直接调用C函数，与直接调用 API 的规则相同
+var ret,ppt,pd = c.helloW(
+    1,//小于32位的整型数值可以直接传递，自动兼容
+    2,//32位整型数值可以直接传递,自动兼容
+    math.size64(3), //无符号64位整数，可以传 math.size64 对象
+    {int x = 4;int y = 5}, //aardio 在API参数中传结构体，总是传结构体指针,
+    6,7, //直接在参数中用结构体传值极其罕见，类似这种字段为32位长的结构体字段可以直接展开为多个参数
+    {double v = 8.1} //对等C中的 double * 这种指针，在 aardio 中转换为同类型的结构体指针即可
+);
+console.log( &quot;C函数返回值&quot;, ret )
+
+/*
+如果C函数的参数使用了 double,float 等浮点数值参数（传值，而不是使用指针传址），
+则必须先声明再调用，不声明直接调用无法支持这类参数。
+
+相关文档：
+https://www.aardio.com/zh-cn/doc/library-guide/builtin/raw/directCall.html
+*/
+
+console.pause();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/C/getCdecl.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/C/getCdecl.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Languages/C/getCdecl.md">Markdown 格式</a>
+</body> 
+</html>

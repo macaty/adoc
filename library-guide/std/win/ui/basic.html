@@ -1,0 +1,127 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - 窗口程序入门指南'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - 窗口程序入门指南</title> 
+<link rel="stylesheet" href="../../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>窗口程序入门指南</h1>
+
+<h2>窗口程序基础知识</h2>
+
+<h3>一、理解窗口应用程序执行流程</h3>
+
+<ol>
+<li><p>界面线程(一般也是主线程)的主消息循环由 win.loopMessage 启动,
+窗口应用程序有且只能有一个 win.loopMessage()，使用 win.loadForm() 或者 winform.loadForm() 加载。
+窗体代码文件时会自动忽略重复启动消息循环的 win.loopMessage() 调用。</p></li>
+<li><p>所有非模态、非 MessageOnly 的独立窗口（ 或 mainForm 窗口 ）都关闭后，
+将会自动调用 win.quitMessage() 终止 win.loopMessage 创建的消息循环（通常也就是退出界面线程）。</p></li>
+<li><p>使用 winform.doModal() 创建模态窗口, 模态窗口会禁用所有者窗口（也就是背景窗口）直到模态窗口关闭。
+模态窗口不能是子窗口（禁用父窗口就是禁用自己）。模态窗口创建独立的消息循环阻塞调用代码继续向后执行
+直到模态窗口退出,而调用 winform.show() 显示的非模态窗口不会阻塞调用代码向后执行。</p></li>
+</ol>
+
+<p>请参考： <a href="../_.html#loopMessage" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/std/win/_.html#loopMessage">启动与退出窗口消息循环</a></p>
+
+<h3>二、aardio 工程内如何加载代码文件</h3>
+
+<ol>
+<li><p>在工程中加载其他代码文件时可使用 loadcodex 函数,例如：loadcodex(&quot;/res/x.aardio&quot;) 在工程中
+加载 aardio 代码文件时,路径应当总是使用斜杠字符开始的应用程序根目录相对路径。可以在工程管理器
+中右键点击代码文件,在弹出菜单中点击【复制路径】。</p></li>
+<li><p>如果加载窗体代码文件可以使用 win.loadForm(&quot;/dlg/winform.aardio&quot;) 。
+win.loadForm 会忽略 win.loopMessage() 。加载的窗体如果没有返回非空值,则默认返回创建的窗体对象。</p></li>
+<li><p>也可以使用窗体对象加载另一个窗体,例如 <code>winfrom.loadForm(&quot;/dlg/frmChild.aardio&quot;)</code>,<br>
+winfrom.loadForm 的作用与 win.loadForm 相同，但是会自动把 winfrom 指定为被加载窗体的父窗口(或所有者窗口)。
+在工程管理器中拖动窗体文件到父窗口代码内会自动生成此代码。</p></li>
+<li><p>可以在标准库、用户库中创建名字空间、类、窗口类，并使用 import 语句加载。</p></li>
+</ol>
+
+<h2>理解窗口间的关系</h2>
+
+<h3>一、包含关系（整体局部关系）</h3>
+
+<p>也就是父/子窗口关系（ parent/child 关系）,</p>
+
+<ol>
+<li>父窗口包含子窗口，子窗口显示在父窗口客户区内部。</li>
+<li>这种嵌入式子窗口拥有CHILD样式，只能作为内部子窗口被包含在父窗口内部。</li>
+<li>移动父窗口，子窗口必然被移动，因为他们是整体局部的包含关系。</li>
+<li>父窗口销毁时，子窗口都会被销毁。</li>
+</ol>
+
+<h3>二、下属关系（责任归属关系）</h3>
+
+<p>也就是所有者窗口/下属窗口关系（ owner/owned 关系），消息对话框(msgbox)就是最常见的下属窗口。
+传统说法如“所有窗口他所有的窗口”不好理解，在 aardio 中我们把 owned 窗口称为“下属窗口”以避免混淆。</p>
+
+<p>1、下属窗口(owned window)总是显示在所有者窗口（owner window）前面。
+2、下属窗口都是外部独立窗口，不使用CHILD样式，可独立显示在所有者窗口外部。
+3、移动所有者窗口，下属窗口不会跟着移动，窗口仍然是各自独立显示的。
+4、所有者窗口销毁时，下属窗口也会销毁。</p>
+
+<p>这种独立窗口间的归属关系实际上是一种独立窗口间的父子关系，
+因此所有者窗口也经常被称为父窗口，下属窗口也常常被称为外部子窗口，新手容易混淆。
+aardio 标准库对这些接口重新整理并进行了规范命名,提供了win.getOwner() win.setOwner() 
+win.getParent() win.setParent() 等标准库函数。</p>
+
+<p>aardio 中还有一种 orphanWindow 比较特别，orphanWindow 实际上是独立的下属窗口，
+但是他又会自动跟随所有者窗口（owner window）移动，从而模拟出嵌入式子窗口的效果。</p>
+
+<h2>如何加载子窗口</h2>
+
+<h3>一、使用 winform.loadForm 函数加载子窗口</h3>
+
+<p>例如 mainForm是父窗口， &quot;/dlg/frmChild.aardio&quot; 是要加载的子窗口。
+我们只要在工程中将 &quot;/dlg/frmChild.aardio&quot; 往 mainForm 的源代码一拖就可以生成下面的加载代码了：</p>
+
+<pre><code class="aardio language-aardio">var frmChild = mainForm.loadForm(&quot;/dlg/frmChild.aardio&quot;)
+</code></pre>
+
+<p>这时候如果子窗口 frmChild 指定了 child 样式就会作为嵌入式子窗口显示在父窗口内部。
+否则就会作为独立的下属窗口(外部子窗口)独立显示在所有者窗口前面。</p>
+
+<p>下属窗口(外部子窗口)有两种显示模式</p>
+
+<ol>
+<li>调用 winform.show() 显示的非模态窗口，不阻塞调用代码向后执行。</li>
+<li>调用 winform.doModal() 显示的模态窗口，模态窗口会创建独立的消息循环
+并禁用上级所有者窗口(即背景窗口),阻塞调用代码向后执行直到窗口关闭。</li>
+</ol>
+
+<p>child 样式的嵌入式子窗口不能显示为模态窗口，这样既没意义也会因为禁用父窗口而禁用自身。</p>
+
+<h3>二、使用 tab 选项卡控件可以加载并管理多个子窗口：</h3>
+
+<p>例如我们窗口上有名为 winform.tab 的选项卡控件，则使用 
+winform.tab.loadForm(&quot;/dlg/tab-page1.aardio&quot;) 加载子窗口。
+使用这种方式加载的是嵌入式子窗口,会自动把窗口修改为 child 样式。
+win.ui.tabs 实现的高级选项卡可实现类似功能。</p>
+
+<h3>三、使用 custom 控件加载子窗口，有3种方法</h3>
+
+<ol>
+<li>使用 custom 控件直接加载嵌入式子窗口，在 custom 的类名中输入子窗口的代码文件路径即可。</li>
+<li>使用 custom 控件的 loadForm 函数载并管理多个嵌入式子窗口，可以结合高级选项卡(win.ui.tabs)使用。</li>
+<li>在 win.ui.ctrl 名字空间下创建控件类库（参考 win.ui.ctrl.custom 等控件的源码），
+使用 import 语句导入自定义的控件类，拖动 custom 控件到界面上并且把类名改为对应的自定义控件类名就可以了。</li>
+</ol>
+
+<h3>四、使用窗口类库加载窗口</h3>
+
+<p>这种窗口类使用 import 导入，通过类构造函数创建窗口。
+标准库中的 win.inputBox 就是这样的窗口类。</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-guide/std/win/ui/basic.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-guide/std/win/ui/basic.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/std/win/ui/basic.md">Markdown 格式</a></p>
+
+</body> 
+</html>

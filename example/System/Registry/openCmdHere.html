@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 注册表操作 - 右键菜单添加打开命令行'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 注册表操作 - 右键菜单添加打开命令行</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 注册表操作 - 右键菜单添加打开命令行</h1><pre><code class="aardio language-aardio">//注册表操作 - 右键菜单添加打开命令行
+import win;
+import win.reg;
+import win.version;
+
+/*
+友情提醒：在资源管理器的地址栏直接输入&quot;cmd&quot;后回车，也可以在当前目录打开命令行
+*/
+if(win.version.isWin10Later){
+    var reg = win.reg(&quot;HKEY_CURRENT_USER\Software\Classes\Directory\Background\shell\OpenCmdHere&quot;)
+    reg.setSzValue(&quot;&quot;,&quot;在此处打开命令行窗口&quot;)
+    reg.setSzValue(&quot;Extended&quot;,&quot;&quot;) //在资源管理器按Shift并按右键才出来
+
+    var reg = win.reg(&quot;HKEY_CURRENT_USER\Software\Classes\Directory\Background\shell\OpenCmdHere\command&quot;)
+    reg.setSzValue(&quot;&quot;,&quot;cmd.exe -noexit -command Set-Location -literalPath &#39;%V&#39;&quot;)    
+}
+
+var reg = win.reg(&quot;HKEY_CURRENT_USER\Software\Classes\Directory\Background\shell\runas&quot;)
+reg.setSzValue(&quot;&quot;,&quot;在此处打开命令行窗口(管理员)&quot;)
+reg.setSzValue(&quot;HasLUAShield&quot;,&quot;&quot;)  //显示盾牌图标
+reg.setSzValue(&quot;Extended&quot;,&quot;&quot;)  //在资源管理器按Shift并按右键才出来
+
+var reg = win.reg(&quot;HKEY_CURRENT_USER\Software\Classes\Directory\Background\shell\runas\command&quot;)
+reg.setSzValue(&quot;&quot;,&#39;cmd.exe /s /k pushd \&quot;%V\&quot;&#39;);
+
+win.msgbox(&quot;已添加菜单&quot;)
+
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/System/Registry/openCmdHere.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/System/Registry/openCmdHere.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/System/Registry/openCmdHere.md">Markdown 格式</a>
+</body> 
+</html>

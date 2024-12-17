@@ -1,0 +1,297 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - wsock.tcp.asynServer 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - wsock.tcp.asynServer 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>wsock.tcp.asynServer 库模块帮助文档</h1>
+
+<p><a id="tcpasynServerObject"></a></p>
+
+<h2>tcpasynServerObject 成员列表</h2>
+
+<p><a id="tcpasynServerObject._beforeStop"></a></p>
+
+<h3>tcpasynServerObject._beforeStop</h3>
+
+<pre><code class="aardio language-aardio">tcpasynServerObject._beforeStop = function(){
+    /*服务端关闭以前触发  
+此回调函数是标准库保留接口  
+用户不应使用此回调*/
+}
+</code></pre>
+
+<p><a id="tcpasynServerObject._onClientClosed"></a></p>
+
+<h3>tcpasynServerObject._onClientClosed</h3>
+
+<pre><code class="aardio language-aardio">tcpasynServerObject._onClientClosed = function(hSocket){
+    /*客户端连接已经关闭时触发  
+此函数在连接断开后一定会被触发  
+此回调函数是标准库保留接口  
+用户不应使用此回调*/
+}
+</code></pre>
+
+<p><a id="tcpasynServerObject.acceptCount"></a></p>
+
+<h3>tcpasynServerObject.acceptCount</h3>
+
+<p>当前连接数,不可改动该值</p>
+
+<p><a id="tcpasynServerObject.beforeStop"></a></p>
+
+<h3>tcpasynServerObject.beforeStop</h3>
+
+<pre><code class="aardio language-aardio">tcpasynServerObject.beforeStop = function(){
+    /*服务端关闭以前触发*/
+}
+</code></pre>
+
+<p><a id="tcpasynServerObject.bind"></a></p>
+
+<h3>tcpasynServerObject.bind(IP,端口)</h3>
+
+<p>绑定 IP 与端口。<br>
+应当由 start 函数自动调用此函数。</p>
+
+<p><a id="tcpasynServerObject.clearKeepAliveTimeout"></a></p>
+
+<h3>tcpasynServerObject.clearKeepAliveTimeout()</h3>
+
+<p>关闭所有超出keepAliveTimeout限制的超时连接<br>
+在连接超出最大连接数时,此函数会被自动调用</p>
+
+<p><a id="tcpasynServerObject.client"></a></p>
+
+<h3>tcpasynServerObject.client()</h3>
+
+<p><a href="asynClient.html#tcpaclientObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/wsock/tcp/asynClient.html#tcpaclientObject">返回对象:tcpaclientObject</a></p>
+
+<p><a id="tcpasynServerObject.client"></a></p>
+
+<h3>tcpasynServerObject.client(hSocket)</h3>
+
+<p>用于获取客户端套接字对应的客户端对象</p>
+
+<p><a id="tcpasynServerObject.clientBufferSize"></a></p>
+
+<h3>tcpasynServerObject.clientBufferSize</h3>
+
+<p>客户端套接字读写缓冲区大小，默认为1MB<br>
+缓冲区如果设置的太小，会导致过于频繁的调用读写函数</p>
+
+<p><a id="tcpasynServerObject.getLocalIp"></a></p>
+
+<h3>tcpasynServerObject.getLocalIp()</h3>
+
+<p>返回当前绑定的IP,端口号</p>
+
+<p><a id="tcpasynServerObject.getRemoteIp"></a></p>
+
+<h3>tcpasynServerObject.getRemoteIp(hSocket)</h3>
+
+<p>返回客户端IP地址,端口</p>
+
+<p><a id="tcpasynServerObject.isClosed"></a></p>
+
+<h3>tcpasynServerObject.isClosed(hSocket)</h3>
+
+<p>连接是否已关闭</p>
+
+<p><a id="tcpasynServerObject.isConnected"></a></p>
+
+<h3>tcpasynServerObject.isConnected(hSocket)</h3>
+
+<p>是否已连接并准备就绪</p>
+
+<p><a id="tcpasynServerObject.keepAliveTimeout"></a></p>
+
+<h3>tcpasynServerObject.keepAliveTimeout</h3>
+
+<p>最大保持连接时间,以秒为单位,<br>
+负数表示不限时间</p>
+
+<p><a id="tcpasynServerObject.listen"></a></p>
+
+<h3>tcpasynServerObject.listen(请求队列大小)</h3>
+
+<p>监听构造函数绑定的 IP 端口，成功返回 true 。<br>
+已自动调用此函数。</p>
+
+<p><a id="tcpasynServerObject.maxConnection"></a></p>
+
+<h3>tcpasynServerObject.maxConnection</h3>
+
+<p>最大连接数</p>
+
+<p><a id="tcpasynServerObject.onClientClosed"></a></p>
+
+<h3>tcpasynServerObject.onClientClosed</h3>
+
+<pre><code class="aardio language-aardio">tcpasynServerObject.onClientClosed = function(hSocket){
+    /*客户端连接已经关闭时触发  
+此函数在连接断开后一定会被触发*/
+}
+</code></pre>
+
+<p><a id="tcpasynServerObject.onClose"></a></p>
+
+<h3>tcpasynServerObject.onClose</h3>
+
+<pre><code class="aardio language-aardio">tcpasynServerObject.onClose = function(hSocket,err){
+    var client = tcpasynServerObject.client(hSocket);
+
+    /*已断开连接,  
+如果缓冲区中仍然有数据,  
+这个事件可能在其他事件前面触发  
+主动调用close函数立即关闭连接,此事件不会被触发,  
+但onClientClosed事件总会在关闭连接后触发*/ 
+}
+</code></pre>
+
+<p><a id="tcpasynServerObject.onOpen"></a></p>
+
+<h3>tcpasynServerObject.onOpen</h3>
+
+<pre><code class="aardio language-aardio">tcpasynServerObject.onOpen = function(hSocket,err){
+    var client = tcpasynServerObject.client(hSocket);
+
+    /*已连接  
+在这里可以开始发送数据*/ 
+}
+</code></pre>
+
+<p><a id="tcpasynServerObject.onOutOfBandData"></a></p>
+
+<h3>tcpasynServerObject.onOutOfBandData</h3>
+
+<pre><code class="aardio language-aardio">tcpasynServerObject.onOutOfBandData = function(hSocket,err){
+    var client = tcpasynServerObject.client(hSocket);
+
+    /*收到紧急数据  
+即send函数最后一个flag参数设为_MSG_OOB时发送的1字节带外数据*/      
+}
+</code></pre>
+
+<p><a id="tcpasynServerObject.onRead"></a></p>
+
+<h3>tcpasynServerObject.onRead</h3>
+
+<pre><code class="aardio language-aardio">tcpasynServerObject.onRead = function(hSocket,err){
+    var client = tcpasynServerObject.client(hSocket);
+
+    /*收到数据  
+可阻塞读取数据  
+定义了此事件就不应同时定义onReceive事件*/    
+}
+</code></pre>
+
+<p><a id="tcpasynServerObject.onReceive"></a></p>
+
+<h3>tcpasynServerObject.onReceive</h3>
+
+<pre><code class="aardio language-aardio">tcpasynServerObject.onReceive = function(hSocket,err){
+    var client = tcpasynServerObject.client(hSocket);
+
+    /*收到数据  
+仅读取已到达的数据  
+定义了此事件就不应同时定义onRead事件*/   
+}
+</code></pre>
+
+<p><a id="tcpasynServerObject.onSend"></a></p>
+
+<h3>tcpasynServerObject.onSend</h3>
+
+<pre><code class="aardio language-aardio">tcpasynServerObject.onSend = function(hSocket,err){
+    var client = tcpasynServerObject.client(hSocket);
+
+    /*发送数据*/
+}
+</code></pre>
+
+<p><a id="tcpasynServerObject.onStop"></a></p>
+
+<h3>tcpasynServerObject.onStop</h3>
+
+<pre><code class="aardio language-aardio">tcpasynServerObject.onStop = function(err){
+
+
+    /*已停止服务端  
+主动调用stop函数停止服务端时不会触发此事件*/ 
+}
+</code></pre>
+
+<p><a id="tcpasynServerObject.serverAddress"></a></p>
+
+<h3>tcpasynServerObject.serverAddress</h3>
+
+<p>服务端监听地址  </p>
+
+<p><a href="#sockaddrInObject">返回对象:sockaddrInObject</a></p>
+
+<p><a id="tcpasynServerObject.shutdown"></a></p>
+
+<h3>tcpasynServerObject.shutdown()</h3>
+
+<p>断开 TCP 服务端</p>
+
+<p><a id="tcpasynServerObject.start"></a></p>
+
+<h3>tcpasynServerObject.start(IP,端口,请求队列大小)</h3>
+
+<p>启动单线程异步TCP服务端,成功返回true,失败返回null,  </p>
+
+<p>如果不写IP，则默认设为&quot;0.0.0.0&quot;也即监听本机所有IP,访问此服务端也不限制IP<br>
+限制仅本机可以访问建议写127.0.0.1  </p>
+
+<p>端口为0或省略则自动查找1025以后的空闲端口<br>
+注意0-1023为系统通用服务保留端口,<br>
+1024-49151为用户服务端口,其中大约%9已由IANA注册分配<br>
+49152-65535为私有或临时端口</p>
+
+<p><a id="tcpasynServerObject.stop"></a></p>
+
+<h3>tcpasynServerObject.stop()</h3>
+
+<p>关闭 TCP 服务端</p>
+
+<p><a id="tcpasynServerObject.clients"></a></p>
+
+<h2>tcpasynServerObject.clients 成员列表</h2>
+
+<p>这是一个包含所有客户端套接字的表对象<br>
+其中键为套接字句柄,值为 wsock.tcp.asynClient对象</p>
+
+<p><a id="tcpasynServerObject.clients.?"></a></p>
+
+<h3>tcpasynServerObject.clients.?</h3>
+
+<p><a href="asynClient.html#tcpaclientObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/wsock/tcp/asynClient.html#tcpaclientObject">返回对象:tcpaclientObject</a></p>
+
+<p><a id="wsock.tcp"></a></p>
+
+<h2>wsock.tcp 成员列表</h2>
+
+<p><a id="wsock.tcp.asynServer"></a></p>
+
+<h3>wsock.tcp.asynServer()</h3>
+
+<p>创建单线程异步TCP服务端  </p>
+
+<p><a href="#tcpasynServerObject">返回对象:tcpasynServerObject</a></p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/wsock/tcp/asynServer.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/wsock/tcp/asynServer.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/wsock/tcp/asynServer.md">Markdown 格式</a></p>
+
+</body> 
+</html>

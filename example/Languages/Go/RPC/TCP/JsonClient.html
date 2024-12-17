@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - aardio / Go 通过 TCP 连接使用 JSON-RPC 交互'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - aardio / Go 通过 TCP 连接使用 JSON-RPC 交互</title> 
+<link rel="stylesheet" href="../../../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: / Go 通过 TCP 连接使用 JSON-RPC 交互</h1><pre><code class="aardio language-aardio">//aardio 调用 Go 语言 - RPC（TCP） 客户端
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;aardio / Go 通过 TCP 连接使用 JSON-RPC 交互&quot;;right=759;bottom=469)
+winform.add(
+button={cls=&quot;button&quot;;text=&quot;调用 Go 函数&quot;;left=382;top=389;right=678;bottom=427;db=1;dr=1;z=5};
+edit={cls=&quot;edit&quot;;left=19;top=12;right=732;bottom=352;db=1;dl=1;dr=1;dt=1;edge=1;hscroll=1;multiline=1;vscroll=1;z=1};
+editX={cls=&quot;edit&quot;;text=&quot;2&quot;;left=109;top=392;right=185;bottom=424;db=1;dl=1;edge=1;z=2};
+editY={cls=&quot;edit&quot;;text=&quot;3&quot;;left=238;top=392;right=320;bottom=420;db=1;dl=1;edge=1;z=3};
+static={cls=&quot;static&quot;;text=&quot;+&quot;;left=198;top=395;right=230;bottom=420;align=&quot;center&quot;;db=1;dl=1;transparent=1;z=4}
+)
+/*}}*/
+
+if(!io.exist(&quot;/goRpc.exe&quot;))  loadcodex(&quot;/JsonServer.aardio&quot;,true);
+
+import process.rpc.tcpJsonClient;
+var go,err  = process.rpc.tcpJsonClient(&quot;/goRpc.exe&quot;);
+
+winform.onDestroy = function(){ 
+    go.Calculator.Exit(0);//通知 Go 程序退出
+}
+
+winform.button.oncommand = function(id,event){
+
+    //调用 Go 程序提供的函数
+    var rep = go.Calculator.Add({
+        X = tonumber(winform.editX.text);
+        Y = tonumber(winform.editY.text);
+    } )
+
+    if( rep[[&quot;result&quot;]] ){  
+        winform.edit.print( &quot;调用成功&quot;, rep.result )
+    }
+    else {
+        winform.edit.print( rep[[&quot;error&quot;]] )
+    }
+}
+
+winform.show();
+win.loopMessage();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/Go/RPC/TCP/JsonClient.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/Go/RPC/TCP/JsonClient.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Languages/Go/RPC/TCP/JsonClient.md">Markdown 格式</a>
+</body> 
+</html>

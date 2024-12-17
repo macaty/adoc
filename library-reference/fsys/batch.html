@@ -1,0 +1,111 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - fsys.batch 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - fsys.batch 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>fsys.batch 库模块帮助文档</h1>
+
+<p><a id="fsys"></a></p>
+
+<h2>fsys 成员列表</h2>
+
+<p><a id="fsys.batch"></a></p>
+
+<h3>fsys.batch</h3>
+
+<p>批量替换文件数据</p>
+
+<p>创建批处理对象。</p>
+
+<p><a id="fsys.batch"></a></p>
+
+<h3>fsys.batch()</h3>
+
+<p><a href="#fsysBatchObject">返回对象:fsysBatchObject</a></p>
+
+<p><a id="fsys.batch"></a></p>
+
+<h3>fsys.batch(批处理目录,文件名,文件编码)</h3>
+
+<p>创建批处理对象。<br>
+参数 @1 指定目标目录。<br>
+参数 @2 指定文件名，支持通配符，例如 &quot;*.*&quot;，也可以指定文件名数组。<br>
+参数 #2 可选指定 enumText 函数读取文件的默认编码。</p>
+
+<p><a id="fsysBatchObject"></a></p>
+
+<h2>fsysBatchObject 成员列表</h2>
+
+<p><a id="fsysBatchObject.dir"></a></p>
+
+<h3>fsysBatchObject.dir</h3>
+
+<p>设置批处理目录</p>
+
+<p><a id="fsysBatchObject.enumBinary"></a></p>
+
+<h3>fsysBatchObject.enumBinary(回调函数,路径模式匹配串)</h3>
+
+<pre><code class="aardio language-aardio">fsysBatchObject.enumBinary(  
+    function(content,fullpath){   
+        return /*返回 string 类型数据新文件,返回false 终止,返回空忽略*/;   
+    }   
+    /*,可选指定路径模式匹配串,可选指定文件编码*/  
+)
+</code></pre>
+
+<p><a id="fsysBatchObject.enumText"></a></p>
+
+<h3>fsysBatchObject.enumText(回调函数,路径模式匹配串,文件编码)</h3>
+
+<pre><code class="aardio language-aardio">fsysBatchObject.enumText(  
+    function(utf8Text,codepage,fullpath){   
+        var utf8Text,count = string.replace(utf8Text,&quot;@查找字符串&quot;,&quot;替换字符串&quot;);  
+        if(count){  
+            return utf8Text,codepage;/*返回文本与 codepage 以指定内码更新文件。  
+返回值 2 也可返回指定 Unicode 编码的字符串，例如 &quot;UTF-8-NOBOM&quot;。  
+仅返回文本以 UTF-8 编码更新文件,  
+返回 false 终止,返回空忽略*/  
+        }   
+    }   
+)
+</code></pre>
+
+<p><a id="fsysBatchObject.enumTo"></a></p>
+
+<h3>fsysBatchObject.enumTo(回调函数,目标目录,路径模式匹配串)</h3>
+
+<pre><code class="aardio language-aardio">fsysBatchObject.enumTo(  
+    function(dstPath,srcPath){  
+        fsys.copy(srcPath,dstPath);  
+        return /*srcPath 为源文件路径,  
+dstPath 为目标文件路径,  
+此函数根据源目录生成目标目录下相同结构的路径,  
+自动在目标目录下建立相同的子目录结构,  
+得不会复制或删除文件文件  
+返回 false 终止*/    
+    },&quot;/目标目录&quot;  
+)
+</code></pre>
+
+<p><a id="fsysBatchObject.wildcard"></a></p>
+
+<h3>fsysBatchObject.wildcard</h3>
+
+<p>设置批处理文件名掩码<br>
+默认为&quot;*.*&quot;</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/fsys/batch.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/fsys/batch.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/fsys/batch.md">Markdown 格式</a></p>
+
+</body> 
+</html>

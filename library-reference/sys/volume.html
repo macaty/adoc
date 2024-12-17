@@ -1,0 +1,218 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - sys.volume 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - sys.volume 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>sys.volume 库模块帮助文档</h1>
+
+<p><a id="sys.volume"></a></p>
+
+<h2>sys.volume 成员列表</h2>
+
+<p>存储卷相关函数。<br>
+相关库：fsys.drives, sys.storage</p>
+
+<p><a id="sys.volume.deviceDefine"></a></p>
+
+<h3>sys.volume.deviceDefine(文件路径)</h3>
+
+<p>将指定的目录映射为虚拟分区<br>
+成功返回分区路径</p>
+
+<p><a id="sys.volume.deviceDefine"></a></p>
+
+<h3>sys.volume.deviceDefine(文件路径,&quot;Z:&quot;)</h3>
+
+<p>将指定的目录映射为虚拟分区<br>
+成功返回分区路径</p>
+
+<p><a id="sys.volume.deviceRemove"></a></p>
+
+<h3>sys.volume.deviceRemove(&quot;字符串参数&quot;)</h3>
+
+<p>移除分区</p>
+
+<p><a id="sys.volume.getAllDevice"></a></p>
+
+<h3>sys.volume.getAllDevice()</h3>
+
+<p>返回所有设备名</p>
+
+<p><a id="sys.volume.getDeviceName"></a></p>
+
+<h3>sys.volume.getDeviceName(文件路径)</h3>
+
+<p>文件路径转换为设备名</p>
+
+<p><a id="sys.volume.getDriveType"></a></p>
+
+<h3>sys.volume.getDriveType(驱动器路径)</h3>
+
+<p>返回驱动器类型<br>
+以_DRIVE_为前缀的常量表示不同类型</p>
+
+<p><a id="sys.volume.getFreeDrive"></a></p>
+
+<h3>sys.volume.getFreeDrive()</h3>
+
+<p>获取未使用的盘符（自&quot;C:&quot;开始）<br>
+这个函数实际指向 fsys.drives.free 函数</p>
+
+<p><a id="sys.volume.getInfo"></a></p>
+
+<h3>sys.volume.getInfo()</h3>
+
+<p><a href="#volumeinfoObject">返回对象:volumeinfoObject</a></p>
+
+<p><a id="sys.volume.getInfo"></a></p>
+
+<h3>sys.volume.getInfo(分区或完整路径)</h3>
+
+<p>返回分区信息,<br>
+参数可指定盘符或完整文件路径<br>
+盘符可带冒号也可以不带</p>
+
+<p><a id="sys.volume.getLogicalDrives"></a></p>
+
+<h3>sys.volume.getLogicalDrives()</h3>
+
+<p>返回一个包含所可用的逻辑分区盘符的数组,<br>
+盘符以冒号结束  </p>
+
+<p>这个函数实际指向 fsys.drives.get</p>
+
+<p><a id="sys.volume.getPathName"></a></p>
+
+<h3>sys.volume.getPathName(设备名)</h3>
+
+<p>设备名转换为文件路径</p>
+
+<p><a id="sys.volume.getSpaceSize"></a></p>
+
+<h3>sys.volume.getSpaceSize(&quot;C:\&quot;)</h3>
+
+<p>获取分区空间大小, 剩余大小等信息<br>
+参数可以是该驱动器下有效的目录路径</p>
+
+<p><a id="sys.volume.getSpaceSize"></a></p>
+
+<h3>sys.volume.getSpaceSize()</h3>
+
+<p><a href="#valuespacesizeObject">返回对象:valuespacesizeObject</a></p>
+
+<p><a id="sys.volume.maxSpace"></a></p>
+
+<h3>sys.volume.maxSpace(子目录路径)</h3>
+
+<p>将指定的子目录路径转换为空间最大的分区下的完整路径。<br>
+返回转换后的路径</p>
+
+<p><a id="sys.volume.setLabel"></a></p>
+
+<h3>sys.volume.setLabel(&quot;字符串参数&quot;,&quot;卷标&quot;)</h3>
+
+<p>设置区分卷标</p>
+
+<p><a id="valuespacesizeObject"></a></p>
+
+<h2>valuespacesizeObject 成员列表</h2>
+
+<p><a id="valuespacesizeObject.availablePercentage"></a></p>
+
+<h3>valuespacesizeObject.availablePercentage</h3>
+
+<p>有效空间百分比</p>
+
+<p><a id="valuespacesizeObject.avaliableSize"></a></p>
+
+<h3>valuespacesizeObject.avaliableSize</h3>
+
+<p>剩余有效空间大小<br>
+返回值为math.size64对象  </p>
+
+<p><a href="../math/_.html#mathSize64Object" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/math/_.html#mathSize64Object">返回对象:mathSize64Object</a></p>
+
+<p><a id="valuespacesizeObject.freePercentage"></a></p>
+
+<h3>valuespacesizeObject.freePercentage</h3>
+
+<p>剩余空间百分比</p>
+
+<p><a id="valuespacesizeObject.freeSize"></a></p>
+
+<h3>valuespacesizeObject.freeSize</h3>
+
+<p>剩余空间大小<br>
+返回值为math.size64对象  </p>
+
+<p><a href="../math/_.html#mathSize64Object" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/math/_.html#mathSize64Object">返回对象:mathSize64Object</a></p>
+
+<p><a id="valuespacesizeObject.totalSize"></a></p>
+
+<h3>valuespacesizeObject.totalSize</h3>
+
+<p>总大小<br>
+返回值为math.size64对象  </p>
+
+<p><a href="../math/_.html#mathSize64Object" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/math/_.html#mathSize64Object">返回对象:mathSize64Object</a></p>
+
+<p><a id="volumeinfoObject"></a></p>
+
+<h2>volumeinfoObject 成员列表</h2>
+
+<p><a id="volumeinfoObject.drive"></a></p>
+
+<h3>volumeinfoObject.drive</h3>
+
+<p>分区路径</p>
+
+<p><a id="volumeinfoObject.flag"></a></p>
+
+<h3>volumeinfoObject.flag</h3>
+
+<p>标志位</p>
+
+<p><a id="volumeinfoObject.fsys"></a></p>
+
+<h3>volumeinfoObject.fsys</h3>
+
+<p>文件系统</p>
+
+<p><a id="volumeinfoObject.label"></a></p>
+
+<h3>volumeinfoObject.label</h3>
+
+<p>卷名</p>
+
+<p><a id="volumeinfoObject.maxlen"></a></p>
+
+<h3>volumeinfoObject.maxlen</h3>
+
+<p>文件路径最大长度</p>
+
+<p><a id="volumeinfoObject.serial"></a></p>
+
+<h3>volumeinfoObject.serial</h3>
+
+<p>序列号</p>
+
+<p><a id="volumeinfoObject.serialNum"></a></p>
+
+<h3>volumeinfoObject.serialNum</h3>
+
+<p>序列号(数值)</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/sys/volume.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/sys/volume.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/sys/volume.md">Markdown 格式</a></p>
+
+</body> 
+</html>

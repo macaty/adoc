@@ -1,0 +1,136 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - HTTP/WebSocket/JSON-RPC 三合一体服务端'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - HTTP/WebSocket/JSON-RPC 三合一体服务端</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: HTTP/WebSocket/JSON-RPC 三合一体服务端</h1><pre><code class="aardio language-aardio">//WS-JSON-RPC服务端
+
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;HTTP/WebSocket/JSON-RPC 三合一体服务端&quot;;left=10;top=4;right=774;bottom=467)
+winform.add(
+btnPublish={cls=&quot;button&quot;;text=&quot;群发通知消息&quot;;left=505;top=411;right=621;bottom=450;db=1;dr=1;z=2};
+btnSurvey={cls=&quot;button&quot;;text=&quot;发起调查任务&quot;;left=633;top=408;right=746;bottom=449;db=1;dr=1;z=3};
+txtMessage={cls=&quot;edit&quot;;left=29;top=22;right=741;bottom=389;db=1;dl=1;dr=1;dt=1;edge=1;multiline=1;z=1}
+)
+/*}}*/
+
+//创建WebSocket服务端
+import web.socket.server;
+var wsrv = web.socket.server();
+
+//创建JSON-RPC服务端
+import web.socket.jsonServer;
+var rpcServer = web.socket.jsonServer(wsrv);
+
+//指定客户端可以调用的对象和方法
+rpcServer.external ={
+
+    /*
+    如果函数名首字符为$，第一个回调参数为$( 表示当前客户端套接字句柄 )。
+    */
+    $hello = function($,name){
+        return &quot;hello &quot; + name;
+    }
+
+    aardio= {
+
+        hello = function(name){
+            return &quot;aardio.hello &quot; + name;
+        }
+    }
+} 
+
+//客户端使用HTTP请求切换到WebSocket协议
+wsrv.onUpgradeToWebsocket = function(hSocket,request,response,protocol,origin){    
+    if( request.path == &quot;/jsonrpc&quot; ){
+        //允许指定的套接字开启JSON-RPC服务
+        return rpcServer.start(hSocket);
+    } 
+
+    //禁止访问其他地址
+    response.close();
+}
+
+//一个客户端连接过来了
+wsrv.onOpen = function(hSocket){ 
+    var client = wsrv.client(hSocket);
+    if(client)  winform.txtMessage.print(&quot;客户端已连接&quot;, client.getRemoteIp() ); 
+    rpcServer.notify(hSocket,&quot;hello&quot;,&quot;服务端通知&quot;);
+}
+
+//一个客户端掉线了
+wsrv.onClose = function(hSocket){
+    winform.txtMessage.print(&quot;客户端已断线&quot;,hSocket);
+}
+
+//一个客户端出错了
+wsrv.onError = function(hSocket,err){
+    winform.txtMessage.print(&quot;出错了&quot;,hSocket,err);
+}
+
+//一个客户端发消息过来了
+wsrv.onMessage = function(hSocket,msg){
+    winform.txtMessage.print(hSocket,msg.data); 
+    wsrv.send(hSocket,&quot;WebSocket客户端，收到了你发过来的消息：&quot; + msg.data) 
+}
+
+//启动服务端 
+if( wsrv.start(,8879) ){
+    winform.txtMessage.print( wsrv.getUrl(&quot;jsonrpc&quot;),&quot;已启动 WebSocket/JSON-RPC 服务器&quot;);
+    winform.txtMessage.print( wsrv.httpServer.getUrl(),&quot;已启动 HTTP服务器&quot;);
+}
+else {
+    winform.txtMessage.print(&quot;启动失败，建议修改端口号&quot;)    
+}
+
+//同一个端口还可以同时运行HTTP服务端
+wsrv.httpServer.run( 
+    function(response,request){ 
+         //response.loadcode( request.path  );
+         winform.txtMessage.print(&quot;HTTP协议访问：&quot;,request.url);
+
+         loadcodex(`
+        &lt;!doctype html&gt;
+        &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body style=&quot;white-space:pre&quot;&gt;&lt;? 
+            response.write(&quot;欢迎使用HTTP/WebSocket/JSON-RPC 三合一体服务端&quot;); 
+        ?&gt;&lt;/body&gt;
+        &lt;/html&gt;`)
+    }   
+);
+
+winform.btnPublish.oncommand = function(id,event){
+
+    //发布订阅模式：在指定频道发布消息，支持传给客户端不定个数的参数
+    rpcServer.publish(&quot;serverTime&quot;,time() )
+}
+
+winform.btnSurvey.oncommand = function(id,event){
+
+    //调查模式：对客户端发起问询，支持传给客户端不定个数的参数
+    rpcServer.survey(&quot;clientTime&quot;);
+
+}
+
+rpcServer.xcallback.clientTime = function(hSocket,result,err){
+    winform.txtMessage.print( wsrv.getRemoteIp(hSocket) +&quot;返回调查结果:&quot;
+        , result );
+}
+
+winform.show() 
+win.loopMessage();
+
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Web/WebSocket/jsonServer.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Web/WebSocket/jsonServer.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Web/WebSocket/jsonServer.md">Markdown 格式</a>
+</body> 
+</html>

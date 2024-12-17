@@ -1,0 +1,2000 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - web.layout.element 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - web.layout.element 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>web.layout.element 库模块帮助文档</h1>
+
+<p><a id="global"></a></p>
+
+<h2>全局对象 成员列表</h2>
+
+<p><a id="layoutEle2"></a></p>
+
+<h3>layoutEle2</h3>
+
+<p><a href="#layoutEleObject">返回对象:layoutEleObject</a></p>
+
+<p><a id="ltEle2"></a></p>
+
+<h3>ltEle2</h3>
+
+<p><a href="#layoutEleObject">返回对象:layoutEleObject</a></p>
+
+<p><a id="ltOption"></a></p>
+
+<h3>ltOption</h3>
+
+<p>HTMLayout节点对象,<br>
+lt前缀变量为HTMLayout保留,请勿用于表示其他类型对象  </p>
+
+<p><a href="#layoutEleObject">返回对象:layoutEleObject</a></p>
+
+<p><a id="ltPopupOwner"></a></p>
+
+<h3>ltPopupOwner</h3>
+
+<p>HTMLayout节点对象,<br>
+lt前缀变量为HTMLayout保留,请勿用于表示其他类型对象  </p>
+
+<p><a href="#layoutEleObject">返回对象:layoutEleObject</a></p>
+
+<p><a id="ltTarget"></a></p>
+
+<h3>ltTarget</h3>
+
+<p>HTMLayout节点对象,<br>
+在事件函数中,ltTarget一般表示触发事件的目标节点,<br>
+lt前缀变量为HTMLayout保留,请勿用于表示其他类型对象  </p>
+
+<p><a href="#layoutEleObject">返回对象:layoutEleObject</a></p>
+
+<p><a id="layoutEle"></a></p>
+
+<h2>layoutEle 成员列表</h2>
+
+<p>HTMLayout节点对象保留变量名,<br>
+请勿用于表示其他类型对象  </p>
+
+<p><a href="#layoutEleObject">返回对象:layoutEleObject</a></p>
+
+<p><a id="layoutEleObject"></a></p>
+
+<h2>layoutEleObject 成员列表</h2>
+
+<p><a id="layoutEleObject.$"></a></p>
+
+<h3>layoutEleObject.$(&quot;标签名[属性名=&#39;属性值&#39;]&quot;)</h3>
+
+<p>使用CSS选择器语法,查找符合条件的所有子节点</p>
+
+<p><a id="layoutEleObject.$"></a></p>
+
+<h3>layoutEleObject.$()</h3>
+
+<p><a href="#layoutEleObject">返回对象:layoutEleObject</a></p>
+
+<p><a id="layoutEleObject.$1"></a></p>
+
+<h3>layoutEleObject.$1(&quot;标签名[属性名=&#39;属性值&#39;]&quot;)</h3>
+
+<p>使用CSS选择器语法,查找符合条件的第一个子节点</p>
+
+<p><a id="layoutEleObject.$1"></a></p>
+
+<h3>layoutEleObject.$1()</h3>
+
+<p><a href="#layoutEleObject">返回对象:layoutEleObject</a></p>
+
+<p><a id="layoutEleObject.$1p"></a></p>
+
+<h3>layoutEleObject.$1p(&quot;标签名[属性名=&#39;属性值&#39;]&quot;)</h3>
+
+<p>使用CSS选择器语法,查找符合条件最近的父节点,<br>
+注意与CSS脚本不同,该函数测试自身</p>
+
+<p><a id="layoutEleObject.$1p"></a></p>
+
+<h3>layoutEleObject.$1p()</h3>
+
+<p><a href="#layoutEleObject">返回对象:layoutEleObject</a></p>
+
+<p><a id="layoutEleObject.$p"></a></p>
+
+<h3>layoutEleObject.$p(&quot;标签名[属性名=&#39;属性值&#39;]&quot;)</h3>
+
+<p>使用CSS选择器语法,查找符合条件的所有父节点,<br>
+注意与CSS脚本不同,该函数测试自身</p>
+
+<p><a id="layoutEleObject.$p"></a></p>
+
+<h3>layoutEleObject.$p()</h3>
+
+<p><a href="#layoutEleObject">返回对象:layoutEleObject</a></p>
+
+<p><a id="layoutEleObject.adjustCtrl"></a></p>
+
+<h3>layoutEleObject.adjustCtrl(cx,cy,wParam)</h3>
+
+<p>调整控件使适合指定大小,参数可以省略</p>
+
+<p><a id="layoutEleObject.animate"></a></p>
+
+<h3>layoutEleObject.animate(动画回调函数,延时毫秒)</h3>
+
+<pre><code class="aardio language-aardio">layoutEleObject.animate(   
+    function(ltEle,step){  
+        if( step == 0xffffffff )return 0;   
+
+        return /*新的延时值,返回0停止*/;  
+    }  
+)
+</code></pre>
+
+<p><a id="layoutEleObject.append"></a></p>
+
+<h3>layoutEleObject.append(节点)</h3>
+
+<p>追加到最后一个子节点</p>
+
+<p><a id="layoutEleObject.attachEventHandler"></a></p>
+
+<h3>layoutEleObject.attachEventHandler(eventHandler,subscription)</h3>
+
+<p>添加事件监听对象,<br>
+参数一指定响应事件的对象,如果不指定则为当前节点对象,<br>
+subscription 可选使用 <em>HL_HANDLE</em> 前缀常量指定捕获的事件,<br>
+ 如果不指定该参数,则根据预听义的监听函数自动设定该值,<br>
+也可以使用对象的 _event_subsriptions 成员指定该值,<br>
+该函数返回事件ID,用于注销监听.</p>
+
+<p><a id="layoutEleObject.capture"></a></p>
+
+<h3>layoutEleObject.capture</h3>
+
+<p>设为true开始捕获鼠标消息,设为false取消捕获</p>
+
+<p><a id="layoutEleObject.child"></a></p>
+
+<h3>layoutEleObject.child()</h3>
+
+<p><a href="#layoutEleObject">返回对象:layoutEleObject</a></p>
+
+<p><a id="layoutEleObject.child"></a></p>
+
+<h3>layoutEleObject.child(1索引)</h3>
+
+<p>获取子节点<br>
+第一个子节点的索引为1</p>
+
+<p><a id="layoutEleObject.childCount"></a></p>
+
+<h3>layoutEleObject.childCount()</h3>
+
+<p>获取子节点数目  </p>
+
+<p><a href="#layoutEleObject">返回对象:layoutEleObject</a></p>
+
+<p><a id="layoutEleObject.clearAttributes"></a></p>
+
+<h3>layoutEleObject.clearAttributes()</h3>
+
+<p>清空所有属性</p>
+
+<p><a id="layoutEleObject.click"></a></p>
+
+<h3>layoutEleObject.click()</h3>
+
+<p>触发 onButtonClick 事件,<br>
+支持按钮节点、或者样式中指定behavior:~clickable的节点<br>
+触发非clickable的onMouseClick事件请使用traverseMouse函数</p>
+
+<p><a id="layoutEleObject.clone"></a></p>
+
+<h3>layoutEleObject.clone()</h3>
+
+<p><a href="#layoutEleObject">返回对象:layoutEleObject</a></p>
+
+<p><a id="layoutEleObject.clone"></a></p>
+
+<h3>layoutEleObject.clone(索引)</h3>
+
+<p>复制节点,必须添加为其他节点的子节点才能使用.<br>
+可选指定一个位置参数以添加到复制源节点的父节点,<br>
+-1表示追加到兄弟节点尾部  </p>
+
+<p><a href="#layoutEleObject">返回对象:layoutEleObject</a></p>
+
+<p><a id="layoutEleObject.cls"></a></p>
+
+<h3>layoutEleObject.cls</h3>
+
+<p>自定义控件类名</p>
+
+<p><a id="layoutEleObject.combineUrl"></a></p>
+
+<h3>layoutEleObject.combineUrl(URL)</h3>
+
+<p>将相对路径转换为绝对路径</p>
+
+<p><a id="layoutEleObject.createElement"></a></p>
+
+<h3>layoutEleObject.createElement()</h3>
+
+<p><a href="#layoutEleObject">返回对象:layoutEleObject</a></p>
+
+<p><a id="layoutEleObject.createElement"></a></p>
+
+<h3>layoutEleObject.createElement(标签名,节点内容,插入位置)</h3>
+
+<p>创建节点,<br>
+节点内容可省略,<br>
+插入位置可省回,默认为-1表示追到子节点尾部</p>
+
+<p><a id="layoutEleObject.createKeyEvent"></a></p>
+
+<h3>layoutEleObject.createKeyEvent()</h3>
+
+<p><a href="#hlKeyParamsObject">返回对象:hlKeyParamsObject</a></p>
+
+<p><a id="layoutEleObject.createKeyEvent"></a></p>
+
+<h3>layoutEleObject.createKeyEvent(虚拟键码,ltTarget)</h3>
+
+<p>创建键盘事件,参数2可选</p>
+
+<p><a id="layoutEleObject.createMouseEvent"></a></p>
+
+<h3>layoutEleObject.createMouseEvent()</h3>
+
+<p><a href="#hlMouseParamsObject">返回对象:hlMouseParamsObject</a></p>
+
+<p><a id="layoutEleObject.createMouseEvent"></a></p>
+
+<h3>layoutEleObject.createMouseEvent(x,y,ltTarget)</h3>
+
+<p>创建鼠标事件,所有参数可选</p>
+
+<p><a id="layoutEleObject.delayMeasure"></a></p>
+
+<h3>layoutEleObject.delayMeasure()</h3>
+
+<p>延迟更新布局,用于拖动时优化性能</p>
+
+<p><a id="layoutEleObject.delete"></a></p>
+
+<h3>layoutEleObject.delete()</h3>
+
+<p>删除节点对象<br>
+成功返回true</p>
+
+<p><a id="layoutEleObject.detach"></a></p>
+
+<h3>layoutEleObject.detach()</h3>
+
+<p>自DOM树中分离该节点<br>
+当引用计数清零时自动删除</p>
+
+<p><a id="layoutEleObject.detachEventHandler"></a></p>
+
+<h3>layoutEleObject.detachEventHandler(事件ID)</h3>
+
+<p>注销事件监听对象,省略参数则停止节点自身事件监听</p>
+
+<p><a id="layoutEleObject.documentElement"></a></p>
+
+<h3>layoutEleObject.documentElement</h3>
+
+<p>当前当前文档HTML根节点  </p>
+
+<p><a href="#layoutEleObject">返回对象:layoutEleObject</a></p>
+
+<p><a id="layoutEleObject.eachAttribute"></a></p>
+
+<h3>layoutEleObject.eachAttribute()</h3>
+
+<pre><code class="aardio language-aardio">for( i,name,value in layoutEleObject.eachAttribute() ){
+
+}
+</code></pre>
+
+<p><a id="layoutEleObject.eachChild"></a></p>
+
+<h3>layoutEleObject.eachChild()</h3>
+
+<p><a href="#layoutEleObject">返回对象:layoutEleObject</a></p>
+
+<p><a id="layoutEleObject.eachChild"></a></p>
+
+<h3>layoutEleObject.eachChild(开始索引,结束索引,步进)</h3>
+
+<pre><code class="aardio language-aardio">for(i,eleChild in layoutEleObject.eachChild(/*可选指定开始与结束索引*/) ){
+    io.print( i,eleChild.innerHTML );
+}
+</code></pre>
+
+<p><a id="layoutEleObject.enumQuery"></a></p>
+
+<h3>layoutEleObject.enumQuery(枚举函数,CSS选择器,格式化参数)</h3>
+
+<pre><code class="aardio language-aardio">layoutEleObject.enumQuery(  
+    function(ltEle){  
+         /*返回true停止枚举*/  
+    },&quot;div&quot;  
+)
+</code></pre>
+
+<p><a id="layoutEleObject.enumStyle"></a></p>
+
+<h3>layoutEleObject.enumStyle(枚举函数)</h3>
+
+<pre><code class="aardio language-aardio">layoutEleObject.enumStyle(   
+    function(selector,ruleType,file,lineNo){  
+
+    }  
+)
+</code></pre>
+
+<p><a id="layoutEleObject.firstSibling"></a></p>
+
+<h3>layoutEleObject.firstSibling()</h3>
+
+<p>获取第一个兄弟节点  </p>
+
+<p><a href="#layoutEleObject">返回对象:layoutEleObject</a></p>
+
+<p><a id="layoutEleObject.getAttribute"></a></p>
+
+<h3>layoutEleObject.getAttribute(&quot;hide&quot;)</h3>
+
+<p>获取属性,返回值为字符串或null<br>
+也可以直接写 var 返回值=ele.属性名字</p>
+
+<p><a id="layoutEleObject.getCaretPos"></a></p>
+
+<h3>layoutEleObject.getCaretPos()</h3>
+
+<p>返回光标相对于当前节点的客户区位置,<br>
+返回值分别为:左坐标,顶坐标,宽度,高度</p>
+
+<p><a id="layoutEleObject.getCharFromPos"></a></p>
+
+<h3>layoutEleObject.getCharFromPos(x,y)</h3>
+
+<p>返回文本控件指定坐标文本索引<br>
+如果存在子节点,返回文本索引,子节点对象,子节点文本索引</p>
+
+<p><a id="layoutEleObject.getCtrl"></a></p>
+
+<h3>layoutEleObject.getCtrl()</h3>
+
+<p>返回自定义控件对象  </p>
+
+<p><a href="../../../win/ui/ctrl/static.html#staticObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/static.html#staticObject">返回对象:staticObject</a></p>
+
+<p><a id="layoutEleObject.getCustomAttribute"></a></p>
+
+<h3>layoutEleObject.getCustomAttribute(&quot;字符串参数&quot;)</h3>
+
+<p>获取HTML属性,<br>
+如果失败,则在名字前添加横线查找style自定义属性</p>
+
+<p><a id="layoutEleObject.getDataTable"></a></p>
+
+<h3>layoutEleObject.getDataTable()</h3>
+
+<p>返回节点data-table属性中的值,并序列化为table对象</p>
+
+<p><a id="layoutEleObject.getElementById"></a></p>
+
+<h3>layoutEleObject.getElementById(&quot;字符串参数&quot;)</h3>
+
+<p>根据ID查找节点<br>
+如果未找到,尝试使用name查找</p>
+
+<p><a id="layoutEleObject.getElementById"></a></p>
+
+<h3>layoutEleObject.getElementById()</h3>
+
+<p><a href="#layoutEleObject">返回对象:layoutEleObject</a></p>
+
+<p><a id="layoutEleObject.getElementByUid"></a></p>
+
+<h3>layoutEleObject.getElementByUid()</h3>
+
+<p><a href="#layoutEleObject">返回对象:layoutEleObject</a></p>
+
+<p><a id="layoutEleObject.getElementByUid"></a></p>
+
+<h3>layoutEleObject.getElementByUid(UID)</h3>
+
+<p>根据唯一ID在该节点所属窗口范围内查找节点</p>
+
+<p><a id="layoutEleObject.getElementsByName "></a></p>
+
+<h3>layoutEleObject.getElementsByName (&quot;字符串参数&quot;)</h3>
+
+<p>根据 name 查找节点集合</p>
+
+<p><a id="layoutEleObject.getElementsByName"></a></p>
+
+<h3>layoutEleObject.getElementsByName()</h3>
+
+<p><a href="#layoutEleObject">返回对象:layoutEleObject</a></p>
+
+<p><a id="layoutEleObject.getElementsByTagName"></a></p>
+
+<h3>layoutEleObject.getElementsByTagName(&quot;字符串参数&quot;)</h3>
+
+<p>根据HTML标签名查找节点集合</p>
+
+<p><a id="layoutEleObject.getElementsByTagName"></a></p>
+
+<h3>layoutEleObject.getElementsByTagName()</h3>
+
+<p><a href="#layoutEleObject">返回对象:layoutEleObject</a></p>
+
+<p><a id="layoutEleObject.getForm"></a></p>
+
+<h3>layoutEleObject.getForm()</h3>
+
+<p>返回该节点所在窗体对象  </p>
+
+<p><a href="../../../win/ui/_.html#winform" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/_.html#winform">返回对象:winform</a></p>
+
+<p><a id="layoutEleObject.getForm"></a></p>
+
+<h3>layoutEleObject.getForm(false)</h3>
+
+<p>返回节点所在窗口或控件对象  </p>
+
+<p><a href="../../../win/ui/ctrl/static.html#staticObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/static.html#staticObject">返回对象:staticObject</a></p>
+
+<p><a id="layoutEleObject.getHwnd"></a></p>
+
+<h3>layoutEleObject.getHwnd(是否返回顶层窗口)</h3>
+
+<p>返回窗口句柄,参数可省略,默认为false</p>
+
+<p><a id="layoutEleObject.getIntrinsicHeight"></a></p>
+
+<h3>layoutEleObject.getIntrinsicHeight()</h3>
+
+<p>返回高度的 min-intrinsic 值</p>
+
+<p><a id="layoutEleObject.getIntrinsicWidth"></a></p>
+
+<h3>layoutEleObject.getIntrinsicWidth()</h3>
+
+<p>返回宽度的 min-intrinsic,max-intrinsic 值</p>
+
+<p><a id="layoutEleObject.getLayout"></a></p>
+
+<h3>layoutEleObject.getLayout()</h3>
+
+<p>返回HTMLayout窗体对象<br>
+非界面线程不可调用此函数  </p>
+
+<p><a href="#weblayoutObject">返回对象:weblayoutObject</a></p>
+
+<p><a id="layoutEleObject.getPos"></a></p>
+
+<h3>layoutEleObject.getPos()</h3>
+
+<p>返回文档相对x坐标,y坐标,cx宽度,cy高度</p>
+
+<p><a id="layoutEleObject.getRect"></a></p>
+
+<h3>layoutEleObject.getRect()</h3>
+
+<p><a href="../../../global/_.html#rectObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/global/_.html#rectObject">返回对象:rectObject</a></p>
+
+<p><a id="layoutEleObject.getRect"></a></p>
+
+<h3>layoutEleObject.getRect(_HL)</h3>
+
+<p>返回节点区块坐标<br>
+参数可省略,默认值为 _HL_ROOT_RELATIVE | _HL_CONTENT_BOX</p>
+
+<p><a id="layoutEleObject.getScrollInfo"></a></p>
+
+<h3>layoutEleObject.getScrollInfo()</h3>
+
+<p>获取滚动条信息,<br>
+即使CSS样式中使用overflow:hidden;隐藏滚动条,仍然可以正常取到滚动分页等参数,  </p>
+
+<p><a href="#ltEleScrollInfoObject">返回对象:ltEleScrollInfoObject</a></p>
+
+<p><a id="layoutEleObject.getState"></a></p>
+
+<h3>layoutEleObject.getState(htmlayout.ELEMENT_STATE_BITS.)</h3>
+
+<p>是否有某个状态,以 <em>HL_STATE</em> 开头的常量表示指定状态</p>
+
+<p><a id="layoutEleObject.getValueObject"></a></p>
+
+<h3>layoutEleObject.getValueObject()</h3>
+
+<p>返回控件值对象( web.layout.valueObject 对象 )  </p>
+
+<p><a href="#webLayoutValueObject">返回对象:webLayoutValueObject</a></p>
+
+<p><a id="layoutEleObject.getsel"></a></p>
+
+<h3>layoutEleObject.getsel()</h3>
+
+<p>返回文本框控件文本选区,返回值:起始位置,结束位置</p>
+
+<p><a id="layoutEleObject.id"></a></p>
+
+<h3>layoutEleObject.id</h3>
+
+<p>节点ID</p>
+
+<p><a id="layoutEleObject.index"></a></p>
+
+<h3>layoutEleObject.index()</h3>
+
+<p>节点在父节点child子节点集合中的索引位置</p>
+
+<p><a id="layoutEleObject.innerHTML"></a></p>
+
+<h3>layoutEleObject.innerHTML</h3>
+
+<p>节点内部HTML源码</p>
+
+<p><a id="layoutEleObject.innerText"></a></p>
+
+<h3>layoutEleObject.innerText</h3>
+
+<p>设置或者获取文本</p>
+
+<p><a id="layoutEleObject.insert"></a></p>
+
+<h3>layoutEleObject.insert(节点,插入位置)</h3>
+
+<p>插入子节点,参数2可省略,默认插入子节点队列最前面<br>
+插入位置为-1表示插入到子节点队列尾部</p>
+
+<p><a id="layoutEleObject.insertAdjacentHTML"></a></p>
+
+<h3>layoutEleObject.insertAdjacentHTML(&quot;afterBegin&quot;,HTML代码)</h3>
+
+<p>在节点内部最前面插入HTML<br>
+可添加多个HTML参数</p>
+
+<p><a id="layoutEleObject.insertAdjacentHTML"></a></p>
+
+<h3>layoutEleObject.insertAdjacentHTML(&quot;afterEnd&quot;,HTML代码)</h3>
+
+<p>在节点之后插入HTML<br>
+可添加多个HTML参数</p>
+
+<p><a id="layoutEleObject.insertAdjacentHTML"></a></p>
+
+<h3>layoutEleObject.insertAdjacentHTML(&quot;beforeBegin&quot;,HTML代码)</h3>
+
+<p>在节点之前插入HTML<br>
+可添加多个HTML参数,</p>
+
+<p><a id="layoutEleObject.insertAdjacentHTML"></a></p>
+
+<h3>layoutEleObject.insertAdjacentHTML(&quot;beforeEnd&quot;,HTML代码)</h3>
+
+<p>在节点内部最后面插入HTML<br>
+可添加多个HTML参数</p>
+
+<p><a id="layoutEleObject.isChild"></a></p>
+
+<h3>layoutEleObject.isChild(子节点)</h3>
+
+<p>判断参数中的节点是否子节点或自身<br>
+参数为空值返回空</p>
+
+<p><a id="layoutEleObject.isEnabled"></a></p>
+
+<h3>layoutEleObject.isEnabled()</h3>
+
+<p>节点是否可用</p>
+
+<p><a id="layoutEleObject.isParent"></a></p>
+
+<h3>layoutEleObject.isParent(父节点)</h3>
+
+<p>判断参数中的节点是否父节点或自身<br>
+参数为空值返回空</p>
+
+<p><a id="layoutEleObject.isVisible"></a></p>
+
+<h3>layoutEleObject.isVisible()</h3>
+
+<p>节点是否可见</p>
+
+<p><a id="layoutEleObject.lastSibling"></a></p>
+
+<h3>layoutEleObject.lastSibling()</h3>
+
+<p>获取最后一个兄弟节点  </p>
+
+<p><a href="#layoutEleObject">返回对象:layoutEleObject</a></p>
+
+<p><a id="layoutEleObject.modifyState"></a></p>
+
+<h3>layoutEleObject.modifyState(要增加的状态,要取消的状态,是否更新)</h3>
+
+<p>设置状态,以 <em>HL_STATE</em> 开头的常量表示指定状态<br>
+所有参数可省略,参数三默认为true</p>
+
+<p><a id="layoutEleObject.name"></a></p>
+
+<h3>layoutEleObject.name</h3>
+
+<p>节点name属性</p>
+
+<p><a id="layoutEleObject.next"></a></p>
+
+<h3>layoutEleObject.next()</h3>
+
+<p>下一个兄弟节点  </p>
+
+<p><a href="#layoutEleObject">返回对象:layoutEleObject</a></p>
+
+<p><a id="layoutEleObject.nextSibling"></a></p>
+
+<h3>layoutEleObject.nextSibling()</h3>
+
+<p>获取下一个兄弟节点,可选在参数中指定偏移值  </p>
+
+<p><a href="#layoutEleObject">返回对象:layoutEleObject</a></p>
+
+<p><a id="layoutEleObject.onActiveChild"></a></p>
+
+<h3>layoutEleObject.onActiveChild</h3>
+
+<pre><code class="aardio language-aardio">layoutEleObject.onActiveChild = function (ltTarget,ltOwner,reason,behaviorParams) {  
+
+}
+</code></pre>
+
+<p><a id="layoutEleObject.onAnimation"></a></p>
+
+<h3>layoutEleObject.onAnimation</h3>
+
+<pre><code class="aardio language-aardio">layoutEleObject.onAnimation = function (ltTarget,ltOwner,reason,behaviorParams) {  
+
+}
+</code></pre>
+
+<p><a id="layoutEleObject.onApplicationEvent"></a></p>
+
+<h3>layoutEleObject.onApplicationEvent</h3>
+
+<pre><code class="aardio language-aardio">layoutEleObject.onApplicationEvent = function (ltTarget,ltOwner,reason,behaviorParams) {  
+    /*postEvent或sendEvent发出一大于0x100的消息*/  
+}
+</code></pre>
+
+<p><a id="layoutEleObject.onButtonClick"></a></p>
+
+<h3>layoutEleObject.onButtonClick</h3>
+
+<pre><code class="aardio language-aardio">layoutEleObject.onButtonClick = function (ltTarget,ltOwner,reason,behaviorParams) {  
+
+}
+</code></pre>
+
+<p><a id="layoutEleObject.onButtonPress"></a></p>
+
+<h3>layoutEleObject.onButtonPress</h3>
+
+<pre><code class="aardio language-aardio">layoutEleObject.onButtonPress = function (ltTarget,ltOwner,reason,behaviorParams) {  
+
+}
+</code></pre>
+
+<p><a id="layoutEleObject.onButtonStateChanged"></a></p>
+
+<h3>layoutEleObject.onButtonStateChanged</h3>
+
+<pre><code class="aardio language-aardio">layoutEleObject.onButtonStateChanged = function (ltTarget,ltOwner,reason,behaviorParams) {  
+
+}
+</code></pre>
+
+<p><a id="layoutEleObject.onClick"></a></p>
+
+<h3>layoutEleObject.onClick</h3>
+
+<pre><code class="aardio language-aardio">layoutEleObject.onClick = function( ltOwner ){  
+    /*click函数触发此事件*/  
+    return true;  
+}
+</code></pre>
+
+<p><a id="layoutEleObject.onClosePopup"></a></p>
+
+<h3>layoutEleObject.onClosePopup</h3>
+
+<pre><code class="aardio language-aardio">layoutEleObject.onClosePopup = function (ltTarget,ltOwner,reason,behaviorParams) {  
+
+}
+</code></pre>
+
+<p><a id="layoutEleObject.onContextMenuRequest"></a></p>
+
+<h3>layoutEleObject.onContextMenuRequest</h3>
+
+<pre><code class="aardio language-aardio">layoutEleObject.onContextMenuRequest = function (ltTarget,ltOwner,reason,behaviorParams){  
+    var ltPopupOwner = ..web.layout.element( behaviorParams.he )  
+
+}
+</code></pre>
+
+<p><a id="layoutEleObject.onContextMenuSetup"></a></p>
+
+<h3>layoutEleObject.onContextMenuSetup</h3>
+
+<pre><code class="aardio language-aardio">layoutEleObject.onContextMenuSetup = function (ltTarget,ltOwner,reason,behaviorParams){  
+    var ltPopupOwner = ..web.layout.element( behaviorParams.he )  
+
+}
+</code></pre>
+
+<p><a id="layoutEleObject.onDataArrived"></a></p>
+
+<h3>layoutEleObject.onDataArrived</h3>
+
+<pre><code class="aardio language-aardio">layoutEleObject.onDataArrived = function(ltTarget,ltOwner,data,dataType,status,url){  
+    return true;/*返回true撤消数据不显示内容*/  
+}
+</code></pre>
+
+<p><a id="layoutEleObject.onDisabledStateChanged"></a></p>
+
+<h3>layoutEleObject.onDisabledStateChanged</h3>
+
+<pre><code class="aardio language-aardio">layoutEleObject.onDisabledStateChanged = function (ltTarget,ltOwner,reason,behaviorParams) {  
+
+}
+</code></pre>
+
+<p><a id="layoutEleObject.onDragEnter"></a></p>
+
+<h3>layoutEleObject.onDragEnter</h3>
+
+<pre><code class="aardio language-aardio">layoutEleObject.onDragEnter = function( ltTarget,ltOwner,x,y,ltMouseParams ) {  
+
+}
+</code></pre>
+
+<p><a id="layoutEleObject.onDragLeave"></a></p>
+
+<h3>layoutEleObject.onDragLeave</h3>
+
+<pre><code class="aardio language-aardio">layoutEleObject.onDragLeave = function( ltTarget,ltOwner,x,y,ltMouseParams ) {  
+
+}
+</code></pre>
+
+<p><a id="layoutEleObject.onDragRequest"></a></p>
+
+<h3>layoutEleObject.onDragRequest</h3>
+
+<pre><code class="aardio language-aardio">layoutEleObject.onDragRequest = function( ltTarget,ltOwner,x,y,ltMouseParams ) {  
+
+}
+</code></pre>
+
+<p><a id="layoutEleObject.onDrawBackground"></a></p>
+
+<h3>layoutEleObject.onDrawBackground</h3>
+
+<pre><code class="aardio language-aardio">layoutEleObject.onDrawBackground = function(ltOwner,hdc,rc){   
+    /*自绘背景*/  
+    return true;  
+}
+</code></pre>
+
+<p><a id="layoutEleObject.onDrawContent"></a></p>
+
+<h3>layoutEleObject.onDrawContent</h3>
+
+<pre><code class="aardio language-aardio">layoutEleObject.onDrawContent = function(ltOwner,hdc,rc){   
+    /*自绘内容*/  
+    return true;  
+}
+</code></pre>
+
+<p><a id="layoutEleObject.onDrawForeground"></a></p>
+
+<h3>layoutEleObject.onDrawForeground</h3>
+
+<pre><code class="aardio language-aardio">layoutEleObject.onDrawForeground  = function(ltOwner,hdc,rc){   
+    /*自绘前景*/  
+    return true;  
+}
+</code></pre>
+
+<p><a id="layoutEleObject.onDrop"></a></p>
+
+<h3>layoutEleObject.onDrop</h3>
+
+<pre><code class="aardio language-aardio">layoutEleObject.onDrop = function( ltTarget,ltOwner,x,y,ltMouseParams ) {  
+
+}
+</code></pre>
+
+<p><a id="layoutEleObject.onEditValueChanged"></a></p>
+
+<h3>layoutEleObject.onEditValueChanged</h3>
+
+<pre><code class="aardio language-aardio">layoutEleObject.onEditValueChanged = function (ltTarget,ltOwner,reason,behaviorParams) {  
+
+}
+</code></pre>
+
+<p><a id="layoutEleObject.onEditValueChanging"></a></p>
+
+<h3>layoutEleObject.onEditValueChanging</h3>
+
+<pre><code class="aardio language-aardio">layoutEleObject.onEditValueChanging = function (ltTarget,ltOwner,reason,behaviorParams) {  
+
+}
+</code></pre>
+
+<p><a id="layoutEleObject.onElementCollapsed"></a></p>
+
+<h3>layoutEleObject.onElementCollapsed</h3>
+
+<pre><code class="aardio language-aardio">layoutEleObject.onElementCollapsed = function (ltTarget,ltOwner,reason,behaviorParams) {  
+
+}
+</code></pre>
+
+<p><a id="layoutEleObject.onElementControlCreated"></a></p>
+
+<h3>layoutEleObject.onElementControlCreated</h3>
+
+<pre><code class="aardio language-aardio">layoutEleObject.onElementControlCreated = function (ltTarget,ltOwner,reason,behaviorParams) {  
+    var ltCtrl = ltOwner.getCtrl();/*自定义控件已创建*/  
+}
+</code></pre>
+
+<p><a id="layoutEleObject.onElementExpanded"></a></p>
+
+<h3>layoutEleObject.onElementExpanded</h3>
+
+<pre><code class="aardio language-aardio">layoutEleObject.onElementExpanded = function (ltTarget,ltOwner,reason,behaviorParams) {  
+
+}
+</code></pre>
+
+<p><a id="layoutEleObject.onExchangeDrag"></a></p>
+
+<h3>layoutEleObject.onExchangeDrag</h3>
+
+<pre><code class="aardio language-aardio">layoutEleObject.onExchangeDrag = function( ltTarget,ltOwner,x,y,cmd,dataTypes,fetchData,exParams ) {    
+    return true;/*这里返回true才会显示可拖放鼠标指针*/  
+}
+</code></pre>
+
+<p><a id="layoutEleObject.onExchangeDragEnter"></a></p>
+
+<h3>layoutEleObject.onExchangeDragEnter</h3>
+
+<pre><code class="aardio language-aardio">layoutEleObject.onExchangeDragEnter = function( ltTarget,ltOwner,x,y,cmd,dataTypes,fetchData,exParams ) {    
+    return true;  
+}
+</code></pre>
+
+<p><a id="layoutEleObject.onExchangeDragLeave"></a></p>
+
+<h3>layoutEleObject.onExchangeDragLeave</h3>
+
+<pre><code class="aardio language-aardio">layoutEleObject.onExchangeDragLeave = function( ltTarget,ltOwner,x,y,cmd,dataTypes,fetchData,exParams ) {    
+    return true;  
+}
+</code></pre>
+
+<p><a id="layoutEleObject.onExchangeDrop"></a></p>
+
+<h3>layoutEleObject.onExchangeDrop</h3>
+
+<pre><code class="aardio language-aardio">layoutEleObject.onExchangeDrop = function( ltTarget,ltOwner,x,y,cmd,dataTypes,fetchData,exParams ) {   
+    var data,dataType = fetchData( _HL_EXF/*可选指定支持的拖放数据类型*/ );  
+    if( data ) {  
+        return true;  
+    }  
+}
+</code></pre>
+
+<p><a id="layoutEleObject.onFocusGot"></a></p>
+
+<h3>layoutEleObject.onFocusGot</h3>
+
+<pre><code class="aardio language-aardio">layoutEleObject.onFocusGot = function( ltTarget,ltOwner,focusParams ) {  
+
+}
+</code></pre>
+
+<p><a id="layoutEleObject.onFocusLost"></a></p>
+
+<h3>layoutEleObject.onFocusLost</h3>
+
+<pre><code class="aardio language-aardio">layoutEleObject.onFocusLost = function( ltTarget,ltOwner,focusParams ) {  
+
+}
+</code></pre>
+
+<p><a id="layoutEleObject.onFormReset"></a></p>
+
+<h3>layoutEleObject.onFormReset</h3>
+
+<pre><code class="aardio language-aardio">layoutEleObject.onFormReset = function (ltTarget,ltOwner,reason,behaviorParams) {  
+
+}
+</code></pre>
+
+<p><a id="layoutEleObject.onFormSubmit"></a></p>
+
+<h3>layoutEleObject.onFormSubmit</h3>
+
+<pre><code class="aardio language-aardio">layoutEleObject.onFormSubmit = function (ltTarget,ltOwner,reason,behaviorParams) {  
+    var formData = behaviorParams.data.getValue();  
+}
+</code></pre>
+
+<p><a id="layoutEleObject.onFrameDocumentComplete"></a></p>
+
+<h3>layoutEleObject.onFrameDocumentComplete</h3>
+
+<pre><code class="aardio language-aardio">layoutEleObject.onFrameDocumentComplete = function (ltTarget,ltOwner,reason,behaviorParams) {  
+
+}
+</code></pre>
+
+<p><a id="layoutEleObject.onGesturePan"></a></p>
+
+<h3>layoutEleObject.onGesturePan</h3>
+
+<pre><code class="aardio language-aardio">layoutEleObject.onGesturePan = function (ltTarget,ltOwner,ltGestureParams) {  
+    /*平移*/  
+}
+</code></pre>
+
+<p><a id="layoutEleObject.onGestureRequest"></a></p>
+
+<h3>layoutEleObject.onGestureRequest</h3>
+
+<pre><code class="aardio language-aardio">layoutEleObject.onGestureRequest = function (ltTarget,ltOwner,ltGestureParams) {  
+    ltGestureParams.flags = 0xFFFF/*_HL_GESTURE_FLAGS_ALL*/  
+    return true;  
+}
+</code></pre>
+
+<p><a id="layoutEleObject.onGestureRotate"></a></p>
+
+<h3>layoutEleObject.onGestureRotate</h3>
+
+<pre><code class="aardio language-aardio">layoutEleObject.onGestureRotate = function (ltTarget,ltOwner,ltGestureParams) {  
+    /*旋转*/  
+}
+</code></pre>
+
+<p><a id="layoutEleObject.onGestureTap1"></a></p>
+
+<h3>layoutEleObject.onGestureTap1</h3>
+
+<pre><code class="aardio language-aardio">layoutEleObject.onGestureTap1 = function (ltTarget,ltOwner,ltGestureParams) {  
+    /*单击*/  
+}
+</code></pre>
+
+<p><a id="layoutEleObject.onGestureTap2"></a></p>
+
+<h3>layoutEleObject.onGestureTap2</h3>
+
+<pre><code class="aardio language-aardio">layoutEleObject.onGestureTap2 = function (ltTarget,ltOwner,ltGestureParams) {  
+    /*双击*/  
+}
+</code></pre>
+
+<p><a id="layoutEleObject.onGestureZoom"></a></p>
+
+<h3>layoutEleObject.onGestureZoom</h3>
+
+<pre><code class="aardio language-aardio">layoutEleObject.onGestureZoom = function (ltTarget,ltOwner,ltGestureParams) {  
+    /*缩放*/  
+}
+</code></pre>
+
+<p><a id="layoutEleObject.onGetCaretPos"></a></p>
+
+<h3>layoutEleObject.onGetCaretPos</h3>
+
+<pre><code class="aardio language-aardio">layoutEleObject.onSetValue = function(  ltOwner,value ){  
+
+    return true,/*光标位置:left,top,width,height*/  
+}
+</code></pre>
+
+<p><a id="layoutEleObject.onGetValue"></a></p>
+
+<h3>layoutEleObject.onGetValue</h3>
+
+<pre><code class="aardio language-aardio">layoutEleObject.onGetValue = function( ltOwner ){  
+
+    return true,/*返回控件值*/;  
+}
+</code></pre>
+
+<p><a id="layoutEleObject.onHyperlinkClick"></a></p>
+
+<h3>layoutEleObject.onHyperlinkClick</h3>
+
+<pre><code class="aardio language-aardio">layoutEleObject.onHyperlinkClick = function (ltTarget,ltOwner,reason,behaviorParams) {  
+
+}
+</code></pre>
+
+<p><a id="layoutEleObject.onInitDataView"></a></p>
+
+<h3>layoutEleObject.onInitDataView</h3>
+
+<pre><code class="aardio language-aardio">layoutEleObject.onInitDataView = function (ltTarget,ltOwner,reason,behaviorParams) {  
+
+}
+</code></pre>
+
+<p><a id="layoutEleObject.onIsEmpty"></a></p>
+
+<h3>layoutEleObject.onIsEmpty</h3>
+
+<pre><code class="aardio language-aardio">layoutEleObject.onIsEmpty = function( ltOwner ){  
+
+    return true,false/*分别为:是否中止事件传递,是否为空值*/;  
+}
+</code></pre>
+
+<pre><code class="aardio language-aardio">layoutEleObject.onSetValue = function(  ltOwner,value ){  
+
+    return true  
+}
+</code></pre>
+
+<p><a id="layoutEleObject.onKeyChar"></a></p>
+
+<h3>layoutEleObject.onKeyChar</h3>
+
+<pre><code class="aardio language-aardio">layoutEleObject.onKeyChar = function( ltTarget,ltOwner,keyCode, altState, ltKeyParams ) {  
+
+}
+</code></pre>
+
+<p><a id="layoutEleObject.onKeyDown"></a></p>
+
+<h3>layoutEleObject.onKeyDown</h3>
+
+<pre><code class="aardio language-aardio">layoutEleObject.onKeyDown = function( ltTarget,ltOwner,keyCode, altState, ltKeyParams ) {  
+
+}
+</code></pre>
+
+<p><a id="layoutEleObject.onKeyUp"></a></p>
+
+<h3>layoutEleObject.onKeyUp</h3>
+
+<pre><code class="aardio language-aardio">layoutEleObject.onKeyUp = function( ltTarget,ltOwner,keyCode, altState, ltKeyParams ) {  
+
+}
+</code></pre>
+
+<p><a id="layoutEleObject.onMenuItemActive"></a></p>
+
+<h3>layoutEleObject.onMenuItemActive</h3>
+
+<pre><code class="aardio language-aardio">layoutEleObject.onMenuItemActive = function (ltTarget,ltOwner,reason,behaviorParams) {  
+    var ltPopupOwner = ..web.layout.element( behaviorParams.he )  
+
+}
+</code></pre>
+
+<p><a id="layoutEleObject.onMenuItemClick"></a></p>
+
+<h3>layoutEleObject.onMenuItemClick</h3>
+
+<pre><code class="aardio language-aardio">layoutEleObject.onMenuItemClick = function (ltTarget,ltOwner,reason,behaviorParams) {  
+    var ltPopupOwner = ..web.layout.element( behaviorParams.he )  
+
+}
+</code></pre>
+
+<p><a id="layoutEleObject.onMouseClick"></a></p>
+
+<h3>layoutEleObject.onMouseClick</h3>
+
+<pre><code class="aardio language-aardio">layoutEleObject.onMouseClick = function( ltTarget,ltOwner,x,y,ltMouseParams ) {  
+
+}
+</code></pre>
+
+<p><a id="layoutEleObject.onMouseDblClick"></a></p>
+
+<h3>layoutEleObject.onMouseDblClick</h3>
+
+<pre><code class="aardio language-aardio">layoutEleObject.onMouseDblClick = function( ltTarget,ltOwner,x,y,ltMouseParams ) {  
+
+}
+</code></pre>
+
+<p><a id="layoutEleObject.onMouseDown"></a></p>
+
+<h3>layoutEleObject.onMouseDown</h3>
+
+<pre><code class="aardio language-aardio">layoutEleObject.onMouseDown = function( ltTarget,ltOwner,x,y,ltMouseParams ) {  
+
+}
+</code></pre>
+
+<p><a id="layoutEleObject.onMouseEnter"></a></p>
+
+<h3>layoutEleObject.onMouseEnter</h3>
+
+<pre><code class="aardio language-aardio">layoutEleObject.onMouseEnter = function( ltTarget,ltOwner,x,y,ltMouseParams ) {  
+
+}
+</code></pre>
+
+<p><a id="layoutEleObject.onMouseIdle"></a></p>
+
+<h3>layoutEleObject.onMouseIdle</h3>
+
+<pre><code class="aardio language-aardio">layoutEleObject.onMouseIdle = function( ltTarget,ltOwner,x,y,ltMouseParams ) {  
+
+}
+</code></pre>
+
+<p><a id="layoutEleObject.onMouseLeave"></a></p>
+
+<h3>layoutEleObject.onMouseLeave</h3>
+
+<pre><code class="aardio language-aardio">layoutEleObject.onMouseLeave = function( ltTarget,ltOwner,x,y,ltMouseParams ) {  
+
+}
+</code></pre>
+
+<p><a id="layoutEleObject.onMouseMove"></a></p>
+
+<h3>layoutEleObject.onMouseMove</h3>
+
+<pre><code class="aardio language-aardio">layoutEleObject.onMouseMove = function( ltTarget,ltOwner,x,y,ltMouseParams ) {  
+
+}
+</code></pre>
+
+<p><a id="layoutEleObject.onMouseTick"></a></p>
+
+<h3>layoutEleObject.onMouseTick</h3>
+
+<pre><code class="aardio language-aardio">layoutEleObject.onMouseTick = function( ltTarget,ltOwner,x,y,ltMouseParams ) {  
+
+}
+</code></pre>
+
+<p><a id="layoutEleObject.onMouseUp"></a></p>
+
+<h3>layoutEleObject.onMouseUp</h3>
+
+<pre><code class="aardio language-aardio">layoutEleObject.onMouseUp = function( ltTarget,ltOwner,x,y,ltMouseParams ) {  
+
+}
+</code></pre>
+
+<p><a id="layoutEleObject.onMouseWheel"></a></p>
+
+<h3>layoutEleObject.onMouseWheel</h3>
+
+<pre><code class="aardio language-aardio">layoutEleObject.onMouseWheel = function( ltTarget,ltOwner,x,y,ltMouseParams ) {  
+
+}
+</code></pre>
+
+<p><a id="layoutEleObject.onPopupDismissed"></a></p>
+
+<h3>layoutEleObject.onPopupDismissed</h3>
+
+<pre><code class="aardio language-aardio">layoutEleObject.onPopupDismissed = function (ltTarget,ltOwner,reason,behaviorParams) {  
+    var ltPopupOwner = ..web.layout.element( behaviorParams.he )  
+
+}
+</code></pre>
+
+<p><a id="layoutEleObject.onPopupDismissing"></a></p>
+
+<h3>layoutEleObject.onPopupDismissing</h3>
+
+<pre><code class="aardio language-aardio">layoutEleObject.onPopupDismissing = function (ltTarget,ltOwner,reason,behaviorParams) {  
+
+}
+</code></pre>
+
+<p><a id="layoutEleObject.onPopupReady"></a></p>
+
+<h3>layoutEleObject.onPopupReady</h3>
+
+<pre><code class="aardio language-aardio">layoutEleObject.onPopupReady = function (ltTarget,ltOwner,reason,behaviorParams) {  
+    var ltPopupOwner = ..web.layout.element( behaviorParams.he )  
+
+}
+</code></pre>
+
+<p><a id="layoutEleObject.onPopupRequest"></a></p>
+
+<h3>layoutEleObject.onPopupRequest</h3>
+
+<pre><code class="aardio language-aardio">layoutEleObject.onPopupRequest = function (ltTarget,ltOwner,reason,behaviorParams) {  
+    var ltPopupOwner = ..web.layout.element( behaviorParams.he )  
+
+}
+</code></pre>
+
+<p><a id="layoutEleObject.onReplaceSel"></a></p>
+
+<h3>layoutEleObject.onReplaceSel</h3>
+
+<pre><code class="aardio language-aardio">layoutEleObject.onSetValue = function(  ltOwner,value ){  
+
+    return true  
+}
+</code></pre>
+
+<p><a id="layoutEleObject.onRequestTooltip"></a></p>
+
+<h3>layoutEleObject.onRequestTooltip</h3>
+
+<pre><code class="aardio language-aardio">layoutEleObject.onRequestTooltip = function (ltTarget,ltOwner,reason,behaviorParams) {  
+
+}
+</code></pre>
+
+<p><a id="layoutEleObject.onRowsDataRequest"></a></p>
+
+<h3>layoutEleObject.onRowsDataRequest</h3>
+
+<pre><code class="aardio language-aardio">layoutEleObject.onRowsDataRequest = function (ltTarget,ltOwner,reason,behaviorParams) {  
+
+}
+</code></pre>
+
+<p><a id="layoutEleObject.onSelectSelectionChanged"></a></p>
+
+<h3>layoutEleObject.onSelectSelectionChanged</h3>
+
+<pre><code class="aardio language-aardio">layoutEleObject.onSelectSelectionChanged = function (ltTarget,ltOwner,reason,behaviorParams) {  
+    var ltOption = ..web.layout.element( behaviorParams.he )  
+
+}
+</code></pre>
+
+<p><a id="layoutEleObject.onSelectStateChanged"></a></p>
+
+<h3>layoutEleObject.onSelectStateChanged</h3>
+
+<pre><code class="aardio language-aardio">layoutEleObject.onSelectStateChanged = function (ltTarget,ltOwner,reason,behaviorParams) {  
+
+}
+</code></pre>
+
+<p><a id="layoutEleObject.onSetValue"></a></p>
+
+<h3>layoutEleObject.onSetValue</h3>
+
+<pre><code class="aardio language-aardio">layoutEleObject.onSetValue = function(  ltOwner,value ){  
+
+    return true  
+}
+</code></pre>
+
+<p><a id="layoutEleObject.onSize"></a></p>
+
+<h3>layoutEleObject.onSize</h3>
+
+<pre><code class="aardio language-aardio">layoutEleObject.onSize = function (ltOwner) {  
+
+}
+</code></pre>
+
+<p><a id="layoutEleObject.onTableHeaderClick"></a></p>
+
+<h3>layoutEleObject.onTableHeaderClick</h3>
+
+<pre><code class="aardio language-aardio">layoutEleObject.onTableHeaderClick = function (ltTarget,ltOwner,cellIndex,behaviorParams) {  
+
+}
+</code></pre>
+
+<p><a id="layoutEleObject.onTableRowClick"></a></p>
+
+<h3>layoutEleObject.onTableRowClick</h3>
+
+<pre><code class="aardio language-aardio">layoutEleObject.onTableRowClick = function (ltTarget,ltOwner,rowIndex,behaviorParams) {  
+
+}
+</code></pre>
+
+<p><a id="layoutEleObject.onTableRowDblClick"></a></p>
+
+<h3>layoutEleObject.onTableRowDblClick</h3>
+
+<pre><code class="aardio language-aardio">layoutEleObject.onTableRowDblClick = function (ltTarget,ltOwner,rowIndex,behaviorParams) {  
+
+}
+</code></pre>
+
+<p><a id="layoutEleObject.onTimer"></a></p>
+
+<h3>layoutEleObject.onTimer</h3>
+
+<pre><code class="aardio language-aardio">layoutEleObject.onTimer = function (ltOwner,timerId) {  
+
+}
+</code></pre>
+
+<p><a id="layoutEleObject.onUiStateChanged"></a></p>
+
+<h3>layoutEleObject.onUiStateChanged</h3>
+
+<pre><code class="aardio language-aardio">layoutEleObject.onUiStateChanged = function (ltTarget,ltOwner,reason,behaviorParams) {  
+
+}
+</code></pre>
+
+<p><a id="layoutEleObject.onVisualStateChanged"></a></p>
+
+<h3>layoutEleObject.onVisualStateChanged</h3>
+
+<pre><code class="aardio language-aardio">layoutEleObject.onVisualStateChanged = function (ltTarget,ltOwner,shown,behaviorParams) {  
+
+}
+</code></pre>
+
+<p><a id="layoutEleObject.outerHTML"></a></p>
+
+<h3>layoutEleObject.outerHTML</h3>
+
+<p>节点HTML源码</p>
+
+<p><a id="layoutEleObject.parent"></a></p>
+
+<h3>layoutEleObject.parent()</h3>
+
+<p>获取父节点  </p>
+
+<p><a href="#layoutEleObject">返回对象:layoutEleObject</a></p>
+
+<p><a id="layoutEleObject.popup"></a></p>
+
+<h3>layoutEleObject.popup</h3>
+
+<p>在指定坐标弹出菜单</p>
+
+<p><a id="layoutEleObject.popup"></a></p>
+
+<h3>layoutEleObject.popup(x坐标,y坐标,是否显示动画,相应坐标)</h3>
+
+<p>参数三,四可省略,<br>
+参数四可选值为1到9,表示相对指定坐标的偏移位置如下:<br>
+3 2 1<br>
+6 5 4<br>
+9 8 7</p>
+
+<p><a id="layoutEleObject.popupAnchor"></a></p>
+
+<h3>layoutEleObject.popupAnchor(锚节点,选项)</h3>
+
+<p>弹出菜单节点<br>
+参数2指定弹出方向,可省略,默认为2<br>
+可选值(2:下,4:左;6:右 8:上)  </p>
+
+<p>8<br>
+4 5 6<br>
+  2</p>
+
+<p><a id="layoutEleObject.popupHide"></a></p>
+
+<h3>layoutEleObject.popupHide()</h3>
+
+<p>隐藏菜单节点</p>
+
+<p><a id="layoutEleObject.popupTrack"></a></p>
+
+<h3>layoutEleObject.popupTrack</h3>
+
+<p>显示菜单、并等待点击返回用户点选的菜单项</p>
+
+<p><a id="layoutEleObject.popupTrack"></a></p>
+
+<h3>layoutEleObject.popupTrack(x坐标,y坐标,是否显示动画,相应坐标)</h3>
+
+<p>参数三,四可省略,<br>
+参数四可选值为1到9,表示相对指定坐标的偏移位置如下:<br>
+3 2 1<br>
+6 5 4<br>
+9 8 7</p>
+
+<p><a id="layoutEleObject.postEvent"></a></p>
+
+<h3>layoutEleObject.postEvent(事件ID,选项,ltTarget)</h3>
+
+<p>触发事件,不等待返回,参数二,参数三为可选参数<br>
+参数一也可以是事件函数名,例如&quot;onButtonClick&quot;,<br>
+支持web.layout.event.BEHAVIOR 名字空间的事件,或其他on前缀的自定义事件<br>
+不应使用此函数触发其他例如onMuse,onKey前缀的事件</p>
+
+<p><a id="layoutEleObject.previous"></a></p>
+
+<h3>layoutEleObject.previous()</h3>
+
+<p>上一个兄弟节点  </p>
+
+<p><a href="#layoutEleObject">返回对象:layoutEleObject</a></p>
+
+<p><a id="layoutEleObject.previousSibling"></a></p>
+
+<h3>layoutEleObject.previousSibling()</h3>
+
+<p>获取上一个兄弟节点,可选在参数中指定偏移值  </p>
+
+<p><a href="#layoutEleObject">返回对象:layoutEleObject</a></p>
+
+<p><a id="layoutEleObject.printf"></a></p>
+
+<h3>layoutEleObject.printf(&quot;格式化串&quot;,其他参数)</h3>
+
+<p>格式化并写入HTML代码到节点尾部</p>
+
+<p><a id="layoutEleObject.queryElement"></a></p>
+
+<h3>layoutEleObject.queryElement()</h3>
+
+<p><a href="#layoutEleObject">返回对象:layoutEleObject</a></p>
+
+<p><a id="layoutEleObject.queryElements"></a></p>
+
+<h3>layoutEleObject.queryElements()</h3>
+
+<p><a href="#layoutEleObject">返回对象:layoutEleObject</a></p>
+
+<p><a id="layoutEleObject.queryParent"></a></p>
+
+<h3>layoutEleObject.queryParent(&quot;标签名[属性名=&#39;属性值&#39;]&quot;)</h3>
+
+<p>该函数类似于CSSS!脚本中的$1p函数,不同的是会测试自身是否匹配,<br>
+使用CSS选择器语法,在父节点中查找匹配最近的一个父节点,<br>
+可选使用参数二指定向上搜索深度,<br>
+如果搜索级别省略或设为0,则不限制搜索深度,<br>
+如果该值为1,仅匹配自身</p>
+
+<p><a id="layoutEleObject.queryParent"></a></p>
+
+<h3>layoutEleObject.queryParent()</h3>
+
+<p><a href="#layoutEleObject">返回对象:layoutEleObject</a></p>
+
+<p><a id="layoutEleObject.queryParents"></a></p>
+
+<h3>layoutEleObject.queryParents(&quot;标签名[属性名=&#39;属性值&#39;]&quot;)</h3>
+
+<p>该函数类似于CSSS!脚本中的$p函数,不同的是会测试自身是否匹配,<br>
+使用CSS选择器语法,在父节点中查找所有匹配的节点,<br>
+成功返回非空数组</p>
+
+<p><a id="layoutEleObject.querySelector"></a></p>
+
+<h3>layoutEleObject.querySelector</h3>
+
+<p>使用CSS选择器语法查找节点,返回节点对象</p>
+
+<p><a id="layoutEleObject.querySelector"></a></p>
+
+<h3>layoutEleObject.querySelector(&quot;标签名[属性名=&#39;属性值&#39;]&quot;)</h3>
+
+<p>使用CSS选择器语法,<br>
+在当前节点的子节点中查找第一个符合条件节点,<br>
+如果有多个参数则首先调用string.format格式化为CSS文本,<br>
+该函数名可使用&#39;$1&#39;代替,等价于CSS!中的$1函数</p>
+
+<p><a id="layoutEleObject.querySelector"></a></p>
+
+<h3>layoutEleObject.querySelector()</h3>
+
+<p><a href="#layoutEleObject">返回对象:layoutEleObject</a></p>
+
+<p><a id="layoutEleObject.querySelectorAll"></a></p>
+
+<h3>layoutEleObject.querySelectorAll</h3>
+
+<p>使用CSS选择器语法查找节点,返回数组</p>
+
+<p><a id="layoutEleObject.querySelectorAll"></a></p>
+
+<h3>layoutEleObject.querySelectorAll(&quot;标签名[属性名=&#39;属性值&#39;]&quot;)</h3>
+
+<p>使用CSS选择器语法,<br>
+在当前节点的子节点中查找所有符合条件节点,<br>
+如果有多个参数则首先调用string.format格式化为CSS文本,<br>
+该函数名可使用&#39;$&#39;代替,等价于CSS!中的$函数</p>
+
+<p><a id="layoutEleObject.querySelectorAll"></a></p>
+
+<h3>layoutEleObject.querySelectorAll()</h3>
+
+<p><a href="#layoutEleObject">返回对象:layoutEleObject</a></p>
+
+<p><a id="layoutEleObject.release"></a></p>
+
+<h3>layoutEleObject.release()</h3>
+
+<p>确认节点对象不再使用可使用此函数释放引用,<br>
+调用此函数后不可再使用该对象,<br>
+节点会自动释放,不建议手动调用此函数</p>
+
+<p><a id="layoutEleObject.request"></a></p>
+
+<h3>layoutEleObject.request(网址)</h3>
+
+<p>用于框架节点打开网页<br>
+该函数会触发onDataArrived事件</p>
+
+<p><a id="layoutEleObject.request"></a></p>
+
+<h3>layoutEleObject.request(网址,参数,提交方法)</h3>
+
+<p>参数可以是字符串或键值对组成的表对象<br>
+提交方法可省略,默认为&quot;POST&quot;<br>
+该函数可触发onDataArrived事件</p>
+
+<p><a id="layoutEleObject.root"></a></p>
+
+<h3>layoutEleObject.root()</h3>
+
+<p>根文档的根节点<br>
+获取框架内部当前文档根节点应请使用documentElement属性  </p>
+
+<p><a href="#layoutEleObject">返回对象:layoutEleObject</a></p>
+
+<p><a id="layoutEleObject.scrollToView"></a></p>
+
+<h3>layoutEleObject.scrollToView(滚动到顶部,平滑效果)</h3>
+
+<p>滚动上层视图节点滚动条</p>
+
+<p><a id="layoutEleObject.selHTML"></a></p>
+
+<h3>layoutEleObject.selHTML</h3>
+
+<p>HTML剪帖格式返回选区内容,<br>
+该属性只读</p>
+
+<p><a id="layoutEleObject.selText"></a></p>
+
+<h3>layoutEleObject.selText</h3>
+
+<p>获取或设置选区文本</p>
+
+<p><a id="layoutEleObject.sendEvent"></a></p>
+
+<h3>layoutEleObject.sendEvent(事件ID,选项,ltTarget)</h3>
+
+<p>触发事件,并等待返回,参数二,参数三为可选参数<br>
+参数一也可以是事件函数名,例如&quot;onButtonClick&quot;,<br>
+支持web.layout.event.BEHAVIOR 名字空间的事件,或其他on前缀的自定义事件<br>
+不应使用此函数触发其他例如onMuse,onKey前缀的事件</p>
+
+<p><a id="layoutEleObject.setAttribute"></a></p>
+
+<h3>layoutEleObject.setAttribute(&quot;hide&quot;,&quot;true&quot;)</h3>
+
+<p>修改属性,属性值只能是字符串或null<br>
+也可以直接写 ele.属性名字 = &quot;值&quot;</p>
+
+<p><a id="layoutEleObject.setDataTable"></a></p>
+
+<h3>layoutEleObject.setDataTable(tab对象)</h3>
+
+<p>序列化table对象并设置为节点data-table属性</p>
+
+<p><a id="layoutEleObject.setEventRoot"></a></p>
+
+<h3>layoutEleObject.setEventRoot()</h3>
+
+<p>设为事件触发根节点<br>
+节点之外的节点事节被禁用,<br>
+成功返回上一个事件根节点</p>
+
+<p><a id="layoutEleObject.setPos"></a></p>
+
+<h3>layoutEleObject.setPos(x坐标,y坐标,宽,高)</h3>
+
+<p>移动节点,所有参数可选</p>
+
+<p><a id="layoutEleObject.setScrollPos"></a></p>
+
+<h3>layoutEleObject.setScrollPos(x,y,平滑效果)</h3>
+
+<p>x,y皆可省略,默认值为0</p>
+
+<p><a id="layoutEleObject.setTimer"></a></p>
+
+<h3>layoutEleObject.setTimer(延时毫秒值,ID)</h3>
+
+<p>如果延时值为0,取消定时器,ID可省略<br>
+在CSSS!脚本中可触发 timer! 事件</p>
+
+<p><a id="layoutEleObject.setValueObject"></a></p>
+
+<h3>layoutEleObject.setValueObject(值,单位,类型)</h3>
+
+<p>值可选使用字符串,数值,时间值,或 web.layout.valueObject 对象,<br>
+单位为可选参数,值类型(使用 <em>HL_T</em> 前缀常量表示)为可选参数</p>
+
+<p><a id="layoutEleObject.setsel"></a></p>
+
+<h3>layoutEleObject.setsel(起始位置,结束位置)</h3>
+
+<p>设置文本框控件文本选区</p>
+
+<p><a id="layoutEleObject.sort"></a></p>
+
+<h3>layoutEleObject.sort(cmpFunc,firstInddex,lastIndex)</h3>
+
+<pre><code class="aardio language-aardio">layoutEleObject.sort(  
+    function(ltEle,ltEle2){  
+
+        return /*比较条件,可返回-1,0,1等值表示比较结果*/ ? -1 : 1;  
+    }  
+)
+</code></pre>
+
+<p><a id="layoutEleObject.state"></a></p>
+
+<h3>layoutEleObject.state</h3>
+
+<p>节点状态,<br>
+类似于CSSS! 脚本中使用一个冒号表示状态,<br>
+例如 ele:hover = false,  </p>
+
+<p><a href="#htmlayoutStateObject">返回对象:htmlayoutStateObject</a></p>
+
+<p><a id="layoutEleObject.style"></a></p>
+
+<h3>layoutEleObject.style</h3>
+
+<p>节点样式,<br>
+类似于CSSS! 脚本中使用一对冒号表示状态,<br>
+例如 ele::width = 56px,<br>
+CSS样式属性的值必须是符合CSS样式语法的字符串，例如:  </p>
+
+<p>ltEle.style[&quot;color&quot;] = &quot;#F00&quot;;<br>
+ltEle.style[&quot;background&quot;] = &quot;#FFF&quot;;<br>
+ltEle.style[&quot;background-image&quot;] = &quot;url(/images/bg.png)&quot;;  </p>
+
+<p><a href="#htmlayoutStyleObject">返回对象:htmlayoutStyleObject</a></p>
+
+<p><a id="layoutEleObject.swap"></a></p>
+
+<h3>layoutEleObject.swap(节点对象)</h3>
+
+<p>交换节点对象位置</p>
+
+<p><a id="layoutEleObject.tagName"></a></p>
+
+<h3>layoutEleObject.tagName</h3>
+
+<p>返回表示节点类型的字符串<br>
+例如层节点返回&quot;div&quot;</p>
+
+<p><a id="layoutEleObject.test"></a></p>
+
+<h3>layoutEleObject.test(&quot;标签名[属性名=&#39;属性值&#39;]&quot;,是否测试所有父节点)</h3>
+
+<p>测试节点自身是否符合匹配,<br>
+该函数等价于 testParent(CSS选择器,1)</p>
+
+<p><a id="layoutEleObject.testParent"></a></p>
+
+<h3>layoutEleObject.testParent(&quot;标签名[属性名=&#39;属性值&#39;]&quot;)</h3>
+
+<p>测试父节点中是否存在符合匹配的节点,<br>
+可使用参数2指定向上搜索深度,默认为0表示不作限制,</p>
+
+<p><a id="layoutEleObject.traverseKey"></a></p>
+
+<h3>layoutEleObject.traverseKey(&quot;onKeyDown&quot;,_VK_...,altSate)</h3>
+
+<p>参数@1指定事件,可直接使用  <em>HL_KEY</em> 前缀常量作为参数<br>
+参数@2指定虚拟键码,参数altState可省略,可选值:<br>
+_HL_CONTROL_KEY_PRESSED:0x1,<br>
+_HL_SHIFT_KEY_PRESSED:0x2,<br>
+_HL_ALT_KEY_PRESSED:0x4</p>
+
+<p><a id="layoutEleObject.traverseMouse"></a></p>
+
+<h3>layoutEleObject.traverseMouse(&quot;onMouseClick&quot;,x,y,btnState,altSate)</h3>
+
+<p>除参数@1以外,其他都是可选参数<br>
+参数@1指定事件,可直接使用  <em>HL_MOUSE</em> 前缀常量作为参数<br>
+x,y用于指定节点内部相对坐标<br>
+btnState默认为 _HL_MAIN_MOUSE_BUTTON,即鼠标左键</p>
+
+<p><a id="layoutEleObject.type"></a></p>
+
+<h3>layoutEleObject.type</h3>
+
+<p>返回控件类型(type属性)</p>
+
+<p><a id="layoutEleObject.uid"></a></p>
+
+<h3>layoutEleObject.uid</h3>
+
+<p>节点唯一标志符(数值)</p>
+
+<p><a id="layoutEleObject.update"></a></p>
+
+<h3>layoutEleObject.update()</h3>
+
+<p>更新;</p>
+
+<p><a id="layoutEleObject.update"></a></p>
+
+<h3>layoutEleObject.update(true)</h3>
+
+<p>更新,<br>
+重新计算元素的尺寸</p>
+
+<p><a id="layoutEleObject.updateEx"></a></p>
+
+<h3>layoutEleObject.updateEx( _HL_UPDATE_ELEMENT_FLAGS )</h3>
+
+<p>更新;<br>
+并调用::UpdateWindow 刷新窗口</p>
+
+<p><a id="layoutEleObject.updateHTML"></a></p>
+
+<h3>layoutEleObject.updateHTML()</h3>
+
+<p>重新解析节点HTML代码</p>
+
+<p><a id="layoutEleObject.updateWindow"></a></p>
+
+<h3>layoutEleObject.updateWindow(是否顶层窗口)</h3>
+
+<p>更新窗口<br>
+参数可省略,默认为false</p>
+
+<p><a id="layoutEleObject.value"></a></p>
+
+<h3>layoutEleObject.value</h3>
+
+<p>读写控件值,<br>
+可选值类型:字符串值,数值,时间值等,<br>
+可选使用web.layout.value 对象赋值</p>
+
+<p><a id="layoutEleObject.visitElement"></a></p>
+
+<h3>layoutEleObject.visitElement()</h3>
+
+<p><a href="#layoutEleObject">返回对象:layoutEleObject</a></p>
+
+<p><a id="layoutEleObject.visitElement"></a></p>
+
+<h3>layoutEleObject.visitElement(节点类型,属性名,属性值,深度)</h3>
+
+<p>查找第一个符合的节点,所有参数都可空</p>
+
+<p><a id="layoutEleObject.visitElements"></a></p>
+
+<h3>layoutEleObject.visitElements(节点类型,属性名,属性值,深度)</h3>
+
+<p>查找所有符合的节点,所有参数都可空</p>
+
+<p><a id="layoutEleObject.workThread"></a></p>
+
+<h3>layoutEleObject.workThread</h3>
+
+<p>该值为 true 表示节点对象已被转换为适用于工作线程<br>
+该值为 false 表示节点对象是用于界面线程</p>
+
+<p><a id="layoutEleObject.write"></a></p>
+
+<h3>layoutEleObject.write(html,...)</h3>
+
+<p>写入HTML并替换节点内部HTML,<br>
+参数可以是数值,字符串</p>
+
+<p><a id="layoutEleObject.xcall"></a></p>
+
+<h3>layoutEleObject.xcall(&quot;自定义函数名&quot;,其他参数...)</h3>
+
+<p>调用节点自定义的函数,并获取返回值</p>
+
+<p><a id="ltEle"></a></p>
+
+<h2>ltEle 成员列表</h2>
+
+<p>HTMLayout节点对象,<br>
+lt前缀变量为HTMLayout保留,请勿用于表示其他类型对象  </p>
+
+<p><a href="#layoutEleObject">返回对象:layoutEleObject</a></p>
+
+<p><a id="ltEleScrollInfoObject"></a></p>
+
+<h2>ltEleScrollInfoObject 成员列表</h2>
+
+<p><a id="ltEleScrollInfoObject.page"></a></p>
+
+<h3>ltEleScrollInfoObject.page</h3>
+
+<p>分页大小  </p>
+
+<p><a href="#sizeObject">返回对象:sizeObject</a></p>
+
+<p><a id="ltEleScrollInfoObject.pos"></a></p>
+
+<h3>ltEleScrollInfoObject.pos</h3>
+
+<p>滚动条位置  </p>
+
+<p><a href="#pointObject">返回对象:pointObject</a></p>
+
+<p><a id="ltEleScrollInfoObject.rect"></a></p>
+
+<h3>ltEleScrollInfoObject.rect</h3>
+
+<p>视图区块  </p>
+
+<p><a href="../../../global/_.html#rectObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/global/_.html#rectObject">返回对象:rectObject</a></p>
+
+<p><a id="ltEleScrollInfoObject.size"></a></p>
+
+<h3>ltEleScrollInfoObject.size</h3>
+
+<p>内容大小  </p>
+
+<p><a href="#sizeObject">返回对象:sizeObject</a></p>
+
+<p><a id="ltOwner"></a></p>
+
+<h2>ltOwner 成员列表</h2>
+
+<p>HTMLayout节点对象,<br>
+在事件函数中,ltOwner一般表示捕获事件的节点,<br>
+lt前缀变量为HTMLayout保留,请勿用于表示其他类型对象  </p>
+
+<p><a href="#layoutEleObject">返回对象:layoutEleObject</a></p>
+
+<p><a id="web.layout"></a></p>
+
+<h2>web.layout 成员列表</h2>
+
+<p><a id="web.layout.element"></a></p>
+
+<h3>web.layout.element()</h3>
+
+<p><a href="#layoutEleObject">返回对象:layoutEleObject</a></p>
+
+<p><a id="web.layout.element"></a></p>
+
+<h3>web.layout.element(句柄,是否添加引用)</h3>
+
+<p>将节点句柄转换为节点对象</p>
+
+<h3>自动完成常量</h3>
+
+<p>_HLDOM_INVALID_HANDLE=2<br>
+_HLDOM_INVALID_HWND=1<br>
+_HLDOM_INVALID_PARAMETER=4<br>
+_HLDOM_OK=0<br>
+_HLDOM_OK_NOT_HANDLED=-1<br>
+_HLDOM_OPERATION_FAILED=5<br>
+_HLDOM_PASSIVE_HANDLE=3<br>
+_HL_BACK_IMAGE_AREA=0x40<br>
+_HL_BORDER_BOX=0x20<br>
+_HL_CONTAINER_RELATIVE=3<br>
+_HL_CONTENT_BOX=0<br>
+_HL_CTL_BUTTON=4<br>
+_HL_CTL_CALENDAR=0x16<br>
+_HL_CTL_CHECKBOX=5<br>
+_HL_CTL_CURRENCY=0x10<br>
+_HL_CTL_DATE=0x17<br>
+_HL_CTL_DD_SELECT=9<br>
+_HL_CTL_DECIMAL=0xF<br>
+_HL_CTL_EDIT=2<br>
+_HL_CTL_FORM=0x23<br>
+_HL_CTL_FRAME=0x19<br>
+_HL_CTL_FRAMESET=0x1A<br>
+_HL_CTL_GRAPHICS=0x1B<br>
+_HL_CTL_HIDDEN=0x20<br>
+_HL_CTL_HTMLAREA=0xB<br>
+_HL_CTL_HYPERLINK=0x12<br>
+_HL_CTL_LIST=0x1D<br>
+_HL_CTL_MENU=0x14<br>
+_HL_CTL_MENUBAR=0x13<br>
+_HL_CTL_MENUBUTTON=0x15<br>
+_HL_CTL_NO=0<br>
+_HL_CTL_NUMERIC=3<br>
+_HL_CTL_PASSWORD=0xC<br>
+_HL_CTL_PROGRESS=0xD<br>
+_HL_CTL_RADIO=6<br>
+_HL_CTL_RICHTEXT=0x1E<br>
+_HL_CTL_SCROLLBAR=0x11<br>
+_HL_CTL_SELECT_MULTIPLE=8<br>
+_HL_CTL_SELECT_SINGLE=7<br>
+_HL_CTL_SLIDER=0xE<br>
+_HL_CTL_SPRITE=0x1C<br>
+_HL_CTL_TEXTAREA=0xA<br>
+_HL_CTL_TIME=0x18<br>
+_HL_CTL_TOOLBAR=0x22<br>
+_HL_CTL_TOOLTIP=0x1F<br>
+_HL_CTL_UNKNOWN=1<br>
+_HL_CTL_URL=0x21<br>
+_HL_FORE_IMAGE_AREA=0x50<br>
+_HL_HV_BAD_PARAMETER=1<br>
+_HL_HV_INCOMPATIBLE_TYPE=2<br>
+_HL_HV_OK=0<br>
+_HL_HV_OK_TRUE=-1<br>
+_HL_MARGIN_BOX=0x30<br>
+_HL_PADDING_BOX=0x10<br>
+_HL_ROOT_RELATIVE=1<br>
+_HL_SCROLLABLE_AREA=0x60<br>
+_HL_SELF_RELATIVE=2<br>
+_HL_T_ARRAY=9<br>
+_HL_T_BOOL=2<br>
+_HL_T_BYTES=0xC<br>
+_HL_T_CURRENCY=7<br>
+_HL_T_DATE=6<br>
+_HL_T_DOM_OBJECT=0xE<br>
+_HL_T_FLOAT=4<br>
+_HL_T_FUNCTION=0xB<br>
+_HL_T_INT=3<br>
+_HL_T_LENGTH=8<br>
+_HL_T_MAP=0xA<br>
+_HL_T_NULL=1<br>
+_HL_T_OBJECT=0xD<br>
+_HL_T_STRING=5<br>
+_HL_T_UNDEFINED=0<br>
+_HL_UPDATE_ELEMENT_FLAGS_MEASURE_DEEP=2<br>
+_HL_UPDATE_ELEMENT_FLAGS_MEASURE_INPLACE=1<br>
+_HL_UPDATE_ELEMENT_FLAGS_REDRAW_NOW=0x8000<br>
+_HL_UPDATE_ELEMENT_FLAGS_RESET_STYLE_DEEP=0x10<br>
+_HL_UPDATE_ELEMENT_FLAGS_RESET_STYLE_THIS=0x20<br>
+_HL_UT_CM=9<br>
+_HL_UT_COLOR=0xF<br>
+_HL_UT_DIP=0xD<br>
+_HL_UT_EM=1<br>
+_HL_UT_EX=2<br>
+_HL_UT_IN=8<br>
+_HL_UT_MM=0xA<br>
+_HL_UT_PC=0xC<br>
+_HL_UT_PR=3<br>
+_HL_UT_PT=0xB<br>
+_HL_UT_PX=7<br>
+_HL_UT_SP=4<br>
+_HL_UT_SYMBOL=0xFFFF<br>
+_HL_UT_URL=0x10<br>
+_HL_VIEW_RELATIVE=4  </p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/web/layout/element/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/web/layout/element/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/web/layout/element/_.md">Markdown 格式</a></p>
+
+</body> 
+</html>

@@ -1,0 +1,108 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - 取长运算符'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - 取长运算符</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>取长运算符</h1>
+
+<table><thead>
+<tr>
+<th>运算符</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>#</code></td>
+<td>取长运算符(单目运算符)</td>
+</tr>
+</tbody></table>
+
+<p><code>#</code>操作符可用于获取字符串长度、或有序数组包含的元素个数。</p>
+
+<ul>
+<li>如果<code>#</code>操作符用于字符串则返回字符串长度,<br></li>
+<li>如果<code>#</code>操作符用于<a href="../datatype/table/_.html#array" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/datatype/table/_.html#array">有序数组</a>，返回数组长度 - 该操作符取的是索引自 1 开始的序列数组的长度。<br></li>
+<li>如果<code>#</code>操作符用于 null 空值则返回 0,<br></li>
+</ul>
+
+<p>如果用于其他数据类型，则检查对象是否定义了 <code>_len</code> 元方法，如果存在 <code>_len</code> 元方法就调用 <code>_len</code> 元方法返回值，否则抛出异常。 </p>
+
+<p>请特别注意：</p>
+
+<ol>
+<li> table,string,null 不能重载 <code>_len</code> 元方法。</li>
+<li> 多线程共享表（ <a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/thread/table.html  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/thread/table.html'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/thread/table.html">thread.table</a> 对象 ）只是线程共享资源的代理表，所以 <code>#</code> 操作符不能获取多线程共享表里数组元素的个数，应当改用 thread.table 对象提供的 len 方法或 length 属性获取多线程共享数组的长度。</li>
+<li> <code>#</code>不适用于<a href="../datatype/table/_.html#sparse-array" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/datatype/table/_.html#sparse-array">稀疏数组</a>。</li>
+</ol>
+
+<p>aardio 示例：  </p>
+
+<pre><code class="aardio language-aardio">import console;
+
+var str = &quot;&quot;;
+if( #str ){
+    console.log( &quot;字符串非空&quot;,str );  
+}
+else{
+    console.log ( &quot;null 或空串&quot; ); 
+}
+
+console.pause();
+</code></pre>
+
+<p>因为 <code>#</code> 操作符对于一个空字符串或 null 值都会返回 0，如果要判断非 null 并非空字符串时，可以使用 # 操作符简化判断语句。</p>
+
+<p>要特别注意 <code>#</code> 只能用来计算 <a href="../datatype/table/_.html#array" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/datatype/table/_.html#array">有序数组</a> 的长度。  </p>
+
+<p>如果表中包含了<a href="../datatype/table/_.html#sparseArray" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/datatype/table/_.html#sparseArray">稀疏数组</a> - 也就是说表成员的数值键（索引）包含不连续的、中断的数值，那么不可将获取有序数组长度的 <code>#</code>  操作符用于稀疏数组。  </p>
+
+<p>下面的数组就包含了 null 值，属于数值键（索引）不连续的稀疏数组：  </p>
+
+<pre><code class="aardio language-aardio">var array = { &quot;值：1&quot;, null, &quot;值：2&quot;, &quot;值：4&quot;, null, null }
+</code></pre>
+
+<p>null 值就是没有值，所以数组尾部的 null 是无意义的，正确写法如下：  </p>
+
+<pre><code class="aardio language-aardio">var array = { &quot;值：1&quot;, null, &quot;值：2&quot;, &quot;值：4&quot; }
+</code></pre>
+
+<p>数组中间的 null 不可省略，但实际上 null 仍然是表示不存在的值，以上数组等价写法如下：  </p>
+
+<pre><code class="aardio language-aardio">var array = {
+    [1] = &quot;值：1&quot;;
+    [2] = &quot;值：2&quot;;
+    [4] = &quot;值：4&quot;;    
+}
+</code></pre>
+
+<p>这种稀疏数组可以用 table.range() 获取最小索引、最大索引。也可以使用 table.eachArgs() 遍历稀疏数组。  </p>
+
+<p>示例：  </p>
+
+<pre><code class="aardio language-aardio">import console.int;
+var sparseArray = { &quot;值：1&quot;, null, &quot;值：2&quot;, &quot;值：4&quot; }
+
+//获取稀疏数组长度
+var min,max = table.range(sparseArray);
+
+//遍历稀疏数组（可用于遍历函数的不定参数）
+for i,v in table.eachArgs(sparseArray) {
+    console.log(i,v)
+
+}
+</code></pre>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/language-reference/operator/len.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/language-reference/operator/len.md'" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/operator/len.md">Markdown 格式</a></p>
+
+</body> 
+</html>

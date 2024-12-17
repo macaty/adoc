@@ -1,0 +1,77 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - PHP CGI 回调 aardio'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - PHP CGI 回调 aardio</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: PHP CGI 回调 aardio</h1><pre><code class="aardio language-aardio">//PHP 回调 aardio
+import process.php;
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;PHP CGI 回调 aardio&quot;;right=753;bottom=434)
+winform.add(
+edit={cls=&quot;edit&quot;;left=20;top=12;right=734;bottom=404;edge=1;multiline=1;z=1}
+)
+/*}}*/
+
+//注册多线程全局变量
+process.php.threadGlobal = { 
+    winform = winform; 
+} 
+
+//自定义 HTTP 处理程序
+process.php.httpHandle = {
+    [&quot;/jsonrpc&quot;] = {
+        //多线程 JSON RPC 服务端函数，支持不定个数参数
+        hello = function(name,value){
+
+            ..winform.edit.print(&quot;hello 函数被 PHP 调用了,参数：&quot;,name,value);
+
+            //第一个返回值为客户端返回值(result)，第二个返回值为错误对象(error)
+            if(!name) return null,-32602/*_JSONRPC_INVALID_PARAMS*/; 
+
+            return &quot;hello &quot; + name;
+        }
+    }
+}
+
+process.php.code[&quot;/rpc-callback.php&quot;] = /**&lt;?php
+ignore_user_abort(true); // 后台运行
+set_time_limit(0); // 取消脚本运行时间的超时上限
+
+//可选在参数中指定服务端 URL 不指定参数则设为 &#39;http://&#39;.$_SERVER[&#39;HTTP_HOST&#39;].&#39;/jsonrpc&#39;;
+$aardio = new JsonRpcClient();
+
+//用 aardio 作服务端因不需要频繁创建进程，所以速度更快。
+for ($i=1; $i&lt;=20; $i++)
+{ 
+    // PHP 调用 aardio  函数  
+    $ret = $aardio-&gt;hello(&#39;param1&#39;,$i );
+    /*
+    建议使用 process.php.7.4 以上版本，
+    不然 file_get_contents 偶尔失败会导致 JSON RPC 函数返回 null。
+    PHP 7.x 或以上就没有问题，而且速度更快。
+    */
+
+    sleep(1);
+} 
+?&gt;**/ 
+
+//启动 PHP 页面，不获取页面输出，不阻塞界面线程
+process.php.notify(&quot;/rpc-callback.php&quot;); //开发环境打开控制台可查看错误信息
+
+winform.show();
+win.loopMessage();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/PHP/rpc.callback.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/PHP/rpc.callback.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Languages/PHP/rpc.callback.md">Markdown 格式</a>
+</body> 
+</html>

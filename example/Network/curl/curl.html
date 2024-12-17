@@ -1,0 +1,102 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 调用 curl 命令'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 调用 curl 命令</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 调用 curl 命令</h1><pre><code class="aardio language-aardio">//调用 curl 命令
+import console; 
+
+//默认调用 Win10 1803 及之后系统自带的 curl 。
+//改为 import process.curl.7.81 可兼容到 XP 系统 
+//XP，Win7 在市场上已经接近消失，现在开发软件再处处考虑这些已经不重要了。
+import process.curl;
+
+/*
+curl 文档：
+https://quickref.me/zh-CN/docs/curl.html
+https://curl.se/docs/manual.html
+https://curl.se/docs/manpage.html
+*/
+
+//下载网页，成功返回网页，失败返回 null, 错误代码，错误代码参考: https://everything.curl.dev/usingcurl/returns
+var data = process.curl(&quot;https://www.aardio.com&quot;)
+console.log( data );
+
+//支持所有 curl 参数
+var data = process.curl(`-X POST   
+-d &quot;{\&quot;username\&quot;: \&quot;jacen\&quot;, \&quot;password\&quot;: \&quot;123456\&quot;}&quot; 
+-H &quot;Content-Type: application/json&quot; 
+http://httpbin.org/anything/test `);
+
+//返回 JSON 对象或数组时，会自动解析为 aardio 对象或数组
+console.dumpJson(data)
+
+/*
+可以用逗号分隔为多个参数，这样的好处是可以直接写原始字符串，
+aardio 会自动处理参数转义，在必要时会自动在参数首尾添加双引号。
+多个参数会自动以空格分隔，并合并为单个命令行参数
+*/
+var data = process.curl(&quot;-X&quot;,&quot;POST&quot;,   
+    &quot;-d&quot;,&#39;{&quot;username&quot;: &quot;jacen&quot;, &quot;password&quot;: &quot;123456&quot;}&#39;,
+    &quot;-H&quot;,&quot;Content-Type: application/json&quot;, 
+    &quot;http://httpbin.org/anything/test&quot;,
+)
+console.dumpJson(data)
+
+/*
+也可以用一个数组或表指定任意个数参数，支持命名参数。
+注意数组参数总是会被移到命名参数后面。
+所有基于 process 或 process.popen 的对象都支持上述这几种命令行参数写法
+*/
+var data = process.curl({
+    &quot;-X&quot;=&quot;POST&quot;,   
+    &quot;-d&quot;=&#39;{&quot;username&quot;: &quot;jacen&quot;, &quot;password&quot;: &quot;123456&quot;}&#39;,
+    &quot;-H&quot;=&quot;Content-Type: application/json&quot;, 
+    &quot;http://httpbin.org/anything/test&quot;
+})
+console.dumpJson(data)
+
+//--json 如果直接指定表对象，aardio 会自动转换为 json 文本。
+var data = process.curl({ 
+    &quot;--json&quot; = {
+        username = &quot;jacen&quot;;
+        password = &quot;123456&quot;;
+    }
+    &quot;http://httpbin.org/anything/test&quot;
+})
+console.dumpJson(data)
+
+//-d 如果直接指定表对象，aardio 会自动转换为字符串，并自动处理 URL 编码。
+var data = process.curl({ 
+    &quot;-d&quot; = {
+        username = &quot;jacen&quot;;
+        password = &quot;123456&quot;;
+    }
+    &quot;http://httpbin.org/anything/test&quot;
+})
+console.dumpJson(data)
+
+/*
+更推荐使用 web.rest （体积小，基于系统自带组件，用法更简单）
+https://mp.weixin.qq.com/s/4mYRDnO49alwpQoBD_cILg
+
+或使用 inet.http  （体积小，基于系统自带组件，用法更简单）
+https://mp.weixin.qq.com/s/3Xp4c1LxsOQJsux5o8bhvA
+*/
+
+console.pause(true);
+
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Network/curl/curl.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Network/curl/curl.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Network/curl/curl.md">Markdown 格式</a>
+</body> 
+</html>

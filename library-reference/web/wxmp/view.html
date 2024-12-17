@@ -1,0 +1,368 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - web.wxmp.view 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - web.wxmp.view 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>web.wxmp.view 库模块帮助文档</h1>
+
+<p><details>  <summary>说明</summary>  <p></p>
+
+<p>用户信息字段：
+user_remark //备注
+user_comment_cnt //留言数
+user_selected_comment_cnt //精选留言数
+user_reward_cnt //点赞数
+user_reward_money //赞赏金额，以分为单位
+user_openid //openid
+user_name //用户名
+user_msg_cnt //发消息数
+user_city //所在城市
+user_province //所在省份
+user_country //所在国家
+user_create_time //关注时间，取消关注后此值为 0
+user_group_id //分组 ID
+user_in_blacklist //是否在默名单
+user_head_img //头像</p>
+
+<p></p></details></p>
+
+<p><a id="web.wxmp"></a></p>
+
+<h2>web.wxmp 成员列表</h2>
+
+<p><a id="web.wxmp.view"></a></p>
+
+<h3>web.wxmp.view</h3>
+
+<p>创建微信公众号 REST 客户端。<br>
+请求参数使用普通表单编码（application/x-www-form-urlencoded ）。<br>
+请求参数中的参数值如何是表，则首先转换为 JSON 。<br>
+如果请求参数值为函数，则每次请求调用该函数取值。<br>
+所有参数值转换为字符串后并用 URLEncode 编码。  </p>
+
+<p>返回数据如果为 JSON 格式或者表单编码则自动解析为对象  </p>
+
+<p>UrlEncoded 解码 时会自动解析 JSON 字段值（必须是对象或数组）  </p>
+
+<p>如果请求编码也是 JSON ，请改用 web.rest.jsonClient</p>
+
+<p><a id="web.wxmp.view"></a></p>
+
+<h3>web.wxmp.view()</h3>
+
+<p><a href="#webWxmpViewObject">返回对象:webWxmpViewObject</a></p>
+
+<p><a id="web.wxmp.view"></a></p>
+
+<h3>web.wxmp.view(/*指定 web.view 对象*/)</h3>
+
+<p>创建 REST 客户端。<br>
+请求参数使用普通表单编码（application/x-www-form-urlencoded ）。<br>
+请求参数中的参数值如何是表，则首先转换为 JSON。<br>
+如果请求参数值为函数，则每次请求调用该函数取值。<br>
+所有参数值转换为字符串后并用 URLEncode 编码。  </p>
+
+<p>返回数据如果为 JSON 格式或者表单编码则自动解析为对象  </p>
+
+<p>UrlEncoded 解码 时会自动解析 JSON 字段值（必须是对象或数组）</p>
+
+<p><a id="webWxmpViewObject"></a></p>
+
+<h2>webWxmpViewObject 成员列表</h2>
+
+<p><a id="webWxmpViewObject.?"></a></p>
+
+<h3>webWxmpViewObject.?</h3>
+
+<p>web.rest.client 或继承自 web.rest.client 的对象的其他成员函数或属性。<br>
+请查看相关库函数文档或源码</p>
+
+<p><a id="webWxmpViewObject._http"></a></p>
+
+<h3>webWxmpViewObject._http</h3>
+
+<p>inet.http客户端，用于执行http请求  </p>
+
+<p><a href="#inetHttpObject">返回对象:inetHttpObject</a></p>
+
+<p><a id="webWxmpViewObject.addMark"></a></p>
+
+<h3>webWxmpViewObject.addMark</h3>
+
+<p>添加备注。</p>
+
+<p><a id="webWxmpViewObject.addMark"></a></p>
+
+<h3>webWxmpViewObject.addMark(openId,mark)</h3>
+
+<p>添加备注。<br>
+参数 @1 指定用户 openid，可选用参数 @2 指定添加到备注的字符串 。</p>
+
+<p><a id="webWxmpViewObject.api"></a></p>
+
+<h3>webWxmpViewObject.api</h3>
+
+<p>定义API对象，使用成员操作符或下标获取API对象的成员时将会自动转换为新的API对象</p>
+
+<p><a id="webWxmpViewObject.api"></a></p>
+
+<h3>webWxmpViewObject.api(&quot;网址模板&quot;,&quot;HTTP动词&quot;,&quot;模式串&quot;)</h3>
+
+<p>网址模板可使用 {name}、{/name}、或 {...} 指定模板参数,<br>
+大括号内的参数名可使用英文字符或数字,<br>
+模板参数名首字符为斜杠（例如{/name}）表示使用实参替换后保留斜杠，<br>
+ {...} 表示不定个数的模板参数,如使用多个实参替换则自动使用斜杠拼接，<br>
+默认在网址模板尾部自动添加 {...}  </p>
+
+<p>返回API对象使用下标指定模板实参，<br>
+如果下标是字符串，按下标出现的前后顺序替换模板参数，<br>
+如果下标是表对象，则表中的键值对用于替换与键同名的模板参数,  </p>
+
+<p>可选用参数@2指定HTTP动词,默认值为&quot;POST&quot;  </p>
+
+<p>参数@3如果为模式串，则使用模式匹配转换响应数据并返回。<br>
+参数@3如果为函数，则调用该函数转换转换响应数据并返回。<br>
+参数@3如果为数组，则作为string.map的模式参数@2转换响应数据并返回</p>
+
+<p><a id="webWxmpViewObject.api"></a></p>
+
+<h3>webWxmpViewObject.api(&quot;网址模板&quot;,&quot;HTTP动词&quot;,&quot;模式串&quot;,HTTP选项)</h3>
+
+<p>可选在参数@4用 <em>INTERNET_FLAG</em> 前缀常量自定义http请求选项<br>
+其他参数用法同上</p>
+
+<p><a id="webWxmpViewObject.api"></a></p>
+
+<h3>webWxmpViewObject.api()</h3>
+
+<p><a href="../rest/client.html#webRestApiObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/web/rest/client.html#webRestApiObject">返回对象:webRestApiObject</a></p>
+
+<p><a id="webWxmpViewObject.cancleBlack"></a></p>
+
+<h3>webWxmpViewObject.cancleBlack(openId)</h3>
+
+<p>取消黑名单。<br>
+参数 @openId 指定微信用户 OpenID</p>
+
+<p><a id="webWxmpViewObject.eachBlackList"></a></p>
+
+<h3>webWxmpViewObject.eachBlackList(分页用户数,分组ID)</h3>
+
+<pre><code class="aardio language-aardio">for userList in eachUserList(20){  
+    /*遍历获取名单用用户列表，参数 @1 指定每次返回的用户数。*/  
+}
+</code></pre>
+
+<p><a id="webWxmpViewObject.eachUserList"></a></p>
+
+<h3>webWxmpViewObject.eachUserList(分页用户数,分组ID)</h3>
+
+<pre><code class="aardio language-aardio">for userList in eachUserList(20){  
+    /*遍历获取用户列表，参数 @1 指定每次返回的用户数。*/  
+}
+</code></pre>
+
+<p><a id="webWxmpViewObject.getBlackList"></a></p>
+
+<h3>webWxmpViewObject.getBlackList(选项)</h3>
+
+<pre><code class="aardio language-aardio">webWxmpViewObject.getUserList(  
+    offset = 0;/*获取黑名单用户列表，可用选项请参考此函数源码。*/  
+)
+</code></pre>
+
+<p><a id="webWxmpViewObject.getUserInfo"></a></p>
+
+<h3>webWxmpViewObject.getUserInfo</h3>
+
+<p>获取用户信息</p>
+
+<p><a id="webWxmpViewObject.getUserInfo"></a></p>
+
+<h3>webWxmpViewObject.getUserInfo(openId)</h3>
+
+<p>获取并返回用户信息。<br>
+参数 @openId 指定微信用户 OpenID 。</p>
+
+<p><a id="webWxmpViewObject.getUserList"></a></p>
+
+<h3>webWxmpViewObject.getUserList(选项)</h3>
+
+<pre><code class="aardio language-aardio">webWxmpViewObject.getUserList(  
+    begin_create_time = 1;/*获取用户列表，可用选项请参考此函数源码。*/  
+)
+</code></pre>
+
+<p><a id="webWxmpViewObject.lastRequestInfo"></a></p>
+
+<h3>webWxmpViewObject.lastRequestInfo</h3>
+
+<p>最后一次请示使用的所有参数信息</p>
+
+<p><a id="webWxmpViewObject.lastRequestMethod"></a></p>
+
+<h3>webWxmpViewObject.lastRequestMethod</h3>
+
+<p>最后一次请示使用的HTTP方法</p>
+
+<p><a id="webWxmpViewObject.lastRequestUrl"></a></p>
+
+<h3>webWxmpViewObject.lastRequestUrl</h3>
+
+<p>获取最后一次请求的URL</p>
+
+<p><a id="webWxmpViewObject.lastResponse"></a></p>
+
+<h3>webWxmpViewObject.lastResponse()</h3>
+
+<p>获取最后一次服务器返回的数据,<br>
+如果控制台已打开或在开发环境中导入 console 库则在控制台输出数据<br>
+下载文件时该值为空</p>
+
+<p><a id="webWxmpViewObject.lastResponseContentType"></a></p>
+
+<h3>webWxmpViewObject.lastResponseContentType</h3>
+
+<p>服务器响应头 Content-Type 的值</p>
+
+<p><a id="webWxmpViewObject.lastResponseError"></a></p>
+
+<h3>webWxmpViewObject.lastResponseError()</h3>
+
+<p>返回服务器最后一次返回的错误响应，并转换为错误对象。<br>
+与调用 API 时转换响应数据一样，支持相同的服务器响应格式 。<br>
+如果错误来自本地（lastStatusCode 属性为 null）则此函数返回 null 。<br>
+如果最后一次发生请求成功，则此函数返回 null 。  </p>
+
+<p>如果在参数 @1 中指定返回字段，且错误对象包含该字段则使用直接下标获取并返回字段值。<br>
+获取字段失败返回 null 而非抛出异常</p>
+
+<p><a id="webWxmpViewObject.lastResponseHeaderList"></a></p>
+
+<h3>webWxmpViewObject.lastResponseHeaderList(&quot;字符串参数&quot;)</h3>
+
+<p>获取所有指定字符串作为开始段的 HTTP 头。<br>
+忽略大小写，不忽略冒号以后部分。<br>
+不指定参数则读取全部响应头。<br>
+返回键值对组成的表对象，键名转为小写，每个值都是一个数组。<br>
+如果调用 head, headGet, headPost 等函数。<br>
+或调用 或 API 对象的 head.get,head.post 等函数，<br>
+则在请求成功后可调用此函数读取 HTTP 头</p>
+
+<p><a id="webWxmpViewObject.lastResponseHeaders"></a></p>
+
+<h3>webWxmpViewObject.lastResponseHeaders</h3>
+
+<p>获取返回的 HTTP 响应头</p>
+
+<p><a id="webWxmpViewObject.lastResponseHeaders"></a></p>
+
+<h3>webWxmpViewObject.lastResponseHeaders(&quot;Content-Length:&quot;)</h3>
+
+<p>获取单个指定的 HTTP 服务器响应头，返回字符串。<br>
+参数指定HTTP头名字或部分名字，忽略大小写，忽略冒号以后部分。<br>
+如果调用 head, headGet, headPost 等函数。<br>
+或调用 或 API 对象的 head.get,head.post 等函数，<br>
+则在请求成功后可调用此函数读取 HTTP 头</p>
+
+<p><a id="webWxmpViewObject.lastResponseHeaders"></a></p>
+
+<h3>webWxmpViewObject.lastResponseHeaders()</h3>
+
+<p>获取返回的 HTTP 响应头。<br>
+如果调用 head, headGet, headPost 等函数。<br>
+或调用 或 API 对象的 head.get,head.post 等函数，<br>
+则在请求成功后可调用此函数读取 HTTP 头</p>
+
+<p><a id="webWxmpViewObject.lastResponseString"></a></p>
+
+<h3>webWxmpViewObject.lastResponseString()</h3>
+
+<p>获取最后一次服务器返回的原始数据，<br>
+请求失败，或者下载文件时此属性值为空</p>
+
+<p><a id="webWxmpViewObject.lastStatusCode"></a></p>
+
+<h3>webWxmpViewObject.lastStatusCode</h3>
+
+<p>获取最近一次请求返回的HTTP状态码<br>
+100 ~ 101 为信息提示<br>
+200 ~ 206 表示请求成功<br>
+300 ~ 305 表示重定向<br>
+400 ~ 415 表求客户端请求出错<br>
+500 ~ 505 表示服务端错误</p>
+
+<p><a id="webWxmpViewObject.lastStatusMessage"></a></p>
+
+<h3>webWxmpViewObject.lastStatusMessage()</h3>
+
+<p>获取最近返回的HTTP状态码文本描述<br>
+第二个返回值为状态码</p>
+
+<p><a id="webWxmpViewObject.messageOnly"></a></p>
+
+<h3>webWxmpViewObject.messageOnly()</h3>
+
+<p>转换为仅处理消息的隐藏窗口，不支持发送消息。</p>
+
+<p><a id="webWxmpViewObject.ok"></a></p>
+
+<h3>webWxmpViewObject.ok()</h3>
+
+<p>最后一次请求是否成功<br>
+服务器应答并且状态码为2XX该函数返回真</p>
+
+<p><a id="webWxmpViewObject.searchComment"></a></p>
+
+<h3>webWxmpViewObject.searchComment(key,option)</h3>
+
+<p>搜索公众号留言。<br>
+@key 参数指定要搜索的关键字或用户名。<br>
+option 指定接口选项，可省略。<br>
+具体用法请查看函数源码。</p>
+
+<p><a id="webWxmpViewObject.sendMessage"></a></p>
+
+<h3>webWxmpViewObject.sendMessage()</h3>
+
+<p>自动发送消息。<br>
+参数 @1 指定用户 openid，可选用参数 @2 指定要发送的字符串 。</p>
+
+<p><a id="webWxmpViewObject.show"></a></p>
+
+<h3>webWxmpViewObject.show()</h3>
+
+<p>显示窗口，参数为 false 隐藏窗口</p>
+
+<p><a id="webWxmpViewObject.strictParsing"></a></p>
+
+<h3>webWxmpViewObject.strictParsing</h3>
+
+<p>对于 JSON 客户端，如果此属性设为 true：<br>
+且服务器响应头未声明 JSON 类型，返回数据第一个字符不是 { 也不是 [，<br>
+则直接返回包含服务器响应数据的字符串。  </p>
+
+<p>此属性值默认为 null</p>
+
+<p><a id="webWxmpViewObject.userApi"></a></p>
+
+<h3>webWxmpViewObject.userApi</h3>
+
+<p>微信用户信息接口。  </p>
+
+<p><a href="../rest/client.html#webRestApiObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/web/rest/client.html#webRestApiObject">返回对象:webRestApiObject</a></p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/web/wxmp/view.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/web/wxmp/view.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/web/wxmp/view.md">Markdown 格式</a></p>
+
+</body> 
+</html>

@@ -1,0 +1,518 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - global 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - global 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>global 库模块帮助文档</h1>
+
+<p><a id="ide"></a></p>
+
+<h2>ide 成员列表</h2>
+
+<p>aardio 开发环境扩展支持库,仅适用于编写开发环境插件,<br>
+需要使用 import ide 语句导入才能使用,  </p>
+
+<p>import ide作为程序第一个import语句时，插件在IDE进程内以线程模式运行,<br>
+否则插件在IDE进程外以独立进程模式运行，请优先使用独立进程模式</p>
+
+<p><a id="ide.compile"></a></p>
+
+<h3>ide.compile()</h3>
+
+<p>编译当前视图源码;</p>
+
+<p><a id="ide.createProcess"></a></p>
+
+<h3>ide.createProcess</h3>
+
+<p>创建运行 aardio 代码的新进程。</p>
+
+<p><a id="ide.createProcess"></a></p>
+
+<h3>ide.createProcess(代码文件路径,代码,动词,命令行参数...)</h3>
+
+<p>在IDE中创建进程启动参数 @1 或参数 @2 指定的代码。<br>
+动词参数可省略，可选值例如 open,runas 等。  </p>
+
+<p>可选指定一个或多个命令行参数（字符串或表）。<br>
+命令行参数使用  string.args.join 合并。<br>
+代码中用 _ARGV 接收解析后的参数。<br>
+返回进程 ID</p>
+
+<p><a id="ide.createProcess"></a></p>
+
+<h3>ide.createProcess(代码文件路径,代码,动词,父窗口句柄,命令行参数...)</h3>
+
+<p>在IDE中创建进程启动参数 @1 或参数 @2 指定的代码。<br>
+动词参数可省略，可选值例如 open,runas 等。<br>
+参数 @4 指定父窗口或父窗口句柄，在运行代码中用 ... 参数接收窗口句柄。  </p>
+
+<p>可选指定一个或多个命令行参数（字符串或表）。<br>
+命令行参数使用  string.args.join 合并。<br>
+代码中用 _ARGV 接收解析后的参数。<br>
+返回进程 ID</p>
+
+<p><a id="ide.createProcess"></a></p>
+
+<h3>ide.createProcess(代码文件路径,全局变量表,动词,命令行参数...)</h3>
+
+<p>在IDE中创建进程启动参数 @1 指定的代码文件。<br>
+参数@2用一个表（table）参数指定全局变量或常量。<br>
+动词参数可省略，可选值例如 open,runas 等。  </p>
+
+<p>可选指定一个或多个命令行参数（字符串或表）。<br>
+命令行参数使用  string.args.join 合并。<br>
+代码中用 _ARGV 接收解析后的参数。<br>
+返回进程 ID</p>
+
+<p><a id="ide.createProcessEx"></a></p>
+
+<h3>ide.createProcessEx(应用根目录,应用图标路径,代码文件路径,代码,动词,父窗口句柄,命令行参数)</h3>
+
+<p>创建进程。<br>
+可自定义应用根目录，应用图标路径。命令行参数只能是单个字符串。<br>
+其他参数用法与 ide.createProcess 相同。</p>
+
+<p><a id="ide.createThread"></a></p>
+
+<h3>ide.createThread(&quot;字符串参数&quot;)</h3>
+
+<p>运行指定 aardio 文件。<br>
+参数指定 aardio 文件路径。<br>
+为避免影响开发环境主进程，尽量不要使用这个函数。<br>
+更好的选择是改用 ide.createProcess 函数。</p>
+
+<p><a id="ide.getActiveCode"></a></p>
+
+<h3>ide.getActiveCode()</h3>
+
+<p>如果当前打开的是源码或窗体设计器,返回正在编辑的源代码,<br>
+失败返回null</p>
+
+<p><a id="ide.getActiveCodeEditor"></a></p>
+
+<h3>ide.getActiveCodeEditor()</h3>
+
+<p>返回当前代码编辑器控件  </p>
+
+<p><a href="../win/ui/ctrl/edit.html#editObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/edit.html#editObject">返回对象:editObject</a></p>
+
+<p><a id="ide.getActiveCodeEditorHwnd"></a></p>
+
+<h3>ide.getActiveCodeEditorHwnd()</h3>
+
+<p>返回当前代码编辑器控件句柄</p>
+
+<p><a id="ide.getActiveDocPath"></a></p>
+
+<h3>ide.getActiveDocPath()</h3>
+
+<p>获取活动文档路径,<br>
+如果文档未保存为文件,则返回值为空</p>
+
+<p><a id="ide.getActiveForm"></a></p>
+
+<h3>ide.getActiveForm()</h3>
+
+<p>返回当前的文档窗口是否窗体设计器</p>
+
+<p><a id="ide.getActiveViewHwnd"></a></p>
+
+<h3>ide.getActiveViewHwnd()</h3>
+
+<p>获取活动视图句柄<br>
+其父窗口为MDI子窗口,子窗口为编辑器窗口<br>
+在IDE进程内运行时第二个返回值为当前文档路径</p>
+
+<p><a id="ide.getConfig"></a></p>
+
+<h3>ide.getConfig(&quot;字符串参数&quot;)</h3>
+
+<p>返回IDE配置文件 (&quot;/Config/USE.CFG&quot;) 指定字段值,<br>
+返回值为字符串,失败返回空字符串</p>
+
+<p><a id="ide.getControlParam"></a></p>
+
+<h3>ide.getControlParam(控件名)</h3>
+
+<p>获取控件参数,<br>
+参数中的font属性作为::LOGFONT的参数才能转换为字体对象</p>
+
+<p><a id="ide.getExtLibs"></a></p>
+
+<h3>ide.getExtLibs()</h3>
+
+<p>返回已安装的扩展库列表</p>
+
+<p><a id="ide.getMainHwnd"></a></p>
+
+<h3>ide.getMainHwnd()</h3>
+
+<p>获取IDE顶层主窗口句柄</p>
+
+<p><a id="ide.getProjectDir"></a></p>
+
+<h3>ide.getProjectDir()</h3>
+
+<p>获取当前工程所在目录,<br>
+如果未打开工程,返回空字符串</p>
+
+<p><a id="ide.getProjectIcon"></a></p>
+
+<h3>ide.getProjectIcon()</h3>
+
+<p>返回工程图标路径。</p>
+
+<p><a id="ide.getProjectMainFile"></a></p>
+
+<h3>ide.getProjectMainFile()</h3>
+
+<p>工程启动代码文件路径</p>
+
+<p><a id="ide.getProjectPath"></a></p>
+
+<h3>ide.getProjectPath()</h3>
+
+<p>获取当前工程路径,<br>
+如果未打开工程,返回空字符串</p>
+
+<p><a id="ide.getProjectProperty"></a></p>
+
+<h3>ide.getProjectProperty(&quot;publishDir&quot;)</h3>
+
+<p>返回工程属性,<br>
+失败返回空字符串</p>
+
+<p><a id="ide.getPublisDir"></a></p>
+
+<h3>ide.getPublisDir()</h3>
+
+<p>返回发布目录</p>
+
+<p><a id="ide.getPublishName"></a></p>
+
+<h3>ide.getPublishName()</h3>
+
+<p>返回生成文件名</p>
+
+<p><a id="ide.getPublishPath"></a></p>
+
+<h3>ide.getPublishPath()</h3>
+
+<p>返回生成文件路径</p>
+
+<p><a id="ide.getSelectedControl"></a></p>
+
+<h3>ide.getSelectedControl()</h3>
+
+<p>返回当前窗体设计器选中的控件名称,失败返回null</p>
+
+<p><a id="ide.getVersion"></a></p>
+
+<h3>ide.getVersion()</h3>
+
+<pre><code class="aardio language-aardio">major,minor,build = ide.getVersion();
+</code></pre>
+
+<p><a id="ide.gotoLine"></a></p>
+
+<h3>ide.gotoLine()</h3>
+
+<p>跳转到参数指定的代码行</p>
+
+<p><a id="ide.insertCode"></a></p>
+
+<h3>ide.insertCode()</h3>
+
+<p>在当前代码编辑器光标位置插入代码,<br>
+支持智能提示模板语法,自动插入新行,自动缩进,<br>
+并将双下划线转换为光标位置,其后的块注释显示为汽泡提示。<br>
+成功返回true</p>
+
+<p><a id="ide.installLib"></a></p>
+
+<h3>ide.installLib</h3>
+
+<p>安装远程扩展库</p>
+
+<p><a id="ide.installLib"></a></p>
+
+<h3>ide.installLib(libName,libUrl,askTitle)</h3>
+
+<p>参数@libName指定扩展库名称,<br>
+参数@libUrl可选,可指定 *.tar.lzma 格式安装包 或 *.aardio 格式库文件地址,<br>
+*.tar.lzma 格式安装包请使用「工具 / 开发环境 / 扩展库发布工具」生成,<br>
+参数@askTitle可选,用于指定安装询问对话框标题,省略则直接安装  </p>
+
+<p>如果不使用@libUrl参数指定网址，自官方扩展库查找高于已安装版本的安装包。<br>
+而指定@libUrl参数时总是重新安装扩展库</p>
+
+<p><a id="ide.isInProject"></a></p>
+
+<h3>ide.isInProject()</h3>
+
+<p>检查参数 @1 指定的路径是否当前打开工程内的路径。<br>
+如果参数不是字符串则直接返回 null ，否则返回布尔值。</p>
+
+<p><a id="ide.killOnExit"></a></p>
+
+<h3>ide.killOnExit()</h3>
+
+<p>IDE 进程退出时自动关闭参数 @1 指定进程 ID 的进程</p>
+
+<p><a id="ide.libMan"></a></p>
+
+<h3>ide.libMan()</h3>
+
+<p>打开库参考手册，并搜索参数 @1 指定的关键字</p>
+
+<p><a id="ide.loadPrivateFont"></a></p>
+
+<h3>ide.loadPrivateFont(&quot;字体路径&quot;)</h3>
+
+<p>在开发环境中加载字体文件,<br>
+使窗体设计器中的控件可以显示该字体</p>
+
+<p><a id="ide.mdiActivate"></a></p>
+
+<h3>ide.mdiActivate</h3>
+
+<p>激活文档窗口</p>
+
+<p><a id="ide.mdiActivate"></a></p>
+
+<h3>ide.mdiActivate(&quot;标题&quot;,&quot;类名&quot;)</h3>
+
+<p>激活窗口</p>
+
+<p><a id="ide.mdiActivate"></a></p>
+
+<h3>ide.mdiActivate(句柄)</h3>
+
+<p>激活窗口</p>
+
+<p><a id="ide.newDocument"></a></p>
+
+<h3>ide.newDocument()</h3>
+
+<p>在编辑器中新建 aardio 源码,可选在参数中指定源代码</p>
+
+<p><a id="ide.newForm"></a></p>
+
+<h3>ide.newForm()</h3>
+
+<p>在编辑器中新建新建窗体设计器,可选在参数中指定窗口源代码</p>
+
+<p><a id="ide.newProject"></a></p>
+
+<h3>ide.newProject()</h3>
+
+<p>打开新建工程向导</p>
+
+<p><a id="ide.openCode"></a></p>
+
+<h3>ide.openCode(aardio代码)</h3>
+
+<p>新建文档窗口并写入aardio代码<br>
+参数指定aardio代码</p>
+
+<p><a id="ide.openDocument"></a></p>
+
+<h3>ide.openDocument(&quot;/输入文件路径&quot;)</h3>
+
+<p>打开 <em>.aardio 源文件、</em>.aproj 工程文件、*.md 文档。  </p>
+
+<p>如果打开单个源码文件,此函数会等待操作完成。<br>
+如果打开工程文件,此函数会立即返回并发送异步命令。<br>
+发送后立即关闭发送线程可能导致异步命令发送失败。<br>
+工程打开后会调用 ide.command 的 onProjectOpened 事件。<br>
+如果用于打开 *.md 文件，则在文档浏览器中显示 Markdown 格式文档，<br>
+支持 <a href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/">https://www.aardio.com/zh-cn/doc/</a> 协议的 URL ，例如： <a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/language-reference/datatype/table/_  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ļ�δ�ҵ���  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/language-reference/datatype/table/_'" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/datatype/table/_">https://www.aardio.com/zh-cn/doc/language-reference/datatype/table/_</a></p>
+
+<p><a id="ide.processGroup"></a></p>
+
+<h3>ide.processGroup()</h3>
+
+<p>返回当前开发进程群组名,可在参数中指定后缀名<br>
+该名字包含IDE主进程的进程ID，可用于process.command,thread.event等</p>
+
+<p><a id="ide.processList"></a></p>
+
+<h3>ide.processList()</h3>
+
+<p>IDE启动的调试进程列表</p>
+
+<p><a id="ide.projectIsOpened"></a></p>
+
+<h3>ide.projectIsOpened()</h3>
+
+<p>返回当前是否已经打开工程</p>
+
+<p><a id="ide.publish"></a></p>
+
+<h3>ide.publish()</h3>
+
+<p>编译当前工程生成exe文件</p>
+
+<p><a id="ide.redrawCodeEditor"></a></p>
+
+<h3>ide.redrawCodeEditor()</h3>
+
+<p>重新读入配色与字体设置,<br>
+重绘代码编辑器窗口,<br>
+成功返回 true</p>
+
+<p><a id="ide.refreshStdLib"></a></p>
+
+<h3>ide.refreshStdLib()</h3>
+
+<p>刷新标准库视图,<br>
+并更新标准库智能提示数据</p>
+
+<p><a id="ide.refreshUserLib"></a></p>
+
+<h3>ide.refreshUserLib()</h3>
+
+<p>刷新当前工程用户库节点,<br>
+并更新用户库智能提示数据</p>
+
+<p><a id="ide.requestLibInfo"></a></p>
+
+<h3>ide.requestLibInfo(&quot;all&quot;)</h3>
+
+<p>查询服务端扩展库信息</p>
+
+<p><a id="ide.run"></a></p>
+
+<h3>ide.run()</h3>
+
+<p>运行当前视图源码;</p>
+
+<p><a id="ide.save"></a></p>
+
+<h3>ide.save()</h3>
+
+<p>保存当前文档</p>
+
+<p><a id="ide.saveAll"></a></p>
+
+<h3>ide.saveAll()</h3>
+
+<p>保存所有文档,并保存工程文件</p>
+
+<p><a id="ide.setActiveCode"></a></p>
+
+<h3>ide.setActiveCode()</h3>
+
+<p>如果当前打开的是源码或窗体设计器,重新设置正在编辑的源代码,<br>
+此函数会覆盖正在编辑的源码，且无法撤消，请谨慎使用,<br>
+成功返回true,失败或当前编辑的不是源码文档或窗体设计器返回false</p>
+
+<p><a id="ide.setConfig"></a></p>
+
+<h3>ide.setConfig(&quot;字符串参数&quot;,&quot;字符串参数&quot;)</h3>
+
+<p>修改IDE配置文件 (&quot;/Config/USE.CFG&quot;) 指定字段值,<br>
+参数必须都是字符串</p>
+
+<p><a id="ide.setControlParam"></a></p>
+
+<h3>ide.setControlParam(控件名,参数表)</h3>
+
+<p>更新控件参数,成功返回true，失败返回false</p>
+
+<p><a id="ide.setProjectProperty"></a></p>
+
+<h3>ide.setProjectProperty(&quot;publishDir&quot;,&quot;字符串参数&quot;)</h3>
+
+<p>设置工程属性,<br>
+返回布尔值表示是否成功</p>
+
+<p><a id="ide.setPublishName"></a></p>
+
+<h3>ide.setPublishName(&quot;输出文件名&quot;)</h3>
+
+<p>插件可以使用此函数修改输出文件名<br>
+因此所有插件请尽可能使用getPublishPath函数获取当前输出路径</p>
+
+<p><a id="ide.setSelectedControl"></a></p>
+
+<h3>ide.setSelectedControl()</h3>
+
+<p>在窗体设计器中选中指定名称的控件,<br>
+并取消选中其他控件,<br>
+成功返回true</p>
+
+<p><a id="ide.show"></a></p>
+
+<h3>ide.show</h3>
+
+<p>在 IDE 窗口的前面显示参数 @1 指定的窗口。<br>
+此函数在显示前临时设置窗口的所有者窗口（owner window）为 IDE 主窗口，<br>
+在显示窗口后再将所有者窗口设为空。</p>
+
+<p><a id="ide.show"></a></p>
+
+<h3>ide.show(hwnd,flags)</h3>
+
+<p>在 IDE 窗口的前面显示参数 @1 指定的窗口。<br>
+参数 @1 指定窗口对象或窗口句柄。<br>
+参数 @2 可选指定调用 win.show 的第 2 个选项参数，可使用 _SW 前缀常量。</p>
+
+<p><a id="ide.showStatus"></a></p>
+
+<h3>ide.showStatus(消息,进度)</h3>
+
+<p>在IDE状态栏显示削息和进度<br>
+参数@1使用字符串指定消息,<br>
+参数@2使用数值指定进度<br>
+所有参数可选<br>
+不指定进度时重置进度为初始状态</p>
+
+<p><a id="ide.startpage"></a></p>
+
+<h3>ide.startpage()</h3>
+
+<p>切换到开始页</p>
+
+<p><a id="ide.switchActiveForm（true)"></a></p>
+
+<h3>ide.switchActiveForm（true)</h3>
+
+<p>用于切换窗体设计器的视图,<br>
+参数为true时切换到设计器视图,参数为false切换到源码视图,<br>
+成功返回true</p>
+
+<p><a id="ide.switchDesignView"></a></p>
+
+<h3>ide.switchDesignView()</h3>
+
+<p>切换当前窗体设计视图;</p>
+
+<p><a id="ide.updateVersion"></a></p>
+
+<h3>ide.updateVersion()</h3>
+
+<p>更新版本</p>
+
+<h3>自动完成常量</h3>
+
+<p>_IDE_ID_BUILD_COMPILE=0x8315<br>
+_IDE_ID_BUILD_PUBLISH=0x8317<br>
+_IDE_ID_BUILD_RUN=0x831D<br>
+_IDE_ID_DESIGN_SWITCHTO=0x831A  </p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/ide/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/ide/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/ide/_.md">Markdown 格式</a></p>
+
+</body> 
+</html>

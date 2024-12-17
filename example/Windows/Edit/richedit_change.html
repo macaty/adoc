@@ -1,0 +1,60 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 打开保存RTF文件'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 打开保存RTF文件</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 打开保存RTF文件</h1><pre><code class="aardio language-aardio">//存取RTF文件
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;打开保存RTF文件&quot;;right=599;bottom=399)
+winform.add(
+richedit={cls=&quot;richedit&quot;;left=18;top=10;right=586;bottom=387;db=1;dl=1;dr=1;dt=1;edge=1;hscroll=1;multiline=1;vscroll=1;z=1}
+)
+/*}}*/
+
+//直接写入RTF
+winform.richedit.streamIn(`{\rtf1\ansi\ansicpg936\deff0\nouicompat\deflang2052\deflangfe2052{\fonttbl{\f0\fnil\fcharset134 \&#39;cb\&#39;ce\&#39;cc\&#39;e5;}}
+{\*\generator Riched20 10.0.18362}{\info{\horzdoc}{\*\lchars ([\&#39;7b\&#39;a1\&#39;a4\&#39;a1\&#39;ae\&#39;a1\&#39;b0\&#39;a1\&#39;b4\&#39;a1\&#39;b6\&#39;a1\&#39;b8\&#39;a1\&#39;ba\&#39;a1\&#39;be\&#39;a1\&#39;b2\&#39;a1\&#39;bc\&#39;a3\&#39;a8\&#39;a3\&#39;ae\&#39;a3\&#39;db\&#39;a3\&#39;fb\&#39;a1\&#39;ea\&#39;a3\&#39;a4}{\*\fchars !),.:;?]\&#39;7d\&#39;a1\&#39;a7\&#39;a1\&#39;a4\&#39;a1\&#39;a6\&#39;a1\&#39;a5\&#39;a8D\&#39;a1\&#39;ac\&#39;a1\&#39;af\&#39;a1\&#39;b1\&#39;a1\&#39;ad\&#39;a1\&#39;c3\&#39;a1\&#39;a2\&#39;a1\&#39;a3\&#39;a1\&#39;a8\&#39;a1\&#39;a9\&#39;a1\&#39;b5\&#39;a1\&#39;b7\&#39;a1\&#39;b9\&#39;a1\&#39;bb\&#39;a1\&#39;bf\&#39;a1\&#39;b3\&#39;a1\&#39;bd\&#39;a3\&#39;a1\&#39;a3\&#39;a2\&#39;a3\&#39;a7\&#39;a3\&#39;a9\&#39;a3\&#39;ac\&#39;a3\&#39;ae\&#39;a3\&#39;ba\&#39;a3\&#39;bb\&#39;a3\&#39;bf\&#39;a3\&#39;dd\&#39;a3\&#39;e0\&#39;a3\&#39;fc\&#39;a3\&#39;fd\&#39;a1\&#39;ab\&#39;a1\&#39;e9}}
+\viewkind4\uc1 
+\pard\widctlpar\sa200\sl276\slmult1\b\f0\fs22 test\b0\par
+}`)
+
+//直接写入RTF文件
+//winform.richedit.streamIn(,`/res/test.rtf`)
+
+import fsys.dlg;
+var path = fsys.dlg.open(&quot;*.rtf|*.rtf||&quot;,&quot;打开RTF文件&quot;);
+
+if( path ){
+
+    //文件流写入
+    var file = io.file(path,&quot;r+b&quot;);
+    winform.richedit.streamIn( ,function(format,buf,len){ 
+        return 0,file.readBuffer(buf,len):0;
+    } )
+    file.close()
+
+    //文件流输出
+    var file = io.file(&quot;/test.rtf&quot;,&quot;w+b&quot;)
+    winform.richedit.streamOut( ,function(format,buf,len){
+        return 0,file.writeBuffer(buf,len) : 0;
+    } )
+    file.close()
+}
+
+winform.show() 
+win.loopMessage();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Windows/Edit/richedit_change.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Windows/Edit/richedit_change.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Windows/Edit/richedit_change.md">Markdown 格式</a>
+</body> 
+</html>

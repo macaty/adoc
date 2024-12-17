@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - FFmpeg 入门'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - FFmpeg 入门</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: FFmpeg 入门</h1><pre><code class="aardio language-aardio">//FFmpeg 入门
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;调用 FFmpeg&quot;;right=759;bottom=469)
+winform.add(
+edit={cls=&quot;edit&quot;;left=10;top=6;right=744;bottom=450;db=1;dl=1;dr=1;dt=1;edge=1;hscroll=1;multiline=1;vscroll=1;z=1}
+)
+/*}}*/
+
+import process.ffmpeg;
+
+var ffmpeg = process.ffmpeg(,&quot;-version&quot;);
+winform.edit.text = ffmpeg.readAll();
+
+//调用 ffmpeg.exe，FFmpeg参数用法: https://quickref.me/zh-CN/docs/ffmpeg.html
+var ffmpeg = process.ffmpeg(&quot;/&quot;,//指定要处理的文件所在目录
+    `-i &quot;abc.m4a&quot; -y -acodec libmp3lame -aq 0 &quot;xyz.mp3&quot;`);
+
+//读取进程所有输出，不阻塞界面，但等待进程结束（阻塞代码向后执行）
+winform.edit.text = ffmpeg.readAll(); 
+
+/*
+下面这样分开写参数也可以，
+包含空格或存在需要转义字符的参数会自动在首尾加双引号并作转义处理。
+*/
+var ffmpeg = process.ffmpeg(&quot;/&quot;,
+    &quot;-i&quot;,&quot;abc.m4a&quot;,&quot;-y&quot;,&quot;-acodec&quot;,&quot;libmp3lame&quot;,&quot;-aq&quot;, &quot;0&quot;,&quot;xyz.mp3&quot;);
+
+//指定用文本框异步显示进程输出（不阻塞代码向后执行）
+ffmpeg.logResponse(winform.edit);
+
+winform.show();
+win.loopMessage();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Media/FFmpeg/FFmpeg.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Media/FFmpeg/FFmpeg.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Media/FFmpeg/FFmpeg.md">Markdown 格式</a>
+</body> 
+</html>

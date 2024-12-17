@@ -1,0 +1,652 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - CSS-script 脚本'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - CSS-script 脚本</title> 
+<link rel="stylesheet" href="../../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>CSS-script 脚本</h1>
+
+<h2>CSS-script 入门概述</h2>
+
+<p>CSS-script （又名 <code>CSSS!</code>）是 <a href="_.html" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/std/web/layout/_.html">HTMLayout</a> 在标准 CSS 语法基础上扩展的一种简单脚本语言，以实现一些简单的交互行为。
+CSS-script 基于标准CSS语法，通常是以一个属性名称（该名称以惊叹号结束)标明触发的事件，以逗号分隔语句（可不是一般编程语言中使用的分号哦），而以分号结束语句块（不是大括号哦），这些非常规的规则为是了遵守CSS语法规范。 </p>
+
+<p>让我们看看下面这段 CSS-script 脚本:</p>
+
+<pre><code class="css language-css">.item {
+      hover-on! :
+            ele = $1( input.url ) ,
+            ele:empty == true ?
+                  (self.value = &quot;empty&quot;) #
+                  (self.value = &quot;filled&quot;),
+            ele:hover = true,
+            self::width = ele.box-content-width(),
+            self.$(.icon) -&gt; @(ele) ele::background-color = rgb(255,0,0)
+      ;
+}
+</code></pre>
+
+<p>它（CSS-script）的格式看起来就像是个扩展的 CSS 属性一样.</p>
+
+<h2>CSS-script 脚本语法规则</h2>
+
+<h3>基本规则</h3>
+
+<ul>
+<li>CSS-script 语句使用逗号&quot;,&quot;作为语句结束符.</li>
+<li>CSS-script 使用分号结束语法块。</li>
+<li>CSS-script 中的字符串只能双引号标识, 不能使用单引号(&quot;string&quot;).</li>
+<li>CSS-script 中使用关键字 self 表示当前对象.</li>
+</ul>
+
+<p>CSS-script 嵌入标准 CSS 并遵守CSS语法规则,受限于 CSS 语法，脚本并不使用分号分隔语句，也不会使用大括号表示语句块，而是使用逗号分隔语句，使用分号结束语法块。 </p>
+
+<h3>CSS-script 标志识</h3>
+
+<p>标志符可以使用英文字母, <code>-</code>,  <code>_</code> 或者 <code>$</code>符号,在这些后面可以附加数字，</p>
+
+<p>注意CSS允许横线作为标志符的一部分，这与其他编程语言不同，如果你需要用横线表示操作符，例如负号，那么清添加空格以区别。</p>
+
+<h3>CSS-script 关键字</h3>
+
+<p>CSS-script 支持下面的关键字</p>
+
+<p><code>true</code>   <code>false</code>   <code>null</code>   <code>self</code> </p>
+
+<p>true 表示逻辑真，false 表示逻辑否，null 表示空值，  </p>
+
+<p>而 self 表示自身，这里的 self 可不是 aardio 中表示当前名字空间的 self 对象，<br>
+实际上他更像 aardio 中表示自身的 this 或者 owner 对象。在 CSS-script 脚本中，<br>
+self 指当前触发事件的节点（类似 javascript 中的 this 对象)  </p>
+
+<h3>CSS-script 操作符</h3>
+
+<p><code>&lt;</code>   <code>&gt;</code>     <code>&lt;=</code>    <code>==</code>    <code>!=</code>    <code>&gt;=</code>    <code>&amp;&amp;</code>    <code>||+</code>     <code>-</code>     <code>\*</code>     <code>/</code>     <code>%</code>     <code>^</code>     <code>|</code>     <code>&amp;</code></p>
+
+<h3>CSS-script 三元操作符</h3>
+
+<p>这个语法的作用类似条件判断语句,</p>
+
+<p>也有点像 aardio 中的三元操作符（区别是在CSS-script中使用 <code>#</code> 号，而不是类似 aardio 或 C++ 中的冒号，当然原因也很简单，冒号被 CSS 语法占用了 )</p>
+
+<p>CSS-script 示例：</p>
+
+<p><code>self:value &gt; 12 ?( self:current = true, self.scroll-to-view());</code></p>
+
+<p>上面这句代码是指，如果当前节点的值大于12，那么选中当前节点( 改变current状态)，并且滚动到视图范围。  </p>
+
+<h3>CSS-script 数据类型</h3>
+
+<p>CSS-script 变量用到的类型如下：  </p>
+
+<p>null - 空值;<br>
+boolean 逻辑值，两个可选值 true 或 false;<br>
+integer - 32位整数值;<br>
+float - 64bit浮点值(实际上这里指的是aardio或C++中的double类型);<br>
+string - UNICODE 字符串;<br>
+object - DOM节点对象(引用);<br>
+object-set - DOM节点对象的集合，函数 $() 返回这样的类型.<br>
+function-reference - CSS-script中定义的函数  </p>
+
+<h3>CSS-script 字面值</h3>
+
+<p>支持整数，浮点小数，文本, 长度单位，以及正则表达式等字面量 :</p>
+
+<ol>
+<li><p>整数格式 -&gt; <code>[0-9]+ | &#39;0x&#39; [0-9A-Fa-f]+ | &#39;&#39;&#39; character &#39;&#39;&#39; | key-code-literal</code></p></li>
+<li><p>浮点数格式 -&gt;  <code>[0-9]+ &#39;.&#39; [0-9]+浮点数格式 -&gt; [0-9]+ &#39;.&#39; &#39;e&#39;|&#39;E&#39;</code></p></li>
+<li><p>文本字面量 -&gt; <code>&#39;&quot;&#39; [.]* &#39;&quot;&#39;</code></p></li>
+<li><p>正则字面量 -&gt;  <code>&#39;/&#39; [&#39;/ig&#39;] &#39;;&#39;</code></p></li>
+<li><p>长度字面量 -&gt;  <code>| immediately followed by one of: &#39;pt&#39; | &#39;px&#39; | &#39;pc&#39; | &#39;%&#39; | &#39;em&#39; | &#39;ex&#39; | &#39;in&#39; | &#39;cm&#39; | &#39;mm&#39;</code></p></li>
+</ol>
+
+<p>数值支持 <code>0x</code> 前缀表示的十六进制数值，也可以在数值前使用正负号。而文本需要放在双引号中。正则字面量则与 JavaScrip 类似，至于长度大小等可以使用px(像素) pt(点)等单位，与CSS相同。  </p>
+
+<h3>CSS-script 键盘代码字面量</h3>
+
+<p>键盘代码放在单引号中，可以是单个英文字母，也可以是下面的值：</p>
+
+<p><code>&#39;RETURN&#39; | &#39;LEFT&#39; | &#39;RIGHT&#39; | &#39;UP&#39; | &#39;DOWN&#39; | &#39;PRIOR&#39; | &#39;NEXT&#39; | &#39;TAB&#39; | &#39;HOME&#39; | &#39;END&#39; | &#39;DELETE&#39; | &#39;INSERT&#39; | &#39;BACK&#39;</code></p>
+
+<p>如果按下组合键，例如 <code>Ctrl+X</code> 则在键名前加上 <code>^</code>.</p>
+
+<p>字面量使用示范:</p>
+
+<p><code>34</code> - 表示普通整数     </p>
+
+<p><code>0xAFED1234</code> - 表示十六进制整数           </p>
+
+<p><code>1.52</code> - 表示浮点数           </p>
+
+<p><code>1.e2</code> - 表示浮点数           </p>
+
+<p><code>1.e-2</code> - 浮点数&quot;Hello world!&quot; - 字符串           </p>
+
+<p><code>12pt</code>- 表示12象素.           </p>
+
+<p><code>&#39;A&#39;</code> - 表示A的键盘代码，实际是一个数值</p>
+
+<p>使用键盘代码的示例：  </p>
+
+<pre><code class="css language-css">key-on!:  key-code() == &#39;^A&#39;? ... # // Ctrl+A 组合键    
+      key-code() == &#39;^NEXT&#39;? ... ; // Ctrl+PgDown 组合键
+</code></pre>
+
+<h3>CSS-script 注释语法</h3>
+
+<p>注释语句被忽略不会被编译，类似aardio的注释语法有两种格式:  </p>
+
+<p>单行注释以斜杠开头:</p>
+
+<p><code>// &lt;text-no-crlf&gt; end-of-line</code></p>
+
+<p>块注释（可包含换行）语法也类似 aardio:</p>
+
+<p><code>/* &lt;text&gt; */</code></p>
+
+<h3>CSS-script 语句</h3>
+
+<p>CSS-script 脚本使用逗号 <code>,</code> 分隔语句，</p>
+
+<p>语句块以分号 &#39;;&#39;.结束 ，下面是支持的语法规则:</p>
+
+<ol>
+<li><p>赋值语句:</p>
+
+<p><code>&lt;左值&gt; &#39;=&#39; &lt;表达式&gt;</code></p></li>
+<li><p>变量声明:</p>
+
+<p><code>&lt;变量名&gt; &lt;b&gt;&#39;=&#39;&lt;/b&gt; &lt;表达式&gt;</code></p></li>
+<li><p>语句块</p>
+
+<p>语句块是一系列使用逗号分隔的语句，语法规则如下：</p>
+
+<p><code>&#39;(&#39;  &lt;expression&gt; [, &lt;expression&gt;]*  &#39;)&#39;</code></p></li>
+<li><p>CSS-script 条件语句</p>
+
+<p>语法规则:</p>
+
+<p><code>&lt;logical-expresion&gt; &#39;?&#39; &lt;when-true-expression&gt; [ &#39;#&#39;  &lt;when-false-expression&gt; ]</code></p>
+
+<p>CSS-script 的条件判断语句格式很简单,<br>
+类似 Javascript或aardio中 的 三元操作符 …  ?  …  :   …  组合，区别是用#号代替了冒号:</p>
+
+<p><code>判断条件 ? (条件为真时的操作)</code></p>
+
+<p>或者:</p>
+
+<p><code>判断条件 ? (条件为真时的操作)</code>   </p></li>
+<li><p>CSS-script 循环</p>
+
+<p>不支持循环，但是函数可以支持尾递归调用.</p></li>
+<li><p>CSS-script Return 语句</p>
+
+<p>return 语句用在函数中返回一个值:</p>
+
+<p>return <expression-or-value-to-return></p></li>
+<li><p>CSS-script  For each, 枚举语句  </p>
+
+<p>语法规则如下：</p>
+
+<p><code>&lt;object-set&gt; &#39;-&gt;&#39;  &lt;reference-to-function-with-single-parameter&gt;</code></p>
+
+<p>枚举通常被用于处理元素集合,格式如下:</p>
+
+<p><code>集合 -&gt; @(参数名) 操作语句</code></p>
+
+<p>aardio中类似的遍历集合的代码如下：      </p>
+
+<p><code>for 局部变量名 in 集合{ }</code></p>
+
+<p>范例:</p>
+
+<pre><code class="css language-css">input.number {
+    value-changed! :
+      total = 0,
+      $(input.number) -&gt; @(el) total = total + el:value,
+      $1(td#total):value = total;
+  }
+</code></pre>
+
+<p>上面代码的解释: 设页面上有一个HTML节点 <code>&lt;input class=&quot;number&quot;&gt;</code> 在它的值发生改变量触发下面的操作:  </p>
+
+<ul>
+<li>定义一个变量 total 并且初始化他的值为 0,<br></li>
+<li>定义一个函数 <code>@(el) total = total + el:value</code>,<br></li>
+<li>枚举所有匹配CSS选择器 <code>input.number</code> 的节点，并执行<code>-&gt;</code>操作符后面指定的函数,<br></li>
+<li>将 total 的值赋于第一个匹配CSS选择器 <code>td#total</code>的节点<br></li>
+</ul></li>
+</ol>
+
+<h3>CSS-script 访问 DOM 节点的属性、状态值、CSS 样式</h3>
+
+<ol>
+<li> 可以使用成员操作符圆点访问节点的属性:</li>
+</ol>
+
+<p>例如对于当前节点: <input type="text"> 有下面的脚本代码:</p>
+
+<p>t = self.type</p>
+
+<p>将会获取节点的type属性并赋值给变量 t.  </p>
+
+<ol>
+<li> 节点的状态使用单个冒号 <code>:</code> 作为成员操作符:</li>
+</ol>
+
+<p>支持的CSS状态例如:  <code>:hover</code>, <code>:active</code>, <code>:link</code>,  <code>:checked</code>, <code>:current</code> 等等。</p>
+
+<p>在 CSS-script 中有如下状态可在执行时使用:</p>
+
+<table><thead>
+<tr>
+<th><strong>状态</strong><br><br></th>
+<th><strong>说明</strong><br><br></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ele:value<br><br></td>
+<td>元素DOM节点对象的值( <strong>注意在CSS-script中 value 是作为一个状态值来访问，不是属性值，是以不能写为 ele.value, 而应当改用冒号写为 ele:value</strong> ), 对于输入框这个值为输入的文本. 其他元素为内部的文本.<br><br></td>
+</tr>
+<tr>
+<td>ele:index<br><br></td>
+<td>元素在子元素的序号. 取值从 1 开始到 self.parent().children()<br><br></td>
+</tr>
+<tr>
+<td>ele:hover<br>ele:active<br>ele:empty<br>ele:readonly<br>ele:disabled<br>ele:focusable<br><br></td>
+<td>部分CSS-script中常用的布尔型状态. (true/false)<br><br></td>
+</tr>
+</tbody></table>
+
+<ol>
+<li> CSS 属性使用两个冒号 <code>::</code> 作为成员操作符 :<br></li>
+</ol>
+
+<p>下面是一个范例，在定时器中逐渐的将对象改变为透明状态。</p>
+
+<pre><code class="css language-css">self::opacity = self::opacity + 0.1 #  
+return cancel;  
+</code></pre>
+
+<h3>Self 对象</h3>
+
+<p>在 CSS-script 脚本事件中表示当前节点  </p>
+
+<h3>Cancel</h3>
+
+<p>这个关键字是专用于 return 语句，以终止事件继续传递.</p>
+
+<h3>CSS-script 函数</h3>
+
+<ol>
+<li>定义函数</li>
+</ol>
+
+<p>对于一般的函数, 定义的格式如下:</p>
+
+<pre><code class="css language-css">foo = @( a, b ) c = a + b, return c  
+</code></pre>
+
+<p>aardio 中类似的定义函数的代码如下：</p>
+
+<pre><code class="aardio language-aardio">foo = function( a, b ) { 
+    c = a + b; return c; 
+} 
+</code></pre>
+
+<p>CSS-script 也支持匿名函数定义。</p>
+
+<ol>
+<li>调用函数</li>
+</ol>
+
+<p>CSS-script 脚本调用函数比较简单,下面的脚本调用函数foo()，传入参数1,2，并将返回值赋值给变量bar:</p>
+
+<pre><code class="css language-css">bar = foo(1,2) 
+</code></pre>
+
+<h2>CSS-script 脚本常用函数</h2>
+
+<h3>在 CSS-script 中获取 HTML 页面元素的所有函数如下:</h3>
+
+<table><thead>
+<tr>
+<th>CSS-script函数<br><br></th>
+<th>函数说明<br><br></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>$1(.item)<br><br></td>
+<td>获取匹配 &quot;.item&quot; 的第一个元素<br>类似aardio中的wbLayout.queryEle()函数(唯一的区别是在aardio中需要将CSS选择器参数放在引号中 - 即使用字符串包含CSS选择器)<br><br></td>
+</tr>
+<tr>
+<td>$(.item)<br><br></td>
+<td>获取所有匹配 &quot;.item&quot; 的元素.<br>类似aardio中的wbLayout.queryEles()函数(在aardio中需要将CSS选择器参数放在引号中 - 即使用字符串包含CSS选择器)<br><br>$(.item) 返回的集合可以象单个元素一样直接使用,例如:<br>$(.item).属性 = 值, <br><br>返回值也可以用于枚举, 例如: $(.item)-&gt;ele(ele) ele.属性 = 值;<br><br><br><br><br></td>
+</tr>
+<tr>
+<td>ele.$1(.item)<br><br></td>
+<td>获取ele子元素中匹配&quot;.item&quot;的第一个元素<br><br></td>
+</tr>
+<tr>
+<td>ele.$(.item)<br><br></td>
+<td>获取ele子元素中匹配&quot;.item&quot;的所有元素<br>类似aardio中的ele.queryElements()函数<br><br></td>
+</tr>
+<tr>
+<td>ele.$1p(.item)<br><br></td>
+<td>获取父元素中匹配&quot;.item&quot;的最近的一个元素.<br>类似aardio中的ele.queryParent()函数<br><br></td>
+</tr>
+<tr>
+<td>ele.$p(.item)<br><br></td>
+<td>获取父元素中所有匹配&quot;.item&quot;的元素.<br><br></td>
+</tr>
+<tr>
+<td>ele.parent()<br><br></td>
+<td>获取父元素<br><br></td>
+</tr>
+<tr>
+<td>ele.next()<br><br></td>
+<td>获取同级的下一个元素<br><br></td>
+</tr>
+<tr>
+<td>ele.previous()<br><br></td>
+<td>获取同级的上一个元素<br><br></td>
+</tr>
+<tr>
+<td>ele.child(3)<br>ele.children()<br><br></td>
+<td>获取第3个子元素. 参数范围 1 … ele.children().<br>可以通过 ele.children() 获取子元素的数目.<br><br></td>
+</tr>
+</tbody></table>
+
+<p>CSS 选择器参数中可以使用变量(包含在尖括号中), 示例:</p>
+
+<pre><code class="css language-css">ncol = 2, $( table td:nth-child(&lt; ncol &gt;)).some-attr = &quot;hi!&quot;;
+</code></pre>
+
+<p>上面的 CSS-script 脚本对所有符合CSS选择器 <code>table td:nth-child(2)</code> 规则的节点改变属性  <code>some-attr</code>  的值为  <code>&quot;hi!&quot;</code> </p>
+
+<h3>CSS-script 脚本其他全局函数</h3>
+
+<ul>
+<li>  int(val)- 转换一个值为整数r;</li>
+<li>  float(val)- 转换一个值为浮点数，类似aardio中的tonumber;</li>
+<li>  length(val) - 转换一个值为长度值（包含单位);</li>
+<li>  min(val1, val2 ... valN)- 返回最小数;</li>
+<li>  max(val1, val2 ... valN)-返回最大数;</li>
+<li>  limit(val, minval, maxval) - 返回一个值是并限定允许的最小或最大值<br></li>
+</ul>
+
+<h3>CSS-script 脚本 String 字符串对象的一些成员函数</h3>
+
+<ul>
+<li>  string.length - 取字符串长度</li>
+<li>  string.toUpper() -  将字符串转为大写;</li>
+<li>  string.toLower() -  将字符串转为小写</li>
+<li>  string.slicestr(start[, length = -1]) -  截取字符串，参数一指定开始位置，参数二指定长度，如果小于零，则截取到尾部。<br></li>
+</ul>
+
+<h3>CSS-script 脚本 HTML 节点对象提供的一些内置函数</h3>
+
+<p>ele.children() - 返回子节点数目<br>
+ele.child(n:integer) - 返回指定子节点,参数为索引<br>
+ele.next() -返回下一个兄弟节点<br>
+ele.previous() -返回上一个兄北节点<br>
+ele.parent() - 返回父节点<br>
+ele.text-width(&quot;string&quot;) - 计算当前节点在当前样式下显式指定文本所需的像素宽度.<br>
+ele.min-intrinsic-width(), ele.max-intrinsic-width() - 节点最小,最大内容宽度<br>
+ele.min-intrinsic-height(), ele.max-intrinsic-height() - 节点最小,最大内容高度<br>
+ele.system-scrollbar-width(),ele.system-scrollbar-height() - 系统设定的滚动条宽度,高度<br>
+ele.system-border-width() - 系统设定的边框宽度<br>
+ele.system-small-icon-width(),ele.system-small-icon-height() - 系统设定的小图标宽度,高度<br>
+ele.foreground-image-width(),ele.foreground-image-height() - 当前节点的前景图片高度,高度<br>
+ele.background-image-width(),ele.background-image-height() - 当前节点的背景图片高度,宽度  </p>
+
+<p>ele.box-type-what() 返回节点位置大小等相关参数,  </p>
+
+<p>其中type必须被替换为以下名字之一：
+    - margin - margin box (节点包含外边距空间)<br>
+    - border - border box(节点包含边框空间);<br>
+    - padding - padding box (节点包含内边距空间);<br>
+    - content - content box (节点内容空间).<br>
+    - inner - inner box(节点内部空间);<br>
+    - what part of the name is one of:  </p>
+
+<p>what必须被替换为以下名字之一：
+    - left - 左边距;<br>
+    - right - 右边距;<br>
+    - top - 顶边距<br>
+    - bottom - 底边距;<br>
+    - width - 宽度;<br>
+    - height - 高度;  </p>
+
+<p>例如 <code>self.box-border-width()</code> 返回包含节点包含边宽的宽度。</p>
+
+<p>ele.x-parent() 获取相对父节点的x坐标;<br>
+ele.x-root() 获取相对HTML根节点的x坐标<br>
+ele.x-view() 获取相对当前窗口的x坐标<br>
+ele.x-screen() 获取相对屏幕的x坐标  </p>
+
+<p>ele.y-parent() 获取相对父节点的y坐标;<br>
+ele.y-root() 获取相对HTML根节点的y坐标<br>
+ele.y-view() 获取相对当前窗口的y坐标<br>
+ele.y-screen() 获取相对屏幕的y坐标  </p>
+
+<p>ele.scroll-to-view()  滚动节点到当前视图  </p>
+
+<p>ele.start-animation(duration)<br>
+开始执行动画,该函数触发 animation-start! animation-step! animation-end!等事件，　<br>
+duration 参数指定动画持续时间， 例如： self.start-animation(0.4s) 启动动画 - 持续时间为400ms(毫秒)  </p>
+
+<p>ele.stop-animation()<br>
+停止执行动画。最好不要同时启动多个动画效果，停止当前动画再启动效的动画。  </p>
+
+<p>ele.start-timer(period:integer)<br>
+启动定时器，参数指定时间间隔，以毫秒为单位，该函数触发  timer! 事件，在该事件中调用return cancel取消定时器，<br>
+也可以调用  stop-timer() 函数取消定时器。  </p>
+
+<p>ele.stop-timer()<br>
+取消定时器  </p>
+
+<p>注意 CSS-script 脚本中使用横线作为标志符的一部分是合法的,<br>
+这在其他编程语言,以及aardio里是行不通的. 请注意区分!  </p>
+
+<h2>CSS-script 触发事件(Active CSS attributes)</h2>
+
+<p>在前面的示例中，hover-on! 是我们的脚本要处理的事件标识.
+当具有 .item 类的元素被鼠标悬停时, 会触发此事件并执行里面的代码.</p>
+
+<p>下面是 CSS-script 完整的事件支持列表:</p>
+
+<ul>
+<li><p><code>hover-on!</code></p>
+
+<p>鼠标悬停在节点上触发，类似aardio中的  wbLayout.onMouseEnter 事件</p></li>
+<li><p><code>hover-off!</code></p>
+
+<p>鼠标离开节点时触发，类似aardio中的   wbLayout. onMouseLeave 事件</p></li>
+<li><p><code>active-on!</code></p>
+
+<p>鼠标按下时触发，类似aardio中的   wbLayout.onMouseDown 事件</p></li>
+<li><p><code>active-off!</code></p>
+
+<p>鼠标抬起时触发, 类似aardio中的 wbLayout.onMouseUp 事件</p></li>
+<li><p><code>focus-on!</code></p>
+
+<p>获得输入焦点时触发,</p></li>
+<li><p><code>focus-off!</code></p>
+
+<p>失去输入焦点时触发,</p></li>
+<li><p><code>key-on!</code>，<code>key-off!</code></p>
+
+<p>键盘的按键按下/抬起时触发，通过 key-code() 函数获取按键信息.
+key-code() 获得的按键信息可能是一个用单引号包含的有效字符(&#39;a&#39;, &#39;4&#39;, &#39;$&#39;)或是下列预定义值之一:
+&#39;RETURN&#39;, &#39;LEFT&#39;, &#39;RIGHT&#39;, &#39;UP&#39;, &#39;DOWN&#39;, &#39;PRIOR&#39;, &#39;NEXT&#39;, &#39;TAB&#39;, &#39;HOME&#39;, &#39;END&#39;, &#39;DELETE&#39;, &#39;INSERT&#39;, &#39;BACK&#39;</p></li>
+<li><p><code>click!</code>，<code>double-click!</code></p>
+
+<p>鼠标单击，或双击时触发，必须绑定了所有允许接收单击，或双击事件的behavior，储如 button , hyperlink 等等。其他节点一般不会触发这两个事件（这些节点也可通过在CSS中指定 behavior:clickable; 启用该事件） 。</p></li>
+<li><p><code>animation-start!</code>，<code>animation-step!</code>，<code>animation-end!</code></p>
+
+<p>动画控制事件animation-start! 在调用了元素的 element.start-animation() 方法后触发.animation-step! 事件处理的最后必须返回一个整数(下次执行的间隔毫秒数). 例如: return 500;</p></li>
+<li><p><code>timer!</code></p>
+
+<p>定时触发器，配合 start-timer(ms) 和 stop-timer() 函数使用.start-timer(ms) 中的参数单位为毫秒.</p></li>
+<li><p><code>size-changed!</code></p>
+
+<p>元素大小发生改变时触发</p></li>
+<li><p><code>value-changed!</code></p>
+
+<p>input 类控件的值发生变时时触发</p></li>
+<li><p><code>assigned!</code> </p>
+
+<p>这个属性很有意思，就是在你在 CSS 给 <code>assigned!</code>  这个属性赋值时触发，
+换句话说，其实就是你写在这后面的脚本作为CSS属性被应用到节点时触发，而不是等待用户的什么交互。这个事件的作用类似于在behavior 里的 onAttach 事件。</p></li>
+</ul>
+
+<h2>在 aardio 中使用 CSS-script 脚本</h2>
+
+<p>aardio 调用 HTMLayout 并使用  CSS-script 脚本的 aardio 代码示例：</p>
+
+<pre><code class="aardio language-aardio">import win.ui;
+var winform = ..win.form( text=&quot;CSS-script 脚本示例&quot; )
+winform.add()
+
+import web.layout; //首先导入HTMLayout支持库
+var wbLayout = web.layout(winform); //创建HTMLayout窗体
+
+wbLayout.html = /*********
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+
+  //下面的选择符表示拥有 autofocus属性的节点，并且状态为可以获取焦点(focusable)
+  [autofocus]:focusable {
+    assigned!: self:focus = true; //assigned!事件表示加载脚本即时执行
+  }
+  &lt;/style&gt;  
+&lt;head&gt;
+&lt;body&gt;
+  在页面加载以后，第二个文本框自动得到焦点:&lt;br/&gt;
+  &lt;input type=&quot;text&quot; value=&quot;测试文本框&quot; /&gt;&lt;br/&gt;
+  &lt;input type=&quot;text&quot; value=&quot;看我自动得到焦点了&quot; autofocus /&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+*********/
+
+winform.show()
+win.loopMessage();
+</code></pre>
+
+<h2>在 aardio 中调用 HTMLayout 与响应 CSS-script 事件</h2>
+
+<p>假设在 HTMLayout 打开的网页有一个 HTML 节点内容是这样：</p>
+
+<pre><code class="html language-html">&lt;label for=&quot;id&quot;&gt;
+</code></pre>
+
+<p>那么我们可能如下编写 CSS，下面的 CSS 选择器 <code>[for]</code> 匹配所有指定了 for 属性的节点，在 CSS 选择器中，中括号内问指定 HTML 属性。</p>
+
+<pre><code class="css language-css">   [for] {
+     hover-on!  : $1(#&lt; self.for &gt;):hover = true;
+     hover-off! : $1(#&lt; self.for &gt;):hover = false;
+     active-on! : $1(#&lt; self.for &gt;):focus = true;
+     cursor:pointer;
+   }
+   input:hover {
+     outline: 4px glow blue 1px;
+   }
+</code></pre>
+
+<p>在上面的代码中，鼠标悬停或离开节点导致节点 for 属性绑定的节点同步改变 <code>:hover</code> 状态。而点击 lable 节点，<code>for</code> 属性绑定的节点将获得输入焦点。</p>
+
+<p>下面是用 aardio 编写的完整范例：</p>
+
+<pre><code class="aardio language-aardio">import win.ui; 
+var winform = win.form( bottom=399;text=&quot;响应 CSS-script 事件&quot;;right=599 )
+
+import web.layout;
+wbLayout = web.layout(winform)
+
+wbLayout.html = /**
+&lt;input type=&quot;text&quot; /&gt;
+
+&lt;input type=&quot;text&quot; id=&quot;myText&quot; value=&quot;&quot; /&gt;
+&lt;label for=&quot;myText&quot; &gt;鼠标放到这里，并点击这里&lt;/lable&gt;
+**/
+
+
+wbLayout.css = /**
+[for]
+   {
+     hover-on!: $1(#&lt; self.for &gt;):hover = true;
+     hover-off!: $1(#&lt; self.for &gt;):hover = false;
+     active-on!: $1(#&lt; self.for &gt;):focus = true ;
+     cursor:pointer;
+   }
+   input:hover {
+     outline: 4px glow blue 1px;
+   }  
+**/
+
+winform.show();
+win.loopMessage();
+</code></pre>
+
+<p>下面是另一个 aardio 编写的示例：</p>
+
+<pre><code class="aardio language-aardio">import win.ui; 
+var winform = ..win.form( text=&quot;HTMLayout - CSS-script 脚本事件触发例子&quot; )  
+
+import web.layout;
+var wbLayout = web.layout(winform);
+
+wbLayout.html = /*********
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;style&gt;
+      p#test {
+        border:1px solid black; //定义边框
+        width: 30%; //定义宽度
+        hover-on!: self.start-timer(400); //鼠标悬停时,开始定时器,间隔400毫秒
+        hover-off!: self.stop-timer(),
+                    $1(popup#for-test):popup = false ; //注意冒号作为成员操作符时改变节点的状态
+
+         //注意下面用到了条件语句,问号前面是条件
+        timer!: self:hover ? self.show-popup($1(popup#for-test),3,9), /*参数表示在右下角弹出提示 */
+                return cancel;//阻止事件继续传递
+      }
+
+      popup#for-test  {
+        margin-top:10px; /*指定顶边距 */
+      }
+
+    &lt;/style&gt;
+  &lt;/head&gt;
+&lt;body&gt;
+  自定义提示
+  &lt;p #test&gt;请将鼠标放在这里&lt;/p&gt;
+
+  &lt;popup #for-test&gt;
+    哈哈,你成功了
+  &lt;/popup&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+
+*********/
+
+winform.show();
+win.loopMessage();
+</code></pre>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-guide/std/web/layout/css-script.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-guide/std/web/layout/css-script.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/std/web/layout/css-script.md">Markdown 格式</a></p>
+
+</body> 
+</html>

@@ -1,0 +1,513 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - math 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - math 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>math 库模块帮助文档</h1>
+
+<p><a id="math"></a></p>
+
+<h2>math 成员列表</h2>
+
+<p>数学计算库<br>
+这是自动导入的内置库</p>
+
+<p><a id="math.abs"></a></p>
+
+<h3>math.abs(输入数值)</h3>
+
+<p>计算绝对值</p>
+
+<p><a id="math.acos"></a></p>
+
+<h3>math.acos(输入数值)</h3>
+
+<p>计算反余弦值</p>
+
+<p><a id="math.asin"></a></p>
+
+<h3>math.asin(输入数值)</h3>
+
+<p>计算反正弦值</p>
+
+<p><a id="math.atan"></a></p>
+
+<h3>math.atan(输入数值)</h3>
+
+<p>计算反正切值</p>
+
+<p><a id="math.atan2"></a></p>
+
+<h3>math.atan2(x,y)</h3>
+
+<p>x/y的反正切值</p>
+
+<p><a id="math.ceil"></a></p>
+
+<h3>math.ceil(输入数值)</h3>
+
+<p>上取整为最接近的整数，<br>
+正无穷大方向取相邻的整数，<br>
+下取整请使用 math.floor 函数，<br>
+四舍五入请使用 math.round 函数</p>
+
+<p><a id="math.cos"></a></p>
+
+<h3>math.cos(输入数值)</h3>
+
+<p>计算余弦值</p>
+
+<p><a id="math.cosh"></a></p>
+
+<h3>math.cosh(输入数值)</h3>
+
+<p>双曲线余弦函数</p>
+
+<p><a id="math.deg"></a></p>
+
+<h3>math.deg(输入弧度)</h3>
+
+<p>弧度转换为角度</p>
+
+<p><a id="math.e"></a></p>
+
+<h3>math.e</h3>
+
+<p>自然对数的底数，约等于 2.718281828459 。</p>
+
+<p><a id="math.exp"></a></p>
+
+<h3>math.exp(输入数值)</h3>
+
+<p>计算以e为底x次方值</p>
+
+<p><a id="math.floor"></a></p>
+
+<h3>math.floor(输入数值)</h3>
+
+<p>下取整为最接近的整数，<br>
+负无穷大方向取相邻的整数，<br>
+上取整请使用 math.ceil 函数，<br>
+四舍五入请使用 math.round 函数</p>
+
+<p><a id="math.frexp"></a></p>
+
+<h3>math.frexp(输入数值)</h3>
+
+<p>把双精度数val分解为数字部分（尾数）和以2为底的指数n,即val=x*2n</p>
+
+<p><a id="math.isFinite"></a></p>
+
+<h3>math.isFinite()</h3>
+
+<p>如果参数是一个有效数值,<br>
+并且不是正负无穷大则返回 true，否则返回 false。<br>
+如果传入字符串会直接返回 false</p>
+
+<p><a id="math.isInteger"></a></p>
+
+<h3>math.isInteger()</h3>
+
+<p>参数是一个数值并且是整数返回true，否则返回false。<br>
+如果传入字符串会直接返回 false</p>
+
+<p><a id="math.isSize64"></a></p>
+
+<h3>math.isSize64()</h3>
+
+<p>判断参数是否 math.size64 长整数对象</p>
+
+<p><a id="math.ldexp"></a></p>
+
+<h3>math.ldexp(value,n)</h3>
+
+<p>计算value * 2的n次方</p>
+
+<p><a id="math.log"></a></p>
+
+<h3>math.log(输入数值)</h3>
+
+<p>计算自然对数</p>
+
+<p><a id="math.log10"></a></p>
+
+<h3>math.log10(输入数值)</h3>
+
+<p>计算以10为基数的对数</p>
+
+<p><a id="math.max"></a></p>
+
+<h3>math.max(输入数值, )</h3>
+
+<p>返回多个数值中较大的一个<br>
+可输入2个以上的参数</p>
+
+<p><a id="math.min"></a></p>
+
+<h3>math.min(输入数值, )</h3>
+
+<p>返回多个数值中较小的一个<br>
+可输入2个以上的参数</p>
+
+<p><a id="math.modf"></a></p>
+
+<h3>math.modf(输入数值)</h3>
+
+<p>把数拆分为整数、小数<br>
+返回两个值。</p>
+
+<p><a id="math.mulDiv"></a></p>
+
+<h3>math.mulDiv(a,b,c)</h3>
+
+<p>返回a乘b再除以c的结果,并自动四舍五入转为整数<br>
+可尽量使运算不会溢出,运算错误则返回-1  </p>
+
+<p>注意这个函数是系统 API 函数，<br>
+参数只能传入数值不能传入字符串</p>
+
+<p><a id="math.pi"></a></p>
+
+<h3>math.pi</h3>
+
+<p>圆周与直径的比值常数</p>
+
+<p><a id="math.rad"></a></p>
+
+<h3>math.rad(输入角度)</h3>
+
+<p>角度转换为弧度</p>
+
+<p><a id="math.random"></a></p>
+
+<h3>math.random</h3>
+
+<p>返回随机数</p>
+
+<p><a id="math.random"></a></p>
+
+<h3>math.random()</h3>
+
+<p>返回 0 到 1 之间的随机数（小数），<br>
+可用乘法与 math.round 函数转为整数</p>
+
+<p><a id="math.random"></a></p>
+
+<h3>math.random(max)</h3>
+
+<p>返回从 1 到 max 范围的随机整数,参数必须是整数,<br>
+可以利用除法将返回值转换为小数</p>
+
+<p><a id="math.random"></a></p>
+
+<h3>math.random(min,max)</h3>
+
+<p>返回从 min 到 max 范围的随机整数,参数必须是 2 个整数,<br>
+可以利用除法将返回值转换为小数。<br>
+此函数传入字符串会自动转换为数值。</p>
+
+<p><a id="math.randomize"></a></p>
+
+<h3>math.randomize()</h3>
+
+<p>设置随机数发生器的种子。<br>
+参数可以指定任意数值，省略则自动生成一个随机数作为随机数种子。<br>
+所有线程启动时都会自动生成一个安全的随机数作为随机数种子。  </p>
+
+<p><a href="../../library-guide/builtin/string/rand.html" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/builtin/string/rand.html">使用手册相关文档</a></p>
+
+<p><a id="math.round"></a></p>
+
+<h3>math.round</h3>
+
+<p>四舍五入，舍入规则以取整为例：<br>
+小数小于0.5取相邻的绝对值更小的整数，<br>
+小数大于0.5取相邻的绝对值更大的整数，<br>
+小数等于0.5取相邻的正无穷大方向的整数。  </p>
+
+<p>注意四舍五入非常多的规则，<br>
+各种语言的默认实现并不完全一致，<br>
+计算机浮点数都存在可容忍的精度误差</p>
+
+<p><a id="math.round"></a></p>
+
+<h3>math.round(数值,精度)</h3>
+
+<p>四舍五入取接近的数，<br>
+精度指定小数后的位数,默认为0（取整）</p>
+
+<p><a id="math.roundToEven"></a></p>
+
+<h3>math.roundToEven</h3>
+
+<p>aardio 改良版银行家舍入法，<br>
+舍入规则为：尾数四舍六入，五后为零前凑偶（只看一位零）。  </p>
+
+<p>解决问题1:1到9出现机率一样，5到9进位导致进多舍少。<br>
+解决问题2:浮点数误差导致的不合理舍入。  </p>
+
+<p>注意四舍五入非常多的规则，<br>
+各种语言的默认实现并不完全一致，<br>
+计算机浮点数都存在可容忍的精度误差</p>
+
+<p><a id="math.roundToEven"></a></p>
+
+<h3>math.roundToEven(数值,精度)</h3>
+
+<p>使用改良版银行家舍入法转换并返回参数@1指定的数值，<br>
+参数@2指定返回数值的小数位数,默认为0（也就是取整）</p>
+
+<p><a id="math.sin"></a></p>
+
+<h3>math.sin(输入数值)</h3>
+
+<p>计算正弦值</p>
+
+<p><a id="math.sinh"></a></p>
+
+<h3>math.sinh(输入数值)</h3>
+
+<p>正弦值(角度)</p>
+
+<p><a id="math.size64"></a></p>
+
+<h3>math.size64</h3>
+
+<p>创建无符号 64 位无符号正整数。<br>
+参数可输入 10 进制数值，或 0x，0X 前缀的16进制数值。<br>
+可使用tostring函数转换为字符串,可用tonumber函数转换为64位浮点数,  </p>
+
+<p>2个同类型的math.size64对象支持大于,小于,等于等关系运算<br>
+并可以与与普通数值进行+,-,*,/等运算  </p>
+
+<p>1、API函数返回值中LONG类型返回为math.size64对象<br>
+2、在API回调函数中，LONG类型回调参数为math.size64对象<br>
+3、结构体中LONG类型，API函数的LONG&amp;类型,实际赋值为math.size64对象时,<br>
+则始终保持该对象类型及地址不变，反之则处理为64位浮点数值  </p>
+
+<p>64位浮点数值表示的有效整数在正负 (2**53 - 1) 之间,<br>
+可以表示8PB文件长度，只有必须用到64位全部字节表示整数时,<br>
+才有必要使用math.size64对象.</p>
+
+<p><a id="math.size64"></a></p>
+
+<h3>math.size64(&quot;数值&quot;)</h3>
+
+<p>参数使用字符串指定无符号64位正整数<br>
+aardio中普通数值表示的有效整数为正负(2**53-1)之间<br>
+但是这里可以使用64个二进制位表示更大的正整数</p>
+
+<p><a id="math.size64"></a></p>
+
+<h3>math.size64()</h3>
+
+<p><a href="_.html#mathSize64Object" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/math/_.html#mathSize64Object">返回对象:mathSize64Object</a></p>
+
+<p><a id="math.size64"></a></p>
+
+<h3>math.size64(math.size64对象)</h3>
+
+<p>复制无符号64位正整数，<br>
+使用此64位整数创建并返回size64对象</p>
+
+<p><a id="math.size64"></a></p>
+
+<h3>math.size64(低32位,高32位)</h3>
+
+<p>创建并返回size64对象，<br>
+参数使用两个32位数值指定无符号64位正整数，<br>
+使用此64位整数创建并返回size64对象</p>
+
+<p><a id="math.size64"></a></p>
+
+<h3>math.size64(结构体)</h3>
+
+<p>参数须传入不小于64位的结构体,<br>
+将结构体内存转换为64位无符号整数，<br>
+使用此64位整数创建并返回size64对象</p>
+
+<p><a id="math.sqrt"></a></p>
+
+<h3>math.sqrt(输入数值)</h3>
+
+<p>计算平方根</p>
+
+<p><a id="math.stringify"></a></p>
+
+<h3>math.stringify(数值,最大精度)</h3>
+
+<p>数值或 math.size64 对象转换为10进制字符串,最大精度默认为15,<br>
+不使用科学计数法，小数尾部不会有0</p>
+
+<p><a id="math.tan"></a></p>
+
+<h3>math.tan(输入数值)</h3>
+
+<p>计算正切值</p>
+
+<p><a id="math.tanh"></a></p>
+
+<h3>math.tanh(输入数值)</h3>
+
+<p>计算正切值(角度)</p>
+
+<p><a id="mathSize64Object"></a></p>
+
+<h2>mathSize64Object 成员列表</h2>
+
+<p><a id="mathSize64Object.add"></a></p>
+
+<h3>mathSize64Object.add()</h3>
+
+<p><a href="_.html#mathSize64Object" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/math/_.html#mathSize64Object">返回对象:mathSize64Object</a></p>
+
+<p><a id="mathSize64Object.add"></a></p>
+
+<h3>mathSize64Object.add(数值)</h3>
+
+<p>加法运算,函数修改并返回自身,<br>
+使用+运算符替代此函数可返回新值不改变自身<br>
+参数可以是math.size64对象,<br>
+或者是普通数值,允许使用负数</p>
+
+<p><a id="mathSize64Object.div"></a></p>
+
+<h3>mathSize64Object.div()</h3>
+
+<p><a href="_.html#mathSize64Object" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/math/_.html#mathSize64Object">返回对象:mathSize64Object</a></p>
+
+<p><a id="mathSize64Object.div"></a></p>
+
+<h3>mathSize64Object.div(数值)</h3>
+
+<p>除法运算，函数修改并返回自身。<br>
+参数可以是 math.size64 对象,<br>
+或者是普通正整数，注意运算结果不是浮点数。  </p>
+
+<p>math.size64 对象的除法运算符使用 divf 而不是 div 函数运算</p>
+
+<p><a id="mathSize64Object.divf"></a></p>
+
+<h3>mathSize64Object.divf(数值)</h3>
+
+<p>除法运算，返回普通浮点数值。<br>
+此函数不修改对象自身而是返回一个普通数值。<br>
+math.size64 对象的除法运算符使用此函数运算</p>
+
+<p><a id="mathSize64Object.format"></a></p>
+
+<h3>mathSize64Object.format()</h3>
+
+<p>转换字节长度到适合的最大单位表示的文本,<br>
+单位使用 bytes,KB,MB,GB等</p>
+
+<p><a id="mathSize64Object.greaterThan"></a></p>
+
+<h3>mathSize64Object.greaterThan()</h3>
+
+<p>判断是否大于指定的数值,<br>
+参数可以是普通正负数值，也可以是math.size64对象<br>
+注意math.size64对象不能直接用<code>&gt;</code>,<code>&gt;=</code>与普通数值进行比较</p>
+
+<p><a id="mathSize64Object.lessThan"></a></p>
+
+<h3>mathSize64Object.lessThan()</h3>
+
+<p>判断是否小于指定的数值,<br>
+参数可以是普通正负数值，也可以是math.size64对象<br>
+注意math.size64对象不能直接用<code>&lt;</code>,<code>&lt;=</code>与普通数值进行比较</p>
+
+<p><a id="mathSize64Object.lshift"></a></p>
+
+<h3>mathSize64Object.lshift(数值)</h3>
+
+<p>按位左移,函数修改并返回自身,<br>
+使用<code>&lt;&lt;</code>运算符替代此函数可返回新值不改变自身<br>
+参数只能是普通正整数</p>
+
+<p><a id="mathSize64Object.mod"></a></p>
+
+<h3>mathSize64Object.mod()</h3>
+
+<p><a href="_.html#mathSize64Object" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/math/_.html#mathSize64Object">返回对象:mathSize64Object</a></p>
+
+<p><a id="mathSize64Object.mod"></a></p>
+
+<h3>mathSize64Object.mod(数值)</h3>
+
+<p>取模运算,函数修改并返回自身,<br>
+使用%运算符替代此函数可返回新值不改变自身<br>
+参数可以是math.size64对象,<br>
+或者是普通正整数</p>
+
+<p><a id="mathSize64Object.mul"></a></p>
+
+<h3>mathSize64Object.mul()</h3>
+
+<p><a href="_.html#mathSize64Object" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/math/_.html#mathSize64Object">返回对象:mathSize64Object</a></p>
+
+<p><a id="mathSize64Object.mul"></a></p>
+
+<h3>mathSize64Object.mul(数值)</h3>
+
+<p>乘法运算,函数修改并返回自身,<br>
+使用*运算符替代此函数可返回新值不改变自身<br>
+参数可以是math.size64对象,<br>
+或者是普通正整数</p>
+
+<p><a id="mathSize64Object.reset"></a></p>
+
+<h3>mathSize64Object.reset(低32位,高32位)</h3>
+
+<p>重新设置值<br>
+支持构造math.size64的所有构造参数</p>
+
+<p><a id="mathSize64Object.rshift"></a></p>
+
+<h3>mathSize64Object.rshift(数值)</h3>
+
+<p>按位右移,函数修改并返回自身,<br>
+使用<code>&gt;&gt;</code>运算符替代此函数可返回新值不改变自身<br>
+参数只能是普通正整数</p>
+
+<p><a id="mathSize64Object.split32"></a></p>
+
+<h3>mathSize64Object.split32()</h3>
+
+<p>返回低32位,高32位数值</p>
+
+<p><a id="mathSize64Object.sub"></a></p>
+
+<h3>mathSize64Object.sub()</h3>
+
+<p><a href="_.html#mathSize64Object" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/math/_.html#mathSize64Object">返回对象:mathSize64Object</a></p>
+
+<p><a id="mathSize64Object.sub"></a></p>
+
+<h3>mathSize64Object.sub(数值)</h3>
+
+<p>减法运算,函数修改并返回自身,<br>
+使用-运算符替代此函数可返回新值不改变自身<br>
+参数可以是math.size64对象,<br>
+或者是普通正整数</p>
+
+<p><a id="mathSize64Object.swap"></a></p>
+
+<h3>mathSize64Object.swap()</h3>
+
+<p>大小端字节序反向转换</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/math/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/math/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/math/_.md">Markdown 格式</a></p>
+
+</body> 
+</html>

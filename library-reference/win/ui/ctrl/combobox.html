@@ -1,0 +1,638 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - win.ui.ctrl.combobox 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - win.ui.ctrl.combobox 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>win.ui.ctrl.combobox 库模块帮助文档</h1>
+
+<p><a id="win.ui.ctrl"></a></p>
+
+<h2>win.ui.ctrl 成员列表</h2>
+
+<p><a id="win.ui.ctrl.combobox"></a></p>
+
+<h3>win.ui.ctrl.combobox()</h3>
+
+<p>下拉框控件  </p>
+
+<p><a href="#comboboxObject">返回对象:comboboxObject</a></p>
+
+<p><a id="comboboxObject"></a></p>
+
+<h2>comboboxObject 成员列表</h2>
+
+<p><a id="comboboxObject._defWindowProc"></a></p>
+
+<h3>comboboxObject._defWindowProc(hwnd,message,wParam,lParam)</h3>
+
+<p>用于在 wndproc 回调中提前调用默认消息回调函数,<br>
+所有窗口和控件定义了 wndproc 回调以后会自动创建这个函数,<br>
+调用此函数以后,wndproc 必须指定非 null 返回值,<br>
+以避免再次重复调用默认回调函数</p>
+
+<p><a id="comboboxObject._parentForm"></a></p>
+
+<h3>comboboxObject._parentForm</h3>
+
+<p>控件所在的父窗口(指win.form对象)  </p>
+
+<p><a href="../_.html#winform" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/_.html#winform">返回对象:winform</a></p>
+
+<p><a id="comboboxObject.add"></a></p>
+
+<h3>comboboxObject.add(&quot;文本&quot;)</h3>
+
+<p>添加到组合框,<br>
+支持0x100/*_CBS_SORT*/排序</p>
+
+<p><a id="comboboxObject.autoComplete"></a></p>
+
+<h3>comboboxObject.autoComplete</h3>
+
+<p>用于onEditChange事件内部显示自动完成列表<br>
+此函数会在显示列表后保持输入文本与光标不变<br>
+仅适用于dropdown模式</p>
+
+<p><a id="comboboxObject.autoComplete"></a></p>
+
+<h3>comboboxObject.autoComplete(items,selIndex)</h3>
+
+<pre><code class="aardio language-aardio">items参数使用一个字符串数组指定要显示的列表项，  
+@selIndex指定选项索引,不指定时默认为1
+</code></pre>
+
+<p><a id="comboboxObject.bottom"></a></p>
+
+<h3>comboboxObject.bottom</h3>
+
+<p>底部坐标</p>
+
+<p><a id="comboboxObject.capture"></a></p>
+
+<h3>comboboxObject.capture</h3>
+
+<p>是否捕获全局鼠标消息</p>
+
+<p><a id="comboboxObject.className"></a></p>
+
+<h3>comboboxObject.className</h3>
+
+<p>运行时类名</p>
+
+<p><a id="comboboxObject.clear"></a></p>
+
+<h3>comboboxObject.clear()</h3>
+
+<p>清除组合框所有内容</p>
+
+<p><a id="comboboxObject.close"></a></p>
+
+<h3>comboboxObject.close()</h3>
+
+<p>关闭控件窗口</p>
+
+<p><a id="comboboxObject.cls"></a></p>
+
+<h3>comboboxObject.cls</h3>
+
+<p>设计时类名</p>
+
+<p><a id="comboboxObject.count"></a></p>
+
+<h3>comboboxObject.count</h3>
+
+<p>列表项数目</p>
+
+<p><a id="comboboxObject.delete"></a></p>
+
+<h3>comboboxObject.delete()</h3>
+
+<p>删除当前选中项</p>
+
+<p><a id="comboboxObject.dir"></a></p>
+
+<h3>comboboxObject.dir(&quot;目录路径&quot;,_DDL_...)</h3>
+
+<p>类似dir命令,列出指定目录下匹配的文件,支持通配符<br>
+参数@2可指定选项,默认为 _DDL_READWRITE</p>
+
+<p><a id="comboboxObject.disabled"></a></p>
+
+<h3>comboboxObject.disabled</h3>
+
+<p>是否禁用</p>
+
+<p><a id="comboboxObject.editBox"></a></p>
+
+<h3>comboboxObject.editBox</h3>
+
+<p>返回下拉控件编辑框  </p>
+
+<p><a href="edit.html#editObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/edit.html#editObject">返回对象:editObject</a></p>
+
+<p><a id="comboboxObject.find"></a></p>
+
+<h3>comboboxObject.find(请输入文本)</h3>
+
+<p>查找列表项</p>
+
+<p><a id="comboboxObject.findEx"></a></p>
+
+<h3>comboboxObject.findEx(请输入文本)</h3>
+
+<p>精确查找指定的项<br>
+找不到返回0</p>
+
+<p><a id="comboboxObject.getClientRect"></a></p>
+
+<h3>comboboxObject.getClientRect()</h3>
+
+<p>控件客户区块位置(::RECT结构体)  </p>
+
+<p><a href="../../../global/_.html#rectObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/global/_.html#rectObject">返回对象:rectObject</a></p>
+
+<p><a id="comboboxObject.getFont"></a></p>
+
+<h3>comboboxObject.getFont()</h3>
+
+<p>控件字体(::LOGFONT结构体)  </p>
+
+<p><a href="#logfontObject">返回对象:logfontObject</a></p>
+
+<p><a id="comboboxObject.getParent"></a></p>
+
+<h3>comboboxObject.getParent()</h3>
+
+<p>返回父窗口  </p>
+
+<p><a href="static.html#staticObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/static.html#staticObject">返回对象:staticObject</a></p>
+
+<p><a id="comboboxObject.getPos"></a></p>
+
+<h3>comboboxObject.getPos()</h3>
+
+<p>返回相对坐标,宽,高<br>
+x,y,cx,cy=win.getPos(hwnd)</p>
+
+<p><a id="comboboxObject.getRect"></a></p>
+
+<h3>comboboxObject.getRect()</h3>
+
+<p>控件区块位置(::RECT结构体)</p>
+
+<p><a id="comboboxObject.getRect"></a></p>
+
+<h3>comboboxObject.getRect(true)</h3>
+
+<p>控件屏幕区块位置(::RECT结构体)</p>
+
+<p><a id="comboboxObject.height"></a></p>
+
+<h3>comboboxObject.height</h3>
+
+<p>高度</p>
+
+<p><a id="comboboxObject.hide"></a></p>
+
+<h3>comboboxObject.hide</h3>
+
+<p>控件是否隐藏</p>
+
+<p><a id="comboboxObject.hwnd"></a></p>
+
+<h3>comboboxObject.hwnd</h3>
+
+<p>控件句柄</p>
+
+<p><a id="comboboxObject.id"></a></p>
+
+<h3>comboboxObject.id</h3>
+
+<p>控件ID</p>
+
+<p><a id="comboboxObject.info"></a></p>
+
+<h3>comboboxObject.info()</h3>
+
+<p>返回COMBOBOXINFO结构体,<br>
+关于此结构体请查阅MSDN</p>
+
+<p><a id="comboboxObject.insert"></a></p>
+
+<h3>comboboxObject.insert(&quot;文本&quot;,插入位置)</h3>
+
+<p>默认添加到开始处,<br>
+-1表示添加到尾部<br>
+不支持0x100/*_CBS_SORT*/排序</p>
+
+<p><a id="comboboxObject.invalidate(/*可选使用::RECT"></a></p>
+
+<h3>comboboxObject.invalidate(/*可选使用::RECT()对象指定客户区*/)</h3>
+
+<p>使窗口绘图区无效</p>
+
+<p><a id="comboboxObject.invalidate(/*可选使用::RECT"></a></p>
+
+<h3>comboboxObject.invalidate(/*可选使用::RECT()对象指定客户区*/,0)</h3>
+
+<p>使窗口绘图区无效<br>
+不刷新背景</p>
+
+<p><a id="comboboxObject.items"></a></p>
+
+<h3>comboboxObject.items</h3>
+
+<p>获取或设置组合框列表，属性值为字符串数组，  </p>
+
+<p>仅在属性面板设置初始化items属性时初始化selIndex为1，<br>
+代码中动态修改items后请自行指定selIndex，  </p>
+
+<p>如果自动指定了你不想要的selIndex，这会增加不必要的重绘。</p>
+
+<p><a id="comboboxObject.left"></a></p>
+
+<h3>comboboxObject.left</h3>
+
+<p>左侧坐标</p>
+
+<p><a id="comboboxObject.limit"></a></p>
+
+<h3>comboboxObject.limit</h3>
+
+<p>只写属性,修改最大允许输入的文本长度,<br>
+如果设为0,则设定为默认长度0x7FFFFFFE,<br>
+必须在控件初始化属性中启用横向滚动条,该属性才能生效</p>
+
+<p><a id="comboboxObject.listBox"></a></p>
+
+<h3>comboboxObject.listBox</h3>
+
+<p>返回下拉控件列表框  </p>
+
+<p><a href="#listboxObject">返回对象:listboxObject</a></p>
+
+<p><a id="comboboxObject.minVisible"></a></p>
+
+<h3>comboboxObject.minVisible</h3>
+
+<p>设置或获取下拉列表最小显示项目数，<br>
+请在设计属性中启用垂直滚动条。  </p>
+
+<p>如果不想多点一下，可如下改进此属性源码：<br>
+util.metaProperty.extend(win.ui.ctrl.combobox,{<br>
+    minVisible = {<br>
+        _set = function( v ){<br>
+            ::SendMessageInt(owner.hwnd , 0x1701/*_CB_SETMINVISIBLE*/,v,0);<br>
+        }<br>
+    }<br>
+})</p>
+
+<p><a id="comboboxObject.modifyStyle"></a></p>
+
+<h3>comboboxObject.modifyStyle(remove,add,swpFlags)</h3>
+
+<p>修改窗口样式,所有参数都是可选参数,<br>
+@remove 用数值指定要移除的样式,可使用 <em>WS</em> 前缀的常量<br>
+@add 用数值指定要添加的样式,可使用 <em>WS</em> 前缀的常量<br>
+@swpFlags 可选用数值指定调整窗口选项,可使用 <em>SWP</em> 前缀的常量<br>
+如果指定了 @swpFlag ,则使用该参数调用::SetWindowPos<br>
+细节请参考 win.modifyStyle 函数源码</p>
+
+<p><a id="comboboxObject.modifyStyleEx"></a></p>
+
+<h3>comboboxObject.modifyStyleEx(remove,add,swpFlags)</h3>
+
+<p>修改窗口扩展样式,所有参数都是可选参数,<br>
+@remove 用数值指定要移除的样式,可使用 <em>WS_EX</em> 前缀的常量<br>
+@add 用数值指定要添加的样式,可使用 <em>WS_EX</em> 前缀的常量<br>
+@swpFlags 可选用数值指定调整窗口选项,可使用 <em>SWP</em> 前缀的常量<br>
+如果指定了 @swpFlag ,则使用该参数调用::SetWindowPos<br>
+细节请参考 win.modifyStyle 函数源码</p>
+
+<p><a id="comboboxObject.onCancel"></a></p>
+
+<h3>comboboxObject.onCancel()</h3>
+
+<pre><code class="aardio language-aardio">comboboxObject.onCancel = function(){ 
+    /*响应事件，用户未确认选项且且下拉框即将关闭  
+例如用户点击其他控件关闭下拉列表或直接关闭窗口*/
+}
+</code></pre>
+
+<p><a id="comboboxObject.onCloseUp"></a></p>
+
+<h3>comboboxObject.onCloseUp()</h3>
+
+<pre><code class="aardio language-aardio">comboboxObject.onCloseUp = function(){ 
+    /*下拉列表隐藏时触发此事件*/
+}
+</code></pre>
+
+<p><a id="comboboxObject.onDropDown"></a></p>
+
+<h3>comboboxObject.onDropDown()</h3>
+
+<pre><code class="aardio language-aardio">comboboxObject.onDropDown = function(){ 
+    /*弹出下拉列表前触发此事件  
+用代码调用 showDropDown 函数也会触发此事件*/
+}
+</code></pre>
+
+<p><a id="comboboxObject.onEditChange"></a></p>
+
+<h3>comboboxObject.onEditChange()</h3>
+
+<pre><code class="aardio language-aardio">comboboxObject.onEditChange = function(){ 
+    /*响应事件，输入框中的文本已变更,  
+只有用户输入时才会触发,  
+切换选项或使用代码修改text属性不会触发  
+注意使用text属性取最新值*/
+}
+</code></pre>
+
+<p><a id="comboboxObject.onFocusGot"></a></p>
+
+<h3>comboboxObject.onFocusGot()</h3>
+
+<pre><code class="aardio language-aardio">comboboxObject.onFocusGot = function(){ 
+    /*下拉框获得焦点时触发此事件*/
+}
+</code></pre>
+
+<p><a id="comboboxObject.onFocusLost"></a></p>
+
+<h3>comboboxObject.onFocusLost()</h3>
+
+<pre><code class="aardio language-aardio">comboboxObject.onFocusLost = function(){ 
+    /*下拉框失去焦点时触发此事件*/
+}
+</code></pre>
+
+<p><a id="comboboxObject.onListChange"></a></p>
+
+<h3>comboboxObject.onListChange()</h3>
+
+<pre><code class="aardio language-aardio">comboboxObject.onListChange = function(){   
+    /*改变当前选项触发此事件。  
+在下拉框上按方向键调整当前选项会触发此事件，  
+在选项上回车确认选项时，如果选项已改变则会触发此事件，  
+如果回车操作未改变选项仅触发 onOk 事件。  
+
+注意事件中要用 selText 属性取新的值  
+使用代码修改 selIndex 是不会触发*/
+}
+</code></pre>
+
+<p><a id="comboboxObject.onOk"></a></p>
+
+<h3>comboboxObject.onOk()</h3>
+
+<pre><code class="aardio language-aardio">comboboxObject.onOk = function(){ 
+    /*响应事件，用户已确认选择指定选项,  
+注意事件中要用 selText 属性取新的值  
+单击选项或在选项上回车都会触发此事件（无论是否改变选项）*/
+}
+</code></pre>
+
+<p><a id="comboboxObject.oncommand"></a></p>
+
+<h3>comboboxObject.oncommand(id,event)</h3>
+
+<pre><code class="aardio language-aardio">comboboxObject.oncommand = function(id,event){
+    var text = owner.selText;
+    /*响应事件，event比较常用的值：  
+_CBN_SELCHANGE表示正在改变当前项,但下拉框还没有关闭  
+_CBN_SELENDOK表示已改变选项且下拉框即将关闭  
+注意事件中要用selText属性取新的值*/
+}
+</code></pre>
+
+<p><a id="comboboxObject.orphanWindow"></a></p>
+
+<h3>comboboxObject.orphanWindow(transparent,hwndBuddy)</h3>
+
+<p>创建悬浮窗口,<br>
+悬浮窗口仍然显示在原来的位置,<br>
+悬浮窗口如影随形的跟随父窗口移动或改变大小,控件原来的固定边距等参数仍然有效<br>
+此控件不建议指定参数</p>
+
+<p><a id="comboboxObject.postMessage"></a></p>
+
+<h3>comboboxObject.postMessage(msg,wParam,lParam)</h3>
+
+<p>投递窗口消息到消息队列中<br>
+此函数用法请参考 ::User32.PostMessage</p>
+
+<p><a id="comboboxObject.redraw"></a></p>
+
+<h3>comboboxObject.redraw()</h3>
+
+<p>刷新</p>
+
+<p><a id="comboboxObject.right"></a></p>
+
+<h3>comboboxObject.right</h3>
+
+<p>右侧坐标</p>
+
+<p><a id="comboboxObject.selIndex"></a></p>
+
+<h3>comboboxObject.selIndex</h3>
+
+<p>获取或指定当前选中的项索引,属性值为数值,<br>
+设为null取消选项</p>
+
+<p><a id="comboboxObject.selText"></a></p>
+
+<h3>comboboxObject.selText</h3>
+
+<p>读取或设置组合框当前选中文本<br>
+在onOk事件回调中获取最新值应当使用selText而不是text属性</p>
+
+<p>获取或指定当前选中的文本,精确匹配</p>
+
+<p><a id="comboboxObject.selectString"></a></p>
+
+<h3>comboboxObject.selectString(&quot;文本前缀&quot;,开始索引)</h3>
+
+<p>按文本前缀查找并选中项目,<br>
+自开始索引后面开始查找,默认值为0也就是开始处搜索</p>
+
+<p><a id="comboboxObject.sendMessage"></a></p>
+
+<h3>comboboxObject.sendMessage(msg,wParam,lParam)</h3>
+
+<p>发送窗口消息<br>
+此函数用法请参考 ::User32.SendMessage</p>
+
+<p><a id="comboboxObject.setCueBannerText"></a></p>
+
+<h3>comboboxObject.setCueBannerText(&quot;提示文本&quot;)</h3>
+
+<p>指定文本框文本为空时的显示的默认提示文本,<br>
+此函数会取消当前选中项,<br>
+XP系统不支持此函数、但调用不报错</p>
+
+<p><a id="comboboxObject.setCueBannerText"></a></p>
+
+<h3>comboboxObject.setCueBannerText(提示文本)</h3>
+
+<p>设置文本为空的输入提示，<br>
+参数 @1 使用字符串指定提示内容。<br>
+此函数会自动设置控件 text 属性为空</p>
+
+<p><a id="comboboxObject.setFocus"></a></p>
+
+<h3>comboboxObject.setFocus()</h3>
+
+<p>设置焦点</p>
+
+<p><a id="comboboxObject.setFont"></a></p>
+
+<h3>comboboxObject.setFont(指定字体)</h3>
+
+<p>指定LOGFONT字体对象,或逻辑字体句柄</p>
+
+<p><a id="comboboxObject.setFont"></a></p>
+
+<h3>comboboxObject.setFont(混入字体属性)</h3>
+
+<pre><code class="aardio language-aardio">comboboxObject.setFont(point=10;name=&quot;宋体&quot;);
+</code></pre>
+
+<p><a id="comboboxObject.setParent"></a></p>
+
+<h3>comboboxObject.setParent(控件对象)</h3>
+
+<p>改变父窗口</p>
+
+<p><a id="comboboxObject.setPos"></a></p>
+
+<h3>comboboxObject.setPos(x坐标,y坐标,宽,高,插入位置,参数)</h3>
+
+<p>调整窗口位置或排序,所有参数可选<br>
+同时指定x,y坐标则移动位置<br>
+同时指定宽高则改变大小<br>
+指定插入位置(句柄或_HWND前缀常量)则调整Z序</p>
+
+<p><a id="comboboxObject.setRect"></a></p>
+
+<h3>comboboxObject.setRect(rc)</h3>
+
+<p>设置控件区块位置(::RECT结构体)</p>
+
+<p><a id="comboboxObject.setRect"></a></p>
+
+<h3>comboboxObject.setRect(rc,true)</h3>
+
+<p>设置控件屏幕区块位置(::RECT结构体)</p>
+
+<p><a id="comboboxObject.show"></a></p>
+
+<h3>comboboxObject.show(true)</h3>
+
+<p>显示控件</p>
+
+<p><a id="comboboxObject.showDropDown"></a></p>
+
+<h3>comboboxObject.showDropDown(true)</h3>
+
+<p>显示下拉列表<br>
+参数为false隐藏下拉列表</p>
+
+<p><a id="comboboxObject.tabNext"></a></p>
+
+<h3>comboboxObject.tabNext()</h3>
+
+<p><a href="static.html#staticObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/static.html#staticObject">返回对象:staticObject</a></p>
+
+<p><a id="comboboxObject.tabNext"></a></p>
+
+<h3>comboboxObject.tabNext(移动焦点,是否反向)</h3>
+
+<p>获取下一个支持tab控制焦点的控件<br>
+参数@1为true会自动移动焦点到该控件<br>
+参数@2为true则获取上一个控件,否则获取下一个控件</p>
+
+<p><a id="comboboxObject.text"></a></p>
+
+<h3>comboboxObject.text</h3>
+
+<p>组合框当前输入文本<br>
+在onOk事件回调中获取最新值应当使用selText而不是text属性</p>
+
+<p><a id="comboboxObject.theme"></a></p>
+
+<h3>comboboxObject.theme</h3>
+
+<p>外观主题,例如<br>
+winform.button.theme = &quot;Explorer&quot;<br>
+winform.button.theme = false</p>
+
+<p><a id="comboboxObject.threadCallable"></a></p>
+
+<h3>comboboxObject.threadCallable()</h3>
+
+<p>开启此控件的跨线程调用功能</p>
+
+<p><a id="comboboxObject.top"></a></p>
+
+<h3>comboboxObject.top</h3>
+
+<p>顶部坐标</p>
+
+<p><a id="comboboxObject.topIndex"></a></p>
+
+<h3>comboboxObject.topIndex</h3>
+
+<p>获取此属性返回首个可见项索引，<br>
+设置此属性为项目索引则滚动到该项可见。<br>
+项目起始索引为 1</p>
+
+<p><a id="comboboxObject.update"></a></p>
+
+<h3>comboboxObject.update()</h3>
+
+<p>重绘invalidate函数指定的区块</p>
+
+<p><a id="comboboxObject.valid"></a></p>
+
+<h3>comboboxObject.valid</h3>
+
+<p>窗口是否有效，<br>
+窗口未关闭返回 true ，<br>
+窗口已关闭或正在关闭返回 false</p>
+
+<p><a id="comboboxObject.width"></a></p>
+
+<h3>comboboxObject.width</h3>
+
+<p>宽度</p>
+
+<h3>自动完成常量</h3>
+
+<p>_CBN_CLOSEUP=8<br>
+_CBN_DBLCLK=2<br>
+_CBN_DROPDOWN=7<br>
+_CBN_EDITCHANGE=5<br>
+_CBN_EDITUPDATE=6<br>
+_CBN_KILLFOCUS=4<br>
+_CBN_SELCHANGE=1<br>
+_CBN_SELENDCANCEL=0xA<br>
+_CBN_SELENDOK=9<br>
+_CBN_SETFOCUS=3  </p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/combobox.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/combobox.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/combobox.md">Markdown 格式</a></p>
+
+</body> 
+</html>

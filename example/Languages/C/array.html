@@ -1,0 +1,64 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - aardio 调用 C 语言之原生数组操作'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - aardio 调用 C 语言之原生数组操作</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 调用 C 语言之原生数组操作</h1><pre><code class="aardio language-aardio">//aardio 调用 C 语言之原生数组操作
+import console;
+import tcc;  
+
+var c = tcc(); 
+c.code = /***
+    #include &lt;stdlib.h&gt;  
+    __declspec(dllexport) void getArray(unsigned int a[],unsigned int b[] )
+    {   
+            b[0] = a[1];  
+            b[1] = a[0];  
+    } 
+***/ 
+c.output( &quot;/getArray.dll&quot; ); //生成DLL
+
+//加载生成的 DLL，默认调用约定 cdecl
+var dll = raw.loadDll( &quot;/getArray.dll&quot;,,&quot;cdecl&quot; );
+
+//方法一：免声明调用 C 函数，结构体为输出参数（ 增加到返回值 ）
+var ret,a,b = dll.getArray(
+
+    //原生数组必须放到结构体里，结构体参数总是传址（这里指数组地址）
+    //原生数组相关文档： https://www.aardio.com/zh-cn/doc/library-guide/builtin/raw/struct.html#array
+    { INT a[] = {123,456}},
+
+    //注意 aardio 中以大写 INT 表示无符号数，小写 int 表示有符号数（可表示负数）
+    { INT b[2] = {} }
+
+);
+
+//输出结果
+console.dumpTable(b);
+
+//方法二：声明 API
+var getArray = dll.api(&quot;getArray&quot;,&quot;void(struct a,struct &amp;b)&quot;);
+
+//仅声明了一个输出参数，只有一个返回值
+var b = getArray(
+    { INT a[] = {123,456}},
+    { INT b[2] = {} }
+);
+
+//输出结果
+console.dumpTable(b);
+console.pause();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/C/array.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/C/array.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Languages/C/array.md">Markdown 格式</a>
+</body> 
+</html>

@@ -1,0 +1,130 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 入门'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 入门</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 入门</h1><pre><code class="aardio language-aardio">//入门
+import console;
+
+console.log( time.tick(),&quot;系统运行时间(毫秒数)&quot;)
+
+//time 库文档： https://www.aardio.com/zh-cn/doc/library-guide/builtin/time/time.html
+var tm = time.now();
+
+//指定格式化时间
+tm.format = &quot;%a %B %Y %m %d  %H:%M:%S&quot;;
+tm.locale = &quot;enu&quot;; //整定格式化语言，无论指定什么语言，文本都必须是aardio默认的UTF8编码
+console.log(&quot;时间格式化为字符串&quot;,tostring(tm));
+
+//也可以在 tostring 函数中指定格式化参数
+var str  = tostring(tm,&quot;%Y年%m月%d日 %H时%M分%S秒&quot;,&quot;chs&quot;)
+console.log(&quot;时间格式化为简体中文&quot;,str);
+
+/*
+可使用格式串参数指定的规则重新将文本解析为时间对象,
+不指定时间格式串时默认值为 &#39;%Y/%m/%d %H:%M:%S&#39;,此格式串可兼容解析 ISO8601 格式时间
+*/
+console.log( time(&quot;2017-05-27T16:56:01Z&quot;) )
+
+/*
+格式化输入文本并解析为时间时，使用尽可能宽松的规则：
+
+忽略日期时间首尾部不匹配字符。
+一个空白字符可以匹配任意多个空白字符。
+一个标点可以匹配任意个连续的标点。
+一个字母可以匹配任意个连续的字母，一个非 ASCII 字符可以匹配任意个连续的非 ASCII 字符。
+支持 ISO8601 格式省略分隔符的写法。
+
+如果输入文本中的时间数值超出日期范围，则返回 null 。
+但如果出现当月不存在的日期且小于 31 号时会顺推为下月时间。
+
+解析时如果输入文本提前结束，但解析时间未完成则返回 null 。
+最后一个格式化标记解析成功以后如果还有剩余的字符串，
+首先跳过前面的空白字符，从前面取其他连续的非空白字符存入时间对象的endstr属性内。
+endstr可用于后续解析iso8601等格式的时区。 
+
+*/
+var tm = time(str,&quot;%Y年%m月%d日 %H时%M分%S秒&quot;,&quot;chs&quot;)
+
+tm.year += 2;
+console.log(tm,&quot;增加2年&quot;)
+
+tm.addsecond(30)
+console.log(tm,&quot;增加30秒&quot;)
+
+tm.addminute(180)
+console.log(tm,&quot;增加180分&quot;)
+
+tm.addhour(2)
+console.log(tm,&quot;增加两小时&quot;)
+
+tm.addday(365)
+console.log(tm,&quot;增加365天&quot;)
+
+tm.addmonth(-24)
+console.log(tm,&quot;倒退24个月&quot;)
+
+var tm2 = time.now()
+
+console.log( tm2.diffmonth(tm) ,&quot;相差月份&quot;)
+console.log( tm2.diffday(tm) ,&quot;相差天数&quot;)
+console.log( tm2.diffhour(tm) ,&quot;相差小时数&quot;)
+console.log( tm2.diffminute(tm) ,&quot;相差分钟数&quot;)
+console.log( tm2.diffsecond(tm) ,&quot;相差秒数&quot;)
+console.log( tonumber(tm) - tonumber(tm2) ,&quot;相差秒数,作用同上&quot;)
+
+console.log(&#39;\n关系运算符,相等、不等&#39;)
+console.log( &quot;tm2==tm&quot;, tm2 == tm  )
+console.log( &quot;time.now()== time.now()&quot;, time.now()== time.now() )
+
+console.log(&#39;\n关系运算符,大于、小于&#39;)
+console.log( &quot;tm2&gt;tm&quot;, tm2 &gt; tm  )
+console.log( &quot;time.now() &gt; time.now()&quot;, time.now() &gt; time.now() )
+
+console.log(&#39;\n关系运算符,大于等于、小于等于&#39;)
+console.log( &quot;tm2 &lt;= tm&quot;, tm2 &lt;= tm  )
+console.log( &quot;time.now() &lt;= time.now()&quot;, time.now() &lt;= time.now() )
+
+/*
+time.gmt() 创建一个time对象,并且设置HTTP协议协容的GMT时间格式,并将该对象的格式化语言设为英文
+*/
+console.log( time.gmt() )
+console.log( time.gmt( tm2.utc() ) ); //参数是其他time对象时,必须先转换为UTC时间
+
+//HTTP时间RFC 1123格式，写错了空格这些自动修正
+console.log(time.gmt(&quot;Sun,07Feb2016 081122 +7&quot;))
+
+//兼容HTTP时间RFC 850格式，星期写错了自动修正
+console.log(time.gmt(&quot;Sunddddday, 07-Feb-16 08:11:22 +0700&quot;))
+
+//支持iso8601省略分隔符的格式
+console.log(time.iso8601(&quot;20170822 123623 +0700&quot;))
+
+//支持iso8601省略分隔符的格式
+console.log(time.iso8601(&quot;20170822 123623 +7&quot;))
+
+//兼容iso8601省略分隔符的写法
+console.log(time(&quot;20170822 123623&quot;))
+
+//省略分隔符的写法 14位数字
+console.log(time(&quot;20170822123623&quot;))
+
+//省略分隔符的写法 12位数字
+console.log(time(&quot;170822123623&quot;))
+
+console.pause()
+
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/aardio/DateTime/time.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/aardio/DateTime/time.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/aardio/DateTime/time.md">Markdown 格式</a>
+</body> 
+</html>

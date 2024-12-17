@@ -1,0 +1,109 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - Sciter 脚本调用本地函数'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - Sciter 脚本调用本地函数</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: Sciter 脚本调用本地函数</h1><pre><code class="aardio language-aardio">//调用 JS 函数
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;Sciter 脚本调用本地函数&quot;;right=1014;bottom=523;)
+winform.add()
+/*}}*/
+
+import web.sciter;
+var sciter = web.sciter( winform );
+
+//JS 调试输出发送到到控制台，支持 JS 的 console.log()
+import web.sciter.debug;
+sciter.attachEventHandler( web.sciter.debug );
+
+//在 web.sciter.behavior 名字空间添加自定义 behavior
+namespace web.sciter.behavior.button.command {  
+
+    /*
+    ltOwner 参数是绑定behavior的节点,
+    实际上也就是指定了 behavior:command 的节点对象
+
+    ltTarget 通常指的是实际触发事件的节点,
+    或者根据不同的事件,ltTarget的意义有所不同 
+    */
+    onButtonClick = function (scTarget,scOwner,reason,behaviorParams) { 
+
+        //调用节点的成员函数（ Javascript函数 ）
+        scOwner.customMethod(&quot;在 aardio 中调用节点上定义的JS函数：这是参数&quot;)
+    }
+
+}
+
+sciter.html = /**
+&lt;!doctype html&gt;
+&lt;html&gt;
+&lt;head&gt;
+   &lt;META http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot;&gt;
+    &lt;style type=&quot;text/css&quot;&gt;
+    html,body{ height:100%; margin:50; } 
+
+    #my-button{  
+        behavior:&quot;button.command clickable&quot;; 
+    }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt; 
+&lt;button id=&quot;my-button&quot;&gt;请点击这里&lt;/button&gt; &lt;span id=&quot;info&quot;&gt;&lt;/span&gt;
+&lt;script&gt; 
+
+document.getElementById(&quot;my-button&quot;).customMethod = function(str){
+     document.getElementById(&quot;info&quot;).innerText = str;
+}
+
+// window(或globalThis) 前缀这里可以省略
+window.jsFunction = function(param) {  
+  document.getElementById(&quot;info&quot;).innerText = param;
+  return param;
+}
+
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+**/
+
+//访问并操作页面节点
+sciter.documentElement.querySelector(&quot;#info&quot;).insertAdjacentHTML(&quot;afterEnd&quot;,&quot;&lt;br&gt;测试insertAdjacentHTML&quot;)
+
+
+sciter.eval(`
+document.getElementById(&quot;info&quot;).innerText = &quot;通过 sciter.eval 调用 javascript 函数 &quot;;
+`)
+
+//参数&quot;jsFunction&quot;也可以写为 &quot;globaThis.jsFunction&quot;
+sciter.call(&quot;jsFunction&quot;, &quot;通过 sciter.call 调用 javascript 函数&quot;)
+
+/*
+更简单的方法是直接获取 Javascript 函数对象,
+在 aardio 中能接收 Javascript 返回值的地方都支持直接返回Javascript 函数对象。
+*/
+var jsFunction = sciter.eval(&quot;jsFunction&quot;)
+
+//如果要指定this参数，请使用 jsFunction.xcall(urlOrScriptName,jsThisObject,...)
+jsFunction(&quot;直接在 aardio 中调用 Javascript 函数对象&quot;)
+
+//也可以这样写:
+//sciter.script.jsFunction(&quot;aardio 调用当前窗口 JavaScript 全局函数&quot;)
+
+winform.show()
+win.loopMessage();
+
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/WebUI/Sciter.JS/callJs.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/WebUI/Sciter.JS/callJs.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/WebUI/Sciter.JS/callJs.md">Markdown 格式</a>
+</body> 
+</html>

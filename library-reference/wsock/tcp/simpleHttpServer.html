@@ -1,0 +1,426 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - wsock.tcp.simpleHttpServer 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - wsock.tcp.simpleHttpServer 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>wsock.tcp.simpleHttpServer 库模块帮助文档</h1>
+
+<p><a id="wsock.tcp.simpleHttpServer"></a></p>
+
+<h2>wsock.tcp.simpleHttpServer 成员列表</h2>
+
+<p>HTTP服务端<br>
+支持文件上传,下载,下载支持断点续传<br>
+支持多线程处理请求</p>
+
+<p><a id="wsock.tcp.simpleHttpServer.defalutDocument"></a></p>
+
+<h3>wsock.tcp.simpleHttpServer.defalutDocument</h3>
+
+<p>默认文档，默认为&quot;main.aardio&quot;,  </p>
+
+<p>如果访问硬盘上存在的目录,request.path 尾部不加斜杠会自动跳转到以斜杆结束的路径  </p>
+
+<p>如果访问嵌入资源目录,只有 request.path 以斜杆才会访问默认文档,<br>
+对于访问嵌入资源文件,建议指定完整的文件路径,<br>
+默认文档主要是用于硬盘上的网站</p>
+
+<p><a id="wsock.tcp.simpleHttpServer.documentBase"></a></p>
+
+<h3>wsock.tcp.simpleHttpServer.documentBase</h3>
+
+<p>网站根目录,<br>
+不会修改应用程序根目录,支持硬盘目录与资源目录,<br>
+这个属性应当设置为应用程序根目录下的相对路径,<br>
+例如 &quot;/res/web/&quot;  </p>
+
+<p>注意： request.path 前面包含 documentBase 目录。<br>
+而 request.pathInfo 忽略 documentBase 目录</p>
+
+<p><a id="wsock.tcp.simpleHttpServer.documentRoot"></a></p>
+
+<h3>wsock.tcp.simpleHttpServer.documentRoot</h3>
+
+<p>网站应用程序根目录,默认为&quot;/&quot;,<br>
+只能设置为硬盘上实际存在的目录,<br>
+改变此目录,会同时改变<br>
+服务端代码中的应用程序根目录以及用户库目录,<br>
+如果只是相将所有请求路径转向某个目录,应当改用 documentBase 属性<br>
+如果网站在嵌入资源目录中,应当改用 documentBase 属性</p>
+
+<p><a id="wsock.tcp.simpleHttpServer.mainThread"></a></p>
+
+<h3>wsock.tcp.simpleHttpServer.mainThread()</h3>
+
+<p><a href="#HttpSimpleServerMainObject">返回对象:HttpSimpleServerMainObject</a></p>
+
+<p><a id="wsock.tcp.simpleHttpServer.mainThread"></a></p>
+
+<h3>wsock.tcp.simpleHttpServer.mainThread(app)</h3>
+
+<pre><code class="aardio language-aardio">wsock.tcp.simpleHttpServer.mainThread(   
+    function(response,request,session){   
+         response.loadcode( request.path /*可省略,可增加多个模板参数,  
+在被调用文件的函数外部可使用owner参数获取首个模板参数,  
+也可以使用...获取多个模板参数*/ );  
+    }     
+);
+</code></pre>
+
+<p><a id="wsock.tcp.simpleHttpServer.startSpaUrl"></a></p>
+
+<h3>wsock.tcp.simpleHttpServer.startSpaUrl</h3>
+
+<p>返回 SPA 单页应用首页网址</p>
+
+<p><a id="wsock.tcp.simpleHttpServer.startSpaUrl"></a></p>
+
+<h3>wsock.tcp.simpleHttpServer.startSpaUrl(indexHtmlPath,documentBase,app)</h3>
+
+<p>参数指定 SPA 单页应用首页路径，<br>
+404错误页也会自动设置到该路径，<br>
+返回首页网址  </p>
+
+<p>可选用参数 @documentBase 指定根目录<br>
+以避免网页不支持非根目录路径。  </p>
+
+<p>可选用 @app 参数指定处理 HTTP 请求的线程函数，<br>
+该线程函数有 response,request,session 等三个回调参数</p>
+
+<p><a id="wsock.tcp.simpleHttpServer.startUrl"></a></p>
+
+<h3>wsock.tcp.simpleHttpServer.startUrl</h3>
+
+<p>查找可用端口创建 HTTP 服务器线程，返回返回完整 URL<br>
+此服务端限制使用本机IP 127.0.0.1 访问,并随机分配端口不会出现端口冲突<br>
+如果HTTP服务器已启动则直接返回URL而不是重复启动服务器,<br>
+注意当前线程结束时,此服务器线程会自动退出</p>
+
+<p><a id="wsock.tcp.simpleHttpServer.startUrl"></a></p>
+
+<h3>wsock.tcp.simpleHttpServer.startUrl(path,documentRoot,app)</h3>
+
+<p>查找可用端口创建 HTTP 服务器线程，返回返回完整 URL<br>
+如果 HTTP 服务器已启动则直接返回 URL 而不是重复启动服务器。<br>
+省略参数返回首页URL,尾部不包含斜杠。  </p>
+
+<p>可选用 @path 参数指定请求目标文件的相对路径。<br>
+可选使用参数 @documentRoot 指定网站根目录,默认为&quot;/&quot;。<br>
+documentRoot 只能设为硬盘实际存在的目录，并会改变用户库与应用根目录，<br>
+如只想改变网页根目录请设置 wsock.tcp.simpleHttpServer.documentBase。<br>
+可选用 @app 参数指定处理 HTTP 请求的线程函数,<br>
+该线程函数有 response,request,session 等三个回调参数。<br>
+也可以用参数@1 指定 @app 参数。</p>
+
+<p><a id="wsock.tcp.simpleHttpServer.stopUrl"></a></p>
+
+<h3>wsock.tcp.simpleHttpServer.stopUrl()</h3>
+
+<p>退出startUrl函数创建的HTTP服务器线程</p>
+
+<p><a id="HttpSimpleServerMainObject"></a></p>
+
+<h2>HttpSimpleServerMainObject 成员列表</h2>
+
+<p><a id="HttpSimpleServerMainObject.customErrors"></a></p>
+
+<h3>HttpSimpleServerMainObject.customErrors</h3>
+
+<pre><code class="aardio language-aardio">HttpSimpleServerMainObject.customErrors = {  
+    [404] = function(response){  
+        response.status = &quot;404 Not Found&quot;;  
+        response.write(&quot;404 Not Found&quot;); /*自定义错误页*/  
+    }   
+}
+</code></pre>
+
+<p><a id="HttpSimpleServerMainObject.defalutDocument"></a></p>
+
+<h3>HttpSimpleServerMainObject.defalutDocument</h3>
+
+<p>默认文档，默认为&quot;main.aardio&quot;,  </p>
+
+<p>如果访问硬盘上存在的目录,request.path 尾部不加斜杠会自动跳转到以斜杆结束的路径  </p>
+
+<p>如果访问嵌入资源目录,只有 request.path 以斜杆才会访问默认文档,<br>
+对于访问嵌入资源文件,建议指定完整的文件路径,<br>
+默认文档主要是用于硬盘上的网站</p>
+
+<p><a id="HttpSimpleServerMainObject.documentBase"></a></p>
+
+<h3>HttpSimpleServerMainObject.documentBase</h3>
+
+<p>网站根目录,<br>
+不会修改应用程序根目录,支持硬盘目录与资源目录,<br>
+这个属性应当设置为应用程序根目录下的相对路径,<br>
+例如 &quot;/res/web/&quot;,  </p>
+
+<p>注意： request.path 前面包含 documentBase 目录。<br>
+而 request.pathInfo 忽略 documentBase 目录</p>
+
+<p><a id="HttpSimpleServerMainObject.documentRoot"></a></p>
+
+<h3>HttpSimpleServerMainObject.documentRoot</h3>
+
+<p>网站应用程序根目录,默认为&quot;/&quot;,<br>
+只能设置为硬盘上实际存在的目录,<br>
+改变此目录,会同时改变<br>
+服务端代码中的应用程序根目录以及用户库目录,<br>
+如果只是相将所有请求路径转向某个目录,应当改用 documentBase 属性<br>
+如果网站在嵌入资源目录中,应当改用 documentBase 属性</p>
+
+<p><a id="HttpSimpleServerMainObject.getLocalIp"></a></p>
+
+<h3>HttpSimpleServerMainObject.getLocalIp()</h3>
+
+<p>返回服务端IP,端口</p>
+
+<p><a id="HttpSimpleServerMainObject.getUrl"></a></p>
+
+<h3>HttpSimpleServerMainObject.getUrl()</h3>
+
+<p>返回HTTP服务端访问网址,可选指定目录或文件路径<br>
+注意参数第一个字符不需要指定斜杠<br>
+如果参数@2为true，IP &quot;0.0.0.0&quot;替换为合适的内网IP而不是localhost<br>
+如果服务器启动失败不返回任何值</p>
+
+<p><a id="HttpSimpleServerMainObject.onThreadCreated"></a></p>
+
+<h3>HttpSimpleServerMainObject.onThreadCreated()</h3>
+
+<pre><code class="aardio language-aardio">HttpSimpleServerMainObject.onThreadCreated = function(documentRoot,urlRoot){
+    /*一个HTTP服务监听线程准备就绪时触发此事件*/
+}
+</code></pre>
+
+<p><a id="HttpSimpleServerMainObject.serverId"></a></p>
+
+<h3>HttpSimpleServerMainObject.serverId</h3>
+
+<p>当前服务端唯一ID，字符串,<br>
+每次调用start函数都会改变这个属性的值</p>
+
+<p><a id="HttpSimpleServerMainObject.start"></a></p>
+
+<h3>HttpSimpleServerMainObject.start(IP,端口,请求队列大小)</h3>
+
+<p>启动HTTP服务端</p>
+
+<p><a id="HttpSimpleServerMainObject.startPort"></a></p>
+
+<h3>HttpSimpleServerMainObject.startPort</h3>
+
+<p>设置服务器端口,默认自动分配空闲端口</p>
+
+<p><a id="HttpSimpleServerMainObject.startSpaUrl"></a></p>
+
+<h3>HttpSimpleServerMainObject.startSpaUrl</h3>
+
+<p>返回 SPA 单页应用首页网址</p>
+
+<p><a id="HttpSimpleServerMainObject.startSpaUrl"></a></p>
+
+<h3>HttpSimpleServerMainObject.startSpaUrl(indexHtmlPath,documentBase)</h3>
+
+<p>参数指定 SPA 单页应用首页路径，<br>
+404错误页也会自动设置到该路径，<br>
+返回首页网址  </p>
+
+<p>可选用参数 @documentBase 指定根目录以避免网页不支持非根目录路径</p>
+
+<p><a id="HttpSimpleServerMainObject.stop"></a></p>
+
+<h3>HttpSimpleServerMainObject.stop()</h3>
+
+<p>停止HTTP服务端</p>
+
+<p><a id="HttpSimpleServerMainObject.threadGlobal"></a></p>
+
+<h3>HttpSimpleServerMainObject.threadGlobal</h3>
+
+<pre><code class="aardio language-aardio">HttpSimpleServerMainObject.threadGlobal = {
+    /*在onThreadCreated事件触发前  
+添加HTTP服务监听线程的全局变量*/
+}
+</code></pre>
+
+<p><a id="HttpSimpleServerMainObject.threadNum"></a></p>
+
+<h3>HttpSimpleServerMainObject.threadNum</h3>
+
+<p>设置服务器线程数，默认为2个线程</p>
+
+<p><a id="HttpSimpleServerObject"></a></p>
+
+<h2>HttpSimpleServerObject 成员列表</h2>
+
+<p><a id="HttpSimpleServerObject._serverAddress"></a></p>
+
+<h3>HttpSimpleServerObject._serverAddress</h3>
+
+<p>服务端监听地址  </p>
+
+<p><a href="#sockaddrInObject">返回对象:sockaddrInObject</a></p>
+
+<p><a id="HttpSimpleServerObject.beforeClose"></a></p>
+
+<h3>HttpSimpleServerObject.beforeClose()</h3>
+
+<pre><code class="aardio language-aardio">HttpSimpleServerObject.beforeClose = function(){
+    /*服务器关闭前调用此函数*/
+}
+</code></pre>
+
+<p><a id="HttpSimpleServerObject.close"></a></p>
+
+<h3>HttpSimpleServerObject.close()</h3>
+
+<p>关闭 HTTP 服务端</p>
+
+<p><a id="HttpSimpleServerObject.customErrors[404]"></a></p>
+
+<h3>HttpSimpleServerObject.customErrors[404]</h3>
+
+<pre><code class="aardio language-aardio">HttpSimpleServerObject.customErrors[404] = function(response){
+    response.status = &quot;404 Not Found&quot;;
+    response.write(&quot;404 Not Found&quot;); /*自定义错误页处理函数，  
+注意这是线程函数，应遵守多线程规则，  
+也可以直接指定错误页路径*/
+}
+</code></pre>
+
+<p><a id="HttpSimpleServerObject.defalutDocument"></a></p>
+
+<h3>HttpSimpleServerObject.defalutDocument</h3>
+
+<p>默认文档，默认为&quot;main.aardio&quot;,<br>
+在启动服务端之前设置才会生效,  </p>
+
+<p>如果访问硬盘上存在的目录,request.path 尾部不加斜杠会自动跳转到以斜杆结束的路径  </p>
+
+<p>如果访问嵌入资源目录,只有 request.path 以斜杆才会访问默认文档,<br>
+对于访问嵌入资源文件,建议指定完整的文件路径,<br>
+默认文档主要是用于硬盘上的网站</p>
+
+<p><a id="HttpSimpleServerObject.documentBase"></a></p>
+
+<h3>HttpSimpleServerObject.documentBase</h3>
+
+<p>网站根目录,<br>
+在启动服务端之前设置才会生效,<br>
+不会修改应用程序根目录,支持硬盘目录与资源目录,<br>
+这个属性应当设置为应用程序根目录下的相对路径,<br>
+例如 &quot;/res/web/&quot;  </p>
+
+<p>注意： request.path 前面包含 documentBase 目录。<br>
+而 request.pathInfo 忽略 documentBase 目录</p>
+
+<p><a id="HttpSimpleServerObject.documentRoot"></a></p>
+
+<h3>HttpSimpleServerObject.documentRoot</h3>
+
+<p>网站应用程序根目录,默认为&quot;/&quot;,<br>
+在启动服务端之前设置才会生效,  </p>
+
+<p>只能设置为硬盘上实际存在的目录,<br>
+改变此目录,会同时改变<br>
+服务端代码中的应用程序根目录以及用户库目录,<br>
+如果只是相将所有请求路径转向某个目录,应当改用 documentBase 属性<br>
+如果网站在嵌入资源目录中,应当改用 documentBase 属性</p>
+
+<p><a id="HttpSimpleServerObject.getLocalIp"></a></p>
+
+<h3>HttpSimpleServerObject.getLocalIp()</h3>
+
+<p>返回当前绑定的IP,端口号</p>
+
+<p><a id="HttpSimpleServerObject.getUrl"></a></p>
+
+<h3>HttpSimpleServerObject.getUrl()</h3>
+
+<p>返回首页URL<br>
+如果参数@1为true，IP &quot;0.0.0.0&quot;替换为上网卡IP而不是localhost</p>
+
+<p><a id="HttpSimpleServerObject.listen"></a></p>
+
+<h3>HttpSimpleServerObject.listen(请求队列大小)</h3>
+
+<p>监听构造函数绑定的 IP 端口，成功返回 true 。<br>
+已自动调用此函数。</p>
+
+<p><a id="HttpSimpleServerObject.onThreadCreated"></a></p>
+
+<h3>HttpSimpleServerObject.onThreadCreated()</h3>
+
+<pre><code class="aardio language-aardio">HttpSimpleServerObject.onThreadCreated = function(documentRoot,urlRoot){
+    /*一个HTTP服务监听线程准备就绪时触发此事件*/
+}
+</code></pre>
+
+<p><a id="HttpSimpleServerObject.run"></a></p>
+
+<h3>HttpSimpleServerObject.run( httpProc )</h3>
+
+<pre><code class="aardio language-aardio">HttpSimpleServerObject.run(   
+    function(response,request,session){   
+         response.loadcode( request.path /*可省略,可增加多个模板参数,  
+在被调用文件的函数外部可使用owner参数获取首个模板参数,  
+也可以使用...获取多个模板参数*/ );  
+    }     
+);
+</code></pre>
+
+<p><a id="HttpSimpleServerObject.threadGlobal"></a></p>
+
+<h3>HttpSimpleServerObject.threadGlobal</h3>
+
+<pre><code class="aardio language-aardio">HttpSimpleServerObject.threadGlobal = {
+    /*在onThreadCreated事件触发前  
+添加HTTP服务监听线程的全局变量*/
+}
+</code></pre>
+
+<p><a id="HttpSimpleServerObject.threadNum"></a></p>
+
+<h3>HttpSimpleServerObject.threadNum</h3>
+
+<p>设置服务器线程数，默认为2个线程</p>
+
+<p><a id="wsock.tcp"></a></p>
+
+<h2>wsock.tcp 成员列表</h2>
+
+<p><a id="wsock.tcp.simpleHttpServer"></a></p>
+
+<h3>wsock.tcp.simpleHttpServer()</h3>
+
+<p><a href="#HttpSimpleServerObject">返回对象:HttpSimpleServerObject</a></p>
+
+<p><a id="wsock.tcp.simpleHttpServer"></a></p>
+
+<h3>wsock.tcp.simpleHttpServer(IP,端口,请求队列大小)</h3>
+
+<p>创建HTTP服务端,所有参数可选,  </p>
+
+<p>如果不写IP，则默认设为&quot;0.0.0.0&quot;也即监听本机所有IP,访问此服务端也不限制IP<br>
+限制仅本机可以访问建议写127.0.0.1  </p>
+
+<p>端口为0或省略则自动选择未用端口<br>
+注意0-1023为系统通用服务保留端口,<br>
+1024-49151为用户服务端口,其中大约%9已由IANA注册分配<br>
+49152-65535为私有或临时端口</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/wsock/tcp/simpleHttpServer.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/wsock/tcp/simpleHttpServer.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/wsock/tcp/simpleHttpServer.md">Markdown 格式</a></p>
+
+</body> 
+</html>

@@ -1,0 +1,76 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 线程命令'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 线程命令</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 线程命令</h1><pre><code class="aardio language-aardio">//线程命令
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;线程命令&quot;;right=599;bottom=399)
+winform.add(
+edit={cls=&quot;edit&quot;;left=12;top=11;right=588;bottom=389;db=1;dl=1;dr=1;dt=1;edge=1;multiline=1;z=1}
+)
+/*}}*/
+
+import thread.command;
+var listener = thread.command();
+listener.print = function( ... ){
+    winform.edit.print( ... ) //将线程传过来的参数追加输出到文本框
+}  
+listener.$print = function( ... ){
+    winform.edit.print( ... ) //将线程传过来的参数追加输出到文本框
+} 
+
+//创建工作线程,线程内错误信息默认输出到控制台
+thread.invoke(
+
+    function(hwnd){ 
+
+        //必须在线程函数内部导入需要的库
+        import thread.command;
+
+        //send同步模式调用界面线程的命令
+        thread.command.print(&quot;hello world&quot;,1,2,3);
+
+        //post异步模式调用界面线程的命令
+        thread.command.$print(&quot;异步 hello world&quot;,1,2,3);
+
+        //也可以用post方法异步调用线程命令,不会等待调用完成
+        thread.command.post(&quot;print&quot;,&quot;hello world&quot;,1,2,3);
+
+    },listener.hwnd
+)
+
+/*
+下面这种方法实际上会转换为 thread.command.send调用，
+所以无论该命令是否定义都可以调用，不会报错。
+注意，不能使用下标获取命令调用函数
+*/
+listener.print(999,&quot;也可以直接使用成员操作符调用命令&quot;)
+
+//工作线程内这样写更方便,适合用于编写后台线程触发器之类的支持库
+//listener作为线程参数转递时，将自动调用 thread.command.bind() 函数转换为线程命令调用对象
+thread.invoke(
+    function( listener ){  
+        listener.print(&quot;正在努力执行线程.....&quot;,99,88) 
+        listener.$print(&quot;异步 正在努力执行线程&quot;,99,88) 
+    },listener
+)
+
+winform.show();
+win.loopMessage(); 
+
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/aardio/Thread/02.thread.command.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/aardio/Thread/02.thread.command.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/aardio/Thread/02.thread.command.md">Markdown 格式</a>
+</body> 
+</html>

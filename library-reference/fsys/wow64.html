@@ -1,0 +1,84 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - fsys.wow64 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - fsys.wow64 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>fsys.wow64 库模块帮助文档</h1>
+
+<p><a id="fsys.wow64"></a></p>
+
+<h2>fsys.wow64 成员列表</h2>
+
+<p>64 位文件与注册表重定位管理</p>
+
+<p><a id="fsys.wow64.disableRedirection"></a></p>
+
+<h3>fsys.wow64.disableRedirection( 回调函数 )</h3>
+
+<pre><code class="aardio language-aardio">fsys.wow64.disableRedirection(  
+    function(){  
+        /*如果运行于64位暂时禁用文件与注册表重定向  
+此函数兼容32位系统  
+返回回调函数的首个返回值*/  
+    }  
+)
+</code></pre>
+
+<p><a id="fsys.wow64.disableRedirectionEx"></a></p>
+
+<h3>fsys.wow64.disableRedirectionEx( 回调函数 )</h3>
+
+<p>返回一个调用回调函数并与回调函数拥有相同功能的新函数,<br>
+执行返回函数时禁用文件与注册表重定向</p>
+
+<p><a id="fsys.wow64.process"></a></p>
+
+<h3>fsys.wow64.process</h3>
+
+<p>禁用64位文件重定向并运行执行文件或关联文档，兼容32位系统,<br>
+失败则返回 null,错误信息,错误代码<br>
+成功返回进程对象</p>
+
+<p><a id="fsys.wow64.process"></a></p>
+
+<h3>fsys.wow64.process( ,系统命令行)</h3>
+
+<p>如果省略第一个参数,并仅指定命令行,则作为系统命令行启动运行</p>
+
+<p><a id="fsys.wow64.process"></a></p>
+
+<h3>fsys.wow64.process()</h3>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/process/_.html  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/process/_.html#processObject'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/process/_.html#processObject">返回对象:processObject</a></p>
+
+<p><a id="fsys.wow64.process"></a></p>
+
+<h3>fsys.wow64.process(执行文件,参数,STARTUPINFO)</h3>
+
+<p>STARTUPINFO 参数为 process.STARTUPINFO 结构体,可选参数<br>
+如果该参数是普通 table 对象.将自动创建为 STARTUPINFO 结构体</p>
+
+<p><a id="fsys.wow64.process"></a></p>
+
+<h3>fsys.wow64.process(执行文件,命令行参数,更多命令行参数,...)</h3>
+
+<p>命令行参数可以是一个数组或多个字符串参数<br>
+如果命令行参数有多个,则以空格分隔自动合并,<br>
+合并时遇到需要转义的参数则进行转义处理并且首尾添加双引号<br>
+首尾已经有引号的参数不作转义处理,<br>
+命令参数最大长度为8191/0x1FFFF个字符</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/fsys/wow64.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/fsys/wow64.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/fsys/wow64.md">Markdown 格式</a></p>
+
+</body> 
+</html>

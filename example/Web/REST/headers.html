@@ -1,0 +1,66 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 用 web.rest 客户端调用 HTTP API - 设置 HTTP 头'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 用 web.rest 客户端调用 HTTP API - 设置 HTTP 头</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 用 web.rest 客户端调用 HTTP API - 设置 HTTP 头</h1><pre><code class="aardio language-aardio">//用 web.rest 客户端调用 HTTP API - 设置 HTTP 头
+
+import crypt;
+import web.rest.jsonLiteClient;
+
+var http = web.rest.jsonLiteClient();  
+
+//设置默认添加到所有请求的 HTTP 头
+http.addHeaders = { [&quot;X-Auth-Token&quot;] = &quot;自定义 Token&quot; }
+
+//如果 addHeaders 是表则添加所有请求都要添加的 HTTP 头，否则替换请求头。
+http.setHeaders(
+    [&quot;Test&quot;] = &quot;test&quot;
+)
+
+//使用默认的 Authorization 请求头指定 token 
+http.setAuthToken(&quot;token&quot;);
+
+/*
+如果每次请求都要修改HTTP头，可以写到这个事件里.
+*/
+http.beforeRequestHeaders = function(params){
+    var apiKey = &quot;&quot;;
+    var secretKey = &quot;&quot;; 
+    var authorization = {
+        [&quot;apiKey&quot;] = apiKey;
+        [&quot;time&quot;] = tonumber(time()); 
+    }
+
+    authorization[&quot;sign&quot;] = crypt.md5(apiKey ++ secretKey ++ authorization.time)
+
+    //通过返回值设置本次请求的HTTP头, Content-Type不需要指定（会自动指定）
+    return {
+        [&quot;Authorization&quot;] = crypt.encodeBin(web.json.stringify(authorization)) 
+    }; 
+}
+
+var api = http.api(&quot;http://httpbin.org/anything&quot;);
+
+var jsonData = api.post({
+    用户名 = &quot;用户名&quot;;
+    密码 = &quot;密码&quot;;
+})
+
+import console;
+console.dumpJson(jsonData)
+console.pause(true);
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Web/REST/headers.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Web/REST/headers.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Web/REST/headers.md">Markdown 格式</a>
+</body> 
+</html>

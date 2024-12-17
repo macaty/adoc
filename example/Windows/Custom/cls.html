@@ -1,0 +1,75 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 使用 custom 控件加载自定义控件类'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 使用 custom 控件加载自定义控件类</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 使用 custom 控件加载自定义控件类</h1><pre><code class="aardio language-aardio">//窗口程序 - 定义控件类
+
+/*
+1、拖一个 custom 控件到窗口上。
+2、把 custom 控件的类名改为你创建的控件类名，例如 &quot;myCtrl&quot;
+3、将窗口编辑器切换到代码模式，并在创建窗口前添加 import win.ui.ctrl.myCtrl 导入该控件。
+4、在用户库中 win.ui.ctrl 右键新建窗口类库，例如 win.ui.ctrl.myCtrl
+*/
+
+//图文教程: https://mp.weixin.qq.com/s/s95LlTis3lrVeD8EYNZD0w
+//这里直接定义控件类，实际使用建议写到用户库里
+import inet.http;
+import win.ui;
+
+class win.ui.ctrl.myCtrl{
+    ctor( parent,tParam ){
+        /*
+        parent 参数为父窗口
+        tParam 参数为创建控件的所有参数
+        */
+        this = ..win._form(border=&quot;none&quot;;exmode=&quot;none&quot;;mode=&quot;child&quot;;parent=parent;right=750;bottom=387;tParam=tParam)
+        this.add(
+            plus={cls=&quot;plus&quot;;left=-5;top=2;right=751;bottom=393;db=1;dl=1;dr=1;dt=1;repeat=&quot;scale&quot;;z=1}
+        )   
+
+        /*
+        控件类只要在 this.hwnd 里存在有效的窗口句柄就表示创建子窗口成功。
+        win.form 创建成功会将句柄保存在 this.hwnd 中。
+
+        如果控件类构造函数返回的对象不存在 this.hwnd ，
+        那么 aardio 会使用 tParam.cls 的类名创建控件，所以也可以在这里指定有效的控件类名，
+        例如 win.ui.ctrl.listview 的构造函数里就是这样写：
+        tParam.cls = &quot;SysListView32&quot;; 
+        注意这里无论怎样修改 tParam.cls，控件创建成功后都会改回上面参数传入的原始 tParam.cls 的值。
+        */
+    };
+}
+/*DSG{{*/
+var winform = win.form(text=&quot;使用 custom 控件加载自定义控件类&quot;;right=836;bottom=513)
+winform.add(
+custom={cls=&quot;myCtrl&quot;;text=&quot;自定义控件&quot;;left=3;top=-1;right=467;bottom=316;db=1;dl=1;dr=1;dt=1;z=1}
+)
+/*}}*/
+
+winform.show();
+
+//这时候 winform.custom 就是 win.ui.ctrl.myCtrl 的实例对象.
+winform.custom.plus.background = &quot;http://download.aardio.com/v10.files/demo/images/custom.gif&quot;;
+
+/*
+不需要用 import 语句导入标准库 win.ui.ctrl 名字空间下的自带控件，
+aardio 会按需导入这些标准库控件，但是如果是自己添加的自定义控件就要提前导入。
+如果将 win.ui.ctrl.myCtrl 写到外部类库里，那就一定要用 import win.ui.ctrl.myCtrl 提前导入该控件类。
+*/
+
+win.loopMessage();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Windows/Custom/cls.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Windows/Custom/cls.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Windows/Custom/cls.md">Markdown 格式</a>
+</body> 
+</html>

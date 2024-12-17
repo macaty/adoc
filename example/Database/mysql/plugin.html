@@ -1,0 +1,43 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - mysql.client 库 - 登录插件'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - mysql.client 库 - 登录插件</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: mysql.client 库 - 登录插件</h1><pre><code class="aardio language-aardio">//mysql.client 库 - 登录插件
+import console;
+import mysql.client;
+//导入 caching_sha2_password 插件（MySQL 8.0 默认登录认证方式），
+import mysql.plugin.cachingSha2Password;
+
+/*
+本地登录没必要启用这个插件，可用下面的 SQL 禁用 caching_sha2_password。
+ALTER USER &#39;用户名&#39;@&#39;localhost&#39; IDENTIFIED WITH mysql_native_password BY &#39;密码&#39;;
+*/
+
+console.showLoading(&quot; 正在连接测试数据库&quot; )
+var dbClient,err = mysql.client(
+    server = &quot;db4free.net&quot;; //数据库服务器,可省略默认为localhost
+    uid = &quot;aardio_mysql&quot;;//用户名,可省略默认为root
+    pwd = &quot;aardio.com&quot;;
+); 
+
+if(!dbClient){ 
+    console.log(&quot;如果是有人无聊修改了密码,请自行到 db4free.net 申请免费数据库&quot;)
+    return console.logPause(err); 
+}
+
+console.pause();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Database/mysql/plugin.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Database/mysql/plugin.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Database/mysql/plugin.md">Markdown 格式</a>
+</body> 
+</html>

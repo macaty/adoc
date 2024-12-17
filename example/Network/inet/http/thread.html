@@ -1,0 +1,66 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 获取 HTML'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 获取 HTML</title> 
+<link rel="stylesheet" href="../../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 获取 HTML</h1><pre><code class="aardio language-aardio">//多线程
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;获取 HTML&quot;;right=759;bottom=469)
+winform.add(
+btnGetUrl={cls=&quot;button&quot;;text=&quot;获取 HTML&quot;;left=481;top=376;right=713;bottom=432;color=14120960;db=1;dr=1;font=LOGFONT(h=-14);note=&quot;创建工作线程请求目标网址&quot;;z=2};
+editHtml={cls=&quot;edit&quot;;left=29;top=24;right=735;bottom=361;db=1;dl=1;dr=1;dt=1;edge=1;hscroll=1;multiline=1;vscroll=1;z=1};
+editUrl={cls=&quot;edit&quot;;text=&quot;http://www.aardio.com&quot;;left=33;top=385;right=453;bottom=413;db=1;dl=1;dr=1;edge=1;multiline=1;z=3}
+)
+/*}}*/
+
+winform.btnGetUrl.oncommand = function(id,event){
+    winform.btnGetUrl.disabled = true;
+
+    //创建工作线程
+    thread.invoke( 
+        function(winform){
+            import inet.http;
+
+            //创建 HTTP 对象
+            var http = inet.http();
+
+            /*
+            http 发送请求是耗时操作 —— 会阻塞当前线程。
+            在界面线程可能会导致卡顿 —— 当然速度很快是感觉不出来的。
+            创建工作线程就可以避免这一问题。
+            */
+            var data  = http.get(winform.editUrl.text);
+
+            //显示抓取结果
+            winform.editHtml.text = data;
+
+            //启用按钮
+            winform.btnGetUrl.disabled = false;
+        },winform /*将窗口对象作为参数传入线程函数*/
+    )
+
+    /*
+    //inet.http.get() 会自动创建线程并发送 GET 请求然后返回响应数据。
+    import inet.http;
+    winform.editHtml.text = inet.http.get(winform.editUrl.text);
+    winform.btnGetUrl.disabled = false;
+    */
+}
+
+winform.show();
+win.loopMessage();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Network/inet/http/thread.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Network/inet/http/thread.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Network/inet/http/thread.md">Markdown 格式</a>
+</body> 
+</html>

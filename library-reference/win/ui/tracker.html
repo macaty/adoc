@@ -1,0 +1,325 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - win.ui.tracker 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - win.ui.tracker 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>win.ui.tracker 库模块帮助文档</h1>
+
+<p><a id="win.ui"></a></p>
+
+<h2>win.ui 成员列表</h2>
+
+<p><a id="win.ui.tracker"></a></p>
+
+<h3>win.ui.tracker</h3>
+
+<p>创建鼠标跟踪器,</p>
+
+<p><a id="win.ui.tracker"></a></p>
+
+<h3>win.ui.tracker()</h3>
+
+<p><a href="#winUiTrackerObject">返回对象:winUiTrackerObject</a></p>
+
+<p><a id="win.ui.tracker"></a></p>
+
+<h3>win.ui.tracker(控件对象)</h3>
+
+<p>参数为控件或窗口对象<br>
+返回鼠标跟踪器 - 实际上就是返回控件对象自身,<br>
+如果已经调用此函数创建过鼠标跟踪器,则直接返回参数</p>
+
+<p><a id="winUiTrackerObject"></a></p>
+
+<h2>winUiTrackerObject 成员列表</h2>
+
+<p><a id="winUiTrackerObject.focusOnClick"></a></p>
+
+<h3>winUiTrackerObject.focusOnClick</h3>
+
+<p>设为false时禁止在单击控件时设置此控件为焦点控件</p>
+
+<p><a id="winUiTrackerObject.onFocusGot"></a></p>
+
+<h3>winUiTrackerObject.onFocusGot(hLostFocus)</h3>
+
+<pre><code class="aardio language-aardio">winUiTrackerObject.onFocusGot = function(hLostFocus){
+    ..win.setFocus(hLostFocus);/*得到焦点触发此事件,hLostFocus为失去焦点的窗口句柄,  
+如果在这里将hLostFocus恢复焦点,则阻止当前窗口得到焦点*/
+}
+</code></pre>
+
+<p><a id="winUiTrackerObject.onFocusLost"></a></p>
+
+<h3>winUiTrackerObject.onFocusLost(hFocus)</h3>
+
+<pre><code class="aardio language-aardio">winUiTrackerObject.onFocusLost = function(hFocus){
+    /*失去焦点触发此事件,hFocus为得到焦点的窗口句柄*/
+}
+</code></pre>
+
+<p><a id="winUiTrackerObject.onKeyDown"></a></p>
+
+<h3>winUiTrackerObject.onKeyDown</h3>
+
+<pre><code class="aardio language-aardio">winUiTrackerObject.onKeyDown = function(keyCode,lParam,repeat){
+    /*按下键盘键*/
+}
+</code></pre>
+
+<p><a id="winUiTrackerObject.onKeyUp"></a></p>
+
+<h3>winUiTrackerObject.onKeyUp</h3>
+
+<pre><code class="aardio language-aardio">winUiTrackerObject.onKeyUp = function(keyCode,lParam){
+    /*放开键盘键*/
+}
+</code></pre>
+
+<p><a id="winUiTrackerObject.onMouseActivate"></a></p>
+
+<h3>winUiTrackerObject.onMouseActivate</h3>
+
+<pre><code class="aardio language-aardio">winUiTrackerObject.onMouseActivate = function(hwndTop,hitTest,message){  
+    return _MA_/*鼠标点击并且将要激活窗口时触发此事件  
+hwndTop表示被激活的顶层窗口,  
+hitTest参数请参考WM_NCHITTEST消息  
+message为鼠标消息ID  
+返回值的作用请参数MSDN*/  
+}
+</code></pre>
+
+<p><a id="winUiTrackerObject.onMouseClick"></a></p>
+
+<h3>winUiTrackerObject.onMouseClick</h3>
+
+<pre><code class="aardio language-aardio">winUiTrackerObject.onMouseClick = function(wParam,lParam){
+    var x,y = win.getMessagePos(lParam);
+    /*鼠标左键在控件上单击,  
+orphanWindow模式下如果阻止控件得到焦点,此事件不会被触发*/
+}
+</code></pre>
+
+<p><a id="winUiTrackerObject.onMouseDoubleClick"></a></p>
+
+<h3>winUiTrackerObject.onMouseDoubleClick</h3>
+
+<pre><code class="aardio language-aardio">winUiTrackerObject.onMouseDoubleClick = function(wParam,lParam){
+    var x,y = win.getMessagePos(lParam);
+    /*鼠标双击*/
+}
+</code></pre>
+
+<p><a id="winUiTrackerObject.onMouseDown"></a></p>
+
+<h3>winUiTrackerObject.onMouseDown</h3>
+
+<pre><code class="aardio language-aardio">winUiTrackerObject.onMouseDown = function(wParam,lParam){
+    var x,y = win.getMessagePos(lParam);
+    /*鼠标左键按下,  
+orphanWindow模式下如果阻止控件得到焦点,此事件不会被触发*/
+}
+</code></pre>
+
+<p><a id="winUiTrackerObject.onMouseDrag"></a></p>
+
+<h3>winUiTrackerObject.onMouseDrag</h3>
+
+<pre><code class="aardio language-aardio">winUiTrackerObject.onMouseDrag = function(wParam,lParam){ 
+    var x,y = win.getMessagePos(lParam);
+    /*鼠标左键按下拖动,  
+自动捕获鼠标,允许拖出控件范围*/ 
+}
+</code></pre>
+
+<p><a id="winUiTrackerObject.onMouseEnter"></a></p>
+
+<h3>winUiTrackerObject.onMouseEnter</h3>
+
+<pre><code class="aardio language-aardio">winUiTrackerObject.onMouseEnter = function(wParam,lParam){
+    /*鼠标移入*/
+}
+</code></pre>
+
+<p><a id="winUiTrackerObject.onMouseHWheel"></a></p>
+
+<h3>winUiTrackerObject.onMouseHWheel</h3>
+
+<pre><code class="aardio language-aardio">winUiTrackerObject.onMouseHWheel = function(flags,delta,lParam){
+    delta = -delta/(120/3); 
+    /*水平滚动鼠标滚轮,flags 参数以 _MK_CONTROL 等常量表示按键*/
+}
+</code></pre>
+
+<p><a id="winUiTrackerObject.onMouseHover"></a></p>
+
+<h3>winUiTrackerObject.onMouseHover</h3>
+
+<pre><code class="aardio language-aardio">winUiTrackerObject.onMouseHover = function(wParam,lParam){
+    /*鼠标悬停*/
+}
+</code></pre>
+
+<p><a id="winUiTrackerObject.onMouseLeave"></a></p>
+
+<h3>winUiTrackerObject.onMouseLeave</h3>
+
+<pre><code class="aardio language-aardio">winUiTrackerObject.onMouseLeave = function(wParam,lParam){
+    /*鼠标移出*/
+}
+</code></pre>
+
+<p><a id="winUiTrackerObject.onMouseMove"></a></p>
+
+<h3>winUiTrackerObject.onMouseMove</h3>
+
+<pre><code class="aardio language-aardio">winUiTrackerObject.onMouseMove = function(wParam,lParam){
+    if( wParam &amp; 0x1/*_MK_LBUTTON*/ ){
+        var x,y = win.getMessagePos(lParam);
+        /*鼠标移动*/
+    }
+}
+</code></pre>
+
+<p><a id="winUiTrackerObject.onMouseUp"></a></p>
+
+<h3>winUiTrackerObject.onMouseUp</h3>
+
+<pre><code class="aardio language-aardio">winUiTrackerObject.onMouseUp = function(wParam,lParam){
+    var x,y = win.getMessagePos(lParam);
+    /*鼠标左键弹起*/
+}
+</code></pre>
+
+<p><a id="winUiTrackerObject.onMouseWheel"></a></p>
+
+<h3>winUiTrackerObject.onMouseWheel</h3>
+
+<pre><code class="aardio language-aardio">winUiTrackerObject.onMouseWheel = function(flags,delta,lParam){
+    delta = delta/(120/3); 
+    /*滚动鼠标滚轮,flags 参数以 _MK_CONTROL 等常量表示按键*/
+}
+</code></pre>
+
+<p><a id="winUiTrackerObject.onRightMouseDown"></a></p>
+
+<h3>winUiTrackerObject.onRightMouseDown</h3>
+
+<pre><code class="aardio language-aardio">winUiTrackerObject.onRightMouseDown = function(wParam,lParam){
+    var x,y = win.getMessagePos(lParam);
+    /*鼠标右键按下*/
+}
+</code></pre>
+
+<p><a id="winUiTrackerObject.onRightMouseUp"></a></p>
+
+<h3>winUiTrackerObject.onRightMouseUp</h3>
+
+<pre><code class="aardio language-aardio">winUiTrackerObject.onRightMouseUp = function(wParam,lParam){
+    var x,y = win.getMessagePos(lParam);
+    /*鼠标右键弹起*/
+}
+</code></pre>
+
+<p><a id="winUiTrackerObject.onSelectChange"></a></p>
+
+<h3>winUiTrackerObject.onSelectChange</h3>
+
+<pre><code class="aardio language-aardio">winUiTrackerObject.onSelectChange = function(prev){
+    /*单选模式下已选中当前控件,prev 为同一分组之前选中的控件  
+同一分组之前没有选中控件时 prev 为 null*/
+}
+</code></pre>
+
+<p><a id="winUiTrackerObject.onStateChange"></a></p>
+
+<h3>winUiTrackerObject.onStateChange</h3>
+
+<pre><code class="aardio language-aardio">winUiTrackerObject.onStateChange = function(){
+    /*状态已改变*/
+}
+</code></pre>
+
+<p><a id="winUiTrackerObject.onSysKeyDown"></a></p>
+
+<h3>winUiTrackerObject.onSysKeyDown</h3>
+
+<pre><code class="aardio language-aardio">winUiTrackerObject.onSysKeyDown = function(keyCode,lParam,repeat){
+    if(keyCode!=0x12/*_VK_ALT*/){
+        /*按下键盘ALT组合键*/        
+    }
+}
+</code></pre>
+
+<p><a id="winUiTrackerObject.onSysKeyUp"></a></p>
+
+<h3>winUiTrackerObject.onSysKeyUp</h3>
+
+<pre><code class="aardio language-aardio">winUiTrackerObject.onSysKeyUp = function(keyCode,lParam){
+    /*放开键盘键*/
+}
+</code></pre>
+
+<p><a id="winUiTrackerObject.radioClick"></a></p>
+
+<h3>winUiTrackerObject.radioClick()</h3>
+
+<p>单选模式下选中控件</p>
+
+<p><a id="winUiTrackerObject.radioValue"></a></p>
+
+<h3>winUiTrackerObject.radioValue()</h3>
+
+<p>单选模式下选中控件的文本</p>
+
+<p><a id="winUiTrackerObject.state.active"></a></p>
+
+<h3>winUiTrackerObject.state.active</h3>
+
+<p>鼠标或键盘键按下状态</p>
+
+<p><a id="winUiTrackerObject.state.checked"></a></p>
+
+<h3>winUiTrackerObject.state.checked</h3>
+
+<p>是否选中状态</p>
+
+<p><a id="winUiTrackerObject.state.disabled"></a></p>
+
+<h3>winUiTrackerObject.state.disabled</h3>
+
+<p>已禁用</p>
+
+<p><a id="winUiTrackerObject.state.dragging"></a></p>
+
+<h3>winUiTrackerObject.state.dragging</h3>
+
+<p>是否按下鼠标且正在拖动</p>
+
+<p><a id="winUiTrackerObject.state.focus"></a></p>
+
+<h3>winUiTrackerObject.state.focus</h3>
+
+<p>是否已得到焦点</p>
+
+<p><a id="winUiTrackerObject.state.hover"></a></p>
+
+<h3>winUiTrackerObject.state.hover</h3>
+
+<p>鼠标是否在控件上方<br>
+悬停超过预设时间后触发onMouseHover事件</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/ui/tracker.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/ui/tracker.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/tracker.md">Markdown 格式</a></p>
+
+</body> 
+</html>

@@ -1,0 +1,327 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - time.ole 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - time.ole 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>time.ole 库模块帮助文档</h1>
+
+<p><a id="time"></a></p>
+
+<h2>time 成员列表</h2>
+
+<p><a id="time.isole"></a></p>
+
+<h3>time.isole()</h3>
+
+<p>检测参数中指定的值是否time.ole对象</p>
+
+<p><a id="time.ole"></a></p>
+
+<h3>time.ole()</h3>
+
+<p><a href="#timeOleObject">返回对象:timeOleObject</a></p>
+
+<p><a id="time.ole"></a></p>
+
+<h3>time.ole(,&quot;%Y/%m/%d %H:%M:%S&quot;)</h3>
+
+<p>创建OLE时间对象，返回对象可传入其他线程使用，<br>
+参数@1可以是表示时间的数值、字符串、或time,time.ole 对象,<br>
+也可以指定一个仅提供time对象的部分键值的表作为参数  </p>
+
+<p>参数@2指定格式化串,首字符为!表示GMT时间  </p>
+
+<p>可选使用@3指定对象的locale属性,即文本格式化语言,<br>
+locale支持的参数与setlocale相同,英文&quot;enu&quot;,中文&quot;chs&quot;  </p>
+
+<p>此对象继承自时间对象,所有功能相同,与time对象的区别是:<br>
+OLE时间对象在输入数值或转换为数值是是以天数为单位的,而time对象以秒为单位.<br>
+OLE时间对象支持从100年1月1日到9999年12月31日的时间,正数1899年12月30日算起的天数,<br>
+小数部分是一天当中的片段时间,负数表示1899年12月30日之前的时间.  </p>
+
+<p>注意：格式化为字符串时调用systemFormat格式化,请参考该函数说明</p>
+
+<p><a id="time.ole"></a></p>
+
+<h2>time.ole 成员列表</h2>
+
+<p>数值运算支持从100年1月1日到9999年12月31日的时间<br>
+正数1899年12月30日算起的天数，小数部分是一天当中的片段时间<br>
+负数表示1899年12月30日之前的时间  </p>
+
+<p>注意：格式化为字符串时调用systemFormat格式化,请参考该函数说明</p>
+
+<p><a id="time.ole.now"></a></p>
+
+<h3>time.ole.now()</h3>
+
+<p><a href="#timeOleObject">返回对象:timeOleObject</a></p>
+
+<p><a id="timeOleObject"></a></p>
+
+<h2>timeOleObject 成员列表</h2>
+
+<p><a id="timeOleObject.addday"></a></p>
+
+<h3>timeOleObject.addday()</h3>
+
+<p><a href="#timeOleObject">返回对象:timeOleObject</a></p>
+
+<p><a id="timeOleObject.addday"></a></p>
+
+<h3>timeOleObject.addday(输入数值)</h3>
+
+<p>增加天数,可以为负数,返回自身</p>
+
+<p><a id="timeOleObject.addhour"></a></p>
+
+<h3>timeOleObject.addhour()</h3>
+
+<p><a href="#timeOleObject">返回对象:timeOleObject</a></p>
+
+<p><a id="timeOleObject.addhour"></a></p>
+
+<h3>timeOleObject.addhour(输入数值)</h3>
+
+<p>增加小时数,可以为负数,返回自身</p>
+
+<p><a id="timeOleObject.addminute"></a></p>
+
+<h3>timeOleObject.addminute()</h3>
+
+<p><a href="#timeOleObject">返回对象:timeOleObject</a></p>
+
+<p><a id="timeOleObject.addminute"></a></p>
+
+<h3>timeOleObject.addminute(输入数值)</h3>
+
+<p>增加分钟数,可以为负数,返回自身</p>
+
+<p><a id="timeOleObject.addmonth"></a></p>
+
+<h3>timeOleObject.addmonth()</h3>
+
+<p><a href="#timeOleObject">返回对象:timeOleObject</a></p>
+
+<p><a id="timeOleObject.addmonth"></a></p>
+
+<h3>timeOleObject.addmonth(输入数值)</h3>
+
+<p>增加月份数,返回自身</p>
+
+<p><a id="timeOleObject.addsecond"></a></p>
+
+<h3>timeOleObject.addsecond()</h3>
+
+<p><a href="#timeOleObject">返回对象:timeOleObject</a></p>
+
+<p><a id="timeOleObject.addsecond"></a></p>
+
+<h3>timeOleObject.addsecond(输入数值)</h3>
+
+<p>增加秒数,可以为负数,返回自身</p>
+
+<p><a id="timeOleObject.day"></a></p>
+
+<h3>timeOleObject.day</h3>
+
+<p>日</p>
+
+<p><a id="timeOleObject.dayofweek"></a></p>
+
+<h3>timeOleObject.dayofweek</h3>
+
+<p>星期<br>
+星期一到星期六的值对应数值为1到6,星期日的值为 0,<br>
+注意修改这个字段不会更新时间值,  </p>
+
+<p>这个字段只有参与数值运算或调用 add*** 函数才会填充或更新,<br>
+例如调用 addday(0) 会更新此字段</p>
+
+<p><a id="timeOleObject.diffday"></a></p>
+
+<h3>timeOleObject.diffday(指定datetime对象)</h3>
+
+<p>计算两个time对象相差天数</p>
+
+<p><a id="timeOleObject.diffhour"></a></p>
+
+<h3>timeOleObject.diffhour(指定datetime对象)</h3>
+
+<p>计算两个time对象相差小时数</p>
+
+<p><a id="timeOleObject.diffminute"></a></p>
+
+<h3>timeOleObject.diffminute(指定datetime对象)</h3>
+
+<p>计算两个time对象相差分钟数</p>
+
+<p><a id="timeOleObject.diffmonth"></a></p>
+
+<h3>timeOleObject.diffmonth(指定datetime对象)</h3>
+
+<p>计算两个time对象相差月份</p>
+
+<p><a id="timeOleObject.diffsecond"></a></p>
+
+<h3>timeOleObject.diffsecond(指定datetime对象)</h3>
+
+<p>计算两个time对象相差秒数</p>
+
+<p><a id="timeOleObject.endstr"></a></p>
+
+<h3>timeOleObject.endstr</h3>
+
+<p>文本解析为时间后，<br>
+最后一个格式化标记解析成功并跳过空白字符以后的剩余的连续不含空白字符串，<br>
+可用于后续解析iso8601等格式的时区（解析后将必须删除）。</p>
+
+<p><a id="timeOleObject.format"></a></p>
+
+<h3>timeOleObject.format</h3>
+
+<pre><code class="aardio language-aardio">timeOleObject.format=&quot;%Y年%m月%d日 %H时%M分%S秒&quot;;  
+//指定格式化串,首字符为!表示GMT时间
+</code></pre>
+
+<p><a id="timeOleObject.hour"></a></p>
+
+<h3>timeOleObject.hour</h3>
+
+<p>小时</p>
+
+<p><a id="timeOleObject.local"></a></p>
+
+<h3>timeOleObject.local()</h3>
+
+<p>将UTC时间转换为本地时间<br>
+格式化串首字符为!表示UTF时间<br>
+如果不是UTC时间直接返回<br>
+返回自身</p>
+
+<p><a id="timeOleObject.local"></a></p>
+
+<h3>timeOleObject.local(true)</h3>
+
+<p>将UTC时间转换为本地时间<br>
+并创建一个新的时间对象返回<br>
+如果不是UTC时间直接复制并返回<br>
+不修改自身并返回新对象</p>
+
+<p><a id="timeOleObject.locale"></a></p>
+
+<h3>timeOleObject.locale</h3>
+
+<p>格式化时间使用的语言代码<br>
+参数与setlocale相同,英文&quot;enu&quot;,中文&quot;chs&quot;,<br>
+该属性为空表示使用当前默认语言</p>
+
+<p><a id="timeOleObject.milliseconds"></a></p>
+
+<h3>timeOleObject.milliseconds</h3>
+
+<p>毫秒</p>
+
+<p><a id="timeOleObject.minute"></a></p>
+
+<h3>timeOleObject.minute</h3>
+
+<p>分钟</p>
+
+<p><a id="timeOleObject.month"></a></p>
+
+<h3>timeOleObject.month</h3>
+
+<p>月</p>
+
+<p><a id="timeOleObject.second"></a></p>
+
+<h3>timeOleObject.second</h3>
+
+<p>秒</p>
+
+<p><a id="timeOleObject.systemFormat"></a></p>
+
+<h3>timeOleObject.systemFormat(格式化串,区域代码)</h3>
+
+<p>使用系统格式化规则格式化时期,区域代码应使用3字母缩写<br>
+不指定格式化串时获取format属性并转为系统时间格式化串,<br>
+转换规则如下：<br>
+&quot;%y&quot; -&gt; &quot;yy&quot; 表示2位年份<br>
+&quot;%Y&quot; -&gt; &quot;yyyy&quot; 表示4位年份<br>
+&quot;%B&quot; -&gt; &quot;MMMM&quot; &quot;&quot; 表示月份全称<br>
+&quot;%b&quot; -&gt; &quot;MMM&quot; 表示月份缩写<br>
+&quot;%m&quot; -&gt; &quot;MM&quot; 表示2位月份<br>
+&quot;%d&quot; -&gt; &quot;dd&quot; 表示月份的第几天<br>
+&quot;%H&quot; -&gt; &quot;HH&quot; 表示2位24时制小时<br>
+&quot;%I&quot; -&gt; &quot;hh&quot; 表示2位12时制小时<br>
+&quot;%M&quot; -&gt; &quot;mm&quot; 表示2位分钟数<br>
+&quot;%S&quot; -&gt; &quot;ss&quot; 表示2分秒数<br>
+&quot;%p&quot; -&gt; &quot;tt&quot; 表示12时制显示上午或下午</p>
+
+<p><a id="timeOleObject.toSystemFormat"></a></p>
+
+<h3>timeOleObject.toSystemFormat()</h3>
+
+<p>取参数指定的格式化串，或format属性指定的格式化串,<br>
+转换为系统格式化语法并返回新的格式化串，不会修改原来的格式化串,<br>
+转换规则如下：<br>
+&quot;%y&quot; -&gt; &quot;yy&quot; 表示2位年份<br>
+&quot;%Y&quot; -&gt; &quot;yyyy&quot; 表示4位年份<br>
+&quot;%B&quot; -&gt; &quot;MMMM&quot; &quot;&quot; 表示月份全称<br>
+&quot;%b&quot; -&gt; &quot;MMM&quot; 表示月份缩写<br>
+&quot;%m&quot; -&gt; &quot;MM&quot; 表示2位月份<br>
+&quot;%d&quot; -&gt; &quot;dd&quot; 表示月份的第几天<br>
+&quot;%H&quot; -&gt; &quot;HH&quot; 表示2位24时制小时<br>
+&quot;%I&quot; -&gt; &quot;hh&quot; 表示2位12时制小时<br>
+&quot;%M&quot; -&gt; &quot;mm&quot; 表示2位分钟数<br>
+&quot;%S&quot; -&gt; &quot;ss&quot; 表示2分秒数<br>
+&quot;%p&quot; -&gt; &quot;tt&quot; 表示12时制显示上午或下午  </p>
+
+<p>注意不要直接修改format属性为系统格式化语法<br>
+这会导致time.ole与time对象不能兼容转换</p>
+
+<p><a id="timeOleObject.update"></a></p>
+
+<h3>timeOleObject.update()</h3>
+
+<p>重新计算时间并更新dayOfWeek字段.</p>
+
+<p><a id="timeOleObject.utc"></a></p>
+
+<h3>timeOleObject.utc()</h3>
+
+<p>将本地时间转换为UTC时间<br>
+格式化串首字符为!表示UTF时间<br>
+如果已经是UTC时间直接返回<br>
+修改并返回自身</p>
+
+<p><a id="timeOleObject.utc"></a></p>
+
+<h3>timeOleObject.utc(true)</h3>
+
+<p>将本地时间转换为UTC时间<br>
+并创建一个新的时间对象返回<br>
+如果已经是UTC时间直接复制并返回<br>
+不修改自身并返回新对象</p>
+
+<p><a id="timeOleObject.year"></a></p>
+
+<h3>timeOleObject.year</h3>
+
+<p>年</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/time/ole.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/time/ole.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/time/ole.md">Markdown 格式</a></p>
+
+</body> 
+</html>

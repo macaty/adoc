@@ -1,0 +1,346 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - tcc 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - tcc 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>tcc 库模块帮助文档</h1>
+
+<p><a id="tcc"></a></p>
+
+<h2>tcc 成员列表</h2>
+
+<p>TinyCC 扩展库（ 编译器版本 0.9.27 ）<br>
+此扩展库体积很小，支持发布后生成独立 EXE，<br>
+TinyCC 文档： <a href="javascript:if(confirm('http://bellard.org/tcc/tcc-doc.html  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://bellard.org/tcc/tcc-doc.html'" tppabs="http://bellard.org/tcc/tcc-doc.html">http://bellard.org/tcc/tcc-doc.html</a><br>
+完整头文件下载: <a href="javascript:if(confirm('http://download.savannah.gnu.org/releases/tinycc/winapi-full-for-0.9.27.zip  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='http://download.savannah.gnu.org/releases/tinycc/winapi-full-for-0.9.27.zip'" tppabs="http://download.savannah.gnu.org/releases/tinycc/winapi-full-for-0.9.27.zip">http://download.savannah.gnu.org/releases/tinycc/winapi-full-for-0.9.27.zip</a></p>
+
+<p><a id="tcc()"></a></p>
+
+<h3>tcc()</h3>
+
+<p>创建TCC C语言编译器,  </p>
+
+<p><a href="#tccObject">返回对象:tccObject</a></p>
+
+<p><a id="tcc._includedir"></a></p>
+
+<h3>tcc._includedir</h3>
+
+<p>默认头文件目录</p>
+
+<p><a id="tcc._libdir"></a></p>
+
+<h3>tcc._libdir</h3>
+
+<p>默认库目录</p>
+
+<p><a id="tcc._rootdir"></a></p>
+
+<h3>tcc._rootdir</h3>
+
+<p>TCC根目录,需要的DLL组件目录;</p>
+
+<p><a id="tcc.build"></a></p>
+
+<h3>tcc.build</h3>
+
+<p>直接编译 C代码为执行文件</p>
+
+<p><a id="tcc.build"></a></p>
+
+<h3>tcc.build()</h3>
+
+<p><a href="#tccBuilderObject">返回对象:tccBuilderObject</a></p>
+
+<p><a id="tcc.build"></a></p>
+
+<h3>tcc.build(path,code,...)</h3>
+
+<p>直接编译 C代码为执行文件,<br>
+必须使用 @path 指定输出的执行文件路径,<br>
+可选用 @code 参数指定 C语言 源代码,<br>
+如果没有指定 @code 参数，会返回一个对象,<br>
+对返回对象的 code 属性赋值则会自动生成 DLL 文件,<br>
+可选增加一个或多个参数指定要添加的库文件</p>
+
+<p><a id="tccObject"></a></p>
+
+<h2>tccObject 成员列表</h2>
+
+<p><a id="tccObject.?"></a></p>
+
+<h3>tccObject.?</h3>
+
+<p>直接获取 C函数,<br>
+相当于调用 getCdecl 且不指定参数原型,<br>
+这种方法获取 C函数 同样会导致自动调用 relocate 函数,<br>
+返回函数对象的调用规则与不声明调用API相同  </p>
+
+<p>一、传入参数规则：<br>
+1、null参数不可省略<br>
+2、32位整数类型，小于32位的整数、以及枚举类型都可以直接在API参数中写数值。<br>
+3、对于任何数值类型的指针（输出参数）一律使用结构体表示，例如double * v 表示为{ double v }<br>
+4、数组使用结构体表示<br>
+5、所有结构体传给API的都是指针地址，都是输出参数并增加返回值  </p>
+
+<p>返回值默认为int类型<br>
+不支持使用 API 尾标改变返回值类型</p>
+
+<p><a id="tccObject.addFile"></a></p>
+
+<h3>tccObject.addFile()</h3>
+
+<p><a href="#tccObject">返回对象:tccObject</a></p>
+
+<p><a id="tccObject.addFile"></a></p>
+
+<h3>tccObject.addFile(path,...)</h3>
+
+<p>添加 *.c 源码文件或 *.o, *.obj 文件  </p>
+
+<p>此函数返回 tcc 对象自身</p>
+
+<p><a id="tccObject.addIncludePath"></a></p>
+
+<h3>tccObject.addIncludePath(&quot;字符串参数&quot;)</h3>
+
+<p>添加头文件目录</p>
+
+<p><a id="tccObject.addLib"></a></p>
+
+<h3>tccObject.addLib()</h3>
+
+<p><a href="#tccObject">返回对象:tccObject</a></p>
+
+<p><a id="tccObject.addLib"></a></p>
+
+<h3>tccObject.addLib(库文件)</h3>
+
+<pre><code class="aardio language-aardio">tccObject.addLib(  
+    &quot;user32&quot;,  
+    &quot;kernel32&quot;,  
+    &quot;gdi32&quot; /*这几个库默认已添加,这里仅作演示  
+静态库必须在&quot;\lib\tcc\.res&quot;目录下可找到 lib库名.a 文件  
+动态库必须在&quot;\lib\tcc\.res&quot;目录下可找到 库名.def 文件,请到tcc官网下载def生成工具  
+请到tcc官网下载def生成工具  
+*/  
+)
+</code></pre>
+
+<p><a id="tccObject.addLibPath"></a></p>
+
+<h3>tccObject.addLibPath(&quot;字符串参数&quot;)</h3>
+
+<p>添加库目录</p>
+
+<p><a id="tccObject.addSysIncludePath"></a></p>
+
+<h3>tccObject.addSysIncludePath(&quot;字符串参数&quot;)</h3>
+
+<p>添加系统头文件目录</p>
+
+<p><a id="tccObject.close"></a></p>
+
+<h3>tccObject.close()</h3>
+
+<p>关闭C语言解释器</p>
+
+<p><a id="tccObject.code"></a></p>
+
+<h3>tccObject.code</h3>
+
+<pre><code class="aardio language-aardio">tccObject.code = /***   
+    #include &lt;stdlib.h&gt;   
+    #include &lt;windows.h&gt;  
+
+    /*  
+    DLL入口函数,该函数可以有也可以没有。  
+    总之在DllMain最好不要调用API函数.  
+    */  
+    int stdcall DllMain(void * hinstDLL, unsigned long fdwReason, void * lpvReserved) {  
+        if (fdwReason == 1/*DLL_PROCESS_ATTACH*/ ){   
+
+        }  
+        return 1;  
+    }  
+
+    //导出变量    
+declspec(dllexport) const wchar_t *hello_data = L&quot;(UTF8字面量定义为UTF16字符串)&quot;;  
+
+    //DLL导出函数  
+declspec(dllexport) void helloW (const wchar_t * msg)  
+    {  
+        MessageBoxW (0, msg, hello_data, MB_ICONINFORMATION);/*DLL导出函数*/  
+    }  
+***/
+</code></pre>
+
+<p><a id="tccObject.compile"></a></p>
+
+<h3>tccObject.compile(C源码)</h3>
+
+<p>编译C源码,<br>
+注意只有源码为UTF8编码,才能支持 L&quot;UTF-16字面量&quot; 的C语法<br>
+出错则触发onError事件,如果未指定该事件则抛出异常</p>
+
+<p><a id="tccObject.define"></a></p>
+
+<h3>tccObject.define(&quot;NDEBUG预处理器符号&quot;,&quot;1&quot;)</h3>
+
+<p>定义预处理器符号,如果值为 null 则删除该定义.<br>
+预处理器符号需要在添加或编译 C 源码前定义才会有效,<br>
+如果定义 NDEBUG 为 1，则不编译 assert 函数并可输出较小文件<br>
+此函数返回 tcc 对象自身</p>
+
+<p><a id="tccObject.define"></a></p>
+
+<h3>tccObject.define()</h3>
+
+<p><a href="#tccObject">返回对象:tccObject</a></p>
+
+<p><a id="tccObject.enableIoPrintf"></a></p>
+
+<h3>tccObject.enableIoPrintf</h3>
+
+<p>在C 代码中添加 io_printf</p>
+
+<p><a id="tccObject.enableIoPrintf"></a></p>
+
+<h3>tccObject.enableIoPrintf(bufferSize)</h3>
+
+<p>在C 代码中添加 io_printf,<br>
+可选用 @bufferSize 指定最大可输出的字节数,默认为512字节,<br>
+io_printf 与C函数 printf 的用法相同,<br>
+但 io_printf 会调用 aardio 的 io.print 函数输出字符串,<br>
+io_printf 可更好地兼容 aardio 控制台以及 UTF-8 编码,<br>
+注意只有通过 tcc 扩展库直接执行 C代码才能使用此函数</p>
+
+<p><a id="tccObject.getCdecl("字符串参数","void"></a></p>
+
+<h3>tccObject.getCdecl(&quot;字符串参数&quot;,&quot;void()&quot;)</h3>
+
+<p>获取编译后的C函数<br>
+可选用参数@2 指定函数原型,语法与声明API相同<br>
+如果不指定函数原型,用法与不声明直接调用 API 相同,<br>
+如果从未调用过 relocate 则自动调用.</p>
+
+<p><a id="tccObject.getSymbol"></a></p>
+
+<h3>tccObject.getSymbol(&quot;符号名&quot;)</h3>
+
+<p>可使用此函数获取函数地址</p>
+
+<p><a id="tccObject.onError"></a></p>
+
+<h3>tccObject.onError</h3>
+
+<pre><code class="aardio language-aardio">tccObject.onError = function(msg){
+    console.log( msg ) /*编译警告或错误会触发此事件  
+如果不定义此事件,aardio默认弹出对话框或使用控制台显示此信息*/
+}
+</code></pre>
+
+<p><a id="tccObject.output"></a></p>
+
+<h3>tccObject.output</h3>
+
+<p>输出文件</p>
+
+<p><a id="tccObject.output"></a></p>
+
+<h3>tccObject.output(path,code)</h3>
+
+<p>输出文件,<br>
+@path 参数指定 *.o, *.obj, *.dll 或 *.exe 等输出文件路径,<br>
+@code 为可选参数,用于指定C源代码,建议用 UTF-8 编码</p>
+
+<p><a id="tccObject.relocate"></a></p>
+
+<h3>tccObject.relocate()</h3>
+
+<p>重定位<br>
+此函数在调用getCdecl()前被自动调用.</p>
+
+<p><a id="tccObject.run"></a></p>
+
+<h3>tccObject.run()</h3>
+
+<p>编译并执行int main() 入口函数.<br>
+可添加任意多个字符串参数</p>
+
+<p><a id="tccObject.setCdecl"></a></p>
+
+<h3>tccObject.setCdecl(函数,函数名,原型)</h3>
+
+<pre><code class="aardio language-aardio">tccObject.setCdecl(  
+    function(){  
+
+    },  
+    &quot;函数名&quot;,  
+    &quot;void()&quot;  
+)
+</code></pre>
+
+<p><a id="tccObject.setCdecl"></a></p>
+
+<h3>tccObject.setCdecl(函数指针,函数名)</h3>
+
+<p>直接将C函数指针传入tcc</p>
+
+<p><a id="tccObject.setOptions"></a></p>
+
+<h3>tccObject.setOptions(&quot;-Wall&quot;)</h3>
+
+<p>启用所有警告</p>
+
+<p><a id="tccObject.setOptions"></a></p>
+
+<h3>tccObject.setOptions(&quot;-bt N&quot;)</h3>
+
+<p>允许调试,生成的文件较大</p>
+
+<p><a id="tccObject.setSymbol"></a></p>
+
+<h3>tccObject.setSymbol(&quot;符号名&quot;,指针)</h3>
+
+<p>可使用此函数添加函数指针</p>
+
+<p><a id="tccBuilderObject"></a></p>
+
+<h2>tccBuilderObject 成员列表</h2>
+
+<p><a id="tccBuilderObject.code"></a></p>
+
+<h3>tccBuilderObject.code</h3>
+
+<pre><code class="aardio language-aardio">tccBuilderObject.code = /***  
+#include &lt;windows.h&gt;   
+declspec(dllexport) int Add( int a,int b )   
+{       
+    return a + b;/*如果调用 tcc.build 时没有指定 C代码 就可以在这里指定 C代码。 */  
+}   
+***/
+</code></pre>
+
+<h3>自动完成常量</h3>
+
+<p>_TCC_OUTPUT_DLL=3<br>
+_TCC_OUTPUT_EXE=2<br>
+_TCC_OUTPUT_MEMORY=1<br>
+_TCC_OUTPUT_OBJ=4<br>
+_TCC_OUTPUT_PREPROCESS=5  </p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/tcc/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/tcc/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/tcc/_.md">Markdown 格式</a></p>
+
+</body> 
+</html>

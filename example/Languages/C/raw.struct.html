@@ -1,0 +1,64 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - aardio 调用 C 语言之静态内存结构体'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - aardio 调用 C 语言之静态内存结构体</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 调用 C 语言之静态内存结构体</h1><pre><code class="aardio language-aardio">//aardio 调用 C 语言之静态内存结构体
+//相关范例: file://~/example/aardio/Raw/raw.struct.aardio
+
+import console.int;
+import tcc;
+
+var code = /** 
+# include &lt;stdlib.h&gt;
+
+typedef struct {
+    int number;
+} TestSturct;
+
+__declspec(dllexport) void test(int len, TestSturct* pStruct[]) {
+
+    for (int index = 0; index &lt; len; index++)
+    {
+        pStruct[index]-&gt;number = 123;
+    }
+}
+**/
+var c = tcc();
+c.compile(code);
+
+import raw.struct;
+
+//创建『静态内存结构体』
+testSturct = raw.struct({ 
+    int number; 
+});
+
+/*
+aardio 结构体在与原生 API 交互时动态分配内存指针。
+但『静态内存结构体』可以分配固定不变的内存指针，调用原生 API 时不需要再动态分配内存。
+在 aardio 中读写静态内存结构体的直接成员（不包含成员的成员）会更慢。
+*/
+
+//创建『静态内存结构体』指针数组
+var array = { testSturct(); testSturct(); }
+
+//调用 API，『静态内存结构体』可用于 pointer 指针类型。
+c.test(2, {pointer items[2] = array } ); 
+
+//输出值，可以看到 iNumber 已经被 C 语言改掉了
+console.log( array[1].number  ); 
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/C/raw.struct.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/C/raw.struct.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Languages/C/raw.struct.md">Markdown 格式</a>
+</body> 
+</html>

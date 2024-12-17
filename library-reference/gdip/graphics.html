@@ -1,0 +1,925 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - gdip.graphics 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - gdip.graphics 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>gdip.graphics 库模块帮助文档</h1>
+
+<p><a id="gdip"></a></p>
+
+<h2>gdip 成员列表</h2>
+
+<p><a id="gdip.graphics"></a></p>
+
+<h3>gdip.graphics()</h3>
+
+<p><a href="#gdipgraphicsObject">返回对象:gdipgraphicsObject</a></p>
+
+<p><a id="gdip.graphics"></a></p>
+
+<h3>gdip.graphics(bitmap)</h3>
+
+<p>使用gdip.bitmap对象创建画板</p>
+
+<p><a id="gdip.graphics"></a></p>
+
+<h3>gdip.graphics(hdc)</h3>
+
+<p>使用GDI设备句柄创建画板</p>
+
+<p><a id="gdip.graphics"></a></p>
+
+<h3>gdip.graphics(image)</h3>
+
+<p>使用gdip.image对象创建画板</p>
+
+<p><a id="gdip.graphics"></a></p>
+
+<h3>gdip.graphics(winform)</h3>
+
+<p>使用窗口或控件对象创建画板</p>
+
+<p><a id="gdip.graphics"></a></p>
+
+<h2>gdip.graphics 成员列表</h2>
+
+<p><a id="gdip.graphics.fromHwnd"></a></p>
+
+<h3>gdip.graphics.fromHwnd()</h3>
+
+<p>使用指定的窗口创建画板</p>
+
+<p><a href="#gdipgraphicsObject">返回对象:gdipgraphicsObject</a></p>
+
+<p><a id="gdip.graphics.fromImage"></a></p>
+
+<h3>gdip.graphics.fromImage()</h3>
+
+<p>使用gdip.image对象创建画板</p>
+
+<p><a href="#gdipgraphicsObject">返回对象:gdipgraphicsObject</a></p>
+
+<p><a id="gdipgraphicsObject"></a></p>
+
+<h2>gdipgraphicsObject 成员列表</h2>
+
+<p><a id="gdipgraphicsObject._bitmap"></a></p>
+
+<h3>gdipgraphicsObject._bitmap</h3>
+
+<p>创建画板时使用的gdip.bitmap对象  </p>
+
+<p><a href="bitmap.html#gdipbitmapObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/gdip/bitmap.html#gdipbitmapObject">返回对象:gdipbitmapObject</a></p>
+
+<p><a id="gdipgraphicsObject._hdc"></a></p>
+
+<h3>gdipgraphicsObject._hdc</h3>
+
+<p>创建画板时使用的设备上下文</p>
+
+<p><a id="gdipgraphicsObject._hwnd"></a></p>
+
+<h3>gdipgraphicsObject._hwnd</h3>
+
+<p>创建画板时使用的句柄</p>
+
+<p><a id="gdipgraphicsObject._image"></a></p>
+
+<h3>gdipgraphicsObject._image</h3>
+
+<p>创建画板时使用的gdip.image对象  </p>
+
+<p><a href="image.html#gdipimageObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/gdip/image.html#gdipimageObject">返回对象:gdipimageObject</a></p>
+
+<p><a id="gdipgraphicsObject.clear"></a></p>
+
+<h3>gdipgraphicsObject.clear()</h3>
+
+<p><a href="#gdipgraphicsObject">返回对象:gdipgraphicsObject</a></p>
+
+<p><a id="gdipgraphicsObject.clear"></a></p>
+
+<h3>gdipgraphicsObject.clear(0xFFFFFFFF)</h3>
+
+<p>用指定的颜色清空画板</p>
+
+<p><a id="gdipgraphicsObject.compositingMode"></a></p>
+
+<h3>gdipgraphicsObject.compositingMode</h3>
+
+<pre><code class="aardio language-aardio">gdipgraphicsObject.compositingMode = _GdipCompositingMode/*合成图像模式,SourceCopy为覆盖,SourceOver为叠加  
+*/ ;
+</code></pre>
+
+<p><a id="gdipgraphicsObject.compositingQuality"></a></p>
+
+<h3>gdipgraphicsObject.compositingQuality</h3>
+
+<pre><code class="aardio language-aardio">gdipgraphicsObject.compositingQuality = _GdipCompositingQuality/*合成图像质量*/ ;
+</code></pre>
+
+<p><a id="gdipgraphicsObject.createCachedBitmap"></a></p>
+
+<h3>gdipgraphicsObject.createCachedBitmap(位图对象)</h3>
+
+<p>创建缓存位图</p>
+
+<p><a id="gdipgraphicsObject.delete"></a></p>
+
+<h3>gdipgraphicsObject.delete()</h3>
+
+<p>释放图像<br>
+此对象支持自动释放,不必手工调用此函数  </p>
+
+<p><a href="#gdipgraphicsObject">返回对象:gdipgraphicsObject</a></p>
+
+<p><a id="gdipgraphicsObject.deleteCachedBitmap"></a></p>
+
+<h3>gdipgraphicsObject.deleteCachedBitmap(缓存位图)</h3>
+
+<p>删除缓存位图</p>
+
+<p><a id="gdipgraphicsObject.drawArc"></a></p>
+
+<h3>gdipgraphicsObject.drawArc()</h3>
+
+<p><a href="#gdipgraphicsObject">返回对象:gdipgraphicsObject</a></p>
+
+<p><a id="gdipgraphicsObject.drawArc"></a></p>
+
+<h3>gdipgraphicsObject.drawArc(pen,x,y,width,height,startAngle,sweepAngle)</h3>
+
+<p>画圆弧<br>
+x,y指定椭圆所在矩形的左上角,width指定宽度,height指定高度,<br>
+startAngle:起始角度,以度为单位从X轴顺时针测量,水平线右侧为0度,<br>
+sweepAngle:startAngle和弧线末尾之间的扫描角度</p>
+
+<p><a id="gdipgraphicsObject.drawBackground"></a></p>
+
+<h3>gdipgraphicsObject.drawBackground</h3>
+
+<p>画背景图</p>
+
+<p><a id="gdipgraphicsObject.drawBackground"></a></p>
+
+<h3>gdipgraphicsObject.drawBackground()</h3>
+
+<p><a href="#gdipgraphicsObject">返回对象:gdipgraphicsObject</a></p>
+
+<p><a id="gdipgraphicsObject.drawBackground"></a></p>
+
+<h3>gdipgraphicsObject.drawBackground(位图对象,模式,绘图RECT,上,右,下,左)</h3>
+
+<p>支持模式 auto,expand,stretch,center,scale,tile,repeat-x,repeat-y<br>
+所有模式请参考 plus 控件背景模式属性说明，<br>
+auto 模式指图像超过绘图区则居中，否则缩放。<br>
+该函数不检查参数正确性,调用者有责任保证参数正确<br>
+参数 @3 可用 ::RECT 结构体指定区块参数。<br>
+可选使用参数@8指定 gdip.imageAttributes 对象设置显示属性<br>
+tile,repeat-x,repeat-y 三种模式忽略显示属性,<br>
+函数返回自身</p>
+
+<p><a id="gdipgraphicsObject.drawBezier"></a></p>
+
+<h3>gdipgraphicsObject.drawBezier</h3>
+
+<p>画贝塞尔曲线</p>
+
+<p><a id="gdipgraphicsObject.drawBezier"></a></p>
+
+<h3>gdipgraphicsObject.drawBezier(pen,x1,y1,x2,y2,x3,y3,x4,y4)</h3>
+
+<p>画贝塞尔曲线<br>
+4个坐标点分别为：起始锚点，起始控制点，结束锚点，结束控制点</p>
+
+<p><a id="gdipgraphicsObject.drawBitmapRepeatX"></a></p>
+
+<h3>gdipgraphicsObject.drawBitmapRepeatX()</h3>
+
+<p><a href="#gdipgraphicsObject">返回对象:gdipgraphicsObject</a></p>
+
+<p><a id="gdipgraphicsObject.drawBitmapRepeatX"></a></p>
+
+<h3>gdipgraphicsObject.drawBitmapRepeatX(图像,绘图RECT,上,右,下,左)</h3>
+
+<p>水平平铺<br>
+参数@1 为gdip.bitmap对象。<br>
+参数 @2 可用 ::RECT 结构体指定区块参数。<br>
+最后的四个参数指定坐标<br>
+如果指定了右坐标则忽略左坐标,<br>
+如果指定了下坐标则忽略上坐标</p>
+
+<p><a id="gdipgraphicsObject.drawBitmapRepeatY"></a></p>
+
+<h3>gdipgraphicsObject.drawBitmapRepeatY()</h3>
+
+<p><a href="#gdipgraphicsObject">返回对象:gdipgraphicsObject</a></p>
+
+<p><a id="gdipgraphicsObject.drawBitmapRepeatY"></a></p>
+
+<h3>gdipgraphicsObject.drawBitmapRepeatY(图像,绘图RECT,上,右,下,左)</h3>
+
+<p>垂直平铺<br>
+参数@1 为gdip.bitmap对象。<br>
+参数 @2 可用 ::RECT 结构体指定区块参数。<br>
+最后的四个参数指定坐标<br>
+如果指定了右坐标则忽略左坐标,<br>
+如果指定了下坐标则忽略上坐标</p>
+
+<p><a id="gdipgraphicsObject.drawBitmapTile"></a></p>
+
+<h3>gdipgraphicsObject.drawBitmapTile()</h3>
+
+<p><a href="#gdipgraphicsObject">返回对象:gdipgraphicsObject</a></p>
+
+<p><a id="gdipgraphicsObject.drawBitmapTile"></a></p>
+
+<h3>gdipgraphicsObject.drawBitmapTile(图像,RECT区块)</h3>
+
+<p>绘图，重复平铺显示。<br>
+参数 @2 可用 ::RECT 结构体指定区块参数。<br>
+注意该函数会在执行时设置裁剪区域<br>
+执行完重置裁剪区域</p>
+
+<p><a id="gdipgraphicsObject.drawCachedBitmap"></a></p>
+
+<h3>gdipgraphicsObject.drawCachedBitmap(缓存位图,x,y)</h3>
+
+<p>输出缓存位图</p>
+
+<p><a id="gdipgraphicsObject.drawCurve"></a></p>
+
+<h3>gdipgraphicsObject.drawCurve(画笔,任意个坐标数值参数)</h3>
+
+<p>画曲线<br>
+可添加任意个成对的数值参数指定曲线经过的坐标点</p>
+
+<p><a id="gdipgraphicsObject.drawCurve2"></a></p>
+
+<h3>gdipgraphicsObject.drawCurve2(画笔,曲线强度,任意个坐标参数)</h3>
+
+<p>画曲线<br>
+曲线强度为0画出来的就是直线，设为0.5则相当于调用drawCurve画出来的弯曲程度,<br>
+参数@3开始可添加2个以上的::POINTF结构体参数指定曲线经过的坐标点，也可以在参数@3里用一个 ::POINTF 结构体数组替代  </p>
+
+<p>注意drawCurve的参数是多个数值,而drawCurve2的参数是多个 ::POINTF 结构体,<br>
+而且要注意是::POINTF，不是::POINT</p>
+
+<p><a id="gdipgraphicsObject.drawEllipse"></a></p>
+
+<h3>gdipgraphicsObject.drawEllipse()</h3>
+
+<p><a href="#gdipgraphicsObject">返回对象:gdipgraphicsObject</a></p>
+
+<p><a id="gdipgraphicsObject.drawEllipse"></a></p>
+
+<h3>gdipgraphicsObject.drawEllipse(pen,x,y,width,height)</h3>
+
+<p>画圆形、或椭圆<br>
+x,y指定椭圆所在矩形的左上角,width指定宽度,height指定高度</p>
+
+<p><a id="gdipgraphicsObject.drawImage"></a></p>
+
+<h3>gdipgraphicsObject.drawImage()</h3>
+
+<p><a href="#gdipgraphicsObject">返回对象:gdipgraphicsObject</a></p>
+
+<p><a id="gdipgraphicsObject.drawImage"></a></p>
+
+<h3>gdipgraphicsObject.drawImage(图像,左,上,显示属性)</h3>
+
+<p>绘图<br>
+可使使用参数@2,参数@3指定输出坐标<br>
+可选使用参数@4指定gdip.imageAttributes对象设置显示属性,<br>
+注意此函数忽略原图DPI</p>
+
+<p><a id="gdipgraphicsObject.drawImageCenter"></a></p>
+
+<h3>gdipgraphicsObject.drawImageCenter()</h3>
+
+<p><a href="#gdipgraphicsObject">返回对象:gdipgraphicsObject</a></p>
+
+<p><a id="gdipgraphicsObject.drawImageCenter"></a></p>
+
+<h3>gdipgraphicsObject.drawImageCenter(图像,RECT区块,显示属性)</h3>
+
+<p>绘图，保持图片大小并绝对居中显示。<br>
+参数 @2 可用 ::RECT 结构体指定区块参数。<br>
+可选使用参数@3指定gdip.imageAttributes对象设置显示属性</p>
+
+<p><a id="gdipgraphicsObject.drawImageExpand"></a></p>
+
+<h3>gdipgraphicsObject.drawImageExpand</h3>
+
+<p>九宫格绘图,九宫格切图后边角四格固定,中间五格拉伸<br>
+该函数不会严格检查参数、并忽略执行错误,调用该函数前必须保证参数正确</p>
+
+<p><a id="gdipgraphicsObject.drawImageExpand"></a></p>
+
+<h3>gdipgraphicsObject.drawImageExpand()</h3>
+
+<p><a href="#gdipgraphicsObject">返回对象:gdipgraphicsObject</a></p>
+
+<p><a id="gdipgraphicsObject.drawImageExpand"></a></p>
+
+<h3>gdipgraphicsObject.drawImageExpand(图像,绘图RECT,上,右,下,左,显示属性)</h3>
+
+<p>参数@1为gdip.image或gdip.bitmap对象<br>
+参数@2使用::RECT结构体指定目标区块,<br>
+参数@3,@4,@5,@6指定九宫格切图坐标<br>
+可选使用参数@7指定gdip.imageAttributes对象设置显示属性</p>
+
+<p><a id="gdipgraphicsObject.drawImagePoint"></a></p>
+
+<h3>gdipgraphicsObject.drawImagePoint()</h3>
+
+<p><a href="#gdipgraphicsObject">返回对象:gdipgraphicsObject</a></p>
+
+<p><a id="gdipgraphicsObject.drawImagePoint"></a></p>
+
+<h3>gdipgraphicsObject.drawImagePoint(图像,RECT区块,x,y)</h3>
+
+<p>绘图。<br>
+参数 @2 可用 ::RECT 结构体指定区块参数。<br>
+x,y指定偏移坐标<br>
+如果为0到1之间的值则为剩余空间百分比<br>
+如果为负数则为右下角坐标</p>
+
+<p><a id="gdipgraphicsObject.drawImagePointRect"></a></p>
+
+<h3>gdipgraphicsObject.drawImagePointRect()</h3>
+
+<p><a href="#gdipgraphicsObject">返回对象:gdipgraphicsObject</a></p>
+
+<p><a id="gdipgraphicsObject.drawImagePointRect"></a></p>
+
+<h3>gdipgraphicsObject.drawImagePointRect(图像, 输出左,输出上,左,上,宽,高)</h3>
+
+<p>将图像的指定区块输出到指定坐标<br>
+注意该函数会受PNG,JPG的DPI设置影响输出大小</p>
+
+<p><a id="gdipgraphicsObject.drawImageRect"></a></p>
+
+<h3>gdipgraphicsObject.drawImageRect()</h3>
+
+<p><a href="#gdipgraphicsObject">返回对象:gdipgraphicsObject</a></p>
+
+<p><a id="gdipgraphicsObject.drawImageRect"></a></p>
+
+<h3>gdipgraphicsObject.drawImageRect(图像,左,上,宽,高,显示属性)</h3>
+
+<p>画图<br>
+参数@2,@3,@4,@5指定目标区块,<br>
+可选使用参数@6指定gdip.imageAttributes对象设置显示属性</p>
+
+<p><a id="gdipgraphicsObject.drawImageRectRect"></a></p>
+
+<h3>gdipgraphicsObject.drawImageRectRect()</h3>
+
+<p><a href="#gdipgraphicsObject">返回对象:gdipgraphicsObject</a></p>
+
+<p><a id="gdipgraphicsObject.drawImageRectRect"></a></p>
+
+<h3>gdipgraphicsObject.drawImageRectRect(图像,输出左,输出上,输出宽,输出高,左,上,宽,高,显示属性)</h3>
+
+<p>将图像的指定区块输出到指定区块<br>
+参数@2,@3,@4,@5指定目标区块,<br>
+参数@6,@7,@8,@9指定图像区块,<br>
+可选使用参数@10指定gdip.imageAttributes对象设置显示属性</p>
+
+<p><a id="gdipgraphicsObject.drawImageScale"></a></p>
+
+<h3>gdipgraphicsObject.drawImageScale()</h3>
+
+<p><a href="#gdipgraphicsObject">返回对象:gdipgraphicsObject</a></p>
+
+<p><a id="gdipgraphicsObject.drawImageScale"></a></p>
+
+<h3>gdipgraphicsObject.drawImageScale(图像,RECT区块,显示属性)</h3>
+
+<p>绘图<br>
+保持比例缩放到合适大小。<br>
+参数 @2 可用 ::RECT 结构体指定区块参数。<br>
+可选使用参数@3指定gdip.imageAttributes对象设置显示属性</p>
+
+<p><a id="gdipgraphicsObject.drawImageStretch"></a></p>
+
+<h3>gdipgraphicsObject.drawImageStretch()</h3>
+
+<p><a href="#gdipgraphicsObject">返回对象:gdipgraphicsObject</a></p>
+
+<p><a id="gdipgraphicsObject.drawImageStretch"></a></p>
+
+<h3>gdipgraphicsObject.drawImageStretch(图像,RECT区块,显示属性)</h3>
+
+<p>绘图，拉伸图片到区块大小。<br>
+参数 @2 可用 ::RECT 结构体指定区块参数。<br>
+可选使用参数@3指定gdip.imageAttributes对象设置显示属性</p>
+
+<p><a id="gdipgraphicsObject.drawImageWithDpi"></a></p>
+
+<h3>gdipgraphicsObject.drawImageWithDpi()</h3>
+
+<p><a href="#gdipgraphicsObject">返回对象:gdipgraphicsObject</a></p>
+
+<p><a id="gdipgraphicsObject.drawImageWithDpi"></a></p>
+
+<h3>gdipgraphicsObject.drawImageWithDpi(图像,左,上)</h3>
+
+<p>绘图<br>
+可使使用参数@2,参数@3指定输出坐标<br>
+注意该函数会受PNG,JPG的DPI设置影响输出大小</p>
+
+<p><a id="gdipgraphicsObject.drawLine"></a></p>
+
+<h3>gdipgraphicsObject.drawLine</h3>
+
+<p>画线</p>
+
+<p><a id="gdipgraphicsObject.drawLine"></a></p>
+
+<h3>gdipgraphicsObject.drawLine()</h3>
+
+<p><a href="#gdipgraphicsObject">返回对象:gdipgraphicsObject</a></p>
+
+<p><a id="gdipgraphicsObject.drawLine"></a></p>
+
+<h3>gdipgraphicsObject.drawLine(pen,x1,y1,x2,y2)</h3>
+
+<p>画线<br>
+参数 @pen 为 gdip.pen 对象，<br>
+参数 @x1,@y1,@x2,@y2 为坐标</p>
+
+<p><a id="gdipgraphicsObject.drawPath"></a></p>
+
+<h3>gdipgraphicsObject.drawPath</h3>
+
+<p>画路径</p>
+
+<p><a id="gdipgraphicsObject.drawPath"></a></p>
+
+<h3>gdipgraphicsObject.drawPath()</h3>
+
+<p><a href="#gdipgraphicsObject">返回对象:gdipgraphicsObject</a></p>
+
+<p><a id="gdipgraphicsObject.drawPath"></a></p>
+
+<h3>gdipgraphicsObject.drawPath(pen,path)</h3>
+
+<p>画路径<br>
+参数 @pen 为 gdip.pen 对象，<br>
+参数 @path 为 gdip.path 对象</p>
+
+<p><a id="gdipgraphicsObject.drawPie"></a></p>
+
+<h3>gdipgraphicsObject.drawPie()</h3>
+
+<p><a href="#gdipgraphicsObject">返回对象:gdipgraphicsObject</a></p>
+
+<p><a id="gdipgraphicsObject.drawPie"></a></p>
+
+<h3>gdipgraphicsObject.drawPie(pen,x,y,width,height,startAngle,sweepAngle)</h3>
+
+<p>画扇形、或椭圆<br>
+startAngle:起始角度,以度为单位从X轴顺时针测量,水平线右侧为0度,<br>
+sweepAngle:startAngle和弧线末尾之间的扫描角度</p>
+
+<p><a id="gdipgraphicsObject.drawPolygon"></a></p>
+
+<h3>gdipgraphicsObject.drawPolygon()</h3>
+
+<p><a href="#gdipgraphicsObject">返回对象:gdipgraphicsObject</a></p>
+
+<p><a id="gdipgraphicsObject.drawPolygon"></a></p>
+
+<h3>gdipgraphicsObject.drawPolygon(pen,...)</h3>
+
+<p>绘制多边形<br>
+pen 为画刷对象,<br>
+可使用一个数组，或多个参数指定多个绘图时经过的 ::POINTF 坐标对象</p>
+
+<p><a id="gdipgraphicsObject.drawRectangle"></a></p>
+
+<h3>gdipgraphicsObject.drawRectangle</h3>
+
+<p>画方块</p>
+
+<p><a id="gdipgraphicsObject.drawRectangle"></a></p>
+
+<h3>gdipgraphicsObject.drawRectangle()</h3>
+
+<p><a href="#gdipgraphicsObject">返回对象:gdipgraphicsObject</a></p>
+
+<p><a id="gdipgraphicsObject.drawRectangle"></a></p>
+
+<h3>gdipgraphicsObject.drawRectangle(pen,x1,y1,width,height)</h3>
+
+<p>画方块<br>
+参数 @pen 为 gdip.pen 对象，<br>
+参数 @x1,@y1 为坐标，<br>
+@width 为宽度，<br>
+@height 为高度</p>
+
+<p><a id="gdipgraphicsObject.drawString"></a></p>
+
+<h3>gdipgraphicsObject.drawString</h3>
+
+<p>输出文本</p>
+
+<p><a id="gdipgraphicsObject.drawString"></a></p>
+
+<h3>gdipgraphicsObject.drawString()</h3>
+
+<p><a href="#gdipgraphicsObject">返回对象:gdipgraphicsObject</a></p>
+
+<p><a id="gdipgraphicsObject.drawString"></a></p>
+
+<h3>gdipgraphicsObject.drawString(str,font,rectf,format,brush)</h3>
+
+<p>输出文本<br>
+@str 参数为要输出的文本<br>
+@font 参数为 gdip.font字体对象,<br>
+@rectf 为RECTF结构体,也可以通过RECT结构体的float函数转换而得,<br>
+@format 为gdip.stringformat对象,用于指定输出格式,<br>
+@brush为 gdip.solidBrush创建的画刷对象</p>
+
+<p><a id="gdipgraphicsObject.fastDrawBitmap"></a></p>
+
+<h3>gdipgraphicsObject.fastDrawBitmap()</h3>
+
+<p><a href="#gdipgraphicsObject">返回对象:gdipgraphicsObject</a></p>
+
+<p><a id="gdipgraphicsObject.fastDrawBitmap"></a></p>
+
+<h3>gdipgraphicsObject.fastDrawBitmap(位图对象,x,y)</h3>
+
+<p>快速绘图<br>
+x,y为可选参数,默认为0<br>
+返回自身</p>
+
+<p><a id="gdipgraphicsObject.fillEllipse"></a></p>
+
+<h3>gdipgraphicsObject.fillEllipse()</h3>
+
+<p><a href="#gdipgraphicsObject">返回对象:gdipgraphicsObject</a></p>
+
+<p><a id="gdipgraphicsObject.fillEllipse"></a></p>
+
+<h3>gdipgraphicsObject.fillEllipse(brush,x,y,width,height)</h3>
+
+<p>填充圆形、或椭圆<br>
+x,y指定椭圆所在矩形的左上角,width指定宽度,height指定高度</p>
+
+<p><a id="gdipgraphicsObject.fillPath"></a></p>
+
+<h3>gdipgraphicsObject.fillPath()</h3>
+
+<p><a href="#gdipgraphicsObject">返回对象:gdipgraphicsObject</a></p>
+
+<p><a id="gdipgraphicsObject.fillPath"></a></p>
+
+<h3>gdipgraphicsObject.fillPath(brush,path)</h3>
+
+<p>填充路径<br>
+brush为画刷对象,path为gdip.path路径对象</p>
+
+<p><a id="gdipgraphicsObject.fillPie"></a></p>
+
+<h3>gdipgraphicsObject.fillPie()</h3>
+
+<p><a href="#gdipgraphicsObject">返回对象:gdipgraphicsObject</a></p>
+
+<p><a id="gdipgraphicsObject.fillPie"></a></p>
+
+<h3>gdipgraphicsObject.fillPie(brush,x,y,width,height,startAngle,sweepAngle)</h3>
+
+<p>填充扇形、或椭圆<br>
+startAngle:起始角度,以度为单位从X轴顺时针测量,水平线右侧为0度,<br>
+sweepAngle:startAngle和弧线末尾之间的扫描角度</p>
+
+<p><a id="gdipgraphicsObject.fillPolygon"></a></p>
+
+<h3>gdipgraphicsObject.fillPolygon</h3>
+
+<p>画多边形</p>
+
+<p><a id="gdipgraphicsObject.fillPolygon"></a></p>
+
+<h3>gdipgraphicsObject.fillPolygon()</h3>
+
+<p><a href="#gdipgraphicsObject">返回对象:gdipgraphicsObject</a></p>
+
+<p><a id="gdipgraphicsObject.fillPolygon"></a></p>
+
+<h3>gdipgraphicsObject.fillPolygon(brush,fillMode,...)</h3>
+
+<p>填充多边形<br>
+brush 为画刷对象,fillMode使用_gdipFillMode前缀的常量指定,可省略<br>
+可使用一个数组，或多个参数指定多个绘图时经过的 ::POINTF 坐标对象</p>
+
+<p><a id="gdipgraphicsObject.fillRectangle"></a></p>
+
+<h3>gdipgraphicsObject.fillRectangle</h3>
+
+<p>填充方块</p>
+
+<p><a id="gdipgraphicsObject.fillRectangle"></a></p>
+
+<h3>gdipgraphicsObject.fillRectangle()</h3>
+
+<p><a href="#gdipgraphicsObject">返回对象:gdipgraphicsObject</a></p>
+
+<p><a id="gdipgraphicsObject.fillRectangle"></a></p>
+
+<h3>gdipgraphicsObject.fillRectangle(brush,x1,y1,width,height)</h3>
+
+<p>填充方块<br>
+参数 @pen 为 gdip.pen 对象，<br>
+参数 @x1,@y1 为坐标，<br>
+@width 为宽度，<br>
+@height 为高度</p>
+
+<p><a id="gdipgraphicsObject.getDc"></a></p>
+
+<h3>gdipgraphicsObject.getDc()</h3>
+
+<p>返回GDI兼容设备句柄<br>
+注意返回的句柄一定要调用releaseDc函数释放</p>
+
+<p><a id="gdipgraphicsObject.getDpi"></a></p>
+
+<h3>gdipgraphicsObject.getDpi()</h3>
+
+<p>返回设备DPI<br>
+默认为96,96</p>
+
+<p><a id="gdipgraphicsObject.interpolationMode"></a></p>
+
+<h3>gdipgraphicsObject.interpolationMode</h3>
+
+<pre><code class="aardio language-aardio">gdipgraphicsObject.interpolationMode = _GdipInterpolationMode/*放大缩小时使用的插值模式*/ ;
+</code></pre>
+
+<p><a id="gdipgraphicsObject.measureString"></a></p>
+
+<h3>gdipgraphicsObject.measureString</h3>
+
+<p>计算输出文本区块</p>
+
+<p><a id="gdipgraphicsObject.measureString"></a></p>
+
+<h3>gdipgraphicsObject.measureString()</h3>
+
+<p><a href="core.html#rectfObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/gdip/core.html#rectfObject">返回对象:rectfObject</a></p>
+
+<p><a id="gdipgraphicsObject.measureString"></a></p>
+
+<h3>gdipgraphicsObject.measureString(str,theFont,layoutRect,stringFormat)</h3>
+
+<p>计算输出文本区块<br>
+@str 要计算的字符串<br>
+@theFont 字体，gdip.font 对象<br>
+@layoutRect ::RECTF 结构体<br>
+@stringFormat gdip.stringformat 文本格式对象  </p>
+
+<p>返回值 boundingBox RECTF 结构体，表示围绕输出字符串的边界<br>
+返回值 codepointsFitted 输出字符数<br>
+返回值 linesFilled 输出行数</p>
+
+<p><a id="gdipgraphicsObject.pageUnit"></a></p>
+
+<h3>gdipgraphicsObject.pageUnit</h3>
+
+<pre><code class="aardio language-aardio">gdipgraphicsObject.pageUnit = _GdipUnit/*页面单位,例如打印时指定_UnitPixel则使用像素作为单位*/ ;
+</code></pre>
+
+<p><a id="gdipgraphicsObject.pixelOffsetMode"></a></p>
+
+<h3>gdipgraphicsObject.pixelOffsetMode</h3>
+
+<pre><code class="aardio language-aardio">gdipgraphicsObject.pixelOffsetMode = _GdipPixelOffsetMode/*像素偏移模式*/;
+</code></pre>
+
+<p><a id="gdipgraphicsObject.releaseDc"></a></p>
+
+<h3>gdipgraphicsObject.releaseDc(hdc)</h3>
+
+<p>释放GDI兼容设备句柄</p>
+
+<p><a id="gdipgraphicsObject.resetClip"></a></p>
+
+<h3>gdipgraphicsObject.resetClip()</h3>
+
+<p>取消剪辑   </p>
+
+<p><a href="#gdipgraphicsObject">返回对象:gdipgraphicsObject</a></p>
+
+<p><a id="gdipgraphicsObject.resetTransform"></a></p>
+
+<h3>gdipgraphicsObject.resetTransform()</h3>
+
+<p>重置所有画布变换<br>
+用于恢复scale,rotate,translate等画布变换效果,  </p>
+
+<p><a href="#gdipgraphicsObject">返回对象:gdipgraphicsObject</a></p>
+
+<p><a id="gdipgraphicsObject.restore"></a></p>
+
+<h3>gdipgraphicsObject.restore(/*状态索引*)</h3>
+
+<p>恢复到指定状态,<br>
+状态索引值由save()函数的返回值获得<br>
+不指定参数则撤消最近一次存储状态</p>
+
+<p><a id="gdipgraphicsObject.rotate"></a></p>
+
+<h3>gdipgraphicsObject.rotate</h3>
+
+<p>旋转画布</p>
+
+<p><a id="gdipgraphicsObject.rotate"></a></p>
+
+<h3>gdipgraphicsObject.rotate()</h3>
+
+<p><a href="#gdipgraphicsObject">返回对象:gdipgraphicsObject</a></p>
+
+<p><a id="gdipgraphicsObject.rotate"></a></p>
+
+<h3>gdipgraphicsObject.rotate(旋转角度,选项)</h3>
+
+<p>以左上角坐标为参考点旋转画布<br>
+参数@2可省略,选项默认为 _GdipMatrixOrderPrepend</p>
+
+<p><a id="gdipgraphicsObject.rotateRect"></a></p>
+
+<h3>gdipgraphicsObject.rotateRect</h3>
+
+<p>旋转画布</p>
+
+<p><a id="gdipgraphicsObject.rotateRect"></a></p>
+
+<h3>gdipgraphicsObject.rotateRect(rect,angle,order)</h3>
+
+<p>以 @rect 指定的区块中点为参考点旋转画布，<br>
+@rect 参数可用 ::RECT 结构体指定区块位置。<br>
+参数 @angle 为旋转角度<br>
+参数 @3 可省略,选项默认为 _GdipMatrixOrderPrepend</p>
+
+<p><a id="gdipgraphicsObject.save"></a></p>
+
+<h3>gdipgraphicsObject.save()</h3>
+
+<p>存储状态,并返回状态索引( 可作为restore()函数的参数 )</p>
+
+<p><a id="gdipgraphicsObject.scale"></a></p>
+
+<h3>gdipgraphicsObject.scale</h3>
+
+<p>缩放画布</p>
+
+<p><a id="gdipgraphicsObject.scale"></a></p>
+
+<h3>gdipgraphicsObject.scale()</h3>
+
+<p><a href="#gdipgraphicsObject">返回对象:gdipgraphicsObject</a></p>
+
+<p><a id="gdipgraphicsObject.scale"></a></p>
+
+<h3>gdipgraphicsObject.scale(宽度缩放比例,高度缩放比例,选项)</h3>
+
+<p>缩放画布<br>
+参数@3可省略,默认为 _GdipMatrixOrderPrepend</p>
+
+<p><a id="gdipgraphicsObject.scaleRect"></a></p>
+
+<h3>gdipgraphicsObject.scaleRect</h3>
+
+<p>居中缩放画布</p>
+
+<p><a id="gdipgraphicsObject.scaleRect"></a></p>
+
+<h3>gdipgraphicsObject.scaleRect()</h3>
+
+<p><a href="#gdipgraphicsObject">返回对象:gdipgraphicsObject</a></p>
+
+<p><a id="gdipgraphicsObject.scaleRect"></a></p>
+
+<h3>gdipgraphicsObject.scaleRect(区块,宽度缩放比例,高度缩放比例,选项)</h3>
+
+<p>在参数@1中使用::RECT结构体指定区块，并以该区块的中点为中心缩放画布<br>
+参数@3可省略,默认为 _GdipMatrixOrderPrepend</p>
+
+<p><a id="gdipgraphicsObject.setClipPath"></a></p>
+
+<h3>gdipgraphicsObject.setClipPath()</h3>
+
+<p><a href="#gdipgraphicsObject">返回对象:gdipgraphicsObject</a></p>
+
+<p><a id="gdipgraphicsObject.setClipPath"></a></p>
+
+<h3>gdipgraphicsObject.setClipPath(路径对象,选项</h3>
+
+<p>设置剪切路径<br>
+选项默认为 _GdipCombineModeReplace</p>
+
+<p><a id="gdipgraphicsObject.setClipRect"></a></p>
+
+<h3>gdipgraphicsObject.setClipRect()</h3>
+
+<p><a href="#gdipgraphicsObject">返回对象:gdipgraphicsObject</a></p>
+
+<p><a id="gdipgraphicsObject.setClipRect"></a></p>
+
+<h3>gdipgraphicsObject.setClipRect(左,上,宽,高,选项)</h3>
+
+<p>设置一块剪辑区域，用于限制绘图范围<br>
+选项使用 <em>GdipCombineMode</em>_ 前缀的常量指定</p>
+
+<p><a id="gdipgraphicsObject.setClipRegion"></a></p>
+
+<h3>gdipgraphicsObject.setClipRegion(region,combineMode)</h3>
+
+<p>设置一块剪辑区域，用于限制绘图范围。<br>
+参数 @region 指定 gdip.region 区域对象。<br>
+参数 @combineMode 可指定为 _GdipCombineMode 前缀的常量</p>
+
+<p><a id="gdipgraphicsObject.smoothingMode"></a></p>
+
+<h3>gdipgraphicsObject.smoothingMode</h3>
+
+<pre><code class="aardio language-aardio">gdipgraphicsObject.smoothingMode = _GdipSmoothingMode/*平滑模式,可用于抗锯齿, 文本抗锯齿请使用textRenderingHint*/;
+</code></pre>
+
+<p><a id="gdipgraphicsObject.textRenderingHint"></a></p>
+
+<h3>gdipgraphicsObject.textRenderingHint</h3>
+
+<pre><code class="aardio language-aardio">gdipgraphicsObject.textRenderingHint = _GdipTextRenderingHint/*文本的呈现模式,可用于抗锯齿*/;
+</code></pre>
+
+<p><a id="gdipgraphicsObject.transform"></a></p>
+
+<h3>gdipgraphicsObject.transform()</h3>
+
+<p><a href="#gdipgraphicsObject">返回对象:gdipgraphicsObject</a></p>
+
+<p><a id="gdipgraphicsObject.transform"></a></p>
+
+<h3>gdipgraphicsObject.transform(变换模式,图像,RECT区块,x,y)</h3>
+
+<p>变换画布<br>
+变换以后必须假定画布左上角坐标为0,画布大小为图像大小,<br>
+变换模式为字符串参数,支持 point,stretch,center,scale,含义与 plus 控件相同<br>
+模式为&quot;expand&quot;时转换为&quot;stretch&quot;,传入其他模式忽略并返回null，<br>
+否则执行变换并返回画布对像自身,  </p>
+
+<p>如果指定了point模式,必须同时指定x,y参数,用法与plus控件相同。<br>
+可用 ::RECT 结构体指定 RECT 区块参数</p>
+
+<p><a id="gdipgraphicsObject.translate"></a></p>
+
+<h3>gdipgraphicsObject.translate</h3>
+
+<p>水平偏移画布</p>
+
+<p><a id="gdipgraphicsObject.translate"></a></p>
+
+<h3>gdipgraphicsObject.translate()</h3>
+
+<p><a href="#gdipgraphicsObject">返回对象:gdipgraphicsObject</a></p>
+
+<p><a id="gdipgraphicsObject.translate"></a></p>
+
+<h3>gdipgraphicsObject.translate(水平偏移像素,垂直偏移像素,选项)</h3>
+
+<p>平移画布<br>
+参数@3可省略,默认为 _GdipMatrixOrderPrepend</p>
+
+<p><a id="gdipgraphicsObject.width"></a></p>
+
+<h3>gdipgraphicsObject.width</h3>
+
+<p>宽度</p>
+
+<p><a id="graphics"></a></p>
+
+<h2>graphics 成员列表</h2>
+
+<p>该变量名仅适用于表示gdip.graphics对象  </p>
+
+<p><a href="#gdipgraphicsObject">返回对象:gdipgraphicsObject</a></p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/gdip/graphics.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/gdip/graphics.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/gdip/graphics.md">Markdown 格式</a></p>
+
+</body> 
+</html>

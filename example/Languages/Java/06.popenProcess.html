@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - aardio 运行 jar 程序'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - aardio 运行 jar 程序</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 运行 jar 程序</h1><pre><code class="aardio language-aardio">//aardio 运行 jar 程序
+import java;
+import console; 
+import java.yuiCompressor;//下载一个jar用于测试
+
+/*
+实际上调用Java虚拟机,
+并且调用 main函数也可以运行 jar 程序,例如：
+
+import java;
+java.addClassPath(&quot;~\lib\java\yuiCompressor\.res\yuicompressor.jar&quot;)
+
+var jvm = java(); 
+YUICompressor = jvm.import( &quot;com.yahoo.platform.yui.compressor.YUICompressor&quot;);  
+var ret = YUICompressor.main({&quot;d:\test.js&quot;, &quot;-o&quot;,&quot;d:\testmin.js&quot;})
+
+但是这样运行有一个问题, jar中的 main 函数通常会假设自己是一个独立进程,
+这样例如上面的 YUICompressor ,他在出错时就会调用 System.exit() 关闭当前进程.
+对于这类程序就可以考虑用下面的方法创建子进程,关闭子进程不会影响到父进程
+*/
+var prcs = java.popenProcess( 
+    &quot;-verbose:class&quot;,//记录类载入信息
+    &quot;-jar&quot;,//运行jar
+    io.fullpath( &quot;~\lib\java\yuiCompressor\.res\yuicompressor.jar&quot; ),
+    &quot;d:\test.js&quot;
+); 
+
+var tOutBuffer = {}; 
+for( all,out,err in prcs.each() ){
+    console.log( out,err );
+    table.push( tOutBuffer,all);
+}
+
+//在输出结果中搜索类加载信息
+var outBuffer = string.join( tOutBuffer );
+var logClass = {}
+for classPath,filePath in string.gmatch(outBuffer 
+    ,&quot;\[Loaded\s+(.+?)\s+from\s+([^\]]+)&quot; ) { 
+    logClass[classPath] = filePath;
+}
+
+//这个就是得到的结果了
+for(classPath,filePath in logClass){
+    console.log(classPath) 
+    console.log( &quot; =&gt;&quot;,fsys.shortpath(filePath),&#39;\n&#39; ) 
+}
+
+console.pause();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/Java/06.popenProcess.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/Java/06.popenProcess.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Languages/Java/06.popenProcess.md">Markdown 格式</a>
+</body> 
+</html>

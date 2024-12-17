@@ -1,0 +1,51 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - aardio 中使用 Python 数值'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - aardio 中使用 Python 数值</title> 
+<link rel="stylesheet" href="../../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 中使用 Python 数值</h1><pre><code class="aardio language-aardio">//aardio 中使用 Python 数值
+import console; 
+import py3;
+
+//aardio 数值传入 Python 会默认转为浮点数
+//如果要创建 Python 整数请使用 py3.int 函数，例如:
+var pyInt = py3.int(&quot;12355678901235567890&quot;)
+
+//支持 aadio 中的常用运算符,注意这些运算符返回的都是 py3.object 对象
+console.log( pyInt+py3.int(&quot;12355678901235567890&quot;) );
+console.log( pyInt%3 ); 
+console.log( pyInt==3 );
+console.log( -pyInt );
+
+//可用 tostring() 转换为字符串,
+//注意 console.log() 已对所有参数调用 tostring() 转为字符串
+console.log( tostring(pyInt) )
+
+//创建 Python 浮点数
+var pyFloat = py3.float(&quot;12355678901235567890&quot;)
+
+//支持常用运算符
+var pyFloat = pyFloat / 0xFFFFFF;
+
+//转换为普通 aardio 数值
+var num = tonumber(pyFloat);
+
+//调用 Python 内建函数转换数值
+var num = py3.builtin.abs(-12);
+
+console.log(num);
+console.pause(); 
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/Python/Python 3.x/number.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/Python/Python 3.x/number.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Languages/Python/Python 3.x/number.md">Markdown 格式</a>
+</body> 
+</html>

@@ -1,0 +1,107 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - gdip.snap 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - gdip.snap 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>gdip.snap 库模块帮助文档</h1>
+
+<p><a id="gdip"></a></p>
+
+<h2>gdip 成员列表</h2>
+
+<p><a id="gdip.snap"></a></p>
+
+<h3>gdip.snap()</h3>
+
+<p><a href="bitmap.html#gdipbitmapObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/gdip/bitmap.html#gdipbitmapObject">返回对象:gdipbitmapObject</a></p>
+
+<p><a id="gdip.snap"></a></p>
+
+<h3>gdip.snap(窗口句柄,rect)</h3>
+
+<p>自屏幕抓取窗口图像并返回 gdip.bitmap 对象。<br>
+截图结果会包含透明部分的背景图像。<br>
+所有参数可选，参数 @rect 可指定 ::RECT 或 ::RECTF 结构体</p>
+
+<p><a id="gdip.snap"></a></p>
+
+<h3>gdip.snap(窗口句柄,左坐标,顶坐标,宽,高)</h3>
+
+<p>自屏幕抓取窗口图像并返回 gdip.bitmap 对象。<br>
+截图结果会包含透明部分的背景图像，<br>
+所有参数都是可选参数</p>
+
+<p><a id="gdip.snap"></a></p>
+
+<h2>gdip.snap 成员列表</h2>
+
+<p><a id="gdip.snap.client"></a></p>
+
+<h3>gdip.snap.client()</h3>
+
+<p><a href="bitmap.html#gdipbitmapObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/gdip/bitmap.html#gdipbitmapObject">返回对象:gdipbitmapObject</a></p>
+
+<p><a id="gdip.snap.client"></a></p>
+
+<h3>gdip.snap.client(窗口句柄,左坐标,顶坐标,宽,高)</h3>
+
+<p>自屏幕抓取窗口客户区图像并返回 gdip.bitmap 对象,<br>
+截图结果会包含透明部分的背景图像，<br>
+所有参数都是可选参数</p>
+
+<p><a id="gdip.snap.file"></a></p>
+
+<h3>gdip.snap.file(图像路径,窗口句柄,rect)</h3>
+
+<p>自屏幕抓取窗口图像并保存到文件。<br>
+截图结果会包含透明部分的背景图像。<br>
+所有参数可选，参数 @rect 可指定 ::RECT 或 ::RECTF 结构体</p>
+
+<p><a id="gdip.snap.file"></a></p>
+
+<h3>gdip.snap.file(图像路径,窗口句柄,左坐标,顶坐标,宽,高)</h3>
+
+<p>自屏幕抓取窗口图像并保存到文件。<br>
+截图结果会包含透明部分的背景图像，<br>
+所有参数都是可选参数</p>
+
+<p><a id="gdip.snap.print"></a></p>
+
+<h3>gdip.snap.print()</h3>
+
+<p><a href="bitmap.html#gdipbitmapObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/gdip/bitmap.html#gdipbitmapObject">返回对象:gdipbitmapObject</a></p>
+
+<p><a id="gdip.snap.print"></a></p>
+
+<h3>gdip.snap.print(窗口句柄,左坐标,顶坐标,宽,高)</h3>
+
+<p>后台抓取窗口图像并返回 gdip.bitmap 对象<br>
+所有参数都是可选参数</p>
+
+<p><a id="gdip.snap.printClient"></a></p>
+
+<h3>gdip.snap.printClient()</h3>
+
+<p><a href="bitmap.html#gdipbitmapObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/gdip/bitmap.html#gdipbitmapObject">返回对象:gdipbitmapObject</a></p>
+
+<p><a id="gdip.snap.printClient"></a></p>
+
+<h3>gdip.snap.printClient(窗口句柄,左坐标,顶坐标,宽,高)</h3>
+
+<p>后台抓取窗口客户区图像并返回 gdip.bitmap 对象<br>
+所有参数都是可选参数</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/gdip/snap.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/gdip/snap.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/gdip/snap.md">Markdown 格式</a></p>
+
+</body> 
+</html>

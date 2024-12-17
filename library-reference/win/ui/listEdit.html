@@ -1,0 +1,70 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - win.ui.listEdit 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - win.ui.listEdit 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>win.ui.listEdit 库模块帮助文档</h1>
+
+<p><a id="win.ui"></a></p>
+
+<h2>win.ui 成员列表</h2>
+
+<p><a id="win.ui.listEdit"></a></p>
+
+<h3>win.ui.listEdit()</h3>
+
+<p>参数必须指定一个 listbox 控件对象<br>
+返回一个可编辑单元格的列表框对象,  </p>
+
+<p>鼠标左键双击单元格、或者按空格键开始编辑,<br>
+回车完成编辑,ESC键撤消编辑,回车+上下方向键快速移动到其他项,<br>
+用户完成编辑后会触发onEditChanged事件</p>
+
+<p><a href="#winuilstEditObject">返回对象:winuilstEditObject</a></p>
+
+<p><a id="winuilstEditObject"></a></p>
+
+<h2>winuilstEditObject 成员列表</h2>
+
+<p><a id="winuilstEditObject.beginEdit"></a></p>
+
+<h3>winuilstEditObject.beginEdit(列表项索引)</h3>
+
+<p>切换到编辑模式，可选用参数 @1 指定列表项索引。<br>
+不指定则自动获取，指定为 0 则在列表尾部新增项目并切换到编辑模式。<br>
+新增项目如果不输入内容则自动删除。</p>
+
+<p><a id="winuilstEditObject.editBox"></a></p>
+
+<h3>winuilstEditObject.editBox</h3>
+
+<p>实现编辑功能的edit控件<br>
+此功能需要扩展listview并实现了编辑功能的的控件才能支持  </p>
+
+<p><a href="ctrl/edit.html#editObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/edit.html#editObject">返回对象:editObject</a></p>
+
+<p><a id="winuilstEditObject.onEditChanged"></a></p>
+
+<h3>winuilstEditObject.onEditChanged(newText,selIndex)</h3>
+
+<pre><code class="aardio language-aardio">winuilstEditObject.onEditChanged = function(newText,selIndex){
+    /*控件完成编辑  
+text为更新后的文本,selIndex为行号  
+返回false取消编辑*/
+}
+</code></pre>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/ui/listEdit.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/ui/listEdit.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/listEdit.md">Markdown 格式</a></p>
+
+</body> 
+</html>

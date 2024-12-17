@@ -1,0 +1,141 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - web.parser 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - web.parser 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>web.parser 库模块帮助文档</h1>
+
+<p><a id="web"></a></p>
+
+<h2>web 成员列表</h2>
+
+<p><a id="web.parser"></a></p>
+
+<h3>web.parser(&quot;HTML&quot;)</h3>
+
+<p>创建HTML简单解析器<br>
+如果要解析HTML全部节点请使用string.xml</p>
+
+<p><a id="web.parser"></a></p>
+
+<h3>web.parser()</h3>
+
+<p><a href="#webParserObject">返回对象:webParserObject</a></p>
+
+<p><a id="web.parser"></a></p>
+
+<h2>web.parser 成员列表</h2>
+
+<p>HTML简单解析<br>
+如果要解析HTML全部节点请使用string.xml</p>
+
+<p><a id="web.parser.parseProperties"></a></p>
+
+<h3>web.parser.parseProperties(节点HTML)</h3>
+
+<p>提取HTML开始标记中的属性对</p>
+
+<p><a id="webParserMetaObject"></a></p>
+
+<h2>webParserMetaObject 成员列表</h2>
+
+<p><a id="webParserMetaObject.equiv"></a></p>
+
+<h3>webParserMetaObject.equiv</h3>
+
+<p>所有指定EQUIV属性的content值<br>
+键名一律小写</p>
+
+<p><a id="webParserMetaObject.name"></a></p>
+
+<h3>webParserMetaObject.name</h3>
+
+<p>所有指定NAME属性的content值<br>
+键名一律小写</p>
+
+<p><a id="webParserObject"></a></p>
+
+<h2>webParserObject 成员列表</h2>
+
+<p><a id="webParserObject.eachMeta"></a></p>
+
+<h3>webParserObject.eachMeta()</h3>
+
+<pre><code class="aardio language-aardio">for(meta in webParserObject.eachMeta() ){
+    /*meta属性名一律小写*/
+}
+</code></pre>
+
+<p><a id="webParserObject.getCharset"></a></p>
+
+<h3>webParserObject.getCharset()</h3>
+
+<p>获取页面编码,返回值一律小写</p>
+
+<p><a id="webParserObject.getDescription"></a></p>
+
+<h3>webParserObject.getDescription()</h3>
+
+<p>获取页面描述</p>
+
+<p><a id="webParserObject.getKeywords"></a></p>
+
+<h3>webParserObject.getKeywords()</h3>
+
+<p>获取页面描述</p>
+
+<p><a id="webParserObject.getMetaContent"></a></p>
+
+<h3>webParserObject.getMetaContent(name)</h3>
+
+<p>获取页面META节点指定name值对应的content值<br>
+name忽略大小写</p>
+
+<p><a id="webParserObject.getMetaTable"></a></p>
+
+<h3>webParserObject.getMetaTable()</h3>
+
+<p>返回META信息  </p>
+
+<p><a href="#webParserMetaObject">返回对象:webParserMetaObject</a></p>
+
+<p><a id="webParserObject.getTitle"></a></p>
+
+<h3>webParserObject.getTitle()</h3>
+
+<p>获取页面标题</p>
+
+<p><a id="webParserObject.head"></a></p>
+
+<h3>webParserObject.head</h3>
+
+<p>HEAD部分HTML</p>
+
+<p><a id="webParserObject.isUtf8"></a></p>
+
+<h3>webParserObject.isUtf8()</h3>
+
+<p>是否UTF-8编码</p>
+
+<p><a id="webParserObject.local"></a></p>
+
+<h3>webParserObject.local()</h3>
+
+<p>如果不是UTF8编码转换为UTF8,返回对象自身  </p>
+
+<p><a href="#webParserObject">返回对象:webParserObject</a></p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/web/parser.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/web/parser.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/web/parser.md">Markdown 格式</a></p>
+
+</body> 
+</html>

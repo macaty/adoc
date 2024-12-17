@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - Sciter 使用 aardio 模板语法'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - Sciter 使用 aardio 模板语法</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: Sciter 使用 aardio 模板语法</h1><pre><code class="aardio language-aardio">//模板语法
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;Sciter 使用 aardio 模板语法&quot;;right=1014;bottom=523)
+winform.add()
+/*}}*/
+
+import web.sciter;
+var sciter = web.sciter( winform );
+
+/*
+web.sciter 支持 aardio 模板语法： 
+https://www.aardio.com/zh-cn/doc/language-reference/templating/syntax.html
+
+html,js 等都可以直接加载 *.aardio 代码,例如在 aardio 工程里可以直接写:
+
+sciter.go(&quot;/res/index.aardio&quot;,{
+    name = &quot;这里可以指定模板参数,网页中可用 request.get[&quot;name&quot;] 访问参数或用 ... 直接接收参数&quot;
+})
+*/
+
+sciter.html = /**
+&lt;!doctype html&gt;
+ &lt;html&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;&gt;&lt;title&gt;帮助页面&lt;/title&gt;&lt;/head&gt;
+ &lt;body&gt;当前时间 &lt;? = time() ?&gt;
+
+&lt;/body&gt;&lt;/html&gt;
+**/
+
+winform.show(); 
+win.loopMessage();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/WebUI/Sciter.JS/template.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/WebUI/Sciter.JS/template.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/WebUI/Sciter.JS/template.md">Markdown 格式</a>
+</body> 
+</html>

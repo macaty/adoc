@@ -1,0 +1,191 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - py3.list 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - py3.list 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>py3.list 库模块帮助文档</h1>
+
+<p><a id="py3"></a></p>
+
+<h2>py3 成员列表</h2>
+
+<p><a id="py3.list"></a></p>
+
+<h3>py3.list</h3>
+
+<p>创建新的列表。<br>
+此对象继承自pyObject（py3.object）。<br>
+一般不需要手动创建此对象，aardio 会在传参数时自动转换</p>
+
+<p><a id="py3.list"></a></p>
+
+<h3>py3.list()</h3>
+
+<p><a href="#py3ListObject">返回对象:py3ListObject</a></p>
+
+<p><a id="py3.list"></a></p>
+
+<h3>py3.list(aardio数组)</h3>
+
+<p>参数传入aardio数组,<br>
+创建并返回新的的python列表<br>
+注意 python中下标自0开始,而aardio中下标是自1开始</p>
+
+<p><a id="py3.list"></a></p>
+
+<h3>py3.list(pyObject对象)</h3>
+
+<p>如果传入 Python 对象是一个 list,<br>
+返回绑定相同对象的 py3.list 对象,添加引用计数,对象销毁时负责释放引用计数<br>
+否则将传入对象作为 python 内置函数 list 的参数并返回 py3.list 对象<br>
+失败返回 null</p>
+
+<p><a id="py3.list"></a></p>
+
+<h3>py3.list(pyObject指针)</h3>
+
+<p>创建新的python列表,<br>
+不会添加引用计数,但对象销毁时负责释放引用计数</p>
+
+<p><a id="py3.list"></a></p>
+
+<h3>py3.list(列表长度)</h3>
+
+<p>创建新的列表。<br>
+也可以省略参数</p>
+
+<p><a id="py3ListObject"></a></p>
+
+<h2>py3ListObject 成员列表</h2>
+
+<p><a id="py3ListObject.?"></a></p>
+
+<h3>py3ListObject.?</h3>
+
+<p><a href="object.html#py3Object" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/py3/object.html#py3Object">返回对象:py3Object</a></p>
+
+<p><a id="py3ListObject.checkList"></a></p>
+
+<h3>py3ListObject.checkList()</h3>
+
+<p>检测是否列表</p>
+
+<p><a id="py3ListObject.each"></a></p>
+
+<h3>py3ListObject.each()</h3>
+
+<pre><code class="aardio language-aardio">for( item in py3ListObject.each() ){  
+    /*创建迭代器用于遍历所有的项,返回一个值*/  
+}  
+
+[返回对象:py3Object](https://www.aardio.com/zh-cn/doc/library-reference/py3/object.html#py3Object)
+</code></pre>
+
+<p><a id="py3ListObject.getAttr"></a></p>
+
+<h3>py3ListObject.getAttr(&quot;字符串参数&quot;)</h3>
+
+<p>读属性值，也可以用成员操作符获取。<br>
+除数值、布尔值、字符串、字节数组以外的值在 aardio 中存为 py.object 对象</p>
+
+<p><a id="py3ListObject.getAttr"></a></p>
+
+<h3>py3ListObject.getAttr()</h3>
+
+<p><a href="object.html#py3Object" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/py3/object.html#py3Object">返回对象:py3Object</a></p>
+
+<p><a id="py3ListObject.getItem"></a></p>
+
+<h3>py3ListObject.getItem()</h3>
+
+<p><a href="object.html#py3Object" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/py3/object.html#py3Object">返回对象:py3Object</a></p>
+
+<p><a id="py3ListObject.getItem"></a></p>
+
+<h3>py3ListObject.getItem(索引)</h3>
+
+<p>返回指定列表项，也可以用索引下标操作符 [] 取值。<br>
+Python 列表起始下标为 0，可用负数索引表示从尾部计数。<br>
+注意：普通 aardio 数组起始下标为 1，不能使用负数计数</p>
+
+<p><a id="py3ListObject.has"></a></p>
+
+<h3>py3ListObject.has(&quot;字符串参数&quot;)</h3>
+
+<p>是否存在指定的属性</p>
+
+<p><a id="py3ListObject.parseValue"></a></p>
+
+<h3>py3ListObject.parseValue()</h3>
+
+<p>转换为 aardio 数组。<br>
+除浮点数、53存储位以下整数、布尔值、字节数组之外的类型通过 JSON 转换为 aardio 值。</p>
+
+<p>转换为 aardio 数组。<br>
+保留除浮点数、53存储位以下整数、布尔值、字节数组之外的类型为 PyObject 不作转换。</p>
+
+<p><a id="py3ListObject.setAttr"></a></p>
+
+<h3>py3ListObject.setAttr(&quot;字符串参数&quot;,)</h3>
+
+<p>写属性成员的值，也可以用成员操作符赋值。</p>
+
+<p><a id="py3ListObject.setItem"></a></p>
+
+<h3>py3ListObject.setItem(索引，)</h3>
+
+<p>修改指定列表项，也可以用索引下标操作符 [] 赋值。<br>
+Python 列表起始下标为 0，可用负数索引表示从尾部计数。<br>
+注意：普通 aardio 数组起始下标为 1，不能使用负数计数</p>
+
+<p><a id="py3ListObject.stealPtr"></a></p>
+
+<h3>py3ListObject.stealPtr()</h3>
+
+<p>接管此对象的指针并盗用一次引用计数<br>
+原对象的内部指针被清空,并不再负责释放引用计数<br>
+ steal references</p>
+
+<p><a id="py3ListObject.toList"></a></p>
+
+<h3>py3ListObject.toList()</h3>
+
+<p>转换为 Python 列表  </p>
+
+<p><a href="#py3ListObject">返回对象:py3ListObject</a></p>
+
+<p><a id="py3ListObject.toString"></a></p>
+
+<h3>py3ListObject.toString()</h3>
+
+<p>转换为 aardio 字符串<br>
+也可以直接将对象作为参数传入 tostring 函数转换为字符串</p>
+
+<p><a id="py3ListObject.toTuple"></a></p>
+
+<h3>py3ListObject.toTuple()</h3>
+
+<p>转换为 Python 元组  </p>
+
+<p><a href="#py3TupleObject">返回对象:py3TupleObject</a></p>
+
+<p><a id="py3ListObject.type"></a></p>
+
+<h3>py3ListObject.type()</h3>
+
+<p>返回类型名字</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/py3/list.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/py3/list.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/py3/list.md">Markdown 格式</a></p>
+
+</body> 
+</html>

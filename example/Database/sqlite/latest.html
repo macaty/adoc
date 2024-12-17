@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - sqlite 库 - 提问前必读'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - sqlite 库 - 提问前必读</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: sqlite 库 - 提问前必读</h1><pre><code class="aardio language-aardio">//sqlite 库 - 提问前必读
+import console;
+
+/*
+标准库 sqlite 使用的 SQLite.dll 体积较小，但并非最新版。
+一般够用，但不支持一些 SQLite.dll 新版才有的功能。
+
+如果使用 import sqlite.latest 替代 import sqlite，
+则会改用新版 SQLite 组件，体积会大一些，但支持的功能更多一些。
+*/
+import sqlite.latest;
+/*
+sqlite.latest 会不定期更新 SQLite.dll，但不会频繁更新，也不保证与 SQLite 官方同步。
+如果需要更换 SQLite.dll，请参考 sqlite.latest 源码添加对应的库即可。
+*/
+
+//其他代码不用变，用的时候还是用 sqlite （不要改为 sqlite.latest ）
+var db = sqlite(&quot;:memory:&quot;); //创建内存数据库
+db.exec( &quot;CREATE TABLE [film](title, length, year, starring);&quot;); //创建表 
+
+//查询
+var result = db.getTable(&quot;SELECT m.name as tableName, 
+    p.name as columnName FROM sqlite_master m JOIN pragma_table_info((m.name)) p  
+&quot; ) 
+console.dump(result);
+
+console.log(&quot;SQLite 版本&quot;,sqlite.version())
+console.pause();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Database/sqlite/latest.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Database/sqlite/latest.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Database/sqlite/latest.md">Markdown 格式</a>
+</body> 
+</html>

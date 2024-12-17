@@ -1,0 +1,594 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - web.mshtml 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - web.mshtml 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>web.mshtml 库模块帮助文档</h1>
+
+<p><a id="web"></a></p>
+
+<h2>web 成员列表</h2>
+
+<p><a id="web.mshtml"></a></p>
+
+<h3>web.mshtml</h3>
+
+<p>MSHTML（htmlfile）支持库</p>
+
+<p><a id="web.mshtml"></a></p>
+
+<h3>web.mshtml()</h3>
+
+<p>创建 HTML文档对象  </p>
+
+<p><a href="#mshtmObject">返回对象:mshtmObject</a></p>
+
+<p><a id="web.mshtml"></a></p>
+
+<h3>web.mshtml(doc)</h3>
+
+<p>创建HTML文档对象<br>
+可选指定一个document对象</p>
+
+<p><a id="web.mshtml"></a></p>
+
+<h3>web.mshtml(wb,框架名)</h3>
+
+<p>创建HTML文档对象<br>
+可选指定一个wb窗体,以及框架名</p>
+
+<p><a id="mshtmObject"></a></p>
+
+<h2>mshtmObject 成员列表</h2>
+
+<p><a id="mshtmObject.body"></a></p>
+
+<h3>mshtmObject.body</h3>
+
+<p>网页 body 元素  </p>
+
+<p><a href="#eleObject">返回对象:eleObject</a></p>
+
+<p><a id="mshtmObject.doScript"></a></p>
+
+<h3>mshtmObject.doScript</h3>
+
+<pre><code class="aardio language-aardio">var js = /**  
+    alert(&quot;Javascript!&quot;);  
+**/  
+mshtmObject.doScript(js, )
+</code></pre>
+
+<p><a id="mshtmObject.document"></a></p>
+
+<h3>mshtmObject.document</h3>
+
+<p>文档对象<br>
+document.</p>
+
+<p><a id="mshtmObject.documentMode"></a></p>
+
+<h3>mshtmObject.documentMode</h3>
+
+<p>返回网页当前兼容模模式版本号,默认值为7,<br>
+可能的值为6,7,8,9,11等等,5为网页上没有写DOCTYPE导致的怪异模式,<br>
+可在页面中通过X-UA-Compatible设置兼容模式,<br>
+也可用web.form.emulation 函数改变当前进程的默认兼容模式,</p>
+
+<p><a id="mshtmObject.eachAll"></a></p>
+
+<h3>mshtmObject.eachAll(&quot;DIV&quot;,父节点)</h3>
+
+<pre><code class="aardio language-aardio">//创建迭代器,迭代页面所有输入控件,例：  
+for i,ele in mshtmObject.eachAll(&quot;DIV&quot; ,mshtmObject.getEle(&quot;id&quot;) ) {  
+
+}
+</code></pre>
+
+<pre><code class="aardio language-aardio">//创建迭代器,迭代页面所有输入控件,例：  
+for i,ele in mshtmObject.eachAll(&quot;DIV&quot; ,mshtmObject.getEle(&quot;id&quot;) ) {  
+
+}
+</code></pre>
+
+<p><a id="mshtmObject.eachAll"></a></p>
+
+<h3>mshtmObject.eachAll(&quot;input&quot;)</h3>
+
+<pre><code class="aardio language-aardio">//创建迭代器,迭代页面所有输入控件,例：  
+for i,ele in mshtmObject.eachAll(&quot;input&quot;) {  
+
+}
+</code></pre>
+
+<pre><code class="aardio language-aardio">//创建迭代器,迭代页面所有输入控件,例：  
+for i,ele in mshtmObject.eachAll(&quot;input&quot;) {  
+
+}
+</code></pre>
+
+<p><a id="mshtmObject.eachAll"></a></p>
+
+<h3>mshtmObject.eachAll(&quot;input&quot;,&quot;框架名&quot;)</h3>
+
+<pre><code class="aardio language-aardio">//创建迭代器,迭代页面所有输入控件,例：  
+for i,ele in mshtmObject.eachAll(&quot;input&quot;,&quot;框架名&quot;) {  
+
+}
+</code></pre>
+
+<pre><code class="aardio language-aardio">//创建迭代器,迭代页面所有输入控件,例：  
+for i,ele in mshtmObject.eachAll(&quot;input&quot;,&quot;框架名&quot;) {  
+
+}
+</code></pre>
+
+<p><a id="mshtmObject.eachAll"></a></p>
+
+<h3>mshtmObject.eachAll()</h3>
+
+<pre><code class="aardio language-aardio">//创建迭代器,迭代页面所有节点,例：  
+for i,ele in mshtmObject.eachAll() {  
+
+}  
+
+[返回对象:eleObject](#eleObject)
+</code></pre>
+
+<pre><code class="aardio language-aardio">//创建迭代器,迭代页面所有节点,例：  
+for i,ele in mshtmObject.eachAll() {  
+
+}  
+
+[返回对象:eleObject](#eleObject)
+</code></pre>
+
+<p><a id="mshtmObject.eachFrames"></a></p>
+
+<h3>mshtmObject.eachFrames(&quot;框架名&quot;)</h3>
+
+<pre><code class="aardio language-aardio">//创建迭代器,迭代页面所有框架窗口,例：  
+for i,ele in mshtmObject.eachFrames() {  
+
+}
+</code></pre>
+
+<p><a id="mshtmObject.eachLinks"></a></p>
+
+<h3>mshtmObject.eachLinks()</h3>
+
+<p><a href="#eleObject">返回对象:eleObject</a></p>
+
+<p><a id="mshtmObject.eachLinks"></a></p>
+
+<h3>mshtmObject.eachLinks(父节点)</h3>
+
+<pre><code class="aardio language-aardio">//创建迭代器,迭代页面所有超链接,例：  
+for i,ele in mshtmObject.eachLinks(/*父节点或框架名*/) {  
+
+}
+</code></pre>
+
+<pre><code class="aardio language-aardio">//创建迭代器,迭代页面所有超链接,例：  
+for i,ele in mshtmObject.eachLinks(/*父节点或框架名*/) {  
+
+}
+</code></pre>
+
+<p><a id="mshtmObject.eval"></a></p>
+
+<h3>mshtmObject.eval</h3>
+
+<p>运行js代码</p>
+
+<p><a id="mshtmObject.eval"></a></p>
+
+<h3>mshtmObject.eval(&quot;JS代码&quot;)</h3>
+
+<p>返回表达式的值</p>
+
+<p><a id="mshtmObject.exec"></a></p>
+
+<h3>mshtmObject.exec(&quot;字符串参数&quot;)</h3>
+
+<p>执行命令<br>
+参数@2为传入参数,可省略<br>
+参数@3指定是否显示交互界面,布尔值,可省略</p>
+
+<p><a id="mshtmObject.execEle"></a></p>
+
+<h3>mshtmObject.execEle(ele,&quot;字符串参数&quot;)</h3>
+
+<p>执行命令<br>
+参数@2为传入参数,可省略<br>
+参数@3指定是否显示交互界面,布尔值,可省略</p>
+
+<p><a id="mshtmObject.execWb"></a></p>
+
+<h3>mshtmObject.execWb( _OLECMDID , ,2 )</h3>
+
+<p>执行命令,<br>
+参数@2为传入参数,可省略,<br>
+参数@3指定UI交互选项:<br>
+    1/*_OLECMDEXECOPT_PROMPTUSER*/为显示界面,<br>
+    2/*_OLECMDEXECOPT_DONTPROMPTUSER*/为不显示界面</p>
+
+<p><a id="mshtmObject.getDoc"></a></p>
+
+<h3>mshtmObject.getDoc()</h3>
+
+<pre><code class="aardio language-aardio">document.
+</code></pre>
+
+<p><a id="mshtmObject.getDoc"></a></p>
+
+<h3>mshtmObject.getDoc(框架名)</h3>
+
+<p>获取文档对象<br>
+参数可以是框架名,ID,基于0的索引,或者frame节点</p>
+
+<p><a id="mshtmObject.getEle"></a></p>
+
+<h3>mshtmObject.getEle(&quot;字符串参数&quot;)</h3>
+
+<p>返回一个节点对象或框架内子节点对象</p>
+
+<p><a id="mshtmObject.getEle"></a></p>
+
+<h3>mshtmObject.getEle(&quot;字符串参数&quot;,&quot;框架名字&quot;)</h3>
+
+<p>返回一个节点对象或框架内子节点对象</p>
+
+<p><a id="mshtmObject.getEle"></a></p>
+
+<h3>mshtmObject.getEle()</h3>
+
+<p><a href="#eleObject">返回对象:eleObject</a></p>
+
+<p><a id="mshtmObject.getEles"></a></p>
+
+<h3>mshtmObject.getEles(&quot;字符串参数&quot;)</h3>
+
+<p>返回同名的所有节点,例如<br>
+ele = wb.getEles(&quot;节点名字&quot;);<br>
+ele(1).setAttribute(&quot;属性名字&quot;, &quot;修改第一个节点属性值&quot;);</p>
+
+<p><a id="mshtmObject.getEles"></a></p>
+
+<h3>mshtmObject.getEles(&quot;字符串参数&quot;,&quot;框架名字&quot;)</h3>
+
+<p>返回同名的所有节点,例如<br>
+ele = wb.getEles(&quot;节点名字&quot;);<br>
+ele(1).setAttribute(&quot;属性名字&quot;, &quot;修改第一个节点属性值&quot;);</p>
+
+<p><a id="mshtmObject.getEles"></a></p>
+
+<h3>mshtmObject.getEles()</h3>
+
+<p><a href="#webFormElesObject">返回对象:webFormElesObject</a></p>
+
+<p><a id="mshtmObject.getElesByTag"></a></p>
+
+<h3>mshtmObject.getElesByTag(&quot;head&quot;)</h3>
+
+<p>返回指定标记的所有节点</p>
+
+<p><a id="mshtmObject.getElesByTag"></a></p>
+
+<h3>mshtmObject.getElesByTag(&quot;head&quot;,&quot;框架名字&quot;)</h3>
+
+<p>返回指定标记的所有节点</p>
+
+<p><a id="mshtmObject.getElesByTag"></a></p>
+
+<h3>mshtmObject.getElesByTag()</h3>
+
+<p><a href="#webFormElesObject">返回对象:webFormElesObject</a></p>
+
+<p><a id="mshtmObject.getScript"></a></p>
+
+<h3>mshtmObject.getScript()</h3>
+
+<p><a href="#jsGlobalObject">返回对象:jsGlobalObject</a></p>
+
+<p><a id="mshtmObject.getScript"></a></p>
+
+<h3>mshtmObject.getScript(框架名)</h3>
+
+<p>网页脚本对象</p>
+
+<p><a id="mshtmObject.go"></a></p>
+
+<h3>mshtmObject.go(&quot;字符串参数&quot;)</h3>
+
+<p>打开网址或本地路径<br>
+注意驱动器根目录要以反斜杠结束</p>
+
+<p><a id="mshtmObject.go"></a></p>
+
+<h3>mshtmObject.go(&quot;字符串参数&quot;,&quot;自定义http头&quot;)</h3>
+
+<p>打开网址</p>
+
+<p><a id="mshtmObject.go"></a></p>
+
+<h3>mshtmObject.go(&quot;字符串参数&quot;,&quot;自定义http头&quot;,&quot;目标框架&quot;)</h3>
+
+<p>打开网址</p>
+
+<p><a id="mshtmObject.head"></a></p>
+
+<h3>mshtmObject.head</h3>
+
+<p>网页 head 元素  </p>
+
+<p><a href="#eleObject">返回对象:eleObject</a></p>
+
+<p><a id="mshtmObject.html"></a></p>
+
+<h3>mshtmObject.html</h3>
+
+<pre><code class="aardio language-aardio">mshtmObject.html = /**  
+&lt;!doctype html&gt;  
+&lt;html&gt;  
+&lt;head&gt;  
+    &lt;meta charset=&quot;utf-8&quot;&gt;  
+    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot; /&gt;  
+&lt;/head&gt;  
+&lt;body&gt;  
+    &lt;div&gt;&lt;/div&gt;  
+&lt;/body&gt;  
+&lt;/html&gt;  
+**/
+</code></pre>
+
+<p><a id="mshtmObject.jQuery"></a></p>
+
+<h3>mshtmObject.jQuery(&quot;字符串参数&quot;)</h3>
+
+<p>jQuery选择器,并可自动载入jQuery库<br>
+n首次调用按需加载jQuery v1.10:<br>
+ &quot;/res/js/jQuery/jQuery.min.js&quot;<br>
+失败则通过网络CDN服务器下载jquery-1.9.0.min.js  </p>
+
+<p>注意 jQuery v1.6.3 以上 ajax 函数才会支持 res 协议访问 EXE 资源文件<br>
+IE11 内核默认已阻止 ajax 访问本地文件,<br>
+改用 wsock.tcp.simpleHttpServer/asynHttpServer 访问本地文件即可</p>
+
+<p><a id="mshtmObject.jQuery"></a></p>
+
+<h3>mshtmObject.jQuery()</h3>
+
+<p>无参数时返回jQuery类对象<br>
+首次调用按需加载 jQuery v1.9:<br>
+ &quot;/res/js/jQuery/jQuery.min.js&quot;<br>
+失败则通过网络CDN服务器下载jquery-1.9.0.min.js  </p>
+
+<p><a href="#jQueryObject">返回对象:jQueryObject</a></p>
+
+<p><a id="mshtmObject.jsConstructor"></a></p>
+
+<h3>mshtmObject.jsConstructor(&quot;Array&quot;)</h3>
+
+<p>获取 JS 使用 new 语句创建对象的构造函数。<br>
+参数 @1 可以是 JS 对象，或字符串类型的对象名字。</p>
+
+<p><a id="mshtmObject.jsNew"></a></p>
+
+<h3>mshtmObject.jsNew(&quot;Array&quot;)</h3>
+
+<p>调用 JS 的 new 语句构造 JS 对象。<br>
+参数 @1 可以是 JS 对象，或字符串类型的对象名字。<br>
+可指定一个或多个构造参数。</p>
+
+<p><a id="mshtmObject.loadScript"></a></p>
+
+<h3>mshtmObject.loadScript(&quot;js地址&quot;,&quot;框架名字&quot;)</h3>
+
+<p>动态加载js文件</p>
+
+<p><a id="mshtmObject.loadScript"></a></p>
+
+<h3>mshtmObject.loadScript(&quot;js地址&quot;,&quot;框架名字&quot;,&quot;utf-8&quot;)</h3>
+
+<p>动态加载js文件\N可选用第三个参数指定文件编码</p>
+
+<p><a id="mshtmObject.loadcode"></a></p>
+
+<h3>mshtmObject.loadcode(HTML模板代码)</h3>
+
+<p>使用 aardio 模板语法加载HTML文件<br>
+可选在第二个参数中传入模板参数,<br>
+模板代码中使用owner参数获取首个模板参数</p>
+
+<p><a id="mshtmObject.post"></a></p>
+
+<h3>mshtmObject.post(&quot;字符串参数&quot;,&quot;k=v&amp;k2=v2&quot;)</h3>
+
+<p>自动提交表单</p>
+
+<p><a id="mshtmObject.post"></a></p>
+
+<h3>mshtmObject.post(&quot;字符串参数&quot;,&quot;k=v&amp;k2=v2&quot;,&quot;自定义http头&quot;)</h3>
+
+<p>自动提交表单</p>
+
+<p><a id="mshtmObject.post"></a></p>
+
+<h3>mshtmObject.post(&quot;字符串参数&quot;,&quot;k=v&amp;k2=v2&quot;,&quot;自定义http头&quot;,&quot;目标框架&quot;)</h3>
+
+<p>自动提交表单</p>
+
+<p><a id="mshtmObject.queryEles"></a></p>
+
+<h3>mshtmObject.queryEles</h3>
+
+<p>搜索节点对象,该函数返回的是一个数组,<br>
+但可以通过调用数组的成员函数批量调用节点的同名成员函数,支持click函数,<br>
+即使找不到节点,此函数也会返回一个空数组,</p>
+
+<p><a id="mshtmObject.queryEles"></a></p>
+
+<h3>mshtmObject.queryEles()</h3>
+
+<p><a href="#webFormElesObject">返回对象:webFormElesObject</a></p>
+
+<p><a href="#webFormElesObject">返回对象:webFormElesObject</a></p>
+
+<p><a id="mshtmObject.queryEles"></a></p>
+
+<h3>mshtmObject.queryEles(查询参数表,超时值)</h3>
+
+<p>搜索节点对象,该函数返回的是一个数组,<br>
+但可以通过调用数组的成员函数批量调用节点的同名成员函数,支持click函数  </p>
+
+<p>参数@1指定一个表对象，<br>
+该参数表可包含一个或多个键值，用于匹配节点的属性值,<br>
+可使用parent属性指定开始查询节点的父节点，parent可以是ID或者节点对象。<br>
+属性值使用 string.cmpMatch函数进行比对，<br>
+等价于调用string.cmp函数进行忽略大小写的比较,<br>
+并且在失败后调用 string.match函数使用模式匹配语法进行比较。  </p>
+
+<p>注意在匹配节点属性时有几个例外：<br>
+parent属性不使用模式匹配进行比对，<br>
+tagName,id,name属性如果匹配值不含标点则使用忽略大小写的完全比对（禁用模式匹配和部分匹配）  </p>
+
+<p>可选使用参数@2指定获取网页文档对象的超时值，单位毫秒，此参数一般不需要指定</p>
+
+<p><a id="mshtmObject.querySelector"></a></p>
+
+<h3>mshtmObject.querySelector(&quot;CSS选择器&quot;)</h3>
+
+<p>查询并返回节点<br>
+web.form 自 Win7，IE8 开始支持该函数</p>
+
+<p><a id="mshtmObject.querySelector"></a></p>
+
+<h3>mshtmObject.querySelector()</h3>
+
+<p><a href="#eleObject">返回对象:eleObject</a></p>
+
+<p><a id="mshtmObject.querySelectorAll"></a></p>
+
+<h3>mshtmObject.querySelectorAll(&quot;CSS选择器&quot;)</h3>
+
+<p>查询并返回节点集合<br>
+web.form 自 Win7，IE8 开始支持该函数</p>
+
+<p><a id="mshtmObject.querySelectorAll"></a></p>
+
+<h3>mshtmObject.querySelectorAll()</h3>
+
+<p><a href="#eleObject">返回对象:eleObject</a></p>
+
+<p><a id="mshtmObject.script"></a></p>
+
+<h3>mshtmObject.script</h3>
+
+<p>网页脚本对象  </p>
+
+<p><a href="#jsGlobalObject">返回对象:jsGlobalObject</a></p>
+
+<p><a id="mshtmObject.type"></a></p>
+
+<h3>mshtmObject.type</h3>
+
+<p>返回当前加载的文件类型<br>
+例如doc文件返回Microsoft Word Document</p>
+
+<p><a id="mshtmObject.waitDoc"></a></p>
+
+<h3>mshtmObject.waitDoc()</h3>
+
+<pre><code class="aardio language-aardio">document.
+</code></pre>
+
+<p><a id="mshtmObject.waitEle"></a></p>
+
+<h3>mshtmObject.waitEle(&quot;字符串参数&quot;)</h3>
+
+<p>返回一个节点对像或框架内子节点对像<br>
+并等待加载完成</p>
+
+<p><a id="mshtmObject.waitEle"></a></p>
+
+<h3>mshtmObject.waitEle(&quot;字符串参数&quot;,&quot;字符串参数&quot;,20000)</h3>
+
+<p>返回一个节点对像<br>
+第三个参数指定超时值(毫秒)</p>
+
+<p><a id="mshtmObject.waitEle"></a></p>
+
+<h3>mshtmObject.waitEle()</h3>
+
+<p><a href="#eleObject">返回对象:eleObject</a></p>
+
+<p><a id="mshtmObject.waitQueryEles"></a></p>
+
+<h3>mshtmObject.waitQueryEles()</h3>
+
+<p><a href="#webFormElesObject">返回对象:webFormElesObject</a></p>
+
+<p><a id="mshtmObject.waitQueryEles"></a></p>
+
+<h3>mshtmObject.waitQueryEles(参数表,超时,时间间隔,完全加载)</h3>
+
+<p>参数@1指定一个表对象，<br>
+该参数表可包含一个或多个键值，用于匹配节点的属性值,<br>
+可使用parent属性指定开始查询节点的父节点，parent可以是ID或者节点对象。<br>
+属性值使用 string.cmpMatch函数进行比对，<br>
+等价于调用string.cmp函数进行忽略大小写的比较。<br>
+并且在失败后调用 string.match函数使用模式匹配语法进行比较。  </p>
+
+<p>注意在匹配节点属性时有几个例外：<br>
+parent属性不使用模式匹配进行比对，<br>
+tagName,id,name属性如果匹配值不含标点则使用忽略大小写的完全比对（禁用模式匹配和部分匹配）  </p>
+
+<p>可选使用参数@2指定超时值，单位毫秒，,其他参数可选</p>
+
+<p><a id="mshtmObject.waitQuerySelector"></a></p>
+
+<h3>mshtmObject.waitQuerySelector(&quot;CSS选择器&quot;,框架,超时,是否等待完成)</h3>
+
+<p>等待指定节节点<br>
+web.form 自 Win7，IE8 开始支持该函数，<br>
+除参数@1以外，其他参数可选</p>
+
+<p><a id="mshtmObject.waitQuerySelector"></a></p>
+
+<h3>mshtmObject.waitQuerySelector()</h3>
+
+<p><a href="#eleObject">返回对象:eleObject</a></p>
+
+<p><a id="mshtmObject.write"></a></p>
+
+<h3>mshtmObject.write(&quot;字符串参数&quot;)</h3>
+
+<p>将字符串值写入网页、不允许追加</p>
+
+<p>将字符串值写入网页</p>
+
+<p>通过字符串参数载入HTML文件源码</p>
+
+<p><a id="mshtmObject.write"></a></p>
+
+<h3>mshtmObject.write(&quot;字符串参数&quot;,&quot;框架名&quot;)</h3>
+
+<p>将字符串值写入框架网页、不允许追加</p>
+
+<p>将字符串值写入框架网页、不允许追加</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/web/mshtml.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/web/mshtml.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/web/mshtml.md">Markdown 格式</a></p>
+
+</body> 
+</html>

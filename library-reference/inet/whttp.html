@@ -1,0 +1,897 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - inet.whttp 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - inet.whttp 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>inet.whttp 库模块帮助文档</h1>
+
+<p><details>  <summary>说明</summary>  <p>
+inet.http 与 inet.whttp 用法与接口基本相同，一般可相互替代。
+普通桌面客户端软件(非NT服务)请使用 inet.http（WinINet） 而不应该使用 inet.whttp（WinHTTP）。</p>
+
+<p>inet.whttp 并非象 inet.http 那样可以获取 IE 的默认代理设置,也不受 inet.setProxy 函数的影响,
+inet.whttp 的默认代理需要使用函数 WinHttpSetDefaultProxyConfiguration 修改,而调用这个 API 则需要管理权限,
+您可以在创建 inet.whttp 对象时指定代理服务器参数为&quot;IE&quot;,aardio 将自动获取IE代理设置。</p>
+
+<p>WinHTTP 错误代码说明
+<a href="javascript:if(confirm('https://docs.microsoft.com/zh-cn/windows/win32/winhttp/error-messages  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='https://docs.microsoft.com/zh-cn/windows/win32/winhttp/error-messages'" tppabs="https://docs.microsoft.com/zh-cn/windows/win32/winhttp/error-messages">https://docs.microsoft.com/zh-cn/windows/win32/winhttp/error-messages</a>
+</p></details></p>
+
+<p><a id="inet"></a></p>
+
+<h2>inet 成员列表</h2>
+
+<p><a id="inet.whttp"></a></p>
+
+<h3>inet.whttp(&quot;UserAgent&quot;,&quot;HTTP://代理服务器IP:端口&quot;,&quot;绕过代理主机&quot;,选项)</h3>
+
+<p>所有参数可以省略,<br>
+UserAgent参数指定发送给服务器的程序名,<br>
+代理指定空字符串为使用默认代理,如果代理设为&quot;IE&quot;则使用IE以及inet.setProxy的代理设置</p>
+
+<p><a id="inet.whttp"></a></p>
+
+<h3>inet.whttp()</h3>
+
+<p><a href="#inetWhttpObject">返回对象:inetWhttpObject</a></p>
+
+<p><a id="inet.whttp"></a></p>
+
+<h2>inet.whttp 成员列表</h2>
+
+<p>WinHTTP支持库<br>
+多对象会话cookie隔离不共享,不支持持久化cookie<br>
+不与浏览器控件等共享cookie与代理设置,<br>
+支持NT服务</p>
+
+<p>创建HTTP会话对象,所有参数可选，<br>
+注意提前导入zlib库，readAll 函数才能支持 gzip 自动解压。</p>
+
+<p><a id="inet.whttp.get"></a></p>
+
+<h3>inet.whttp.get(url,headers,referer)</h3>
+
+<p>用于界面线程创建线程并获取 @url 指定网址的数据,<br>
+此函数等待下载完成但不会阻塞界面消息循环,<br>
+可选用 @headers 指定 HTTP 头,<br>
+可选用 @referer 指定引用网址,<br>
+所有参数用法与 格式请参考 inet.whttp 对象的 get 函数相同</p>
+
+<p><a id="inet.whttp.setProxy"></a></p>
+
+<h3>inet.whttp.setProxy(&quot;HTTP://代理IP:端口&quot;)</h3>
+
+<p>修改默认代理设置,进程有效</p>
+
+<p><a id="inet.whttp.setProxy"></a></p>
+
+<h3>inet.whttp.setProxy(&quot;IE&quot;)</h3>
+
+<p>whttp自动获取inet.setProxy或IE代理服务器设置,进程有效</p>
+
+<p><a id="inet.whttp.setProxy"></a></p>
+
+<h3>inet.whttp.setProxy()</h3>
+
+<p>使用WinHTTP的系统默认代理设置<br>
+可用API:WinHttpSetDefaultProxyConfiguration修改设置,需管理权限</p>
+
+<p><a id="inet.whttp.setProxy"></a></p>
+
+<h3>inet.whttp.setProxy(false)</h3>
+
+<p>whttp默认禁用代理,进程有效</p>
+
+<p><a id="inet.whttp.status"></a></p>
+
+<h3>inet.whttp.status(url,noAutoRedirect,httpMethod)</h3>
+
+<p>对 @url 指定网址发送请求并返回 HTTP 状态码。<br>
+如果未成功发送请求则返回 null。<br>
+可选参数 @noAutoRedirect 为 true 则禁止自动重定向，默认为 false。<br>
+可选用 @httpMethod 参数指定 HTTP 请求方法，默认为 &quot;HEAD&quot;。  </p>
+
+<p>大部分网址请求成功会返回 200 状态码。<br>
+部分网址会返回 2xx 状态码，重定向返回 3xx 状态码。<br>
+可用状态码请参考 inet.httpStatusCode 库</p>
+
+<p><a id="inet.whttp.userAgent"></a></p>
+
+<h3>inet.whttp.userAgent</h3>
+
+<p>创建 inet.whttp 对象且未明确指定 user agent 参数时使用的默认值</p>
+
+<p><a id="inetWhttpObject"></a></p>
+
+<h2>inetWhttpObject 成员列表</h2>
+
+<p><a id="inetWhttpObject._defaultRequestErrHandle"></a></p>
+
+<h3>inetWhttpObject._defaultRequestErrHandle</h3>
+
+<pre><code class="aardio language-aardio">inetWhttpObject._defaultRequestErrHandle[12175/*_ERROR_WINHTTP_SECURE_FAILURE*/ ] = function() { 
+    owner.setRequestOption(0x1F/*_WINHTTP_OPTION_SECURITY_FLAGS*/,0x1000|0x2000|0x100|0x200);
+    return true;/*添加 HTTP 请求错误处理程序，已清除错误并允许重试请返回 true */
+}
+</code></pre>
+
+<p><a id="inetWhttpObject.accept"></a></p>
+
+<h3>inetWhttpObject.accept</h3>
+
+<p>指定可选择的文件类型<br>
+默认无需指定,也可以在参数中指定</p>
+
+<p><a id="inetWhttpObject.addHeaders"></a></p>
+
+<h3>inetWhttpObject.addHeaders</h3>
+
+<p>设置所有请求默认添加的HTTP头<br>
+请求结束时不会清空此属性<br>
+该值可以是 web.joinHeaders 函数支持的字符串、表（数组、键值对）</p>
+
+<p><a id="inetWhttpObject.afterSend"></a></p>
+
+<h3>inetWhttpObject.afterSend</h3>
+
+<pre><code class="aardio language-aardio">inetWhttpObject.afterSend = function(statusCode,contentLength){
+    /*向服务器发送数据结束触发此回调函数  
+如果在这里读取全部HTTP头则会自动保存到 inetWhttpObject.responseHeaders属性  
+即使结束请求所有读取HTTP头的函数将继续有效*/
+    owner.readHeader();  
+}
+</code></pre>
+
+<p><a id="inetWhttpObject.beforeSend"></a></p>
+
+<h3>inetWhttpObject.beforeSend</h3>
+
+<pre><code class="aardio language-aardio">inetWhttpObject.beforeSend = function(){
+    /*已准备向服务器发送数据触发此回调函数*/ 
+}
+</code></pre>
+
+<p><a id="inetWhttpObject.beginRequest"></a></p>
+
+<h3>inetWhttpObject.beginRequest(url,method,referer,accept,flags,connectFlags)</h3>
+
+<p>打开连接并准备发送请求<br>
+除URL以外,所有参数可选<br>
+method参数指定HTTP请求方法，<br>
+referer参数指定引用页,默认使用上一次访问的网址作为下一次的引用网址<br>
+accept指定客户端接受的MIME内容类型,参考HTTP请求头该字段说明<br>
+flags参数用于指定请求选项,<br>
+connectFlags用于指定调打开连接选项,<br>
+flags,connectFlags一般用不到，详细的用法请参考此函数源码以及相关API文档</p>
+
+<p><a id="inetWhttpObject.beginSendData"></a></p>
+
+<h3>inetWhttpObject.beginSendData(数据总长度)</h3>
+
+<p>发送请求,参数为待上传的数据总长度,默认为0<br>
+失败返回:null,错误信息,错误代码</p>
+
+<p><a id="inetWhttpObject.bufferSize"></a></p>
+
+<h3>inetWhttpObject.bufferSize</h3>
+
+<p>默认缓冲区大小<br>
+默认根据下载速度自动调整该大小</p>
+
+<p><a id="inetWhttpObject.bufferTotal"></a></p>
+
+<h3>inetWhttpObject.bufferTotal</h3>
+
+<p>上传数据总长度<br>
+即beginSendData()参数传入的数值</p>
+
+<p><a id="inetWhttpObject.close"></a></p>
+
+<h3>inetWhttpObject.close()</h3>
+
+<p>释放资源<br>
+whttp对象支持自动析构,即使不调用此函数资源也会自动释放</p>
+
+<p><a id="inetWhttpObject.codepage"></a></p>
+
+<h3>inetWhttpObject.codepage</h3>
+
+<p>设置post函数上传参数为表并转换为字符串时UrlEncode的输出代码页</p>
+
+<p><a id="inetWhttpObject.connectFlags"></a></p>
+
+<h3>inetWhttpObject.connectFlags</h3>
+
+<p>指定打开服务端连接的默认选项<br>
+此选项一般用户不需要了解，如果需要请参考beginRequest函数的源码以及相关API文档</p>
+
+<p><a id="inetWhttpObject.contentLength"></a></p>
+
+<h3>inetWhttpObject.contentLength</h3>
+
+<p>send()函数执行后返回的文件长度</p>
+
+<p><a id="inetWhttpObject.disable"></a></p>
+
+<h3>inetWhttpObject.disable(_WINHTTP_DISABLE)</h3>
+
+<p>禁用指定功能<br>
+必须在beginRequest()之后调用</p>
+
+<p><a id="inetWhttpObject.disableCache"></a></p>
+
+<h3>inetWhttpObject.disableCache()</h3>
+
+<p>强制刷新</p>
+
+<p><a id="inetWhttpObject.disableCookies"></a></p>
+
+<h3>inetWhttpObject.disableCookies()</h3>
+
+<p>禁止自动添加、管理cookie的功能,<br>
+需要自行在HTTP请求头、响应头中分析处理cookie</p>
+
+<p><a id="inetWhttpObject.disableRedirects"></a></p>
+
+<h3>inetWhttpObject.disableRedirects()</h3>
+
+<p>禁止重定向</p>
+
+<p><a id="inetWhttpObject.down"></a></p>
+
+<h3>inetWhttpObject.down(url,postdata,headers,referer,accept,method,flags,connectFlags,noReceiveData)</h3>
+
+<p>发送请求并下载数据,get,post等调用此函数<br>
+不建议直接调用此函数，参数:  </p>
+
+<p>url:网址,除这个参数必须指定以外，后面其他参数都是可选参数<br>
+postdata:提交数据<br>
+headers:http头,可以是web.joinHeaders支持的字符串、键值对、数组等格式<br>
+referer:http引用网址,默认使用上一次访问的网址作为下一次的引用网址<br>
+accept: 此参数用于HTTP请求头accept字段，用于指定可识别的内容类型列表<br>
+flags: 用于设置请求选项,参考beginRequest函数说明<br>
+connectFlags:用于打开连接选项,参考beginRequest函数说明<br>
+noReceiveData: 指定为真则不下载服务器回应数据  </p>
+
+<p>本地内部错误返回值为:null,错误信息,错误代码<br>
+服务端返回HTTP错误时返回值为:false,错误信息,HTTP错误代码<br>
+成功返回字符串对象</p>
+
+<p><a id="inetWhttpObject.eachLine"></a></p>
+
+<h3>inetWhttpObject.eachLine</h3>
+
+<pre><code class="aardio language-aardio">for(str,size in inetWhttpObject.eachLine() ){ 
+    /*每次读取一行数据，忽略回车，去掉换行符*/ 
+}
+</code></pre>
+
+<p><a id="inetWhttpObject.eachRead"></a></p>
+
+<h3>inetWhttpObject.eachRead</h3>
+
+<pre><code class="aardio language-aardio">for(str,size in inetWhttpObject.eachRead() ){ 
+    /*循环读取数据，可选在 eachRead 的参数@1 指定缓冲区大小*/  
+}
+</code></pre>
+
+<p><a id="inetWhttpObject.eachReadBuffer"></a></p>
+
+<h3>inetWhttpObject.eachReadBuffer(缓冲区,长度)</h3>
+
+<pre><code class="aardio language-aardio">var buffer = .raw.bufferc( 1024 * 10 );  
+for( size in inetWhttpObject.eachReadBuffer( buffer ) ){ 
+
+}
+</code></pre>
+
+<p><a id="inetWhttpObject.endRequest"></a></p>
+
+<h3>inetWhttpObject.endRequest()</h3>
+
+<p>关闭请求,与beginRequest配对使用.</p>
+
+<p><a id="inetWhttpObject.endSendData"></a></p>
+
+<h3>inetWhttpObject.endSendData()</h3>
+
+<p>wirte()函数写完所有上传数据以后,<br>
+必须调用此函数结束上传,<br>
+成功返回: true,状态码,文件长度<br>
+出错返回:null,错误信息,错误代码</p>
+
+<p><a id="inetWhttpObject.flags"></a></p>
+
+<h3>inetWhttpObject.flags</h3>
+
+<pre><code class="aardio language-aardio">inetWhttpObject.flags = _WINHTTP_FLAG_/*  
+指定打开网址请求的默认选项  
+此选项一般用户不需要了解，  
+请参考beginRequest函数的源码以及相关API文档  
+*/
+</code></pre>
+
+<p><a id="inetWhttpObject.get"></a></p>
+
+<h3>inetWhttpObject.get(url,http头,引用网址,MIME)</h3>
+
+<p>向服务器发送GET请求并下载服务器返回的数据,<br>
+此函数会顺序调用 beginRequest(), send()，<br>
+如果指定了onReceive回调函数,则调用该函数接收数据(成功返回true)<br>
+否则，调用readAll()等函数并返回下载数据，  </p>
+
+<p>除URL外,其他为可选参数<br>
+http头可以是web.joinHeaders支持的字符串、键值对、数组等格式<br>
+默认使用上一次访问的网址作为下一次的引用网址<br>
+本地内部错误返回值为:null,错误信息,错误代码<br>
+服务端返回HTTP错误时返回值为:false,错误信息,HTTP错误代码<br>
+成功返回字符串对象</p>
+
+<p><a id="inetWhttpObject.getUserAgent"></a></p>
+
+<h3>inetWhttpObject.getUserAgent()</h3>
+
+<p>返回HTTP客户端请求HTTP头中用户代理头的值,<br>
+该值可在创建HTTP客户端的构造参数中指定</p>
+
+<p><a id="inetWhttpObject.head"></a></p>
+
+<h3>inetWhttpObject.head</h3>
+
+<p>发送 HEAD 请求获取 HTTP 头<br>
+此函数不会直接返回 HTTP 头，<br>
+但函数返回后可使用 readHeader 函数读取 HTTP 响应头</p>
+
+<p><a id="inetWhttpObject.head"></a></p>
+
+<h3>inetWhttpObject.head(url,http头,引用网址,MIME)</h3>
+
+<p>发送 HEAD 请求获取 HTTP 头<br>
+此函数不会直接返回 HTTP 头，<br>
+但函数返回后可使用 readHeader 函数读取 HTTP 响应头  </p>
+
+<p>除URL外,其他为可选参数<br>
+默认使用上一次访问的网址作为下一次的引用网址<br>
+本地内部错误返回值为:null,错误信息,错误代码,<br>
+服务端返回 HTTP 错误代码时返回值为:false，<br>
+成功返回 true</p>
+
+<p><a id="inetWhttpObject.headEx"></a></p>
+
+<h3>inetWhttpObject.headEx(url,请求方法,提交数据,http头,引用网址,MIME)</h3>
+
+<p>使用指定的请求方法模拟HEAD方法,用于拒绝HEAD请求的网址<br>
+除网址以外所有参数可以省略,默认为使用GET方法</p>
+
+<p><a id="inetWhttpObject.headers"></a></p>
+
+<h3>inetWhttpObject.headers</h3>
+
+<p>设置本次请求的HTTP头<br>
+此属性会在每次发送请求以后,接收数据以前,初始化为空值<br>
+该值可以是 web.joinHeaders 函数支持的字符串、表（数组、键值对）</p>
+
+<p><a id="inetWhttpObject.lastReadErrCode"></a></p>
+
+<h3>inetWhttpObject.lastReadErrCode</h3>
+
+<p>最后一次读取数据是否遇到错误,例如网络断开连接等等</p>
+
+<p><a id="inetWhttpObject.lastRequestUrl"></a></p>
+
+<h3>inetWhttpObject.lastRequestUrl</h3>
+
+<p>最后一次请求成功的URL</p>
+
+<p><a id="inetWhttpObject.lastResponse"></a></p>
+
+<h3>inetWhttpObject.lastResponse()</h3>
+
+<p>获取最后一次服务器返回的原始数据,<br>
+仅在调用了readAll函数、或在get,post函数中间接调用readAll函数时设置该值</p>
+
+<p><a id="inetWhttpObject.location"></a></p>
+
+<h3>inetWhttpObject.location(url,请求方法,提交数据,http头,引用网址,MIME)</h3>
+
+<p>获取最后一次重定向URL<br>
+如果省略url参数,则取最后一次请求成功的网址<br>
+如果发生了重定向,返回重定向后的网址<br>
+如果不存重定向返回原网址</p>
+
+<p><a id="inetWhttpObject.mergeHeader"></a></p>
+
+<h3>inetWhttpObject.mergeHeader(&quot;Name:value&quot;)</h3>
+
+<p>写入请求 HTTP 头,<br>
+参数可以是 web.joinHeaders 函数支持的字符串、表（数组、键值）。<br>
+如果存在同名 HTTP 头则合并，<br>
+可使用第二个参数指定分隔符为逗号或分号，默认为逗号。<br>
+函数执行成功返回 true  </p>
+
+<p>必须在 send 发送请求以前调用,<br>
+可在 beforeSend 事件内调用</p>
+
+<p><a id="inetWhttpObject.onReceive"></a></p>
+
+<h3>inetWhttpObject.onReceive</h3>
+
+<pre><code class="aardio language-aardio">inetWhttpObject.onReceive = function(str,size,contentLength){
+    /*定义了此函数循环接收数据,则 get,post 等函数返回布尔值*/
+}
+</code></pre>
+
+<p><a id="inetWhttpObject.onReceiveBegin"></a></p>
+
+<h3>inetWhttpObject.onReceiveBegin</h3>
+
+<pre><code class="aardio language-aardio">inetWhttpObject.onReceiveBegin = function(statusCode,contentLength){
+    if( statusCode == 206 /*断点续传*/  ){ 
+        /*该事件函数在接收数据以前触发*/
+    }
+}
+</code></pre>
+
+<p><a id="inetWhttpObject.onSend"></a></p>
+
+<h3>inetWhttpObject.onSend</h3>
+
+<pre><code class="aardio language-aardio">inetWhttpObject.onSend = function(remainSize){
+    /*如果不指定上传数据,send函数会自动调用该函数获取数据直至此函数返回空值为止*/
+    return str,len;
+}
+</code></pre>
+
+<p><a id="inetWhttpObject.onSendBegin"></a></p>
+
+<h3>inetWhttpObject.onSendBegin</h3>
+
+<pre><code class="aardio language-aardio">inetWhttpObject.onSendBegin = function(){
+    return len/*上传长度*/;
+}
+</code></pre>
+
+<p><a id="inetWhttpObject.parseStreamData"></a></p>
+
+<h3>inetWhttpObject.parseStreamData</h3>
+
+<pre><code class="aardio language-aardio">inetWhttpObject.parseStreamData = function(data){
+    /*如果 ContentType 响应类型为 text/event-stream，  
+则 eachRead 与 onReceive 回调会自动调用 parseStreamData 提前转换数据。  
+如果 ContentType 响应类型为 application/x-ndjson，  
+则 onReceive 回调会自动调用 parseStreamData 提前转换数据  
+web.rest.client 会自动设定此回调*/
+    return data;
+}
+</code></pre>
+
+<p><a id="inetWhttpObject.password"></a></p>
+
+<h3>inetWhttpObject.password</h3>
+
+<p>默认登录密码,<br>
+支持 Basic , Digest 认证</p>
+
+<p><a id="inetWhttpObject.post"></a></p>
+
+<h3>inetWhttpObject.post(url,post数据,http头,引用网址,MIME)</h3>
+
+<p>向服务器发送POST请求并下载服务器返回的数据,<br>
+如果post数据是一个表，则自动调用 inet.url.stringifyParameters 转换为字符串,<br>
+此函数会顺序调用 beginRequest(), send()，<br>
+如果指定了onReceive回调函数,则调用该函数接收数据(成功返回true)<br>
+否则，调用readAll()等函数并返回下载数据，  </p>
+
+<p>除URL与post数据以外,其他为可选参数<br>
+http头可以是web.joinHeaders支持的字符串、键值对、数组等格式<br>
+默认使用上一次访问的网址作为下一次的引用网址<br>
+本地内部错误返回值为:null,错误信息,错误代码<br>
+服务端返回HTTP错误时返回值为:false,错误信息,HTTP错误代码<br>
+成功返回字符串对象</p>
+
+<p><a id="inetWhttpObject.queryNumber"></a></p>
+
+<h3>inetWhttpObject.queryNumber(_HTTP_QUERY_FLAG指定要返回的头信息)</h3>
+
+<p>取HTTP头数值</p>
+
+<p><a id="inetWhttpObject.read"></a></p>
+
+<h3>inetWhttpObject.read(读取长度)</h3>
+
+<p>长度参数可选<br>
+返回读取字符串,以及长度<br>
+该函数必须在send请求以后调用</p>
+
+<p><a id="inetWhttpObject.readAll"></a></p>
+
+<h3>inetWhttpObject.readAll()</h3>
+
+<p>读取所有返回数据<br>
+该函数必须在send请求以后调用</p>
+
+<p><a id="inetWhttpObject.readBuffer"></a></p>
+
+<h3>inetWhttpObject.readBuffer(buffer,写入长度)</h3>
+
+<p>下载文件数据<br>
+参数一必须是使用 buffer 对象<br>
+长度参数可选,默认为缓冲区长度</p>
+
+<p><a id="inetWhttpObject.readHeader"></a></p>
+
+<h3>inetWhttpObject.readHeader</h3>
+
+<p>获取返回的HTTP头</p>
+
+<p><a id="inetWhttpObject.readHeader"></a></p>
+
+<h3>inetWhttpObject.readHeader(&quot;Content-Length:&quot;)</h3>
+
+<p>获取单个指定的 HTTP 服务器响应头，返回字符串。<br>
+参数指定HTTP头名字或部分名字，忽略大小写，忽略冒号以后部分。  </p>
+
+<p>必须在 send 发送请求以后才能调用此函数。<br>
+如果调用 get,post,down 函数可在 afterSend 事件中调用此函数。   </p>
+
+<p>默认在请求结束后此函数不可用。<br>
+除非调用 head 函数发送请求，或调用 down 函数指定不返回数据，<br>
+则请求结束 readHeader 等读取 HTTP 头的函数仍然可用。  </p>
+
+<p>如果无参数调用了此函数，则返回全部请求头（以回车换行作为分隔符）。<br>
+并且直到下次请求以前，HTTP 响应头都会缓存在 responseHeaders 属性中，<br>
+后续就可以自由使用所有读取 HTTP 头的函数</p>
+
+<p><a id="inetWhttpObject.readHeader"></a></p>
+
+<h3>inetWhttpObject.readHeader()</h3>
+
+<p>获取服务器返回的 HTTP 响应头，<br>
+必须在 send 发送请求以后才能调用此函数。<br>
+如果调用 get,post,down 函数可在 afterSend 事件中调用此函数。   </p>
+
+<p>默认在请求结束后此函数不可用。<br>
+除非调用 head 函数发送请求，或调用 down 函数指定不返回数据，<br>
+则请求结束 readHeader 等读取 HTTP 头的函数仍然可用。  </p>
+
+<p>如果无参数调用了此函数，则返回全部请求头（以回车换行作为分隔符）。<br>
+并且直到下次请求以前，HTTP 响应头都会缓存在 responseHeaders 属性中，<br>
+后续就可以自由使用所有读取 HTTP 头的函数</p>
+
+<p><a id="inetWhttpObject.readHeaderContent"></a></p>
+
+<h3>inetWhttpObject.readHeaderContent()</h3>
+
+<p>读取HTTP头中文件下载相关信息<br>
+该函数在调用send函数以后或afterSend事件中可用<br>
+调用head函数发送请求成功以后,则请求结束后该函数仍然可用  </p>
+
+<p><a href="#httpheadercontentObject">返回对象:httpheadercontentObject</a></p>
+
+<p><a id="inetWhttpObject.readHeaderList"></a></p>
+
+<h3>inetWhttpObject.readHeaderList(&quot;字符串参数&quot;)</h3>
+
+<p>获取所有指定字符串作为开始段的 HTTP 头。<br>
+忽略大小写，不忽略冒号以后部分。<br>
+不指定参数则读取全部响应头。<br>
+返回键值对组成的表对象，键名转为小写，每个值都是一个数组。<br>
+必须在 send 发送请求以后才能调用此函数。<br>
+如果调用 get,post,down 函数可在 afterSend 事件中调用此函数。   </p>
+
+<p>默认在请求结束后此函数不可用。<br>
+除非调用 head 函数发送请求，或调用 down 函数指定不返回数据，<br>
+则请求结束 readHeader 等读取 HTTP 头的函数仍然可用。  </p>
+
+<p>如果无参数调用了此函数，则返回全部请求头（以回车换行作为分隔符）。<br>
+并且直到下次请求以前，HTTP 响应头都会缓存在 responseHeaders 属性中，<br>
+后续就可以自由使用所有读取 HTTP 头的函数</p>
+
+<p><a id="inetWhttpObject.readHeaderRange"></a></p>
+
+<h3>inetWhttpObject.readHeaderRange()</h3>
+
+<p>读取HTTP头中断点续传相关验证信息</p>
+
+<p><a id="inetWhttpObject.referer"></a></p>
+
+<h3>inetWhttpObject.referer</h3>
+
+<p>引用页地址,此属性会自动设置为上次打开的网址<br>
+建议在参数中指定  </p>
+
+<p>请不要使用 Referer 请求头指定引用地址，<br>
+应使用 referer 参数或属性修改引用页</p>
+
+<p><a id="inetWhttpObject.replaceHeader"></a></p>
+
+<h3>inetWhttpObject.replaceHeader(&quot;Name:value&quot;)</h3>
+
+<p>写入请求 HTTP 头,<br>
+参数可以是 web.joinHeaders 函数支持的字符串、表（数组、键值）。<br>
+如果存在相同的 HTTP 头则覆盖，否则忽略。<br>
+函数执行成功返回 true  </p>
+
+<p>必须在 send 发送请求以前调用,<br>
+可在 beforeSend 事件内调用</p>
+
+<p><a id="inetWhttpObject.responseContentEncoding"></a></p>
+
+<h3>inetWhttpObject.responseContentEncoding</h3>
+
+<p>应答HTTP头的Content-Encoding值<br>
+如果该值为&quot;gzip&quot;,通过readAll函数一次读取下载数据时会自动解压,<br>
+解压后该值将设为null值</p>
+
+<p><a id="inetWhttpObject.responseContentType"></a></p>
+
+<h3>inetWhttpObject.responseContentType</h3>
+
+<p>每次发送请求后重置该值为服务器应答Content-Type头<br>
+使用该值获取服务器返回的文档类型</p>
+
+<p><a id="inetWhttpObject.responseHeaders"></a></p>
+
+<h3>inetWhttpObject.responseHeaders</h3>
+
+<p>无参数调用 readHeader 函数时会保存HTTP头在该属性中<br>
+即使在请求结束以后，所有读取HTTP头的函数都可以继续使用<br>
+调用head函数发送请求时会自动读取所有HTTP头到该属性中<br>
+该属性值每次发送新的请求前会自动清空</p>
+
+<p><a id="inetWhttpObject.securityFlagIgnoreCertCnInvalid"></a></p>
+
+<h3>inetWhttpObject.securityFlagIgnoreCertCnInvalid</h3>
+
+<p>HTTPS请求自动忽略无效CN名称</p>
+
+<p><a id="inetWhttpObject.securityFlagIgnoreCertDateInvalid"></a></p>
+
+<h3>inetWhttpObject.securityFlagIgnoreCertDateInvalid</h3>
+
+<p>HTTPS请求自动忽略过期证书</p>
+
+<p><a id="inetWhttpObject.securityFlagIgnoreUnknownCa"></a></p>
+
+<h3>inetWhttpObject.securityFlagIgnoreUnknownCa</h3>
+
+<p>HTTPS请求自动忽略无效CA证书</p>
+
+<p><a id="inetWhttpObject.securityFlagIgnoreWrongUsage"></a></p>
+
+<h3>inetWhttpObject.securityFlagIgnoreWrongUsage</h3>
+
+<p>忽略用法不正确的问题</p>
+
+<p><a id="inetWhttpObject.send"></a></p>
+
+<h3>inetWhttpObject.send(上传数据)</h3>
+
+<p>参数可选,调用beginSendData(上传数据),然后调用endSendData()<br>
+成功返回: true,状态码,文件长度<br>
+出错返回:null,错误信息,错误代码</p>
+
+<p><a id="inetWhttpObject.send"></a></p>
+
+<h3>inetWhttpObject.send(可选输入postdata)</h3>
+
+<p>此函数顺序调用 beginSendData() writeData() endSendData() 发送请求<br>
+成功返回: true,状态码,文件长度<br>
+出错返回:null,错误信息,错误代码</p>
+
+<p><a id="inetWhttpObject.setAuth"></a></p>
+
+<h3>inetWhttpObject.setAuth(&quot;用户名&quot;,&quot;密码&quot;)</h3>
+
+<p>为当前打开请求设置登录信息<br>
+成功返回true</p>
+
+<p><a id="inetWhttpObject.setProxyAuth"></a></p>
+
+<h3>inetWhttpObject.setProxyAuth(&quot;用户名&quot;,&quot;密码&quot;)</h3>
+
+<p>设置代理服务器登录用户名,密码</p>
+
+<p><a id="inetWhttpObject.setRequestOption"></a></p>
+
+<h3>inetWhttpObject.setRequestOption( _WINHTTP_OPTION, )</h3>
+
+<p>设置会话选项,<br>
+参数可以是数值或结构体<br>
+用法参数MSDN</p>
+
+<p><a id="inetWhttpObject.setSessionOption"></a></p>
+
+<h3>inetWhttpObject.setSessionOption( _WINHTTP_OPTION, )</h3>
+
+<p>设置会话选项,<br>
+参数可以是数值或结构体<br>
+用法参数MSDN</p>
+
+<p><a id="inetWhttpObject.setTimeouts"></a></p>
+
+<h3>inetWhttpObject.setTimeouts(连接超时,请求超时,接收超时)</h3>
+
+<p>设置超时,以亳秒为单位(1秒为1000毫秒)</p>
+
+<p><a id="inetWhttpObject.statusCode"></a></p>
+
+<h3>inetWhttpObject.statusCode</h3>
+
+<p>最后一次发送请求后服务端返回的HTTP状态码<br>
+100 ~ 101 为信息提示<br>
+200 ~ 206 表示请求成功<br>
+300 ~ 305 表示重定向<br>
+400 ~ 415 表求客户端请求出错<br>
+500 ~ 505 表示服务端错误<br>
+注意每次HTTP请求开始该值初始化为空,服务器应答后才会设置该值</p>
+
+<p><a id="inetWhttpObject.username"></a></p>
+
+<h3>inetWhttpObject.username</h3>
+
+<p>默认登录用户名,<br>
+支持 Basic , Digest 认证</p>
+
+<p><a id="inetWhttpObject.writeBuffer"></a></p>
+
+<h3>inetWhttpObject.writeBuffer(buffer,写入长度)</h3>
+
+<p>上传文件数据<br>
+参数一必须是使用 buffer 对象<br>
+长度参数可选,默认为缓冲区长度.</p>
+
+<p><a id="inetWhttpObject.writeData"></a></p>
+
+<h3>inetWhttpObject.writeData(上传数据)</h3>
+
+<p>上传文件数据,支持一个或多个参数,<br>
+返回写入数据的总长度,失败返回空或0<br>
+调用此函数前必须调用beginSendData()<br>
+写完所有数据后 必须调用 endSendData();</p>
+
+<p><a id="inetWhttpObject.writeHeader"></a></p>
+
+<h3>inetWhttpObject.writeHeader(&quot;Name:value&quot;)</h3>
+
+<p>写入请求 HTTP 头,<br>
+参数可以是 web.joinHeaders 函数支持的字符串、表（数组、键值）。<br>
+如果存在相同的 HTTP 头则覆盖，否则添加 HTTP 头。<br>
+函数执行成功返回 true  </p>
+
+<p>必须在 send 发送请求以前调用,<br>
+可在 beforeSend 事件内调用</p>
+
+<p><a id="inetWhttpObject.writeHeaderRange"></a></p>
+
+<h3>inetWhttpObject.writeHeaderRange(rangeHeaderInfo,开始位置,结束位置)</h3>
+
+<p>rangeHeaderInfo使用readHeaderRange()函数读取,<br>
+其它参数可选,开始位置默认为0,结束位置默认为文件尾</p>
+
+<h3>自动完成常量</h3>
+
+<p>_SECURITY_FLAG_IGNORE_CERT_CN_INVALID=0x1000<br>
+_SECURITY_FLAG_IGNORE_CERT_DATE_INVALID=0x2000<br>
+_SECURITY_FLAG_IGNORE_CERT_WRONG_USAGE=0x200<br>
+_SECURITY_FLAG_IGNORE_UNKNOWN_CA=0x100<br>
+_WINHTTP_ADDREQ_FLAGS_MASK=0xFFFF0000<br>
+_WINHTTP_ADDREQ_FLAG_ADD=0x20000000<br>
+_WINHTTP_ADDREQ_FLAG_ADD_IF_NEW=0x10000000<br>
+_WINHTTP_ADDREQ_FLAG_COALESCE_WITH_COMMA=0x40000000<br>
+_WINHTTP_ADDREQ_FLAG_COALESCE_WITH_SEMICOLON=0x1000000<br>
+_WINHTTP_ADDREQ_FLAG_REPLACE=0x80000000<br>
+_WINHTTP_ADDREQ_INDEX_MASK=0xFFFF<br>
+_WINHTTP_AUTH_SCHEME_BASIC=1<br>
+_WINHTTP_AUTH_SCHEME_DIGEST=8<br>
+_WINHTTP_AUTH_SCHEME_NEGOTIATE=0x10<br>
+_WINHTTP_AUTH_SCHEME_NTLM=2<br>
+_WINHTTP_AUTH_SCHEME_PASSPORT=4<br>
+_WINHTTP_AUTH_TARGET_PROXY=1<br>
+_WINHTTP_AUTH_TARGET_SERVER=0<br>
+_WINHTTP_AUTOLOGON_SECURITY_LEVEL_DEFAULT=0x0<br>
+_WINHTTP_AUTOLOGON_SECURITY_LEVEL_HIGH=0x2<br>
+_WINHTTP_AUTOLOGON_SECURITY_LEVEL_LOW=0x1<br>
+_WINHTTP_AUTOLOGON_SECURITY_LEVEL_MEDIUM=0x0<br>
+_WINHTTP_CONNS_PER_SERVER_UNLIMITED=0xFFFFFFFF<br>
+_WINHTTP_DISABLE_AUTHENTICATION=0x4<br>
+_WINHTTP_DISABLE_COOKIES=0x1<br>
+_WINHTTP_DISABLE_KEEP_ALIVE=0x8<br>
+_WINHTTP_DISABLE_PASSPORT_AUTH=0x0<br>
+_WINHTTP_DISABLE_PASSPORT_KEYRING=0x20000000<br>
+_WINHTTP_DISABLE_REDIRECTS=0x2<br>
+_WINHTTP_DISABLE_SPN_SERVER_PORT=0x0<br>
+_WINHTTP_ENABLE_PASSPORT_AUTH=0x10000000<br>
+_WINHTTP_ENABLE_PASSPORT_KEYRING=0x40000000<br>
+_WINHTTP_ENABLE_SPN_SERVER_PORT=0x1<br>
+_WINHTTP_ENABLE_SSL_REVERT_IMPERSONATION=0x2<br>
+_WINHTTP_ENABLE_SSL_REVOCATION=0x1<br>
+_WINHTTP_FIRST_OPTION=0x1<br>
+_WINHTTP_FLAG_BYPASS_PROXY_CACHE=0x100<br>
+_WINHTTP_FLAG_ESCAPE_DISABLE=0x40<br>
+_WINHTTP_FLAG_ESCAPE_DISABLE_QUERY=0x80<br>
+_WINHTTP_FLAG_ESCAPE_PERCENT=0x4<br>
+_WINHTTP_FLAG_NULL_CODEPAGE=0x8<br>
+_WINHTTP_FLAG_REFRESH=0x100<br>
+_WINHTTP_FLAG_SECURE=0x800000<br>
+_WINHTTP_LAST_OPTION=0x6C<br>
+_WINHTTP_OPTION_AUTOLOGON_POLICY=0x4D<br>
+_WINHTTP_OPTION_CALLBACK=0x1<br>
+_WINHTTP_OPTION_CLIENT_CERT_CONTEXT=0x2F<br>
+_WINHTTP_OPTION_CLIENT_CERT_ISSUER_LIST=0x5E<br>
+_WINHTTP_OPTION_CODEPAGE=0x44<br>
+_WINHTTP_OPTION_CONFIGURE_PASSPORT_AUTH=0x53<br>
+_WINHTTP_OPTION_CONNECTION_INFO=0x5D<br>
+_WINHTTP_OPTION_CONNECT_RETRIES=0x4<br>
+_WINHTTP_OPTION_CONNECT_TIMEOUT=0x3<br>
+_WINHTTP_OPTION_CONTEXT_VALUE=0x2D<br>
+_WINHTTP_OPTION_DISABLE_FEATURE=0x3F<br>
+_WINHTTP_OPTION_ENABLETRACING=0x55<br>
+_WINHTTP_OPTION_ENABLE_FEATURE=0x4F<br>
+_WINHTTP_OPTION_EXTENDED_ERROR=0x18<br>
+_WINHTTP_OPTION_GLOBAL_PROXY_CREDS=0x61<br>
+_WINHTTP_OPTION_GLOBAL_SERVER_CREDS=0x62<br>
+_WINHTTP_OPTION_HANDLE_TYPE=0x9<br>
+_WINHTTP_OPTION_HTTP_VERSION=0x3B<br>
+_WINHTTP_OPTION_IS_PROXY_CONNECT_RESPONSE=0x68<br>
+_WINHTTP_OPTION_MAX_CONNS_PER_1_0_SERVER=0x4A<br>
+_WINHTTP_OPTION_MAX_CONNS_PER_SERVER=0x49<br>
+_WINHTTP_OPTION_MAX_HTTP_AUTOMATIC_REDIRECTS=0x59<br>
+_WINHTTP_OPTION_MAX_HTTP_STATUS_CONTINUE=0x5A<br>
+_WINHTTP_OPTION_MAX_RESPONSE_DRAIN_SIZE=0x5C<br>
+_WINHTTP_OPTION_MAX_RESPONSE_HEADER_SIZE=0x5B<br>
+_WINHTTP_OPTION_PARENT_HANDLE=0x15<br>
+_WINHTTP_OPTION_PASSPORT_COBRANDING_TEXT=0x51<br>
+_WINHTTP_OPTION_PASSPORT_COBRANDING_URL=0x52<br>
+_WINHTTP_OPTION_PASSPORT_RETURN_URL=0x57<br>
+_WINHTTP_OPTION_PASSPORT_SIGN_OUT=0x56<br>
+_WINHTTP_OPTION_PASSWORD=0x1001<br>
+_WINHTTP_OPTION_PROXY=0x26<br>
+_WINHTTP_OPTION_PROXY_PASSWORD=0x1003<br>
+_WINHTTP_OPTION_PROXY_SPN_USED=0x6B<br>
+_WINHTTP_OPTION_PROXY_USERNAME=0x1002<br>
+_WINHTTP_OPTION_READ_BUFFER_SIZE=0xC<br>
+_WINHTTP_OPTION_RECEIVE_PROXY_CONNECT_RESPONSE=0x67<br>
+_WINHTTP_OPTION_RECEIVE_RESPONSE_TIMEOUT=0x7<br>
+_WINHTTP_OPTION_RECEIVE_TIMEOUT=0x6<br>
+_WINHTTP_OPTION_REDIRECT_POLICY=0x58<br>
+_WINHTTP_OPTION_REDIRECT_POLICY_ALWAYS=0x2<br>
+_WINHTTP_OPTION_REDIRECT_POLICY_DEFAULT=0x1<br>
+_WINHTTP_OPTION_REDIRECT_POLICY_DISALLOW_HTTPS_TO_HTTP=0x1<br>
+_WINHTTP_OPTION_REDIRECT_POLICY_LAST=0x2<br>
+_WINHTTP_OPTION_REDIRECT_POLICY_NEVER=0x0<br>
+_WINHTTP_OPTION_REJECT_USERPWD_IN_URL=0x64<br>
+_WINHTTP_OPTION_REQUEST_PRIORITY=0x3A<br>
+_WINHTTP_OPTION_RESOLVE_TIMEOUT=0x2<br>
+_WINHTTP_OPTION_SECURE_PROTOCOLS=0x54<br>
+_WINHTTP_OPTION_SECURITY_CERTIFICATE_STRUCT=0x20<br>
+_WINHTTP_OPTION_SECURITY_FLAGS=0x1F<br>
+_WINHTTP_OPTION_SECURITY_KEY_BITNESS=0x24<br>
+_WINHTTP_OPTION_SEND_TIMEOUT=0x5<br>
+_WINHTTP_OPTION_SERVER_CBT=0x6C<br>
+_WINHTTP_OPTION_SERVER_CERT_CONTEXT=0x4E<br>
+_WINHTTP_OPTION_SERVER_SPN_USED=0x6A<br>
+_WINHTTP_OPTION_SPN=0x60<br>
+_WINHTTP_OPTION_SPN_MASK=0x1<br>
+_WINHTTP_OPTION_UNLOAD_NOTIFY_EVENT=0x63<br>
+_WINHTTP_OPTION_URL=0x22<br>
+_WINHTTP_OPTION_USERNAME=0x1000<br>
+_WINHTTP_OPTION_USER_AGENT=0x29<br>
+_WINHTTP_OPTION_USE_GLOBAL_SERVER_CREDENTIALS=0x65<br>
+_WINHTTP_OPTION_WORKER_THREAD_COUNT=0x50<br>
+_WINHTTP_OPTION_WRITE_BUFFER_SIZE=0xD  </p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/inet/whttp.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/inet/whttp.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/inet/whttp.md">Markdown 格式</a></p>
+
+</body> 
+</html>

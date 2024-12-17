@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 打印图像'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 打印图像</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 打印图像</h1><pre><code class="aardio language-aardio">//打印图像
+import sys.printer;
+var printImage = function(filepath){
+
+    var printer = sys.printer();
+    var pdc = printer.createDevice(
+        dmPaperSize = 9/*_DMPAPER_A4*/; //A4 纸
+        dmOrientation = 0;//横向打印为2,纵向打印为1 
+    );
+
+    pdc.start(
+        function(hdcPrinter,rc){
+
+            //GDI+绘图
+            import gdip.graphics; 
+            import gdip.bitmap; 
+
+            var graphics = gdip.graphics(hdcPrinter);
+            graphics.pageUnit = 2/*_UnitPixel,打印单位改为使用像素*/;
+
+            var bmp = gdip.bitmap(filepath); 
+
+            //保持比例缩放打印内容以符合介质 
+            graphics.drawImageScale(bmp,rc);
+        }
+    ); 
+}
+
+/*
+import fsys; 
+fsys.enum( &quot;\img-test&quot;, &quot;*.png&quot;,
+    function(dir,filename,fullpath,findData){ 
+        if(filename){  
+           printImage(fullpath);
+        }
+    },false
+);
+*/
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/System/Printer/printImage.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/System/Printer/printImage.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/System/Printer/printImage.md">Markdown 格式</a>
+</body> 
+</html>

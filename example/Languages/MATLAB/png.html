@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio ç¼–ç¨‹è¯­è¨€èŒƒä¾‹ - aardio çª—å£æ˜¾ç¤º MATLAB ç»˜å›¾'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio ç¼–ç¨‹è¯­è¨€èŒƒä¾‹ - aardio çª—å£æ˜¾ç¤º MATLAB ç»˜å›¾</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio ç¼–ç¨‹è¯­è¨€æ–‡æ¡£é¦–é¡µ"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio æ–‡æ¡£</span></a>
+<h1>aardio èŒƒä¾‹: çª—å£æ˜¾ç¤º MATLAB ç»˜å›¾</h1><pre><code class="aardio language-aardio">//çª—å£ç»˜å›¾
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;aardio çª—å£æ˜¾ç¤º MATLAB ç»˜å›¾&quot;;right=759;bottom=469;border=&quot;dialog frame&quot;;max=false;min=false)
+winform.add(
+button={cls=&quot;button&quot;;text=&quot;ç‚¹è¿™é‡Œè°ƒç”¨ MATLAB ç»˜å›¾&quot;;left=472;top=414;right=680;bottom=456;z=2};
+plus={cls=&quot;plus&quot;;left=18;top=15;right=739;bottom=397;bgcolor=16777215;z=1}
+)
+/*}}*/
+
+import com.matlab; 
+var m = com.matlab(true); 
+
+winform.button.oncommand = function(id,event){
+
+    //è®¾ç½®ç»˜å›¾å˜é‡ 
+    m.base.assign({
+        filename = ..io.fullpath(&#39;/matlab.png&#39;);
+        amplitude = 1; 
+        frequency = 1; 
+        phase = 0; 
+    });
+
+    m.code = /****** 
+    x = linspace(0, 2*pi, 100);  
+    y = amplitude * sin(frequency * x + phase); 
+    figure(&#39;Visible&#39;, &#39;off&#39;); 
+
+    plot(x, y, &#39;LineWidth&#39;, 2);
+    title(&#39;Sine Wave&#39;);
+    xlabel(&#39;X Axis&#39;);
+    ylabel(&#39;Y Axis&#39;);
+    grid on;
+
+    set(gcf, &#39;Color&#39;, &#39;w&#39;);
+    saveas(gcf, filename);
+    close(gcf);
+    ******/
+
+     winform.plus.background = string.load(&quot;/matlab.png&quot;);
+}
+
+winform.show();
+win.loopMessage();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/MATLAB/png.md  \n\n¸ÃÎÄ¼şÎŞ·¨ÓÃ Teleport Ultra ÏÂÔØ, ÒòÎª Ëü²»ÔÚÏîÄ¿ÎÄ¼şÀàĞÍ¹æ·¶ÄÚ¡£  \n\nÄãÏëÔÚ·şÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/MATLAB/png.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Languages/MATLAB/png.md">Markdown æ ¼å¼</a>
+</body> 
+</html>

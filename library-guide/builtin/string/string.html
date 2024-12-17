@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - string 库'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - string 库</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>string 库</h1>
+
+<p>请参考：</p>
+
+<p><a href="../../../language-reference/datatype/datatype.html#varstring" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/datatype/datatype.html#varstring">数据类型 - 字符串</a> </p>
+
+<p><a href="../../../language-reference/datatype/datatype.html#convert" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/datatype/datatype.html#convert">类型转换</a> </p>
+
+<p><a href="../../../language-reference/operator/len.html" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/operator/len.html">取长操作符</a> </p>
+
+<p><a href="../../../language-reference/operator/concat.html" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/operator/concat.html">字符串连接操作符</a></p>
+
+<h2>只读的字符串内存</h2>
+
+<p>aardio 从不改变现有的字符串，字符串内存是只读的，所有相同的字符串会指向同一内存地址，而修改字符串总是返回新的字符串。</p>
+
+<p>string 库所有的函数都是纯函数，遵守一个入口(参数)，一个出口(返回值)的原则，所以请不要忘记使用返回值接收被改变的字符串。</p>
+
+<pre><code class="aardio language-aardio">var str = &quot;abc&quot;;  
+string.upper(str); //这样的代码没有任何意义,也不会改变str
+</code></pre>
+
+<p>正确的写法如下:  </p>
+
+<pre><code class="aardio language-aardio">var str = &quot;abc&quot;;  
+str = string.upper(str);//不要忘记使用返回值接收被改变的字符串
+</code></pre>
+
+<p>这个规律适合所有截取字符串、改变字符串的函数.</p>
+
+<h2>string 库文档索引</h2>
+
+<p><a href="search.html" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/builtin/string/search.html">查找字符串</a></p>
+
+<p><a href="matching.html" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/builtin/string/matching.html">使用模式匹配查找与替换字符串</a></p>
+
+<p><a href="part.html" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/builtin/string/part.html">拆分与合并字符串</a></p>
+
+<p><a href="parsing.html" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/builtin/string/parsing.html">解析特定格式文本</a></p>
+
+<p><a href="format.html" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/builtin/string/format.html">格式化文本</a></p>
+
+<p><a href="file.html" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/builtin/string/file.html">自文件快速读写文本或二进制字符串</a></p>
+
+<p><a href="rand.html" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/builtin/string/rand.html">随机字符串与随机数</a></p>
+
+<p><a href="../../../library-reference/string/_.html" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/string/_.html">string 库参考</a></p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-guide/builtin/string/string.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-guide/builtin/string/string.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/builtin/string/string.md">Markdown 格式</a></p>
+
+</body> 
+</html>

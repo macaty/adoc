@@ -1,0 +1,103 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - fsys.update.simpleMain 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - fsys.update.simpleMain 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>fsys.update.simpleMain 库模块帮助文档</h1>
+
+<p><a id="fsys.update.simpleMain"></a></p>
+
+<h2>fsys.update.simpleMain 成员列表</h2>
+
+<p>自动更新启动程序简化版,<br>
+更新程序与软件主程序合并到同一个程序中,<br>
+必须在 main.aardio 中调用此构造函数,<br>
+如果此函数返回true则必须退出程序，且不应显示任何其他窗口,</p>
+
+<p><a id="fsys.update.simpleMain.checkUpdate"></a></p>
+
+<h3>fsys.update.simpleMain.checkUpdate(startUpdate)</h3>
+
+<p>检查更新,<br>
+参数@startUpdate指定下载新版后是否启动更新程序,<br>
+调用此函数之前必须在main.aardio中提前调用过fsys.update.simpleMain函数。</p>
+
+<p><a id="fsys.update.simpleMain.getReadyStatusInfo"></a></p>
+
+<h3>fsys.update.simpleMain.getReadyStatusInfo()</h3>
+
+<p>如果当前已下载好新版并准备更新就绪,<br>
+返回statusInfo对象,包含version,description,status等属性。</p>
+
+<p><a id="fsys.update.simpleMain.onStatusChanged"></a></p>
+
+<h3>fsys.update.simpleMain.onStatusChanged(订阅回调函数)</h3>
+
+<pre><code class="aardio language-aardio">fsys.update.simpleMain.onStatusChanged(function(version,description,status){  
+    /*注意此回调可捕获到调用前或调用后的更新状态变更*/  
+    if(status==&quot;ready&quot;){  
+        /*新版本已下载完成，更新已准备就绪  
+version参数为新版本号,description为更新说明*/  
+    }  
+    elseif(status==&quot;updated&quot;){  
+        /*已更新到新版本并准备启动新版,可使用_ARGV.oldmain获得更新之前的主程序路径,_ARGV.main取得更新后主程序路径*/  
+    }  
+    elseif(status==&quot;complete&quot;){  
+        /*当前已启动新版本主程序*/  
+    }  
+    elseif(status==&quot;latest&quot;){  
+        /*当前已经是新版本*/  
+    }   
+})
+</code></pre>
+
+<p><a id="fsys.update"></a></p>
+
+<h2>fsys.update 成员列表</h2>
+
+<p><a id="fsys.update.simpleMain"></a></p>
+
+<h3>fsys.update.simpleMain(appName,updateUrl,downloadDir,onStatusChanged,httpHeaders,removable)</h3>
+
+<pre><code class="aardio language-aardio">import fsys.update.simpleMain;  
+if( fsys.update.simpleMain(  
+    &quot;/*软件产品名称*/&quot;,  
+    &quot;http:&quot;,  
+    &quot;/download/update-files&quot;,  
+    function(version,description,status){  
+        /*回调函数参数与 fsys.update.simpleMain.onStatusChanged 的回调函数参数相同*/;  
+    })){  
+    return 0;     
+}
+</code></pre>
+
+<p><a id="fsysUpdateSimpleStatusInfo"></a></p>
+
+<h2>fsysUpdateSimpleStatusInfo 成员列表</h2>
+
+<p><a id="fsysUpdateSimpleStatusInfo.description"></a></p>
+
+<h3>fsysUpdateSimpleStatusInfo.description</h3>
+
+<p>版本信息</p>
+
+<p><a id="fsysUpdateSimpleStatusInfo.version"></a></p>
+
+<h3>fsysUpdateSimpleStatusInfo.version</h3>
+
+<p>新版本号</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/fsys/update/simpleMain.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/fsys/update/simpleMain.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/fsys/update/simpleMain.md">Markdown 格式</a></p>
+
+</body> 
+</html>

@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - aardio 调用 R 语言函数'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - aardio 调用 R 语言函数</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 调用 R 语言函数</h1><pre><code class="aardio language-aardio">//aardio 调用 R 语言函数
+import console.int;
+import process.r;
+
+//R 语言代码
+var rCode = /*
+add &lt;- function(a,b,list) {
+
+   # 转换列表为向量
+   num_vec &lt;- as.numeric(list)
+
+   # 类似 aardio 中的 return a * b  
+   result &lt;- a + num_vec[3]  
+
+   # 指定返回值以后，还能继续执行后面的代码，不像 aardio 函数 return 后面的代码被忽略。
+   print(result)  # print 输出带格式，cat 输出不带格式
+}
+*/
+
+//启动 R 
+var r = process.r.startRpc(rCode);
+
+//调用 R 函数
+var ret  = r.add(2,3,{7,8,9})
+
+/*
+ret 是符合 JSON RPC 2.0 协议的返回值对象，
+ret 为任何值（包括 null），直接下标[[]]都不会报错而是返回 null
+*/
+ret = ret[[&quot;result&quot;]];
+
+//打印 R 函数返回值
+console.log(&quot;R 函数返回值&quot;,ret)
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/R/startRpc.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/R/startRpc.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Languages/R/startRpc.md">Markdown 格式</a>
+</body> 
+</html>

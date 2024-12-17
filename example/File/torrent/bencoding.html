@@ -1,0 +1,85 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - torrent文件解析演示'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - torrent文件解析演示</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: torrent文件解析演示</h1><pre><code class="aardio language-aardio">//解析torrent文件
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;torrent文件解析演示&quot;;right=661;bottom=636;border=&quot;dialog frame&quot;;max=false)
+winform.add(
+edit={cls=&quot;edit&quot;;left=19;top=37;right=646;bottom=618;autohscroll=false;edge=1;hscroll=1;multiline=1;vscroll=1;z=1};
+static={cls=&quot;static&quot;;text=&quot;请拖动 *.torrent 文件到当前窗口&quot;;left=21;top=9;right=476;bottom=33;transparent=1;z=2}
+)
+/*}}*/
+
+import crypt;
+import inet.url;
+import bencoding;
+import string.conv.pinyin;
+import fsys.dlg;
+
+var updateTorrentName = function(filePath){
+    winform.edit.print( io.splitpath(filePath).file );
+    var decoder = bencoding.decoder(string.load(filePath))
+    var torrent = decoder.parse() 
+
+    if(torrent.info[&quot;name.utf-8&quot;]){
+        winform.edit.print(`info[&quot;name.utf-8&quot;]：`,torrent.info[&quot;name.utf-8&quot;])
+        torrent.info[&quot;name.utf-8&quot;] = string.replace(torrent.info[&quot;name.utf-8&quot;],&quot;:&quot;,function(str){
+            var py = string.conv.pinyin(str);
+            if(py &amp;&amp; py!=str){ return py[[1]];  }  
+        })
+        winform.edit.print(&quot;已更改为：&quot;,torrent.info[&quot;name.utf-8&quot;])
+    }
+
+    if(torrent.info[&quot;name&quot;]){
+        winform.edit.print(`info[&quot;name&quot;]：`,torrent.info[&quot;name&quot;])
+        torrent.info[&quot;name&quot;] = string.replace(torrent.info[&quot;name&quot;],&quot;:&quot;,function(str){
+            var py = string.conv.pinyin(str);
+            if(py &amp;&amp; py!=str){ return py[[1]];   }  
+        }) 
+        winform.edit.print(&quot;已更改为：&quot;,torrent.info[&quot;name&quot;])  
+    }
+
+    var magnet = &#39;magnet:?&#39;+ &quot;xt=urn:btih:&quot; 
+        + ..crypt.sha1( decoder.getString( torrent[[&quot;info&quot;]]) ,true) 
+        + &quot;&amp;&quot; +..inet.url.stringifyParameters({   
+            dn = torrent[&#39;info&#39;][&#39;name&#39;];
+            tr = torrent[&#39;announce&#39;]; 
+            xl = torrent[&#39;info&#39;][&#39;length&#39;]
+        },false)
+    winform.edit.print(magnet);
+
+    var savePath = fsys.dlg.save(&quot;*.torrent|*.torrent|&quot;,&quot;保存已更改的torrent文件&quot;,,winform);
+    if(!savePath){ return; }
+
+    var encoder = bencoding.encoder()
+    var bin = encoder.stringify(torrent);
+    string.save(savePath, bin)
+}
+
+winform.onDropFiles = function(files){
+    for i,path in table.eachIndex(files){
+        if(string.endWith(path,&quot;.torrent&quot;,true)){
+            updateTorrentName(path);
+        }
+    }
+}
+
+winform.show();
+win.loopMessage();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/File/torrent/bencoding.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/File/torrent/bencoding.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/File/torrent/bencoding.md">Markdown 格式</a>
+</body> 
+</html>

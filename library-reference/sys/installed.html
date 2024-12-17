@@ -1,0 +1,51 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - sys.installed 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - sys.installed 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>sys.installed 库模块帮助文档</h1>
+
+<p><a id="sys.installed"></a></p>
+
+<h2>sys.installed 成员列表</h2>
+
+<p>用于检测指定的程序是否安装<br>
+如果需要获取更多信息,请参考源码自注册表读取,<br>
+MSI 安装程序可用 COM 对象 WindowsInstaller.Installer 读取更多信息</p>
+
+<p><a id="sys.installed.find"></a></p>
+
+<h3>sys.installed.find()</h3>
+
+<p>检测是否已安装指定的程序,<br>
+参数指定要在显示名称中搜索的字符串,支持模式匹配<br>
+成功返回包含 DisplayName、Version、DisplayVersion 字段的表,<br>
+如果存在指示安装目标位置的字段 InstallLocation 则包含该字段,<br>
+可能包含 InstallDate 字段用于指示安装日期,这是8个字符表示的日期,<br>
+极个别的安装程序缺少 InstallDate 字段,<br>
+未安装该程序则返回 null</p>
+
+<p><a id="sys.installed.programs"></a></p>
+
+<h3>sys.installed.programs()</h3>
+
+<p>返回所有已安装的程序,<br>
+返回值为表,键为已安装程序的ID,<br>
+值为安装信息,包含 DisplayName 与 Version 字段,<br>
+DisplayName 为显示名称,Version 字段的版本数值可作为 fsys.version 的参数解析为版本号<br>
+另安装信息包含2个可选字段：DisplayVersion,InstallDate</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/sys/installed.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/sys/installed.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/sys/installed.md">Markdown 格式</a></p>
+
+</body> 
+</html>

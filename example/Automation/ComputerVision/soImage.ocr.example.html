@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 简单 OCR'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 简单 OCR</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 简单 OCR</h1><pre><code class="aardio language-aardio">//简单 OCR
+import soImage;
+import inet.http;
+
+//字库由 soImage 范例提供的工具自动生成
+var ziku = {
+&quot;1&quot;:&quot;11111111111111111111111111&quot;;
+&quot;2&quot;:&quot;11111111000000110000001100&quot;;
+&quot;3&quot;:&quot;11111110000000100000001000&quot;;
+&quot;4&quot;:&quot;10000010100000101000001010&quot;;
+&quot;5&quot;:&quot;11111110100000001000000010&quot;;
+&quot;6&quot;:&quot;11111111100000011000000110&quot;;
+&quot;7&quot;:&quot;11111110000000100000001000&quot;;
+&quot;8&quot;:&quot;11111111100000111000001110&quot;;
+&quot;8&quot;:&quot;11111111100000111000001110&quot;;
+&quot;9&quot;:&quot;11111110100000101000001010&quot;; 
+&quot;0&quot;:&quot;11111111100000111000001110&quot;;
+}
+
+//创建图像对象
+var img = soImage();
+
+//下载图像
+img.loadUrl(&quot;https://www.******.com/***.php&quot;)
+
+//识别图像并返回文本
+var text = img.ocr(ziku);
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Automation/ComputerVision/soImage.ocr.example.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Automation/ComputerVision/soImage.ocr.example.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Automation/ComputerVision/soImage.ocr.example.md">Markdown 格式</a>
+</body> 
+</html>

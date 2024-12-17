@@ -1,0 +1,127 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - thiscall'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - thiscall</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: thiscall</h1><pre><code class="aardio language-aardio">//DLL / thiscall
+import vc6;
+
+var vc = vc6( &quot;/&quot; );  
+
+//输入 C++ 源码，自动保存为同名文件 /main.cpp
+vc.main = /****** 
+#include &lt;windows.h&gt; 
+
+struct TestInfo{
+    int x;
+    int y;
+    BYTE name[256];
+};
+
+class CTestObject
+{
+public: 
+    //注意函数声明前加上 virtual 以支持 aardio 中的 raw.interface
+    virtual void getName(char *buffer,int len); 
+    virtual void getInfo(TestInfo *pInfo);
+};
+
+void CTestObject::getName(char *buffer,int len){
+    strcpy(buffer,&quot;测试&quot;);
+}
+
+void CTestObject::getInfo(TestInfo *pInfo){
+    pInfo-&gt;x = 1;
+    pInfo-&gt;y = 2;
+    strcpy((char *)pInfo-&gt;name,&quot;测试&quot;);
+}
+
+extern &quot;C&quot; __declspec(dllexport) CTestObject* __cdecl CreateTestObject() { 
+    return new CTestObject();
+}
+
+extern &quot;C&quot; __declspec(dllexport) void __cdecl DeleteTestObject( CTestObject* pTest) {
+    delete pTest;
+}
+
+BOOL WINAPI DllMain(HINSTANCE inst,DWORD reason,LPVOID reserved ) 
+{
+    switch( reason ) 
+    { 
+        case DLL_PROCESS_ATTACH: 
+            break;
+
+        case DLL_PROCESS_DETACH:
+            break;
+    }
+    return TRUE;
+}
+******/
+
+//编译生成DLL 
+vc.exec(
+    &#39;cl main.cpp&#39;
+    ,&#39;/W3&#39; /*警告等级*/
+    ,&#39;/MD&#39; /*使用多线程动态运行库*/
+    ,&#39;/O2 /Ot /EHsc&#39; /*代码优化选项*/
+    ,&#39;/D &quot;WIN32&quot; /D &quot;_WINDOWS&quot; /D &quot;_MBCS&quot; /D &quot;_USRDLL&quot;&#39; /*定义常数和宏*/
+    ,&#39;/I&quot;./INCLUDE&quot;&#39;/*指定头文件目录*/
+    ,&#39;kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib&#39; /*导入库*/
+    ,&#39;/link /SUBSYSTEM:WINDOWS /MACHINE:X86&#39; /*后面是链接参数 */
+    ,&#39;/out:thiscall.dll&#39;/*输出文件名*/
+    ,&#39;/dll&#39; /*输出DLL*/ 
+    ,&#39;/LIBPATH:&quot;.\LIB&quot; /LIBPATH:&quot;.\LIB2&quot;&#39; /*指定库目录*/
+)
+
+var dll = raw.loadDll(&quot;/thiscall.dll&quot;,,&quot;cdecl&quot;);
+
+import raw.interface;
+class testObject{
+    ctor(){
+        //创建 C++ 对象,并获取指针，注意这里使用了 P 尾标获取指针。
+        var pTest = dll.CreateTestObjectP();
+
+        //C++ 对象指针转换为 aardio 对象。
+        this = ..raw.interface( pTest,&quot;
+            void getName(string &amp;buffer,int len);
+            void getInfo(struct &amp;pInfo); 
+            &quot;,&quot;thiscall&quot; //注意调用约定为thiscall
+        )
+
+        //添加析构函数    
+        ..table.gc(this,&quot;delete&quot;)   
+    };
+    delete = function(){
+        if(!owner.deleted){
+            dll.DeleteTestObject( owner );
+            owner.deleted = true;
+        } 
+    };
+}
+
+//创建对象
+var obj = testObject();
+
+//调用 C++ 函数
+var name = obj.getName(25,25);
+console.log(name);
+
+//调用 C++ 函数
+var info = obj.getInfo({ int x;int y;BYTE name[256]})
+console.log( info.name  );
+
+console.pause();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/CPP/thiscall.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/CPP/thiscall.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Languages/CPP/thiscall.md">Markdown 格式</a>
+</body> 
+</html>

@@ -1,0 +1,329 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - win.ui.ctrl.calendar 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - win.ui.ctrl.calendar 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>win.ui.ctrl.calendar 库模块帮助文档</h1>
+
+<p><a id="win.ui.ctrl"></a></p>
+
+<h2>win.ui.ctrl 成员列表</h2>
+
+<p><a id="win.ui.ctrl.calendar"></a></p>
+
+<h3>win.ui.ctrl.calendar()</h3>
+
+<p>日历控件  </p>
+
+<p><a href="#calendarObject">返回对象:calendarObject</a></p>
+
+<p><a id="calendarObject"></a></p>
+
+<h2>calendarObject 成员列表</h2>
+
+<p><a id="calendarObject._parentForm"></a></p>
+
+<h3>calendarObject._parentForm</h3>
+
+<p>创建该控件的父窗口（win.form对象）,<br>
+设计时窗体容器是所有拖放在窗体上的控件的 _parentForm,  </p>
+
+<p>即使窗口移除子窗口样式、更改父子关系，或以 orphanWindow显示,<br>
+控件的 _parentForm 始终都不会改变  </p>
+
+<p><a href="../_.html#winform" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/_.html#winform">返回对象:winform</a></p>
+
+<p><a id="calendarObject.bottom"></a></p>
+
+<h3>calendarObject.bottom</h3>
+
+<p>底部坐标</p>
+
+<p><a id="calendarObject.capture"></a></p>
+
+<h3>calendarObject.capture</h3>
+
+<p>是否捕获全局鼠标消息</p>
+
+<p><a id="calendarObject.className"></a></p>
+
+<h3>calendarObject.className</h3>
+
+<p>运行时类名</p>
+
+<p><a id="calendarObject.close"></a></p>
+
+<h3>calendarObject.close()</h3>
+
+<p>关闭控件窗口</p>
+
+<p><a id="calendarObject.cls"></a></p>
+
+<h3>calendarObject.cls</h3>
+
+<p>设计时类名</p>
+
+<p><a id="calendarObject.disabled"></a></p>
+
+<h3>calendarObject.disabled</h3>
+
+<p>是否禁用</p>
+
+<p><a id="calendarObject.getClientRect"></a></p>
+
+<h3>calendarObject.getClientRect()</h3>
+
+<p>控件客户区块位置(::RECT结构体)  </p>
+
+<p><a href="../../../global/_.html#rectObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/global/_.html#rectObject">返回对象:rectObject</a></p>
+
+<p><a id="calendarObject.getFont"></a></p>
+
+<h3>calendarObject.getFont()</h3>
+
+<p>控件字体(::LOGFONT结构体)  </p>
+
+<p><a href="#logfontObject">返回对象:logfontObject</a></p>
+
+<p><a id="calendarObject.getParent"></a></p>
+
+<h3>calendarObject.getParent()</h3>
+
+<p>返回父窗口  </p>
+
+<p><a href="static.html#staticObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/static.html#staticObject">返回对象:staticObject</a></p>
+
+<p><a id="calendarObject.getPos"></a></p>
+
+<h3>calendarObject.getPos()</h3>
+
+<p>返回相对坐标,宽,高<br>
+x,y,cx,cy=win.getPos(hwnd)</p>
+
+<p><a id="calendarObject.getRange"></a></p>
+
+<h3>calendarObject.getRange()</h3>
+
+<p>返回两个time()对象:时间范围下限,时间范围上限<br>
+如果未调用setRange()指定上限或下限,相应值返回为空</p>
+
+<p><a id="calendarObject.getRect"></a></p>
+
+<h3>calendarObject.getRect()</h3>
+
+<p>控件区块位置(::RECT结构体)</p>
+
+<p><a id="calendarObject.getRect"></a></p>
+
+<h3>calendarObject.getRect(true)</h3>
+
+<p>控件屏幕区块位置(::RECT结构体)</p>
+
+<p><a id="calendarObject.height"></a></p>
+
+<h3>calendarObject.height</h3>
+
+<p>高度</p>
+
+<p><a id="calendarObject.hide"></a></p>
+
+<h3>calendarObject.hide</h3>
+
+<p>控件是否隐藏</p>
+
+<p><a id="calendarObject.hwnd"></a></p>
+
+<h3>calendarObject.hwnd</h3>
+
+<p>控件句柄</p>
+
+<p><a id="calendarObject.id"></a></p>
+
+<h3>calendarObject.id</h3>
+
+<p>控件ID</p>
+
+<p><a id="calendarObject.invalidate(/*可选使用::RECT"></a></p>
+
+<h3>calendarObject.invalidate(/*可选使用::RECT()对象指定客户区*/)</h3>
+
+<p>使窗口绘图区无效</p>
+
+<p><a id="calendarObject.invalidate(/*可选使用::RECT"></a></p>
+
+<h3>calendarObject.invalidate(/*可选使用::RECT()对象指定客户区*/,0)</h3>
+
+<p>使窗口绘图区无效<br>
+不刷新背景</p>
+
+<p><a id="calendarObject.left"></a></p>
+
+<h3>calendarObject.left</h3>
+
+<p>左侧坐标</p>
+
+<p><a id="calendarObject.modifyStyle"></a></p>
+
+<h3>calendarObject.modifyStyle(remove,add,swpFlags)</h3>
+
+<p>修改窗口样式,所有参数都是可选参数,<br>
+@remove 用数值指定要移除的样式,可使用 <em>WS</em> 前缀的常量<br>
+@add 用数值指定要添加的样式,可使用 <em>WS</em> 前缀的常量<br>
+@swpFlags 可选用数值指定调整窗口选项,可使用 <em>SWP</em> 前缀的常量<br>
+如果指定了 @swpFlag ,则使用该参数调用::SetWindowPos<br>
+细节请参考 win.modifyStyle 函数源码</p>
+
+<p><a id="calendarObject.modifyStyleEx"></a></p>
+
+<h3>calendarObject.modifyStyleEx(remove,add,swpFlags)</h3>
+
+<p>修改窗口扩展样式,所有参数都是可选参数,<br>
+@remove 用数值指定要移除的样式,可使用 <em>WS_EX</em> 前缀的常量<br>
+@add 用数值指定要添加的样式,可使用 <em>WS_EX</em> 前缀的常量<br>
+@swpFlags 可选用数值指定调整窗口选项,可使用 <em>SWP</em> 前缀的常量<br>
+如果指定了 @swpFlag ,则使用该参数调用::SetWindowPos<br>
+细节请参考 win.modifyStyle 函数源码</p>
+
+<p><a id="calendarObject.postMessage"></a></p>
+
+<h3>calendarObject.postMessage(msg,wParam,lParam)</h3>
+
+<p>投递窗口消息到消息队列中<br>
+此函数用法请参考 ::User32.PostMessage</p>
+
+<p><a id="calendarObject.redraw"></a></p>
+
+<h3>calendarObject.redraw()</h3>
+
+<p>刷新</p>
+
+<p><a id="calendarObject.right"></a></p>
+
+<h3>calendarObject.right</h3>
+
+<p>右侧坐标</p>
+
+<p><a id="calendarObject.sendMessage"></a></p>
+
+<h3>calendarObject.sendMessage(msg,wParam,lParam)</h3>
+
+<p>发送窗口消息<br>
+此函数用法请参考 ::User32.SendMessage</p>
+
+<p><a id="calendarObject.setFocus"></a></p>
+
+<h3>calendarObject.setFocus()</h3>
+
+<p>设置焦点</p>
+
+<p><a id="calendarObject.setFont"></a></p>
+
+<h3>calendarObject.setFont(指定字体)</h3>
+
+<p>指定LOGFONT字体对象,或逻辑字体句柄</p>
+
+<p><a id="calendarObject.setFont"></a></p>
+
+<h3>calendarObject.setFont(混入字体属性)</h3>
+
+<pre><code class="aardio language-aardio">calendarObject.setFont(point=10;name=&quot;宋体&quot;);
+</code></pre>
+
+<p><a id="calendarObject.setParent"></a></p>
+
+<h3>calendarObject.setParent(控件对象)</h3>
+
+<p>改变父窗口</p>
+
+<p><a id="calendarObject.setPos"></a></p>
+
+<h3>calendarObject.setPos(x坐标,y坐标,宽,高,插入位置,参数)</h3>
+
+<p>调整窗口位置或排序,所有参数可选<br>
+同时指定x,y坐标则移动位置<br>
+同时指定宽高则改变大小<br>
+指定插入位置(句柄或_HWND前缀常量)则调整Z序</p>
+
+<p><a id="calendarObject.setRange"></a></p>
+
+<h3>calendarObject.setRange(时间下限,时间上限)</h3>
+
+<p>设置时间范围,参数为time()对象<br>
+可省略其中一个参数,仅指定下限或仅指定上限</p>
+
+<p><a id="calendarObject.setRect"></a></p>
+
+<h3>calendarObject.setRect(rc)</h3>
+
+<p>设置控件区块位置(::RECT结构体)</p>
+
+<p><a id="calendarObject.setRect"></a></p>
+
+<h3>calendarObject.setRect(rc,true)</h3>
+
+<p>设置控件屏幕区块位置(::RECT结构体)</p>
+
+<p><a id="calendarObject.show"></a></p>
+
+<h3>calendarObject.show(true)</h3>
+
+<p>显示控件</p>
+
+<p><a id="calendarObject.text"></a></p>
+
+<h3>calendarObject.text</h3>
+
+<p>控件文本</p>
+
+<p><a id="calendarObject.theme"></a></p>
+
+<h3>calendarObject.theme</h3>
+
+<p>外观主题,例如<br>
+winform.button.theme = &quot;Explorer&quot;<br>
+winform.button.theme = false</p>
+
+<p><a id="calendarObject.time"></a></p>
+
+<h3>calendarObject.time</h3>
+
+<p>获取或设置时间  </p>
+
+<p><a href="../../../time/_.html#timeObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/time/_.html#timeObject">返回对象:timeObject</a></p>
+
+<p><a id="calendarObject.top"></a></p>
+
+<h3>calendarObject.top</h3>
+
+<p>顶部坐标</p>
+
+<p><a id="calendarObject.update"></a></p>
+
+<h3>calendarObject.update()</h3>
+
+<p>重绘invalidate函数指定的区块</p>
+
+<p><a id="calendarObject.width"></a></p>
+
+<h3>calendarObject.width</h3>
+
+<p>宽度</p>
+
+<h3>自动完成常量</h3>
+
+<p>_MCM_FIRST=0x1000  </p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/calendar.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/calendar.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/calendar.md">Markdown 格式</a></p>
+
+</body> 
+</html>

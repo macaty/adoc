@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 使用thread.event创建定时执行任务的线程'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 使用thread.event创建定时执行任务的线程</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 使用thread.event创建定时执行任务的线程</h1><pre><code class="aardio language-aardio">//事件定时器
+
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;使用thread.event创建定时执行任务的线程&quot;;right=349;bottom=211;)
+winform.add(
+btnStart={cls=&quot;button&quot;;text=&quot;启动定时线程&quot;;left=61;top=113;right=181;bottom=155;z=1};
+btnStop={cls=&quot;button&quot;;text=&quot;结束定时线程&quot;;left=192;top=113;right=312;bottom=155;disabled=1;z=4};
+lbTip={cls=&quot;static&quot;;left=26;top=85;right=100;bottom=103;transparent=1;z=3};
+static={cls=&quot;static&quot;;left=138;top=13;right=309;bottom=44;align=&quot;center&quot;;center=1;edge=1;z=5};
+trackbar={cls=&quot;trackbar&quot;;left=15;top=52;right=319;bottom=82;max=1000;min=500;z=2}
+)
+/*}}*/
+
+task_t = function(hwnd,ms){
+    import win;
+    import thread.event;
+    import console;
+
+    var evt = thread.event(&quot;定时事件 GUID:32DA0FC7-A96D-4850-9A28-DA1DD4464B44&quot;)
+    while( ! evt.wait(ms) ){ 
+        win.setText(hwnd,tostring( time() ) )
+    }
+    console.log(&quot;任务已完成&quot;)
+}
+
+import thread.event;
+var evtTask = thread.event(&quot;定时事件 GUID:32DA0FC7-A96D-4850-9A28-DA1DD4464B44&quot;,false)
+
+winform.btnStart.oncommand = function(id,event){
+
+    winform.btnStart.disabled = true;
+    winform.btnStop.disabled = false;
+    winform.trackbar.disabled = true;
+
+    hThread = thread.create(task_t,winform.static.hwnd,winform.trackbar.pos);
+    thread.waitOne(hThread)
+
+    winform.btnStart.disabled = false;
+    winform.btnStop.disabled = true;
+    winform.trackbar.disabled = false;
+}
+
+winform.btnStop.oncommand = function(id,event){
+    evtTask.set();//使事件对象切换为有信号状态,使wait函数退出
+}
+
+winform.trackbar.oncommand = function(id,event,pos){
+    winform.lbTip.text = owner.pos + &quot;毫秒&quot;
+}
+
+winform.show() 
+win.loopMessage();
+
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/aardio/Thread/09.timer.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/aardio/Thread/09.timer.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/aardio/Thread/09.timer.md">Markdown 格式</a>
+</body> 
+</html>

@@ -1,0 +1,124 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - sys.hd 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - sys.hd 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>sys.hd 库模块帮助文档</h1>
+
+<p><a id="sys.hd"></a></p>
+
+<h2>sys.hd 成员列表</h2>
+
+<p>用于获取硬盘序列号<br>
+注意在VISTA以后系统需要管理权限</p>
+
+<p><a id="sys.hd.getInfo"></a></p>
+
+<h3>sys.hd.getInfo()</h3>
+
+<p>读取硬盘IDSECTOR结构信息<br>
+可选在参数中指定硬盘序号,不指定参数时自动获取可用序号,  </p>
+
+<p><a href="#syshdinfObject">返回对象:syshdinfObject</a></p>
+
+<p><a id="syshdinfObject"></a></p>
+
+<h2>syshdinfObject 成员列表</h2>
+
+<p><a id="syshdinfObject.sFirmwareRev"></a></p>
+
+<h3>syshdinfObject.sFirmwareRev</h3>
+
+<p>硬盘硬件版本<br>
+请自行使用string.trim函数去掉首尾空格</p>
+
+<p><a id="syshdinfObject.sModelNumber"></a></p>
+
+<h3>syshdinfObject.sModelNumber</h3>
+
+<p>硬盘型号<br>
+请自行使用string.trim函数去掉首尾空格</p>
+
+<p><a id="syshdinfObject.sSerialNumber"></a></p>
+
+<h3>syshdinfObject.sSerialNumber</h3>
+
+<p>硬盘生产序号<br>
+请自行使用string.trim函数去掉首尾空格</p>
+
+<p><a id="syshdinfObject.ulTotalAddressableSectors"></a></p>
+
+<h3>syshdinfObject.ulTotalAddressableSectors</h3>
+
+<pre><code class="aardio language-aardio">ulTotalAddressableSectors
+</code></pre>
+
+<p><a id="syshdinfObject.wBufferSize"></a></p>
+
+<h3>syshdinfObject.wBufferSize</h3>
+
+<p>缓冲大小</p>
+
+<p><a id="syshdinfObject.wBufferType"></a></p>
+
+<h3>syshdinfObject.wBufferType</h3>
+
+<p>缓冲类型</p>
+
+<p><a id="syshdinfObject.wCapabilities"></a></p>
+
+<h3>syshdinfObject.wCapabilities</h3>
+
+<p>支持功能<br>
+不同的二进制位表示硬盘是否支持指定功能</p>
+
+<p><a id="syshdinfObject.wGenConfig"></a></p>
+
+<h3>syshdinfObject.wGenConfig</h3>
+
+<p>基本信息字</p>
+
+<p><a id="syshdinfObject.wNumCyls"></a></p>
+
+<h3>syshdinfObject.wNumCyls</h3>
+
+<p>柱面数</p>
+
+<p><a id="syshdinfObject.wNumHeads"></a></p>
+
+<h3>syshdinfObject.wNumHeads</h3>
+
+<p>磁头数</p>
+
+<p><a id="syshdinfObject.wNumSectorsPerTrack"></a></p>
+
+<h3>syshdinfObject.wNumSectorsPerTrack</h3>
+
+<p>每磁道扇区数</p>
+
+<p><a id="syshdinfObject.wReserved2"></a></p>
+
+<h3>syshdinfObject.wReserved2</h3>
+
+<p>保留</p>
+
+<p><a id="syshdinfObject.wUltraDMA"></a></p>
+
+<h3>syshdinfObject.wUltraDMA</h3>
+
+<p>Ultra DMA支持能力</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/sys/hd.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/sys/hd.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/sys/hd.md">Markdown 格式</a></p>
+
+</body> 
+</html>

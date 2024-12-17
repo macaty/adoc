@@ -1,0 +1,69 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 共享结构体'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 共享结构体</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 共享结构体</h1><pre><code class="aardio language-aardio">//共享结构体
+import console; 
+import julia; 
+
+//Julia 内定义一个结构体
+julia.eval(&quot;
+struct B
+    Items::NTuple{3, Int32}
+    function B()
+        return new((1, 2, 3))
+    end
+end 
+&quot;);
+
+//执行 Julia 代码，并返回结构体对象。
+var structObj = julia.evalStruct(&quot;structObj = B()&quot;,{
+    int items[3]; //参数 @2 必须指定 aardio 结构体（或结构体类）
+});
+
+/* 
+structObj 是一个 raw.struct 对象。
+对该对象的读写操作都会与 Julia 内存同步。
+当然这点性能影响微乎其微，一般可以不管。
+
+将字段值读出来再操作效率会更好。
+或者用 structObj.get() structObj.set() 函数也可以。
+*/
+var items =  structObj.items;
+
+//读数组值
+console.log( items[3] );
+
+/*
+修改 aardio 结构体会同步修改 Julia 的结构体，两者共享内存
+必须读写 structObj 的成员或调用 get,set 函数才会触发 raw.struct 的内存同步操作。
+*/
+structObj.items = {10,20,30}
+
+//可以看到 Julia 结构体的值已经被改了
+console.log( julia.eval(&quot;structObj.Items[3]&quot;) ) 
+
+/*
+Julia 虽然返回的是结构体指针，并且与 aardio 结构体兼容。
+但 Julia 在结构体指针的前面藏了一个类型字段。
+
+所以我们无法将 aardio 创建的结构体直接传给 Julia。
+但可以用 aardio 调用 Julia 执行代码并创建结构体。
+*/
+
+console.pause();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/Julia/Julia.Struct.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/Julia/Julia.Struct.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Languages/Julia/Julia.Struct.md">Markdown 格式</a>
+</body> 
+</html>

@@ -1,0 +1,83 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - sys.wlan 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - sys.wlan 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>sys.wlan 库模块帮助文档</h1>
+
+<p><a id="sys"></a></p>
+
+<h2>sys 成员列表</h2>
+
+<p><a id="sys.wlan"></a></p>
+
+<h3>sys.wlan</h3>
+
+<p>无线网络</p>
+
+<p><a id="sys.wlan"></a></p>
+
+<h3>sys.wlan()</h3>
+
+<p>创建无线网络操作对象  </p>
+
+<p><a href="#SysWlanObject">返回对象:SysWlanObject</a></p>
+
+<p><a id="SysWlanObject"></a></p>
+
+<h2>SysWlanObject 成员列表</h2>
+
+<p><a id="SysWlanObject.close"></a></p>
+
+<h3>SysWlanObject.close()</h3>
+
+<p>关闭对象，<br>
+关闭对象后不能再使用其他函数。<br>
+此函数在对象析构时会自动调用，可重复调用</p>
+
+<p><a id="SysWlanObject.eachProfile"></a></p>
+
+<h3>SysWlanObject.eachProfile()</h3>
+
+<pre><code class="aardio language-aardio">for name,guid,description,flags,access,xmlProfile in SysWlanObject.eachProfile(){  
+    /*遍历无线网络配置。  
+xmlProfile 为包含网络配置的 string.xml 对象。  
+name 为配置名  
+guid 为网卡 GUID,win.guid 对象  
+description为网卡描述  
+其他参数请参考源码*/  
+}  
+
+[返回对象:stringXmlObject](#stringXmlObject)
+</code></pre>
+
+<p><a id="SysWlanObject.getInterfaces"></a></p>
+
+<h3>SysWlanObject.getInterfaces()</h3>
+
+<p>获取所有无线网卡，返回网卡信息数组。<br>
+数组成员为包含网卡 guid,description,state 等字段的结构体对象。<br>
+细节请参考源码与相关 API 文档</p>
+
+<p><a id="SysWlanObject.getProfileNames"></a></p>
+
+<h3>SysWlanObject.getProfileNames()</h3>
+
+<p>获取所有无线网络配置名，返回无线配置信息数组。<br>
+数组成员为包含网卡 name,flags,interfaceGuid,description 等字段的结构体对象。<br>
+细节请参考源码与相关 API 文档</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/sys/wlan.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/sys/wlan.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/sys/wlan.md">Markdown 格式</a></p>
+
+</body> 
+</html>

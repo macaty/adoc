@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - 读写文件'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - 读写文件</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>读写文件</h1>
+
+<p>一次性读写文件内容应优先选用 string.load string.save 而不是使用 io.file 创建文件对象。  </p>
+
+<p>参考：<a href="../io/file.html" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/builtin/io/file.html">io.file 文件对象</a> <a href="../io/path.html#exist" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/builtin/io/path.html#exist">检测文件路径</a></p>
+
+<h2>读文件</h2>
+
+<p><code>string.load(path,resType=&quot;RES&quot;,dllHandle = null )</code></p>
+
+<p>string.load 有三个参数，第一个参数 @path 为文件路径。<br>
+文件路径可以是普通磁盘文件的路径，支持内嵌资源路径。</p>
+
+<p>如果在磁盘上找不到文件，string.load会从资源加载文件。<br>
+读取资源文件时，默认的资源类型为 RES ，也可以通过函数的第二个参数 @resType 指定资源类型。</p>
+
+<p>资源名字、以及资源类型也可以是一个数值的资源 ID.  </p>
+
+<p>函数的第三个参数 @dllHandle 指定查找资源文件的执行文件内存模块的句柄(pointer 指针类型)，不指定时默认为当前 EXE 模块。  使用 <a href="../raw/api.html#loadDll" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/builtin/raw/api.html#loadDll">raw.loadDll</a> 可以加载dll 对象，dll对象提供 gethandle() 函数返回 dll 模块句柄。  </p>
+
+<h2>写文件</h2>
+
+<p><code>string.save(path,str,append=false)</code></p>
+
+<p>string.save 函数将字符串参数 @str 保存到参数 @path 指定的磁盘文件，如果增加 @append 参数并且值为 true 则追加到文件尾。</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-guide/builtin/string/file.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-guide/builtin/string/file.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/builtin/string/file.md">Markdown 格式</a></p>
+
+</body> 
+</html>

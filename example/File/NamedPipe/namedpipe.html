@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 命名管道'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 命名管道</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 命名管道</h1><pre><code class="aardio language-aardio">//命名管道
+import console;
+import fsys.namedPipe;
+console.open();
+
+thread.invoke( 
+    function(){
+        import console;
+        import fsys.namedPipe;
+
+        for(i=1;10;1){
+            var pipeClient = fsys.namedPipe.wait(&quot;\\.\pipe\pipename&quot;)
+            if( pipeClient ){
+                console.log( pipeClient.read(),&quot;线程ID&quot; + thread.getId()  )
+                pipeClient.write(&quot;线程ID&quot; + thread.getId() + &#39; 服务端你好啊\r\n&#39;);
+                pipeClient.close(); 
+            }
+            else {
+                //其他客户端已连接,或服务端已关闭
+            }
+        }  
+    }
+)
+
+thread.invoke( 
+    function(){
+        import console;
+        import fsys.namedPipe;
+
+        for(i=1;10;1){
+            var pipeClient = fsys.namedPipe.wait(&quot;\\.\pipe\pipename&quot;)
+            if( pipeClient ){
+                console.log( pipeClient.read(),&quot;线程ID&quot; + thread.getId()  )
+                pipeClient.write(&quot;线程ID&quot; + thread.getId() + &#39; 服务端你好啊\r\n&#39;);
+                pipeClient.close(); 
+            }
+            else {
+                //其他客户端已连接,或服务端已关闭
+            }
+        }  
+    }
+)
+
+var count = 0;
+var pipeServer = fsys.namedPipe(&quot;\\.\pipe\pipename&quot;)
+while( pipeServer.connect() ){  
+        pipeServer.write(&#39;客户端你好\r\n&#39;)
+        console.log( &quot;服务端收到：&quot;,pipeServer.read() ) 
+        pipeServer.disconnect();
+        count++;
+        if(count &gt;=10 ) break ; 
+}
+
+console.pause();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/File/NamedPipe/namedpipe.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/File/NamedPipe/namedpipe.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/File/NamedPipe/namedpipe.md">Markdown 格式</a>
+</body> 
+</html>

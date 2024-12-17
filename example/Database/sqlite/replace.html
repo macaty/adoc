@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - sqlite 库 - replace 语句'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - sqlite 库 - replace 语句</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: sqlite 库 - replace 语句</h1><pre><code class="aardio language-aardio">//sqlite 库 - replace 语句
+import sqlite;
+import console;
+
+//打开内存数据库
+var db = sqlite(&quot;:memory:&quot;);
+if( not db.existsTable(&quot;tableName2&quot;) ){ 
+
+    //创建单主键表 
+    db.exec( &quot;CREATE TABLE tableName(title PRIMARY KEY, length, tm);&quot; ) 
+
+    //创建双主键表
+    db.exec( &quot;CREATE TABLE tableName2(title,length,tm,  constraint pk_tableName2 PRIMARY KEY (title,length) );&quot;) 
+}
+
+//replace语句根据主键查询,不存在相同数据则插入新的,否则更新已存在的数据
+db.exec( &quot;REPLACE INTO tableName VALUES (&#39;Silence of the Lambs, The&#39;, 11.8, datetime(&#39;now&#39;,&#39;localtime&#39;)  );&quot;)
+db.exec( &quot;REPLACE INTO tableName2 VALUES @values;&quot;,{
+    values  = {
+        { &#39;Contact&#39;, 32, time.now() },
+        { &#39;Contact&#39;, 16, time.now() }
+    }
+})  
+
+/*
+REPLACE INTO 必须要设置所有无默认值字段的值,
+如果要在插入冲突时修改部分字段,请用下面的方法
+*/
+db.exec(&quot;
+    INSERT OR IGNORE INTO tableName (title,length,tm) VALUES (@title,@length,@tm);  
+    UPDATE tableName SET tm=@tm WHERE title=@title&quot;,{
+        title = &#39;Silence of the Lambs, The&#39;;
+        length = 123;
+        tm = &quot;456&quot;
+    } ) 
+
+
+for title,length,tm in db.each(&quot;SELECT * FROM tableName&quot;) {
+    console.log( title,length,tm );
+}
+
+for title,length,tm in db.each(&quot;SELECT * FROM tableName2&quot;) {
+    console.log( title,length,tm );
+}
+
+db.close();
+console.pause();
+
+
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Database/sqlite/replace.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Database/sqlite/replace.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Database/sqlite/replace.md">Markdown 格式</a>
+</body> 
+</html>

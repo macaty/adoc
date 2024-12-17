@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 拆分复杂字符串'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 拆分复杂字符串</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 拆分复杂字符串</h1><pre><code class="aardio language-aardio">//拆分复杂字符串
+import console;
+
+var str = /***
+
+abc def 123
+------------------------
+
+dec xyz 456 中文
+------------------------
+
+***/
+
+//不指定任何分隔符，按字符拆分，多字节的中文字符拆分为一个数组元素
+var arr = string.split(str);
+
+//指定多个单字节分隔符，连续的分隔符中间拆分为空字符串
+var arr = string.split(str,&quot; -&quot;);
+
+//将用尖括号指定连续字符组成的分隔串单位，string.split 不支持其他模式语法。
+var arr = string.split(str,&quot;&lt;------------------------&gt;&quot;);
+
+//string.splitEx 提供更强的拆分功能，分隔符支持模式匹配语法
+var arr = string.splitEx(str,&quot;\-\-\-+&quot;);
+
+//如果模式串以 ^ 开始，则分隔符的第一个捕获组添加到下个拆分结果的前面
+var arr = string.splitEx(str,&quot;^(\-\-\-+)&quot;);
+
+//如果模式串以 $ 结束，则分隔符的第一个捕获组添加到上个拆分结果的后面
+var arr = string.splitEx(str,&quot;(\-\-\-+)$&quot;);
+
+/*
+string.lines 与 string.splitEx 拆分规则相同。
+但 string.lines 返回的是迭代器，启动更快并按需拆分，不需等待全部拆分完成才能获取结果。
+*/
+for line in string.lines(str,&quot;\-\-\-+&quot;){
+    //console.log(line);
+}
+
+//除了可以自定义行分隔符，还可以相同规则自定义列分隔符
+for items in string.lines(str,&quot;\-\-\-+&quot;,&quot;\s+&quot;){
+    //自定义列分隔符以后，每次循环返回的都是包含多个列的数组
+    console.dumpTable(items);
+}
+
+/*
+一些编程语言在以正则表达式拆分字符串时，将捕获组自动添加到拆分数组中。
+这可能会导致不小心地误用，而且提取的捕获组与拆分结果被并列到拆分结果，可能需要二次处理。
+
+aardio 的区别是：
+- 使用更简更快的模式匹配
+- 明确使用 ^ 或 $ 指定是否提取捕获组，避免误用，且可以灵活控制提取到拆分结果的头部还是尾部
+- 可以同时进行行列多级拆分。
+
+这个功能可以节省大量字符串处理代码。
+在 aardio 代码中的 string.lines 使用频率也比较高。
+*/
+
+console.pause();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Text/splitEx.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Text/splitEx.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Text/splitEx.md">Markdown 格式</a>
+</body> 
+</html>

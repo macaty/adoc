@@ -1,0 +1,223 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - wsock.udp.client 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - wsock.udp.client 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>wsock.udp.client 库模块帮助文档</h1>
+
+<p><a id="wsock.udp.client"></a></p>
+
+<h2>wsock.udp.client 成员列表</h2>
+
+<p>UDP 客户端</p>
+
+<p><a id="wsock.udp.client.getLocalIp"></a></p>
+
+<h3>wsock.udp.client.getLocalIp()</h3>
+
+<p>获取联网的网卡 IP，未连接网络时返回 null。<br>
+此函数不会发送数据也不需要建立真正的连接。</p>
+
+<p><a id="wsock.udp.client.testBindPort"></a></p>
+
+<h3>wsock.udp.client.testBindPort(port,ip)</h3>
+
+<p>检查参数指定的端口号是否空闲<br>
+如果不写IP，则默认设为&quot;0.0.0.0&quot;</p>
+
+<p><a id="udpClientObject"></a></p>
+
+<h2>udpClientObject 成员列表</h2>
+
+<p><a id="udpClientObject.asyncSelect"></a></p>
+
+<h3>udpClientObject.asyncSelect(event,userMsgId,hwnd)</h3>
+
+<p>检测到由event参数指明的网络事件后,<br>
+事件到达向hwnd指定句柄的窗口发送userMsgId消息,<br>
+第二次调用此函数可省略句柄以及消息ID  </p>
+
+<p>失败返回null,以及错误信息,<br>
+成功返回true,以及上次调用此函数指定的event参数</p>
+
+<p><a id="udpClientObject.bind"></a></p>
+
+<h3>udpClientObject.bind</h3>
+
+<p>绑定 IP 端口。</p>
+
+<p><a id="udpClientObject.bind"></a></p>
+
+<h3>udpClientObject.bind(IP,端口)</h3>
+
+<p>绑定 IP 端口。<br>
+如果不指定 IP 则默认获取内网 IP 作为参数。  </p>
+
+<p>成功返回 true，<br>
+失败返回 null,错误信息,错误代码。  </p>
+
+<p>同一套接字重复绑定会返回 10022（_WSAEINVAL） 错误。<br>
+重新绑定应当重新创建套接字。<br>
+这就好比一张车票只能上一次车。<br>
+不能在已经上车以后再要求车站修改车票上的上车地。</p>
+
+<p><a id="udpClientObject.close"></a></p>
+
+<h3>udpClientObject.close()</h3>
+
+<p>关闭 UDP 客户端。<br>
+如果未显式调用此函数，在对象析构时,将会自动调用。  </p>
+
+<p>已关闭的套接字不能再使用。<br>
+就好比用过的车票不能重复用，什么地方都有规则和限制。</p>
+
+<p><a id="udpClientObject.connect"></a></p>
+
+<h3>udpClientObject.connect(IP或域名,端口号)</h3>
+
+<p>连接指定的目标 IP 以及端口号。<br>
+省略参数则使用此对象上次使用的目标地址。</p>
+
+<p><a id="udpClientObject.getLocalIp"></a></p>
+
+<h3>udpClientObject.getLocalIp()</h3>
+
+<p>返回本机 IP，端口。</p>
+
+<p><a id="udpClientObject.getRemoteAddress"></a></p>
+
+<h3>udpClientObject.getRemoteAddress()</h3>
+
+<p>最后最后发送或接收的 sockaddr_in 结构体  </p>
+
+<p><a href="#sockaddrInObject">返回对象:sockaddrInObject</a></p>
+
+<p><a id="udpClientObject.getRemoteIp"></a></p>
+
+<h3>udpClientObject.getRemoteIp()</h3>
+
+<p>返回最后发送或接收的 IP ,端口</p>
+
+<p><a id="udpClientObject.getopt"></a></p>
+
+<h3>udpClientObject.getopt(_SO)</h3>
+
+<p>获取选项<br>
+参数 @1 使用_SO_前缀的常量指定选项,参数 @2 使用结构体指定值<br>
+如果不指定参数 @2 ,则获取一个32位整型数值,<br>
+可选用参数@3指定设置层次，默认为SOL_SOCKET<br>
+成功返回读取的结构体</p>
+
+<p><a id="udpClientObject.joinGroup"></a></p>
+
+<h3>udpClientObject.joinGroup(广播组IP地址,网络接口IP)</h3>
+
+<p>加入广播组<br>
+参数 @2 可省略</p>
+
+<p><a id="udpClientObject.leaveGroup"></a></p>
+
+<h3>udpClientObject.leaveGroup(广播组IP地址,网络接口IP)</h3>
+
+<p>退出广播组<br>
+参数 @2 可省略</p>
+
+<p><a id="udpClientObject.recv"></a></p>
+
+<h3>udpClientObject.recv(最大接收长度)</h3>
+
+<p>调用 connect 以后可以使用此函数接收数据包。<br>
+如果参数不指定长度，则使用 bufferSize 指定的长度<br>
+成功返回字符串,<br>
+失败返回null,错误代码</p>
+
+<p><a id="udpClientObject.recvfrom"></a></p>
+
+<h3>udpClientObject.recvfrom(缓冲区长度,IP或域名,端口号)</h3>
+
+<p>接收并返回数据，IP 端口号为可选参数</p>
+
+<p><a id="udpClientObject.reuseAddress"></a></p>
+
+<h3>udpClientObject.reuseAddress(true)</h3>
+
+<p>是否允许端口重用</p>
+
+<p><a id="udpClientObject.send"></a></p>
+
+<h3>udpClientObject.send(数据,长度)</h3>
+
+<p>调用 connect 以后可以使用此函数接收数据包发送数据包</p>
+
+<p><a id="udpClientObject.sendto"></a></p>
+
+<h3>udpClientObject.sendto(发送数据,IP或域名,端口号)</h3>
+
+<p>发送数据，IP 端口号为可选参数,<br>
+成功返回 true</p>
+
+<p><a id="udpClientObject.setBroadcast"></a></p>
+
+<h3>udpClientObject.setBroadcast(true)</h3>
+
+<p>允许广播</p>
+
+<p><a id="udpClientObject.setMulticastInterface"></a></p>
+
+<h3>udpClientObject.setMulticastInterface()</h3>
+
+<p>设置组播网卡IP，不指定参数自动取网卡IP</p>
+
+<p><a id="udpClientObject.setMulticastLoopback"></a></p>
+
+<h3>udpClientObject.setMulticastLoopback(true)</h3>
+
+<p>是否启用多播回送</p>
+
+<p><a id="udpClientObject.setMulticastTtl"></a></p>
+
+<h3>udpClientObject.setMulticastTtl()</h3>
+
+<p>设置组播报文的数据包的TTL</p>
+
+<p><a id="udpClientObject.setTimeouts"></a></p>
+
+<h3>udpClientObject.setTimeouts(发送超时,接收超时)</h3>
+
+<p>设置超时,以亳秒为单位(1秒为1000毫秒)</p>
+
+<p><a id="udpClientObject.setopt"></a></p>
+
+<h3>udpClientObject.setopt(_SO)</h3>
+
+<p>设置选项<br>
+参数 @1 使用_SO_前缀的常量指定选项,参数 @2 使用结构体、数值、布尔值都可以<br>
+可选用参数@3指定设置层次，默认为SOL_SOCKET<br>
+成功返回true</p>
+
+<p><a id="wsock.udp"></a></p>
+
+<h2>wsock.udp 成员列表</h2>
+
+<p><a id="wsock.udp.client"></a></p>
+
+<h3>wsock.udp.client()</h3>
+
+<p>创建 UDP 客户端  </p>
+
+<p><a href="#udpClientObject">返回对象:udpClientObject</a></p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/wsock/udp/client.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/wsock/udp/client.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/wsock/udp/client.md">Markdown 格式</a></p>
+
+</body> 
+</html>

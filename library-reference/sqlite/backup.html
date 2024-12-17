@@ -1,0 +1,95 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - sqlite.backup 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - sqlite.backup 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>sqlite.backup 库模块帮助文档</h1>
+
+<p><a id="sqlite"></a></p>
+
+<h2>sqlite 成员列表</h2>
+
+<p><a id="sqlite.backup"></a></p>
+
+<h3>sqlite.backup</h3>
+
+<p>创建数据库备份对象<br>
+因为sqlite可以有不同版本的替换实现,<br>
+所以请在导入sqlite.backup以前必须先导入sqlite支持库,</p>
+
+<p><a id="sqlite.backup"></a></p>
+
+<h3>sqlite.backup()</h3>
+
+<p><a href="#sqlitBackupObject">返回对象:sqlitBackupObject</a></p>
+
+<p><a id="sqlite.backup"></a></p>
+
+<h3>sqlite.backup(src,dst,srcName,dstName)</h3>
+
+<p>创建数据库备份对象<br>
+src指定源数据库,可以是一个sqlite数据库对象,也可以指定要打开的数据库路径<br>
+dst指定输出数据库,可以是一个sqlite数据库对象,也可以指定要打开的数据库路径<br>
+srcName为源数据库名,dstName为目的数据库名<br>
+数据库名字一般不用指定,默认为&quot;main&quot;,也就是主数据库</p>
+
+<p><a id="sqlitBackupObject"></a></p>
+
+<h2>sqlitBackupObject 成员列表</h2>
+
+<p><a id="sqlitBackupObject.count"></a></p>
+
+<h3>sqlitBackupObject.count()</h3>
+
+<p>需要备份的总页数</p>
+
+<p><a id="sqlitBackupObject.eachStep"></a></p>
+
+<h3>sqlitBackupObject.eachStep(1)</h3>
+
+<pre><code class="aardio language-aardio">for remaining,count in sqlitBackupObject.eachStep(1) {
+    /*用于for in语句中执行备份操作的迭代器  
+参数指定每次迭代备份的页数,不指定时默认为1  
+迭代变量remaining为剩余的页数,count为总页数  
+备份完成退出循环并调用finish函数释放资源  
+其他数据库错误会抛出异常*/
+}
+</code></pre>
+
+<p><a id="sqlitBackupObject.finish"></a></p>
+
+<h3>sqlitBackupObject.finish()</h3>
+
+<p>释放备份对象</p>
+
+<p><a id="sqlitBackupObject.remaining"></a></p>
+
+<h3>sqlitBackupObject.remaining()</h3>
+
+<p>当前剩余的页数</p>
+
+<p><a id="sqlitBackupObject.step"></a></p>
+
+<h3>sqlitBackupObject.step()</h3>
+
+<p>执行备份操作<br>
+可选在参数中指定页数,<br>
+指定为负数或者不指定则默认备份所有数据<br>
+返回成功返回0,备份完成返回101,也就是sqlite.DONE<br>
+其他数据库错误会抛出异常<br>
+在备份完成后自动调用finish函数释放资源</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/sqlite/backup.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/sqlite/backup.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/sqlite/backup.md">Markdown 格式</a></p>
+
+</body> 
+</html>

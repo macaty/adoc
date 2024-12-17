@@ -1,0 +1,102 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - HTTP 状态码、错误代码检测 - aardio'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - HTTP 状态码、错误代码检测 - aardio</title> 
+<link rel="stylesheet" href="../../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: HTTP 状态码、错误代码检测 - aardio</h1><pre><code class="aardio language-aardio">//错误码检测 
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;HTTP 状态码、错误代码检测 - aardio&quot;;right=485;bottom=347;)
+winform.add(
+btnCheck={cls=&quot;button&quot;;text=&quot;检测&quot;;left=393;top=30;right=455;bottom=56;z=2};
+editResult={cls=&quot;richedit&quot;;left=10;top=62;right=473;bottom=341;edge=1;font=LOGFONT(name=&#39;Microsoft Sans Serif&#39;);hscroll=1;link=1;multiline=1;vscroll=1;wrap=1;z=3};
+editUrl={cls=&quot;edit&quot;;text=&quot;http://eu.httpbin.org/status/402&quot;;left=43;top=32;right=387;bottom=54;edge=1;multiline=1;z=1};
+static={cls=&quot;static&quot;;text=&quot;请输入网址、或直接输入 HTTP 状态码、错误代码:&quot;;left=12;top=9;right=299;bottom=25;transparent=1;z=4}
+)
+/*}}*/
+
+//开启自动完成
+::Shlwapi := ..raw.loadDll(&quot;Shlwapi.dll&quot;) 
+::Shlwapi.SHAutoComplete( winform.editUrl.hwnd,0/*_SHACF_DEFAULT*/);
+
+import inet.url;
+import inet.errorMessage;
+winform.btnCheck.oncommand = function(id,event){
+
+    var url = winform.editUrl.text;
+    if(! ..inet.url.is(url) ){
+        if( tonumber(url) ){
+            import inet.httpStatusCode;
+            winform.editResult.text = inet.httpStatusCode[tonumber(url) ] || inet.errorMessage[tonumber(url)]  || &quot;未知错误代码&quot;
+            return;
+        }
+        winform.msgboxErr(&quot;请输入正确的网址&quot;);
+        winform.editUrl.setFocus(0,-1);
+        return;
+    }
+
+    //禁用按钮,避免重复点击
+    winform.btnCheck.disabled = true;
+    winform.editResult.text = &quot;请稍候,正在连接.......&quot; 
+
+    winform.editResult.text = thread.invokeAndWait(
+        function(url){
+            import inet.http; 
+            import inet.httpStatusCode; 
+            import inet.errorMessage;
+
+            //创建http对象
+            var http = inet.http(); 
+            if( !http.beginRequest( url,&quot;HEAD&quot;,,,0x200000/*_INTERNET_FLAG_NO_AUTO_REDIRECT*/ ) ) {
+                http.close();
+                return &quot;无效的请求&quot;; 
+            } 
+
+            //发送请求
+            var ret,errMsg,errCode = http.send(); 
+            if(http.statusCode){  
+                var msg = string.concat( &quot;返回状态码：&quot;, http.statusCode + &#39;\r\n&#39; 
+                    , inet.httpStatusCode[http.statusCode] ,&#39;\r\n&#39;,http.readHeader() ,);
+
+                http.close();
+                return msg;
+            }
+            else {
+                http.close();
+
+                if( type(errCode) == type.number ){
+                    var msg = &quot;请求失败,错误代码：&quot; + errCode + &#39;\r\n&#39;
+                        + ( inet.errorMessage[errCode] : &quot;&quot;)
+
+                    if( errCode == 12003 ) msg = ..string.concat(errCode,&#39;\r\n&#39;,inet.lastResponse() );
+
+                    return msg;
+                }
+                return&quot;请求失败&quot;;   
+
+            }
+        },url 
+    )
+
+    winform.btnCheck.disabled = false; 
+}
+
+import ide;
+win.setOwner(winform.hwnd,ide.getMainHwnd());
+
+winform.show() 
+win.loopMessage();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Network/inet/http/status.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Network/inet/http/status.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Network/inet/http/status.md">Markdown 格式</a>
+</body> 
+</html>

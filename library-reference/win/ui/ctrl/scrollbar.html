@@ -1,0 +1,418 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - win.ui.ctrl.scrollbar 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - win.ui.ctrl.scrollbar 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>win.ui.ctrl.scrollbar 库模块帮助文档</h1>
+
+<p><a id="win.ui.ctrl"></a></p>
+
+<h2>win.ui.ctrl 成员列表</h2>
+
+<p><a id="win.ui.ctrl.scrollbar"></a></p>
+
+<h3>win.ui.ctrl.scrollbar()</h3>
+
+<p>滚动条控件  </p>
+
+<p><a href="#scrollbarObject">返回对象:scrollbarObject</a></p>
+
+<p><a id="scrollbarObject"></a></p>
+
+<h2>scrollbarObject 成员列表</h2>
+
+<p><a id="scrollbarObject._parentForm"></a></p>
+
+<h3>scrollbarObject._parentForm</h3>
+
+<p>创建该控件的父窗口（win.form对象）,<br>
+设计时窗体容器是所有拖放在窗体上的控件的 _parentForm,  </p>
+
+<p>即使窗口移除子窗口样式、更改父子关系，或以 orphanWindow显示,<br>
+控件的 _parentForm 始终都不会改变  </p>
+
+<p><a href="../_.html#winform" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/_.html#winform">返回对象:winform</a></p>
+
+<p><a id="scrollbarObject.adjust"></a></p>
+
+<h3>scrollbarObject.adjust</h3>
+
+<pre><code class="aardio language-aardio">scrollbarObject.adjust = function( cx,cy,wParam ) { 
+    _/*窗口改变大小时触发此函数*/
+};
+</code></pre>
+
+<p><a id="scrollbarObject.adjustWindow"></a></p>
+
+<h3>scrollbarObject.adjustWindow()</h3>
+
+<p>仅绑定窗口的滚动条此函数有效,\窗口调整大小时必须使用此函数重新滚动窗口到滚动条当前位置</p>
+
+<p><a id="scrollbarObject.bottom"></a></p>
+
+<h3>scrollbarObject.bottom</h3>
+
+<p>底部坐标</p>
+
+<p><a id="scrollbarObject.capture"></a></p>
+
+<h3>scrollbarObject.capture</h3>
+
+<p>是否捕获全局鼠标消息</p>
+
+<p><a id="scrollbarObject.className"></a></p>
+
+<h3>scrollbarObject.className</h3>
+
+<p>运行时类名</p>
+
+<p><a id="scrollbarObject.close"></a></p>
+
+<h3>scrollbarObject.close()</h3>
+
+<p>关闭控件窗口</p>
+
+<p><a id="scrollbarObject.cls"></a></p>
+
+<h3>scrollbarObject.cls</h3>
+
+<p>设计时类名</p>
+
+<p><a id="scrollbarObject.disabled"></a></p>
+
+<h3>scrollbarObject.disabled</h3>
+
+<p>是否禁用</p>
+
+<p><a id="scrollbarObject.enable"></a></p>
+
+<h3>scrollbarObject.enable( <em>ESB</em> )</h3>
+
+<p>激活一个或两个滚动条箭头或是使其失效</p>
+
+<p><a id="scrollbarObject.getClientRect"></a></p>
+
+<h3>scrollbarObject.getClientRect()</h3>
+
+<p>控件客户区块位置(::RECT结构体)  </p>
+
+<p><a href="../../../global/_.html#rectObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/global/_.html#rectObject">返回对象:rectObject</a></p>
+
+<p><a id="scrollbarObject.getFont"></a></p>
+
+<h3>scrollbarObject.getFont()</h3>
+
+<p>控件字体(::LOGFONT结构体)  </p>
+
+<p><a href="#logfontObject">返回对象:logfontObject</a></p>
+
+<p><a id="scrollbarObject.getInfo"></a></p>
+
+<h3>scrollbarObject.getInfo()</h3>
+
+<p>返回滚动条信息</p>
+
+<p><a id="scrollbarObject.getParent"></a></p>
+
+<h3>scrollbarObject.getParent()</h3>
+
+<p>返回父窗口  </p>
+
+<p><a href="#scrollbarObject">返回对象:scrollbarObject</a></p>
+
+<p><a id="scrollbarObject.getPos"></a></p>
+
+<h3>scrollbarObject.getPos()</h3>
+
+<p>返回相对坐标,宽,高<br>
+x,y,cx,cy=win.getPos(hwnd)</p>
+
+<p><a id="scrollbarObject.getRange"></a></p>
+
+<h3>scrollbarObject.getRange()</h3>
+
+<p>返回 4 个数值<br>
+分别为 min,max,page,current,<br>
+min 为滚动条范围最小值,<br>
+max 为滚动条范围最大值,<br>
+page为分页大小,<br>
+current 为滚动条当前位置</p>
+
+<p><a id="scrollbarObject.getRect"></a></p>
+
+<h3>scrollbarObject.getRect()</h3>
+
+<p>控件区块位置(::RECT结构体)</p>
+
+<p><a id="scrollbarObject.getRect"></a></p>
+
+<h3>scrollbarObject.getRect(true)</h3>
+
+<p>控件屏幕区块位置(::RECT结构体)</p>
+
+<p><a id="scrollbarObject.height"></a></p>
+
+<h3>scrollbarObject.height</h3>
+
+<p>高度</p>
+
+<p><a id="scrollbarObject.hide"></a></p>
+
+<h3>scrollbarObject.hide</h3>
+
+<p>控件是否隐藏</p>
+
+<p><a id="scrollbarObject.hwnd"></a></p>
+
+<h3>scrollbarObject.hwnd</h3>
+
+<p>控件句柄</p>
+
+<p><a id="scrollbarObject.id"></a></p>
+
+<h3>scrollbarObject.id</h3>
+
+<p>控件ID</p>
+
+<p><a id="scrollbarObject.invalidate(/*可选使用::RECT"></a></p>
+
+<h3>scrollbarObject.invalidate(/*可选使用::RECT()对象指定客户区*/)</h3>
+
+<p>使窗口绘图区无效</p>
+
+<p><a id="scrollbarObject.invalidate(/*可选使用::RECT"></a></p>
+
+<h3>scrollbarObject.invalidate(/*可选使用::RECT()对象指定客户区*/,0)</h3>
+
+<p>使窗口绘图区无效<br>
+不刷新背景</p>
+
+<p><a id="scrollbarObject.left"></a></p>
+
+<h3>scrollbarObject.left</h3>
+
+<p>左侧坐标</p>
+
+<p><a id="scrollbarObject.line"></a></p>
+
+<h3>scrollbarObject.line</h3>
+
+<p>行高</p>
+
+<p><a id="scrollbarObject.modifyStyle"></a></p>
+
+<h3>scrollbarObject.modifyStyle(remove,add,swpFlags)</h3>
+
+<p>修改窗口样式,所有参数都是可选参数,<br>
+@remove 用数值指定要移除的样式,可使用 <em>WS</em> 前缀的常量<br>
+@add 用数值指定要添加的样式,可使用 <em>WS</em> 前缀的常量<br>
+@swpFlags 可选用数值指定调整窗口选项,可使用 <em>SWP</em> 前缀的常量<br>
+如果指定了 @swpFlag ,则使用该参数调用::SetWindowPos<br>
+细节请参考 win.modifyStyle 函数源码</p>
+
+<p><a id="scrollbarObject.modifyStyleEx"></a></p>
+
+<h3>scrollbarObject.modifyStyleEx(remove,add,swpFlags)</h3>
+
+<p>修改窗口扩展样式,所有参数都是可选参数,<br>
+@remove 用数值指定要移除的样式,可使用 <em>WS_EX</em> 前缀的常量<br>
+@add 用数值指定要添加的样式,可使用 <em>WS_EX</em> 前缀的常量<br>
+@swpFlags 可选用数值指定调整窗口选项,可使用 <em>SWP</em> 前缀的常量<br>
+如果指定了 @swpFlag ,则使用该参数调用::SetWindowPos<br>
+细节请参考 win.modifyStyle 函数源码</p>
+
+<p><a id="scrollbarObject.pos"></a></p>
+
+<h3>scrollbarObject.pos</h3>
+
+<p>获取或设置滚动按钮的当前位置<br>
+如果赋值为负数、可禁止窗口重绘</p>
+
+<p><a id="scrollbarObject.postMessage"></a></p>
+
+<h3>scrollbarObject.postMessage(msg,wParam,lParam)</h3>
+
+<p>投递窗口消息到消息队列中<br>
+此函数用法请参考 ::User32.PostMessage</p>
+
+<p><a id="scrollbarObject.redraw"></a></p>
+
+<h3>scrollbarObject.redraw()</h3>
+
+<p>刷新</p>
+
+<p><a id="scrollbarObject.right"></a></p>
+
+<h3>scrollbarObject.right</h3>
+
+<p>右侧坐标</p>
+
+<p><a id="scrollbarObject.scrollMessage"></a></p>
+
+<h3>scrollbarObject.scrollMessage</h3>
+
+<p>滚动条消息ID<br>
+水平滚动条为 _WM_HSCROLL,<br>
+垂直滚动条为 _WM_HSCROLL</p>
+
+<p><a id="scrollbarObject.scrollWindowTo"></a></p>
+
+<h3>scrollbarObject.scrollWindowTo(pos,rect,clipRect)</h3>
+
+<p>仅绑定窗口的滚动条此函数有效,<br>
+@pos 参数指定滚动条绝对位置,<br>
+可选用 @rect 传入 ::RECT 结构体指定滚动区块,,<br>
+可选用 @clipRect 传入 ::RECT 结构体指定剪切区块</p>
+
+<p><a id="scrollbarObject.sendMessage"></a></p>
+
+<h3>scrollbarObject.sendMessage(msg,wParam,lParam)</h3>
+
+<p>发送窗口消息<br>
+此函数用法请参考 ::User32.SendMessage</p>
+
+<p><a id="scrollbarObject.setFocus"></a></p>
+
+<h3>scrollbarObject.setFocus()</h3>
+
+<p>设置焦点</p>
+
+<p><a id="scrollbarObject.setFont"></a></p>
+
+<h3>scrollbarObject.setFont(指定字体)</h3>
+
+<p>指定LOGFONT字体对象,或逻辑字体句柄</p>
+
+<p><a id="scrollbarObject.setFont"></a></p>
+
+<h3>scrollbarObject.setFont(混入字体属性)</h3>
+
+<pre><code class="aardio language-aardio">scrollbarObject.setFont(point=10;name=&quot;宋体&quot;);
+</code></pre>
+
+<p><a id="scrollbarObject.setInfo"></a></p>
+
+<h3>scrollbarObject.setInfo()</h3>
+
+<pre><code class="aardio language-aardio">scrollbarObject.setInfo(  
+    fMask = fMask;  
+    min = min;  
+    max = max;  
+    page = page;  
+    pos = pos;  
+    trackPos = trackPos;  
+)
+</code></pre>
+
+<p><a id="scrollbarObject.setParent"></a></p>
+
+<h3>scrollbarObject.setParent(控件对象)</h3>
+
+<p>改变父窗口</p>
+
+<p><a id="scrollbarObject.setPos"></a></p>
+
+<h3>scrollbarObject.setPos(x坐标,y坐标,宽,高,插入位置,参数)</h3>
+
+<p>调整窗口位置或排序,所有参数可选<br>
+同时指定x,y坐标则移动位置<br>
+同时指定宽高则改变大小<br>
+指定插入位置(句柄或_HWND前缀常量)则调整Z序</p>
+
+<p><a id="scrollbarObject.setRange"></a></p>
+
+<h3>scrollbarObject.setRange</h3>
+
+<p>设置滚动条范围</p>
+
+<p><a id="scrollbarObject.setRange"></a></p>
+
+<h3>scrollbarObject.setRange(min,max,page,redraw)</h3>
+
+<p>设置滚动条范围，参数：<br>
+@min 为滚动条范围最小值,<br>
+@max 为滚动条范围最大值,<br>
+@page为分页大小,<br>
+@redraw 是否刷新。</p>
+
+<p><a id="scrollbarObject.setRect"></a></p>
+
+<h3>scrollbarObject.setRect(rc)</h3>
+
+<p>设置控件区块位置(::RECT结构体)</p>
+
+<p><a id="scrollbarObject.setRect"></a></p>
+
+<h3>scrollbarObject.setRect(rc,true)</h3>
+
+<p>设置控件屏幕区块位置(::RECT结构体)</p>
+
+<p><a id="scrollbarObject.show"></a></p>
+
+<h3>scrollbarObject.show(true)</h3>
+
+<p>显示控件</p>
+
+<p><a id="scrollbarObject.theme"></a></p>
+
+<h3>scrollbarObject.theme</h3>
+
+<p>外观主题,例如<br>
+winform.button.theme = &quot;Explorer&quot;<br>
+winform.button.theme = false</p>
+
+<p><a id="scrollbarObject.top"></a></p>
+
+<h3>scrollbarObject.top</h3>
+
+<p>顶部坐标</p>
+
+<p><a id="scrollbarObject.update"></a></p>
+
+<h3>scrollbarObject.update()</h3>
+
+<p>重绘invalidate函数指定的区块</p>
+
+<p><a id="scrollbarObject.updateWheelLines"></a></p>
+
+<h3>scrollbarObject.updateWheelLines()</h3>
+
+<p>返回系统设置的鼠标滚轮滚动行数,<br>
+并更新 wheelLines 的值</p>
+
+<p><a id="scrollbarObject.wheelLines"></a></p>
+
+<h3>scrollbarObject.wheelLines</h3>
+
+<p>鼠标滚轮滚动行数,默认值为 3<br>
+调用 updateWheelLines 函数可获取系统设置并更新该值</p>
+
+<p><a id="scrollbarObject.width"></a></p>
+
+<h3>scrollbarObject.width</h3>
+
+<p>宽度</p>
+
+<h3>自动完成常量</h3>
+
+<p>_SIF_ALL=0x17<br>
+_SIF_DISABLENOSCROLL=0x8<br>
+_SIF_PAGE=0x2<br>
+_SIF_POS=0x4<br>
+_SIF_RANGE=0x1<br>
+_SIF_TRACKPOS=0x10  </p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/scrollbar.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/scrollbar.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/scrollbar.md">Markdown 格式</a></p>
+
+</body> 
+</html>

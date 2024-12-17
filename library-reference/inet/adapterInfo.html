@@ -1,0 +1,215 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - inet.adapterInfo 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - inet.adapterInfo 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>inet.adapterInfo 库模块帮助文档</h1>
+
+<p><details>  <summary>参考文档</summary>  <p>
+inet.adapterInfo.each(family,flags) 返回的为 IP_ADAPTER_ADDRESSES 结构体。</p>
+
+<p>关于 family,flags 参数的用法与 IP_ADAPTER_ADDRESSES 结构体的详细说明请参考：
+<a href="javascript:if(confirm('https://learn.microsoft.com/en-us/windows/win32/api/iptypes/ns-iptypes-ip_adapter_addresses_lh  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='https://learn.microsoft.com/en-us/windows/win32/api/iptypes/ns-iptypes-ip_adapter_addresses_lh'" tppabs="https://learn.microsoft.com/en-us/windows/win32/api/iptypes/ns-iptypes-ip_adapter_addresses_lh">https://learn.microsoft.com/en-us/windows/win32/api/iptypes/ns-iptypes-ip_adapter_addresses_lh</a></p>
+
+<p>结构体字段首字母在 aardio 中需要改为小写。
+</p></details></p>
+
+<p><a id="inet.adapterInfo"></a></p>
+
+<h2>inet.adapterInfo 成员列表</h2>
+
+<p>用于获取网络适配器与配置信息（不含禁用的网卡）。<br>
+比 inet.adapter 获取到的信息更多一些。<br>
+sys.networkCards 则用于获取网卡硬件信息（含禁用网卡）。  </p>
+
+<p>可使用 com.wmi 查询 Win32_NetworkAdapter 得到网卡信息,<br>
+ com.wmi 查询 Win32_NetworkAdapterConfiguration 得到网络适配器连接配置</p>
+
+<p><a id="inet.adapterInfo.each"></a></p>
+
+<h3>inet.adapterInfo.each()</h3>
+
+<p><a href="#netAdapterAddressObject">返回对象:netAdapterAddressObject</a></p>
+
+<p><a id="inet.adapterInfo.each"></a></p>
+
+<h3>inet.adapterInfo.each(family,flags)</h3>
+
+<pre><code class="aardio language-aardio">//遍历所有连接  
+for adapterInfo in inet.adapterInfo.each() {   
+    /*adapterInfo 为包含网络适配器与 IP 配置信息的结构体*/  
+}
+</code></pre>
+
+<p><a id="inet.adapterInfo.get"></a></p>
+
+<h3>inet.adapterInfo.get</h3>
+
+<p>查找并返回网络适配器与配置信息</p>
+
+<p><a id="inet.adapterInfo.get"></a></p>
+
+<h3>inet.adapterInfo.get()</h3>
+
+<p><a href="#netAdapterAddressObject">返回对象:netAdapterAddressObject</a></p>
+
+<p><a id="inet.adapterInfo.get"></a></p>
+
+<h3>inet.adapterInfo.get(adapterName)</h3>
+
+<p>查找并返回网络适配器与配置信息。<br>
+@adapterName 用字符串指定 GUID 格式适配器</p>
+
+<p><a id="netAdapterAddressObject"></a></p>
+
+<h2>netAdapterAddressObject 成员列表</h2>
+
+<p><a id="netAdapterAddressObject.adapterName"></a></p>
+
+<h3>netAdapterAddressObject.adapterName</h3>
+
+<p>适配器名称， GUID 格式。<br>
+用 netConnectionId 字段可以获取显示名称  </p>
+
+<p>adapterName 是永久性的，用户无法修改。<br>
+netConnectionId 则可以改动</p>
+
+<p><a id="netAdapterAddressObject.address"></a></p>
+
+<h3>netAdapterAddressObject.address</h3>
+
+<p>MAC地址,数值格式</p>
+
+<p><a id="netAdapterAddressObject.description"></a></p>
+
+<h3>netAdapterAddressObject.description</h3>
+
+<p>连接描述</p>
+
+<p><a id="netAdapterAddressObject.dnsSuffix"></a></p>
+
+<h3>netAdapterAddressObject.dnsSuffix</h3>
+
+<p>DNS 后缀名</p>
+
+<p><a id="netAdapterAddressObject.eachAnycastAddress"></a></p>
+
+<h3>netAdapterAddressObject.eachAnycastAddress()</h3>
+
+<pre><code class="aardio language-aardio">for addr,strAddr in netAdapterAddressObject.eachAnycastAddress(){
+    /*遍历任播地址，strAddr 为字符串格式 IP 地址。  
+addr 为当前 IP_ADAPTER_ADDRESS 结构体，不用管。*/
+}
+</code></pre>
+
+<p><a id="netAdapterAddressObject.eachDnsServerAddress"></a></p>
+
+<h3>netAdapterAddressObject.eachDnsServerAddress()</h3>
+
+<pre><code class="aardio language-aardio">for addr,strAddr in netAdapterAddressObject.eachDnsServerAddress(){
+    /*遍历 DNS 服务器地址，strAddr 为字符串格式 IP 地址。  
+addr 为当前 IP_ADAPTER_ADDRESS 结构体，不用管。*/
+}
+</code></pre>
+
+<p><a id="netAdapterAddressObject.eachMulticastAddress"></a></p>
+
+<h3>netAdapterAddressObject.eachMulticastAddress()</h3>
+
+<pre><code class="aardio language-aardio">for addr,strAddr in netAdapterAddressObject.eachMulticastAddress(){
+    /*遍历多播地址，strAddr 为字符串格式 IP 地址。  
+addr 为当前 IP_ADAPTER_ADDRESS 结构体，不用管。*/
+}
+</code></pre>
+
+<p><a id="netAdapterAddressObject.eachUnicastAddress"></a></p>
+
+<h3>netAdapterAddressObject.eachUnicastAddress()</h3>
+
+<pre><code class="aardio language-aardio">for addr,strAddr in netAdapterAddressObject.eachUnicastAddress(){
+    /*遍历单播地址，strAddr 为字符串格式 IP 地址。  
+addr 为当前 IP_ADAPTER_ADDRESS 结构体，不用管。*/
+}
+</code></pre>
+
+<p><a id="netAdapterAddressObject.flags"></a></p>
+
+<h3>netAdapterAddressObject.flags</h3>
+
+<p>数值表示的设置选项</p>
+
+<p><a id="netAdapterAddressObject.ifIndex"></a></p>
+
+<h3>netAdapterAddressObject.ifIndex</h3>
+
+<p>网卡索引</p>
+
+<p><a id="netAdapterAddressObject.ifType"></a></p>
+
+<h3>netAdapterAddressObject.ifType</h3>
+
+<p>适配器类型</p>
+
+<p><a id="netAdapterAddressObject.ifTypeLoopback"></a></p>
+
+<h3>netAdapterAddressObject.ifTypeLoopback</h3>
+
+<p>适配器类型为软件实现的回环网卡</p>
+
+<p><a id="netAdapterAddressObject.ifTypeWireless"></a></p>
+
+<h3>netAdapterAddressObject.ifTypeWireless</h3>
+
+<p>适配器类型为无线网卡</p>
+
+<p><a id="netAdapterAddressObject.ipv6IfIndex"></a></p>
+
+<h3>netAdapterAddressObject.ipv6IfIndex</h3>
+
+<p>IPv6 网卡索引</p>
+
+<p><a id="netAdapterAddressObject.mac"></a></p>
+
+<h3>netAdapterAddressObject.mac</h3>
+
+<p>MAC地址,文本格式</p>
+
+<p><a id="netAdapterAddressObject.mtu"></a></p>
+
+<h3>netAdapterAddressObject.mtu</h3>
+
+<p>最大传输单元大小</p>
+
+<p><a id="netAdapterAddressObject.netConnectionId"></a></p>
+
+<h3>netAdapterAddressObject.netConnectionId</h3>
+
+<p>连接友好名称，<br>
+也就是控制面板里显示的网络连接名</p>
+
+<p><a id="netAdapterAddressObject.operStatus"></a></p>
+
+<h3>netAdapterAddressObject.operStatus</h3>
+
+<p>由多个表示不同网卡操作状态的数值按位或得到的值 ）</p>
+
+<p><a id="netAdapterAddressObject.operStatusUp"></a></p>
+
+<h3>netAdapterAddressObject.operStatusUp</h3>
+
+<p>网卡为可用的活动状态</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/inet/adapterInfo.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/inet/adapterInfo.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/inet/adapterInfo.md">Markdown 格式</a></p>
+
+</body> 
+</html>

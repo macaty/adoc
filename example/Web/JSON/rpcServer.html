@@ -1,0 +1,97 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - HTTP-JSON-RPC 服务端'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - HTTP-JSON-RPC 服务端</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: HTTP-JSON-RPC 服务端</h1><pre><code class="aardio language-aardio">//HTTP-JSON-RPC 服务端
+
+import win.ui;
+/*DSG{{*/
+mainForm = win.form(text=&quot;aardio form&quot;;right=759;bottom=469)
+mainForm.add(
+edit={cls=&quot;edit&quot;;left=18;top=22;right=728;bottom=404;edge=1;multiline=1;z=1}
+)
+/*}}*/
+
+import wsock.tcp.simpleHttpServer;
+namespace wsock.tcp.simpleHttpServer{
+    //startIp = &quot;0.0.0.0&quot;; //不限制本机 IP
+    startPort = 8610; //不指定端口时会自动分配空闲端口
+    threadGlobal = { mainForm = ..mainForm }; //指定 HTTP 服务线程的默认全局变量,注意定义线程函数的作用域同名变量不能是局部变量
+}
+
+mainForm.edit.print(&quot;http://127.0.0.1:8610/jsonrpc 已启动&quot;);
+
+//io.open() //打开控制台查看线程错误信息
+var url = wsock.tcp.simpleHttpServer.startUrl( 
+    function(response,request){
+        if( request.path !=&quot;/jsonrpc&quot; ) response.error(404);  
+        mainForm.edit.print(request.postData());
+
+        import web.rpc.jsonServer;
+        var jsonServer = web.rpc.jsonServer(); 
+
+        //可以定义允许客户端调用的函数
+        jsonServer.hello = function(name){
+            mainForm.edit.print(&quot;hello 函数被调用了,参数：&quot;,name);
+
+            /*
+            第一个返回值为客户端返回值(result)，
+            第二个返回值为错误对象(error)
+            */
+            if(!name) return null,-32602/*_JSONRPC_INVALID_PARAMS*/; 
+            return &quot;hello &quot; + name;
+        }
+
+        //也可以指定允许客户端调用的其他对象
+        jsonServer.aardio = {
+
+            /*
+            如果函数名第一个字符为$，则第一个回调参数为$，
+            $参数表示可以在jsonServer.rpc.run函数的参数中指定,如果不指定则默认为当前 request对象
+            */
+            $hello = function($,name){ 
+                return &quot;aardio.hello &quot; + name;
+            }
+
+            err = function(){
+                error(&quot;假装抛出异常试试&quot;,2)
+            }   
+        }
+
+        /* 
+            //下面这种写法也可以
+            jsonServer.rpc.external = {
+                hello = function(name){
+
+                }
+            } 
+        */
+
+        jsonServer.rpc.onError = function(err,requestData){
+            //未捕获的服务端异常会触发这个函数，客户端错误代码为 _JSONRPC_INTERNAL_ERROR
+            mainForm.edit.print(&quot;发生错误&quot;,err,requestData)
+        }
+
+        //运行服务端,可选在参数中指定回调$参数
+        jsonServer.rpc.run();
+    }
+);  
+
+mainForm.show();
+win.loopMessage();
+
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Web/JSON/rpcServer.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Web/JSON/rpcServer.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Web/JSON/rpcServer.md">Markdown 格式</a>
+</body> 
+</html>

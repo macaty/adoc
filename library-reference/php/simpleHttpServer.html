@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - php.simpleHttpServer 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - php.simpleHttpServer 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>php.simpleHttpServer 库模块帮助文档</h1>
+
+<p><a id="php.simpleHttpServer"></a></p>
+
+<h2>php.simpleHttpServer 成员列表</h2>
+
+<p>调用 process.php.simpleHttpServer 以 CGI 方式启动 PHP,<br>
+php-cgi.exe 路径默认指定为 &quot;~\lib\php.dll\php-cgi.exe&quot;;</p>
+
+<p><a id="php.simpleHttpServer.startUrl"></a></p>
+
+<h3>php.simpleHttpServer.startUrl</h3>
+
+<p>查找可用端口创建PHP/CGI服务器，返回返回完整URL<br>
+此服务端限制使用本机IP127.0.0.1访问,并随机分配端口不会出现端口冲突<br>
+如果PHP/CGI服务器已启动则直接返回URL而不是重复启动服务器,<br>
+注意当前线程结束时,此服务器线程会自动退出</p>
+
+<p><a id="php.simpleHttpServer.startUrl"></a></p>
+
+<h3>php.simpleHttpServer.startUrl(path,documentRoot)</h3>
+
+<p>查找可用端口创建PHP/CGI服务器，返回返回完整URL<br>
+如果PHP/CGI服务器已启动则直接返回URL而不是重复启动服务器,<br>
+省略参数返回首页URL,尾部不包含斜杠<br>
+可选用@path参数指定请求目标文件的相对路径<br>
+可选使用参数@documentRoot指定网站根目录,默认为&quot;/&quot;</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/php/simpleHttpServer.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/php/simpleHttpServer.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/php/simpleHttpServer.md">Markdown 格式</a></p>
+
+</body> 
+</html>

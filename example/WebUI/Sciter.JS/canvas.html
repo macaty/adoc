@@ -1,0 +1,97 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 缂栫▼璇█鑼冧緥 - Sciter 鑴氭湰璋冪敤鏈湴鍑芥暟'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 缂栫▼璇█鑼冧緥 - Sciter 鑴氭湰璋冪敤鏈湴鍑芥暟</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 缂栫▼璇█鏂囨。棣栭〉"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 鏂囨。</span></a>
+<h1>aardio 鑼冧緥: Sciter 鑴氭湰璋冪敤鏈湴鍑芥暟</h1><pre><code class="aardio language-aardio">//Canvas
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;Sciter 鑴氭湰璋冪敤鏈湴鍑芥暟&quot;;right=1014;bottom=523;)
+winform.add()
+/*}}*/
+
+import web.sciter;
+var sciter = web.sciter( winform );
+
+sciter.html = /**
+&lt;html&gt;
+&lt;body style=&quot;background:black&quot;&gt;
+&lt;canvas id=&quot;myCanvas&quot; width=&quot;800&quot; height=&quot;600&quot; /&gt;
+
+&lt;script&gt;
+
+function line(particle, particle2) {
+  context.beginPath();
+  context.moveTo(particle.x, particle.y);
+  context.lineTo(particle2.x, particle2.y);
+  context.stroke();
+}
+
+function animate() {
+  context.clearRect(0, 0, canvas.width, canvas.height);
+  for (let i = 0; i &lt; maxParticles; i++) {
+    let particle = particles[i];
+    context.fillRect(particle.x - particleSize / 2, particle.y - particleSize / 2, particleSize, particleSize);
+    for (let j = 0; j &lt; maxParticles; j++) {
+      if (i != j) {
+        let particle2 = particles[j];
+        let distanceX = Math.abs(particle.x - particle2.x);
+        let distanceY = Math.abs(particle.y - particle2.y);
+        if (distanceX &lt; threshold &amp;&amp; distanceY &lt; threshold) {
+          context.lineWidth = ((threshold * 2) - (distanceX + distanceY)) / 50;
+          let color = 200 - Math.floor(distanceX + distanceY);
+          context.strokeStyle = &#39;rgb(&#39; + color + &#39;,&#39; + color + &#39;,&#39; + color + &#39;)&#39;;
+          line(particle, particle2);
+        }
+      }
+    }
+    particle.x = particle.x + particle.vx;
+    particle.y = particle.y + particle.vy;
+    if (particle.x &gt; canvas.width - particleSize || particle.x &lt; particleSize)
+      particle.vx = -particle.vx;
+    if (particle.y &gt; canvas.height - particleSize || particle.y &lt; particleSize)
+      particle.vy = -particle.vy;
+  }
+  requestAnimationFrame(animate);
+}
+
+let canvas = document.getElementById(&#39;myCanvas&#39;);
+let context = canvas.getContext(&#39;2d&#39;);
+let particles = [];
+let particleSize = 4;
+let maxParticles = 40;
+let threshold = 100;
+for (let i = 0; i &lt; maxParticles; i++) {
+  let particle = {
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    vx: Math.random(),
+    vy: Math.random()
+  }
+  particles.push(particle);
+}
+context.fillStyle = &#39;white&#39;;
+animate();
+
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+**/
+
+winform.show()
+win.loopMessage();
+
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/WebUI/Sciter.JS/canvas.md  \n\n该文件无法用 Teleport Ultra 下载, 因为 它不在项目文件类型规范内。  \n\n你想在服务器上打开它?'))window.location='https://www.aardio.com/zh-cn/doc/example/WebUI/Sciter.JS/canvas.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/WebUI/Sciter.JS/canvas.md">Markdown 鏍煎紡</a>
+</body> 
+</html>

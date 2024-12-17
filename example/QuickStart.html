@@ -1,0 +1,77 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 快速入门 - 第一个 aardio 程序'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 快速入门 - 第一个 aardio 程序</title> 
+<link rel="stylesheet" href="../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 快速入门 - 第一个 aardio 程序</h1><pre><code class="aardio language-aardio">//快速入门
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;快速入门 - 第一个 aardio 程序&quot;;right=757;bottom=467)
+winform.add(
+edit={cls=&quot;richedit&quot;;left=6;top=6;right=754;bottom=464;db=1;dl=1;dr=1;dt=1;edge=1;link=1;multiline=1;vscroll=1;z=1}
+)
+/*}}*/
+
+//导入 web.json 库，文本框就能以 JSON 格式输出对象
+import web.json;
+
+//文本框内输出任意对象
+winform.edit.print({
+    number = 123; //数值
+    string = &quot;原始字符串，不处理转义符&quot;;
+    escapedString  = &#39;单引号包含转义字符串，处理转义符。例如回车换行\r\n&#39;;
+    blockComment = /*
+注释可以赋值为字符串:
+
+语法速览: https://www.aardio.com/zh-cn/doc/guide/language/syntax-quick-ref.html
+特殊符号大全: https://www.aardio.com/zh-cn/doc/guide/language/special-characters.html
+快捷键与小技巧: https://bbs.aardio.com/forum.php?mod=viewthread&amp;tid=13220&amp;from=portal
+模式匹配入门: https://www.aardio.com/zh-cn/doc/guide/language/pattern-matching.html
+魔法 web.rest: https://www.aardio.com/zh-cn/doc/library-guide/std/web/rest/client.html
+创建窗口控件: https://www.aardio.com/zh-cn/doc/library-guide/std/win/ui/create-winform.html
+制作精美界面: https://bbs.aardio.com/forum.php?mod=viewthread&amp;tid=11486&amp;from=portal
+*/;
+    object = { //对象（表）
+        name = &quot;object&quot;;
+        value = { 
+            object = {
+                name = &quot;object.object&quot;
+            }
+        }
+    };
+    array = {1,2,3,4,5,6,7};//数组，数据类型也是表（table）
+    buffer = raw.buffer(&quot;二进制字节数组&quot;);
+    pointer = topointer(1);//原生指针
+    time = time.now();//日期时间
+    boolean = true || false;//布尔值
+});
+
+//继续打印，不会覆盖之前的内容。
+winform.edit.print(&quot;《 aardio 快速入门教程 》
+https://mp.weixin.qq.com/mp/appmsgalbum?__biz=MzA3Njc1MDU0OQ==&amp;action=getalbum&amp;album_id=2209804829378543621
+&quot;);
+
+//定义一个回调函数，在richedit 控件中点击链接时自动触发此函数。 
+winform.edit.onHyperlink = function(message,href){
+
+    if( message = 0x202/*_WM_LBUTTONUP*/ ) {
+        raw.execute(href);
+    }
+}
+
+winform.show();
+win.loopMessage();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/QuickStart.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/QuickStart.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/QuickStart.md">Markdown 格式</a>
+</body> 
+</html>

@@ -1,0 +1,134 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - string.keywords 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - string.keywords 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>string.keywords 库模块帮助文档</h1>
+
+<p><a id="string"></a></p>
+
+<h2>string 成员列表</h2>
+
+<p><a id="string.keywords"></a></p>
+
+<h3>string.keywords</h3>
+
+<p>用于禁用模式匹配并快速搜索多关键字，区分大小写，<br>
+支持非 UTF-8 编码文本或二进制数据</p>
+
+<p>创建关键字搜索</p>
+
+<p><a id="string.keywords"></a></p>
+
+<h3>string.keywords()</h3>
+
+<p><a href="#StringKeywordsObject">返回对象:StringKeywordsObject</a></p>
+
+<p><a id="string.keywords"></a></p>
+
+<h3>string.keywords(keywords)</h3>
+
+<p>参数 @keywords 可用一个数组指定多个要搜索的字符串或 buffer<br>
+也可以用一个字符串指定要搜索的关键字,多个关键字用竖线 | 分隔</p>
+
+<p><a id="string.keywords"></a></p>
+
+<h3>string.keywords(utf8Keywords,dataCodePage)</h3>
+
+<p>参数 @keywords 可用一个数组指定多个要搜索的字符串或 buffer<br>
+也可以用一个字符串指定要搜索的关键字,多个关键字用竖线 | 分隔,<br>
+如果参数@1 指定的关键字使用默认的 UTF-8 编码,<br>
+则允许用参数 @2 指定待搜索文本的代码页</p>
+
+<p><a id="StringKeywordsObject"></a></p>
+
+<h2>StringKeywordsObject 成员列表</h2>
+
+<p><a id="StringKeywordsObject.allMatchLines"></a></p>
+
+<h3>StringKeywordsObject.allMatchLines</h3>
+
+<p>查找所有包含全部关键字的文本行</p>
+
+<p><a id="StringKeywordsObject.allMatchLines"></a></p>
+
+<h3>StringKeywordsObject.allMatchLines(data)</h3>
+
+<p>参数 @data 指定要搜索关键字的数据,<br>
+@data 可以指定字符串、buffer、内存指针，<br>
+返回一个数组包含所有找到全部关键字的文本行,<br>
+返回文本行不包含行尾的回车换行，不修改文本编码</p>
+
+<p><a id="StringKeywordsObject.anyMatchLines"></a></p>
+
+<h3>StringKeywordsObject.anyMatchLines</h3>
+
+<p>查找所有包含任意关键字的文本行</p>
+
+<p><a id="StringKeywordsObject.anyMatchLines"></a></p>
+
+<h3>StringKeywordsObject.anyMatchLines(data)</h3>
+
+<p>参数 @data 指定要搜索关键字的数据,<br>
+@data 可以指定字符串、buffer、内存指针，<br>
+返回一个数组包含所有找到任意关键字的文本行,<br>
+返回文本行不包含行尾的回车换行，不修改文本编码</p>
+
+<p><a id="StringKeywordsObject.findAll"></a></p>
+
+<h3>StringKeywordsObject.findAll</h3>
+
+<p>查找全部关键字</p>
+
+<p><a id="StringKeywordsObject.findAll"></a></p>
+
+<h3>StringKeywordsObject.findAll(data)</h3>
+
+<p>参数 @data 指定要搜索关键字的数据,<br>
+@data 可以指定字符串、buffer、内存指针，<br>
+找到所有关键字返回 true，否则返回 false</p>
+
+<p><a id="StringKeywordsObject.findOne"></a></p>
+
+<h3>StringKeywordsObject.findOne</h3>
+
+<p>查找任意关键字</p>
+
+<p><a id="StringKeywordsObject.findOne"></a></p>
+
+<h3>StringKeywordsObject.findOne(data)</h3>
+
+<p>参数 @data 指定要搜索关键字的数据,<br>
+@data 可以指定字符串、buffer、内存指针，<br>
+找到任意关键字则返回非 0 值表示的关键字索引，<br>
+否则返回 0</p>
+
+<p><a id="StringKeywordsObject.noneMatchLines"></a></p>
+
+<h3>StringKeywordsObject.noneMatchLines</h3>
+
+<p>查找所有不含任何关键字的文本行</p>
+
+<p><a id="StringKeywordsObject.noneMatchLines"></a></p>
+
+<h3>StringKeywordsObject.noneMatchLines(data)</h3>
+
+<p>参数 @data 指定要搜索关键字的数据,<br>
+@data 可以指定字符串、buffer、内存指针，<br>
+返回一个数组包含所有找不到任何关键字的文本行,<br>
+返回文本行不包含行尾的回车换行，不修改文本编码</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/string/keywords/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/string/keywords/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/string/keywords/_.md">Markdown 格式</a></p>
+
+</body> 
+</html>

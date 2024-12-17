@@ -1,0 +1,66 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - aardio 通过 Node.js 调用 UglifyJS 包'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - aardio 通过 Node.js 调用 UglifyJS 包</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 通过 Node.js 调用 UglifyJS 包</h1><pre><code class="aardio language-aardio">//aardio 通过 Node.js 调用 UglifyJS 包  
+import console;  
+import nodeJs;
+
+//如果未安装 uglify-js 则安装
+nodeJs.require(&quot;uglify-js&quot;);
+
+// 启动 Node.js 。
+var node = nodeJs.startRpc(&#39;global.UglifyJS = require(&quot;uglify-js&quot;)&#39;); 
+
+// 压缩选项
+var options = {
+    ie: true,
+    mangle: true,
+    output:{
+        indent_level: 0,
+        max_line_len: 1000,
+        beautify: false,
+    }  
+};
+
+// 直接调用 JS 函数，必须是全局对象 global 的成员对象。
+var ret = node.UglifyJS.minify({
+    &quot;file1.js&quot;: &quot;function add(first, second) { return first + second; }&quot;,
+    &quot;file2.js&quot;: &quot;console.log(add(1 + 2, 3 + 4));&quot;
+},options);
+
+/*
+请参考文档:
+https://github.com/mishoo/UglifyJS?tab=readme-ov-file#api-reference
+aardio 兼容 JS 表示对象的语法，aardio 参数选项会通过 JSON 传给 Node.js 
+所以 UglifyJS 文档的代码可以复制到 aardio 里用，基本不需要太多修改。
+*/
+
+var ret = node.UglifyJS.minify(
+    inet.http.get(&quot;https://cdn.jsdelivr.net/npm/js-yaml@3.14.1/dist/js-yaml.js&quot;),
+    options )
+
+// 获取 JS 函数返回值
+var minJs = ret[[&quot;result&quot;]][[&quot;code&quot;]];
+
+//复制压缩结果到剪贴板
+import win.clip;
+win.clip.write(minJs);
+
+console.dump(minJs);
+console.pause();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/nodeJs/package.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/nodeJs/package.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Languages/nodeJs/package.md">Markdown 格式</a>
+</body> 
+</html>

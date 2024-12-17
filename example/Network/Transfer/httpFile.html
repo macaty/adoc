@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 断点续传'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 断点续传</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 断点续传</h1><pre><code class="aardio language-aardio">//断点续传
+import fsys;
+import inet.httpFile;
+import console;
+
+var remoteFile = inet.httpFile(
+    &quot;http://wubi.aardio.com/update/wubiLex.7z&quot; ,&quot;/.download/&quot;
+    )
+
+var ok,err,errCode = remoteFile.test()
+if( ok ){
+    return console.logPause(&quot;文件已下载完成、服务器未更新,无需重新下载&quot;); 
+}
+elseif( ok === null ){
+    return console.logPause(&quot;下载错误,HTTP错误代码&quot;,remoteFile.statusCode,err);
+}
+
+import console.progress;
+var progress = console.progress();
+remoteFile.onReceiveBegin = function(statusCode,contentLength,fileSize){
+    if( statusCode == 206/*断点续传*/ ){
+        progress.setProgress((fileSize/contentLength)*100,&quot;正在断点续传&quot;) 
+    }
+    elseif(fileSize){
+        progress.setProgress((fileSize/contentLength)*100,&quot;正在重新下载&quot;)  
+    }
+}
+
+remoteFile.onReceive = function(str,downSize,contentLength){
+    progress.addProgress((downSize/contentLength)*100
+            ,&quot;正在下载 文件大小：&quot; + math.size64(contentLength).format() )   
+}
+
+//下载文件
+var ok,err,fileSize = remoteFile.download() 
+console.log( ok,err,inet.lastResponse() )
+console.pause();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Network/Transfer/httpFile.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Network/Transfer/httpFile.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Network/Transfer/httpFile.md">Markdown 格式</a>
+</body> 
+</html>

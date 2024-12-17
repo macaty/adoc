@@ -1,0 +1,95 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 线程任务分派'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 线程任务分派</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 线程任务分派</h1><pre><code class="aardio language-aardio">//线程任务分派
+import fonts.fontAwesome;
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;端口扫描&quot;;right=759;bottom=469)
+winform.add(
+btnScan={cls=&quot;button&quot;;text=&#39;\uF002  检测开放的TCP端口&#39;;left=344;top=9;right=545;bottom=35;dl=1;dt=1;font=LOGFONT(name=&#39;FontAwesome&#39;);z=5};
+edit={cls=&quot;edit&quot;;left=20;top=68;right=728;bottom=435;db=1;dl=1;dr=1;dt=1;edge=1;multiline=1;z=1};
+editIp={cls=&quot;edit&quot;;text=&quot;www.example.com&quot;;left=120;top=11;right=332;bottom=35;dl=1;dt=1;edge=1;z=3};
+editPortFrom={cls=&quot;edit&quot;;text=&quot;1&quot;;left=120;top=41;right=163;bottom=64;dl=1;dt=1;edge=1;num=1;z=6};
+editPortTo={cls=&quot;edit&quot;;text=&quot;2048&quot;;left=202;top=40;right=245;bottom=63;dl=1;dt=1;edge=1;num=1;z=7};
+progress={cls=&quot;progress&quot;;left=22;top=443;right=725;bottom=465;db=1;dl=1;dr=1;edge=1;hide=1;max=100;min=0;z=2};
+static={cls=&quot;static&quot;;text=&quot;域名或IP：&quot;;left=19;top=13;right=115;bottom=34;align=&quot;right&quot;;dl=1;dt=1;transparent=1;z=4};
+static2={cls=&quot;static&quot;;text=&#39;\uF061&#39;;left=167;top=41;right=190;bottom=59;align=&quot;right&quot;;dl=1;dt=1;font=LOGFONT(h=-16;name=&#39;FontAwesome&#39;);transparent=1;z=8};
+static3={cls=&quot;static&quot;;text=&quot;端口范围：&quot;;left=19;top=40;right=115;bottom=61;align=&quot;right&quot;;dl=1;dt=1;transparent=1;z=9}
+)
+/*}}*/
+
+import thread.works; 
+var scanWorks = thread.works( 256,
+    function(host) {
+        import wsock.tcp.client;
+        var client = wsock.tcp.client();  
+        host.valid = client.connectTimeout(host.ip,host.port,0.5); 
+        client.close(); 
+
+        return host;
+    },,,winform.editIp.text
+);
+
+import win.timer;
+var timer = win.timer(winform,10);
+timer.disable()
+
+timer.onTimer = function(){ 
+    while( var host = scanWorks.pop() ) { 
+        if( host.valid ) winform.edit.print(&#39;可连接TCP端口：&#39;,host.port)
+        elseif( scanWorks.finished() ){
+            if(winform.pushing) return;
+
+            timer.disable();
+            winform.btnScan.disabledText = null;
+            winform.progress.hide = true;
+            winform.edit.print(&quot;检测完成！&quot;)
+        }
+        else {
+            winform.progress.stepIt();
+        }   
+    }
+}
+
+winform.btnScan.oncommand = function(id,event){
+    var portFrom,portTo = tonumber(winform.editPortFrom.text),tonumber(winform.editPortTo.text);
+    winform.progress.hide = false;
+    winform.progress.setRange(portFrom,portTo);
+    winform.progress.step = 1;
+
+    winform.btnScan.disabledText = {&#39;\uF254&#39;;&#39;\uF251&#39;;&#39;\uF252&#39;;&#39;\uF253&#39;;&#39;\uF250&#39;}
+    scanWorks.clear(); 
+    timer.enable();
+
+    winform.pushing = true;
+    var ip = winform.editIp.text;
+    for(port=portFrom;portTo){
+        scanWorks.push({port=port;ip=ip});
+
+        if( null === win.peekPumpMessage() ){
+            break;
+        }
+    } 
+    winform.pushing = false
+}
+
+winform.show();
+win.loopMessage();
+scanWorks.quit();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/aardio/Thread/06.works.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/aardio/Thread/06.works.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/aardio/Thread/06.works.md">Markdown 格式</a>
+</body> 
+</html>

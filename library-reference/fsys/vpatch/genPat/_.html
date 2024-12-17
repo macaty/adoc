@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - fsys.vpatch.genPat 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - fsys.vpatch.genPat 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>fsys.vpatch.genPat 库模块帮助文档</h1>
+
+<p><a id="fsys.vpatch"></a></p>
+
+<h2>fsys.vpatch 成员列表</h2>
+
+<p><a id="fsys.vpatch.genPat"></a></p>
+
+<h3>fsys.vpatch.genPat</h3>
+
+<p>用于创建VPATCH补丁</p>
+
+<p><a id="fsys.vpatch.genPat"></a></p>
+
+<h3>fsys.vpatch.genPat()</h3>
+
+<p><a href="#patchGenpatObject">返回对象:patchGenpatObject</a></p>
+
+<p><a id="fsys.vpatch.genPat"></a></p>
+
+<h3>fsys.vpatch.genPat(是否允许更新补丁,最大匹配次数)</h3>
+
+<p>创建VPATCH补丁生成器.<br>
+所有参数都是可选参数</p>
+
+<p><a id="patchGenpatObject"></a></p>
+
+<h2>patchGenpatObject 成员列表</h2>
+
+<p><a id="patchGenpatObject.append"></a></p>
+
+<h3>patchGenpatObject.append(&quot;执行文件路径&quot;,&quot;补丁文件路径&quot;)</h3>
+
+<p>将补丁文件附加到EXE文件尾</p>
+
+<p><a id="patchGenpatObject.create"></a></p>
+
+<h3>patchGenpatObject.create(&quot;旧版源文件&quot;,&quot;新版目标文件&quot;,&quot;更新补丁文件路径&quot;,块大小)</h3>
+
+<p>创建或更新补丁文件,<br>
+块大小为可选参数(默认为64),块越小生成的文件越小,所需时间也越长.<br>
+返回值为_VPATH_GEN_开头的常量,<br>
+_VPATCH_GEN_OK 表示成功<br>
+_VPATCH_GEN_SAME 表示文件相同,不需要创建补丁<br>
+_VPATCH_GEN_EXIST 表示补丁已存在,但不允许更新<br>
+_VPATCH_GEN_ERROR 发生错误</p>
+
+<h3>自动完成常量</h3>
+
+<p>_VPATCH_GEN_ARGUMENTS_MISSING=1<br>
+_VPATCH_GEN_ERROR=2<br>
+_VPATCH_GEN_EXIST=3<br>
+_VPATCH_GEN_OK=0<br>
+_VPATCH_GEN_SAME=-1  </p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/fsys/vpatch/genPat/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/fsys/vpatch/genPat/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/fsys/vpatch/genPat/_.md">Markdown 格式</a></p>
+
+</body> 
+</html>

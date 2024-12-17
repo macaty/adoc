@@ -1,0 +1,125 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - 查找字符串'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - 查找字符串</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>查找字符串</h1>
+
+<p>下面介绍不使用模式匹配语法的字符串查找函数。</p>
+
+<p>参考：<a href="matching.html" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/builtin/string/matching.html">模式匹配函数</a></p>
+
+<h3>一、禁用模式匹配搜索文本</h3>
+
+<p><code>string.indexOf(str,substr [ , startPos [ , endPos ] ])</code></p>
+
+<p>查找第二个字符串参数 @substr 位于第一个字符串参数 @str 的位置，返回值按字节计数。 </p>
+
+<p>此函数执行纯文本搜索，字符串如果包含 <code>&#39;\0&#39;</code> 则仅取<code>&#39;\0&#39;</code> 之前的文本。如果要搜索二进制数据，可以使用功能类似的 raw.indexOf 函数，</p>
+
+<p>可选用第三个参数 @startPos 指定开始查找的位置，默认为 1。</p>
+
+<p>可选用第四个参数 @endPos 指定结束查找的位置，默认为字符串长度。</p>
+
+<pre><code class="aardio language-aardio">import console;
+
+console.log( string.indexAny(&quot;abcdefg&quot;,&quot;cde&quot;) ) //显示3
+console.log( string.indexAny(&quot;abcdefg&quot;,&#39;c&#39;# ) ) //显示3
+
+console.pause(); 
+</code></pre>
+
+<h3>二、禁用模式匹配反向查找字符串</h3>
+
+<p><code>string.lastIndexOf(str,substr [ , bytes])</code> </p>
+
+<p>自后向前查找第二个字符串参数 @substr 位于第一个字符串参数 @str 的位置，返回值按字节计数。此函数执行二进制搜索，字符串可包含  <code>&#39;\0&#39;</code> 。</p>
+
+<p>可选用第三个参数 @bytes 指定要搜索的字节数，如果为正数则从左侧向右侧（尾部）按字节计数，如果为负数则自尾部反向按字节计数。</p>
+
+<p>此函数反向逐个字节查找字符串，效率较低。</p>
+
+<p>示例：</p>
+
+<pre><code class="aardio language-aardio">import console;
+console.log( string.lastIndexAny(&quot;abcdefg&quot;,&quot;cde&quot;) ) //显示5
+console.pause(); 
+</code></pre>
+
+<h3>三、查找任意单字节字符</h3>
+
+<p><code>string.indexAny(str,bytes | bytecode [ , pos])</code></p>
+
+<p>查找第二个字符串参数 @bytes 中的任意一个单字节字符位于第一个字符串参数 @str 的位置。也可以在第二个参数指定一个字节码。第二个参数可包含  <code>&#39;\0&#39;</code> 或指定要搜索的字节码为 0。</p>
+
+<p>可选用第三个参数 @pos 指定开始查找的位置，默认为 1。</p>
+
+<p>返回值按字节计数。</p>
+
+<pre><code class="aardio language-aardio">import console;
+
+console.log( string.indexAny(&quot;abcdefg&quot;,&quot;cde&quot;) ) //显示3
+console.log( string.indexAny(&quot;abcdefg&quot;,&#39;c&#39;# ) ) //显示3
+
+console.pause(); 
+</code></pre>
+
+<h3>四、反向查找任意单字节字符</h3>
+
+<p><code>string.lastIndexAny(str,bytes | bytecode [ , pos])</code> </p>
+
+<p>自后向前查找第二个字符串参数 @bytes 中的任意一个单字节字符位于第一个字符串参数 @str 的位置。也可以在第二个参数指定一个字节码。第二个参数可包含  <code>&#39;\0&#39;</code> 或指定要搜索的字节码为 0。</p>
+
+<p>可选用第三个参数 @pos 指定开始查找的位置，默认为 1。</p>
+
+<p>返回值按字节计数。 </p>
+
+<p>示例：</p>
+
+<pre><code class="aardio language-aardio">import console;
+console.log( string.lastIndexAny(&quot;abcdefg&quot;,&quot;cde&quot;) ) //显示5
+console.pause(); 
+</code></pre>
+
+<h3>五、检测是否以指定字符串开始</h3>
+
+<p><code>string.startWith(str,substr,是否忽略大小写=false)</code></p>
+
+<p>判断第二个字符串参数 @substr是否位于第一个字符串参数 @str 开始处。参数三为可选参数(默认为false)</p>
+
+<p>示例：</p>
+
+<pre><code class="aardio language-aardio">import console;
+console.log( string.startWith(&quot;abcdefg&quot;,&quot;abc&quot;) ) //显示true
+console.log( string.startWith(&quot;abcdefg&quot;,&quot;efg&quot;) ) //显示false
+console.pause(); 
+</code></pre>
+
+<h3>六、检测是否以指定字符串结束</h3>
+
+<p><code>string.endWith(str,substr,是否忽略大小写=false)</code></p>
+
+<p>判断第二个字符串参数 @substr 是否位于第一个字符串参数 @str 结束处。可选参数三指定是否忽略大小写( 默认值为false )。</p>
+
+<p>示例：</p>
+
+<pre><code class="aardio language-aardio">import console;
+console.log( string.endWith(&quot;abcdefg&quot;,&quot;abc&quot;) ) //显示false
+console.log( string.endWith(&quot;abcdefg&quot;,&quot;efg&quot;) ) //显示true
+console.pause(); 
+</code></pre>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-guide/builtin/string/search.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-guide/builtin/string/search.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/builtin/string/search.md">Markdown 格式</a></p>
+
+</body> 
+</html>

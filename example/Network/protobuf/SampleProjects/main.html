@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - main'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - main</title> 
+<link rel="stylesheet" href="../../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: main</h1><pre><code class="aardio language-aardio">import console;
+
+//编译 proto文件,生成类库
+import protobuf.parser;
+if(!protobuf.parser)
+    return; 
+
+var p = protobuf.parser();
+p.parseFile(&quot;\res\test.proto&quot;,,false)
+
+//导入生成的类库
+import AddressBook
+import Person
+
+//读取数据文件
+book = AddressBook();
+var str = string.load(&quot;\res\test.pb&quot; );
+book.parseFromString(str); 
+
+//遍历所有字段
+for k,v in book.eachName(){
+    console.log(k,v)
+}
+
+//支持转换为 JSON
+console.dumpJson(book)
+
+//访问数组元素
+person = book.person[1]
+console.log(&quot;用户名&quot;,person.name );
+console.log(person.id );
+console.log(person.email );
+console.log(&quot;电话号码数目&quot;,#person.phone ); 
+console.log(&quot;-------------------&quot;) 
+
+person = book.person[2] 
+console.log(&quot;用户名&quot;,person.name );
+console.log(person.id );
+console.log(person.email );
+console.log(&quot;电话号码数目&quot;,#person.phone ); 
+
+//遍历数组，用 # 操作符取数组长度
+for( i=1;#person.phone ){ 
+    console.log(i,person.phone[i].number )
+} 
+console.log(&quot;-------------------&quot;)  
+
+console.log(&quot;请右键点击&#39;工程-&gt;用户库&#39;,在弹出菜单中点击&#39;刷新目录&#39; &quot;)
+console.pause();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Network/protobuf/SampleProjects/main.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Network/protobuf/SampleProjects/main.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Network/protobuf/SampleProjects/main.md">Markdown 格式</a>
+</body> 
+</html>

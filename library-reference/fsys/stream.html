@@ -1,0 +1,282 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - fsys.stream 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - fsys.stream 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>fsys.stream 库模块帮助文档</h1>
+
+<p><a id="fsys"></a></p>
+
+<h2>fsys 成员列表</h2>
+
+<p><a id="fsys.stream"></a></p>
+
+<h3>fsys.stream</h3>
+
+<p>文件流对象<br>
+兼容IStream,ISequentialStream接口</p>
+
+<p>创建文件流对象,返回对象可传入其他线程使用。</p>
+
+<p><a id="fsys.stream"></a></p>
+
+<h3>fsys.stream(&quot;文件路径&quot;,&quot;a&quot;)</h3>
+
+<p>只写追加模式打开文件流,创建新文件保留原文件</p>
+
+<p><a id="fsys.stream"></a></p>
+
+<h3>fsys.stream(&quot;文件路径&quot;,&quot;a+&quot;)</h3>
+
+<p>读写追加模式打开文件流,创建新文件保留原文件<br>
+注意流对象总是以二进制模式读写，不需要添加b标记</p>
+
+<p><a id="fsys.stream"></a></p>
+
+<h3>fsys.stream(&quot;文件路径&quot;,&quot;r+&quot;)</h3>
+
+<p>读写模式打开文件流,文件必须存在<br>
+注意流对象总是以二进制模式读写，不需要添加b标记</p>
+
+<p><a id="fsys.stream"></a></p>
+
+<h3>fsys.stream(&quot;文件路径&quot;,&quot;w&quot;)</h3>
+
+<p>只写模式打开文件流,创建新文件清空原文件<br>
+注意流对象总是以二进制模式读写，不需要添加b标记</p>
+
+<p><a id="fsys.stream"></a></p>
+
+<h3>fsys.stream(&quot;文件路径&quot;,&quot;w+&quot;)</h3>
+
+<p>读写模式打开文件流,创建新文件清空原文件<br>
+注意流对象总是以二进制模式读写，不需要添加b标记</p>
+
+<p><a id="fsys.stream"></a></p>
+
+<h3>fsys.stream()</h3>
+
+<p><a href="stream.html#fsysStreamObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/fsys/stream.html#fsysStreamObject">返回对象:fsysStreamObject</a></p>
+
+<p><a id="fsys.stream"></a></p>
+
+<h3>fsys.stream(IStream接口指针)</h3>
+
+<p>直接使用指针创建对象</p>
+
+<p><a id="fsys.stream"></a></p>
+
+<h3>fsys.stream(IStream接口指针,true)</h3>
+
+<p>直接使用指针创建对象,该指针的COM引用计数减一<br>
+注意对象自身会增加COM引用计数并在释放时移除</p>
+
+<p><a id="fsys.stream"></a></p>
+
+<h3>fsys.stream(初始化数据,缓冲区长度)</h3>
+
+<p>创建内存流文件,所有参数可选<br>
+可选使用参数@3指定选项,此参数请参考库源码</p>
+
+<p><a id="fsysStreamObject"></a></p>
+
+<h2>fsysStreamObject 成员列表</h2>
+
+<p><a id="fsysStreamObject.close"></a></p>
+
+<h3>fsysStreamObject.close()</h3>
+
+<p>关闭对象</p>
+
+<p><a id="fsysStreamObject.commit"></a></p>
+
+<h3>fsysStreamObject.commit(flags)</h3>
+
+<p>提交更改</p>
+
+<p><a id="fsysStreamObject.flush"></a></p>
+
+<h3>fsysStreamObject.flush()</h3>
+
+<p>提交更改<br>
+兼容aardio标准流接口</p>
+
+<p><a id="fsysStreamObject.lockPointer"></a></p>
+
+<h3>fsysStreamObject.lockPointer()</h3>
+
+<p>如果这是一个内存流,<br>
+锁定内存并返回内存指针，内存长度,<br>
+需要使用对象的unlockPointer()成员函数解锁内存<br>
+写入内存流可能导致重新分配内存,所以返回的指针可能会变动</p>
+
+<p><a id="fsysStreamObject.read"></a></p>
+
+<h3>fsysStreamObject.read</h3>
+
+<p>读数据</p>
+
+<p><a id="fsysStreamObject.read"></a></p>
+
+<h3>fsysStreamObject.read(-1)</h3>
+
+<p>参数指定读取长度,-1为读到尾部<br>
+参数也可以指定一个结构体用于填充读取的数据,<br>
+无参数读取一行</p>
+
+<p><a id="fsysStreamObject.read"></a></p>
+
+<h3>fsysStreamObject.read(0)</h3>
+
+<p>是否未到达文件尾。<br>
+如果已经到达文件尾返回 null，否则返回空字符串。<br>
+注意在布尔表达式工 null 等于 false，空字符串等于 true。</p>
+
+<p><a id="fsysStreamObject.readAll"></a></p>
+
+<h3>fsysStreamObject.readAll()</h3>
+
+<p>移到指针到文件头<br>
+读取到文件尾返回所有数据</p>
+
+<p><a id="fsysStreamObject.readBuffer"></a></p>
+
+<h3>fsysStreamObject.readBuffer(buffer,读取长度)</h3>
+
+<p>读取数据到 buffer,<br>
+参数@1应是 buffer 对象或指针，<br>
+参数@2省略则默认为缓冲区长度。<br>
+成功返回读取长度</p>
+
+<p><a id="fsysStreamObject.readTo"></a></p>
+
+<h3>fsysStreamObject.readTo</h3>
+
+<p>读取直到以指定的字符串结束</p>
+
+<p><a id="fsysStreamObject.readTo"></a></p>
+
+<h3>fsysStreamObject.readTo(&#39;结束串&#39;)</h3>
+
+<p>读取直到以指定的字符串结束,返回值不包含结束串,<br>
+该函数每次仅读取一个字节,效率较低</p>
+
+<p><a id="fsysStreamObject.reset"></a></p>
+
+<h3>fsysStreamObject.reset()</h3>
+
+<p>文件指针移动到开始<br>
+类似seek(0,&quot;set&quot;),不同的是此函数返回对象自身  </p>
+
+<p><a href="stream.html#fsysStreamObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/fsys/stream.html#fsysStreamObject">返回对象:fsysStreamObject</a></p>
+
+<p><a id="fsysStreamObject.revert"></a></p>
+
+<h3>fsysStreamObject.revert()</h3>
+
+<p>撤消更改</p>
+
+<p><a id="fsysStreamObject.seek"></a></p>
+
+<h3>fsysStreamObject.seek(&quot;cur&quot;,)</h3>
+
+<p>移动至相对当前位置的指定偏移量</p>
+
+<p><a id="fsysStreamObject.seek"></a></p>
+
+<h3>fsysStreamObject.seek(&quot;end&quot;)</h3>
+
+<p>移动指针至结束处</p>
+
+<p><a id="fsysStreamObject.seek"></a></p>
+
+<h3>fsysStreamObject.seek(&quot;end&quot;,)</h3>
+
+<p>移动至相对结束处的指定偏移量</p>
+
+<p><a id="fsysStreamObject.seek"></a></p>
+
+<h3>fsysStreamObject.seek(&quot;set&quot;)</h3>
+
+<p>移动指针到开始</p>
+
+<p><a id="fsysStreamObject.seek"></a></p>
+
+<h3>fsysStreamObject.seek(&quot;set&quot;,)</h3>
+
+<p>移动至相对开始处的指定偏移量</p>
+
+<p><a id="fsysStreamObject.seek"></a></p>
+
+<h3>fsysStreamObject.seek()</h3>
+
+<p>得到当前位置</p>
+
+<p><a id="fsysStreamObject.size"></a></p>
+
+<h3>fsysStreamObject.size()</h3>
+
+<p>得到数据长度</p>
+
+<p><a id="fsysStreamObject.stat"></a></p>
+
+<h3>fsysStreamObject.stat()</h3>
+
+<p>返回流状态<br>
+返回值为STATSTG结构体  </p>
+
+<p><a href="#fsysstramSTATSTGObject">返回对象:fsysstramSTATSTGObject</a></p>
+
+<p><a id="fsysStreamObject.unlockPointer"></a></p>
+
+<h3>fsysStreamObject.unlockPointer()</h3>
+
+<p>解锁内存<br>
+用lockPointer函数获取内存指针使用以后，必须调用此函数</p>
+
+<p><a id="fsysStreamObject.write"></a></p>
+
+<h3>fsysStreamObject.write</h3>
+
+<p>写数据</p>
+
+<p><a id="fsysStreamObject.write"></a></p>
+
+<h3>fsysStreamObject.write(数据,长度)</h3>
+
+<p>写入数据<br>
+参数@1可使用字符串、buffer、指针、结构体等<br>
+如果指定指针就必须明确指定写入长度</p>
+
+<p><a id="fsysStreamObject.writeBuffer"></a></p>
+
+<h3>fsysStreamObject.writeBuffer(buffer,读取长度)</h3>
+
+<p>buffer 写入流,<br>
+参数@1应是 buffer 对象或指针，<br>
+参数@2省略则默认为缓冲区长度</p>
+
+<p><a id="fsysstramSTATSTGObject"></a></p>
+
+<h2>fsysstramSTATSTGObject 成员列表</h2>
+
+<p><a id="fsysstramSTATSTGObject.cbSize"></a></p>
+
+<h3>fsysstramSTATSTGObject.cbSize</h3>
+
+<p>文件长度</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/fsys/stream.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/fsys/stream.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/fsys/stream.md">Markdown 格式</a></p>
+
+</body> 
+</html>

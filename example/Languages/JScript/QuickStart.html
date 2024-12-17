@@ -1,0 +1,76 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 入门'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 入门</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 入门</h1><pre><code class="aardio language-aardio">//入门
+import console;
+import web.script;
+
+//创建 JScript 脚本虚拟机
+var   = web.script(&quot;JScript&quot;)
+
+//直接将 aardio 对象（表、数组、函数）赋值为 vm 的成员，即可在 JScript 中直接调用。
+vm.external = {
+    add = function(a,b,c){
+        return a + b + c;
+    };
+    log = function(...){
+        console.log(...);
+    };
+}
+
+/*
+JavaScript 快速入门：
+https://quickref.me/zh-CN/docs/javascript.html
+https://learnxinyminutes.com/docs/zh-cn/javascript-cn/
+*/
+
+//加载 JScript,也可以用 vm.doScript() 函数加载脚本
+vm.script = /*****
+function TestFunction(a,b) { 
+    //创建 COM 对象
+    var shell = new ActiveXObject(&quot;Shell.Application&quot;) 
+    var ns = shell.NameSpace(&quot;::{7007ACC7-3202-11D1-AAD2-00805FC1270E}&quot;)
+
+    var it = new Enumerator(ns.Items())
+    for ( ; !it.atEnd(); it.moveNext()){
+        var item = it.item();
+        external.log(item.Name,item.Path);
+    }
+
+    var arr = new VBArray(a).toArray();
+    return external.add(arr[0],arr[1],b); 
+}
+*****/
+
+//通过 vm.script.函数名() 调用 JScript 函数。
+var ret = vm.script.TestFunction({12,23},1);
+console.log( ret );
+
+//执行并计算 JScript 表达式代码,返回表达式的值
+console.log( vm.eval(&quot;1+1&quot;) )
+
+//也可以直接调用下面的函数计算 JScript 表达式的值，例如获取 JScript 版本：
+var version = web.script.eval(`ScriptEngine() 
+    + &quot; &quot; + ScriptEngineMajorVersion()
+    + &quot;.&quot;  + ScriptEngineMinorVersion() 
+    + &quot;.&quot;  + ScriptEngineBuildVersion()
+    `)
+console.log(version);
+
+console.pause();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/JScript/QuickStart.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/JScript/QuickStart.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Languages/JScript/QuickStart.md">Markdown 格式</a>
+</body> 
+</html>

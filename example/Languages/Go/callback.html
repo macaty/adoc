@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - aardio 调用 Go 语言 - 回调函数'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - aardio 调用 Go 语言 - 回调函数</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 调用 Go 语言 - 回调函数</h1><pre><code class="aardio language-aardio">//aardio 调用 Go 语言 - 回调函数
+import golang;
+var go = golang();
+
+go.main = /********** 
+package main
+
+/*  
+typedef int _stdcall (*addCallBack)(int a,int b);
+
+//用 C 函数回调 aardio 函数
+static int callAddCallBack(void* fnAdd,int a,int b){
+    return ((addCallBack)fnAdd)(a,b);
+}
+*/
+import &quot;C&quot; //C 代码写在这一句前面
+import &quot;unsafe&quot;
+
+//export TestCallBack 
+func TestCallBack(fnCallback unsafe.Pointer) int{
+
+    //用 C 函数回调 aardio 函数，改用 aardio.callPtr() 更简单一些。
+    var r = C.callAddCallBack(fnCallback,123,2)
+
+    //C.int 转换为 Go 类型： int   
+    return int(r)
+}
+
+func main() {} 
+**********/
+
+go.buildShared(&quot;/.go/cgoCallback.go&quot;);
+
+//------------------下面调用 DLL-----------------------
+import console.int;
+
+//加载 Go 编译的 DLL
+var goDll = raw.loadDll(&quot;/.go/cgoCallback.dll&quot;,,&quot;cdecl&quot;);
+
+/*
+创建 C 回调函数指针，
+文档:  https://www.aardio.com/zh-cn/doc/library-guide/builtin/raw/callback.html
+
+注意：aardio 与 Go 导出函数所在的默认 goroutine 
+之间的互调属于同一线程（这里不用考虑多线程），不必使用 thread.tostdcall）。
+*/
+var callback = raw.tostdcall(
+    function(a,b){
+        return a+b;
+    },&quot;int(int a,int b)&quot;);
+
+var ret  = goDll.TestCallBack( callback )
+
+console.log(ret);
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/Go/callback.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/Go/callback.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Languages/Go/callback.md">Markdown 格式</a>
+</body> 
+</html>

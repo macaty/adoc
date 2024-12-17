@@ -1,0 +1,49 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - aardio 调用 Java - 函数签名'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - aardio 调用 Java - 函数签名</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 调用 Java - 函数签名</h1><pre><code class="aardio language-aardio">//aardio 调用 Java - 函数签名
+import console; 
+import java; 
+
+//创建 Java 虚拟机
+var jvm = java();
+
+//导入 Java 类
+HelloworldApp = jvm.import( &quot;aardio.sample.HelloworldApp&quot;);
+
+/*
+调用每个 Java 函数其实都要写签名，Java 的签名语法比较复杂也不好理解，
+不过 aardio 已经把这个事情完全给优化掉了，aardio 调用 Java 一般不用再去写签名，
+
+Java 函数签名的语法在 aardio 里也被简化了，
+写的时候只要用类似 aardio 的 API 函数声明语法写就行了，
+aardio 会自动翻译为 Java 函数签名。下面看一个例子：
+*/ 
+
+//getMethod用于获取一个函数，参数@2指定函数签名
+var main = HelloworldApp.getMethod(&quot;main&quot;,&quot;string(string[])&quot;);
+
+//通过声明导入的函数，如果参数是字符串，可以把参数展开写
+var result = main(&quot;test1&quot;,&quot;test2&quot;)
+
+//在 aardio 里不写签名也可以调用 Java 函数，而且传参也更灵活一些
+var result = HelloworldApp.main( {&quot;aaa字符串数组1&quot;,&quot;bbb字符串数组2&quot;} )
+console.log(result);
+
+console.pause(); 
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/Java/07.signature.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/Java/07.signature.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Languages/Java/07.signature.md">Markdown 格式</a>
+</body> 
+</html>

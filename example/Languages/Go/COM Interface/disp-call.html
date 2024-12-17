@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - aardio 调用 Go 语言 - 调用 COM 接口 DLL'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - aardio 调用 Go 语言 - 调用 COM 接口 DLL</title> 
+<link rel="stylesheet" href="../../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 调用 Go 语言 - 调用 COM 接口 DLL</h1><pre><code class="aardio language-aardio">//aardio 调用 Go 语言 - 调用 COM 接口 DLL
+import console.int; 
+console.open();
+
+//内存加载 DLL，请先编译 Go 代码生成 DLL
+var dll = raw.loadDll($&quot;/dispDemo.dll&quot;,,&quot;cdecl&quot;); 
+
+//aardio 对象转换为 COM 对象（COM 接口会自动转换，原生 DLL 接口要调用 com.ImplInterface ）
+import com;
+var disp = com.ImplInterface( 
+    //任意表对象或函数都可以转换为 COM 对象（IDispatch 接口对象）
+    Add = function(a,b){
+
+        console.log(&quot;Add 函数被 Go 语言调用了&quot;);
+        return a + b;
+    } 
+);
+
+//调用 Go 函数
+var pDisp = dll.TestDispatchP(disp);
+
+//将 Go 函数返回的 IDispatch 指针转换为 COM 对象
+var comObj = com.QueryObjectR(pDisp);//转换同时释放一次引用计数
+
+//操作 COM 对象
+comObj.Add(&quot;key&quot;,&quot;value&quot;);
+comObj.Add(&quot;key2&quot;,&quot;value2&quot;);
+
+//遍历 COM 对象
+for index,key in com.each(comObj) {
+    //输出字典的键值
+    console.log( key,comObj.Item(key) )
+} 
+
+console.log(ptr)
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/Go/COM Interface/disp-call.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/Go/COM Interface/disp-call.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Languages/Go/COM Interface/disp-call.md">Markdown 格式</a>
+</body> 
+</html>

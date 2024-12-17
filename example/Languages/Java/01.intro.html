@@ -1,0 +1,86 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - aardio 调用 Java 快速入门'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - aardio 调用 Java 快速入门</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 调用 Java 快速入门</h1><pre><code class="aardio language-aardio">//aardio 调用 Java 快速入门
+import console;
+import java; 
+
+/*
+aardio + Java 开发教程：
+https://mp.weixin.qq.com/s/Vb0Tq9YMbz68KuxM4sqE-Q
+
+Java 快速入门：
+https://quickref.me/zh-CN/docs/java.html
+https://learnxinyminutes.com/docs/zh-cn/java-cn/
+*/
+
+//自定义 JRE 路径
+//java.path.setJreHome(&quot;/自定义 JRE 路径,路径首字符为单个斜杆表示应用程序目录&quot;)
+
+//可使用下列标准库之一自动配置为使用指定版本的 JRE
+/*
+import java.jre.v8ora; //调用 Oracle JRE v8，找不到会自动安装。
+import java.jre.v8; //调用 OpenJDK JRE v8，找不到会自动安装。
+import java.jre.v6;//调用精简版 JRE v6，发布时嵌入到 EXE，体积小。
+*/
+
+/*
+可用 java.addClassPath 添加类搜索目录。
+默认已添加  &quot;/java/&quot;以及&quot;/java/*.jar&quot;，路径首字符为单个斜杆表示『应用程序根目录』。  
+『应用程序根目录』在开发时指工程目录（或工程外部启动 aardio 文件目录），发布后指启动 EXE 所在目录。
+*/        
+java.addClassPath(&quot;/java123/&quot;); //目录下的 *.jar 也会自动添加(不递归子目录）
+
+//以上代码在创建 Java 虚拟机或运行 Java 程序以前调用才会生效
+
+/*
+下面创建 Java 虚拟机（ 自动查找 32 位 Java 运行时，找不到会自动下载 ） 
+如果需要兼容 64/32 位 Java：请改用 java.popenProcess() 或 java.openProcess() 。
+*/
+var jvm = java(); //可指定一个或多个 Java 启动参数，也可以将多个参数放到一个字符串或数组参数里
+
+//加载 Java 类对象
+HelloworldApp = jvm.import(&quot;aardio.sample.HelloworldApp&quot;);
+
+/*
+如果 jar 无法加载，请检查：
+1、jar 本身是不是有问题，是不是 jar 里又包含了 jar ，或者引用了其他 jar （但没有添加到类搜索路径中）
+2、是不是引用的类名写错了。
+*/
+
+/*
+也可以如下自内存或文件直接加载类,
+注意下面的路径前面的 $ 操作符可将文件编译到代码中（发布后不再需要原文件）
+而路径前面的波浪线反斜杠（或斜杆）表示程序根目录(开发时一般指工程目录，或独立代码所在目录，发布后指启动EXE文件所在的目录)
+*/
+HelloworldApp = jvm.import(&quot;aardio.sample.HelloworldApp&quot;,$&quot;\java\aardio\sample\HelloworldApp.class&quot;);
+
+//用 Java 类创建 Java 对象
+var helloworld = HelloworldApp();
+
+//直接调用 Java 对象的方法 
+var result = helloworld.test(3); 
+console.log( result );//调用Java对象的方法
+
+//导入 Java 类
+var String = jvm.import( &quot;java.lang.String&quot;); 
+
+//创建 Java 对象
+console.log( String(&quot;测试一下&quot;)  );
+console.pause();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/Java/01.intro.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/Java/01.intro.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Languages/Java/01.intro.md">Markdown 格式</a>
+</body> 
+</html>

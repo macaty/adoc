@@ -1,0 +1,49 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - SQL 读写 CSV'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - SQL 读写 CSV</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: SQL 读写 CSV</h1><pre><code class="aardio language-aardio">//SQL 读写 CSV
+//下面的代码仅使用系统组件,不需要安装 Access 软件
+import access;
+import console; 
+
+var txt = /*
+Name,Starred,Contact_Id
+&quot;孟轲&quot;,&quot;0&quot;,0
+&quot;张九龄&quot;,&quot;1&quot;,1 
+*/ 
+
+//创建测试的TXT数据库，access 读写的 CSV 必须是 ANSI 编码。
+string.save(&quot;/Contact.csv&quot;,string.fromto(txt) ); 
+
+//指定 CSV 分隔符,不是默认的逗号就要在这里改
+import fsys.ini;
+var schema = fsys.ini(&quot;/schema.ini&quot;);
+schema.write(&quot;Contact.csv&quot;,&quot;Format&quot;,&quot;Delimited(,)&quot;); 
+
+//创建 CSV 数据库，参数指定 CSV 文件所在目录就可以了 
+var csv = access( &quot;/&quot; ); 
+
+//查询并遍历数据
+for(rs in csv.each(&quot;SELECT * FROM [Contact.csv] &quot; ) ){ 
+     console.log( rs(&quot;Name&quot;).value,rs(&quot;Starred&quot;).value    );  
+}
+
+//关闭 CSV 数据库
+csv.close(); 
+console.pause();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Database/csv/access.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Database/csv/access.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Database/csv/access.md">Markdown 格式</a>
+</body> 
+</html>

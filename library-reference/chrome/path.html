@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - chrome.path 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - chrome.path 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>chrome.path 库模块帮助文档</h1>
+
+<p><a id="chrome"></a></p>
+
+<h2>chrome 成员列表</h2>
+
+<p><a id="chrome.path"></a></p>
+
+<h3>chrome.path(允许自动安装,优先查找Chrome)</h3>
+
+<p>用于获取 Chrome 安装路径，所有参数可省略。<br>
+支持  Chrome 、 Edge（Chromium ）、Supermium 等浏览器  </p>
+
+<p>如果允许自动安装，且没有可用浏览器,，将会下载安装 Edge（Chromium）   </p>
+
+<p>默认优先获取 Edge（Chromium）路径，如参数 @2 为 true 则优先获取 Chrome 路径  </p>
+
+<p>Win10 以后系统自带 Edge（Chromium ）一般不需要安装。<br>
+如果允许自动安装，则 Win10 以后安装 Edge（Chromium ）。<br>
+Win7 安装 Chrome 109，XP 安装 Chrome 49</p>
+
+<p><a id="chrome.path"></a></p>
+
+<h2>chrome.path 成员列表</h2>
+
+<p>用于获取 Edge（Chromium ）、Chrome 、 Supermium 安装路径</p>
+
+<p><a id="chrome.path.profile"></a></p>
+
+<h3>chrome.path.profile(profile,path,userDataDir)</h3>
+
+<p>获取 Edget 或 Chrome 用户配置文件（Profile）所在目录。  </p>
+
+<p>所有参数可选：<br>
+@profile 指定配置目录名。<br>
+@path 批定子路径。<br>
+@userDataDir 指定用户数据根目录。<br>
+如果返回的文件路径（拼接 @path 以后）不存在则返回 null 。</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/chrome/path.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/chrome/path.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/chrome/path.md">Markdown 格式</a></p>
+
+</body> 
+</html>

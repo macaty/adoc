@@ -1,0 +1,262 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - inet.downBox 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - inet.downBox 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>inet.downBox 库模块帮助文档</h1>
+
+<p><a id="inet"></a></p>
+
+<h2>inet 成员列表</h2>
+
+<p><a id="inet.downBox"></a></p>
+
+<h3>inet.downBox</h3>
+
+<p>下载对话框</p>
+
+<p><a id="inet.downBox"></a></p>
+
+<h3>inet.downBox()</h3>
+
+<p>创建一个下载对话框  </p>
+
+<p><a href="downBox.html#inetDownBoxObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/inet/downBox.html#inetDownBoxObject">返回对象:inetDownBoxObject</a></p>
+
+<p><a id="inet.downBox"></a></p>
+
+<h3>inet.downBox(父窗口,&quot;标题&quot;,下载成功关闭超时)</h3>
+
+<p>所有参数可选<br>
+参数@3可选指定下载成功自动关闭对话框的超时值,单位毫秒</p>
+
+<p><a id="inetDownBoxObject"></a></p>
+
+<h2>inetDownBoxObject 成员列表</h2>
+
+<p><a id="inetDownBoxObject.bufferSize"></a></p>
+
+<h3>inetDownBoxObject.bufferSize</h3>
+
+<p>缓冲区大小<br>
+不指定则默认为128KB</p>
+
+<p><a id="inetDownBoxObject.changeInterval"></a></p>
+
+<h3>inetDownBoxObject.changeInterval(请输入ID,1000)</h3>
+
+<p>重新设定定时器的延时时间</p>
+
+<p><a id="inetDownBoxObject.clearInterval"></a></p>
+
+<h3>inetDownBoxObject.clearInterval(请输入ID)</h3>
+
+<p>删除定时器</p>
+
+<p><a id="inetDownBoxObject.complete"></a></p>
+
+<h3>inetDownBoxObject.complete</h3>
+
+<p>是否下载完成</p>
+
+<p><a id="inetDownBoxObject.contentLength"></a></p>
+
+<h3>inetDownBoxObject.contentLength</h3>
+
+<p>文件长度<br>
+如果文件长度为零,并且modified属性为false,表示不需要重新下载</p>
+
+<p><a id="inetDownBoxObject.cookies"></a></p>
+
+<h3>inetDownBoxObject.cookies</h3>
+
+<p>自定义HTTP请求头中的请求cookie</p>
+
+<p><a id="inetDownBoxObject.download"></a></p>
+
+<h3>inetDownBoxObject.download</h3>
+
+<p>弹出下载对话框并开始下载文件</p>
+
+<p><a id="inetDownBoxObject.download"></a></p>
+
+<h3>inetDownBoxObject.download(URL,存储路径,配置文件,userAgent,proxy,... )</h3>
+
+<p>下载文件<br>
+参数@1指定下载网址,允许传入一个动态返回 url 的线程函数<br>
+参数@2可以指定目录或文件路径,目录必须以反斜杠结尾,<br>
+其他参数可省略<br>
+下载成功返回存储文路径<br>
+userAgent,proxy等可选参数用于创建http对象,参考inet.http构造函数说明</p>
+
+<p><a id="inetDownBoxObject.endProc"></a></p>
+
+<h3>inetDownBoxObject.endProc</h3>
+
+<pre><code class="aardio language-aardio">inetDownBoxObject.endProc = function(savePath,fileSize,unmodified){
+    /*下载成功触发此函数。  
+savePath 为下载文件路径。  
+fileSize 为文件大小，  
+文件未变更则 unmodified 为 true*/
+    if(!unmodified)
+        owner.endModal();
+}
+</code></pre>
+
+<p><a id="inetDownBoxObject.getPos"></a></p>
+
+<h3>inetDownBoxObject.getPos()</h3>
+
+<p>返回相对坐标,宽,高</p>
+
+<p><a id="inetDownBoxObject.headers"></a></p>
+
+<h3>inetDownBoxObject.headers</h3>
+
+<p>指定下载时的请求HTTP头</p>
+
+<p><a id="inetDownBoxObject.labInfo"></a></p>
+
+<h3>inetDownBoxObject.labInfo</h3>
+
+<p>显示信息  </p>
+
+<p><a href="../win/ui/ctrl/static.html#staticObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/static.html#staticObject">返回对象:staticObject</a></p>
+
+<p><a id="inetDownBoxObject.labProgress"></a></p>
+
+<h3>inetDownBoxObject.labProgress</h3>
+
+<p>显示进度信息  </p>
+
+<p><a href="../win/ui/ctrl/static.html#staticObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/static.html#staticObject">返回对象:staticObject</a></p>
+
+<p><a id="inetDownBoxObject.modified"></a></p>
+
+<h3>inetDownBoxObject.modified</h3>
+
+<p>文件在上次下载以后是否修改过</p>
+
+<p><a id="inetDownBoxObject.modifyStyle"></a></p>
+
+<h3>inetDownBoxObject.modifyStyle(remove,add,swpFlags)</h3>
+
+<p>修改窗口样式,所有参数都是可选参数,<br>
+@remove 用数值指定要移除的样式,可使用 <em>WS</em> 前缀的常量<br>
+@add 用数值指定要添加的样式,可使用 <em>WS</em> 前缀的常量<br>
+@swpFlags 可选用数值指定调整窗口选项,可使用 <em>SWP</em> 前缀的常量<br>
+如果指定了 @swpFlag ,则使用该参数调用::SetWindowPos<br>
+细节请参考 win.modifyStyle 函数源码</p>
+
+<p><a id="inetDownBoxObject.modifyStyleEx"></a></p>
+
+<h3>inetDownBoxObject.modifyStyleEx(remove,add,swpFlags)</h3>
+
+<p>修改窗口扩展样式,所有参数都是可选参数,<br>
+@remove 用数值指定要移除的样式,可使用 <em>WS_EX</em> 前缀的常量<br>
+@add 用数值指定要添加的样式,可使用 <em>WS_EX</em> 前缀的常量<br>
+@swpFlags 可选用数值指定调整窗口选项,可使用 <em>SWP</em> 前缀的常量<br>
+如果指定了 @swpFlag ,则使用该参数调用::SetWindowPos<br>
+细节请参考 win.modifyStyle 函数源码</p>
+
+<p><a id="inetDownBoxObject.progress"></a></p>
+
+<h3>inetDownBoxObject.progress</h3>
+
+<p>进度条  </p>
+
+<p><a href="#plusObject">返回对象:plusObject</a></p>
+
+<p><a id="inetDownBoxObject.referer"></a></p>
+
+<h3>inetDownBoxObject.referer</h3>
+
+<p>指定下载时的引用页</p>
+
+<p><a id="inetDownBoxObject.removeResumeFile"></a></p>
+
+<h3>inetDownBoxObject.removeResumeFile()</h3>
+
+<p>移除断点续传配置文件</p>
+
+<p><a id="inetDownBoxObject.savePath"></a></p>
+
+<h3>inetDownBoxObject.savePath</h3>
+
+<p>下载成功后的文件存储路径</p>
+
+<p><a id="inetDownBoxObject.setInterval"></a></p>
+
+<h3>inetDownBoxObject.setInterval(回调函数,延时毫秒数,...)</h3>
+
+<pre><code class="aardio language-aardio">inetDownBoxObject.setInterval(回调函数,延时毫秒数,...setInterval(   
+    function(){  
+        /*参数@1指定执行函数,参数@2指定执行间隔，  
+可选指定一个或多个回调参数，不指定回调参数则默认为:  
+ hwnd,message,timerId,tick,  
+
+如果在定时器中执行了win.delay等继续消息循环的代码，  
+在定时器退出前不会再触发同一定时器（重入）。  
+
+定时器回调函数返回数值可修改时间间隔,  
+返回false取消该定时器*/  
+    },1000   
+)
+</code></pre>
+
+<p><a id="inetDownBoxObject.setPos"></a></p>
+
+<h3>inetDownBoxObject.setPos(x,y,宽,高,插入位置,参数)</h3>
+
+<p>调整窗口位置或排序<br>
+所有参数可选</p>
+
+<p><a id="inetDownBoxObject.setTimeout"></a></p>
+
+<h3>inetDownBoxObject.setTimeout(函数名,延时,其他参数)</h3>
+
+<p>延时执行函数</p>
+
+<p><a id="inetDownBoxObject.statusCode"></a></p>
+
+<h3>inetDownBoxObject.statusCode</h3>
+
+<p>HTTP状态码</p>
+
+<p><a id="inetDownBoxObject.test"></a></p>
+
+<h3>inetDownBoxObject.test(URL,存储路径,配置文件,userAgent,proxy,... )</h3>
+
+<p>检测是否已下载最新文件<br>
+参数@1指定下载网址<br>
+参数@2可以指定目录或文件路径,目录必须以反斜杠结尾,<br>
+已下载文件未变更返回true<br>
+需要下载或续传返回false,下载错误返回null<br>
+userAgent,proxy等可选参数用于创建http对象,参考inet.http构造函数说明</p>
+
+<p><a id="inetDownBoxObject.text"></a></p>
+
+<h3>inetDownBoxObject.text</h3>
+
+<p>对话框标题</p>
+
+<p><a id="inetDownBoxObject.userAgent"></a></p>
+
+<h3>inetDownBoxObject.userAgent</h3>
+
+<p>指定下载时的请求User Agent</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/inet/downBox.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/inet/downBox.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/inet/downBox.md">Markdown 格式</a></p>
+
+</body> 
+</html>

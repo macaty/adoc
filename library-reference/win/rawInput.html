@@ -1,0 +1,208 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - win.rawInput 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - win.rawInput 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>win.rawInput 库模块帮助文档</h1>
+
+<p><a id="win.rawInput"></a></p>
+
+<h2>win.rawInput 成员列表</h2>
+
+<p>原始输入（RAW INPUT）钩子。<br>
+相比 key.hook，RAW INPUT 支持的输入设备更多一些，例如游戏手柄，触摸屏........等等。<br>
+<a href="javascript:if(confirm('https://learn.microsoft.com/en-us/windows/win32/inputdev/about-raw-input?redirectedfrom=MSDN  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='https://learn.microsoft.com/en-us/windows/win32/inputdev/about-raw-input?redirectedfrom=MSDN'" tppabs="https://learn.microsoft.com/en-us/windows/win32/inputdev/about-raw-input?redirectedfrom=MSDN">参考文档</a></p>
+
+<p><a id="win.rawInput.getData"></a></p>
+
+<h3>win.rawInput.getData()</h3>
+
+<p><a href="#rawInputDataObject">返回对象:rawInputDataObject</a></p>
+
+<p><a id="win.rawInput.getData"></a></p>
+
+<h3>win.rawInput.getData(lparam)</h3>
+
+<p>返回原始输入钩子数据。</p>
+
+<p><a id="win.rawInput.register"></a></p>
+
+<h3>win.rawInput.register(窗口对象或句柄)</h3>
+
+<p>注册原始输入（RAW INPUT）钩子窗口。</p>
+
+<p><a id="rawInputDataObject"></a></p>
+
+<h2>rawInputDataObject 成员列表</h2>
+
+<p><a id="rawInputDataObject.data.hid"></a></p>
+
+<h3>rawInputDataObject.data.hid</h3>
+
+<p><a href="#rawInputHidObject">返回对象:rawInputHidObject</a></p>
+
+<p><a id="rawInputDataObject.data.keyboard"></a></p>
+
+<h3>rawInputDataObject.data.keyboard</h3>
+
+<p><a href="#rawInputKeyboardObject">返回对象:rawInputKeyboardObject</a></p>
+
+<p><a id="rawInputDataObject.data.mouse"></a></p>
+
+<h3>rawInputDataObject.data.mouse</h3>
+
+<p><a href="#rawInputMouseObject">返回对象:rawInputMouseObject</a></p>
+
+<p><a id="rawInputDataObject.header"></a></p>
+
+<h3>rawInputDataObject.header</h3>
+
+<p><a href="#rawInputHeaderObject">返回对象:rawInputHeaderObject</a></p>
+
+<p><a id="rawInputHeaderObject"></a></p>
+
+<h2>rawInputHeaderObject 成员列表</h2>
+
+<p><a id="rawInputHeaderObject.device"></a></p>
+
+<h3>rawInputHeaderObject.device</h3>
+
+<p>设备句柄</p>
+
+<p><a id="rawInputHeaderObject.dwType"></a></p>
+
+<h3>rawInputHeaderObject.dwType</h3>
+
+<p>0 为鼠标，1 为键盘，3 为游戏手柄或其他输入设备</p>
+
+<p><a id="rawInputHeaderObject.param"></a></p>
+
+<h3>rawInputHeaderObject.param</h3>
+
+<p>WM_INPUT 消息 wParam 参数值</p>
+
+<p><a id="rawInputHeaderObject.size"></a></p>
+
+<h3>rawInputHeaderObject.size</h3>
+
+<p>字节大小</p>
+
+<p><a id="rawInputHidObject"></a></p>
+
+<h2>rawInputHidObject 成员列表</h2>
+
+<p><a id="rawInputHidObject.count"></a></p>
+
+<h3>rawInputHidObject.count</h3>
+
+<p>HID 输入总数，指定 rawData 数组的大小</p>
+
+<p><a id="rawInputHidObject.rawData.?"></a></p>
+
+<h3>rawInputHidObject.rawData.?</h3>
+
+<p>输入原始数据。<br>
+这是一个字节数组的数组。<br>
+u单个字节数组的大小与 sizeHid 属性一致。<br>
+所有字节数组的总数也就是 rawData 的数组长度与 count 属性一致。</p>
+
+<p><a id="rawInputHidObject.sizeHid"></a></p>
+
+<h3>rawInputHidObject.sizeHid</h3>
+
+<p>每个 HID 输入的字节大小，指定 rawData 数组元素的数组大小</p>
+
+<p><a id="rawInputKeyboardObject"></a></p>
+
+<h2>rawInputKeyboardObject 成员列表</h2>
+
+<p><a id="rawInputKeyboardObject.extraInformation"></a></p>
+
+<h3>rawInputKeyboardObject.extraInformation</h3>
+
+<p>附加信息</p>
+
+<p><a id="rawInputKeyboardObject.flags"></a></p>
+
+<h3>rawInputKeyboardObject.flags</h3>
+
+<p>扫描码选项</p>
+
+<p><a id="rawInputKeyboardObject.makeCode"></a></p>
+
+<h3>rawInputKeyboardObject.makeCode</h3>
+
+<p>扫描码</p>
+
+<p><a id="rawInputKeyboardObject.message"></a></p>
+
+<h3>rawInputKeyboardObject.message</h3>
+
+<p>消息</p>
+
+<p><a id="rawInputKeyboardObject.vKey"></a></p>
+
+<h3>rawInputKeyboardObject.vKey</h3>
+
+<p>虚拟键码</p>
+
+<p><a id="rawInputMouseObject"></a></p>
+
+<h2>rawInputMouseObject 成员列表</h2>
+
+<p><a id="rawInputMouseObject.buttonData"></a></p>
+
+<h3>rawInputMouseObject.buttonData</h3>
+
+<p>鼠标按钮数据</p>
+
+<p><a id="rawInputMouseObject.buttonFlags"></a></p>
+
+<h3>rawInputMouseObject.buttonFlags</h3>
+
+<p>鼠标按钮转换状态</p>
+
+<p><a id="rawInputMouseObject.extraInformation"></a></p>
+
+<h3>rawInputMouseObject.extraInformation</h3>
+
+<p>附加信息</p>
+
+<p><a id="rawInputMouseObject.flags"></a></p>
+
+<h3>rawInputMouseObject.flags</h3>
+
+<p>选项</p>
+
+<p><a id="rawInputMouseObject.lastX"></a></p>
+
+<h3>rawInputMouseObject.lastX</h3>
+
+<p>X坐标移动值</p>
+
+<p><a id="rawInputMouseObject.lastY"></a></p>
+
+<h3>rawInputMouseObject.lastY</h3>
+
+<p>Y坐标移动值</p>
+
+<h3>自动完成常量</h3>
+
+<p>_RIM_TYPEHID=2<br>
+_RIM_TYPEKEYBOARD=1<br>
+_RIM_TYPEMOUSE=0  </p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/rawInput.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/rawInput.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/rawInput.md">Markdown 格式</a></p>
+
+</body> 
+</html>

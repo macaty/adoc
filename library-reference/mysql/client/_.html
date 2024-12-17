@@ -1,0 +1,655 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - mysql.client 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - mysql.client 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>mysql.client 库模块帮助文档</h1>
+
+<p><a id="mysql"></a></p>
+
+<h2>mysql 成员列表</h2>
+
+<p><a id="mysql.client"></a></p>
+
+<h3>mysql.client( 连接参数表 ）</h3>
+
+<pre><code class="aardio language-aardio">mysql.client(  
+    server = &quot;localhost&quot;;  
+    database = &quot;数据库名&quot;;  
+    uid = &quot;用户名&quot;;  
+    pwd = &quot;密码&quot;;  
+);
+</code></pre>
+
+<p><a id="mysql.client"></a></p>
+
+<h3>mysql.client()</h3>
+
+<p><a href="#mysqlClientObject">返回对象:mysqlClientObject</a></p>
+
+<p><a id="mysql.client"></a></p>
+
+<h2>mysql.client 成员列表</h2>
+
+<p>mysql客户端</p>
+
+<p><a id="mysql.client.pluginDir"></a></p>
+
+<h3>mysql.client.pluginDir</h3>
+
+<p>默认插件目录，<br>
+默认值为 &quot;%LocalAppData%\aardio\mariadb\plugin\客户端主版本号.次版本号&quot;。<br>
+连接时如果连接参数中用 pluginDir 字段指定了插件目录，<br>
+则忽略 mysql.client.pluginDir</p>
+
+<p><a id="mysql.client.version"></a></p>
+
+<h3>mysql.client.version()</h3>
+
+<p>客户端版本。<br>
+返回 XYYZZ 格式的数值：<br>
+X为主版本号，YY为副版本号，ZZ 为修订版本号。<br>
+如果参数 @1 为 true，则返回字符串格式版本号 &quot;X.Y.Z&quot;</p>
+
+<p><a id="mysqlClientObject"></a></p>
+
+<h2>mysqlClientObject 成员列表</h2>
+
+<p><a id="mysqlClientObject.beginTrans"></a></p>
+
+<h3>mysqlClientObject.beginTrans()</h3>
+
+<p>开始事务</p>
+
+<p><a id="mysqlClientObject.changeUser"></a></p>
+
+<h3>mysqlClientObject.changeUser(&quot;用户名&quot;,&quot;密码&quot;,&quot;数据库名&quot;)</h3>
+
+<p>修改登录用户</p>
+
+<p><a id="mysqlClientObject.characterSetName"></a></p>
+
+<h3>mysqlClientObject.characterSetName()</h3>
+
+<p>当前连接的默认字符集</p>
+
+<p><a id="mysqlClientObject.charset"></a></p>
+
+<h3>mysqlClientObject.charset</h3>
+
+<p>连接的默认字符集，默认为UTF8,<br>
+不建议更改此值</p>
+
+<p><a id="mysqlClientObject.clearResult"></a></p>
+
+<h3>mysqlClientObject.clearResult()</h3>
+
+<p>清空查询返回值<br>
+如果下次查询报错&quot;Commands out of sync; you can&#39;t run this command now&quot;<br>
+则应在查询前调用此函数</p>
+
+<p><a id="mysqlClientObject.close"></a></p>
+
+<h3>mysqlClientObject.close()</h3>
+
+<p>关闭服务器连接</p>
+
+<p><a id="mysqlClientObject.commitTrans"></a></p>
+
+<h3>mysqlClientObject.commitTrans()</h3>
+
+<p>提交事务</p>
+
+<p><a id="mysqlClientObject.connection"></a></p>
+
+<h3>mysqlClientObject.connection</h3>
+
+<p>数据库连接句柄<br>
+不要修改该属性</p>
+
+<p><a id="mysqlClientObject.createDb"></a></p>
+
+<h3>mysqlClientObject.createDb(&quot;数据库名&quot;)</h3>
+
+<p>如果数据库不存在则创建数据库,<br>
+如果成功创建数据库则调用selectDb函数选择数据库<br>
+所有操作成功返回true</p>
+
+<p><a id="mysqlClientObject.debug"></a></p>
+
+<h3>mysqlClientObject.debug(调试信息)</h3>
+
+<p>用给定的字符串执行DBUG_PUSH</p>
+
+<p><a id="mysqlClientObject.dropDb"></a></p>
+
+<h3>mysqlClientObject.dropDb(&quot;数据库名&quot;)</h3>
+
+<p>如果存在该数据库则删除</p>
+
+<p><a id="mysqlClientObject.dumpDebugInfo"></a></p>
+
+<h3>mysqlClientObject.dumpDebugInfo()</h3>
+
+<p>让服务器将调试信息写入日志</p>
+
+<p><a id="mysqlClientObject.each"></a></p>
+
+<h3>mysqlClientObject.each()</h3>
+
+<pre><code class="aardio language-aardio">for 字段名,,/*注意首字段必须为非空值*/字段名2 in mysqlClientObject.each(&quot;SELECT * FROM &#39;MYTABLE&#39;&quot;){  
+
+
+}
+</code></pre>
+
+<p><a id="mysqlClientObject.errno"></a></p>
+
+<h3>mysqlClientObject.errno</h3>
+
+<p>返回错误代码</p>
+
+<p><a id="mysqlClientObject.escape"></a></p>
+
+<h3>mysqlClientObject.escape()</h3>
+
+<p>转义参数指定值为用于 MySQL 查询语句的参数化值</p>
+
+<p><a id="mysqlClientObject.escapeId"></a></p>
+
+<h3>mysqlClientObject.escapeId()</h3>
+
+<p>如果传入参数是文本则转换为 SQL 标识符,<br>
+返回文本首尾会添加反引号,  </p>
+
+<p>如果传入参数是表, 则格式化为 SQL 键值对并以 AND 为分隔符,<br>
+如果表中的值为数组,则格式化为 IN 语句</p>
+
+<p><a id="mysqlClientObject.escapeString"></a></p>
+
+<h3>mysqlClientObject.escapeString()</h3>
+
+<p>转义参数指定值为用于 MySQL 查询语句参数化字符串<br>
+返回文本不会在首尾添加单引号</p>
+
+<p>将字符串编码为合法的转义SQL字符串,<br>
+格式化命名参数时,字符串会自动调用该函数转义为安全的字符串</p>
+
+<p><a id="mysqlClientObject.format"></a></p>
+
+<h3>mysqlClientObject.format(SQL语句,格式化参数...)</h3>
+
+<p>格式化 SQL 查询语句。<br>
+所有需要格式化 SQL 语句的函数调用此函数格式化 SQL语句,<br>
+如果格式化参数不是表则调用 string.format 格式化,否则按以下规则格式化:  </p>
+
+<p>SQL语句中?或??占位符使用表的数组元素格式化,<br>
+@字符开始的命名参数使用表的名值对元素格式化,<br>
+其中??格式化为标识符,其他占位符格式化为参数值。  </p>
+
+<p>字符串转为SQL安全转义字符串,buffer转为X&#39;4D7953514C&#39;格式,<br>
+数组则自动展开为列表,例如{&#39;a&#39;, &#39;b&#39;}格式化为&#39;a&#39;, &#39;b&#39;<br>
+嵌套数组则格式化为分组列表,例如{{&#39;a&#39;, &#39;b&#39;}, {&#39;c&#39;, &#39;d&#39;}} 格式化为 (&#39;a&#39;, &#39;b&#39;), (&#39;c&#39;, &#39;d&#39;)<br>
+非数组的命名表，则格式化为 SQL 键值对,默认以逗号为分隔符,<br>
+??占位符格式化 SQL 键值对则以 AND 为分隔符,并将数组值转换为IN语句</p>
+
+<p><a id="mysqlClientObject.getAffectedRows"></a></p>
+
+<h3>mysqlClientObject.getAffectedRows()</h3>
+
+<p>sql语句执行后影响的记录行数</p>
+
+<p><a id="mysqlClientObject.getInfo"></a></p>
+
+<h3>mysqlClientObject.getInfo()</h3>
+
+<p>返回最近执行查询信息的文本描述</p>
+
+<p><a id="mysqlClientObject.getProtoInfo"></a></p>
+
+<h3>mysqlClientObject.getProtoInfo()</h3>
+
+<p>返回当前连接所使用的协议版本</p>
+
+<p><a id="mysqlClientObject.getServerVersion"></a></p>
+
+<h3>mysqlClientObject.getServerVersion()</h3>
+
+<p>服务端版本。<br>
+返回 XYYZZ 格式的数值：<br>
+X为主版本号，YY为副版本号，ZZ 为修订版本号。<br>
+如果参数 @1 为 true，则返回字符串格式版本号 &quot;X.Y.Z&quot;</p>
+
+<p><a id="mysqlClientObject.getSqlstate"></a></p>
+
+<h3>mysqlClientObject.getSqlstate()</h3>
+
+<p>返回关于上一个错误的SQLSTATE错误代码</p>
+
+<p><a id="mysqlClientObject.getTable"></a></p>
+
+<h3>mysqlClientObject.getTable(&quot;SELECT * FROM <code>表名</code>&quot;,格式化参数)</h3>
+
+<p>执行SQL返回包含行记录组成的table数组对象,<br>
+每行是由列名、值组成的table表对象<br>
+格式化参数规则请参考 format 函数说明,<br>
+格式化参数也可以是一个表参数,用于替换SQL中占位符指定的参数,<br>
+如果参数表不是数组,SQL语句用@前缀标明命名参数,<br>
+如果格式化参数是数组,请使用?或??占位符</p>
+
+<p><a id="mysqlClientObject.getThreadId"></a></p>
+
+<h3>mysqlClientObject.getThreadId()</h3>
+
+<p>返回连接的线程ID，可传入kill函数以杀死线程</p>
+
+<p><a id="mysqlClientObject.kill"></a></p>
+
+<h3>mysqlClientObject.kill()</h3>
+
+<p>杀死线程,参数指定线程ID</p>
+
+<p><a id="mysqlClientObject.lastInsertId"></a></p>
+
+<h3>mysqlClientObject.lastInsertId()</h3>
+
+<p>最后插入记录的ID</p>
+
+<p><a id="mysqlClientObject.lasterr"></a></p>
+
+<h3>mysqlClientObject.lasterr()</h3>
+
+<p>返回错误信息,错误代码</p>
+
+<p><a id="mysqlClientObject.listDbs"></a></p>
+
+<h3>mysqlClientObject.listDbs(&quot;查找数据库名&quot;)</h3>
+
+<p>查找数据库并返回记录集<br>
+数据库名允许使用SQL通配符%或下划线<br>
+不指定数据库名则返回所有数据库</p>
+
+<p><a id="mysqlClientObject.listDbs"></a></p>
+
+<h3>mysqlClientObject.listDbs()</h3>
+
+<p><a href="#mysqlRecordsetObject">返回对象:mysqlRecordsetObject</a></p>
+
+<p><a id="mysqlClientObject.listFields"></a></p>
+
+<h3>mysqlClientObject.listFields(&quot;表名&quot;,&quot;查找字段&quot;)</h3>
+
+<p>查找字段并返回记录集<br>
+字段名允许使用SQL通配符%或下划线<br>
+不指定字段名则返回全部字段</p>
+
+<p><a id="mysqlClientObject.listFields"></a></p>
+
+<h3>mysqlClientObject.listFields()</h3>
+
+<p><a href="#mysqlRecordsetObject">返回对象:mysqlRecordsetObject</a></p>
+
+<p><a id="mysqlClientObject.listProcesses"></a></p>
+
+<h3>mysqlClientObject.listProcesses()</h3>
+
+<p>返回描述当前服务器线程的结果集  </p>
+
+<p><a href="#mysqlRecordsetObject">返回对象:mysqlRecordsetObject</a></p>
+
+<p><a id="mysqlClientObject.listTables"></a></p>
+
+<h3>mysqlClientObject.listTables(&quot;查找表名&quot;)</h3>
+
+<p>查找表名并返回记录集<br>
+表名允许使用SQL通配符%或下划线<br>
+不指定表名则返回所有表</p>
+
+<p><a id="mysqlClientObject.listTables"></a></p>
+
+<h3>mysqlClientObject.listTables()</h3>
+
+<p><a href="#mysqlRecordsetObject">返回对象:mysqlRecordsetObject</a></p>
+
+<p><a id="mysqlClientObject.moreResults"></a></p>
+
+<h3>mysqlClientObject.moreResults()</h3>
+
+<p>是否有其他返回值,<br>
+使用useNextResult或storeNextResult返回下一个返回值</p>
+
+<p><a id="mysqlClientObject.mysqlDb"></a></p>
+
+<h3>mysqlClientObject.mysqlDb</h3>
+
+<p>数据库对象句柄<br>
+不要修改该属性</p>
+
+<p><a id="mysqlClientObject.nextResult"></a></p>
+
+<h3>mysqlClientObject.nextResult()</h3>
+
+<p>如果还有下一个返回值,返回真</p>
+
+<p><a id="mysqlClientObject.open"></a></p>
+
+<h3>mysqlClientObject.open( 连接参数表 ）</h3>
+
+<pre><code class="aardio language-aardio">mysqlClientObject.open(  
+    server = &quot;.&quot;;  
+    database = &quot;数据库名&quot;;  
+    uid = &quot;用户名&quot;;  
+    pwd = &quot;密码&quot;;  
+);
+</code></pre>
+
+<p><a id="mysqlClientObject.ping"></a></p>
+
+<h3>mysqlClientObject.ping()</h3>
+
+<p>检查与服务器的连接是否工作，如有必要重新连接</p>
+
+<p><a id="mysqlClientObject.query"></a></p>
+
+<h3>mysqlClientObject.query</h3>
+
+<p>= 执行SQL并调用 storeResult 函数返回值,<br>
+无返回记录的SQL执行成功返回包含字段 affectedRows（影响记录行数）,insertId（最后插入ID）的表对象,<br>
+如果SQL查询出错返回空值以及错误信息</p>
+
+<p><a id="mysqlClientObject.query"></a></p>
+
+<h3>mysqlClientObject.query(&quot;SELECT * FROM <code>表名</code>&quot;,格式化参数)</h3>
+
+<p>执行参数 @1 指定的SQL语句,<br>
+可选指定格式化参数,格式化规则请参考 format 函数说明,<br>
+格式化参数可以是一个表参数,用于替换SQL中占位符指定的参数,<br>
+如果参数表不是数组,SQL语句用@前缀标明命名参数,<br>
+如果格式化参数是数组,请使用?或??占位符</p>
+
+<p><a id="mysqlClientObject.query"></a></p>
+
+<h3>mysqlClientObject.query()</h3>
+
+<p><a href="#mysqlRecordsetObject">返回对象:mysqlRecordsetObject</a></p>
+
+<p><a id="mysqlClientObject.refresh"></a></p>
+
+<h3>mysqlClientObject.refresh()</h3>
+
+<p>刷新表或高速缓冲或复位复制服务器信息,<br>
+用户必须具有RELOAD权限</p>
+
+<p><a id="mysqlClientObject.rollbackTrans"></a></p>
+
+<h3>mysqlClientObject.rollbackTrans()</h3>
+
+<p>回滚事务</p>
+
+<p><a id="mysqlClientObject.selectDb"></a></p>
+
+<h3>mysqlClientObject.selectDb(&quot;数据库名&quot;)</h3>
+
+<p>设置当前默认数据库,成功返回true,<br>
+类似sql中的 use 数据库名</p>
+
+<p><a id="mysqlClientObject.setOption"></a></p>
+
+<h3>mysqlClientObject.setOption(选项,值)</h3>
+
+<p>可用于设置额外的连接选项，并影响连接的行为,<br>
+值可以是字符串,整数,布尔值或结构体</p>
+
+<p><a id="mysqlClientObject.shutdown"></a></p>
+
+<h3>mysqlClientObject.shutdown()</h3>
+
+<p>关闭SQL服务器</p>
+
+<p><a id="mysqlClientObject.sslSet"></a></p>
+
+<h3>mysqlClientObject.sslSet(key文件路径名,证书文件路径,授权文件路径,包含受信任CA证书目录,允许密码的列表)</h3>
+
+<p>该函数必须在调用open函数打开连接前调用</p>
+
+<p><a id="mysqlClientObject.stat"></a></p>
+
+<h3>mysqlClientObject.stat()</h3>
+
+<p>以字符串形式返回服务器状态</p>
+
+<p><a id="mysqlClientObject.stepQuery"></a></p>
+
+<h3>mysqlClientObject.stepQuery(&quot;SELECT * FROM <code>表名</code>&quot;,格式化参数)</h3>
+
+<p>用法与query函数类似,<br>
+但直接返回首行数据库并关闭结果集<br>
+格式化参数规则请参考 format 函数说明,<br>
+格式化参数也可以是一个表参数,用于替换SQL中占位符指定的参数,<br>
+如果参数表不是数组,SQL语句用@前缀标明命名参数,<br>
+如果格式化参数是数组,请使用?或??占位符</p>
+
+<p><a id="mysqlClientObject.storeNextResult"></a></p>
+
+<h3>mysqlClientObject.storeNextResult()</h3>
+
+<p>如果有其他返回值,获取下一个返回值<br>
+在客户端缓存记录集  </p>
+
+<p><a href="#mysqlRecordsetObject">返回对象:mysqlRecordsetObject</a></p>
+
+<p><a id="mysqlClientObject.storeResult"></a></p>
+
+<h3>mysqlClientObject.storeResult()</h3>
+
+<p>获取返回值,在客户端缓存记录集  </p>
+
+<p><a href="#mysqlRecordsetObject">返回对象:mysqlRecordsetObject</a></p>
+
+<p><a id="mysqlClientObject.useNextResult"></a></p>
+
+<h3>mysqlClientObject.useNextResult()</h3>
+
+<p>如果有其他返回值,获取下一个返回值<br>
+在SQL服务器上缓存记录集  </p>
+
+<p><a href="#mysqlRecordsetObject">返回对象:mysqlRecordsetObject</a></p>
+
+<p><a id="mysqlClientObject.useResult"></a></p>
+
+<h3>mysqlClientObject.useResult()</h3>
+
+<p>获取返回值,在SQL服务器上缓存记录集  </p>
+
+<p><a href="#mysqlRecordsetObject">返回对象:mysqlRecordsetObject</a></p>
+
+<p><a id="mysqlClientObject.warningCount"></a></p>
+
+<h3>mysqlClientObject.warningCount</h3>
+
+<p>返回执行前一个SQL语句期间生成的告警数目</p>
+
+<p><a id="mysqlRecordsetObject"></a></p>
+
+<h2>mysqlRecordsetObject 成员列表</h2>
+
+<p><a id="mysqlRecordsetObject.affectedRows"></a></p>
+
+<h3>mysqlRecordsetObject.affectedRows</h3>
+
+<p>影响记录行数,<br>
+执行无返回数据的 SQL 此字段才会有值</p>
+
+<p><a id="mysqlRecordsetObject.dataSeek"></a></p>
+
+<h3>mysqlRecordsetObject.dataSeek(行号)</h3>
+
+<p>在查询结果集中寻找任意行。偏移值为行号，范围从0到numRows-1</p>
+
+<p><a id="mysqlRecordsetObject.each"></a></p>
+
+<h3>mysqlRecordsetObject.each()</h3>
+
+<pre><code class="aardio language-aardio">for 字段名,/*注意首字段必须为非空值*/字段名2 in mysqlRecordsetObject.each(){  
+
+
+}
+</code></pre>
+
+<p><a id="mysqlRecordsetObject.eof"></a></p>
+
+<h3>mysqlRecordsetObject.eof()</h3>
+
+<p>是否已到结果集尾部</p>
+
+<p><a id="mysqlRecordsetObject.fetchFieldLengths"></a></p>
+
+<h3>mysqlRecordsetObject.fetchFieldLengths()</h3>
+
+<p>返回当前行所有数据列的的长度数组<br>
+仅对当前行有效</p>
+
+<p><a id="mysqlRecordsetObject.fetchFieldTypes"></a></p>
+
+<h3>mysqlRecordsetObject.fetchFieldTypes()</h3>
+
+<p>返回所有字段类型描述</p>
+
+<p><a id="mysqlRecordsetObject.fetchObject"></a></p>
+
+<h3>mysqlRecordsetObject.fetchObject()</h3>
+
+<p>stepQuery 函数的别名,<br>
+返回下一行记录的以字段名为键的关联数组</p>
+
+<p><a id="mysqlRecordsetObject.fetchRow"></a></p>
+
+<h3>mysqlRecordsetObject.fetchRow()</h3>
+
+<p>返回下一行记录列数组</p>
+
+<p><a id="mysqlRecordsetObject.free"></a></p>
+
+<h3>mysqlRecordsetObject.free()</h3>
+
+<p>释放记录集,<br>
+释放后不能再调用其他使用该记录集的函数</p>
+
+<p><a id="mysqlRecordsetObject.getColumns"></a></p>
+
+<h3>mysqlRecordsetObject.getColumns()</h3>
+
+<p>返回所有列名数组</p>
+
+<p><a id="mysqlRecordsetObject.getTable"></a></p>
+
+<h3>mysqlRecordsetObject.getTable()</h3>
+
+<p>返回包含行记录组成的table数组对象,<br>
+每行是由列名、值组成的table表对象</p>
+
+<p><a id="mysqlRecordsetObject.insertId"></a></p>
+
+<h3>mysqlRecordsetObject.insertId</h3>
+
+<p>最后插入 ID,<br>
+执行无返回数据的 SQL 此字段才会有值</p>
+
+<p><a id="mysqlRecordsetObject.numFields"></a></p>
+
+<h3>mysqlRecordsetObject.numFields()</h3>
+
+<p>返回字段总数</p>
+
+<p><a id="mysqlRecordsetObject.numRows"></a></p>
+
+<h3>mysqlRecordsetObject.numRows()</h3>
+
+<p>返回行数<br>
+使用useResult创建的结果集必须在调用fetchRow获取所有行后才能调用该函数</p>
+
+<p><a id="mysqlRecordsetObject.rowSeek"></a></p>
+
+<h3>mysqlRecordsetObject.rowSeek(行偏移量)</h3>
+
+<p>将行光标置于查询结果集中的任意行,并返回当前行号<br>
+偏移值相对于rowTellb函数返回的当前行号<br>
+该函数要求在客户端包含全部结果,即使用storeResult创建结果集</p>
+
+<p><a id="mysqlRecordsetObject.rowTell"></a></p>
+
+<h3>mysqlRecordsetObject.rowTell()</h3>
+
+<p>返回当前行号<br>
+该函数要求在客户端包含全部结果,即使用storeResult创建结果集</p>
+
+<p><a id="mysqlRecordsetObject.stepQuery"></a></p>
+
+<h3>mysqlRecordsetObject.stepQuery()</h3>
+
+<p>fetchObject 函数的别名,<br>
+返回下一行记录的以字段名为键的关联数组</p>
+
+<h3>全局常量</h3>
+
+<p><a id="::MySql"></a></p>
+
+<h3>::MySql</h3>
+
+<p><a href="../../raw/_.html#dllModuleObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/raw/_.html#dllModuleObject">返回对象:dllModuleObject</a></p>
+
+<h3>自动完成常量</h3>
+
+<p>_MYSQL_DATABASE_DRIVER=0x1B58<br>
+_MYSQL_DEFAULT_AUTH=0x17<br>
+_MYSQL_INIT_COMMAND=2<br>
+_MYSQL_OPT_BIND=0x18<br>
+_MYSQL_OPT_COMPRESS=1<br>
+_MYSQL_OPT_CONNECT_ATTR_ADD=0x21<br>
+_MYSQL_OPT_CONNECT_ATTR_DELETE=0x22<br>
+_MYSQL_OPT_CONNECT_ATTR_RESET=0x20<br>
+_MYSQL_OPT_CONNECT_TIMEOUT=0<br>
+_MYSQL_OPT_GUESS_CONNECTION=0x10<br>
+_MYSQL_OPT_LOCAL_INFILE=8<br>
+_MYSQL_OPT_NAMED_PIPE=6<br>
+_MYSQL_OPT_NONBLOCK=0x1770<br>
+_MYSQL_OPT_PROTOCOL=9<br>
+_MYSQL_OPT_READ_TIMEOUT=0xB<br>
+_MYSQL_OPT_RECONNECT=0x14<br>
+_MYSQL_OPT_SSL_CA=0x1B<br>
+_MYSQL_OPT_SSL_CAPATH=0x1C<br>
+_MYSQL_OPT_SSL_CERT=0x1A<br>
+_MYSQL_OPT_SSL_CIPHER=0x1D<br>
+_MYSQL_OPT_SSL_CRL=0x1E<br>
+_MYSQL_OPT_SSL_CRLPATH=0x1F<br>
+_MYSQL_OPT_SSL_KEY=0x19<br>
+_MYSQL_OPT_SSL_VERIFY_SERVER_CERT=0x15<br>
+_MYSQL_OPT_USE_EMBEDDED_CONNECTION=0xF<br>
+_MYSQL_OPT_USE_REMOTE_CONNECTION=0xE<br>
+_MYSQL_OPT_USE_RESULT=0xD<br>
+_MYSQL_OPT_WRITE_TIMEOUT=0xC<br>
+_MYSQL_PLUGIN_DIR=0x16<br>
+_MYSQL_PROGRESS_CALLBACK=0x176F<br>
+_MYSQL_READ_DEFAULT_FILE=3<br>
+_MYSQL_READ_DEFAULT_GROUP=4<br>
+_MYSQL_REPORT_DATA_TRUNCATION=0x13<br>
+_MYSQL_SECURE_AUTH=0x12<br>
+_MYSQL_SET_CHARSET_DIR=5<br>
+_MYSQL_SET_CHARSET_NAME=7<br>
+_MYSQL_SET_CLIENT_IP=0x11<br>
+_MYSQL_SHARED_MEMORY_BASE_NAME=0xA  </p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/mysql/client/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/mysql/client/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/mysql/client/_.md">Markdown 格式</a></p>
+
+</body> 
+</html>

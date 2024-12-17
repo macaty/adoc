@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - util.metaProperty 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - util.metaProperty 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>util.metaProperty 库模块帮助文档</h1>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/language-reference/datatype/table/meta.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/language-reference/datatype/table/meta.md'" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/datatype/table/meta.md">关于元表</a></p>
+
+<p><a id="util"></a></p>
+
+<h2>util 成员列表</h2>
+
+<p><a id="util.metaProperty"></a></p>
+
+<h3>util.metaProperty(properties,...)</h3>
+
+<pre><code class="aardio language-aardio">util.metaProperty(properties,...metaProperty(  
+
+    属性 = {  
+        _get = function(){   
+            /*读取属性代码写在这里*/  
+            return null;  
+        }  
+        _set = function( value ){  
+            /*写入属性代码写在这里*/  
+            ..io.print( owner,value)  
+        }     
+    };  
+)
+</code></pre>
+
+<p><a id="util.metaProperty"></a></p>
+
+<h2>util.metaProperty 成员列表</h2>
+
+<p>用于创建属性元表,<br>
+可在构造函数中指定一个或多个初始化参数表,<br>
+按参数顺序混入到新创建的属性表并返回,  </p>
+
+<p>用返回的属性表作为对象元表,<br>
+读写对象中不存在的属性会触发属性元表。<br>
+如果在属性元表中对应属性是一个表,<br>
+则读属性会触发属性的get成员函数,写属性会触发该属性的set成员函数。<br>
+否则直接返回属性元表中对应属性的值</p>
+
+<p><a id="util.metaProperty.each"></a></p>
+
+<h3>util.metaProperty.each()</h3>
+
+<pre><code class="aardio language-aardio">for(k,v in util.metaProperty.each(/*对象*/) ){
+
+}
+</code></pre>
+
+<p><a id="util.metaProperty.extend"></a></p>
+
+<h3>util.metaProperty.extend(类对象,一个或多个混入表)</h3>
+
+<p>使用混入表扩展类的属性情<br>
+类名字空间必须定义了_metaProperty静态成员<br>
+并且是一个有效的属性表</p>
+
+<p><a id="util.metaProperty.is"></a></p>
+
+<h3>util.metaProperty.is(对象)</h3>
+
+<p>对象是否支持metaProperty</p>
+
+<p><a id="util.metaProperty.isKindOf"></a></p>
+
+<h3>util.metaProperty.isKindOf(对象,类对象)</h3>
+
+<p>判断对象是否由指定的类创建<br>
+类必须是使用属性表定义的类,并符合标准规范</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/util/metaProperty.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/util/metaProperty.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/util/metaProperty.md">Markdown 格式</a></p>
+
+</body> 
+</html>

@@ -1,0 +1,162 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - sys.locale 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - sys.locale 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>sys.locale 库模块帮助文档</h1>
+
+<p><a id="sys.locale"></a></p>
+
+<h2>sys.locale 成员列表</h2>
+
+<p>系统区域与语言相关函数，<br>
+注意此名字空间下的函数在非XP系统下可用区域名代替 LCID 参数，<br>
+相关标准库: win.rt.bcp47,string.conv</p>
+
+<p><a id="sys.locale.getAbbrevName"></a></p>
+
+<h3>sys.locale.getAbbrevName</h3>
+
+<p>转换数值格式 LCID 为3字母格式字符串,例如 chs,<br>
+3字母转换为LCID 请使用 abbrevNames 表</p>
+
+<p><a id="sys.locale.getAbbrevName"></a></p>
+
+<h3>sys.locale.getAbbrevName(lcid,lowerCase)</h3>
+
+<p>转换数值格式 LCID 为3字母格式字符串,例如 chs,<br>
+参数@1指定LCID，省略则使用默认值 _LOCALE_SYSTEM_DEFAULT,<br>
+可选用 @lowerCase 指定返回字符串是否小写</p>
+
+<p><a id="sys.locale.getCodePage"></a></p>
+
+<h3>sys.locale.getCodePage()</h3>
+
+<p>返回默认 ANSI 代码页，例如中文为 936</p>
+
+<p><a id="sys.locale.getCountryName"></a></p>
+
+<h3>sys.locale.getCountryName</h3>
+
+<p>转换数值格式 LCID 为 ISO 3166 国家代码,例如 &quot;CN&quot;,<br>
+返回值通常为2个字母，但也有极少数的数值，例如&quot;029&quot;</p>
+
+<p><a id="sys.locale.getCountryName"></a></p>
+
+<h3>sys.locale.getCountryName(lcid,lowerCase)</h3>
+
+<p>转换数值格式 LCID 为 ISO 3166 国家代码,例如 &quot;CN&quot;,<br>
+参数@1指定LCID，省略则使用默认值 _LOCALE_SYSTEM_DEFAULT<br>
+可选用 @lowerCase 指定返回字符串是否转换为小写</p>
+
+<p><a id="sys.locale.getId"></a></p>
+
+<h3>sys.locale.getId()</h3>
+
+<p>返回表示区域ID（LCID）的数值，<br>
+参数@1指定区域名，此函数在 XP 系统返回 null<br>
+关于区域名请参考文档： <a href="javascript:if(confirm('https://docs.microsoft.com/en-us/windows/win32/intl/locale-names  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='https://docs.microsoft.com/en-us/windows/win32/intl/locale-names'" tppabs="https://docs.microsoft.com/en-us/windows/win32/intl/locale-names">https://docs.microsoft.com/en-us/windows/win32/intl/locale-names</a></p>
+
+<p><a id="sys.locale.getLangName"></a></p>
+
+<h3>sys.locale.getLangName</h3>
+
+<p>转换数值格式 LCID 为 ISO 639 格式语言代码,例如 &quot;zh&quot;,<br>
+返回值通常为2个字母，但也有极少数3字母，例如&quot;haw&quot;</p>
+
+<p><a id="sys.locale.getLangName"></a></p>
+
+<h3>sys.locale.getLangName(lcid)</h3>
+
+<p>转换数值格式 LCID 为 ISO 639 格式语言代码,例如 &quot;zh&quot;</p>
+
+<p><a id="sys.locale.getName"></a></p>
+
+<h3>sys.locale.getName</h3>
+
+<p>转换数值格式 LCID 为 ISO 639 格式语言与国家代码,例如 &quot;zh-CN&quot;</p>
+
+<p><a id="sys.locale.getName"></a></p>
+
+<h3>sys.locale.getName(lcid,concatenation,lowerCase)</h3>
+
+<p>转换数值格式 LCID 为 ISO 639 格式字符串,例如 &quot;zh-CN&quot;,<br>
+参数@1指定LCID，省略则使用默认值 _LOCALE_SYSTEM_DEFAULT,<br>
+@concatenation 参数指定分隔符,默认为 &quot;-&quot;,<br>
+可选用 @lowerCase 指定返回字符串是否转换为小写</p>
+
+<p><a id="sys.locale.getNativeCountryName"></a></p>
+
+<h3>sys.locale.getNativeCountryName()</h3>
+
+<p>返回国家或区域的本地名称，例如&quot;中国&quot;<br>
+参数 @1 可指定 LCID，非 XP 系统可指定区域名称,<br>
+关于区域名请参考 getId 函数说明</p>
+
+<p><a id="sys.locale.getNumber"></a></p>
+
+<h3>sys.locale.getNumber(locale,lcType,low,len)</h3>
+
+<p>返回指定区域信息，成功返回数值。<br>
+参数@locale 指定LCID，省略则使用默认值 _LOCALE_SYSTEM_DEFAULT,<br>
+非 XP 系统 @locale 参数可指定字符串，请参考此函数源码与相关 API 文档。<br>
+@lcType 参数用法请参考此函数源码与相关 API 文档。<br>
+可选用 @lowerCase 指定返回字符串是否小写,<br>
+可选用 @len 指定返回字符串最大字符数</p>
+
+<p><a id="sys.locale.getString"></a></p>
+
+<h3>sys.locale.getString(locale,lcType,low,len)</h3>
+
+<p>返回指定区域信息，成功返回字符串。<br>
+参数@locale 指定LCID，省略则使用默认值 _LOCALE_SYSTEM_DEFAULT,<br>
+非 XP 系统 @locale 参数可指定字符串，请参考此函数源码与相关 API 文档。<br>
+@lcType 参数用法请参考此函数源码与相关 API 文档。<br>
+可选用 @lowerCase 指定返回字符串是否小写,<br>
+可选用 @len 指定返回字符串最大字符数</p>
+
+<p><a id="sys.locale.getUserDefault"></a></p>
+
+<h3>sys.locale.getUserDefault()</h3>
+
+<p>获取默认区域名，<br>
+返回值使用 ISO 639 格式 语言与国家代码。<br>
+与  ::Kernel32.GetUserDefaultLangID 函数返回的区域 ID 一致</p>
+
+<p><a id="sys.locale.setUserDefault"></a></p>
+
+<h3>sys.locale.setUserDefault</h3>
+
+<p>设置用户默认区域</p>
+
+<p><a id="sys.locale.setUserDefault"></a></p>
+
+<h3>sys.locale.setUserDefault(locale,proc)</h3>
+
+<p>设置默认字符串参数 @locale 指定的区域名为用户默认区域，<br>
+参数支持 RFC 4646 格式。  </p>
+
+<p>如果参数 @proc 指定回调函数，则在修改用户默认区域后执行该函数，<br>
+在该函数执行完成以后，恢复区域设置。  </p>
+
+<p>成功返回 true，此设置会更改 ::Kernel32.GetUserDefaultLangID 函数的返回值</p>
+
+<h3>自动完成常量</h3>
+
+<p>_LOCALE_SYSTEM_DEFAULT=0x800<br>
+_LOCALE_USER_DEFAULT=0x400  </p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/sys/locale/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/sys/locale/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/sys/locale/_.md">Markdown 格式</a></p>
+
+</body> 
+</html>

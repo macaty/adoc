@@ -1,0 +1,284 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - web.sysView 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - web.sysView 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>web.sysView 库模块帮助文档</h1>
+
+<p><details>  <summary>简介</summary>  <p>
+web.sysView 使用 WIN10/11 自带的 WebView1，体积非常小（打包仅增加几十KB）。
+WebView1 支持 Win10 1803 以上系统（支持Win11），好处是系统自带不用额外安装。
+WebView1 控件的窗口类名是 IE的类名，但实际上并不使用 IE内核，而是基于比较新的 Edge 或 Chromium 内核。
+缺点首次运行可能会有一个点击启用访问本机页面权限的提示（需要请求管理权限）
+如果软件本身有管理权限，可调用 web.sysView.exemptAs() 静默启用该权限。</p>
+
+<p>改用更强大的 WebView2 (也就是 aardio 标准库 web.view) 可支持 Win7,Win8,Win10,Win11……
+</p></details></p>
+
+<p><a id="web"></a></p>
+
+<h2>web 成员列表</h2>
+
+<p><a id="web.sysView"></a></p>
+
+<h3>web.sysView()</h3>
+
+<p><a href="#WebSysViewObject">返回对象:WebSysViewObject</a></p>
+
+<p><a id="web.sysView"></a></p>
+
+<h3>web.sysView(winform,debug)</h3>
+
+<p>创建 Edge 浏览器控件，<br>
+winform指定嵌入窗口，debug指定是否支持调试，<br>
+目前debug参数实现不起作用<br>
+WebView1 仅支持 Win10 1803 以上系统,<br>
+在不支持的系统上创建 WebView1 会返回 null</p>
+
+<p><a id="web.sysView"></a></p>
+
+<h2>web.sysView 成员列表</h2>
+
+<p>调用 Win10/11系统自带的 WebView1 创建浏览器控件  </p>
+
+<p>网页引入 eruda.js 可支持控制台,注意只要调用 wsock.tcp.asynHttpServer 或 wsock.tcp.simpleHttpServer 打开网页才能支持 eruda.js  </p>
+
+<p>标准库提供的 web.view 可支持 WIN7 且功能更强大</p>
+
+<p><a id="web.sysView.exemptAs"></a></p>
+
+<h3>web.sysView.exemptAs()</h3>
+
+<p>授权 WebView 访问本机页面,<br>
+如果程序或安装程序有管理权限，可直接调用此函数</p>
+
+<p><a id="WebSysViewObject"></a></p>
+
+<h2>WebSysViewObject 成员列表</h2>
+
+<p><a id="WebSysViewObject._form"></a></p>
+
+<h3>WebSysViewObject._form</h3>
+
+<p>创建浏览器控件传入的窗口对象  </p>
+
+<p><a href="../../win/ui/ctrl/static.html#staticObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/static.html#staticObject">返回对象:staticObject</a></p>
+
+<p><a id="WebSysViewObject.adjust"></a></p>
+
+<h3>WebSysViewObject.adjust()</h3>
+
+<p>调整页面大小到适合窗口</p>
+
+<p><a id="WebSysViewObject.defaultBackgroundColor"></a></p>
+
+<h3>WebSysViewObject.defaultBackgroundColor</h3>
+
+<p>网页默认背景色, GDI+ 兼容的 ARGB 格式数值<br>
+不支持透明度,改用 web.view 可支持透明</p>
+
+<p><a id="WebSysViewObject.doScript"></a></p>
+
+<h3>WebSysViewObject.doScript(js)</h3>
+
+<p>执行JS代码，<br>
+不指定回调函数时，JS代码放入匿名函数体内执行</p>
+
+<p><a id="WebSysViewObject.doScript"></a></p>
+
+<h3>WebSysViewObject.doScript(js,callback)</h3>
+
+<pre><code class="aardio language-aardio">WebSysViewObject.doScript(js,function(result){  
+    /*执行JS代码成功在当前界面线程异步回调此函数，  
+@result参数为JS代码的返回值*/  
+} )
+</code></pre>
+
+<p><a id="WebSysViewObject.eval"></a></p>
+
+<h3>WebSysViewObject.eval</h3>
+
+<p>运算 JS 代码并返回值，<br>
+返回值使用 JSON 转换为 aardio 值</p>
+
+<p><a id="WebSysViewObject.eval"></a></p>
+
+<h3>WebSysViewObject.eval(js,...)</h3>
+
+<p>运算JS代码并返回值，<br>
+等待返回值过程中会继续处理界面消息,<br>
+如果指定多个参数，则首先调用 string.format 格式化所有参数</p>
+
+<p><a id="WebSysViewObject.export"></a></p>
+
+<h3>WebSysViewObject.export(JS变量名,回调函数)</h3>
+
+<p>导出aardio函数为JS全局变量,<br>
+参数也可以使用一个表包含多个需要绑定到JS的变量名值对,值必须是函数。<br>
+JS脚本中调用这里绑定的本地函数返回值为 Promise 对象</p>
+
+<p><a id="WebSysViewObject.go"></a></p>
+
+<h3>WebSysViewObject.go</h3>
+
+<p>仅支持HTTP服务器地址，<br>
+首次运行可能会显示点击授权访问本地网页的链接</p>
+
+<p><a id="WebSysViewObject.go"></a></p>
+
+<h3>WebSysViewObject.go(url,devPort,devTimeout)</h3>
+
+<pre><code class="aardio language-aardio">url 参数指定网址，  
+如果提前导入 wsock.tcp.simpleHttpServer 或 wsock.tcp.asynHttpServer   
+则 io.localpath 支持的路径转换为通过嵌入 HTTP 服务器访问的网址，  
+使用 HTTP 嵌入服务器可自动支持嵌入资源路径与 SPA 单页应用。  
+可选使用@devPort参数指定前端项目开发环境调试端口，  
+可选用@devTimeout参数指定检测调试端口超时  
+@devPort,@devTimeout参数仅在开发环境中有效
+</code></pre>
+
+<p><a id="WebSysViewObject.html"></a></p>
+
+<h3>WebSysViewObject.html</h3>
+
+<pre><code class="aardio language-aardio">WebSysViewObject.html = /**  
+&lt;!doctype html&gt;  
+&lt;html&gt;  
+&lt;head&gt;  
+    &lt;meta charset=&quot;utf-8&quot;&gt;  
+    &lt;style type=&quot;text/css&quot;&gt;  
+    html,body{ height:100%; margin:0; }   
+    &lt;/style&gt;  
+    &lt;script type=&quot;text/javascript&quot;&gt;&lt;/script&gt;  
+&lt;/head&gt;  
+&lt;body&gt;  
+    &lt;div id=&quot;header&quot;&gt;&lt;/div&gt;  
+    &lt;div id=&quot;container&quot;&gt;   
+        &lt;div class=&quot;lside&quot;&gt; &lt;/div&gt;   
+        &lt;div class=&quot;rside&quot;&gt; &lt;/div&gt;    
+    &lt;/div&gt;  
+&lt;/body&gt;  
+&lt;/html&gt;  
+**/
+</code></pre>
+
+<p><a id="WebSysViewObject.invoke"></a></p>
+
+<h3>WebSysViewObject.invoke</h3>
+
+<p>调用JS函数但不会等待返回值</p>
+
+<p><a id="WebSysViewObject.invoke"></a></p>
+
+<h3>WebSysViewObject.invoke(&quot;object.func&quot;,...)</h3>
+
+<p>调用JS函数但不会等待返回值，<br>
+等待返回值过程中会继续处理界面消息,<br>
+参数@!指定要调用的函数名或返回函数的表达式,  </p>
+
+<p>如果参数 @1 不包含回车或换换行、分号、大括号、圆括号，<br>
+则参数 @1最后一个点号前的对象作为调用JS函数的 this 参数,  </p>
+
+<p>可指定一个或多个参数,参数使用JSON转换为JS值</p>
+
+<p><a id="WebSysViewObject.location"></a></p>
+
+<h3>WebSysViewObject.location</h3>
+
+<p>当前网址</p>
+
+<p><a id="WebSysViewObject.onDocumentInit"></a></p>
+
+<h3>WebSysViewObject.onDocumentInit(url)</h3>
+
+<pre><code class="aardio language-aardio">WebSysViewObject.onDocumentInit = function(url){
+    /*打开网页并创建 document 对象后触发此事件,  
+url为当前网址*/
+}
+</code></pre>
+
+<p><a id="WebSysViewObject.preloadScript"></a></p>
+
+<h3>WebSysViewObject.preloadScript(js)</h3>
+
+<p>添加网页默认加载的 JS 脚本,不会覆盖之前添加的脚本，<br>
+在网页初始化时执行，保证在 window.onload 事件前执行</p>
+
+<p><a id="WebSysViewObject.wait"></a></p>
+
+<h3>WebSysViewObject.wait(&quot;字符串参数&quot;)</h3>
+
+<p>等待参数指定的网址打开，<br>
+参数支持模式匹配语法，<br>
+在指定的网页创建 document 对象后返回，<br>
+窗口关闭也会返回</p>
+
+<p><a id="WebSysViewObject.waitEle"></a></p>
+
+<h3>WebSysViewObject.waitEle</h3>
+
+<p>等待网页创建指定节点</p>
+
+<p><a id="WebSysViewObject.waitEle"></a></p>
+
+<h3>WebSysViewObject.waitEle(selector)</h3>
+
+<p>等待网页创建指定节点<br>
+@selector 参数指定CSS选择器,<br>
+省略参数@2时同步等待节点出现</p>
+
+<p><a id="WebSysViewObject.waitEle"></a></p>
+
+<h3>WebSysViewObject.waitEle(selector,callback,timeout)</h3>
+
+<p>异步等待网页创建指定节点<br>
+@selector 参数指定CSS选择器,<br>
+参数@2指定 aardio 回调函数,<br>
+找到节点回调参数@1为选择器，<br>
+失败回调参数@2为错误信息,回调参数@1为null,<br>
+可选用参数@3指定超时，单位毫秒</p>
+
+<p><a id="WebSysViewObject.waitEle"></a></p>
+
+<h3>WebSysViewObject.waitEle(selector,js,timeout)</h3>
+
+<p>异步等待网页创建指定节点<br>
+@selector 参数指定CSS选择器,<br>
+找到节点执行参数@2指定的 Javascript 代码,<br>
+执行JS代码时自动绑定this对象为找到的节点,<br>
+可选用参数@3指定超时，单位毫秒</p>
+
+<p><a id="WebSysViewObject.xcall"></a></p>
+
+<h3>WebSysViewObject.xcall</h3>
+
+<p>调用JS函数并返回值，<br>
+如果不需要返回值建议改用 invoke 函数</p>
+
+<p><a id="WebSysViewObject.xcall"></a></p>
+
+<h3>WebSysViewObject.xcall(&quot;object.func&quot;,...)</h3>
+
+<p>调用JS函数并返回值，<br>
+等待返回值过程中会继续处理界面消息,<br>
+参数@!指定要调用的函数名或返回函数的表达式,  </p>
+
+<p>如果参数 @1 不包含回车或换换行、分号、大括号、圆括号，<br>
+则参数 @1最后一个点号前的对象作为调用JS函数的 this 参数,  </p>
+
+<p>可指定一个或多个参数,参数使用JSON转换为JS值</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/web/sysView/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/web/sysView/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/web/sysView/_.md">Markdown 格式</a></p>
+
+</body> 
+</html>

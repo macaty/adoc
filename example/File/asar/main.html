@@ -1,0 +1,66 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio ç¼–ç¨‹è¯­è¨€èŒƒä¾‹ - WinAsar - Asar æ–‡ä»¶æ‰“åŒ…ã€è§£åŒ…å·¥å…·'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio ç¼–ç¨‹è¯­è¨€èŒƒä¾‹ - WinAsar - Asar æ–‡ä»¶æ‰“åŒ…ã€è§£åŒ…å·¥å…·</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio ç¼–ç¨‹è¯­è¨€æ–‡æ¡£é¦–é¡µ"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio æ–‡æ¡£</span></a>
+<h1>aardio èŒƒä¾‹: WinAsar - Asar æ–‡ä»¶æ‰“åŒ…ã€è§£åŒ…å·¥å…·</h1><pre><code class="aardio language-aardio">import fonts.fontAwesome;
+import win.ui;
+/*DSG{{*/
+mainForm = win.form(text=&quot;WinAsar - Asar æ–‡ä»¶æ‰“åŒ…ã€è§£åŒ…å·¥å…·&quot;;right=1019;bottom=679;bgcolor=15793151;border=&quot;none&quot;)
+mainForm.add(
+caption={cls=&quot;bkplus&quot;;text=&quot;WinAsar - Asar æ–‡ä»¶æ‰“åŒ…ã€è§£åŒ…å·¥å…·&quot;;left=67;top=9;right=723;bottom=27;align=&quot;left&quot;;color=6052956;dl=1;dt=1;font=LOGFONT(h=-14);z=7};
+custom={cls=&quot;custom&quot;;left=83;top=40;right=1022;bottom=679;bgcolor=16777215;db=1;dl=1;dr=1;dt=1;z=4};
+logo={cls=&quot;bkplus&quot;;text=&#39;\uF0AD&#39;;left=35;top=7;right=64;bottom=32;color=5659105;dl=1;dt=1;font=LOGFONT(h=-18;name=&#39;FontAwesome&#39;);z=6};
+nav1={cls=&quot;plus&quot;;text=&quot;æ‰“åŒ…&quot;;left=0;top=48;right=85;bottom=128;bkBottom=3;bkLeft=7;bkRight=8;bkTop=2;border={color=-65536};color=16777215;dl=1;dt=1;font=LOGFONT(h=-15);iconStyle={font=LOGFONT(h=-37;name=&#39;FontAwesome&#39;);padding={bottom=20}};iconText=&#39;\uF0B1&#39;;notify=1;textPadding={bottom=10};valign=&quot;bottom&quot;;x=0.5;y=0.20000000298023;z=3};
+nav2={cls=&quot;plus&quot;;text=&quot;è§£åŒ…&quot;;left=0;top=129;right=85;bottom=209;bkBottom=3;bkLeft=7;bkRight=8;bkTop=2;border={color=-65536};color=16777215;dl=1;dt=1;font=LOGFONT(h=-15);iconStyle={font=LOGFONT(h=-37;name=&#39;FontAwesome&#39;);padding={bottom=20}};iconText=&#39;\uF0E8&#39;;notify=1;textPadding={bottom=10};valign=&quot;bottom&quot;;x=0.5;y=0.20000000298023;z=5};
+navBar={cls=&quot;bkplus&quot;;left=0;top=37;right=83;bottom=681;bgcolor=9941835;db=1;dl=1;dt=1;z=1};
+titleBar={cls=&quot;bkplus&quot;;left=0;top=0;right=1022;bottom=38;bgcolor=5659105;dl=1;dr=1;dt=1;forecolor=16777215;linearGradient=180;z=2}
+)
+/*}}*/
+
+import win.ui.simpleWindow;
+win.ui.simpleWindow( mainForm );
+
+import win.ui.tabs;
+var tbs = win.ui.tabs( 
+    mainForm.nav1,
+    mainForm.nav2,
+);
+
+tbs.skin({
+    background={
+        active=0xFFFFFFFF;
+        default=0x00FFFFFF;
+        hover=0x38FFFFFF
+    };
+    color={
+        default=0xFFFFFFFF; 
+    };
+    checked={
+        background={default=0xFFFFFFFF;};
+        color={default=0xff4bb397;};
+    }
+})
+
+tbs.loadForm(1,&quot;\forms\packer.aardio&quot;);
+tbs.loadForm(2,&quot;\forms\extractor.aardio&quot; );
+
+tbs.selIndex = 1;
+
+mainForm.show();
+return win.loopMessage(); 
+
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/File/asar/main.md  \n\n¸ÃÎÄ¼şÎŞ·¨ÓÃ Teleport Ultra ÏÂÔØ, ÒòÎª Ëü²»ÔÚÏîÄ¿ÎÄ¼şÀàĞÍ¹æ·¶ÄÚ¡£  \n\nÄãÏëÔÚ·şÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='https://www.aardio.com/zh-cn/doc/example/File/asar/main.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/File/asar/main.md">Markdown æ ¼å¼</a>
+</body> 
+</html>

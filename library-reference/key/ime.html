@@ -1,0 +1,243 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - key.ime 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - key.ime 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>key.ime 库模块帮助文档</h1>
+
+<p><a id="key.ime"></a></p>
+
+<h2>key.ime 成员列表</h2>
+
+<p>输入法相关操作</p>
+
+<p><a id="key.ime.activate"></a></p>
+
+<h3>key.ime.activate(键盘布局句柄,选项)</h3>
+
+<p>激活指定的键盘布局<br>
+参数二可省略,使用 <em>KLF</em> 前缀常量指定选项</p>
+
+<p><a id="key.ime.capital"></a></p>
+
+<h3>key.ime.capital()</h3>
+
+<p>是否大写状态</p>
+
+<p><a id="key.ime.changeRequest"></a></p>
+
+<h3>key.ime.changeRequest(0)</h3>
+
+<p>切换为上一个键盘布局</p>
+
+<p><a id="key.ime.changeRequest"></a></p>
+
+<h3>key.ime.changeRequest(0x4090409)</h3>
+
+<p>切换为英文键盘布局</p>
+
+<p><a id="key.ime.changeRequest"></a></p>
+
+<h3>key.ime.changeRequest(0x8040804)</h3>
+
+<p>切换为中文键盘布局</p>
+
+<p><a id="key.ime.changeRequest"></a></p>
+
+<h3>key.ime.changeRequest(1)</h3>
+
+<p>切换为下一个键盘布局</p>
+
+<p><a id="key.ime.changeRequest"></a></p>
+
+<h3>key.ime.changeRequest(hkl,hwnd,wParam)</h3>
+
+<p>发送_WM_INPUTLANGCHANGEREQUEST消息通知窗口改变输入法,<br>
+hkl可用数值或指针指定键盘布局,<br>
+@hwnd参数指定要检测的窗口句柄，省略则默认设为前景窗口<br>
+其他参数可省略</p>
+
+<p><a id="key.ime.control"></a></p>
+
+<h3>key.ime.control(hwnd,command,data)</h3>
+
+<p>发送_WM_IME_CONTROL消息到指定窗口<br>
+@hwnd参数指定目标窗口句柄，省略则默认设为前景窗口,<br>
+其他参数请参考微软文档</p>
+
+<p><a id="key.ime.each"></a></p>
+
+<h3>key.ime.each()</h3>
+
+<pre><code class="aardio language-aardio">for(hKey,lang,name,description in key.ime.each() ){
+    /*hKey:键盘布局句柄 lang:语言ID name:输入法名 description:描述*/
+}
+</code></pre>
+
+<p><a id="key.ime.getConversionMode"></a></p>
+
+<h3>key.ime.getConversionMode(hwnd)</h3>
+
+<p>返回输入法打开状态,<br>
+返回值为数值，可用 <em>IME_CMODE</em> 前缀的常量按位取值。<br>
+@hwnd参数指定要检测的窗口句柄，省略则默认设为前景窗口</p>
+
+<p><a id="key.ime.getCurrent"></a></p>
+
+<h3>key.ime.getCurrent(线程ID)</h3>
+
+<p>返回当前键盘布局句柄，<br>
+参数可选，默认参数为当前线程ID，<br>
+注意现在这个返回值里实际上只有语言 ID 有意义，<br>
+请参考 key.ime.getCurrentLangId 函数源代码  </p>
+
+<p>注意如果目标线程不响应输入消息，例如一直 sleep 可能返回旧的键盘布局<br>
+cmd.exe 窗口可能会返回 null</p>
+
+<p><a id="key.ime.getCurrentLangId"></a></p>
+
+<h3>key.ime.getCurrentLangId(线程ID)</h3>
+
+<p>返回指定线程键盘布局语言ID<br>
+如果不指定参数则默认取当前线程ID  </p>
+
+<p>注意如果目标线程不响应输入消息，例如一直 sleep 可能返回旧的键盘语言ID。<br>
+cmd.exe 窗口可能会返回 0</p>
+
+<p><a id="key.ime.getCurrentLangIdByHwnd"></a></p>
+
+<h3>key.ime.getCurrentLangIdByHwnd(hwnd)</h3>
+
+<p>返回当指定窗口键盘布局语言ID<br>
+如果不指定参数则默认取前台窗口句柄  </p>
+
+<p>注意如果目标线程不响应输入消息，例如一直 sleep 可能返回旧的键盘语言。<br>
+cmd.exe 窗口可能会返回 0</p>
+
+<p><a id="key.ime.getDescription"></a></p>
+
+<h3>key.ime.getDescription(键盘布局句柄)</h3>
+
+<p>返回键盘布局描述<br>
+对默认中英文键盘无效</p>
+
+<p><a id="key.ime.getLangId"></a></p>
+
+<h3>key.ime.getLangId(键盘布局句柄)</h3>
+
+<p>返回语言代码</p>
+
+<p><a id="key.ime.getList"></a></p>
+
+<h3>key.ime.getList()</h3>
+
+<p>返回键盘布局句柄数组<br>
+WIN10上只会返回键盘语言，不会列出输入法</p>
+
+<p><a id="key.ime.getName"></a></p>
+
+<h3>key.ime.getName(键盘布局句柄)</h3>
+
+<p>返回键盘布局名称</p>
+
+<p><a id="key.ime.getOpenStatus"></a></p>
+
+<h3>key.ime.getOpenStatus(hwnd)</h3>
+
+<p>当前输入法是否打开中文输入<br>
+@hwnd参数指定要检测的窗口句柄，省略则默认设为前景窗口,<br>
+注意有些输入法打开但切换到英文模式也会返回 false,<br>
+而微软输入法打开状态不论中英都会返回 true,<br>
+所以用这个很难判断当前真正的输入模式</p>
+
+<p><a id="key.ime.loadActivate"></a></p>
+
+<h3>key.ime.loadActivate(&quot;输入法名&quot;)</h3>
+
+<p>参数也可以是键盘布局句柄<br>
+加载并激活指定键盘布局</p>
+
+<p><a id="key.ime.loadByName"></a></p>
+
+<h3>key.ime.loadByName(&quot;键盘布局名&quot;,选项)</h3>
+
+<p>载入指定的键盘布局<br>
+对默认中英文键盘无效<br>
+参数二可省略,使用 <em>KLF</em> 前缀常量指定选项</p>
+
+<p><a id="key.ime.setConversionMode"></a></p>
+
+<h3>key.ime.setConversionMode(convMode,hwnd)</h3>
+
+<p>设置输入法打开状态，<br>
+参数为 <em>IME_CMODE</em> 前缀的常量按位或运算的数值。<br>
+@hwnd参数指定目标窗口句柄，省略则默认设为前景窗口</p>
+
+<p><a id="key.ime.setOpenStatus"></a></p>
+
+<h3>key.ime.setOpenStatus(status,hwnd)</h3>
+
+<p>status设为0关闭中文输入<br>
+@hwnd参数指定目标窗口句柄，省略则默认设为前景窗口</p>
+
+<p><a id="key.ime.state"></a></p>
+
+<h3>key.ime.state</h3>
+
+<p>返回输入法状态，<br>
+请参考:<br>
+<a href="../../library-guide/std/key/imeState.html" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/std/key/imeState.html">输入法状态检测规则与原理</a><br>
+<a href="ime.stateBar.html" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/key/ime.stateBar.html">key.ime.stateBar</a></p>
+
+<p><a id="key.ime.state"></a></p>
+
+<h3>key.ime.state(hwnd)</h3>
+
+<p>返回输入法状态，<br>
+@hwnd 参数指定要检测的窗口句柄，省略则默认设为前景窗口。<br>
+建议使用 winex.caret 取到光标所有窗口句柄作为参数，参考 key.ime.stateBar。  </p>
+
+<p>首个返回值为是否启用输入转换（例如输入中、日、韩等文字），false 为英文输入状态，<br>
+第二个返回值用一个数值表示标点模式：<br>
+    1 英文半角标点<br>
+    2 英文全角标点<br>
+    3 中文标点<br>
+    0 已关闭输入转换<br>
+    null 已关闭输入转换<br>
+第三个返回值为键盘语言 ID，<br>
+第四个返回值为原始 Conversion Mode</p>
+
+<h3>自动完成常量</h3>
+
+<p>_IME_CMODE_ALPHANUMERIC=0<br>
+_IME_CMODE_CHARCODE=0x20<br>
+_IME_CMODE_EUDC=0x200<br>
+_IME_CMODE_FIXED=0x800<br>
+_IME_CMODE_FULLSHAPE=8<br>
+_IME_CMODE_HANJACONVERT=0x40<br>
+_IME_CMODE_KATAKANA=2<br>
+_IME_CMODE_LANGUAGE=3<br>
+_IME_CMODE_NATIVE=1<br>
+_IME_CMODE_NOCONVERSION=0x100<br>
+_IME_CMODE_RESERVED=0xF0000000<br>
+_IME_CMODE_ROMAN=0x10<br>
+_IME_CMODE_SOFTKBD=0x80<br>
+_IME_CMODE_SYMBOL=0x400<br>
+_IME_SYMBOLMODE_FULLSHAPE=2<br>
+_IME_SYMBOLMODE_HALFSHAPE=1<br>
+_IME_SYMBOLMODE_SYMBOL=3  </p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/key/ime.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/key/ime.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/key/ime.md">Markdown 格式</a></p>
+
+</body> 
+</html>

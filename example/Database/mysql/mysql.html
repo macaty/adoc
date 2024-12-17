@@ -1,0 +1,145 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - mysql.client 库 - 入门'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - mysql.client 库 - 入门</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: mysql.client 库 - 入门</h1><pre><code class="aardio language-aardio">//mysql.client 库 - 入门
+import console;
+import mysql.client;
+
+/*
+MySQL 快速入门
+https://learnxinyminutes.com/docs/zh-cn/sql-cn/
+https://quickref.me/mysql
+*/
+console.showLoading(&quot; 正在连接测试数据库&quot; )
+var dbClient,err = mysql.client(
+    server = &quot;db4free.net&quot;; //服务器，格式为&quot;域名或IP:端口号&quot;或&quot;域名或IP&quot;，省略则默认为 &quot;localhost&quot;。
+    uid = &quot;aardio_mysql&quot;;//用户名，省略则默认为&quot;root&quot;。
+    pwd = &quot;aardio.com&quot;;//密码。
+    database = &quot;aardio_mysql&quot;; //可选指定数据库
+); 
+
+if(!dbClient){ 
+    console.log(&quot;如果是有人无聊修改了密码,请自行到 db4free.net 申请免费数据库&quot;)
+    return console.logPause(err); 
+}
+
+//选择数据库
+//dbClient.selectDb(&quot;aardio_mysql&quot;)  
+
+//查询数据并返回记录集
+var result = dbClient.stepQuery(&quot;select version()&quot;);
+console.dump(result)
+
+/*
+dbClient.query(sql,...) 等所有需要格式化SQL语句的函数，
+内部都是调用 dbClient.format(sql,...) 函数转换 SQL 语句。
+
+如果SQL参数后面的格式化参数是一个数组，SQL中的占位符请使用?或??，
+如果格式化参数是非数组的表参数，SQL中的占位符请使用@开头的命名参数。
+如果格式化参数不是表，则调用  string.format(sql,...) 格式化。
+
+dbClient.format()对于数值和布尔值不作转换，
+字符串会进行安全转义处理（可避免SQL非法注入），buffer会转换为16进制编码。
+如果参数值是数组则展开为列表,例如 &#39;a&#39;,&#39;b&#39;，
+如果是嵌套数组则展开为分组列表, 例如(&#39;a&#39;,&#39;b&#39;),(&#39;c&#39;,&#39;d&#39;)
+如果参数值是命名表对象（非数组），则格式化为SQL键值对（键调用dbMysql.escapeId 函数格式化 ）。
+*/
+
+//为避免有人乱改测试数据库表结构又没有删除，先删除旧的表
+dbClient.query(&quot;DROP TABLE IF EXISTS ??&quot;,{library});
+//上面的SQL会格式化为 &quot;DROP TABLE IF EXISTS `library`&quot;
+
+//执行SQL语句,注意mysql表名、字段名可包含于反引号内(用键盘左上角ESC下方的按键内)
+var ret,err = dbClient.query(&quot;CREATE TABLE IF NOT EXISTS `library` (
+    `id` int NOT NULL AUTO_INCREMENT,
+    `name` VARCHAR(100) NOT NULL, 
+    `auditing` TINYINT(1) DEFAULT &#39;0&#39;,
+    `bytes` BLOB,
+    `time` DATETIME DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (`id`),
+    UNIQUE KEY `id` (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;&quot;);
+console.dump(ret,err)
+
+var dbTable,err  = dbClient.listTables() 
+for tbl in dbTable.each(){
+    console.log(&quot;发现数据表:&quot;,tbl);
+}
+
+var ret,err = dbClient.query(&quot;INSERT `library` VALUES(null,&#39;测试&#39;,@num,@str,@time)&quot;,{
+    num = 123;
+    str = raw.buffer(&quot;测试:&#39;这是字符串!&#39;命名参数可以自动处理字符串转义&quot;);
+    time = time();
+} ) 
+
+console.dump(ret)
+
+//如果是占位符对应的格式化参数是嵌套数组则展开为分组列表, 例如(&#39;a&#39;,&#39;b&#39;),(&#39;c&#39;,&#39;d&#39;)
+var ret,err = dbClient.query(&quot;INSERT `library`(`name`,`auditing`,`bytes`,`time`) VALUES ?&quot;,{ {
+    {&#39;嵌套数组1&#39;,123,&quot;测试xx&quot;,time()}
+    {&#39;嵌套数组2&#39;,123,raw.buffer(&quot;测试xxx2&quot;),time()}
+} } ) 
+console.dump(ret,err);
+
+var ret,err = dbClient.query(&quot;INSERT `library`(`name`,`auditing`,`bytes`,`time`) VALUES(&#39;测试2&#39;,@num,@str,@time)&quot;,{
+    num = 123;
+    str = &quot;测试2&quot;;
+    time = time().addday(-2);
+} ) 
+console.dump(ret,err);
+
+//如果格式化参数值是数组则展开为列表,例如 &#39;a&#39;,&#39;b&#39;，示例如下：
+dbClient.query(&quot;DELETE FROM `library` WHERE `name` IN (?)&quot;,{{&#39;嵌套数组1&#39;,&#39;嵌套数组2&#39;}})
+
+//查询数据并返回记录集
+var result = dbClient.query(&quot;SELECT * FROM `library` WHERE time &gt;=@time&quot;,{
+    time = tostring(time().addday(-3),&quot;%Y/%m/%d&quot;)
+});
+for name,auditing,bytes in result.each(){ 
+    console.log(&quot;输出&quot;, name,auditing,bytes ); //逐行输出所有记录
+}
+
+//查询数据并返回全部记录集到一个表
+var result = dbClient.query(&quot;SELECT * FROM `library` WHERE time &gt;= (
+    SELECT DATE(`time`) FROM `library` ORDER BY `time` DESC LIMIT 0,1
+)&quot;);
+console.dumpJson(result.getTable())
+
+//创建存储过程
+var ret,err = dbClient.query(&quot;
+CREATE PROCEDURE demo(IN n int)  
+BEGIN     
+    SET n=123;   
+    SELECT n;  
+END;   
+&quot;)
+
+//调用存储过程
+var ret,err = dbClient.getTable(&quot;CALL demo(@n)&quot;,{
+    n=123 //传入命名参数
+});
+
+console.dump(ret);
+
+//移除存储过程
+console.dump( dbClient.query(&quot;DROP PROCEDURE IF EXISTS `demo`&quot;) );
+
+//移除数据库
+dbClient.query(&quot;DROP TABLE IF EXISTS `library`&quot;);
+console.pause();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Database/mysql/mysql.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Database/mysql/mysql.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Database/mysql/mysql.md">Markdown 格式</a>
+</body> 
+</html>

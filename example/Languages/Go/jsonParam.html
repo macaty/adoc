@@ -1,0 +1,89 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - aardio 调用 Go 语言 - JSON 自动同步'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - aardio 调用 Go 语言 - JSON 自动同步</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 调用 Go 语言 - JSON 自动同步</h1><pre><code class="aardio language-aardio">//aardio 调用 Go 语言 - JSON 自动同步
+import golang;
+var go = golang();
+
+go.main = /**********
+package main
+
+import &quot;C&quot;
+import (  
+    &quot;time&quot;
+    &quot;aardio&quot; 
+)
+
+/*
+Go 结构的 JSON 字段要大写首字母，
+每个字段可以在类型名后面额外添加 tag 字符串声明在 JSON 中的字段名。 
+*/
+type QueryParam struct {
+    Service             string           `json:&quot;service&quot;`   
+    Domain              string           `json:&quot;domain&quot;`   
+    Timeout             time.Duration    `json:&quot;timeout&quot;`     
+}
+
+//export Query 
+func Query(json *string) {   
+
+    //创建结构体
+    var queryParam = QueryParam{} 
+
+    /*
+    解析 JSON 到结构体，
+    aardio.JsonParam() 返回函数对象用于更新 JSON。
+    defer 语句用于推迟到函数退出前调用。 
+    */
+    defer aardio.JsonParam(json, &amp;queryParam)() 
+
+    //读取结构体的值，修改结构体的值，aardio 可以自动获取新值
+    queryParam.Domain = queryParam.Domain + &quot;|www.aardio.com&quot; 
+}
+
+func main(){}
+**********/
+
+go.buildShared(&quot;/.go/jsonTest.go&quot;);
+var dll = raw.loadDll(&quot;/.go/jsonTest.dll&quot;,,&quot;cdecl&quot;);
+
+import golang.string; 
+
+//参数不是字符串、buffer、null 时会自动转换为 JSON 字符串
+var jsonParam = golang.string({
+    service = &quot;_services._dns-sd._udp&quot;;
+    domain = &quot;local&quot;;
+    timeout = 1000;
+})
+
+//调用 Go 函数
+dll.Query( jsonParam );
+
+/*
+只要存储的是自动转换为 JSON 的对象，
+那么 Go 修改 JSON 后 aardio 也会自动解析 JSON 为对象。 
+
+通过 value 获取解析后的对象。
+*/
+var goObject = jsonParam.value;
+
+//查看对象的字段值，已经被 Go 修改了
+console.dumpJson( goObject.domain )
+
+console.pause(true);
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/Go/jsonParam.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/Go/jsonParam.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Languages/Go/jsonParam.md">Markdown 格式</a>
+</body> 
+</html>

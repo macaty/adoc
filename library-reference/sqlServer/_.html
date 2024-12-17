@@ -1,0 +1,739 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - sqlServer 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - sqlServer 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>sqlServer 库模块帮助文档</h1>
+
+<p><a id="sqlServer"></a></p>
+
+<h2>sqlServer 成员列表</h2>
+
+<p><a id="sqlServer( "数据库连接语句",其他格式化参数 )"></a></p>
+
+<h3>sqlServer( &quot;数据库连接语句&quot;,其他格式化参数 )</h3>
+
+<pre><code class="aardio language-aardio">sqlServer(&quot;Provider=SQLOLEDB.1;Data Source=.\SQLEXPRESS;Database=数据库名;User ID=登录名;Password=登录密码&quot;);
+</code></pre>
+
+<p><a id="sqlServer( 连接参数表 )"></a></p>
+
+<h3>sqlServer( 连接参数表 )</h3>
+
+<pre><code class="aardio language-aardio">sqlServer(   
+    [&quot;Data Source&quot;] = &quot;127.0.0.1,7788&quot;;  
+    [&quot;Database&quot;] = &quot;数据库名&quot;;  
+    [&quot;User ID&quot;] = &quot;用户名&quot;;  
+    [&quot;Password&quot;] = &quot;密码&quot;;   
+)
+</code></pre>
+
+<p><a id="sqlServer()"></a></p>
+
+<h3>sqlServer()</h3>
+
+<p><a href="#sqlServerObject">返回对象:sqlServerObject</a></p>
+
+<p><a id="sqlServer.escape"></a></p>
+
+<h3>sqlServer.escape()</h3>
+
+<p>转义参数指定值为用于 SQL 查询语句的参数化值</p>
+
+<p><a id="sqlServer.escapeId"></a></p>
+
+<h3>sqlServer.escapeId()</h3>
+
+<p>如果传入参数是文本则转换为 SQL 标识符,<br>
+返回文本首尾会添加中括号,  </p>
+
+<p>如果传入参数是表, 则格式化为 SQL 键值对并以 AND 为分隔符,<br>
+如果表中的值为数组,则格式化为 IN 语句</p>
+
+<p><a id="sqlServer.format"></a></p>
+
+<h3>sqlServer.format(SQL语句,格式化参数...)</h3>
+
+<p>格式化 SQL 查询语句。<br>
+所有需要格式化 SQL 语句的函数调用此函数格式化 SQL语句,<br>
+如果格式化参数不是表则调用 string.format 格式化,否则按以下规则格式化:  </p>
+
+<p>SQL语句中?或??占位符使用表的数组元素格式化,<br>
+@字符开始的命名参数使用表的名值对元素格式化,<br>
+其中??格式化为标识符,其他占位符格式化为参数值。  </p>
+
+<p>字符串转为SQL安全转义字符串,buffer转为 0x4D7953514C 格式,<br>
+数组则自动展开为列表,例如{&#39;a&#39;, &#39;b&#39;}格式化为&#39;a&#39;, &#39;b&#39;<br>
+嵌套数组则格式化为分组列表,例如{{&#39;a&#39;, &#39;b&#39;}, {&#39;c&#39;, &#39;d&#39;}} 格式化为 (&#39;a&#39;, &#39;b&#39;), (&#39;c&#39;, &#39;d&#39;)<br>
+非数组的命名表，则格式化为 SQL 键值对,默认以逗号为分隔符,<br>
+??占位符格式化 SQL 键值对则以 AND 为分隔符,并将数组值转换为IN语句</p>
+
+<p><a id="sqlServerObject"></a></p>
+
+<h2>sqlServerObject 成员列表</h2>
+
+<p><a id="sqlServerObject.?"></a></p>
+
+<h3>sqlServerObject.?</h3>
+
+<p>可直接使用对象的成员获取ADO组件提供的COM常量<br>
+这些常量名的前缀都是 ad</p>
+
+<p><a id="sqlServerObject.beginTrans"></a></p>
+
+<h3>sqlServerObject.beginTrans()</h3>
+
+<p>启动事务,返回嵌套层数<br>
+注意如果未调用此函数开启事务，默认每条独立SQL语句仍然会自动创建独立事务</p>
+
+<p><a id="sqlServerObject.close"></a></p>
+
+<h3>sqlServerObject.close()</h3>
+
+<p>关闭数据库连接</p>
+
+<p><a id="sqlServerObject.codepage"></a></p>
+
+<h3>sqlServerObject.codepage</h3>
+
+<p>非 Unicode 字符的默认编码</p>
+
+<p><a id="sqlServerObject.commitTrans"></a></p>
+
+<h3>sqlServerObject.commitTrans()</h3>
+
+<p>提交事务</p>
+
+<p><a id="sqlServerObject.createCommand"></a></p>
+
+<h3>sqlServerObject.createCommand()</h3>
+
+<p><a href="#sqlServerCmdObject">返回对象:sqlServerCmdObject</a></p>
+
+<p><a id="sqlServerObject.createCommand"></a></p>
+
+<h3>sqlServerObject.createCommand(sql,其他格式化SQL参数)</h3>
+
+<p>创建命令对象<br>
+格式化规则请参考 sqlServer.format 函数说明,<br>
+格式化参数可以是一个表参数,用于替换SQL中占位符指定的参数,<br>
+SQL语句用中@前缀标明命名参数使用表参数中的名值对格式化,<br>
+SQL语句中的?或??占位符使用表参数中的数组值格式化</p>
+
+<p><a id="sqlServerObject.each"></a></p>
+
+<h3>sqlServerObject.each()</h3>
+
+<p><a href="#sqlServerRsObject">返回对象:sqlServerRsObject</a></p>
+
+<p><a id="sqlServerObject.each"></a></p>
+
+<h3>sqlServerObject.each(sql,其他格式化参数)</h3>
+
+<pre><code class="aardio language-aardio">for(rs in sqlServerObject.each(&quot;select * from [表名]&quot;) ){ 
+    io.print( rs(&quot;字段名&quot;).value );
+}
+</code></pre>
+
+<p><a id="sqlServerObject.eachTableObject"></a></p>
+
+<h3>sqlServerObject.eachTableObject</h3>
+
+<pre><code class="aardio language-aardio">for(tbName,tbType,tbObj in sqlServerObject.eachTableObject() ){
+
+}
+</code></pre>
+
+<p><a id="sqlServerObject.eachTableObject"></a></p>
+
+<h3>sqlServerObject.eachTableObject()</h3>
+
+<p><a href="#ADOXCatalogTblObject">返回对象:ADOXCatalogTblObject</a></p>
+
+<p><a id="sqlServerObject.exec"></a></p>
+
+<h3>sqlServerObject.exec(sql,其他格式化SQL参数)</h3>
+
+<p>执行 SQL 语句<br>
+格式化参数规则请参考 sqlServer.format 函数说明,<br>
+格式化参数可以是一个表参数,用于替换SQL中占位符指定的参数,<br>
+SQL语句用中@前缀标明命名参数使用表参数中的名值对格式化,<br>
+SQL语句中的?或??占位符使用表参数中的数组值格式化。  </p>
+
+<p>执行失败抛出异常。<br>
+执行成功返回受影响的记录行数</p>
+
+<p><a id="sqlServerObject.existsProcedure"></a></p>
+
+<h3>sqlServerObject.existsProcedure(&quot;存储过程名&quot;)</h3>
+
+<p>判断数据库中是否存在指定存储过程</p>
+
+<p><a id="sqlServerObject.existsTable"></a></p>
+
+<h3>sqlServerObject.existsTable(&quot;表名&quot;)</h3>
+
+<p>判断数据库中是否存在指定表</p>
+
+<p><a id="sqlServerObject.findProcedureObject"></a></p>
+
+<h3>sqlServerObject.findProcedureObject(&quot;存储过程名&quot;)</h3>
+
+<p>返回存储过程对象</p>
+
+<p><a id="sqlServerObject.findTableObject"></a></p>
+
+<h3>sqlServerObject.findTableObject(&quot;表名&quot;)</h3>
+
+<p>返回表对象</p>
+
+<p><a id="sqlServerObject.findTableObject"></a></p>
+
+<h3>sqlServerObject.findTableObject()</h3>
+
+<p><a href="#ADOXCatalogTblObject">返回对象:ADOXCatalogTblObject</a></p>
+
+<p><a id="sqlServerObject.getRows"></a></p>
+
+<h3>sqlServerObject.getRows()</h3>
+
+<p>查询并返回包含结果数据的数组<br>
+此函数返回的数据是先列后行,与getTable相反,<br>
+数组由所有列的数据组成,每个列都是由多个行组成的数组<br>
+可以使用 返回数据[ 列号 ][ 行号 ] 获取对应的值,<br>
+也可以使用 数据.字段名[列号] 获取对应的值  </p>
+
+<p>返回数组的元表中使用recordCount记录了总行数,<br>
+结果集为空也会返回空数组,可使用 @.recordCount判断记录集的行数<br>
+元表中的fields字段则是记录了所有字段名的数组.  </p>
+
+<p>所有值后面的占位空白没有去除<br>
+可使用getTable函数获取处理过空白占位符的数据,<br>
+或参考该函数源码自行处理尾部空白</p>
+
+<p><a id="sqlServerObject.getTable"></a></p>
+
+<h3>sqlServerObject.getTable(&quot;select * from [表名]&quot;,其他格式化参数)</h3>
+
+<p>返回查询结果集数组<br>
+每个元素代表一行,每行由N个键值对列组成<br>
+返回值的fields成员记录了所有数据列的字段名<br>
+结果集为空也会返回空数组,使用#操作符获取结果集长度</p>
+
+<p><a id="sqlServerObject.openRecordSet"></a></p>
+
+<h3>sqlServerObject.openRecordSet()</h3>
+
+<p><a href="#sqlServerRsObject">返回对象:sqlServerRsObject</a></p>
+
+<p><a id="sqlServerObject.openRecordSet"></a></p>
+
+<h3>sqlServerObject.openRecordSet(sql,游标类型,锁定方法,其他格式化SQL参数)</h3>
+
+<p>打开记录集,游标类型如下:<br>
+0:默认值,启动一个只能向前移动的游标<br>
+1:打开键集类型游标,允许任意移动，并且允许更改记录集<br>
+2:打开动态类型游标,许所有操作，其他用户对记录集的添加、删除、更改在此记录集中<br>
+3:打开原生类型游标  </p>
+
+<p>锁定方法如下：<br>
+1:默认值,不能改变数据<br>
+2:悲观锁,编辑时立即锁定数据源的记录<br>
+3:乐观锁,只在调用Update 方法时才锁定记<br>
+4: 乐观批更新</p>
+
+<p><a id="sqlServerObject.rollbackTrans"></a></p>
+
+<h3>sqlServerObject.rollbackTrans()</h3>
+
+<p>回滚事务</p>
+
+<p><a id="sqlServerObject.rowCount"></a></p>
+
+<h3>sqlServerObject.rowCount()</h3>
+
+<p>返回上次执行增、删、改、查等SQL影响的记录行数</p>
+
+<p><a id="sqlServerObject.stepQuery"></a></p>
+
+<h3>sqlServerObject.stepQuery(&quot;select * from [表名]&quot;,其他格式化参数)</h3>
+
+<p>返回查询结果集第一行的数据,由键值对列组成,  </p>
+
+<p>格式化规则请参考 sqlServer.format 函数说明,<br>
+格式化参数可以是一个表参数,用于替换SQL中占位符指定的参数,<br>
+SQL语句用中@前缀标明命名参数使用表参数中的名值对格式化,<br>
+SQL语句中的?或??占位符使用表参数中的数组值格式化</p>
+
+<p><a id="ADOXCatalogColumnObject"></a></p>
+
+<h2>ADOXCatalogColumnObject 成员列表</h2>
+
+<p><a id="ADOXCatalogColumnObject.DefinedSize"></a></p>
+
+<h3>ADOXCatalogColumnObject.DefinedSize</h3>
+
+<p>字段大小</p>
+
+<p><a id="ADOXCatalogColumnObject.Name"></a></p>
+
+<h3>ADOXCatalogColumnObject.Name</h3>
+
+<p>列名</p>
+
+<p><a id="ADOXCatalogColumnObject.Type"></a></p>
+
+<h3>ADOXCatalogColumnObject.Type</h3>
+
+<p>类型</p>
+
+<p><a id="ADOXCatalogTblObject"></a></p>
+
+<h2>ADOXCatalogTblObject 成员列表</h2>
+
+<p><a id="ADOXCatalogTblObject.Columns"></a></p>
+
+<h3>ADOXCatalogTblObject.Columns(&quot;列名&quot;)</h3>
+
+<p>参数也可以写数值索引</p>
+
+<p><a id="ADOXCatalogTblObject.Columns"></a></p>
+
+<h3>ADOXCatalogTblObject.Columns()</h3>
+
+<p><a href="#ADOXCatalogColumnObject">返回对象:ADOXCatalogColumnObject</a></p>
+
+<p><a id="ADOXCatalogTblObject.Columns"></a></p>
+
+<h2>ADOXCatalogTblObject.Columns 成员列表</h2>
+
+<p>列集合</p>
+
+<p><a id="ADOXCatalogTblObject.Columns.Count"></a></p>
+
+<h3>ADOXCatalogTblObject.Columns.Count</h3>
+
+<p>总数</p>
+
+<p><a id="adoConnErrObject"></a></p>
+
+<h2>adoConnErrObject 成员列表</h2>
+
+<p><a id="adoConnErrObject.Description"></a></p>
+
+<h3>adoConnErrObject.Description</h3>
+
+<p>错误描述</p>
+
+<p><a id="adoConnErrObject.NativeError"></a></p>
+
+<h3>adoConnErrObject.NativeError</h3>
+
+<p>数据源错误代码</p>
+
+<p><a id="adoConnErrObject.Number"></a></p>
+
+<h3>adoConnErrObject.Number</h3>
+
+<p>错误代码</p>
+
+<p><a id="adoConnErrObject.SQLState"></a></p>
+
+<h3>adoConnErrObject.SQLState</h3>
+
+<p>数据源</p>
+
+<p><a id="adoConnErrObject.Source"></a></p>
+
+<h3>adoConnErrObject.Source</h3>
+
+<p>错误对象</p>
+
+<p><a id="sqlServerCmdObject"></a></p>
+
+<h2>sqlServerCmdObject 成员列表</h2>
+
+<p><a id="sqlServerCmdObject.addParameter"></a></p>
+
+<h3>sqlServerCmdObject.addParameter</h3>
+
+<p>调用createParameter创建参数对象,<br>
+设置值并添加到SQL执行参数中<br>
+注意如果直接使用这个函数添加参数,<br>
+SQL语句中应当用?号作为参数占位符,<br>
+参数只按添加顺序匹配SQL中的参数</p>
+
+<p><a id="sqlServerCmdObject.addParameter"></a></p>
+
+<h3>sqlServerCmdObject.addParameter()</h3>
+
+<p><a href="#sqlServerParameterObject">返回对象:sqlServerParameterObject</a></p>
+
+<p><a id="sqlServerCmdObject.addParameter"></a></p>
+
+<h3>sqlServerCmdObject.addParameter(名字,值,参数类型,字段类型,字段大小)</h3>
+
+<p>直接添加SQL执行参数<br>
+除名字，值以外的其他参数不必要设置<br>
+返回创建的参数对象  </p>
+
+<p>注意access的参数对象虽然必须设置正确的名字,<br>
+但实际上他只按添加顺序执行</p>
+
+<p><a id="sqlServerCmdObject.bind"></a></p>
+
+<h3>sqlServerCmdObject.bind()</h3>
+
+<p>参数是一个表,<br>
+可使用多个键值对批量指定SQL命令对象的多个参数,<br>
+此函数会按参数在SQL中出现的顺序逐个添加参数,<br>
+SQL语句中所有参数名前面必须额外添加@前缀,<br>
+此函数返回命令对象自身</p>
+
+<p><a href="#sqlServerCmdObject">返回对象:sqlServerCmdObject</a></p>
+
+<p><a id="sqlServerCmdObject.cancel"></a></p>
+
+<h3>sqlServerCmdObject.cancel()</h3>
+
+<p>取消执行</p>
+
+<p><a id="sqlServerCmdObject.commandText"></a></p>
+
+<h3>sqlServerCmdObject.commandText</h3>
+
+<p>要执行的SQL命令语句</p>
+
+<p><a id="sqlServerCmdObject.commandType"></a></p>
+
+<h3>sqlServerCmdObject.commandType</h3>
+
+<p>命令类型<br>
+普通SQL为1，存储过程为4</p>
+
+<p><a id="sqlServerCmdObject.createParameter"></a></p>
+
+<h3>sqlServerCmdObject.createParameter(名字,字段类型,参数类型,字段大小,参数值)</h3>
+
+<p>创建参数<br>
+参数中用到的常量请使用COM对象的成员常量获取,<br>
+例如cmd.adLongVarWChar<br>
+这个函数创建的参数还需要调用parameters.append添加到执行参数中  </p>
+
+<p>不建议直接调用此函数，可以使用更简单的addParameter或bind函数添加参数</p>
+
+<p><a id="sqlServerCmdObject.each"></a></p>
+
+<h3>sqlServerCmdObject.each()</h3>
+
+<pre><code class="aardio language-aardio">for(rs in sqlServerCmdObject.each() ){ 
+    io.print( rs(0).value );/*执行SQL命令并遍历结果集  
+rs为 ADODB.Recordset 对象，即ADO 表记录集  
+可以使用 rs(&quot;字段名&quot;).value自记录集中提取数据,  
+更多用法请参考 ADO  文档。*/
+}
+</code></pre>
+
+<p><a id="sqlServerCmdObject.execute"></a></p>
+
+<h3>sqlServerCmdObject.execute()</h3>
+
+<p><a href="#sqlServerRsObject">返回对象:sqlServerRsObject</a></p>
+
+<p><a id="sqlServerCmdObject.execute"></a></p>
+
+<h3>sqlServerCmdObject.execute(ra,parameters.option)</h3>
+
+<p>执行查询,所有参数可选。<br>
+参数ra 返回受查询影响的记录的数目<br>
+参数parameters 用 SQL 语句传递的参数值<br>
+参数options 一个或者多个 CommandTypeEnum 或 ExecuteOptionEnum 值。<br>
+返回记录集对象，execute 返回的记录集没有 getTable,stepQuery 函数。<br>
+executeRecords 返回的记录集提供 getTable,stepQuery 函数。</p>
+
+<p><a id="sqlServerCmdObject.executeNoRecords"></a></p>
+
+<h3>sqlServerCmdObject.executeNoRecords(ra,parameters)</h3>
+
+<p>执行查询不返回记录集,所有参数可选。<br>
+参数ra 返回受查询影响的记录的数目<br>
+参数parameters 用 SQL 语句传递的参数值</p>
+
+<p><a id="sqlServerCmdObject.executeRecords"></a></p>
+
+<h3>sqlServerCmdObject.executeRecords()</h3>
+
+<p><a href="#sqlServerRsObject">返回对象:sqlServerRsObject</a></p>
+
+<p><a id="sqlServerCmdObject.executeRecords"></a></p>
+
+<h3>sqlServerCmdObject.executeRecords(ra,parameters.option)</h3>
+
+<p>执行查询,所有参数可选。<br>
+参数ra 返回受查询影响的记录的数目<br>
+参数parameters 用 SQL 语句传递的参数值<br>
+参数options 一个或者多个 CommandTypeEnum 或 ExecuteOptionEnum 值。<br>
+返回记录集对象，execute 返回的记录集没有 getTable,stepQuery 函数。<br>
+executeRecords 返回的记录集提供 getTable,stepQuery 函数。</p>
+
+<p><a id="sqlServerCmdObject.executeStream"></a></p>
+
+<h3>sqlServerCmdObject.executeStream(ra,parameters)</h3>
+
+<p>执行查询返回流,所有参数可选。<br>
+参数ra 返回受查询影响的记录的数目<br>
+参数parameters 用 SQL 语句传递的参数值</p>
+
+<p><a id="sqlServerCmdObject.getRows"></a></p>
+
+<h3>sqlServerCmdObject.getRows()</h3>
+
+<p>查询并返回包含结果数据的SafeArray数组<br>
+此函数返回的数据是先列后行,与getTable相反,<br>
+数组由所有列的数据组成,每个列都是由多个行组成的数组<br>
+可以使用 返回数据[ 列号 ][ 行号 ] 获取对应的值,<br>
+也可以使用 数据.字段名[列号] 获取对应的值  </p>
+
+<p>返回数组的元表中使用recordCount记录了总行数,<br>
+结果集为空也会返回空数组,可使用 @.recordCount判断记录集的行数<br>
+元表中的fields字段则是记录了所有字段名的数组.  </p>
+
+<p>所有值后面的占位空白没有去除<br>
+可使用getTable函数获取处理过空白占位符的数据,<br>
+或参考该函数源码自行处理尾部空白</p>
+
+<p><a id="sqlServerCmdObject.getTable"></a></p>
+
+<h3>sqlServerCmdObject.getTable()</h3>
+
+<p>执行SQL命令返回查询结果集数组<br>
+每个元素代表一行,每行由N个键值对列组成<br>
+返回值的fields成员记录了所有数据列的字段名<br>
+结果集为空也会返回空数组,使用#操作符获取结果集长度</p>
+
+<p><a id="sqlServerCmdObject.parameters"></a></p>
+
+<h3>sqlServerCmdObject.parameters(&quot;字符串参数&quot;)</h3>
+
+<p>返回已添加的参数</p>
+
+<p><a id="sqlServerCmdObject.parameters"></a></p>
+
+<h3>sqlServerCmdObject.parameters()</h3>
+
+<p><a href="#sqlServerParameterObject">返回对象:sqlServerParameterObject</a></p>
+
+<p><a id="sqlServerCmdObject.rowCount"></a></p>
+
+<h3>sqlServerCmdObject.rowCount()</h3>
+
+<p>返回上次执行增、删、改、查等SQL影响的记录行数</p>
+
+<p><a id="sqlServerCmdObject.stepQuery"></a></p>
+
+<h3>sqlServerCmdObject.stepQuery()</h3>
+
+<p>执行SQL命令<br>
+返回查询结果集第一行的数据,由键值对列组成<br>
+无数据返回null</p>
+
+<p><a id="sqlServerCmdObject.parameters"></a></p>
+
+<h2>sqlServerCmdObject.parameters 成员列表</h2>
+
+<p>参数列表</p>
+
+<p><a id="sqlServerCmdObject.parameters.append"></a></p>
+
+<h3>sqlServerCmdObject.parameters.append(参数对象)</h3>
+
+<p>添加参数<br>
+注意access的参数对象虽然必须设置正确的名字,<br>
+但实际上他只按添加顺序执行</p>
+
+<p><a id="sqlServerCmdObject.parameters.count"></a></p>
+
+<h3>sqlServerCmdObject.parameters.count()</h3>
+
+<p>返回参数长度</p>
+
+<p><a id="sqlServerCmdObject.parameters.delete"></a></p>
+
+<h3>sqlServerCmdObject.parameters.delete(索引)</h3>
+
+<p>删除参数</p>
+
+<p><a id="sqlServerCmdObject.parameters.refresh"></a></p>
+
+<h3>sqlServerCmdObject.parameters.refresh()</h3>
+
+<p>刷新参数</p>
+
+<p><a id="sqlServerObject.connection"></a></p>
+
+<h2>sqlServerObject.connection 成员列表</h2>
+
+<p>连接对象</p>
+
+<p><a id="sqlServerObject.connection.ConnectionString"></a></p>
+
+<h3>sqlServerObject.connection.ConnectionString</h3>
+
+<p>连接串</p>
+
+<p><a id="sqlServerObject.connection.Errors"></a></p>
+
+<h3>sqlServerObject.connection.Errors()</h3>
+
+<p><a href="#adoConnErrObject">返回对象:adoConnErrObject</a></p>
+
+<p><a id="sqlServerObject.connection.Errors"></a></p>
+
+<h3>sqlServerObject.connection.Errors(0)</h3>
+
+<p>参数指定错误索引</p>
+
+<p><a id="sqlServerObject.connection.Errors"></a></p>
+
+<h2>sqlServerObject.connection.Errors 成员列表</h2>
+
+<p>错误集合</p>
+
+<p><a id="sqlServerObject.connection.Errors.count"></a></p>
+
+<h3>sqlServerObject.connection.Errors.count</h3>
+
+<p>错误数</p>
+
+<p><a id="sqlServerParameterObject"></a></p>
+
+<h2>sqlServerParameterObject 成员列表</h2>
+
+<p><a id="sqlServerParameterObject.direction"></a></p>
+
+<h3>sqlServerParameterObject.direction</h3>
+
+<p>参数的类型，默认是adParamInput</p>
+
+<p><a id="sqlServerParameterObject.name"></a></p>
+
+<h3>sqlServerParameterObject.name</h3>
+
+<p>参数名称</p>
+
+<p><a id="sqlServerParameterObject.size"></a></p>
+
+<h3>sqlServerParameterObject.size</h3>
+
+<p>数据长度</p>
+
+<p><a id="sqlServerParameterObject.value"></a></p>
+
+<h3>sqlServerParameterObject.value</h3>
+
+<p>参数值</p>
+
+<p><a id="sqlServerRsObject"></a></p>
+
+<h2>sqlServerRsObject 成员列表</h2>
+
+<p><a id="sqlServerRsObject.GetRows"></a></p>
+
+<h3>sqlServerRsObject.GetRows</h3>
+
+<p>查询并返回包含结果数据的数组<br>
+此函数返回的数据是先列后行,与getTable相反,<br>
+数组由所有列的数据组成,每个列都是由多个行组成的数组<br>
+可以使用 返回数据[ 列号 ][ 行号 ] 获取对应的值</p>
+
+<p><a id="sqlServerRsObject.GetRows"></a></p>
+
+<h3>sqlServerRsObject.GetRows(rows,start,fields)</h3>
+
+<p>查询并返回包含结果数据的数组,所有参数可选,<br>
+rows 指定获取行数，默认为-1，即获取所有剩下的行,0,<br>
+@start为可选参数,可选使用以下数值：<br>
+    _adBookmarkCurrent 0 自当前记录开始<br>
+    _adBookmarkFirst 1 自首条记录开始<br>
+    _adBookmarkLast 2 自最后一条记录开始<br>
+@ields 可选用一个字符串、或字符串数组指定要获取的列,<br>
+也可用数值，或数值数组指定要获取的列</p>
+
+<p><a id="sqlServerRsObject.bof"></a></p>
+
+<h3>sqlServerRsObject.bof</h3>
+
+<p>是否已经到记录集开始，没有更多数据了</p>
+
+<p><a id="sqlServerRsObject.close"></a></p>
+
+<h3>sqlServerRsObject.close()</h3>
+
+<p>关闭记录集</p>
+
+<p><a id="sqlServerRsObject.eof"></a></p>
+
+<h3>sqlServerRsObject.eof</h3>
+
+<p>是否移动到记录集尾部，没有更多数据了</p>
+
+<p><a id="sqlServerRsObject.getTable"></a></p>
+
+<h3>sqlServerRsObject.getTable()</h3>
+
+<p>执行SQL命令返回查询结果集数组<br>
+每个元素代表一行,每行由N个键值对列组成<br>
+返回值的fields成员记录了所有数据列的字段名<br>
+结果集为空也会返回空数组,使用#操作符获取结果集长度</p>
+
+<p><a id="sqlServerRsObject.move"></a></p>
+
+<h3>sqlServerRsObject.move(numRecords,start)</h3>
+
+<p>移动游标位置,<br>
+注意第一条记录游标位置为0,<br>
+@start为可选参数,可选使用以下数值：<br>
+    _adBookmarkCurrent 0 自当前记录开始<br>
+    _adBookmarkFirst 1 自首条记录开始<br>
+    _adBookmarkLast 2 自最后一条记录开始</p>
+
+<p><a id="sqlServerRsObject.nextRecordset"></a></p>
+
+<h3>sqlServerRsObject.nextRecordset()</h3>
+
+<p>关闭当前结果集并打开下一个结果集。<br>
+注意要小写函数名的第一个字母。<br>
+nextRecordset 封装了大写首字母的 COM 函数 NextRecordset，<br>
+对返回的记录集对象添加了 getTable,stepQuery 等函数。  </p>
+
+<p><a href="#sqlServerRsObject">返回对象:sqlServerRsObject</a></p>
+
+<p><a id="sqlServerRsObject.recordCount"></a></p>
+
+<h3>sqlServerRsObject.recordCount</h3>
+
+<p>获取记录总数,<br>
+如果该值为-1，请修改为静态方式打开记录集</p>
+
+<p><a id="sqlServerRsObject.stepQuery"></a></p>
+
+<h3>sqlServerRsObject.stepQuery()</h3>
+
+<p>执行SQL命令<br>
+返回查询结果集第一行的数据,由键值对列组成<br>
+无数据返回null</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/sqlServer/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/sqlServer/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/sqlServer/_.md">Markdown 格式</a></p>
+
+</body> 
+</html>

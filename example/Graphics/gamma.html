@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 调整伽马值'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 调整伽马值</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 调整伽马值</h1><pre><code class="aardio language-aardio">//调整伽马值
+import gdip.bitmap;
+import gdip.graphics;
+import gdip.imageAttributes;
+
+//打开图像文件，返回位图对象，路径开始为单个波浪线表示 EXE 所在目录（开发时指 aardio.exe 所在目录）
+var bmp = gdip.bitmap(&quot;~/example/Graphics/.gdip.jpg&quot;)
+
+//创建图像属性操作对象。
+var iAttr = gdip.imageAttributes()
+
+//调整伽马值
+iAttr.setGamma(2.2);
+
+//使用新的伽马值属性复制图像，此函数内部需要绘图，必须提前导入 gdip.graphics
+var bmpNew = bmp.copy(iAttr);
+
+//保存图像
+bmpNew.save(&quot;/gamma.jpg&quot;);
+
+//查看图像
+import process.imageView;
+process.imageView(&quot;/gamma.jpg&quot;);
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Graphics/gamma.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Graphics/gamma.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Graphics/gamma.md">Markdown 格式</a>
+</body> 
+</html>

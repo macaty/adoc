@@ -1,0 +1,97 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - console.int 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - console.int 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>console.int 库模块帮助文档</h1>
+
+<p><a id="console"></a></p>
+
+<h2>console 成员列表</h2>
+
+<p><a id="console.int"></a></p>
+
+<h3>console.int</h3>
+
+<p>用于注册控制台中断信号触发器。<br>
+导入此库会自动导入 console 库，并且退出线程时如果控制台<br>
+仍在显示，则自动调用 console.pause 函数</p>
+
+<p><a id="console.int"></a></p>
+
+<h3>console.int()</h3>
+
+<p><a href="#consoleIntObject">返回对象:consoleIntObject</a></p>
+
+<p><a id="console.int"></a></p>
+
+<h3>console.int(ctrlHandler,owner)</h3>
+
+<pre><code class="aardio language-aardio">console.int(  
+    function(ctrlType){  
+        /*控制台退出前是否触发此线程函数。  
+可选用 @owner 指定线程函数的 owner 参数。  
+
+使用前请先阅读多线程入门教程，了解线程函数基本规则。  
+
+ctrlType 为 null 表示控制台正常关闭，不可取消。  
+ctrlType 为 0 表示按下 Ctrl+ C。  
+ctrlType 为 1 表示按下 Ctrl + Break。  
+ctrlType 为 0 或 1 时返回 true 可阻止控制台退出。  
+省略此函数时，则创建默认触发器并返回 true。  
+
+在此函数内不应再使用任何控制台函数*/  
+    }  
+);
+</code></pre>
+
+<p><a id="consoleIntObject"></a></p>
+
+<h2>consoleIntObject 成员列表</h2>
+
+<p><a id="consoleIntObject.isInterrupted"></a></p>
+
+<h3>consoleIntObject.isInterrupted()</h3>
+
+<p>控制台是否已收到中断信号。<br>
+按 Ctrl + C ，Ctrl + Break 以后，无论是否阻止退出都会返回 true</p>
+
+<p><a id="consoleIntObject.run"></a></p>
+
+<h3>consoleIntObject.run(callback)</h3>
+
+<pre><code class="aardio language-aardio">consoleIntObject.run(  
+    function(){  
+        /*如果控制台程序未退出，未按下 Ctrl + C，  
+则重复执行此回调函数，函数返回 false 退出循环。  
+
+此函数可接收 run 函数除参数 @1 以外的余下参数 */  
+    }     
+)
+</code></pre>
+
+<p><a id="consoleIntObject.setDelay"></a></p>
+
+<h3>consoleIntObject.setDelay()</h3>
+
+<p>参数 @1 指定控制台程序退出前的默认延迟，以毫秒为单位  </p>
+
+<p>如果直接关闭窗口，<br>
+触发器可以拦截但无法阻止关闭。<br>
+增加延迟可增加控制台程序退出前的等待时间<br>
+延迟之前先设置中断状态，也不会阻止当前线程向下执行</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/console/int.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/console/int.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/console/int.md">Markdown 格式</a></p>
+
+</body> 
+</html>

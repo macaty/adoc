@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - main'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - main</title> 
+<link rel="stylesheet" href="../../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: main</h1><pre><code class="aardio language-aardio">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt; 
+  &lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;aardio嵌入electron演示&lt;/title&gt;
+  &lt;/head&gt;
+
+  &lt;body&gt;
+
+   &lt;h2 onmousedown=&quot;aardio.hitCaption();return false;&quot; 
+        style=&quot;-webkit-user-select: none;cursor:default;&quot;&gt;按这里调用aardio.hitCaption()拖动窗口!&lt;/h2&gt;
+
+   &lt;button onclick=&quot;aardio.exit();&quot;&gt;点这里调用aardio关闭窗口&lt;/button&gt; &lt;br&gt;&lt;br&gt;
+
+   &lt;button id=&quot;aardio&quot;&gt;点这里跟aardio互调一下函数&lt;/button&gt;&lt;br&gt;&lt;br&gt;
+
+    &lt;?
+    response.write(&quot;在electron中执行aardio代码&quot;)
+    ?&gt;
+
+    &lt;/body&gt;    
+
+    &lt;script type=&quot;text/javascript&quot;&gt;   
+
+    /*导入aardio中的app.external 对象*/
+    aardio = require(&quot;aardio&quot;);
+
+    /*响应按钮点击事件*/
+    document.querySelector(&quot;#aardio&quot;).onclick = function(e){ 
+
+        //调用aardio中的函数,hello要调用的函数名字,后面可以跟任意个调用参数
+        aardio.ex.hello( &quot;你点击了&quot; + e.target.innerHTML,1,2,3,&quot;有几个参数写几个&quot; )
+            .then( 
+                function(message){
+                    document.getElementById(&quot;aardio&quot;).innerText = &quot;aardio返回值&quot; + message;
+                } 
+            )
+    }
+
+    /*响应aardio服务端发起的调查任务*/
+    aardio.on(&quot;getUrl&quot;,function(){
+        return document.location.href;
+    });
+
+    &lt;/script&gt;
+
+&lt;/html&gt;
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/WebUI/Electron/res/main.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/WebUI/Electron/res/main.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/WebUI/Electron/res/main.md">Markdown 格式</a>
+</body> 
+</html>

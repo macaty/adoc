@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - string.stream 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - string.stream 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>string.stream 库模块帮助文档</h1>
+
+<p><a id="string"></a></p>
+
+<h2>string 成员列表</h2>
+
+<p><a id="string.stream"></a></p>
+
+<h3>string.stream()</h3>
+
+<p><a href="#StringStreamObject">返回对象:StringStreamObject</a></p>
+
+<p><a id="string.stream"></a></p>
+
+<h3>string.stream(文件路径)</h3>
+
+<p>支持资源文件,<br>
+参数也可以是普通字符串内容,<br>
+创建的流是只读的</p>
+
+<p><a id="StringStreamObject"></a></p>
+
+<h2>StringStreamObject 成员列表</h2>
+
+<p><a id="StringStreamObject.read"></a></p>
+
+<h3>StringStreamObject.read(长度)</h3>
+
+<p>读取内容,返回字符串</p>
+
+<p><a id="StringStreamObject.readBuffer"></a></p>
+
+<h3>StringStreamObject.readBuffer</h3>
+
+<p>读取数据到 buffer ,成功返回读取长度,失败返回null</p>
+
+<p><a id="StringStreamObject.readBuffer"></a></p>
+
+<h3>StringStreamObject.readBuffer(buffer,读取长度)</h3>
+
+<p>直接读数据到内存<br>
+参数@1可以是 buffer 对象,或内存指针,<br>
+如果是指针则必须指定读取长度,否则长度参数可选<br>
+成功返回读取长度</p>
+
+<p><a id="StringStreamObject.seek"></a></p>
+
+<h3>StringStreamObject.seek(偏移数值,&quot;set&quot;)</h3>
+
+<p>移动流指针,<br>
+参数@2为以下值:<br>
+&quot;set&quot;:相对文件开始:<br>
+&quot;end&quot;:相对文件尾:<br>
+&quot;cur&quot;:相对当前位置</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/string/stream.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/string/stream.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/string/stream.md">Markdown 格式</a></p>
+
+</body> 
+</html>

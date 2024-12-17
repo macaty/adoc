@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 窗口程序 - 使用自定义控件创建子窗体容器'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 窗口程序 - 使用自定义控件创建子窗体容器</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 窗口程序 - 使用自定义控件创建子窗体容器</h1><pre><code class="aardio language-aardio">//窗口程序 - 使用自定义控件创建子窗体容器
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;aardio form&quot;;right=759;bottom=469)
+winform.add(
+button1={cls=&quot;button&quot;;text=&quot;切换窗口 frmChild1&quot;;left=366;top=418;right=525;bottom=459;db=1;dr=1;z=2};
+button2={cls=&quot;button&quot;;text=&quot;切换窗口 frmChild2&quot;;left=534;top=418;right=693;bottom=459;db=1;dr=1;z=3};
+custom={cls=&quot;custom&quot;;text=&quot;自定义控件&quot;;left=21;top=14;right=741;bottom=380;db=1;dl=1;dr=1;dt=1;z=1}
+)
+/*}}*/
+
+/*
+我们可以使用 winform.custom.loadForm( path ) 加载窗口。
+aardio 会自动将窗口加载为 winform.custom 的子窗口。
+
+每次调用 winform.custom.loadForm( path )都会加载窗体代码并返回新的子窗体对象。
+winform.custom 会成为容器管理所有加载的子窗口数组。
+
+规则如下：
+1、当显示一个子窗口，其他子窗口就会自动隐藏。
+2、调用 winform.custom.loadForm( path ) 并不会释放之前加载的其他子窗体，而仅仅是隐藏他们。
+2、当关闭一个子窗口，他就会自动从 custom 控件容器的子窗口数组中移除。
+*/
+
+var frmChild1 = winform.custom.loadForm(&quot;/.res/frmChild1.aardio&quot;)
+winform.button1.oncommand = function(id,event){
+    frmChild1.show();
+}
+
+var frmChild2 = winform.custom.loadForm(&quot;/.res/frmChild2.aardio&quot;)
+winform.button2.oncommand = function(id,event){
+    frmChild2.show();
+    /*
+    如果在函数内部调用 winform.custom.loadForm(&quot;/.res/frmChild2.aardio&quot;) 
+    又不关闭以前加载的子窗口，就会导致每点击一次都加载一个新的窗口，
+    且并没有释放之前的窗口（ 他们之是被隐藏了 ）。
+
+    所以我们并不需要在这里重复加载同一窗体文件，只要简单的显示他就可以了。
+    */
+}
+
+/*
+标准库 win.ui.tabs 实现的「高级选项卡就会自动查找附近合适的 custom 控件作为子窗口容器。
+*/
+
+winform.show();
+win.loopMessage();
+return winform;
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Windows/Custom/container.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Windows/Custom/container.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Windows/Custom/container.md">Markdown 格式</a>
+</body> 
+</html>

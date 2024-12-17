@@ -1,0 +1,143 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - win.clip.html 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - win.clip.html 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>win.clip.html 库模块帮助文档</h1>
+
+<p><a id="win.clip.html"></a></p>
+
+<h2>win.clip.html 成员列表</h2>
+
+<p>剪贴板HTML操作</p>
+
+<p><a id="win.clip.html.format"></a></p>
+
+<h3>win.clip.html.format</h3>
+
+<p>注册的 CF_HTML 图像格式，数值。</p>
+
+<p><a id="win.clip.html.test"></a></p>
+
+<h3>win.clip.html.test()</h3>
+
+<p>如果剪贴析包含 HTML 格式数据返回 true</p>
+
+<p><a id="win.clip"></a></p>
+
+<h2>win.clip 成员列表</h2>
+
+<p><a id="win.clip.html"></a></p>
+
+<h3>win.clip.html()</h3>
+
+<p>创建剪贴板HTML对象  </p>
+
+<p><a href="#winClipHtmlObject">返回对象:winClipHtmlObject</a></p>
+
+<p><a id="winClipHtmlObject"></a></p>
+
+<h2>winClipHtmlObject 成员列表</h2>
+
+<p><a id="winClipHtmlObject.ClipboardData"></a></p>
+
+<h3>winClipHtmlObject.ClipboardData</h3>
+
+<p>剪贴板数据,UTF8编码<br>
+该属性在解析剪贴板数据时自动生成,不要修改该属性</p>
+
+<p><a id="winClipHtmlObject.EndFragment"></a></p>
+
+<h3>winClipHtmlObject.EndFragment</h3>
+
+<p>复制的片段结束位置<br>
+该属性在解析剪贴板数据时自动生成,不要修改该属性</p>
+
+<p><a id="winClipHtmlObject.EndHTML"></a></p>
+
+<h3>winClipHtmlObject.EndHTML</h3>
+
+<p>HTML 结束位置，<br>
+不要修改该属性</p>
+
+<p><a id="winClipHtmlObject.StartFragment"></a></p>
+
+<h3>winClipHtmlObject.StartFragment</h3>
+
+<p>复制的片段开始位置<br>
+该属性在解析剪贴板数据时自动生成,不要修改该属性</p>
+
+<p><a id="winClipHtmlObject.StartHTML"></a></p>
+
+<h3>winClipHtmlObject.StartHTML</h3>
+
+<p>HTML 开始位置，<br>
+该属性在解析剪贴板数据时自动生成,不要修改该属性</p>
+
+<p><a id="winClipHtmlObject.fragment"></a></p>
+
+<h3>winClipHtmlObject.fragment</h3>
+
+<p>自剪贴板读取或写入的 HTML 代码中需要复制的片段，由其他函数自动设置。<br>
+不要修改此属性。</p>
+
+<p><a id="winClipHtmlObject.html"></a></p>
+
+<h3>winClipHtmlObject.html</h3>
+
+<p>自剪贴板读取或写入的 HTML 代码，由其他函数自动设置。<br>
+不要修改此属性。</p>
+
+<p><a id="winClipHtmlObject.parse"></a></p>
+
+<h3>winClipHtmlObject.parse()</h3>
+
+<p><a href="#winClipHtmlObject">返回对象:winClipHtmlObject</a></p>
+
+<p><a id="winClipHtmlObject.parse"></a></p>
+
+<h3>winClipHtmlObject.parse(剪贴板数据,是否UTF8)</h3>
+
+<p>解析剪贴板数据,<br>
+参数@2默认为true,注意HTML在剪贴板为UTF8编码<br>
+成功返回对象自身</p>
+
+<p><a id="winClipHtmlObject.read"></a></p>
+
+<h3>winClipHtmlObject.read()</h3>
+
+<p>读取并解析剪贴板 HTML。<br>
+成功返回对象自身。<br>
+通过对象的 html,fragment 获取读取的 HTML 代码。  </p>
+
+<p><a href="#winClipHtmlObject">返回对象:winClipHtmlObject</a></p>
+
+<p><a id="winClipHtmlObject.stringify"></a></p>
+
+<h3>winClipHtmlObject.stringify(HTML,是否UTF8)</h3>
+
+<p>参数@1如果省略则获取对象的html或fragment属性生成复制数据,<br>
+成功返回可写入剪贴板的数据</p>
+
+<p><a id="winClipHtmlObject.write"></a></p>
+
+<h3>winClipHtmlObject.write(剪贴板数据,是否UTF8)</h3>
+
+<p>参数@1如果省略则获取对象的html或fragment属性生成复制数据,<br>
+可选使用参数@3指定在复制前是否清空剪贴板,默认清空,<br>
+成功返回剪贴板数据句柄</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/clip/html.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/clip/html.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/clip/html.md">Markdown 格式</a></p>
+
+</body> 
+</html>

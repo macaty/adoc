@@ -1,0 +1,66 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 超链接控件测试'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 超链接控件测试</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 超链接控件测试</h1><pre><code class="aardio language-aardio">//超链接控件
+//如何在界面上快速添加超链接，如何利用自定义控件实现超链接
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;超链接控件测试&quot;;right=713;bottom=504)
+winform.add(
+lnkWebsite={cls=&quot;syslink&quot;;text=&quot;使用 syslink 控件教程&quot;;left=84;top=30;right=279;bottom=97;transparent=1;z=1};
+plus={cls=&quot;plus&quot;;left=37;top=99;right=633;bottom=426;repeat=&quot;center&quot;;z=2}
+)
+/*}}*/
+
+/*
+添加超链接控件的步骤：
+
+1. 自『界面控件』工具箱拖一个 custom 控件到界面上。
+2. 将 custom　控件的类名改为 &quot;syslink&quot;。
+3. 使用控件的文本（text）属性指定超链接显示的文本。
+4. 在代码中使用 link 属性创建第一个超超链接。
+*/
+
+winform.lnkWebsite.link =  &quot;http://www.aardio.com&quot;;//快速设置或修改超链接
+
+/*
+通过控件的 text 属性可使用 HTML 语法创建一个或多个超链接。
+除普通文本与超链接以外，不支持其他 HTML 语真法，例如文本应当直接换行而不是用 &lt;br&gt; 换行。
+*/
+winform.lnkWebsite.text = `&lt;a 
+href=&quot;http://bbs.aardio.com/forum.php?mod=viewthread&amp;tid=13220&amp;extra=&amp;from=portal&quot;
+id=&quot;也可以指定 ID&quot;&gt;使用 syslink 控件教程&lt;/a&gt;
+
+&lt;a href=&quot;https://www.aardio.com/zh-cn/doc/library-guide/std/win/ui/ctrl/custom.html#cls&quot;&gt;使用自定义控件教程&lt;/a&gt;
+`
+
+/*
+可选自定义打开超链接的函数，
+不指定 onHyperlinkClick 则默认调用 raw.execute 打开超链接.
+*/
+winform.lnkWebsite.onHyperlinkClick = function(nmSysLink,url,id,index){
+    //打开超链接，如果控件有多个链接可以使用 index 区分（第一个超链接  index 为1）
+    raw.execute(url) 
+}
+
+import inet.http;//支持远程图像
+winform.plus.background = &quot;https://download.aardio.com/v10.files/demo/syslink.gif&quot;
+
+winform.show(); 
+win.loopMessage();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Windows/Controls/syslink.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Windows/Controls/syslink.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Windows/Controls/syslink.md">Markdown 格式</a>
+</body> 
+</html>

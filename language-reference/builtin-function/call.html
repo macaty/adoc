@@ -1,0 +1,44 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - call() 函数'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - call() 函数</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>call() 函数</h1>
+
+<p>call() 函数用于调用一个 aardio 函数,并可自定义 owner 对象，并获取错误信息  </p>
+
+<ol>
+<li><p>函数原型：   </p>
+
+<p><code>返回值,错误信息 = call(函数,owner,其他参数 ... )</code></p></li>
+<li><p>函数说明：   </p>
+
+<p>call 函数可以调用并执行一个函数对象,<br>
+与普通函数调用不同的是:可显式指定 owner 对象,并可获取错误信息而不是直接抛出异常.  </p></li>
+<li><p>调用示例：   </p>
+
+<pre><code class="aardio language-aardio">import console;
+
+var ok = call(console.log,console,123) 
+
+var ok,err = call(notfound,console,123) 
+if(!ok) console.log(&quot;出错了&quot;,err) 
+
+console.pause();
+</code></pre></li>
+</ol>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/language-reference/builtin-function/call.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/language-reference/builtin-function/call.md'" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/builtin-function/call.md">Markdown 格式</a></p>
+
+</body> 
+</html>

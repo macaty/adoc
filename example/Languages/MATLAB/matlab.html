@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 交互调用'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 交互调用</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 交互调用</h1><pre><code class="aardio language-aardio">//交互调用
+import console.int;  
+import com.matlab; 
+
+//创建 MATLAB 应用
+var m = com.matlab(true); 
+
+//------------------ 调用 MATLAB 函数 ------------------------------
+
+//调用 MATLAB 函数，第一个参数指定有 3 个返回值
+var dir,fname,ext =  m.fileparts(3,&quot;c:\aardio\matlab.m&quot; );
+
+//如果首个参数不是数值，则可不指定返回值数量（默认设为 1）。
+var result =  m.strcat(&quot;hello&quot;,&quot;world&quot; )
+
+//------------------ 执行命名或表达式 ------------------------------
+
+//执行绘图命令
+m.exec(&quot;plot(1:10)&quot;)
+
+//解析下标中的 MATLAB 表达式。
+var data = m[`{&#39;one&#39;; &#39;two&#39;; &#39;three&#39;}`] 
+
+//------------------ 读写工作区变量 ------------------------------
+
+//读写 base 工作区的变量
+m.base.varname = &quot;测试字符串,base 工作区。&quot;;
+
+//读写 globa 工作区的变量
+m.global.varname = &quot;global 工作区&quot;; 
+
+//批量写入变量到工作区
+m.base.assign({
+    var1 = 1;
+    var2 = 2;
+    var3 = 3;
+})
+
+//----------------------- 读写矩阵 -------------------------------
+
+var realPart = { {1,2}, {3,4} }
+var imagPart = { {1,0}, {0,2} }  
+
+//写入矩阵到 base 工作区
+m.base.putMatrix(&quot;B&quot;, realPart, imagPart)
+
+//自 base 工作区读取矩阵 
+var realPart,imagPart =   m.base.getMatrix(&quot;B&quot; )
+
+//回显结果
+console.dumpJson(realPart );
+console.dumpJson(imagPart );
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/MATLAB/matlab.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/MATLAB/matlab.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Languages/MATLAB/matlab.md">Markdown 格式</a>
+</body> 
+</html>

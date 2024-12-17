@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - aardio 调用 Node.js 函数'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - aardio 调用 Node.js 函数</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 调用 Node.js 函数</h1><pre><code class="aardio language-aardio">//aardio 调用 Node.js 函数
+import console.int;  
+import nodeJs;
+
+//JS 代码
+var js = /******
+
+global.Calculator = class  {
+    static add(a, b) {
+        return a + b;
+    }
+
+    static multiply(a, b) {
+        return a * b;
+    }
+}
+
+global.add = function (a, b) {
+    return a + b;
+}
+******/
+
+//启动 Node.js 。
+var node = nodeJs.startRpc(js,//指定 JS 代码或文件路径，这种方式在 JS 里 console.log 不可用
+    &quot;args1&quot;,&quot;args2&quot;);//可选指定任意个启动参数( JS 用 process.argv 获取 )。
+
+/*
+调用 JS 函数，要点：
+- 被调用的 JS 对象必须是全局对象 global 的成员对象.
+- 被调用的函数应当是同步函数，不能是异步函数。
+*/
+var ret,err = node.Calculator.add(2,3);
+
+//调用 JS 全局函数。
+var ret,err = node.add(2,3);
+
+//获取返回值
+ret = ret[[&quot;result&quot;]];
+
+console.log(ret);
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/nodeJs/startRpc.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/nodeJs/startRpc.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Languages/nodeJs/startRpc.md">Markdown 格式</a>
+</body> 
+</html>

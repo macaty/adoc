@@ -1,0 +1,69 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 表'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 表</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 表</h1><pre><code class="aardio language-aardio">//表
+import console;
+/*
+table（表）是 aardio 中唯一的复合数据类型，
+除了非复合的基础数据类型以外，aardio 中几乎所有的复合对象都是表。
+表可以容纳其他的数据成员，也可以嵌套包含其他的表。
+https://www.aardio.com/zh-cn/doc/language-reference/datatype/table/_.html
+*/ 
+
+/*
+aardio 中的表是哈希表（hashtable），
+哈希表使用哈希算法存取，无序正是哈希表的最大优点（索引快如闪电）。
+遍历哈希表的顺序并不一定会保持代码中书写的顺序。
+*/
+var tab = {
+    c = &quot;3&quot;;
+    b = &quot;2&quot;;
+    a = &quot;1&quot;;
+}
+
+/*
+如果表中不定个数的成员的“键”是从1开始、有序、连续的数值，
+那么这些成员构成一个有序数组。 
+
+表总是可以同时包含数组、以及非数组成员， 
+即使表不包含数组成员，我们也可以将表作为空数组处理。
+
+在创建数组时，数组的键(又称为“下标”或“索引”)可以省略不写。
+*/
+var keys = {
+    &quot;c&quot;,&quot;b&quot;,&quot;a&quot;
+}
+
+//用有序的数组排序
+for(i,k in keys){
+    //用无序的哈希表快速查找值
+    console.log(k,tab[k]);
+}
+console.more(1);
+
+//用有序的数组排序
+table.sort(keys);
+
+//用有序的数组排序
+for(i,k in keys){
+    //用无序的哈希表快速查找值
+    console.log(k,tab[k]);
+}
+
+console.pause(true);
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/aardio/Array/table.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/aardio/Array/table.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/aardio/Array/table.md">Markdown 格式</a>
+</body> 
+</html>

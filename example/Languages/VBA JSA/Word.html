@@ -1,0 +1,41 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - //aardio 调用 VBA/JSA 操作 Word'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - //aardio 调用 VBA/JSA 操作 Word</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: //aardio 调用 VBA/JSA 操作 Word</h1><pre><code class="aardio language-aardio">////aardio 调用 VBA/JSA 操作 Word
+//以下代码兼容 WPS JS
+import console.int;
+import com.doc;
+
+var doc = com.doc( &quot;/vba.docm&quot; )
+doc.Visible = true;
+
+/*
+在 Word 或 WPS 中按 ALT + F11 打开代码窗口
+在 VBA 里收到的是二维数组，不是交错数组（数组的数组） 
+
+自由调用 VBA / JSA 函数，不需要确认启用宏。
+*/
+doc.vba.CreateTableWithStyle({
+    {&quot;标题1&quot;,&quot;标题2&quot;,&quot;标题3&quot;},
+    {&quot;文字1&quot;,&quot;文字2&quot;,&quot;文字3&quot;},
+    {&quot;文字5&quot;,&quot;文字5&quot;,&quot;文字6&quot;},
+})
+
+//退出
+//doc.Quit();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/VBA JSA/Word.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/VBA JSA/Word.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Languages/VBA JSA/Word.md">Markdown 格式</a>
+</body> 
+</html>

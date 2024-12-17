@@ -1,0 +1,206 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - string.database 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - string.database 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>string.database 库模块帮助文档</h1>
+
+<p><a id="string"></a></p>
+
+<h2>string 成员列表</h2>
+
+<p><a id="string.database"></a></p>
+
+<h3>string.database</h3>
+
+<p>用于解析、读写 CSV（Comma Separated Values），TXT 格式数据库。<br>
+注意文本数据规范不统一，不同的程序解析结果可能有差异。<br>
+用法请参考：范例程序 / 数据库 / csv / string.database</p>
+
+<p>创建 TTXT，CSV  格式数据库对象。</p>
+
+<p><a id="string.database"></a></p>
+
+<h3>string.database()</h3>
+
+<p><a href="#stringDatabaseObject">返回对象:stringDatabaseObject</a></p>
+
+<p><a id="string.database"></a></p>
+
+<h3>string.database(columnSeparator,quote,commentChar)</h3>
+
+<p>创建 TXT，CSV 格式数据库对象。<br>
+参数 @columnSeparator 指定列分隔符，省略则默认使用逗号作为分隔符。<br>
+参数 @quote 指定包含引用字段（含有列分隔符）的引号，省略则使用双引号。<br>
+参数 @commentChar 指定注释符号，默认不指定并禁用注释。</p>
+
+<p><a id="stringDatabaseObject"></a></p>
+
+<h2>stringDatabaseObject 成员列表</h2>
+
+<p><a id="stringDatabaseObject.comment"></a></p>
+
+<h3>stringDatabaseObject.comment</h3>
+
+<p>最后一次解析 CSV 读取的注释。<br>
+需要在使用属性或构造参数 commentChar 先指定注释标记。</p>
+
+<p><a id="stringDatabaseObject.commentChar"></a></p>
+
+<h3>stringDatabaseObject.commentChar</h3>
+
+<p>用于指定行注释开始标记，注释只在行首有效（避免与数据混淆）。<br>
+一般都使用&quot;#&quot;符号，但不是所有 CSV 解析器都支持注释。<br>
+默认值为 null，也就是不启用注释。</p>
+
+<p><a id="stringDatabaseObject.dataTable"></a></p>
+
+<h3>stringDatabaseObject.dataTable</h3>
+
+<p>对象本身存储的数据表。<br>
+parse 函数解析得到的数组会赋值并替换此属性。<br>
+push 函数则默认向此数据表添加数据。<br>
+stringify,stringifyA 函数在不指定参数时使用此数据表作为参数</p>
+
+<p><a id="stringDatabaseObject.each"></a></p>
+
+<h3>stringDatabaseObject.each(文件路径)</h3>
+
+<pre><code class="aardio language-aardio">for tab in stringDatabaseObject.each(&quot;文件路径.csv&quot;) {
+    /*逐行读取 CSV 文件，tab 为当前读取行解析后的列数组*/
+}
+</code></pre>
+
+<p><a id="stringDatabaseObject.load"></a></p>
+
+<h3>stringDatabaseObject.load</h3>
+
+<p>加载并解析文件</p>
+
+<p><a id="stringDatabaseObject.load"></a></p>
+
+<h3>stringDatabaseObject.load(文件路径,代码页)</h3>
+
+<p>加载并解析文件，返回数组,<br>
+文件开头有 UTF-8 BOM 则以 UTF-8 编码读入内容,<br>
+否则以参数 @2 指定的编码读入并转换为 UTF-8 编码，<br>
+参数 @2 省略时默认值为 0，表示当前默认 ANSI 编码</p>
+
+<p><a id="stringDatabaseObject.parse"></a></p>
+
+<h3>stringDatabaseObject.parse</h3>
+
+<p>解析数据并返回得到的数组</p>
+
+<p><a id="stringDatabaseObject.parse"></a></p>
+
+<h3>stringDatabaseObject.parse(文本)</h3>
+
+<p>解析数据并返回得到的数组。<br>
+对象的 dataTable 属性也会被赋值并替换为这里返回的数组</p>
+
+<p><a id="stringDatabaseObject.parseComment"></a></p>
+
+<h3>stringDatabaseObject.parseComment(pattern)</h3>
+
+<p>自注释中提取并解析字段声明。<br>
+参数 pattern 使用模式匹配语法指定提出规则，<br>
+默认为 <code>&lt;\a+\:\s*&gt;?(\N+)\s*$</code> ，也就是取最后一行注释。</p>
+
+<p><a id="stringDatabaseObject.push"></a></p>
+
+<h3>stringDatabaseObject.push</h3>
+
+<p>添加数据到对象的 dataTable 属性指向的数据表</p>
+
+<p><a id="stringDatabaseObject.push"></a></p>
+
+<h3>stringDatabaseObject.push(...)</h3>
+
+<p>添加数据到对象的 dataTable 属性指向的数据表<br>
+参数 @1 如果是表，则所有参数都作为数据行添加到 dataTable 数据表<br>
+否则所有参数合并为一行数据并添加到 dataTable 数据表<br>
+之后可以调用 stringify 函数生成文本</p>
+
+<p><a id="stringDatabaseObject.quote"></a></p>
+
+<h3>stringDatabaseObject.quote</h3>
+
+<p>指定用于包含列的引号，默认为双引号。<br>
+仅在字段包含分隔符时才会将字段包含在引号内。</p>
+
+<p><a id="stringDatabaseObject.save"></a></p>
+
+<h3>stringDatabaseObject.save</h3>
+
+<p>以 UTF-8 编码写入文件</p>
+
+<p><a id="stringDatabaseObject.save"></a></p>
+
+<h3>stringDatabaseObject.save(文件路径,数据数组,是否追加)</h3>
+
+<p>在指定文件写入 UTF-8 BOM，<br>
+然后将数据以 UTF-8 编码、CSV 格式写入文件。<br>
+如果不指定数据数组参数，则使用之前调用 push 函数添加的数据。<br>
+参数 @3 如果为 true 则保留原来的文件内容。</p>
+
+<p><a id="stringDatabaseObject.saveA"></a></p>
+
+<h3>stringDatabaseObject.saveA</h3>
+
+<p>以 ANSI 编码写入文件</p>
+
+<p><a id="stringDatabaseObject.saveA"></a></p>
+
+<h3>stringDatabaseObject.saveA(文件路径,数据数组,是否追加)</h3>
+
+<p>将数据以 ANSI 编码、CSV 格式写入文件<br>
+如果不指定数据数组参数，则使用之前调用 push 函数添加的数据。<br>
+参数 @3 如果为 true 则保留原来的文件内容。</p>
+
+<p><a id="stringDatabaseObject.separator"></a></p>
+
+<h3>stringDatabaseObject.separator</h3>
+
+<p>列分隔符，默认为逗号</p>
+
+<p><a id="stringDatabaseObject.stringify"></a></p>
+
+<h3>stringDatabaseObject.stringify</h3>
+
+<p>数据表转换为 UTF-8 文本</p>
+
+<p><a id="stringDatabaseObject.stringify"></a></p>
+
+<h3>stringDatabaseObject.stringify(数据数组)</h3>
+
+<p>数据表转换为 UTF8 文本<br>
+如果不指定参数,则使用对象的 dataTable 属性作为参数</p>
+
+<p><a id="stringDatabaseObject.stringifyA"></a></p>
+
+<h3>stringDatabaseObject.stringifyA</h3>
+
+<p>数据表转换为 ANSI 文本</p>
+
+<p><a id="stringDatabaseObject.stringifyA"></a></p>
+
+<h3>stringDatabaseObject.stringifyA(数据数组)</h3>
+
+<p>数据表转换为 ANSI 文本<br>
+如果不指定参数,则使用对象的 dataTable 属性作为参数</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/string/database.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/string/database.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/string/database.md">Markdown 格式</a></p>
+
+</body> 
+</html>

@@ -1,0 +1,597 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - dotNet.ReoGrid 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - dotNet.ReoGrid 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>dotNet.ReoGrid 库模块帮助文档</h1>
+
+<p><a id="dotNet"></a></p>
+
+<h2>dotNet 成员列表</h2>
+
+<p><a id="dotNet.ReoGrid"></a></p>
+
+<h3>dotNet.ReoGrid</h3>
+
+<p>ReoGrid 表格扩展库。<br>
+需要 .NET 4.7.2（Win10 1809 自带）或之后的版本。<br>
+导入后应当使用 ReoGrid 名字空间而不是 dotNet.ReoGrid 。</p>
+
+<p><a id="ReoGrid"></a></p>
+
+<h2>ReoGrid 成员列表</h2>
+
+<p>表格名字空间，自 dotNet.ReoGrid 库导入。</p>
+
+<p><a id="ReoGrid.?"></a></p>
+
+<h3>ReoGrid.?</h3>
+
+<p>.NET 名字空间、类、结构体的成员，<br>
+可访问成员名字空间、类、枚举、静态属性或字段，<br>
+导入的类可用于构造 .NET 对象，传回 .NET 则自动转为该类的 Type 对象  </p>
+
+<p><a href="../appDomain.html#dotNetNameSpaceObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/dotNet/appDomain.html#dotNetNameSpaceObject">返回对象:dotNetNameSpaceObject</a></p>
+
+<p><a id="ReoGrid.ReoGridControl"></a></p>
+
+<h3>ReoGrid.ReoGridControl()</h3>
+
+<p>创建表格控件。<br>
+参数 @1 必须指定 winform 窗口或 custom 控件对象作为容器窗口。</p>
+
+<p><a href="#ReoGridControlObject">返回对象:ReoGridControlObject</a></p>
+
+<p><a id="ReoGrid.assembly"></a></p>
+
+<h3>ReoGrid.assembly</h3>
+
+<p>导入此 .NET 名字空间的程序集对象。  </p>
+
+<p><a href="#dotNetCrlAssemblyObject">返回对象:dotNetCrlAssemblyObject</a></p>
+
+<p><a id="ReoGrid.CellTypes"></a></p>
+
+<h2>ReoGrid.CellTypes 成员列表</h2>
+
+<p><a id="ReoGrid.CellTypes.ButtonCell"></a></p>
+
+<h3>ReoGrid.CellTypes.ButtonCell()</h3>
+
+<p>按钮控件，参数 @1 指定字符串。</p>
+
+<p><a id="ReoGrid.CellTypes.CheckBoxCell"></a></p>
+
+<h3>ReoGrid.CellTypes.CheckBoxCell()</h3>
+
+<p>复选框</p>
+
+<p><a id="ReoGrid.CellTypes.DropdownListCell"></a></p>
+
+<h3>ReoGrid.CellTypes.DropdownListCell()</h3>
+
+<p>下接控件，参数 @1 指定字符串数组</p>
+
+<p><a id="ReoGrid.CellTypes.HyperlinkCell"></a></p>
+
+<h3>ReoGrid.CellTypes.HyperlinkCell()</h3>
+
+<p>超链接控件，参数 @1 指定网址</p>
+
+<p><a id="ReoGrid.CellTypes.ProgressCell"></a></p>
+
+<h3>ReoGrid.CellTypes.ProgressCell()</h3>
+
+<p>进度条控件。</p>
+
+<p><a id="ReoGrid.CellTypes.RadioButtonCe"></a></p>
+
+<h3>ReoGrid.CellTypes.RadioButtonCe()</h3>
+
+<p>单选选框</p>
+
+<p><a id="ReoGrid.Graphics.SolidColor"></a></p>
+
+<h2>ReoGrid.Graphics.SolidColor 成员列表</h2>
+
+<p><a id="ReoGrid.Graphics.SolidColor.AliceBlue"></a></p>
+
+<h3>ReoGrid.Graphics.SolidColor.AliceBlue</h3>
+
+<pre><code class="aardio language-aardio">RGB(240,248,255)
+</code></pre>
+
+<p><a id="ReoGrid.Graphics.SolidColor.Black"></a></p>
+
+<h3>ReoGrid.Graphics.SolidColor.Black</h3>
+
+<pre><code class="aardio language-aardio">RGB(0,0,0)
+</code></pre>
+
+<p><a id="ReoGrid.Graphics.SolidColor.Blue"></a></p>
+
+<h3>ReoGrid.Graphics.SolidColor.Blue</h3>
+
+<pre><code class="aardio language-aardio">RGB(0,0,255)
+</code></pre>
+
+<p><a id="ReoGrid.Graphics.SolidColor.Brown"></a></p>
+
+<h3>ReoGrid.Graphics.SolidColor.Brown</h3>
+
+<pre><code class="aardio language-aardio">RGB(165,42,42)
+</code></pre>
+
+<p><a id="ReoGrid.Graphics.SolidColor.Coral"></a></p>
+
+<h3>ReoGrid.Graphics.SolidColor.Coral</h3>
+
+<pre><code class="aardio language-aardio">RGB(255,127,80)
+</code></pre>
+
+<p><a id="ReoGrid.Graphics.SolidColor.DarkBlue"></a></p>
+
+<h3>ReoGrid.Graphics.SolidColor.DarkBlue</h3>
+
+<pre><code class="aardio language-aardio">RGB(0,0,139)
+</code></pre>
+
+<p><a id="ReoGrid.Graphics.SolidColor.DarkOrange"></a></p>
+
+<h3>ReoGrid.Graphics.SolidColor.DarkOrange</h3>
+
+<pre><code class="aardio language-aardio">RGB(255,140,0)
+</code></pre>
+
+<p><a id="ReoGrid.Graphics.SolidColor.DarkOrchid"></a></p>
+
+<h3>ReoGrid.Graphics.SolidColor.DarkOrchid</h3>
+
+<pre><code class="aardio language-aardio">RGB(153,50,204)
+</code></pre>
+
+<p><a id="ReoGrid.Graphics.SolidColor.DeepSkyBlue"></a></p>
+
+<h3>ReoGrid.Graphics.SolidColor.DeepSkyBlue</h3>
+
+<pre><code class="aardio language-aardio">RGB(0,191,255)
+</code></pre>
+
+<p><a id="ReoGrid.Graphics.SolidColor.Gainsboro"></a></p>
+
+<h3>ReoGrid.Graphics.SolidColor.Gainsboro</h3>
+
+<pre><code class="aardio language-aardio">RGB(220,220,220)
+</code></pre>
+
+<p><a id="ReoGrid.Graphics.SolidColor.Goldenrod"></a></p>
+
+<h3>ReoGrid.Graphics.SolidColor.Goldenrod</h3>
+
+<pre><code class="aardio language-aardio">RGB(218,165,32)
+</code></pre>
+
+<p><a id="ReoGrid.Graphics.SolidColor.Gray"></a></p>
+
+<h3>ReoGrid.Graphics.SolidColor.Gray</h3>
+
+<pre><code class="aardio language-aardio">RGB(128,128,128)
+</code></pre>
+
+<p><a id="ReoGrid.Graphics.SolidColor.Green"></a></p>
+
+<h3>ReoGrid.Graphics.SolidColor.Green</h3>
+
+<pre><code class="aardio language-aardio">RGB(0,255,0)
+</code></pre>
+
+<p><a id="ReoGrid.Graphics.SolidColor.IndianRed"></a></p>
+
+<h3>ReoGrid.Graphics.SolidColor.IndianRed</h3>
+
+<pre><code class="aardio language-aardio">RGB(205,92,92)
+</code></pre>
+
+<p><a id="ReoGrid.Graphics.SolidColor.Lavender"></a></p>
+
+<h3>ReoGrid.Graphics.SolidColor.Lavender</h3>
+
+<pre><code class="aardio language-aardio">RGB(230,230,250)
+</code></pre>
+
+<p><a id="ReoGrid.Graphics.SolidColor.LemonChiffon"></a></p>
+
+<h3>ReoGrid.Graphics.SolidColor.LemonChiffon</h3>
+
+<pre><code class="aardio language-aardio">RGB(255,250,205)
+</code></pre>
+
+<p><a id="ReoGrid.Graphics.SolidColor.LightCoral"></a></p>
+
+<h3>ReoGrid.Graphics.SolidColor.LightCoral</h3>
+
+<pre><code class="aardio language-aardio">RGB(240,128,128)
+</code></pre>
+
+<p><a id="ReoGrid.Graphics.SolidColor.LightGoldenrodYellow"></a></p>
+
+<h3>ReoGrid.Graphics.SolidColor.LightGoldenrodYellow</h3>
+
+<pre><code class="aardio language-aardio">RGB(250,250,210)
+</code></pre>
+
+<p><a id="ReoGrid.Graphics.SolidColor.LightGreen"></a></p>
+
+<h3>ReoGrid.Graphics.SolidColor.LightGreen</h3>
+
+<pre><code class="aardio language-aardio">RGB(144,238,144)
+</code></pre>
+
+<p><a id="ReoGrid.Graphics.SolidColor.LightSkyBlue"></a></p>
+
+<h3>ReoGrid.Graphics.SolidColor.LightSkyBlue</h3>
+
+<pre><code class="aardio language-aardio">RGB(135,206,250)
+</code></pre>
+
+<p><a id="ReoGrid.Graphics.SolidColor.LightSteelBlue"></a></p>
+
+<h3>ReoGrid.Graphics.SolidColor.LightSteelBlue</h3>
+
+<pre><code class="aardio language-aardio">RGB(176,196,222)
+</code></pre>
+
+<p><a id="ReoGrid.Graphics.SolidColor.LightYellow"></a></p>
+
+<h3>ReoGrid.Graphics.SolidColor.LightYellow</h3>
+
+<pre><code class="aardio language-aardio">RGB(255,255,224)
+</code></pre>
+
+<p><a id="ReoGrid.Graphics.SolidColor.LimeGreen"></a></p>
+
+<h3>ReoGrid.Graphics.SolidColor.LimeGreen</h3>
+
+<pre><code class="aardio language-aardio">RGB(50,205,50)
+</code></pre>
+
+<p><a id="ReoGrid.Graphics.SolidColor.Orange"></a></p>
+
+<h3>ReoGrid.Graphics.SolidColor.Orange</h3>
+
+<pre><code class="aardio language-aardio">RGB(255,165,0)
+</code></pre>
+
+<p><a id="ReoGrid.Graphics.SolidColor.OrangeRed"></a></p>
+
+<h3>ReoGrid.Graphics.SolidColor.OrangeRed</h3>
+
+<pre><code class="aardio language-aardio">RGB(255,69,0)
+</code></pre>
+
+<p><a id="ReoGrid.Graphics.SolidColor.PaleGoldenrod"></a></p>
+
+<h3>ReoGrid.Graphics.SolidColor.PaleGoldenrod</h3>
+
+<pre><code class="aardio language-aardio">RGB(238,232,170)
+</code></pre>
+
+<p><a id="ReoGrid.Graphics.SolidColor.Peru"></a></p>
+
+<h3>ReoGrid.Graphics.SolidColor.Peru</h3>
+
+<pre><code class="aardio language-aardio">RGB(205,133,63)
+</code></pre>
+
+<p><a id="ReoGrid.Graphics.SolidColor.Purple"></a></p>
+
+<h3>ReoGrid.Graphics.SolidColor.Purple</h3>
+
+<pre><code class="aardio language-aardio">RGB(128,0,128)
+</code></pre>
+
+<p><a id="ReoGrid.Graphics.SolidColor.Red"></a></p>
+
+<h3>ReoGrid.Graphics.SolidColor.Red</h3>
+
+<pre><code class="aardio language-aardio">RGB(255,0,0)
+</code></pre>
+
+<p><a id="ReoGrid.Graphics.SolidColor.SeaGreen"></a></p>
+
+<h3>ReoGrid.Graphics.SolidColor.SeaGreen</h3>
+
+<pre><code class="aardio language-aardio">RGB(46,139,87)
+</code></pre>
+
+<p><a id="ReoGrid.Graphics.SolidColor.Silver"></a></p>
+
+<h3>ReoGrid.Graphics.SolidColor.Silver</h3>
+
+<pre><code class="aardio language-aardio">RGB(192,192,192)
+</code></pre>
+
+<p><a id="ReoGrid.Graphics.SolidColor.SkyBlue"></a></p>
+
+<h3>ReoGrid.Graphics.SolidColor.SkyBlue</h3>
+
+<pre><code class="aardio language-aardio">RGB(135,206,235)
+</code></pre>
+
+<p><a id="ReoGrid.Graphics.SolidColor.SteelBlue"></a></p>
+
+<h3>ReoGrid.Graphics.SolidColor.SteelBlue</h3>
+
+<pre><code class="aardio language-aardio">RGB(70,130,180)
+</code></pre>
+
+<p><a id="ReoGrid.Graphics.SolidColor.Transparent"></a></p>
+
+<h3>ReoGrid.Graphics.SolidColor.Transparent</h3>
+
+<pre><code class="aardio language-aardio">RGB(0,0,0,0)
+</code></pre>
+
+<p><a id="ReoGrid.Graphics.SolidColor.White"></a></p>
+
+<h3>ReoGrid.Graphics.SolidColor.White</h3>
+
+<pre><code class="aardio language-aardio">RGB(255,255,255)
+</code></pre>
+
+<p><a id="ReoGrid.Graphics.SolidColor.WhiteSmoke"></a></p>
+
+<h3>ReoGrid.Graphics.SolidColor.WhiteSmoke</h3>
+
+<pre><code class="aardio language-aardio">RGB(245,245,245)
+</code></pre>
+
+<p><a id="ReoGrid.Graphics.SolidColor.Yellow"></a></p>
+
+<h3>ReoGrid.Graphics.SolidColor.Yellow</h3>
+
+<pre><code class="aardio language-aardio">RGB(255,255,0)
+</code></pre>
+
+<p><a id="ReoGrid.IO.FileFormat"></a></p>
+
+<h2>ReoGrid.IO.FileFormat 成员列表</h2>
+
+<p><a id="ReoGrid.IO.FileFormat.CSV"></a></p>
+
+<h3>ReoGrid.IO.FileFormat.CSV</h3>
+
+<p>10 直接指定数值更快</p>
+
+<p><a id="ReoGrid.IO.FileFormat.Excel2007"></a></p>
+
+<h3>ReoGrid.IO.FileFormat.Excel2007</h3>
+
+<p>30 直接指定数值更快</p>
+
+<p><a id="ReoGrid.IO.FileFormat.ReoGridFormat"></a></p>
+
+<h3>ReoGrid.IO.FileFormat.ReoGridFormat</h3>
+
+<p>1 直接指定数值更快</p>
+
+<p><a id="ReoGrid.IO.FileFormat._Auto"></a></p>
+
+<h3>ReoGrid.IO.FileFormat._Auto</h3>
+
+<p>0 直接指定数值更快</p>
+
+<p><a id="ReoGrid.IO.FileFormat._Custom"></a></p>
+
+<h3>ReoGrid.IO.FileFormat._Custom</h3>
+
+<p>100 直接指定数值更快</p>
+
+<p><a id="ReoGrid.ReoGridControl"></a></p>
+
+<h2>ReoGrid.ReoGridControl 成员列表</h2>
+
+<p><a id="ReoGrid.ReoGridControl.CreateMemoryWorkbook"></a></p>
+
+<h3>ReoGrid.ReoGridControl.CreateMemoryWorkbook()</h3>
+
+<p>创建内存工作簿</p>
+
+<p><a id="ReoGridControlObject"></a></p>
+
+<h2>ReoGridControlObject 成员列表</h2>
+
+<p><a id="ReoGridControlObject.AddWorksheet"></a></p>
+
+<h3>ReoGridControlObject.AddWorksheet(sheet)</h3>
+
+<p>添加工作表。<br>
+可用 CreateWorksheet 函数创建工作表。</p>
+
+<p><a id="ReoGridControlObject.CopyWorksheet"></a></p>
+
+<h3>ReoGridControlObject.CopyWorksheet(0, 1)</h3>
+
+<p>复制工作表</p>
+
+<p><a id="ReoGridControlObject.CreateWorksheet"></a></p>
+
+<h3>ReoGridControlObject.CreateWorksheet(&#39;mysheet&#39;)</h3>
+
+<p>创建工作表，参数指定表名</p>
+
+<p><a id="ReoGridControlObject.CreateWorksheet"></a></p>
+
+<h3>ReoGridControlObject.CreateWorksheet()</h3>
+
+<p><a href="#ReoGridWorksheetObject">返回对象:ReoGridWorksheetObject</a></p>
+
+<p><a id="ReoGridControlObject.CurrentWorksheet"></a></p>
+
+<h3>ReoGridControlObject.CurrentWorksheet</h3>
+
+<p>获取或设置当前工作表。  </p>
+
+<p><a href="#ReoGridWorksheetObject">返回对象:ReoGridWorksheetObject</a></p>
+
+<p><a id="ReoGridControlObject.GetWorksheetIndex"></a></p>
+
+<h3>ReoGridControlObject.GetWorksheetIndex(&quot;sheet2&quot;)</h3>
+
+<p>查找并返回工作表索引</p>
+
+<p><a id="ReoGridControlObject.InsertWorksheet"></a></p>
+
+<h3>ReoGridControlObject.InsertWorksheet(1, sheet)</h3>
+
+<p>插入工作表到指定位置。<br>
+可用 CreateWorksheet 函数创建工作表。</p>
+
+<p><a id="ReoGridControlObject.Load"></a></p>
+
+<h3>ReoGridControlObject.Load()</h3>
+
+<p>加载文件。<br>
+参数 @1 指定文件路径。<br>
+参数 @2 可用 ReoGrid.IO.FileFormat 指定格式。<br>
+其实参数 @2 就是一个数值，0 为自动检测，一般不必指定</p>
+
+<p><a id="ReoGridControlObject.MoveWorksheet"></a></p>
+
+<h3>ReoGridControlObject.MoveWorksheet(0, 3)</h3>
+
+<p>从参数 @2 指定的索引移动工作表参数 @2 指定的索引</p>
+
+<p><a id="ReoGridControlObject.RunScript"></a></p>
+
+<h3>ReoGridControlObject.RunScript()</h3>
+
+<p>运行字符串参数 @1 指定的脚本</p>
+
+<p><a id="ReoGridControlObject.Save"></a></p>
+
+<h3>ReoGridControlObject.Save()</h3>
+
+<p>保存文件。<br>
+参数 @1 指定文件路径。。<br>
+参数 @2 可用 ReoGrid.IO.FileFormat 指定格式。<br>
+其实参数 @2 就是一个数值，0 为自动检测，一般不必指定</p>
+
+<p><a id="ReoGridControlObject.Workbook"></a></p>
+
+<h3>ReoGridControlObject.Workbook</h3>
+
+<p>获取工作簿  </p>
+
+<p><a href="#ReoGridWorkbookObject">返回对象:ReoGridWorkbookObject</a></p>
+
+<p><a id="ReoGridControlObject.Worksheets"></a></p>
+
+<h2>ReoGridControlObject.Worksheets 成员列表</h2>
+
+<p>可在下标里指定工作表名称以获取指定工作表，参数可指定表名或索引</p>
+
+<p><a id="ReoGridControlObject.Worksheets.?"></a></p>
+
+<h3>ReoGridControlObject.Worksheets.?</h3>
+
+<p><a href="#ReoGridWorksheetObject">返回对象:ReoGridWorksheetObject</a></p>
+
+<p><a id="ReoGridSheetCellObject"></a></p>
+
+<h2>ReoGridSheetCellObject 成员列表</h2>
+
+<p><a id="ReoGridSheetCellObject.Body"></a></p>
+
+<h3>ReoGridSheetCellObject.Body</h3>
+
+<p>可用于指定显示控件</p>
+
+<p><a id="ReoGridSheetCellObject.Data"></a></p>
+
+<h3>ReoGridSheetCellObject.Data</h3>
+
+<p>单元格数据</p>
+
+<p><a id="ReoGridSheetCellObject.Style"></a></p>
+
+<h2>ReoGridSheetCellObject.Style 成员列表</h2>
+
+<p><a id="ReoGridSheetCellObject.Style.BackColor"></a></p>
+
+<h3>ReoGridSheetCellObject.Style.BackColor</h3>
+
+<p>单元格背景色 ReoGrid.Graphics.SolidColor.Black;</p>
+
+<p><a id="ReoGridSheetCellObject.Style.TextColor"></a></p>
+
+<h3>ReoGridSheetCellObject.Style.TextColor</h3>
+
+<p>单元格前景色 ReoGrid.Graphics.SolidColor.Red;</p>
+
+<p><a id="ReoGridWorkbookObject"></a></p>
+
+<h2>ReoGridWorkbookObject 成员列表</h2>
+
+<p><a id="ReoGridWorkbookObject.Reset"></a></p>
+
+<h3>ReoGridWorkbookObject.Reset()</h3>
+
+<p>重置工作簿</p>
+
+<p><a id="ReoGridWorksheetObject"></a></p>
+
+<h2>ReoGridWorksheetObject 成员列表</h2>
+
+<p><a id="ReoGridWorksheetObject.AddHighlightRange"></a></p>
+
+<h3>ReoGridWorksheetObject.AddHighlightRange(&quot;A1:D2&quot;)</h3>
+
+<p>添加高亮区块。<br>
+参数使用 A1 表示法，示例为 A列1行到D列2行。</p>
+
+<p><a id="ReoGridWorksheetObject.AfterCellEdit"></a></p>
+
+<h3>ReoGridWorksheetObject.AfterCellEdit</h3>
+
+<pre><code class="aardio language-aardio">ReoGridWorksheetObject.AfterCellEdit = function(sender,event){
+    /*数据已编辑，event.NewData 是新的数据*/
+}
+</code></pre>
+
+<p><a id="ReoGridWorksheetObject.CellDataChanged"></a></p>
+
+<h3>ReoGridWorksheetObject.CellDataChanged</h3>
+
+<pre><code class="aardio language-aardio">ReoGridWorksheetObject.CellDataChanged = function(sender,event){
+    /*数据已更改 event.Cell.Data 是变更的数据*/
+}
+</code></pre>
+
+<p><a id="ReoGridWorksheetObject.Cells"></a></p>
+
+<h2>ReoGridWorksheetObject.Cells 成员列表</h2>
+
+<p>访问单元格，下标里可使用 &quot;A1&quot; 表示法的字符串作为索引。<br>
+A表示列，1 表示行，A1 为第一列第一行</p>
+
+<p><a id="ReoGridWorksheetObject.Cells.?"></a></p>
+
+<h3>ReoGridWorksheetObject.Cells.?</h3>
+
+<p><a href="#ReoGridSheetCellObject">返回对象:ReoGridSheetCellObject</a></p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/dotNet/ReoGrid/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/dotNet/ReoGrid/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/dotNet/ReoGrid/_.md">Markdown 格式</a></p>
+
+</body> 
+</html>

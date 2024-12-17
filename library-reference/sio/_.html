@@ -1,0 +1,562 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - sio 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - sio 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>sio 库模块帮助文档</h1>
+
+<p><a id="sio"></a></p>
+
+<h2>sio 成员列表</h2>
+
+<p>基于 PComm Lite 的串口通信扩展库</p>
+
+<p><a id="sio.baudRates"></a></p>
+
+<h3>sio.baudRates()</h3>
+
+<p>返回所有可用波特率数组</p>
+
+<p><a id="sio.eachBaudRate"></a></p>
+
+<h3>sio.eachBaudRate()</h3>
+
+<pre><code class="aardio language-aardio">for baud in sio.eachBaudRate(){
+
+}
+</code></pre>
+
+<p><a id="sio.port"></a></p>
+
+<h3>sio.port(&quot;COM1&quot;)</h3>
+
+<p>打开串口,成功返回对象,<br>
+参数如果是字符串,打开端口失败返回null,错误信息,错误代码,成功返回对象,<br>
+参数如果是数值,打开端口失败仍然会返回对象，可用于绑定已经打开的端口,<br>
+不指定参数直接返回对象,可以在后面使用open函数打开端口</p>
+
+<p><a id="sio.port"></a></p>
+
+<h3>sio.port()</h3>
+
+<p><a href="#sioportObject">返回对象:sioportObject</a></p>
+
+<p><a id="sioportObject"></a></p>
+
+<h2>sioportObject 成员列表</h2>
+
+<p><a id="sioportObject.abortRead"></a></p>
+
+<h3>sioportObject.abortRead()</h3>
+
+<p>强制中止read,getch等读数据函数</p>
+
+<p><a id="sioportObject.abortWrite"></a></p>
+
+<h3>sioportObject.abortWrite()</h3>
+
+<p>强制中止Write,putch等写数据函数</p>
+
+<p><a id="sioportObject.breakIrq"></a></p>
+
+<h3>sioportObject.breakIrq(回调函数)</h3>
+
+<pre><code class="aardio language-aardio">sioportObject.breakIrq(function(port){  
+    /*接收到中断信号时触发时件  
+在当前界面线程同步触发此事件*/  
+} )
+</code></pre>
+
+<p><a id="sioportObject.breakIrqThread"></a></p>
+
+<h3>sioportObject.breakIrqThread(回调函数,owner对象)</h3>
+
+<pre><code class="aardio language-aardio">sioportObject.breakIrqThread(function(port){  
+    var sport = sio.port(port);/*接收到中断信号时触发时件*/  
+} )
+</code></pre>
+
+<p><a id="sioportObject.close"></a></p>
+
+<h3>sioportObject.close()</h3>
+
+<p>关闭串口<br>
+这个函数不会被析构函数自动调用,<br>
+应在确认不再使用时调用此函数关闭串口</p>
+
+<p><a id="sioportObject.dataStatus"></a></p>
+
+<h3>sioportObject.dataStatus()</h3>
+
+<p>检查接收数据时是否遇到错误<br>
+0表示无错误,小于0表示函数执行错误,大于0时各二进制位作用:<br>
+bit 0 on - parity error<br>
+bit 1 on - framing error<br>
+bit 2 on - overrun error<br>
+bit 3 on - overflow error</p>
+
+<p><a id="sioportObject.flush"></a></p>
+
+<h3>sioportObject.flush(接收缓冲区,发送缓冲区)</h3>
+
+<p>清除接收、发送缓冲区<br>
+对应参数为true清除该缓冲区<br>
+无参数时清除接收缓冲区</p>
+
+<p><a id="sioportObject.getBaudRate"></a></p>
+
+<h3>sioportObject.getBaudRate()</h3>
+
+<p>返回串口波特率<br>
+失败返回null,错误信息</p>
+
+<p><a id="sioportObject.getFlow"></a></p>
+
+<h3>sioportObject.getFlow()</h3>
+
+<p>返回4个值:<br>
+分别表示CTS、RTS硬流控,TX、RX软流控是否开启</p>
+
+<p><a id="sioportObject.getLineStatus"></a></p>
+
+<h3>sioportObject.getLineStatus()</h3>
+
+<p>获取串口的CTS, DST, DCD, RI线的状态</p>
+
+<p><a id="sioportObject.getMode"></a></p>
+
+<h3>sioportObject.getMode()</h3>
+
+<p>返回串口的工作模式<br>
+返回值为三个，分别为:数据位,停止位,校验位<br>
+失败返回null,错误信息</p>
+
+<p><a id="sioportObject.getReadTimeouts"></a></p>
+
+<h3>sioportObject.getReadTimeouts()</h3>
+
+<p>返回读数据总超时,间隔超时两个值,单位毫秒</p>
+
+<p><a id="sioportObject.getWriteTimeouts"></a></p>
+
+<h3>sioportObject.getWriteTimeouts()</h3>
+
+<p>返回写数据总超时,间隔超时两个值,单位毫秒</p>
+
+<p><a id="sioportObject.getch"></a></p>
+
+<h3>sioportObject.getch()</h3>
+
+<p>读取一个字节码<br>
+失败返回null,错误信息</p>
+
+<p><a id="sioportObject.ioctl"></a></p>
+
+<h3>sioportObject.ioctl(波特率,数据位,停止位,校验位)</h3>
+
+<p>设置串口的工作模式<br>
+波特率为数值,省略时使用默认值9600<br>
+数据位为数值,可选值为5,6,7,8,省略时默认值为8<br>
+停止位可选值为1,2,不指定时默认为1<br>
+校验位使用字符串值指定,可选值为&quot;even&quot;,&quot;odd&quot;,&quot;spc&quot;,&quot;mrk&quot;,可省略以设置空校验位</p>
+
+<p><a id="sioportObject.iqueue"></a></p>
+
+<h3>sioportObject.iqueue()</h3>
+
+<p>返回输入缓冲区字符长度<br>
+失败返回null,错误信息</p>
+
+<p><a id="sioportObject.lctrl"></a></p>
+
+<h3>sioportObject.lctrl(dtr,rts)</h3>
+
+<p>设置串口RTS/DTS,参数使用布尔值</p>
+
+<p><a id="sioportObject.modemIrq"></a></p>
+
+<h3>sioportObject.modemIrq(回调函数)</h3>
+
+<pre><code class="aardio language-aardio">sioportObject.modemIrq(function(port){  
+    /*当硬件线路（CTS, DSR, CD, RI）的电压发生变化时触发时件  
+在当前界面线程同步触发此事件*/  
+} )
+</code></pre>
+
+<p><a id="sioportObject.modemIrqThread"></a></p>
+
+<h3>sioportObject.modemIrqThread(回调函数,owner对象)</h3>
+
+<pre><code class="aardio language-aardio">sioportObject.modemIrqThread(function(port){  
+    var sport = sio.port(port);/*当硬件线路（CTS, DSR, CD, RI）的电压发生变化时触发时件*/  
+} )
+</code></pre>
+
+<p><a id="sioportObject.open"></a></p>
+
+<h3>sioportObject.open()</h3>
+
+<p>修改端口号并打开端口，成功返回true，<br>
+失败返回null,错误信息,错误代码</p>
+
+<p><a id="sioportObject.oqueue"></a></p>
+
+<h3>sioportObject.oqueue()</h3>
+
+<p>返回发送缓冲区中剩余的数据长度</p>
+
+<p><a id="sioportObject.putch"></a></p>
+
+<h3>sioportObject.putch()</h3>
+
+<p>发送一个节节码<br>
+成功返回长度,失败返回null,错误信息</p>
+
+<p><a id="sioportObject.read"></a></p>
+
+<h3>sioportObject.read()</h3>
+
+<p>读取数据,可选指定读取缓冲区长度<br>
+成功返回数据,失败返回null,错误信息<br>
+如果没有指定长度且没有接收到数据返回null</p>
+
+<p><a id="sioportObject.readBuffer"></a></p>
+
+<h3>sioportObject.readBuffer(缓冲区,读取长度)</h3>
+
+<p>读取数据到buffer缓冲区,读取长度可省略<br>
+成功返回读取长度,失败返回null,错误信息</p>
+
+<p><a id="sioportObject.readHex"></a></p>
+
+<h3>sioportObject.readHex()</h3>
+
+<p>读取数据并以十六进制编码显示<br>
+成功返回数据,失败返回null,错误信息</p>
+
+<p><a id="sioportObject.receiveAscii"></a></p>
+
+<h3>sioportObject.receiveAscii(超时秒数,进度回调函数)</h3>
+
+<pre><code class="aardio language-aardio">sioportObject.transmitAscii(5/*秒*/,  
+    function(length,bufSize,buf,total){  
+        /*接收文件协议:ASCII，  
+这函数会一直等待接收，不需要写到其他事件回调里，  
+owner 参数为存储接收文件名的 buffer 类型字节数组,  
+注意文件存储在当前目录下,可使用 io.curDir 函数修改当前目录,  
+@length 为当前传输大小,@total 为总大小小,其他参数仅用于调试*/  
+    }  
+)
+</code></pre>
+
+<p><a id="sioportObject.receiveKermit"></a></p>
+
+<h3>sioportObject.receiveKermit(进度回调函数,最大文件数)</h3>
+
+<pre><code class="aardio language-aardio">sioportObject.receiveKermit(  
+    function(length,bufSize,buf,total){  
+        /*接收文件协议:Kermit，  
+这函数会一直等待接收，不需要写到其他事件回调里，  
+owner 参数为存储接收多个文件名的 buffer 类型字节数组的数组,  
+注意文件存储在当前目录下,可使用 io.curDir 函数修改当前目录,  
+@length 为当前传输大小,@total 为总大小小,其他参数仅用于调试*/  
+    }  
+)
+</code></pre>
+
+<p><a id="sioportObject.receiveXmodem1kCrc"></a></p>
+
+<h3>sioportObject.receiveXmodem1kCrc(进度回调函数)</h3>
+
+<pre><code class="aardio language-aardio">sioportObject.receiveXmodem1kCrc(  
+    function(length,bufSize,buf,total){  
+        /*接收文件协议:XMODEM, 1K block size, 16 bit CRC，  
+这函数会一直等待接收，不需要写到其他事件回调里，  
+owner 参数为存储接收文件名的 buffer 类型字节数组,  
+注意文件存储在当前目录下,可使用 io.curDir 函数修改当前目录,  
+@length 为当前传输大小,@total 为总大小小,其他参数仅用于调试*/  
+    }  
+)
+</code></pre>
+
+<p><a id="sioportObject.receiveXmodemCheckSum"></a></p>
+
+<h3>sioportObject.receiveXmodemCheckSum(进度回调函数)</h3>
+
+<pre><code class="aardio language-aardio">sioportObject.receiveXmodemCheckSum(  
+    function(length,bufSize,buf,total){  
+        /*接收文件协议:XMODEM,CHECKSUM，  
+这函数会一直等待接收，不需要写到其他事件回调里，  
+owner 参数为存储接收文件名的 buffer 类型字节数组,  
+注意文件存储在当前目录下,可使用 io.curDir 函数修改当前目录,  
+@length 为当前传输大小,@total 为总大小小,其他参数仅用于调试*/  
+    }  
+)
+</code></pre>
+
+<p><a id="sioportObject.receiveXmodemCrc"></a></p>
+
+<h3>sioportObject.receiveXmodemCrc(进度回调函数)</h3>
+
+<pre><code class="aardio language-aardio">sioportObject.receiveXmodemCrc(  
+    function(length,bufSize,buf,total){  
+        /*接收文件协议:XMODEM, 16 bit CRC，  
+这函数会一直等待接收，不需要写到其他事件回调里，  
+owner 参数为存储接收文件名的 buffer 类型字节数组,  
+注意文件存储在当前目录下,可使用 io.curDir 函数修改当前目录,  
+@length 为当前传输大小,@total 为总大小小,其他参数仅用于调试*/  
+    }  
+)
+</code></pre>
+
+<p><a id="sioportObject.receiveYmodem"></a></p>
+
+<h3>sioportObject.receiveYmodem(进度回调函数,最大文件数)</h3>
+
+<pre><code class="aardio language-aardio">sioportObject.receiveYmodem(  
+    function(length,bufSize,buf,total){  
+        /*接收文件协议:Ymodem，  
+这函数会一直等待接收，不需要写到其他事件回调里，  
+owner 参数为存储接收多个文件名的 buffer 类型字节数组的数组,  
+注意文件存储在当前目录下,可使用 io.curDir 函数修改当前目录,  
+@length 为当前传输大小,@total 为总大小小,其他参数仅用于调试*/  
+    }  
+)
+</code></pre>
+
+<p><a id="sioportObject.receiveZmodem"></a></p>
+
+<h3>sioportObject.receiveZmodem(进度回调函数,最大文件数)</h3>
+
+<pre><code class="aardio language-aardio">sioportObject.receiveZmodem(  
+    function(length,bufSize,buf,total){  
+        /*接收文件协议:Zmodem，  
+这函数会一直等待接收，不需要写到其他事件回调里，  
+owner 参数为存储接收多个文件名的 buffer 类型字节数组的数组,  
+注意文件存储在当前目录下,可使用 io.curDir 函数修改当前目录,  
+@length 为当前传输大小,@total 为总大小小,其他参数仅用于调试*/  
+    }  
+)
+</code></pre>
+
+<p><a id="sioportObject.request"></a></p>
+
+<h3>sioportObject.request(发送数据,匹配模式,最小读取时间,最少字节数)</h3>
+
+<p>发送数据并等待读取响应数据，返回响应数据，<br>
+等待过程中不会阻塞界面消息,<br>
+发送数据可以在单引号里直接使用16进制编码，例如&quot;AT&quot;可以写为&#39;\x41\x54&#39;，<br>
+其他参数为可选参数，<br>
+如果参数@2指定匹配模式，则对响应数据应用模式匹配并返回结果,<br>
+最小读取时间默认为10毫秒,<br>
+最少字节数默认为1  </p>
+
+<p>此函数等待最少字节数到达，并等待最小读取时间后读取并返回数据</p>
+
+<p><a id="sioportObject.setBaudRate"></a></p>
+
+<h3>sioportObject.setBaudRate(波特率)</h3>
+
+<p>设置串口波特率<br>
+失败返回null,错误信息</p>
+
+<p><a id="sioportObject.setFlow"></a></p>
+
+<h3>sioportObject.setFlow(CTS硬流控,RTS硬流控,TX软流控,RX软流控)</h3>
+
+<p>设置串口流控</p>
+
+<p><a id="sioportObject.setReadTimeouts"></a></p>
+
+<h3>sioportObject.setReadTimeouts(总超时,间隔超时)</h3>
+
+<p>设置读数据超时,单位毫秒</p>
+
+<p><a id="sioportObject.setWriteTimeouts"></a></p>
+
+<h3>sioportObject.setWriteTimeouts(总超时,间隔超时)</h3>
+
+<p>设置写数据超时,单位毫秒</p>
+
+<p><a id="sioportObject.termCntIrq"></a></p>
+
+<h3>sioportObject.termCntIrq(指定长度,回调函数)</h3>
+
+<pre><code class="aardio language-aardio">sioportObject.termCntIrq(/*当接收到参数 @1 指定字节长度的数据，  
+在当前界面线程回调参数 @2 指定的函数。  
+注意在此回调函数内读取串口数据可能返回 null 值。  
+接收文件的代码不用写在这里。*/,function(port){  
+    var data = sioportObject.read();  
+    if(!data) return;  
+
+} )
+</code></pre>
+
+<p><a id="sioportObject.termCntIrqThread"></a></p>
+
+<h3>sioportObject.termCntIrqThread(指定长度,回调函数,owner对象)</h3>
+
+<pre><code class="aardio language-aardio">sioportObject.termCntIrqThread(/*接收到指定个字节时响应事件*/,function(port){  
+    var sport = sio.port(port);  
+} )
+</code></pre>
+
+<p><a id="sioportObject.termIrq"></a></p>
+
+<h3>sioportObject.termIrq(指定字节码,回调函数)</h3>
+
+<pre><code class="aardio language-aardio">sioportObject.termIrq(/*接收到指定字节码时在当前界面线程同步触发此事件，  
+接收文件不用写在这个事件里*/,function(port){  
+
+} )
+</code></pre>
+
+<p><a id="sioportObject.termIrqThread"></a></p>
+
+<h3>sioportObject.termIrqThread(指定字节码,回调函数,owner对象)</h3>
+
+<pre><code class="aardio language-aardio">sioportObject.termIrqThread(/*线程接收到指定字节码时响应事件*/,function(port){  
+    var sport = sio.port(port);  
+} )
+</code></pre>
+
+<p><a id="sioportObject.transmitAscii"></a></p>
+
+<h3>sioportObject.transmitAscii(文件路径,进度回调函数)</h3>
+
+<pre><code class="aardio language-aardio">sioportObject.transmitAscii(&quot;发送文件路径&quot;,  
+    function(length,bufSize,buf,total){  
+        /*传输文件协议:ASCII  
+@length 为当前传输大小,@total 为总大小小,其他参数仅用于调试*/  
+    }  
+)
+</code></pre>
+
+<p><a id="sioportObject.transmitKermit"></a></p>
+
+<h3>sioportObject.transmitKermit(文件路径,进度回调函数)</h3>
+
+<pre><code class="aardio language-aardio">sioportObject.transmitKermit(&quot;文件路径&quot;,  
+    function(length,bufSize,buf,total){  
+        /*传输文件协议:Kermit  
+@length 为当前传输大小,@total 为总大小小,其他参数仅用于调试*/  
+    }  
+)
+</code></pre>
+
+<p><a id="sioportObject.transmitXmodem1kCrc"></a></p>
+
+<h3>sioportObject.transmitXmodem1kCrc(文件路径,进度回调函数)</h3>
+
+<pre><code class="aardio language-aardio">sioportObject.transmitXmodem1kCrc(&quot;发送文件路径&quot;,  
+    function(length,bufSize,buf,total){  
+        /*传输文件协议:XMODEM, 1K block size, 16 bit CRC  
+@length 为当前传输大小,@total 为总大小小,其他参数仅用于调试*/  
+    }  
+)
+</code></pre>
+
+<p><a id="sioportObject.transmitXmodemCheckSum"></a></p>
+
+<h3>sioportObject.transmitXmodemCheckSum(文件路径,进度回调函数)</h3>
+
+<pre><code class="aardio language-aardio">sioportObject.transmitXmodemCheckSum(&quot;发送文件路径&quot;,  
+    function(length,bufSize,buf,total){  
+        /*传输文件协议:XMODEM,CHECKSUM  
+@length 为当前传输大小,@total 为总大小小,其他参数仅用于调试*/  
+    }  
+)
+</code></pre>
+
+<p><a id="sioportObject.transmitXmodemCrc"></a></p>
+
+<h3>sioportObject.transmitXmodemCrc(文件路径,进度回调函数)</h3>
+
+<pre><code class="aardio language-aardio">sioportObject.transmitXmodemCrc(&quot;发送文件路径&quot;,  
+    function(length,bufSize,buf,total){  
+        /*传输文件协议:XMODEM, 16 bit CRC  
+@length 为当前传输大小,@total 为总大小小,其他参数仅用于调试*/  
+    }  
+)
+</code></pre>
+
+<p><a id="sioportObject.transmitYmodem"></a></p>
+
+<h3>sioportObject.transmitYmodem(文件路径,进度回调函数)</h3>
+
+<pre><code class="aardio language-aardio">sioportObject.transmitYmodem(&quot;发送文件路径&quot;,  
+    function(length,bufSize,buf,total){  
+        /*传输文件协议:Ymodem  
+@length 为当前传输大小,@total 为总大小小,其他参数仅用于调试*/  
+    }  
+)
+</code></pre>
+
+<p><a id="sioportObject.transmitZmodem"></a></p>
+
+<h3>sioportObject.transmitZmodem(文件路径,进度回调函数)</h3>
+
+<pre><code class="aardio language-aardio">sioportObject.transmitZmodem(&quot;发送文件路径&quot;,  
+    function(length,bufSize,buf,total){  
+        /*传输文件协议:Zmodem  
+@length 为当前传输大小,@total 为总大小小,其他参数仅用于调试*/  
+    }  
+)
+</code></pre>
+
+<p><a id="sioportObject.txEmptyIrq"></a></p>
+
+<h3>sioportObject.txEmptyIrq(回调函数)</h3>
+
+<pre><code class="aardio language-aardio">sioportObject.txEmptyIrq(function(port){  
+    /*输出缓冲区最后一个字符发送后触发此事件  
+在当前界面线程同步触发此事件*/  
+} )
+</code></pre>
+
+<p><a id="sioportObject.txEmptyIrqThread"></a></p>
+
+<h3>sioportObject.txEmptyIrqThread(回调函数,owner对象)</h3>
+
+<pre><code class="aardio language-aardio">sioportObject.txEmptyIrqThread(function(port){  
+    var sport = sio.port(port);/*输出缓冲区最后一个字符发送后触发此事件*/  
+} )
+</code></pre>
+
+<p><a id="sioportObject.write"></a></p>
+
+<h3>sioportObject.write(数据,长度)</h3>
+
+<p>写入数据,<br>
+可以在单引号里直接使用16进制编码，例如&quot;AT&quot;可以写为&#39;\x41\x54&#39;，<br>
+不指定长度时自动获取数据长度<br>
+成功返回写入长度,失败返回null,错误信息</p>
+
+<p><a id="sioportObject.writeHex"></a></p>
+
+<h3>sioportObject.writeHex(数据)</h3>
+
+<p>写入十六进制编码数据</p>
+
+<h3>全局常量</h3>
+
+<p><a id="::Pcomm"></a></p>
+
+<h3>::Pcomm</h3>
+
+<p><a href="#dllmoduleObject">返回对象:dllmoduleObject</a></p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/sio/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/sio/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/sio/_.md">Markdown 格式</a></p>
+
+</body> 
+</html>

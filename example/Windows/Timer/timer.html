@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 可启用、禁用、调整时间隔的定时管理器'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 可启用、禁用、调整时间隔的定时管理器</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 可启用、禁用、调整时间隔的定时管理器</h1><pre><code class="aardio language-aardio">//窗口程序 - 定时管理器
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;可启用、禁用、调整时间隔的定时管理器&quot;;right=412;bottom=198;)
+winform.add(
+btnDisable={cls=&quot;button&quot;;text=&quot;禁用定时器&quot;;left=221;top=62;right=375;bottom=97;z=3};
+btnEnable={cls=&quot;button&quot;;text=&quot;启用定时器&quot;;left=36;top=63;right=190;bottom=98;z=1};
+lbIntervalMax={cls=&quot;static&quot;;text=&quot;间隔1000毫秒&quot;;left=286;top=121;right=373;bottom=135;align=&quot;right&quot;;transparent=1;z=6};
+lbIntervalMin={cls=&quot;static&quot;;text=&quot;间隔1毫秒&quot;;left=40;top=120;right=103;bottom=135;transparent=1;z=5};
+static={cls=&quot;static&quot;;text=&quot;...........&quot;;left=39;top=19;right=375;bottom=50;center=1;nWrap=1;transparent=1;z=2};
+trackbar={cls=&quot;trackbar&quot;;left=26;top=136;right=383;bottom=166;max=1000;min=1;z=4}
+)
+/*}}*/
+
+import win.timer
+var timer = win.timer( winform );
+timer.onTimer = function(hwnd,msg,id,tick){
+    winform.static.text = time.tick();
+} 
+
+winform.btnDisable.oncommand = function(id,event){
+    timer.disable()
+} 
+
+winform.btnEnable.oncommand = function(id,event){
+    timer.enable();
+}
+
+winform.trackbar.setFrequency(10)
+winform.trackbar.oncommand = function(id,event,pos){
+    if( pos ){
+         timer.setInterval(pos) 
+    }
+}
+
+winform.show() 
+win.loopMessage();
+
+
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Windows/Timer/timer.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Windows/Timer/timer.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Windows/Timer/timer.md">Markdown 格式</a>
+</body> 
+</html>

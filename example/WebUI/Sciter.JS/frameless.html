@@ -1,0 +1,253 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - Sciter 无边框窗体'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - Sciter 无边框窗体</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: Sciter 无边框窗体</h1><pre><code class="aardio language-aardio">//无边框窗口
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;Sciter 无边框窗体&quot;;right=759;bottom=469;border=&quot;none&quot;)
+winform.add()
+/*}}*/
+
+import web.sciter;
+import web.sciter.behavior.windowCommand;
+var sciter = web.sciter( winform );
+
+//开发环境中启用sciter调试功能
+if( _STUDIO_INVOKED ){
+    import web.sciter.debug;
+    sciter.attachEventHandler( web.sciter.debug );
+}
+
+sciter.html = /**  
+&lt;!doctype html&gt;
+&lt;html&gt;&lt;head&gt;&lt;META http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot;&gt;&lt;/head&gt;
+&lt;body&gt;
+    &lt;!-- 界面顶栏 --&gt;
+    &lt;div id=&quot;header&quot;&gt; 
+
+        &lt;!-- 下面是标题栏按钮,必须使用a标记表示,command属性指示该按钮执行的命令,可在窗体设计器中禁用最大化、最小化按钮 --&gt; 
+        &lt;div class=&quot;titlebox&quot;&gt;
+            &lt;a command=&quot;window-min&quot;&gt;0&lt;/a&gt;&lt;a command=&quot;window-max&quot;&gt;1&lt;/a&gt;&lt;a command=&quot;window-close&quot; &gt;r&lt;/a&gt;
+        &lt;/div&gt;  
+
+        &lt;!-- 标题栏弹出菜单,需要弹出节点的最好用div或button等元素,不要使用a,li等元素 --&gt;
+        &lt;div .window-menu&gt;u
+            &lt;menu .popup&gt; &lt;!-- .popup是内置的弹出菜单样式 --&gt;
+                &lt;li&gt;在线帮助&lt;/li&gt; 
+                &lt;li&gt;子菜单
+                &lt;menu &gt;
+                    &lt;li&gt;这是子菜单&lt;/li&gt;
+                &lt;/menu&gt;
+                &lt;/li&gt;
+                &lt;li #exit&gt;退出&lt;/li&gt;
+            &lt;/menu&gt;
+        &lt;/div&gt; 
+
+        &lt;!-- 下面是标题栏文本,凡在CSS中指定 behavior:windowCommand 的节点(含子节点) 可用 command 属性指明命令类型 --&gt;
+        &lt;div class=&quot;title-bar&quot; command=&quot;window-caption&quot;&gt; &lt;span class=title&gt; 我 的 软 件 &lt;/span&gt;&lt;/div&gt;
+    &lt;/div&gt; 
+
+    &lt;!-- 界面中部内容栏 --&gt;
+    &lt;div id=&quot;container&quot;&gt; 
+
+        &lt;!-- 左边栏,固定宽度 --&gt;
+        &lt;div class=&quot;lside&quot;&gt; &lt;/div&gt; 
+
+        &lt;!-- 右边栏,自适应宽度 --&gt;
+        &lt;div class=&quot;rside&quot;&gt; &lt;/div&gt;  
+    &lt;/div&gt;
+
+    &lt;!-- 界面底栏 --&gt;
+    &lt;div id=&quot;footer&quot;&gt;
+        &lt;button id=&quot;help&quot;&gt;Sciter 布局教程&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+**/ 
+
+sciter.css = /**
+html,body{
+    margin:0; /*去掉默认的页面边距*/
+    height:100%;/*因为HTML元素的高度默认是按需增加的,所有需要显示指定根节点高度*/
+    background:#fff;/*网页背景色*/
+}
+
+body{
+    overflow:hidden;/*避免出现滚动条*/
+}
+
+/*最大化后body会自动添加maximize属性,如果是圆角界面可以在这里移除圆角*/
+body[maximize]{ 
+    border-radius:0;
+}
+
+body[maximize] #header{
+    border-radius:0;
+}
+
+#header{
+    height:32px;
+    background:rgb(52,152,220);
+    cursor:default;
+    behavior:windowCommand;
+    overflow:hidden;/*清除浮动*/
+}
+
+#header .title-bar{
+    margin-right:95px;
+    padding:8px 5px 5px 15px;
+    height:28px;
+    line-height: 28px;
+    font:system;
+    color:#fff; 
+} 
+
+#header .titlebox{  
+    width:max-intrinsic; 
+    height:28px; 
+    float:right; 
+    margin-right:8px; 
+    overflow-x:hidden;
+}
+
+#header .titlebox a{ 
+    display:inline-block; //显示为块节点 
+    width:max-intrinsic; 
+    height:14px;
+    font-family:&quot;Marlett&quot;;/*该字体显示按钮符号*/  
+    font-size:14px;
+    padding:4px;
+    color:#fff; 
+    cursor:default; 
+}
+
+/*CSS选择器中,方括号指定节点拥有的属性*/
+#header .titlebox a[command]:hover{ 
+    background:#6ebccf; 
+}
+
+#header .titlebox a[command]:active{ 
+    background:#FF0000; 
+} 
+
+#header a[command=&quot;window-restore&quot;]{ 
+    content:&quot;2&quot;;/*Marlett字体为还原按钮符号*/ 
+} 
+
+#header .window-menu{ 
+    display:block;  
+    float:right;
+    text-align:right;
+    behavior:button popup-menu; 
+    width:16px; 
+    height:14px;
+    font-family:&quot;Marlett&quot;;/*该字体显示按钮符号*/  
+    font-size:14px;
+    padding:4px;
+    color:#fff;
+}
+
+#header .window-menu:hover{
+    background:#6ebccf;
+}
+
+#header .window-menu:owns-popup /*菜单已弹出*/
+{ 
+    background-color: #FF0000;
+    color: #FFFFFF;
+}
+
+#container{
+    width:100%; 
+    height:100%%; /*撑满剩余可用空间*/
+    flow: horizontal; /*将容器内部块元素变为横向布局 - 比具有破坏性的float浮动布局更方便*/
+    margin:0 auto; 
+    overflow:hidden;  
+    background:#ac0;
+}
+
+#container .lside{
+    height:100%%;
+    width:150px;  
+    background:rgb(110,179,210);
+}
+
+#container .rside{
+    height:100%%; 
+    width:100%%;  
+    background:#FFF; 
+}
+
+#container .lside &gt; *{
+    margin:38px 0px;
+}
+
+#container .rside &gt; *{
+    margin:38px 10px;
+    font-size:9pt;
+}
+
+#footer {
+    background:rgb(239,237,238);
+    height:25px;
+    text-align:right;
+    padding:10px 20px;
+}
+
+#footer button{
+    padding:4px 13px;
+    font-size:12px; 
+    background:rgb(27,174,93);
+    color:white; 
+}
+
+#footer button:hover { 
+    background:rgb(33,127,188);
+    outline: 1px glow rgb(91,171,230) 1px;
+    cursor:pointer;
+} 
+**/
+
+// 响应菜单点击事件
+sciter.onMenuItemClick =  {
+
+    // 事件可以是一个函数或列表,如果是列表键名匹配节点的id或name属性 
+    exit = function (scTarget,scOwner,reason,behaviorParams) {
+        winform.close();
+    }
+
+    //匹配不到id的节点会触发default函数*/
+    default = function (scTarget,scOwner,reason,behaviorParams) {
+        var ltPopupOwner = web.sciter.element( behaviorParams.he );//这是弹出菜单的按钮节点
+        winform.msgbox( scTarget.innerText )
+    }
+}
+
+import process;
+sciter.onButtonClick = {
+    help = function (scTarget,scOwner,reason,behaviorParams) {
+        process.execute(&quot;http://api.aardio.com/v10/pages/htmlayout-introduction&quot;);
+    }
+}
+
+import win.ui.shadow;
+win.ui.shadow(winform); //添加阴影边框
+
+winform.show();
+win.loopMessage();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/WebUI/Sciter.JS/frameless.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/WebUI/Sciter.JS/frameless.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/WebUI/Sciter.JS/frameless.md">Markdown 格式</a>
+</body> 
+</html>

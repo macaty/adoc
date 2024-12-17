@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 服务端'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 服务端</title> 
+<link rel="stylesheet" href="../../../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 服务端</h1><pre><code class="aardio language-aardio">import console;
+import wsock.tcp.server;
+
+var tcpServer = wsock.tcp.server(&quot;127.0.0.1&quot;,7510)
+
+console.log(&quot;服务端已启动&quot;)
+tcpServer.forever(
+    function(acceptSocket){
+
+        var client = wsock.tcp.client(,acceptSocket);
+
+        import fsys.dlg;  
+        var fpath = fsys.dlg.open( , &quot;客户端连接成功,请选择文件然后开始发送&quot;);
+        if( fpath){ 
+            var file,err = io.file(fpath,&quot;rb&quot;) //注意 io.file 默认是文本方式读出的,b指定二进制模式 
+            if( file ){  
+                while( 
+                    var buf;
+                    buf,readSize = file.read(1024);
+                    buf
+                ) {
+                    client.writeBuffer(buf,readSize) ; 
+                } 
+                file.close(); 
+
+                console.log(&quot;服务端发送文件完成&quot;); 
+            } 
+        }
+
+        client.close();
+    }
+)
+
+console.log(&quot;服务端已关闭&quot;)
+console.pause()
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Network/wsock/tcp/FileTransfer/Server.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Network/wsock/tcp/FileTransfer/Server.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Network/wsock/tcp/FileTransfer/Server.md">Markdown 格式</a>
+</body> 
+</html>

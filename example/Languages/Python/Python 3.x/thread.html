@@ -1,0 +1,105 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 在 aardio 中通过后台线程运行 Python 解释器'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 在 aardio 中通过后台线程运行 Python 解释器</title> 
+<link rel="stylesheet" href="../../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 在 aardio 中通过后台线程运行 Python 解释器</h1><pre><code class="aardio language-aardio">//在 aardio 中通过后台线程运行 Python 解释器
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;aardio - 后台线程运行 Python&quot;;right=1163;bottom=753)
+winform.add(
+button={cls=&quot;button&quot;;text=&quot;调用python线程&quot;;left=876;top=663;right=1102;bottom=723;z=2};
+edit={cls=&quot;edit&quot;;left=11;top=16;right=1140;bottom=625;edge=1;multiline=1;z=1}
+)
+/*}}*/
+
+/*
+Python 存在全局锁，并非真正意义的多线程，
+Pyhton 的多线程 GIL 管理也不方便，处理不好就会崩溃、死锁。
+这是 Python 的限制与 aardio 无关！
+
+更好的方式是在单线程中运行 Python，
+如果在界面线程中，Python 需要做耗时操作，
+那么可以使用工作线程运行 Python，下面是一个演示：
+*/
+
+//python服务端线程
+pyServerThread = function(winform){
+    import thread.command;
+    import py3; 
+
+    //创建命令监听器
+    var cmd = thread.command();
+
+    //响应事件
+    cmd.pyHash = function(){    
+
+        //可以直接访问界面控件
+        winform.edit.print(&quot;子线程正在执行 pyHash 函数&quot;,tostring(time()))
+
+        var hashlib = py3.import(&quot;hashlib&quot;); 
+        var md5 = hashlib.md5()
+        md5.update( raw.buffer(&quot;注意这个函数的参数不是字符串而是字节数组（相当于 aardio 中的 buffer）&quot;) );   
+        sleep(1000)
+
+        //调用界面线的函数
+        winform.pyHashEnd( tostring(md5.hexdigest()) );
+
+        return tostring(md5.hexdigest());
+    }
+
+    //退出线程
+    cmd.pyExit = function(){
+        win.quitMessage();
+    }
+
+    //在工作线程需要启用消息循环，才能响应事件
+    win.loopMessage();  
+}
+
+//启动python服务端线程
+thread.create( pyServerThread,winform ) 
+
+//增加工作线程可以调用的函数
+winform.pyHashEnd = function(str){
+    winform.edit.print(&quot;主线程收到：&quot;,str)
+}
+
+import thread.command;
+winform.button.oncommand = function(id,event){
+
+    //禁用按钮，避免重复提交
+    winform.button.disabledText = &quot;正在调用python线程&quot;;
+
+    //异步调用python线程的函数，不等待返回
+    thread.command.post(&quot;pyHash&quot;) 
+
+    //异步调用python线程的函数，等待返回值
+    var str = thread.command.sendInvoke(&quot;pyHash&quot;) 
+    winform.edit.print(&quot;主线程收到：&quot;,str)
+
+    //取消按钮禁用状态
+    winform.button.disabledText = null;
+}  
+
+winform.onClose = function(hwnd,message,wParam,lParam){
+    //退出Python线程
+    thread.command.pyExit() 
+}
+
+winform.show() 
+win.loopMessage();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/Python/Python 3.x/thread.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/Python/Python 3.x/thread.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Languages/Python/Python 3.x/thread.md">Markdown 格式</a>
+</body> 
+</html>

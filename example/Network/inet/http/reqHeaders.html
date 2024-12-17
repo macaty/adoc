@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 请求头 '>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 请求头 </title> 
+<link rel="stylesheet" href="../../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 请求头 </h1><pre><code class="aardio language-aardio">//请求头 
+import console;
+import inet.http;
+
+console.showLoading(&quot; 正在发送请求&quot;);
+
+//创建 HTTP 客户端对象
+var http = inet.http(); 
+
+/*
+inet.http 所有 HTTP 请求头属性、参数都可以
+使用 web.joinHeaders() 函数支持的字符串、表（数组、键值对）。
+*/
+
+//设置所有请求默认添加的 HTTP 头，请求结束不清空 
+http.addHeaders = &quot;Name1:value1&quot;;  
+
+//可选在 beforeSend 事件回调内写 HTTP 请求头。
+http.beforeSend = function(){  
+    http.writeHeader(&quot;Name2:value2&quot;); //写 HTTP 请求头 
+}
+
+//发送 GET 请求,可选用 参数 @2 自定义 HTTP 请求头 
+//var data  = http.get(&quot;http://www.httpbin.org/get&quot;,{ &quot;Accept-Language&quot;:&quot;zh-CN,zh&quot;; });
+
+//发送 POST 请求,可选用参数 @3 自定义 HTTP 请求头 
+var data = http.post(&quot;http://www.httpbin.org/post&quot;, ,{ 
+    &quot;Accept-Language&quot;:&quot;zh-CN,zh&quot;; 
+    &quot;User-Agent&quot;:&quot;abc&quot;
+});
+
+//显示服务器返回的数据
+console.log(data);
+
+//关闭对象。 
+http.close();
+
+console.pause(true);
+
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Network/inet/http/reqHeaders.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Network/inet/http/reqHeaders.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Network/inet/http/reqHeaders.md">Markdown 格式</a>
+</body> 
+</html>

@@ -1,0 +1,139 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - fsys.dirWatcher 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - fsys.dirWatcher 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>fsys.dirWatcher 库模块帮助文档</h1>
+
+<p><a id="fsys"></a></p>
+
+<h2>fsys 成员列表</h2>
+
+<p><a id="fsys.dirWatcher"></a></p>
+
+<h3>fsys.dirWatcher(&quot;字符串参数&quot;)</h3>
+
+<p>创建目录监视器</p>
+
+<p><a id="fsys.dirWatcher"></a></p>
+
+<h3>fsys.dirWatcher()</h3>
+
+<p><a href="#dirWatcherObject">返回对象:dirWatcherObject</a></p>
+
+<p><a id="fsys.dirWatcher"></a></p>
+
+<h2>fsys.dirWatcher 成员列表</h2>
+
+<p>目录监视器</p>
+
+<p><a id="fsys.dirWatcher.thread"></a></p>
+
+<h3>fsys.dirWatcher.thread()</h3>
+
+<p><a href="#fsysDirWatcherThreadObject">返回对象:fsysDirWatcherThreadObject</a></p>
+
+<p><a id="fsys.dirWatcher.thread"></a></p>
+
+<h3>fsys.dirWatcher.thread(回调函数,监视目录,选项)</h3>
+
+<pre><code class="aardio language-aardio">fsys.dirWatcher.thread(  
+    function(filename,action,actionText){  
+
+    },/*监视目录路径*/ );
+</code></pre>
+
+<p><a id="dirWatcherEntryObject"></a></p>
+
+<h2>dirWatcherEntryObject 成员列表</h2>
+
+<p><a id="dirWatcherEntryObject.action"></a></p>
+
+<h3>dirWatcherEntryObject.action</h3>
+
+<p>变更类型</p>
+
+<p><a id="dirWatcherEntryObject.actionText"></a></p>
+
+<h3>dirWatcherEntryObject.actionText</h3>
+
+<p>变更类型说明</p>
+
+<p><a id="dirWatcherEntryObject.filename"></a></p>
+
+<h3>dirWatcherEntryObject.filename</h3>
+
+<p>文件名</p>
+
+<p><a id="dirWatcherEntryObject.filenameW"></a></p>
+
+<h3>dirWatcherEntryObject.filenameW</h3>
+
+<p>Unicode文件名</p>
+
+<p><a id="dirWatcherObject"></a></p>
+
+<h2>dirWatcherObject 成员列表</h2>
+
+<p><a id="dirWatcherObject.close"></a></p>
+
+<h3>dirWatcherObject.close()</h3>
+
+<p>关闭</p>
+
+<p><a id="dirWatcherObject.eachChanges"></a></p>
+
+<h3>dirWatcherObject.eachChanges(选项,是否监视子目录)</h3>
+
+<pre><code class="aardio language-aardio">for( filename,action,actionText in dirWatcherObject.eachChanges() ){
+    io.print( filename,actionText,action &amp; 0x10/*_FILE_NOTIFY_CHANGE_LAST_WRITE*/ ) 
+}
+</code></pre>
+
+<p><a id="dirWatcherObject.readDirectoryChanges"></a></p>
+
+<h3>dirWatcherObject.readDirectoryChanges()</h3>
+
+<p><a href="#dirWatcherEntryObject">返回对象:dirWatcherEntryObject</a></p>
+
+<p><a id="dirWatcherObject.readDirectoryChanges"></a></p>
+
+<h3>dirWatcherObject.readDirectoryChanges(选项,是否监视子目录)</h3>
+
+<p>读取目录发生的变更<br>
+返回值为数组,数组成员为一个table对象<br>
+filename字段表明变更的目录,action字段表明变更类型<br>
+action为 <em>FILE_NOTIFY_CHANGE</em> 前缀的常量标志</p>
+
+<p><a id="fsysDirWatcherThreadObject"></a></p>
+
+<h2>fsysDirWatcherThreadObject 成员列表</h2>
+
+<p><a id="fsysDirWatcherThreadObject.close"></a></p>
+
+<h3>fsysDirWatcherThreadObject.close()</h3>
+
+<p>关闭对象</p>
+
+<h3>自动完成常量</h3>
+
+<p>_FILE_ACTION_ADDED=1<br>
+_FILE_ACTION_MODIFIED=3<br>
+_FILE_ACTION_REMOVED=2<br>
+_FILE_ACTION_RENAMED_NEW_NAME=5<br>
+_FILE_ACTION_RENAMED_OLD_NAME=4  </p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/fsys/dirWatcher.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/fsys/dirWatcher.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/fsys/dirWatcher.md">Markdown 格式</a></p>
+
+</body> 
+</html>

@@ -1,0 +1,64 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio ÁºñÁ®ãËØ≠Ë®ÄËåÉ‰æã - COM Êé•Âè£ - Ë∞ÉÁî® SpInprocRecognizer'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio ÁºñÁ®ãËØ≠Ë®ÄËåÉ‰æã - COM Êé•Âè£ - Ë∞ÉÁî® SpInprocRecognizer</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio ÁºñÁ®ãËØ≠Ë®ÄÊñáÊ°£È¶ñÈ°µ"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio ÊñáÊ°£</span></a>
+<h1>aardio ËåÉ‰æã: COM Êé•Âè£ - Ë∞ÉÁî® SpInprocRecognizer</h1><pre><code class="aardio language-aardio">//COM Êé•Âè£ - Ë∞ÉÁî® SpInprocRecognizer
+
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;Ë∞ÉÁî®SpInprocRecognizer&quot;;right=599;bottom=399)
+winform.add(
+edit={cls=&quot;edit&quot;;left=21;top=19;right=583;bottom=374;edge=1;multiline=1;z=1}
+)
+/*}}*/
+
+var spRecognizer = com.CreateObject(&quot;SAPI.SpInprocRecognizer&quot; )  
+spRecognizer.AudioInput = spRecognizer.GetAudioInputs().Item(0); 
+
+var recoContext = spRecognizer.CreateRecoContext();   
+var dicGrammar =  recoContext.CreateGrammar();
+dicGrammar.DictationSetState(spRecognizer.SGDSActive);
+
+var menuRule = dicGrammar.Rules.Add(&quot;wordsRule&quot;, 0x1|0x20)
+menuRule.Clear();
+menuRule.InitialState.AddWordTransition(null, &quot;‰Ω†Â•Ω&quot;, &quot; &quot;, spRecognizer.SGLexical, &quot;‰Ω†Â•Ω&quot;, 1, &quot;&quot;, 1.0);  
+dicGrammar.CmdSetRuleState(&quot;wordsRule&quot;, spRecognizer.SGDSActive)
+dicGrammar.Rules.Commit()
+
+RecognitionEvents = {
+
+    Recognition = function(streamNumber,streamPosition,recogType,recoResult) {  
+           var text = recoResult.PhraseInfo.GetText()  
+           winform.edit.log(&quot;ËØÜÂà´ÂÆåÊàê:&quot;,text ,&#39;\r\n&#39; )
+    }
+
+    Hypothesis = function(streamNumber , streamPosition, recoResult){
+        for index,el in com.each(recoResult.PhraseInfo.Elements) { 
+            winform.edit.log(el.DisplayText ,&#39;\r\n&#39; )
+        }  
+    }  
+}
+//Ê∑ªÂä†‰∫ã‰ª∂Ëß¶ÂèëÂô®
+com.Connect(recoContext, RecognitionEvents  )
+
+winform.show()  
+recoContext.Voice.Speak(&quot;‰Ω†Â•Ω&quot;);  
+
+win.loopMessage();
+
+
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/COM/Others/spRecognizer.md  \n\n∏√Œƒº˛Œﬁ∑®”√ Teleport Ultra œ¬‘ÿ, “ÚŒ™ À¸≤ª‘⁄œÓƒøŒƒº˛¿‡–ÕπÊ∑∂ƒ⁄°£  \n\nƒ„œÎ‘⁄∑˛ŒÒ∆˜…œ¥Úø™À¸?'))window.location='https://www.aardio.com/zh-cn/doc/example/COM/Others/spRecognizer.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/COM/Others/spRecognizer.md">Markdown Ê†ºÂºè</a>
+</body> 
+</html>

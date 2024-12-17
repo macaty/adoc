@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 文本框 - 校验输入文本'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 文本框 - 校验输入文本</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 文本框 - 校验输入文本</h1><pre><code class="aardio language-aardio">//文本框 - 校验输入文本
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;文本框限制输入金额&quot;;right=759;bottom=469)
+winform.add(
+edit={cls=&quot;edit&quot;;left=140;top=136;right=483;bottom=163;align=&quot;right&quot;;edge=1;z=1}
+)
+/*}}*/
+
+//在 winform.edit 控件内关闭输入法避免误输非英文字符
+winform.edit.disableInputMethod();
+
+//设置默认输入提示，文本为空且控件失去焦点时显示
+winform.edit.setCueBannerText(&quot;请输入金额&quot;);
+
+//控件文本变更时触发 onChange 事件 
+winform.edit.onChange = function(){  
+
+    /*
+    下面的函数用于限制编辑框只能输入数值，并且只能是表示货币金额的数值。
+    如果输入错误则自动修正输入文本，并将输入光标移动到文本尾部并在编辑框内用气泡提示显示错误文本。
+
+    用参数 @1 指定的模式串匹配与校验输入文本，
+    用参数 @2 指定输入错误时显示的气泡提示文本。   
+    */
+    winform.edit.validateText(&quot;&lt;\d+\.\d\d&gt;|&lt;\d+\.\d&gt;|&lt;\d+\.&gt;|&lt;\d+&gt;&quot;,
+        &quot;不能接受的字符&quot;,&quot;只能在此输入金额，小数点后不能超过 2 位!&quot;); 
+}
+
+//显示窗体
+winform.show();
+
+//启动界面线程消息循环
+win.loopMessage();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Windows/Edit/validateText.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Windows/Edit/validateText.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Windows/Edit/validateText.md">Markdown 格式</a>
+</body> 
+</html>

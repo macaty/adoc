@@ -1,0 +1,75 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - aardio 调用 Go 语言 - aardio.CallPtr'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - aardio 调用 Go 语言 - aardio.CallPtr</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 调用 Go 语言 - aardio.CallPtr</h1><pre><code class="aardio language-aardio">//aardio 调用 Go 语言 - aardio.CallPtr
+import golang;
+var go = golang();//创建 Go 编译器（ 仅调用编译的 DLL 不需要此扩展库 ）。
+
+//Go 与 aardio 一样，源码与字符串默认为 UTF-8 编码
+go.main = /**********
+package main
+
+import &quot;C&quot;
+import &quot;unsafe&quot;
+import &quot;aardio&quot; //源文件: ~\lib\golang\.res\aardio\aardio.go
+
+//export TestCallBack 
+func TestCallBack(fnCallback uintptr) int{
+
+    var s = &quot;字符串&quot;
+
+    /*
+    回调 aardio 用 raw.tostdcall 创建的函数指针。 
+    但 aardio.CallPtr 不需要指定参数个数，并支持可变参数（ 0 到 15 个 uintptr 类型参数 ）。
+    返回值类型为 )(uintptr,uintptr,syscall.Errno)。
+
+    注意：aardio 与 Go 导出函数所在的默认 goroutine 之间的互调属于同一线程（这里不用考虑多线程）。
+    */
+    var r,_,_ = aardio.CallPtr(fnCallback,uintptr(unsafe.Pointer(&amp;s)),123 )
+
+    //C.int 转换为 Go 类型： int   
+    return int(r)
+}
+
+func main() {} 
+**********/
+
+//上面的 go.main 会自动保存到文件，然后编译 Go 源码生成同名 DLL 文件
+go.buildShared(&quot;/.go/CallPtr.go&quot;);
+
+//------------------下面调用 DLL-----------------------
+
+import console.int;
+
+//加载 Go 编译的 DLL，注意要指定 cdecl 调用约定
+var goDll = raw.loadDll(&quot;/.go/CallPtr.dll&quot;,,&quot;cdecl&quot;);
+
+//创建 C 回调函数指针，文档:  https://www.aardio.com/zh-cn/doc/library-guide/builtin/raw/callback.html
+var callback = raw.tostdcall(
+    function(goString,num){
+
+        // Go 字符串实际是一个结构体，下面转换为 aardio 字符串
+        var str = raw.tostring(goString.p,1,goString.n);
+        console.log(&quot;回调参数:&quot;,str,num)
+
+        return 123;
+    },&quot;int({ptr p;int n} goString,int num)&quot;);
+
+var ret  = goDll.TestCallBack( callback )
+console.log(ret);
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/Go/aardio.CallPtr.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/Go/aardio.CallPtr.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Languages/Go/aardio.CallPtr.md">Markdown 格式</a>
+</body> 
+</html>

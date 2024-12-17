@@ -1,0 +1,76 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - 内置函数'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - 内置函数</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>内置函数</h1>
+
+<p>内置函数是由 aardio 内核或者标准库 builtin 模块提供的函数。</p>
+
+<p>以下内置函数属于保留函数，保留函数全局有效且不能修改。 <a id="reserved-functions" href="#reserved-functions">&#x23;</a></p>
+
+<ul>
+<li>eval 计算表达式</li>
+<li>import 导入库</li>
+<li>type 类型检测</li>
+<li>assert 断言</li>
+<li>assert2 断言并指定抛出异常的调用级别 </li>
+<li>assertf 反断言</li>
+<li>error 抛出异常</li>
+<li>errput 输出错误信息，但不会抛出异常</li>
+<li>rget 在多返回值中获取指定返回值</li>
+<li>callex 调用函数，并可自定义 owner 参数与错误处理函数</li>
+<li>call 调用函数且不会抛出异常，可用首个返回值判断调用是否成功</li>
+<li>invoke 调用函数，并可自定义 owner 参数，失败直接抛出异常。</li>
+<li>dumpcode 编译 aardio 代码</li>
+<li>collectgarbage 回收内存</li>
+<li>tostring 转换参数为字符串</li>
+<li>topointer  转换参数为指针</li>
+<li>tonumber 转换参数为数值</li>
+<li>sleep 休眠</li>
+<li>execute 调用系统命令行</li>
+<li>setlocale 区域设置</li>
+<li>setprivilege 指定进程权限</li>
+<li>loadcode 加载 aardio 代码或代码文件</li>
+<li>loadcodex 直接执行 aardio 代码或代码文件</li>
+<li>reduce 对数组中的每个值从左到右开始缩减，并计算为一个值</li>
+</ul>
+
+<p>保留函数特点：</p>
+
+<ul>
+<li>保留函数在所有名字空间中都可以直接使用保留函数而不必在保留函数名前面添加 <code>..</code> 操作符。</li>
+<li>所有保留函数在 aardio 编辑器中默认显示为蓝色高亮的样式，与语法关键字相同。</li>
+</ul>
+
+<p>注意 import 比较特殊。import 是一个语法关键字，同时又是一个保留函数名。必须使用类似 <code>global.import()</code> 的格式才能调用 import 函数。</p>
+
+<blockquote>
+<p>使用 import 语句导入的库会发布到 EXE 执行程序中，但  <code>global.import()</code> 导入的库不会被发布（ 除非使用 import 语句导入了相同的库）。</p>
+</blockquote>
+
+<p>aardio 还提供了以下未设置为保留函数的普通全局函数：</p>
+
+<ul>
+<li>lasterr 获取系统错误</li>
+<li>publish  发布消息</li>
+<li>subscribe 订阅消息</li>
+<li>print 模板输出函数</li>
+</ul>
+
+<p>这几个函数并非全局对象，在非全局名字空间使用时要加上 <code>..</code> 前缀，例如 <code>..lasterr()</code>。</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/language-reference/builtin-function/index.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/language-reference/builtin-function/index.md'" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/builtin-function/index.md">Markdown 格式</a></p>
+
+</body> 
+</html>

@@ -1,0 +1,93 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - fsys.drives 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - fsys.drives 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>fsys.drives 库模块帮助文档</h1>
+
+<p><a id="fsys.drives"></a></p>
+
+<h2>fsys.drives 成员列表</h2>
+
+<p>逻辑分区相关函数。<br>
+相关库：sys.volume , sys.storage</p>
+
+<p><a id="fsys.drives.each"></a></p>
+
+<h3>fsys.drives.each(driveType)</h3>
+
+<pre><code class="aardio language-aardio">for drive,driveType in fsys.drives.each() {
+    /*按字母序遍历所有逻辑分区,  
+可选在参数中用一个数值指定分区类型,例如 _DRIVE_FIXED,  
+返回值 drive 为盘符,以冒号结束,  
+driveType 为分区类型,请参考 ::Kernel32.GetDriveType 的文档 */
+}
+</code></pre>
+
+<p><a id="fsys.drives.eachFixed"></a></p>
+
+<h3>fsys.drives.eachFixed()</h3>
+
+<pre><code class="aardio language-aardio">for drive in fsys.drives.eachFixed() {
+    /*按字母序遍历所有硬盘逻辑分区,  
+迭代变量 drive 为盘符,以冒号结束,  
+注意 USB 硬盘也会遍历到,  
+但忽略普通 U盘,  
+可使用 sys.storage.isUsbDevice 函数检测 USB 存储设备*/
+}
+</code></pre>
+
+<p><a id="fsys.drives.eachRemovable"></a></p>
+
+<h3>fsys.drives.eachRemovable()</h3>
+
+<pre><code class="aardio language-aardio">for drive in fsys.drives.eachRemovable() {
+    /*按字母序遍历所有移动盘逻辑分区,这个一般指的是 U盘,  
+迭代变量 drive 为盘符,以冒号结束,  
+可使用 sys.storage.isUsbDevice 函数检测是否 USB 存储设备*/
+}
+</code></pre>
+
+<p><a id="fsys.drives.free"></a></p>
+
+<h3>fsys.drives.free()</h3>
+
+<p>返回首个未使用的可用盘符</p>
+
+<p><a id="fsys.drives.get"></a></p>
+
+<h3>fsys.drives.get()</h3>
+
+<p>返回包含所有逻辑分区的数组,按字母排序,<br>
+可选用参数@1指定包含所有可用分区的数组,<br>
+可选用参数@2 指定分区类型,<br>
+可用分区类型请参考 ::Kernel32.GetDriveType 的文档</p>
+
+<p><a id="fsys.drives.getFixed"></a></p>
+
+<h3>fsys.drives.getFixed()</h3>
+
+<p>返回包含所有硬盘逻辑分区的数组,按字母排序,<br>
+包含 USB 硬盘但不包含 U盘,<br>
+可使用 sys.storage.isUsbDevice 函数检测 USB 存储设备*/</p>
+
+<p><a id="fsys.drives.getRemovable"></a></p>
+
+<h3>fsys.drives.getRemovable()</h3>
+
+<p>返回包含所有移动盘逻辑分区的数组,按字母排序</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/fsys/drives.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/fsys/drives.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/fsys/drives.md">Markdown 格式</a></p>
+
+</body> 
+</html>

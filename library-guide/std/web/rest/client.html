@@ -1,0 +1,562 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - 用 web.rest 快速开发 HTTP 客户端'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - 用 web.rest 快速开发 HTTP 客户端</title> 
+<link rel="stylesheet" href="../../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>用 web.rest 快速开发 HTTP 客户端</h1>
+
+<p>aardio 里的 web.rest 设计了一种简单的 HTTP 接口描述规则 —— 可将指定的网址（可选指定模板参数）自动转换为本地函数对象。用法极其简单（ web.rest 本身的实现也非常简单 ）。</p>
+
+<p>web.rest 是一种调用规则，也是 aardio 里的一个名字空间，web.rest 名字空间中的所有类都是 web.rest 的具体实现，所有 web.rest 类都继承自 web.rest.client，用法基本相同。  </p>
+
+<p>web.rest 名字空间的所有客户端默认都可选使用第一个构造参数指定 User Agent，可选用第二个构造参数指定代理服务器，请参考：<a href="../../inet/proxy.html" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/std/inet/proxy.html">设置代理服务器</a> 。</p>
+
+<h2>一、简单示例</h2>
+
+<pre><code class="aardio language-aardio">
+import console;
+import web.rest.jsonLiteClient;
+
+//创建 HTTP( REST ) 客户端。
+var http = web.rest.jsonLiteClient();
+
+//声明 HTTP 接口对象
+var api = http.api(&quot;http://httpbin.org/anything/&quot;)
+
+/*
+调用 HTTP 接口函数（已经自动转换为了本地函数）。
+返回 JSON 自动转换为了 aardio 对象。
+*/ 
+var result = api.object.method({
+    name = &quot;用户名&quot;;
+    data = &quot;其他数据&quot;;
+});
+
+//输出服务端返回对象 —— 这个接口返回的是 HTTP 请求信息 
+console.dumpJson(result);
+console.pause();
+</code></pre>
+
+<p>上面的代码可以直接复制粘贴到 aardio 中运行，该接口返回的是 HTTP 请求信息 —— 用于测试学习非常方便。  </p>
+
+<p>我们主要看下面这句发送请求调用 HTTP 接口的代码：  </p>
+
+<pre><code class="aardio language-aardio">var result = api.object.method({
+    name = &quot;用户名&quot;;
+    data = &quot;其他数据&quot;;
+});
+</code></pre>
+
+<p>上面的函数调用做了几件事：  </p>
+
+<ol>
+<li><p>将 api.object.method 每一个下级成员名字追加到请求网址后面，多个名字自动用 &quot;/&quot; 分开。也就是自动生成下面这样的请求地址：  </p>
+
+<pre><code class="aardio language-aardio">&quot;http://httpbin.org/anything&quot; + &quot;/object&quot; + &quot;/method&quot;,
+</code></pre></li>
+<li><p>将函数参数按网页表单编码规则转换为字符串提交，也就是自动执行下面的转换：</p>
+
+<pre><code class="aardio language-aardio">inet.url.stringifyParameters({
+    name = &quot;用户名&quot;;
+    data = &quot;其他数据&quot;;
+})
+</code></pre></li>
+<li><p>解析服务器返回的 JSON ，并作为函数返回值返回。</p>
+
+<p>实际上这句发送请求的代码会被转换为下面的代码执行：  </p>
+
+<pre><code class="aardio language-aardio">var result = http.post(
+&quot;http://httpbin.org/anything&quot; + &quot;/object&quot; + &quot;/method&quot;,
+inet.url.stringifyParameters({
+    name = &quot;用户名&quot;;
+    data = &quot;其他数据&quot;;
+})
+);
+</code></pre>
+
+<p>上面的 object , method 我们称为『网址模板参数』。  </p></li>
+</ol>
+
+<h2>二、网址模板参数</h2>
+
+<p>在声明 API 对象时， HTTP 接口网址中可选使用大括号 <code>{}</code> 包含模板参数名，示例：</p>
+
+<pre><code class="aardio language-aardio">&quot;http://httpbin.org/anything/{org}/{name}/repos&quot;
+</code></pre>
+
+<p>上面的 <code>{org}</code> , <code>{name}</code> 都是&quot;网址模板参数&quot;。</p>
+
+<p>在调用 HTTP 接口时，HTTP API 对象的所有下级成员名称（模板实参）会逐个替换『网址模板参数』。  </p>
+
+<p>例如下面的代码：</p>
+
+<pre><code class="aardio language-aardio">import console;
+import web.rest.jsonLiteClient;
+var http = web.rest.jsonLiteClient();
+
+//声明 HTTP 接口对象
+var api = http.api(&quot;http://httpbin.org/anything/{org}/{name}/repos&quot;)
+
+//调用 HTTP 接口函数
+var result = api.aardio.jacen({
+    name = &quot;ImTip&quot;;
+    description = &quot;通用输入法状态提示&quot;;
+});
+
+console.dumpJson(result);
+console.pause();
+</code></pre>
+
+<p>上面调用 api.aardio.jacen() 函数的实际请求地址为：</p>
+
+<pre><code class="aardio language-aardio">&quot;http://httpbin.org/anything/&quot;
+  + &quot;aardio&quot; + &quot;/&quot; + &quot;jacen&quot; + &quot;/&quot; + &quot;/repos&quot;
+</code></pre>
+
+<p>模板实参 &quot;aardio&quot; 会替换模板参数  <code>{org}</code> ，模板实参 &quot;jacen&quot; 会替换模板参数 <code>{name}</code> ，依次从前向后替换（忽略模板名 ）。  </p>
+
+<p>也可以把斜杠写到模板变量里面，例如 <code>{/name}</code> ，这表示：如果调用时指定了模板实参则保留斜杠，否则去掉斜杆。</p>
+
+<p>我们也可以在调用时明确指定模板实参的名字，代码如下：</p>
+
+<pre><code class="aardio language-aardio">import web.rest.jsonLiteClient;
+var http = web.rest.jsonLiteClient();
+
+//声明 HTTP 接口对象
+var api = http.api(&quot;http://httpbin.org/anything/{org}/{name}/repos&quot;)
+
+//URL 模板实参，使用名值对指定了参数的名字
+var urlParam = { org = &quot;aardio&quot;, name = &quot;jacen&quot; } 
+
+//调用 HTTP 接口函数
+var result = api[urlParam]({
+    name = &quot;ImTip&quot;;
+    description = &quot;通用输入法状态提示&quot;;
+});
+</code></pre>
+
+<p>在网址尾部可以用 <code>{...}</code> 指定不定个数的模板参数，例如：</p>
+
+<pre><code class="aardio language-aardio">import web.rest.jsonLiteClient;
+var http = web.rest.jsonLiteClient();
+
+//声明 HTTP 接口对象
+var api = http.api(&quot;http://httpbin.org/anything/{...}&quot;)
+</code></pre>
+
+<p>这个  <code>{...}</code> 可以省略不写，省略仍然支持不定个数模板参数，多个模板实参会自动用 &quot;/&quot; 分隔。</p>
+
+<h2>三、HTTP 请求方法</h2>
+
+<p>HTTP 协议常用的请求方法有：GET，POST，PUT，DELETE，PATCH，HEAD。</p>
+
+<p>我们可以在调用 HTTP 接口函数时，可以将小写的 HTTP 方法名作为函数名调用 —— 就是以该 HTTP 方法发送请求。</p>
+
+<p>例如：</p>
+
+<pre><code class="aardio language-aardio">
+import console; 
+import web.rest.jsonLiteClient;
+var http = web.rest.jsonLiteClient(); 
+
+//可在参数 @2 指定默认 HTTP 方法，不指定默认为 &quot;POST&quot;
+var api = http.api(&quot;http://httpbin.org/anything/&quot;,&quot;POST&quot;) 
+
+//发送 GET 请求
+var ret = api.name.get( a = 1,b = 2);
+
+//发送 POST 请求
+var ret = api.name.post( a = 1,b = 2);
+
+//发送 PATCH 请求
+var ret = api.name.patch( a = 1,b = 2);
+
+//发送 PUT 请求
+var ret = api.name.put( a = 1,b = 2);
+
+//发送 DELETE 请求
+var ret = api.name.delete( a = 1,b = 2);
+
+console.dumpJson(ret); 
+console.pause(true);
+</code></pre>
+
+<p>这些 http 方法不仅仅可以作为函数使用，也可以作为转换对象 —— 用于转换后续的请求方法，例如：  </p>
+
+<pre><code class="aardio language-aardio">var ret = api.get.method( a = 1,b = 2);
+</code></pre>
+
+<p>注意 head, get, post, put, patch, delete 等作为 HTTP 接口函数名时不会视为『网址模板实参』被添加到请求网址中。</p>
+
+<p>如果将这些默认 HTTP  方法名前面添加一个斜杠，就可以视为『网址模板实参』而非 HTTP 方法。例如：  </p>
+
+<pre><code class="aardio language-aardio">var result = api.get[&quot;/get&quot;]()
+</code></pre>
+
+<p>上面的代码可以简写为：</p>
+
+<pre><code class="aardio language-aardio">var result = api.getGet()
+</code></pre>
+
+<p>类似的还有 postPost(), putPut() …… 等函数。</p>
+
+<h2>四、web.rest 名字空间</h2>
+
+<p>web.rest 名字空间的类都继承自 web.rest.client，区别在于请求数据格式或服务器响应数据格式不同。  </p>
+
+<p>最常用的 web.rest 类如下：  </p>
+
+<p>1、web.rest.client</p>
+
+<p>请求为网页表单编码，响应数据直接返回。</p>
+
+<p>3、web.rest.jsonClient  </p>
+
+<p>请求与响应数据都是 JSON 。</p>
+
+<p>3、web.rest.jsonLiteClient</p>
+
+<p>请求为网页表单编码，响应数据为 JSON 。</p>
+
+<p>下面我们看一下 web.rest.jsonLiteClient 的主要源码：</p>
+
+<pre><code class="aardio language-aardio">
+import web.json;
+import web.rest.client;
+
+namespace web.rest; 
+
+class jsonLiteClient{
+  ctor( ... ){
+    this = ..web.rest.client( ... ); 
+
+    //请求数据 MIME 类型
+    this.contentType = &quot;application/x-www-form-urlencoded&quot;; 
+
+    //自动转换请求参数
+    this.stringifyRequestParameters  = function(param,codepage){
+      //省略其他代码
+      return ..inet.url.stringifyParameters(p,codepage);
+    } 
+
+    //期望服务端返回的数据 MIME 类型
+    this.acceptType = &quot;application/json,text/json,*/*&quot;;
+
+    //自动转换服务器响应数据
+    this.parseResponseResult = function(s){
+      //省略其他代码
+      return  ..web.json.parse(s,true);
+    }
+  }; 
+}
+</code></pre>
+
+<p>每个不同的 web.rest 类 —— 主要是修改了转换请求参数格式的 this. stringifyRequestParameters 函数，以及修改服务器响应数据格式的 this. parseResponseResult 。</p>
+
+<h2>五、获取错误信息</h2>
+
+<p>在调用 HTTP 接口时，成功返回解析后的响应数据，失败则返回 3 个值：null, 错误信息, 错误代码（可选） 。</p>
+
+<p>这里要特别注意一下：aardio 中的很多函数都是成功返回非 null 值，失败返回 null 与 错误信息 等多个值，一般不会抛出异常。</p>
+
+<p>例如：  </p>
+
+<pre><code class="aardio language-aardio">
+import console; 
+import web.rest.client;
+var http = web.rest.client(); 
+
+var api = http.api(&quot;http://httpbin.org/status/500&quot;); 
+
+//发送 GET 请求
+var ret,err = api.get( a = 1,b = 2);
+
+if(!ret){
+
+  //出错了输出错误信息
+  console.log(&quot;出错了&quot;,err)
+
+  //获取原始服务器响应数据
+  http.lastResponse()
+}
+else {
+  console.dumpJson(ret); 
+}
+
+console.pause(true);
+</code></pre>
+
+<p>可以运行 aardio <strong>「 工具 &gt; 网络 &gt; HTTP 状态码检测」</strong>查看返回状态码的相关信息。</p>
+
+<p>http.lastResponse() 可以获取服务器原始响应数据 —— 如果事先导入了 console 库，则在控制台直接显示。</p>
+
+<p>当然上面的代码一般在调试故障时才需要，一般没必要把错误处理写得这么细，上面的代码可以简化如下：</p>
+
+<pre><code class="aardio language-aardio">
+import console;
+import web.rest.jsonLiteClient;
+var restClient = web.rest.jsonLiteClient();   
+
+var duck = restClient.post(&quot;http://httpbin.org/post&quot;,{
+    用户名 = &quot;用户名&quot;;
+    密码 = &quot;密码&quot;;
+} )
+
+//这句相当于 if( duck and duck[&quot;翅膀&quot;] ) 
+if( duck[[&quot;翅膀&quot;]] ){ 
+    console.log(&quot;不管服务器给我的是什么鸭子，总之有翅膀的都是好鸭子&quot;)
+}
+else {
+    //出错了
+    console.log(&quot;怎么回事没翅膀还能叫鸭子吗？&quot;);
+}
+
+console.pause();
+</code></pre>
+
+<p><code>duck[[&quot;翅膀&quot;]]</code> 使用了直接下标 —— duck 为 null 时 <code>duck[[&quot;翅膀&quot;]]</code> 不会报错，而是返回 null 。</p>
+
+<p>参考：<a href="../../../../language-reference/operator/member-access.html" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/operator/member-access.html">操作符 - 直接下标</a></p>
+
+<h2>六、自定义 HTTP 请求头</h2>
+
+<p>可使用 http.addHeaders 自定义 HTTP 请求头，示例：</p>
+
+<pre><code class="aardio language-aardio">
+import console; 
+import web.rest.jsonLiteClient;
+var http = web.rest.jsonLiteClient(); 
+
+//如果所有请求都要添加的相同HTTP头，在这里指定
+http.addHeaders = {
+    [&quot;Test&quot;] = &quot;test&quot;
+}
+
+var api = http.api(&quot;http://httpbin.org/anything/&quot;) 
+
+//发送 GET 请求
+var ret = api.name.get( a = 1,b = 2); 
+
+console.dumpJson(ret); 
+console.pause(true);
+</code></pre>
+
+<p>如果每次请求都要动态修改 HTTP 请求头，可以在 http.  beforeRequestHeaders 函数内返回需要添加的请求头，例如：</p>
+
+<pre><code class="aardio language-aardio">import crypt; 
+import web.rest.jsonLiteClient;
+import console; 
+
+var http = web.rest.jsonLiteClient(); 
+
+//每次请求都要动态修改 HTTP 请求头
+http.beforeRequestHeaders = function(params){
+
+    var apiKey = &quot;&quot;;
+    var secretKey = &quot;&quot;;
+    var authorization = {
+        [&quot;apiKey&quot;] = apiKey;
+        [&quot;time&quot;] = tonumber(time());
+    }
+
+    authorization[&quot;sign&quot;] = crypt.md5(apiKey ++ secretKey ++ authorization.time)
+
+    //通过返回值设置本次请求的 HTTP 头, Content-Type 不需要指定（会自动指定）
+    return {
+        [&quot;Authorization&quot;] = crypt.encodeBin(web.json.stringify(authorization))
+    };
+}
+
+//声明 API 对象
+var api = http.api(&quot;http://httpbin.org/anything/&quot;) 
+
+//发送 GET 请求
+var ret = api.name.get( a = 1,b = 2); 
+
+console.dumpJson(ret); 
+console.pause(true);
+</code></pre>
+
+<h2>七、multipart/form-data 编码上传文件</h2>
+
+<p>示例：</p>
+
+<pre><code class="aardio language-aardio">import web.rest.client;
+var http = web.rest.client();
+var api = http.api(&quot;https://fontello.com&quot;);
+
+//使用文件表单上传文件，可以指定多个字段
+var result = api.sendMultipartForm(
+    file = &quot;@/test.json&quot;; //上传文件路径前面必须加一个字符 @ ，其他字段不用加
+});
+</code></pre>
+
+<p>上面代码也可以写为 api.post.sendMultipartForm() ;</p>
+
+<p>如果需要处理上传进度，可以这样写：  </p>
+
+<pre><code class="aardio language-aardio">var result = api.sendMultipartForm( {
+        file = &quot;@/test.json&quot;;
+    },function(sendData,sendSize,contentLength,remainSize){
+        /*
+        sendData 为本次上传数据；
+        sendSize 为本次上传字节数；
+        contentLength 为要上传的总字节数；
+        remainSize 为剩余字节数；
+        */
+    }
+);
+</code></pre>
+
+<h2>八、上传文件</h2>
+
+<p>直接上传文件示例：</p>
+
+<pre><code class="aardio language-aardio">import web.rest.jsonLiteClient;
+var http = web.rest.jsonLiteClient();
+var api = http.api(&quot;http://httpbin.org/anything&quot;);
+
+//上传文件
+var result = api.sendFile(&quot;/上传文件路径.txt&quot;);
+</code></pre>
+
+<p>也可以如下指定上传进度回调函数。</p>
+
+<pre><code class="aardio language-aardio">var result = api.sendFile( &quot;/上传文件路径.txt&quot;
+    ,function(sendData,sendSize,contentLength,remainSize){
+        /*
+        sendData 为本次上传数据；
+        sendSize 为本次上传字节数；
+        contentLength 为要上传的总字节数；
+        remainSize 为剩余字节数；
+        */
+    }
+);
+</code></pre>
+
+<h2>九、下载文件</h2>
+
+<p>下载文件示例：</p>
+
+<pre><code class="aardio language-aardio">import console;
+import web.rest.jsonLiteClient;
+var http = web.rest.client();
+
+var aardio = http.api(&quot;https://www.aardio.com&quot;);
+
+/*
+下载文件:
+如果创建文件失败 receiveFile 函数会返回 null 及错误信息，否则返回对象自身。
+*/
+var ok = aardio.receiveFile(&quot;/.test.html&quot;).get();
+</code></pre>
+
+<p>可选如下指定下载进度回调函数：  </p>
+
+<pre><code class="aardio language-aardio">aardio.receiveFile(&quot;/.test.html&quot;,function(recvData,recvSize,contentLength){
+    /*
+    recvData 为当前下载数据。
+    recvSize 为当前下载数据字节数。
+    contentLength 为需要下载的总字节数。
+    */
+    console.log(,recvSize,contentLength)
+}).get();
+</code></pre>
+
+<h2>十、自动模式匹配</h2>
+
+<p>在声明 HTTP 接口对象时，还可以指定模式串 —— 用于自动匹配服务器响应数据，并返回匹配结果。</p>
+
+<p>示例：</p>
+
+<pre><code class="aardio language-aardio">
+import console; 
+console.showLoading(&quot;获取外网IP&quot;);
+
+import web.rest.client;
+var http = web.rest.client();
+
+//声明 API，参数 @3 指定的模式串用于匹配返回数据
+var api = http.api(&quot;http://myip.ipip.net&quot;,,&quot;(\d+\.\d+\.\d+\.\d+)&quot;);
+
+//调用 HTTP 接口 
+var ip = api.get();
+
+//显示查询结果
+console.log( ip  );
+
+console.pause(true);
+</code></pre>
+
+<h2>十一、普通 HTTP 客户端</h2>
+
+<p>web.rest 基于 inet.http （ <a href="../../inet/http.html" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/std/inet/http.html">请参考：玩转 inet.http</a>，也可以作为增强版的 HTTP 客户端功能，示例：</p>
+
+<pre><code class="aardio language-aardio">import console;
+import web.rest.jsonClient;
+
+//创建 HTTP 客户端
+var http = web.rest.jsonClient();
+
+//发送 GET 请求
+var ret = http.get(&quot;http://httpbin.org/anything&quot;,{
+    name = &quot;用户名&quot;;
+    data = &quot;其他数据&quot;;
+})
+
+//发送 POST 请求
+var ret = http.post(&quot;http://httpbin.org/anything&quot;,{
+    name = &quot;用户名&quot;;
+    data = &quot;其他数据&quot;;
+})
+
+console.dumpJson(ret);
+console.pause();
+</code></pre>
+
+<p>与 inet.http 不同的是，如果服务端返回数据的编码声明不是 UTF-8，web.rest 会自动转换为 UTF-8 。</p>
+
+<h2>十二、直接提交原始数据</h2>
+
+<p>使用 web.rest 调用 HTTP 接口时，如果提交数据是一个字符串，则不作任何处理 —— 直接提交。</p>
+
+<p>示例：</p>
+
+<pre><code class="aardio language-aardio">
+import console;
+import web.rest.jsonClient;
+var http = web.rest.jsonClient(); 
+
+//示例 JSON
+var json = /*
+{
+    &quot;data&quot;:&quot;其他数据&quot;,
+    &quot;name&quot;:&quot;用户名&quot;
+}
+*/
+
+//如果提交数据是字符串，则不作任何转换直接发送
+var ret = http.post(&quot;http://httpbin.org/anything&quot;,json)
+
+console.dumpJson(ret);
+console.pause();
+</code></pre>
+
+<h2>更多范例</h2>
+
+<p>aardio 自带 web.rest 范例，范例位置：<code>~/example/Web/REST</code></p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-guide/std/web/rest/client.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-guide/std/web/rest/client.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/std/web/rest/client.md">Markdown 格式</a></p>
+
+</body> 
+</html>

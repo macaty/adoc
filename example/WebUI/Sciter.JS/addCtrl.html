@@ -1,0 +1,107 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - Sciter 嵌入原生控件'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - Sciter 嵌入原生控件</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: Sciter 嵌入原生控件</h1><pre><code class="aardio language-aardio">//嵌入原生控件
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;Sciter 嵌入原生控件&quot;;right=1014;bottom=523;)
+winform.add()
+/*}}*/
+
+import web.sciter;
+var sciter = web.sciter( winform );
+
+import web.form; 
+
+//在 web.sciter.behavior 名字空间添加自定义 behavior
+namespace web.sciter.behavior.webbrowser {  
+
+    //节点绑定 behavior 时触发此事件
+    onAttach = function (scOwner) { 
+
+        //创建控件窗口
+        var ltCtrl = scOwner.addCtrl();
+
+        //创建浏览器
+        var wb = ..web.form( ltCtrl );
+
+        //屏蔽网页 F5, Ctrl + N 快捷键
+        ltCtrl.translateAccelerator = function( msg ){
+            var message,vk = msg.message,msg.wParam;
+            if (   (message == 0x100/*_WM_KEYDOWN*/) || (message== 0x101/*_WM_KEYUP*/) ) { 
+                if( ( vk == 0x74/*_VK_F5*/ )
+                    || ( ( vk == &#39;N&#39;# ) &amp;&amp; ( ( ::GetKeyState(0x11/*_VK_CTRL*/) &amp; 0x8000 ) ) ) ) {
+                    return true;   
+                } 
+            }  
+        }
+
+        if( !_STUDIO_INVOKED ){
+            wb.noScriptErr = true;
+        }
+
+        var homepage = scOwner.getAttribute(&quot;homepage&quot;);
+        if( #homepage ) wb.go(homepage)   
+
+        scOwner.sendEvent(&quot;onBrowserCreated&quot;,1); 
+    };
+
+    //节点移除 behavior 时触发此事件
+    onDetach = function( scOwner ){
+        scOwner.delCtrl();
+    }; 
+    //onSize = function (ltOwner) {  ltOwner.adjustCtrl();  }; //custom 控件可以省略
+}
+
+import win.ui.ctrl.custom; //在HTML中引用的原生控件，需要先导入 aardio
+sciter.html =/*** 
+&lt;body&gt;
+    &lt;span style=&quot;font:system&quot;&gt;
+    自定义控件可以象HTMLayout那样,在input,object,widget三种节点中使用cls属性指定控件类名来启用custom这个内建behavior,&lt;br /&gt;
+    使用此方法时可选在data-table属性中使用一个table对象指定控件初始化参数，示例： &lt;br /&gt;&lt;br /&gt;
+    &lt;/span&gt; 
+
+    &lt;span style=&quot;font:system&quot;&gt;
+    在Sciter中也可以新建一个behavior，使用节点提供的 addCtrl函数直接创建自定义控件
+    &lt;/span&gt; 
+    &lt;widget  #browser style=&quot;width:100%%;height:100%%;&quot; homepage=&quot;http://www.aardio.com&quot;&gt;&lt;/widget&gt; 
+    widget可以指定相对高度,input,object因为被包含在匿名节点中,无法指定相对高度 &lt;? = &quot; | &quot;,time(),&quot; 这里也是可以使用模板语法的&quot; ?&gt;
+&lt;/body&gt;
+***/
+
+sciter.css = /**
+body{ 
+    margin:20px;
+    height:100%%;
+    font:system;
+} 
+
+#browser {
+    behavior: webbrowser; 
+}
+**/
+
+/*
+用自定义控件,就不要在 HTML 里写 
+&lt;html window-frame=&quot;extended&quot; window-resizable&gt; 这些代码。
+这样拖动会有透明背景出现，可以加上 winform.disableDragFullWindow = true 解决。
+*/
+
+winform.show();
+win.loopMessage();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/WebUI/Sciter.JS/addCtrl.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/WebUI/Sciter.JS/addCtrl.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/WebUI/Sciter.JS/addCtrl.md">Markdown 格式</a>
+</body> 
+</html>

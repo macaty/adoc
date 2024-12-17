@@ -1,0 +1,384 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - win.ui.statusbar 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - win.ui.statusbar 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>win.ui.statusbar 库模块帮助文档</h1>
+
+<p><a id="statusbarObject"></a></p>
+
+<h2>statusbarObject 成员列表</h2>
+
+<p><a id="statusbarObject.addItem"></a></p>
+
+<h3>statusbarObject.addItem(文本, /*宽度*/)</h3>
+
+<p>创建一个状态栏分块</p>
+
+<p><a id="statusbarObject.bgcolor"></a></p>
+
+<h3>statusbarObject.bgcolor</h3>
+
+<p>背景颜色</p>
+
+<p><a id="statusbarObject.bottom"></a></p>
+
+<h3>statusbarObject.bottom</h3>
+
+<p>底部坐标。<br>
+只能获取，修改无效  </p>
+
+<p>注意状态栏是默认已经做过 DPI 缩放的，<br>
+所以请在 winform.enableDpiScaling(&quot;init&quot;); 以后使用这些属性</p>
+
+<p><a id="statusbarObject.capture"></a></p>
+
+<h3>statusbarObject.capture</h3>
+
+<p>是否捕获全局鼠标消息</p>
+
+<p><a id="statusbarObject.className"></a></p>
+
+<h3>statusbarObject.className</h3>
+
+<p>运行时类名</p>
+
+<p><a id="statusbarObject.close"></a></p>
+
+<h3>statusbarObject.close()</h3>
+
+<p>清除状态栏</p>
+
+<p><a id="statusbarObject.cls"></a></p>
+
+<h3>statusbarObject.cls</h3>
+
+<p>设计时类名</p>
+
+<p><a id="statusbarObject.count"></a></p>
+
+<h3>statusbarObject.count()</h3>
+
+<p>获取分块的数量</p>
+
+<p><a id="statusbarObject.disabled"></a></p>
+
+<h3>statusbarObject.disabled</h3>
+
+<p>是否禁用</p>
+
+<p><a id="statusbarObject.getBorders"></a></p>
+
+<h3>statusbarObject.getBorders()</h3>
+
+<p>返回上下边框，左右边框，间隔边框宽度，<br>
+这个值实际测试基本都是返回 2,0,2</p>
+
+<p><a id="statusbarObject.getFont"></a></p>
+
+<h3>statusbarObject.getFont(true)</h3>
+
+<p>返回控件字体，返回值为 ::LOGFONT 结构体  </p>
+
+<p><a href="#logfontObject">返回对象:logfontObject</a></p>
+
+<p><a id="statusbarObject.getForm"></a></p>
+
+<h3>statusbarObject.getForm()</h3>
+
+<p>如果是窗体返回自身<br>
+如果是控件则返回 _parentForm   </p>
+
+<p><a href="_.html#winform" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/_.html#winform">返回对象:winform</a></p>
+
+<p><a id="statusbarObject.getItemRect"></a></p>
+
+<h3>statusbarObject.getItemRect()</h3>
+
+<p>返回表示项目区块位置的 ::RECT 结构体，<br>
+参数指定从 1 开始的项目索引</p>
+
+<p><a href="../../global/_.html#rectObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/global/_.html#rectObject">返回对象:rectObject</a></p>
+
+<p><a id="statusbarObject.getItemWidth"></a></p>
+
+<h3>statusbarObject.getItemWidth(第几个分块)</h3>
+
+<p>获取指定分块的宽度,分块从 1 开始</p>
+
+<p><a id="statusbarObject.getParent"></a></p>
+
+<h3>statusbarObject.getParent()</h3>
+
+<p>返回父窗口  </p>
+
+<p><a href="_.html#winform" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/_.html#winform">返回对象:winform</a></p>
+
+<p><a id="statusbarObject.getPos"></a></p>
+
+<h3>statusbarObject.getPos()</h3>
+
+<p>返回相对父窗口客户区的坐标,宽,高,<br>
+参数为 true 返回屏幕坐标,宽,高  </p>
+
+<p>注意状态栏是默认已经做过 DPI 缩放的，<br>
+所以请在 winform.enableDpiScaling(&quot;init&quot;); 以后使用这些属性</p>
+
+<p><a id="statusbarObject.getRect"></a></p>
+
+<h3>statusbarObject.getRect()</h3>
+
+<p>控件区块位置，返回值为 ::RECT结构体  </p>
+
+<p><a href="../../global/_.html#rectObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/global/_.html#rectObject">返回对象:rectObject</a></p>
+
+<p><a id="statusbarObject.getRect"></a></p>
+
+<h3>statusbarObject.getRect(true)</h3>
+
+<p>控件屏幕区块位置，返回值为 ::RECT结构体</p>
+
+<p><a id="statusbarObject.getRoot"></a></p>
+
+<h3>statusbarObject.getRoot()</h3>
+
+<p>获取顶层父窗口</p>
+
+<p><a id="statusbarObject.getText"></a></p>
+
+<h3>statusbarObject.getText()</h3>
+
+<p>获取状态栏的文本(无分块)</p>
+
+<p><a id="statusbarObject.getText"></a></p>
+
+<h3>statusbarObject.getText(第几个分块)</h3>
+
+<p>获取指定分块的文本,分块从 1 开始</p>
+
+<p><a id="statusbarObject.height"></a></p>
+
+<h3>statusbarObject.height</h3>
+
+<p>获取时返回状态栏实际高度。<br>
+修改高度无效，请改用 setMinHeight 函数。  </p>
+
+<p>注意状态栏是默认已经做过 DPI 缩放的，<br>
+所以请在 winform.enableDpiScaling(&quot;init&quot;); 以后使用这些属性</p>
+
+<p><a id="statusbarObject.hide"></a></p>
+
+<h3>statusbarObject.hide</h3>
+
+<p>控件是否隐藏</p>
+
+<p><a id="statusbarObject.hwnd"></a></p>
+
+<h3>statusbarObject.hwnd</h3>
+
+<p>控件句柄</p>
+
+<p><a id="statusbarObject.insertItem"></a></p>
+
+<h3>statusbarObject.insertItem(文本, /*插入位置*/, /*宽度*/)</h3>
+
+<p>插入一个状态栏分块,插入位置从 1 开始</p>
+
+<p><a id="statusbarObject.left"></a></p>
+
+<h3>statusbarObject.left</h3>
+
+<p>左侧坐标。<br>
+只能获取，修改无效  </p>
+
+<p>注意状态栏是默认已经做过 DPI 缩放的，<br>
+所以请在 winform.enableDpiScaling(&quot;init&quot;); 以后使用这些属性</p>
+
+<p><a id="statusbarObject.modifyStyle"></a></p>
+
+<h3>statusbarObject.modifyStyle(移除样式,添加样式)</h3>
+
+<p>所有参数可选,默认为0<br>
+使用 <em>TBSTYLE</em> 前缀常量表示样式</p>
+
+<p><a id="statusbarObject.onDestroy"></a></p>
+
+<h3>statusbarObject.onDestroy</h3>
+
+<pre><code class="aardio language-aardio">statusbarObject.onDestroy = function(){  
+    /*窗口销毁前触发*/  
+}
+</code></pre>
+
+<p><a id="statusbarObject.onnotify"></a></p>
+
+<h3>statusbarObject.onnotify</h3>
+
+<pre><code class="aardio language-aardio">statusbarObject.onnotify = function(id,code,ptr){  
+    /*通知事件触发*/  
+}
+</code></pre>
+
+<p><a id="statusbarObject.postMessage"></a></p>
+
+<h3>statusbarObject.postMessage(msg,wParam,lParam)</h3>
+
+<p>投递窗口消息到消息队列中<br>
+此函数用法请参考 ::User32.PostMessage</p>
+
+<p><a id="statusbarObject.redraw"></a></p>
+
+<h3>statusbarObject.redraw()</h3>
+
+<p>刷新</p>
+
+<p><a id="statusbarObject.redrawTransparent"></a></p>
+
+<h3>statusbarObject.redrawTransparent()</h3>
+
+<p>刷新<br>
+透明背景时请使用此函数替代 redraw()</p>
+
+<p><a id="statusbarObject.right"></a></p>
+
+<h3>statusbarObject.right</h3>
+
+<p>右侧坐标。<br>
+只能获取，修改无效  </p>
+
+<p>注意状态栏是默认已经做过 DPI 缩放的，<br>
+所以请在 winform.enableDpiScaling(&quot;init&quot;); 以后使用这些属性</p>
+
+<p><a id="statusbarObject.sendMessage"></a></p>
+
+<h3>statusbarObject.sendMessage(msg,wParam,lParam)</h3>
+
+<p>发送窗口消息<br>
+此函数用法请参考 ::User32.SendMessage</p>
+
+<p><a id="statusbarObject.setFont"></a></p>
+
+<h3>statusbarObject.setFont(指定字体)</h3>
+
+<p>指定LOGFONT字体对象,或逻辑字体句柄</p>
+
+<p><a id="statusbarObject.setItemWidth"></a></p>
+
+<h3>statusbarObject.setItemWidth(第几个分块, /*宽度*/)</h3>
+
+<p>设置指定分块的宽度,分块从 1 开始</p>
+
+<p><a id="statusbarObject.setMinHeight"></a></p>
+
+<h3>statusbarObject.setMinHeight()</h3>
+
+<p>设置状态栏内部最小高度，<br>
+此高度已包含上下边框宽度（通常是 2 个像素）。<br>
+此函数已自动支持 DPI 缩放</p>
+
+<p><a id="statusbarObject.setRedraw"></a></p>
+
+<h3>statusbarObject.setRedraw(false)</h3>
+
+<p>禁止重绘</p>
+
+<p><a id="statusbarObject.setRedraw"></a></p>
+
+<h3>statusbarObject.setRedraw(true)</h3>
+
+<p>恢复重绘</p>
+
+<p><a id="statusbarObject.setText"></a></p>
+
+<h3>statusbarObject.setText(文本)</h3>
+
+<p>设置状态栏的文本(无分块)</p>
+
+<p><a id="statusbarObject.setText"></a></p>
+
+<h3>statusbarObject.setText(文本, /*第几个分块*/)</h3>
+
+<p>设置指定分块的文本,分块从 1 开始</p>
+
+<p><a id="statusbarObject.show"></a></p>
+
+<h3>statusbarObject.show(true)</h3>
+
+<p>显示控件</p>
+
+<p><a id="statusbarObject.theme"></a></p>
+
+<h3>statusbarObject.theme</h3>
+
+<p>外观主题,例如<br>
+winform.button.theme = &quot;Explorer&quot;<br>
+winform.button.theme = false</p>
+
+<p><a id="statusbarObject.top"></a></p>
+
+<h3>statusbarObject.top</h3>
+
+<p>顶部坐标。<br>
+只能获取，修改无效  </p>
+
+<p>注意状态栏是默认已经做过 DPI 缩放的，<br>
+所以请在 winform.enableDpiScaling(&quot;init&quot;); 以后使用这些属性</p>
+
+<p><a id="statusbarObject.width"></a></p>
+
+<h3>statusbarObject.width</h3>
+
+<p>状态栏宽度。<br>
+只能获取，修改无效  </p>
+
+<p>注意状态栏是默认已经做过 DPI 缩放的，<br>
+所以请在 winform.enableDpiScaling(&quot;init&quot;); 以后使用这些属性</p>
+
+<p><a id="statusbarObject.wndproc"></a></p>
+
+<h3>statusbarObject.wndproc</h3>
+
+<pre><code class="aardio language-aardio">statusbarObject.wndproc = function(hwnd,message,wParam,lParam){  
+    /*窗口消息回调，返回任意非null值阻止默认回调  
+wndproc重复赋值时追加函数而不是覆盖之前的回调  
+设为null添除所有消息回调函数  
+wndproc也可以是一个表,键要为处理的消息,值为对应的消息回调函数*/     
+}
+</code></pre>
+
+<p><a id="win.ui"></a></p>
+
+<h2>win.ui 成员列表</h2>
+
+<p><a id="win.ui.statusbar"></a></p>
+
+<h3>win.ui.statusbar</h3>
+
+<p>状态栏控件</p>
+
+<p><a id="win.ui.statusbar"></a></p>
+
+<h3>win.ui.statusbar()</h3>
+
+<p><a href="#statusbarObject">返回对象:statusbarObject</a></p>
+
+<p><a id="win.ui.statusbar"></a></p>
+
+<h3>win.ui.statusbar(父窗口)</h3>
+
+<p>创建一个状态栏</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/ui/statusbar.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/ui/statusbar.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/statusbar.md">Markdown 格式</a></p>
+
+</body> 
+</html>

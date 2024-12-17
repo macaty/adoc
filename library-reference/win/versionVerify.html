@@ -1,0 +1,83 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - win.versionVerify 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - win.versionVerify 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>win.versionVerify 库模块帮助文档</h1>
+
+<p><details>  <summary>条件表达式语法</summary>  <p>
+支持用 &amp;&amp; 逻辑运算法连接多个条件表达式。
+支持用 ==, &lt;, &lt;=, &gt;, &gt;= 等关系运算符判断版本号，
+支持用 &amp;, | 等按位运算符判断 suiteMask，
+不支持其他操作符。</p>
+
+<p>一般建议用 &gt;= 或 &lt;= , 而非 &gt; 或 &lt;,
+用 &gt; 或 &lt; 可能实际检测用的是&gt;= 或 &lt;=。 
+</p></details></p>
+
+<p><a id="win"></a></p>
+
+<h2>win 成员列表</h2>
+
+<p><a id="win.versionVerify"></a></p>
+
+<h3>win.versionVerify(&quot;major &gt;= 10 &amp;&amp; minor &gt;=0 &quot;)</h3>
+
+<p>用于验证操作系统版本<br>
+参数中指定条件表达式,可支持的操作符和变量请查看源代码  </p>
+
+<p>建议使用标准库 win.version 获取系统版本,<br>
+或使用 aardio 提供的全局常量:<br>
+ _WINXP _WIN7_LATER _WIN10_LATER _WINE<br>
+快速判断操作系统版本</p>
+
+<p><a id="win.versionVerify"></a></p>
+
+<h2>win.versionVerify 成员列表</h2>
+
+<p><a id="win.versionVerify.isServer"></a></p>
+
+<h3>win.versionVerify.isServer()</h3>
+
+<p>操作系统版本是否服务器版本</p>
+
+<p><a id="win.versionVerify.isWin10Later"></a></p>
+
+<h3>win.versionVerify.isWin10Later()</h3>
+
+<p>是否 Windows 10 以及 Windows 10 以后的系统,<br>
+建议直接用全局常量 _WIN10_LATER 判断更快更快方便</p>
+
+<p><a id="win.versionVerify.isWin11Later"></a></p>
+
+<h3>win.versionVerify.isWin11Later()</h3>
+
+<p>是否 Windows 11 以及 Windows 11 以后的系统</p>
+
+<p><a id="win.versionVerify.isWin7Later"></a></p>
+
+<h3>win.versionVerify.isWin7Later()</h3>
+
+<p>是否 Windows 7 以及 Windows 7 以后的系统,<br>
+建议直接用全局常量 _WIN7_LATER 判断更快更快方便</p>
+
+<p><a id="win.versionVerify.isWinXp"></a></p>
+
+<h3>win.versionVerify.isWinXp()</h3>
+
+<p>是否 Windows XP 系统</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/versionVerify.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/versionVerify.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/versionVerify.md">Markdown 格式</a></p>
+
+</body> 
+</html>

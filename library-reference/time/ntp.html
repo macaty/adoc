@@ -1,0 +1,164 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - time.ntp 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - time.ntp 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>time.ntp 库模块帮助文档</h1>
+
+<p><a id="time.ntp"></a></p>
+
+<h2>time.ntp 成员列表</h2>
+
+<p><a id="time.ntp.getData"></a></p>
+
+<h3>time.ntp.getData(&quot;ntp服务器&quot;,端口,超时)</h3>
+
+<p>除参数@1之外所有参数可选<br>
+参数@1也可以用一个数组指定多个服务器,<br>
+因为网络的不稳定性,该函数可能失败返回null</p>
+
+<p><a id="time.ntp.getData"></a></p>
+
+<h3>time.ntp.getData()</h3>
+
+<p><a href="#wsockNtpDataObject">返回对象:wsockNtpDataObject</a></p>
+
+<p><a id="time.ntp.updateSystemTime"></a></p>
+
+<h3>time.ntp.updateSystemTime()</h3>
+
+<p>使用NTP服务器获取的时间校正系统时间,<br>
+可选在参数中使用time对象指定要设置的时间<br>
+需要以管理员权限启动当前进程,  </p>
+
+<p><a href="_.html#timeObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/time/_.html#timeObject">返回对象:timeObject</a></p>
+
+<p><a id="wsockNtpDataObject"></a></p>
+
+<h2>wsockNtpDataObject 成员列表</h2>
+
+<p><a id="wsockNtpDataObject.delayMilliseconds"></a></p>
+
+<h3>wsockNtpDataObject.delayMilliseconds</h3>
+
+<p>服务端到客户端延时值<br>
+毫秒</p>
+
+<p><a id="wsockNtpDataObject.header"></a></p>
+
+<h3>wsockNtpDataObject.header</h3>
+
+<p>报文头</p>
+
+<p><a id="wsockNtpDataObject.poll"></a></p>
+
+<h3>wsockNtpDataObject.poll</h3>
+
+<p>轮询时间，即发送报文的最小间隔时间</p>
+
+<p><a id="wsockNtpDataObject.precision"></a></p>
+
+<h3>wsockNtpDataObject.precision</h3>
+
+<p>时钟的精度</p>
+
+<p><a id="wsockNtpDataObject.rootDelay"></a></p>
+
+<h3>wsockNtpDataObject.rootDelay</h3>
+
+<p>到主参考时钟的总往返延迟时间</p>
+
+<p><a id="wsockNtpDataObject.rootDispersion"></a></p>
+
+<h3>wsockNtpDataObject.rootDispersion</h3>
+
+<p>本地时钟相对于主参考时钟的最大误差</p>
+
+<p><a id="wsockNtpDataObject.stratum"></a></p>
+
+<h3>wsockNtpDataObject.stratum</h3>
+
+<p>时钟的层数，定义了时钟的准确度。层数为1的时钟准确度最高，从1到16依次递减</p>
+
+<p><a id="wsockNtpDataObject.time"></a></p>
+
+<h3>wsockNtpDataObject.time</h3>
+
+<p>报文返回后计算出的当前时间  </p>
+
+<p><a href="_.html#timeObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/time/_.html#timeObject">返回对象:timeObject</a></p>
+
+<p><a id="wsockNtpDataObject.originateTimestamp"></a></p>
+
+<h2>wsockNtpDataObject.originateTimestamp 成员列表</h2>
+
+<p>客户端报文发送时间</p>
+
+<p><a id="wsockNtpDataObject.originateTimestamp.time"></a></p>
+
+<h3>wsockNtpDataObject.originateTimestamp.time</h3>
+
+<p><a href="_.html#timeObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/time/_.html#timeObject">返回对象:timeObject</a></p>
+
+<p><a id="wsockNtpDataObject.receiveTimestamp"></a></p>
+
+<h2>wsockNtpDataObject.receiveTimestamp 成员列表</h2>
+
+<p>NTP服务器接收报文时间</p>
+
+<p><a id="wsockNtpDataObject.receiveTimestamp.time"></a></p>
+
+<h3>wsockNtpDataObject.receiveTimestamp.time</h3>
+
+<p><a href="_.html#timeObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/time/_.html#timeObject">返回对象:timeObject</a></p>
+
+<p><a id="wsockNtpDataObject.referenceIdentifier"></a></p>
+
+<h2>wsockNtpDataObject.referenceIdentifier 成员列表</h2>
+
+<p>参考时钟源的标识</p>
+
+<p><a id="wsockNtpDataObject.referenceIdentifier.time"></a></p>
+
+<h3>wsockNtpDataObject.referenceIdentifier.time</h3>
+
+<p><a href="_.html#timeObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/time/_.html#timeObject">返回对象:timeObject</a></p>
+
+<p><a id="wsockNtpDataObject.referenceTimestamp"></a></p>
+
+<h2>wsockNtpDataObject.referenceTimestamp 成员列表</h2>
+
+<p>最后一次更新的时间</p>
+
+<p><a id="wsockNtpDataObject.referenceTimestamp.time"></a></p>
+
+<h3>wsockNtpDataObject.referenceTimestamp.time</h3>
+
+<p><a href="_.html#timeObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/time/_.html#timeObject">返回对象:timeObject</a></p>
+
+<p><a id="wsockNtpDataObject.transmitTimestamp"></a></p>
+
+<h2>wsockNtpDataObject.transmitTimestamp 成员列表</h2>
+
+<p>NTP服务器报文发送时间</p>
+
+<p><a id="wsockNtpDataObject.transmitTimestamp.time"></a></p>
+
+<h3>wsockNtpDataObject.transmitTimestamp.time</h3>
+
+<p><a href="_.html#timeObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/time/_.html#timeObject">返回对象:timeObject</a></p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/time/ntp.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/time/ntp.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/time/ntp.md">Markdown 格式</a></p>
+
+</body> 
+</html>

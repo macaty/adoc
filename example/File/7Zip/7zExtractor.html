@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 7Zip 解压缩演示'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 7Zip 解压缩演示</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 7Zip 解压缩演示</h1><pre><code class="aardio language-aardio">//解压缩
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;7Zip 解压缩演示&quot;;right=774;bottom=437)
+winform.add(
+edit={cls=&quot;edit&quot;;left=11;top=20;right=763;bottom=388;db=1;dl=1;dr=1;dt=1;edge=1;multiline=1;z=1};
+progress={cls=&quot;plus&quot;;left=16;top=410;right=762;bottom=422;bgcolor=6447459;db=1;dl=1;dr=1;forecolor=9959653;notify=1;z=2}
+)
+/*}}*/
+
+winform.progress.setProgressRange(1,100);
+winform.show();
+
+import fsys.dlg;
+import sevenZip.decoder2;
+import win.dlg.message;
+
+var archive = sevenZip.decoder2();
+archive.printError = function(name,message){
+    winform.edit.print(name,message);
+}
+
+if( !archive.open( fsys.dlg.open(&quot;7z压缩包|*.7z||&quot;) ) ){
+    return winform.msgErr(&quot;打开压缩包出错&quot;); 
+}
+
+//列出所有文件
+for path,isDir,time,size64 in archive.each(){
+    winform.edit.print(path,isDir,time,size64.format())
+}
+
+archive.extractSetTotal = function(size){
+    winform.edit.print(&quot;压缩包大小&quot;,fsys.formatSize(size) )
+}
+
+archive.extractSetCompleted = function(lowSize,hiSize,percent){
+    winform.edit.print(&quot;已解压&quot;,fsys.formatSize(lowSize,hiSize),&quot; %&quot; + percent )
+    winform.progress.progressPercentage = percent;
+}
+
+archive.extractPrepareOperation = function(askExtractMode,itemIndex,filepath,isDir){
+   winform.edit.print(&quot;正在解压&quot;,filepath)
+}
+archive.extractSetOperationResult = function(opRet){
+        if( opRet == 0/*kOK*/ ){
+            winform.edit.print(&quot;OK!&quot;)
+        }
+        elseif( opRet == 1/*kUnSupportedMethod*/ ){
+            winform.edit.print(&quot;Unsupported Method&quot;)
+        }
+        elseif( opRet == 0/*kDataError*/ ){
+            winform.edit.print(&quot;CRC Failed&quot;)
+        }
+        elseif( opRet == 0/*kCRCError*/ ){
+            winform.edit.print(&quot;Data Error&quot;)
+        }
+        else {
+           winform.edit.print(&quot;Unknown Error&quot;)
+        }
+}
+
+import fsys.dlg.dir;
+if( archive.extract( fsys.dlg.dir(,,&quot;请指定解压目录&quot;) ) ){
+    winform.edit.print(&quot;已完成所有操作&quot;)
+}
+else {
+    winform.edit.print(&quot;解压缩遇到错误&quot;)
+}
+
+win.loopMessage();
+
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/File/7Zip/7zExtractor.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/File/7Zip/7zExtractor.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/File/7Zip/7zExtractor.md">Markdown 格式</a>
+</body> 
+</html>

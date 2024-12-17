@@ -1,0 +1,43 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 缂栫▼璇█鑼冧緥 - 鎵цRake鍛戒护'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 缂栫▼璇█鑼冧緥 - 鎵цRake鍛戒护</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 缂栫▼璇█鏂囨。棣栭〉"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 鏂囨。</span></a>
+<h1>aardio 鑼冧緥: 鎵цRake鍛戒护</h1><pre><code class="aardio language-aardio">//鎵цRake鍛戒护
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;鎵цRake鍛戒护&quot;;right=759;bottom=469)
+winform.add(
+edit={cls=&quot;edit&quot;;left=26;top=16;right=737;bottom=435;db=1;dl=1;dr=1;dt=1;edge=1;multiline=1;z=1}
+)
+/*}}*/
+
+var rakefile = /*
+task :purchaseAlcohol,[:arg1, :arg2] do |t, args|
+  puts &quot;#{args[:arg1].to_i + args[:arg2].to_i}&quot;
+end
+*/
+
+string.save(&quot;/rakefile&quot;,rakefile )
+
+import process.ruby;
+var result,err = process.ruby.rake(&quot;purchaseAlcohol[123,2]&quot;);
+winform.edit.print(result,err);
+
+winform.show();
+win.loopMessage();
+
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/Ruby/rake.md  \n\n该文件无法用 Teleport Ultra 下载, 因为 它不在项目文件类型规范内。  \n\n你想在服务器上打开它?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/Ruby/rake.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Languages/Ruby/rake.md">Markdown 鏍煎紡</a>
+</body> 
+</html>

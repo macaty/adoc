@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 发送 JSON'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 发送 JSON</title> 
+<link rel="stylesheet" href="../../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 发送 JSON</h1><pre><code class="aardio language-aardio">//发送 JSON
+import inet.http;
+import web.rest.jsonClient;
+import web.json;
+
+import console.int; 
+console.showLoading(&quot; 正在发送请求&quot;);
+
+//创建 HTTP 客户端对象
+var http = inet.http(); 
+
+//发送 POST 请求，如果 POST 数据为 JSON 则自动设置 JSON 请求头
+var data = http.post(&quot;http://eu.httpbin.org/post&quot;,
+    web.json.stringify({ username = &quot;user&quot;; password = &quot;pwd&quot; })
+); 
+
+/*
+改用 web.rest.jsonClient 更简单，
+发送表参数可自动转换为 JSON，返回 JSON 也可自动解析为表。
+*/
+var http = web.rest.jsonClient();
+var data = http.post(&quot;http://eu.httpbin.org/post&quot;
+    ,{ username = &quot;user&quot;; password = &quot;pwd&quot; } );
+
+//更多范例请参考：\范例程序\Web 应用\REST
+console.dumpJson(data);
+
+
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Network/inet/http/json.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Network/inet/http/json.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Network/inet/http/json.md">Markdown 格式</a>
+</body> 
+</html>

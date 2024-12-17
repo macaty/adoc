@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 异步非阻塞客户端'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 异步非阻塞客户端</title> 
+<link rel="stylesheet" href="../../../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 异步非阻塞客户端</h1><pre><code class="aardio language-aardio">import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;aardio form&quot;;right=660;bottom=381)
+winform.add(
+edit={cls=&quot;edit&quot;;left=19;top=14;right=641;bottom=363;edge=1;multiline=1;z=1}
+)
+/*}}*/
+
+import wsock.tcp.asynClient;
+var tcpClient = wsock.tcp.asynClient(); 
+
+var file = io.file(&quot;/test.zip&quot;,&quot;w+b&quot;);//注意 io.file 默认是文本方式写入的,b指定二进制模式
+
+
+/*
+recv,recvBuffer函数与 read前缀的读数据函数有所区别，
+recv不保证每次一定会读完数据，所以在onClose事件里要一直读到没有任何数据。
+
+onReceive里不能多次调用recv，如果希望每次都把接收缓冲区中的数据读完，
+请在 onRead事件中调用read前缀的系列函数接收数据。
+*/
+var buffer = raw.buffer(0x100000);
+tcpClient.onReceive = function(err){
+
+    var readSize = tcpClient.recvBuffer(buffer);
+
+    if( readSize ) {
+        file.writeBuffer(buffer,readSize);
+        winform.edit.log(&quot;已下载&quot;,math.size64( file.seek() ).format(),&#39;\r\n&#39;)
+    }       
+}
+
+//如果用recv,recvBuffer函数收取数据，必须在onClose事件中继续收取最后的数据
+tcpClient.onClose = function(err){
+    for(readSize,remainSize in tcpClient.eachReadBuffer(buffer) ){ 
+        file.writeBuffer(buffer,readSize);
+        winform.edit.log(&quot;已下载&quot;,math.size64( file.seek() ).format(),&#39;\r\n&#39;)
+    }
+    winform.edit.log(&quot;服务端已断开&quot;,err);
+}
+
+
+tcpClient.connect(&quot;127.0.0.1&quot;,7510) //因为是异步套接字,这里不需要检查返回值 
+
+winform.show(); 
+win.loopMessage();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Network/wsock/tcp/FileTransfer/AsyncClient.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Network/wsock/tcp/FileTransfer/AsyncClient.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Network/wsock/tcp/FileTransfer/AsyncClient.md">Markdown 格式</a>
+</body> 
+</html>

@@ -1,0 +1,181 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - fsys.mmap 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - fsys.mmap 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>fsys.mmap 库模块帮助文档</h1>
+
+<p><a id="fsys"></a></p>
+
+<h2>fsys 成员列表</h2>
+
+<p><a id="fsys.mmap"></a></p>
+
+<h3>fsys.mmap</h3>
+
+<p>用于创建内存映射,主要用于进程间共享内存,<br>
+例如process.command就使用了fsys.mmap在进程间共享数据</p>
+
+<p>创建或打开内存映射文件,<br>
+返回对象可传入其他线程使用。</p>
+
+<p><a id="fsys.mmap"></a></p>
+
+<h3>fsys.mmap()</h3>
+
+<p><a href="#fsysMmapObject">返回对象:fsysMmapObject</a></p>
+
+<p><a id="fsys.mmap"></a></p>
+
+<h3>fsys.mmap(内存映射文件句柄)</h3>
+
+<p>使用句柄直接打开内存映射文件</p>
+
+<p><a id="fsys.mmap"></a></p>
+
+<h3>fsys.mmap(内存映射文件句柄,true)</h3>
+
+<p>使用句柄直接打开内存映射文件<br>
+添加析构函数负责释放句柄</p>
+
+<p><a id="fsys.mmap"></a></p>
+
+<h3>fsys.mmap(文件路径,共享名,文件大小,文件大小高32位,访问属性,内存保护属性)</h3>
+
+<p>创建内存映射文件,所有参数可选,<br>
+参数@1可为空，可指定文件路径,也可直指定fsys.file对象,  </p>
+
+<p>省略共享名创建匿名对象,<br>
+共享名可用于跨进程共享内存映射文件，<br>
+共享名不能包含反斜杠,不能超过260个字符<br>
+thread.event,process.mutex,fsys.mmap等共享名字不能相同,  </p>
+
+<p>如果不指定文件，或打开空文件,则大小默认设为64MB，<br>
+文件大小高32位如果省略，可选使用math.size64对象指定文件大小</p>
+
+<p><a id="fsysMmapObject"></a></p>
+
+<h2>fsysMmapObject 成员列表</h2>
+
+<p><a id="fsysMmapObject.close"></a></p>
+
+<h3>fsysMmapObject.close()</h3>
+
+<p>关闭文件映射对象</p>
+
+<p><a id="fsysMmapObject.conflict"></a></p>
+
+<h3>fsysMmapObject.conflict</h3>
+
+<p>如果打开已存在的内存映射,该属性为真</p>
+
+<p><a id="fsysMmapObject.getOffset"></a></p>
+
+<h3>fsysMmapObject.getOffset()</h3>
+
+<p>返回当前位置,math.size64对象,  </p>
+
+<p><a href="../../math/_.html#mathSize64Object" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/math/_.html#mathSize64Object">返回对象:mathSize64Object</a></p>
+
+<p><a id="fsysMmapObject.getOffset32"></a></p>
+
+<h3>fsysMmapObject.getOffset32()</h3>
+
+<p>返回当前位置<br>
+返回两个值,分别为低32位,高32位</p>
+
+<p><a id="fsysMmapObject.mapView"></a></p>
+
+<h3>fsysMmapObject.mapView(内存大小)</h3>
+
+<p>映射内存并返回指针</p>
+
+<p><a id="fsysMmapObject.read"></a></p>
+
+<h3>fsysMmapObject.read()</h3>
+
+<p>自当前位置读取数据,<br>
+读取成功向后移动指针指向已读取数据尾部<br>
+参数可以为读取长度,也可以是结构体</p>
+
+<p><a id="fsysMmapObject.readTable"></a></p>
+
+<h3>fsysMmapObject.readTable()</h3>
+
+<p>读入table对象<br>
+成功返回table,失败返回null值以及读入的文本</p>
+
+<p><a id="fsysMmapObject.seek"></a></p>
+
+<h3>fsysMmapObject.seek(&quot;cur&quot;,偏移量,偏移量高位)</h3>
+
+<p>移动文件指针,<br>
+参数一为&quot;cur&quot;表示相对当前位置<br>
+参数三为可选参数</p>
+
+<p><a id="fsysMmapObject.seek"></a></p>
+
+<h3>fsysMmapObject.seek(&quot;set&quot;,偏移量,偏移量高位)</h3>
+
+<p>移动文件指针,<br>
+参数一为&quot;set&quot;表示相对开始位置<br>
+参数三为可选参数,参数二默认为0</p>
+
+<p><a id="fsysMmapObject.unmapView"></a></p>
+
+<h3>fsysMmapObject.unmapView(内存指针)</h3>
+
+<p>取消映射,<br>
+参数必须是mapView函数返回的指针地址</p>
+
+<p><a id="fsysMmapObject.write"></a></p>
+
+<h3>fsysMmapObject.write</h3>
+
+<p>写入数据<br>
+多进程读写应使用 process.mutex 创建互斥锁</p>
+
+<p><a id="fsysMmapObject.write"></a></p>
+
+<h3>fsysMmapObject.write(写入数据)</h3>
+
+<p>写入数据\参数可以是结构体或字符串、buffer、或数值<br>
+该函数不支持多个参数,读取成功返回true,以及长度,<br>
+失败返回false,以及错误信息</p>
+
+<p><a id="fsysMmapObject.write"></a></p>
+
+<h3>fsysMmapObject.write(写入数据,写入长度)</h3>
+
+<p>写入数据\参数可以是字符串、buffer、指针<br>
+字符串、buffer 可选指定写入长度<br>
+指针必须指定长度</p>
+
+<p><a id="fsysMmapObject.writeTable"></a></p>
+
+<h3>fsysMmapObject.writeTable</h3>
+
+<p>写入table对象<br>
+多进程读写应使用 process.mutex 创建互斥锁</p>
+
+<p><a id="fsysMmapObject.writeTable"></a></p>
+
+<h3>fsysMmapObject.writeTable(table对象)</h3>
+
+<p>写入table对象,仅支持可序列化为字面量的对象<br>
+多进程读写应使用 process.mutex 创建互斥锁</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/fsys/mmap/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/fsys/mmap/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/fsys/mmap/_.md">Markdown 格式</a></p>
+
+</body> 
+</html>

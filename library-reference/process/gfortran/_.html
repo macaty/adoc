@@ -1,0 +1,76 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - process.gfortran 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - process.gfortran 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>process.gfortran 库模块帮助文档</h1>
+
+<p><details>  <summary>参考文档</summary>  <p>
+<a href="../../../library-guide/builtin/raw/datatype.html" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/builtin/raw/datatype.html">aardio 原生类型</a>
+<a href="javascript:if(confirm('https://gcc.gnu.org/onlinedocs/gfortran/ISO_005fC_005fBINDING.html  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='https://gcc.gnu.org/onlinedocs/gfortran/ISO_005fC_005fBINDING.html'" tppabs="https://gcc.gnu.org/onlinedocs/gfortran/ISO_005fC_005fBINDING.html">Fortran C兼容类型</a>
+</p></details></p>
+
+<p><a id="process"></a></p>
+
+<h2>process 成员列表</h2>
+
+<p><a id="process.gfortran"></a></p>
+
+<h3>process.gfortran()</h3>
+
+<p>创建 Fortran 编译器，<br>
+可选用参数@1指定工作目录，默认工作目录为应用程序根目录 &quot;/&quot;  </p>
+
+<p><a href="#processGfortranObject">返回对象:processGfortranObject</a></p>
+
+<p><a id="processGfortranObject"></a></p>
+
+<h2>processGfortranObject 成员列表</h2>
+
+<p><a id="processGfortranObject.?"></a></p>
+
+<h3>processGfortranObject.?</h3>
+
+<p>如果指定合法标识符，且名称只包含字母与数字，<br>
+如果赋值为字符串，则在工作目录生成同名 &quot;.f95&quot; 文件。<br>
+键名也可以为符合前述规则的文件名加上文件后缀，但要放在下标操作符中</p>
+
+<p><a id="processGfortranObject.buildShared"></a></p>
+
+<h3>processGfortranObject.buildShared(&quot;-o fortan.dll fortan.f90&quot;)</h3>
+
+<p>编译 DLL 文件 ,可指定一个或多个启动参数,<br>
+启动参数兼容 process 启动参数  </p>
+
+<p>未输出错误信息就是成功</p>
+
+<p><a id="processGfortranObject.command"></a></p>
+
+<h3>processGfortranObject.command()</h3>
+
+<p>运行 gfortran ,可指定一个或多个启动参数,<br>
+启动参数兼容 process 启动参数  </p>
+
+<p>未输出错误信息就是成功</p>
+
+<p><a id="processGfortranObject.workDir"></a></p>
+
+<h3>processGfortranObject.workDir</h3>
+
+<p>工作目录，也就是 Fortran 源码所在目录，<br>
+默认工作目录为应用程序根目录</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/process/gfortran/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/process/gfortran/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/process/gfortran/_.md">Markdown 格式</a></p>
+
+</body> 
+</html>

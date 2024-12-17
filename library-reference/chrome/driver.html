@@ -1,0 +1,1290 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - chrome.driver 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - chrome.driver 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>chrome.driver 库模块帮助文档</h1>
+
+<p><details>  <summary>说明</summary>  <p>
+<a href="javascript:if(confirm('https://w3c.github.io/webdriver  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='https://w3c.github.io/webdriver'" tppabs="https://w3c.github.io/webdriver">WebDriver 协议</a>
+<a href="javascript:if(confirm('https://www.selenium.dev/documentation/legacy/json_wire_protocol  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='https://www.selenium.dev/documentation/legacy/json_wire_protocol'" tppabs="https://www.selenium.dev/documentation/legacy/json_wire_protocol">JSON wire protocol 协议</a>
+JSON wire protocol 仅供参考，以 WebDriver 文档为准。</p>
+
+<p>此支持库会优先使用系统自带的 Edge（Chromium）浏览器。
+不同版本浏览器需要下载不同版本的 chromedriver.exe （Edge 则为 msedgedriver.exe）。</p>
+
+<p>如果 chrome.exe 所在目录已经存在 chromedriver.exe 则直接使用该路径。
+否则 aardio 会自动检测并下载匹配版本的 msedgedriver.exe。</p>
+
+<p>aardio 不会对 msedgedriver 或chromedriver 下载地址失效、变动导致的后果承担任何责任，如不同意请不要使用。</p>
+
+<p>Win7,XP 等旧系统建议手动安装兼容新 Chromium 内核的 Supermium 浏览器（安装时不要修改安装路径）。
+</p></details></p>
+
+<p><a id="chrome"></a></p>
+
+<h2>chrome 成员列表</h2>
+
+<p><a id="chrome.driver"></a></p>
+
+<h3>chrome.driver()</h3>
+
+<p><a href="#chromeDriverObject">返回对象:chromeDriverObject</a></p>
+
+<p><a id="chrome.driver"></a></p>
+
+<h3>chrome.driver(browserPath)</h3>
+
+<p>创建并返回 ChromeDriver 对象，失败返回 null，错误信息。  </p>
+
+<p>参数@1如果不指定 Chrome 或 Edge 路径,aardio会自动获取浏览器路径。<br>
+aardio会自动搜索浏览器同目录下的适合的 ****driver.exe，<br>
+如果指不到会自动获到浏览器的版本并自动下载对应版本的的 chromedriver.exe 或 edgedriver.exe。<br>
+n可选使用参数 @3 自定义下载对话框标题</p>
+
+<p><a id="chrome.driver"></a></p>
+
+<h3>chrome.driver(browserPath,driverPath)</h3>
+
+<p>创建并返回 ChromeDriver 对象，失败返回 null，错误信息。  </p>
+
+<p>如果不指定参数 @browserPath，则只能通过远程调试端口直接连接</p>
+
+<p><a id="chrome.driver"></a></p>
+
+<h3>chrome.driver(browserPath,driverVersion)</h3>
+
+<p>创建并返回 ChromeDriver 对象，失败返回 null，错误信息。<br>
+如果不指定参数@1，则只能通过远程调试端口直接连接,<br>
+参数 @driverVersion 必须使用一个字符串或一个数值指定 Chrome 或 Edge 的主版本号</p>
+
+<p><a id="chrome.driver"></a></p>
+
+<h3>chrome.driver(true)</h3>
+
+<p>创建并返回 ChromeDriver 对象，失败返回 null，错误信息。<br>
+优先获取 Chrome 路径，如果找不到则获取 Edge 路径。<br>
+如果参数 @1 不指定路径且不为 true ，则优先获取 Edge 路径。<br>
+aardio会自动搜索浏览器同目录下的适合的 ****driver.exe，<br>
+如果指不到会自动获到浏览器的版本并自动下载对应版本的的 chromedriver.exe 或 edgedriver.exe。<br>
+n可选使用参数 @3 自定义下载对话框标题</p>
+
+<p><a id="chrome.driver"></a></p>
+
+<h2>chrome.driver 成员列表</h2>
+
+<p>用于调用 ChromeDriver 或 EdgeDriver 自动化控制内核浏览器 。<br>
+兼容  Chrome ，Edge ，Supermium 等 Chromium 内核浏览器。  </p>
+
+<p>aardio会自动搜索浏览器同目录下的适合的 ****driver.exe，<br>
+如果指不到会自动获到浏览器的版本并自动下载对应版本的的 chromedriver.exe 或 edgedriver.exe。  </p>
+
+<p>aardio 不会对 ChromeDriver 下载地址失效、变动导致的后果承担任何责任，如不同意请不要使用。  </p>
+
+<p>版本号不兼容的其他浏览器请自行指定 chromedriver.exe 路径</p>
+
+<p>创建并返回 ChromeDriver 对象，失败返回 null，错误信息。</p>
+
+<p><a id="chrome.driver.KEYS"></a></p>
+
+<h3>chrome.driver.KEYS</h3>
+
+<p>这是一个表，<br>
+表的键值定义了可用于 sendKeys 函数的键名与键值。<br>
+键名与标准库 key,key.VK 基本兼容，但键值是不同的</p>
+
+<p><a id="chrome.driver.chromePath"></a></p>
+
+<h3>chrome.driver.chromePath</h3>
+
+<p>Chrome.exe 或浏览器主程序路径</p>
+
+<p><a id="chrome.driver.driverPath"></a></p>
+
+<h3>chrome.driver.driverPath</h3>
+
+<p>chromedriver.exe 或 msedgedriver.exe 路径</p>
+
+<p><a id="chrome.driver.requirePath"></a></p>
+
+<h3>chrome.driver.requirePath()</h3>
+
+<p>参数@1使用字符串传入Chrome版本号,<br>
+返回匹配的ChromeDriver路径<br>
+如果未安装该版本ChromeDriver会自动下载安装<br>
+可选使用参数@2自定义下载对话框标题</p>
+
+<p><a id="chromeDriverEleObject"></a></p>
+
+<h2>chromeDriverEleObject 成员列表</h2>
+
+<p><a id="chromeDriverEleObject.?"></a></p>
+
+<h3>chromeDriverEleObject.?</h3>
+
+<p>可输入任意资源名<br>
+对象负责转换为资源请求URL  </p>
+
+<p><a href="../web/rest/client.html#webRestApiObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/web/rest/client.html#webRestApiObject">返回对象:webRestApiObject</a></p>
+
+<p><a id="chromeDriverEleObject.attribute"></a></p>
+
+<h3>chromeDriverEleObject.attribute</h3>
+
+<p>标签属性集合。<br>
+使用下标或成员操作符指定属性名，例如：<br>
+attribute[&quot;属性名&quot;].get() 返回对象的 value 字段为属性值</p>
+
+<p><a id="chromeDriverEleObject.clear"></a></p>
+
+<h3>chromeDriverEleObject.clear()</h3>
+
+<p>清空节点</p>
+
+<p><a id="chromeDriverEleObject.click"></a></p>
+
+<h3>chromeDriverEleObject.click()</h3>
+
+<p>模拟点击</p>
+
+<p><a id="chromeDriverEleObject.delete"></a></p>
+
+<h3>chromeDriverEleObject.delete</h3>
+
+<p>DELETE方法提交请求,删除资源<br>
+调用时可以写 delete() 或 delete.其他资源名()<br>
+请求参数可以指定表或字符串,如果是表请求前会转换为字符串  </p>
+
+<p><a href="../web/rest/client.html#webRestApiObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/web/rest/client.html#webRestApiObject">返回对象:webRestApiObject</a></p>
+
+<p><a id="chromeDriverEleObject.get"></a></p>
+
+<h3>chromeDriverEleObject.get</h3>
+
+<p>GET方法提交请求,获取资源<br>
+调用时可以写 get() 或 get.其他资源名()<br>
+请求参数可以指定表或字符串,如果是表请求前会转换为字符串  </p>
+
+<p><a href="../web/rest/client.html#webRestApiObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/web/rest/client.html#webRestApiObject">返回对象:webRestApiObject</a></p>
+
+<p><a id="chromeDriverEleObject.getAttribute"></a></p>
+
+<h3>chromeDriverEleObject.getAttribute()</h3>
+
+<p>返回 HTML 标签属性值，成功返回字符串值，否则为 null 值</p>
+
+<p><a id="chromeDriverEleObject.getName"></a></p>
+
+<h3>chromeDriverEleObject.getName()</h3>
+
+<p>返回 name 属性值</p>
+
+<p><a id="chromeDriverEleObject.getProperty"></a></p>
+
+<h3>chromeDriverEleObject.getProperty()</h3>
+
+<p>返回节点属性值</p>
+
+<p><a id="chromeDriverEleObject.getRect"></a></p>
+
+<h3>chromeDriverEleObject.getRect()</h3>
+
+<p>返回一个表示节点区块位置的 ::RECT 结构体</p>
+
+<p><a id="chromeDriverEleObject.getSize"></a></p>
+
+<h3>chromeDriverEleObject.getSize()</h3>
+
+<p>返回一个表示节点大小的 ::SIZE 结构体</p>
+
+<p><a id="chromeDriverEleObject.getStyle"></a></p>
+
+<h3>chromeDriverEleObject.getStyle()</h3>
+
+<p>返回 CSS 样式指定属性值，参数 @1 指定属性名</p>
+
+<p><a id="chromeDriverEleObject.getValue"></a></p>
+
+<h3>chromeDriverEleObject.getValue()</h3>
+
+<p>返回文本值</p>
+
+<p><a id="chromeDriverEleObject.head"></a></p>
+
+<h3>chromeDriverEleObject.head</h3>
+
+<p>HEAD方法提交请求<br>
+如果该函数返回非null值为成功,请使用lastResponseHeaders获取应答HTTP头<br>
+调用时可以写 head() 或 head.其他资源名()<br>
+请求参数可以指定表或字符串,如果是表请求前会转换为字符串</p>
+
+<p><a id="chromeDriverEleObject.innerText"></a></p>
+
+<h3>chromeDriverEleObject.innerText()</h3>
+
+<p>获取节点文本</p>
+
+<p><a id="chromeDriverEleObject.isDisplayed"></a></p>
+
+<h3>chromeDriverEleObject.isDisplayed()</h3>
+
+<p>节点是否显示</p>
+
+<p><a id="chromeDriverEleObject.isEnabled"></a></p>
+
+<h3>chromeDriverEleObject.isEnabled()</h3>
+
+<p>节点是否启用</p>
+
+<p><a id="chromeDriverEleObject.isSelected"></a></p>
+
+<h3>chromeDriverEleObject.isSelected()</h3>
+
+<p>节点是否选中</p>
+
+<p><a id="chromeDriverEleObject.patch"></a></p>
+
+<h3>chromeDriverEleObject.patch</h3>
+
+<p>PATCH方法提交请求,更新资源<br>
+调用时可以写 patch() 或 patch.其他资源名()<br>
+请求参数可以指定表或字符串,如果是表请求前会转换为字符串  </p>
+
+<p><a href="../web/rest/client.html#webRestApiObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/web/rest/client.html#webRestApiObject">返回对象:webRestApiObject</a></p>
+
+<p><a id="chromeDriverEleObject.post"></a></p>
+
+<h3>chromeDriverEleObject.post</h3>
+
+<p>POST方法提交请求,新增或修改资源<br>
+调用时可以写 post() 或 post.其他资源名()<br>
+请求参数可以指定表或字符串,如果是表请求前会转换为字符串  </p>
+
+<p><a href="../web/rest/client.html#webRestApiObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/web/rest/client.html#webRestApiObject">返回对象:webRestApiObject</a></p>
+
+<p><a id="chromeDriverEleObject.property"></a></p>
+
+<h3>chromeDriverEleObject.property</h3>
+
+<p>属性集合。<br>
+使用下标或成员操作符指定属性名，例如：<br>
+attribute[&quot;属性名&quot;].get() 返回对象的 value 字段为属性值</p>
+
+<p><a id="chromeDriverEleObject.put"></a></p>
+
+<h3>chromeDriverEleObject.put</h3>
+
+<p>PUT方法提交请求,替换或更新资源<br>
+调用时可以写 put() 或 put.其他资源名()<br>
+请求参数可以指定表或字符串,如果是表请求前会转换为字符串  </p>
+
+<p><a href="../web/rest/client.html#webRestApiObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/web/rest/client.html#webRestApiObject">返回对象:webRestApiObject</a></p>
+
+<p><a id="chromeDriverEleObject.query"></a></p>
+
+<h3>chromeDriverEleObject.query()</h3>
+
+<p><a href="#chromeDriverEleObject">返回对象:chromeDriverEleObject</a></p>
+
+<p><a id="chromeDriverEleObject.query"></a></p>
+
+<h3>chromeDriverEleObject.query(查询参数)</h3>
+
+<pre><code class="aardio language-aardio">chromeDriverEleObject.query([&quot;partial link text&quot;]=&quot;链接文本&quot;/*使用指定键值对查询网页元素,不指定参数获取当前活动元素*/)
+</code></pre>
+
+<p><a id="chromeDriverEleObject.queryAll"></a></p>
+
+<h3>chromeDriverEleObject.queryAll()</h3>
+
+<p><a href="#chromeDriverEleObject">返回对象:chromeDriverEleObject</a></p>
+
+<p><a id="chromeDriverEleObject.queryAll"></a></p>
+
+<h3>chromeDriverEleObject.queryAll(查询参数)</h3>
+
+<pre><code class="aardio language-aardio">chromeDriverEleObject.query([&quot;partial link text&quot;]=&quot;链接文本&quot;/*使用指定键值对查询并返回网页元素数组*/)
+</code></pre>
+
+<p><a id="chromeDriverEleObject.querySelector"></a></p>
+
+<h3>chromeDriverEleObject.querySelector(&quot;字符串参数&quot;)</h3>
+
+<p>指定CSS选择器并返回节点对象<br>
+HTTP接口：POST /session/{session id}/element/{element id}/element</p>
+
+<p><a id="chromeDriverEleObject.querySelector"></a></p>
+
+<h3>chromeDriverEleObject.querySelector()</h3>
+
+<p><a href="#chromeDriverEleObject">返回对象:chromeDriverEleObject</a></p>
+
+<p><a id="chromeDriverEleObject.querySelectorAll"></a></p>
+
+<h3>chromeDriverEleObject.querySelectorAll(&quot;字符串参数&quot;)</h3>
+
+<p>指定CSS选择器并返回节点对象数组<br>
+HTTP接口：POST /session/{session id}/element/{element id}/elements</p>
+
+<p><a id="chromeDriverEleObject.querySelectorAll"></a></p>
+
+<h3>chromeDriverEleObject.querySelectorAll()</h3>
+
+<p><a href="#chromeDriverEleObject">返回对象:chromeDriverEleObject</a></p>
+
+<p><a id="chromeDriverEleObject.sendKeys"></a></p>
+
+<h3>chromeDriverEleObject.sendKeys()</h3>
+
+<p>在该节点发送按键。<br>
+参数可指定一个或多个键名，也要吧用一个字符串数组指定一个或多个键名。<br>
+可用键名为 chrome.driver.KEYS 定义的键名。<br>
+其他字符串直接发送</p>
+
+<p><a id="chromeDriverEleObject.setValue"></a></p>
+
+<h3>chromeDriverEleObject.setValue()</h3>
+
+<p>使用一个或多个字符串参数指定要发送的文本。<br>
+如果要发送 chrome.driver.KEYS 定义的按键，必须指定对应键名的键值。<br>
+改用 sendKeys 函数可在参数中指定键名</p>
+
+<p><a id="chromeDriverEleObject.submit"></a></p>
+
+<h3>chromeDriverEleObject.submit()</h3>
+
+<p>提交表单</p>
+
+<p><a id="chromeDriverEleObject.waitEle"></a></p>
+
+<h3>chromeDriverEleObject.waitEle(&quot;字符串参数&quot;)</h3>
+
+<p>等待并返回指定 CSS 选择器匹配的节点对象。<br>
+可选用参数 @2 指定超时（毫秒），可选用参数 @3 指定检测间隔（毫秒）。<br>
+HTTP接口：POST /session/{session id}/element</p>
+
+<p><a id="chromeDriverEleObject.attribute.?"></a></p>
+
+<h2>chromeDriverEleObject.attribute.? 成员列表</h2>
+
+<p><a id="chromeDriverEleObject.attribute.?.get"></a></p>
+
+<h3>chromeDriverEleObject.attribute.?.get()</h3>
+
+<p>获取attribute值<br>
+HTTP接口：GET /session/{session id}/element/{element id}/attribute/{name}</p>
+
+<p><a id="chromeDriverEleObject.property.?"></a></p>
+
+<h2>chromeDriverEleObject.property.? 成员列表</h2>
+
+<p><a id="chromeDriverEleObject.property.?.get"></a></p>
+
+<h3>chromeDriverEleObject.property.?.get()</h3>
+
+<p>获取property值<br>
+HTTP接口：GET /session/{session id}/element/{element id}/attribute/{name}</p>
+
+<p><a id="chromeDriverEleObject.screenshot"></a></p>
+
+<h2>chromeDriverEleObject.screenshot 成员列表</h2>
+
+<p><a id="chromeDriverEleObject.screenshot.get"></a></p>
+
+<h3>chromeDriverEleObject.screenshot.get()</h3>
+
+<p>截屏<br>
+HTTP接口：GET /session/{session id}/element/{element id}/screenshot</p>
+
+<p><a id="chromeDriverEleObject.selected"></a></p>
+
+<h2>chromeDriverEleObject.selected 成员列表</h2>
+
+<p><a id="chromeDriverEleObject.selected.get"></a></p>
+
+<h3>chromeDriverEleObject.selected.get()</h3>
+
+<p>是否选中<br>
+HTTP接口：GET /session/{session id}/element/{element id}/selected</p>
+
+<p><a id="chromeDriverObject"></a></p>
+
+<h2>chromeDriverObject 成员列表</h2>
+
+<p><a id="chromeDriverObject.addArguments"></a></p>
+
+<h3>chromeDriverObject.addArguments()</h3>
+
+<p>添加一个或多个Chrome启动参数,<br>
+参数也可以是一个包含多个启动参数的数组<br>
+注意参数中不必要使用引号,多个参数应分开写不要拼接成一个参数<br>
+每个启动参数都是使用两个横杠开始的字符串<br>
+<a href="javascript:if(confirm('https://peter.sh/experiments/chromium-command-line-switches/  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='https://peter.sh/experiments/chromium-command-line-switches/'" tppabs="https://peter.sh/experiments/chromium-command-line-switches/">chrome启动参数大全</a></p>
+
+<p><a id="chromeDriverObject.attach"></a></p>
+
+<h3>chromeDriverObject.attach()</h3>
+
+<p><a href="#chromeDriverSesObject">返回对象:chromeDriverSesObject</a></p>
+
+<p><a id="chromeDriverObject.attach"></a></p>
+
+<h3>chromeDriverObject.attach(debuggerPort,desiredCap,requiredCap)</h3>
+
+<p>附加到debuggerPort指定的调试端口,返回该会话的REST API对象,<br>
+如果创建chrome.driver的第一个参数是electron.app或chrome.app,debuggerPort参数可以不指定<br>
+其他参数可选</p>
+
+<p><a id="chromeDriverObject.chromePath"></a></p>
+
+<h3>chromeDriverObject.chromePath</h3>
+
+<p>浏览器程序路径</p>
+
+<p><a id="chromeDriverObject.client"></a></p>
+
+<h3>chromeDriverObject.client</h3>
+
+<p>WebDriver API  </p>
+
+<p><a href="../web/rest/client.html#webRestClientObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/web/rest/client.html#webRestClientObject">返回对象:webRestClientObject</a></p>
+
+<p>web.rest.jsonClient客户端对象  </p>
+
+<p><a href="../web/rest/client.html#webRestClientObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/web/rest/client.html#webRestClientObject">返回对象:webRestClientObject</a></p>
+
+<p><a id="chromeDriverObject.clientApi"></a></p>
+
+<h3>chromeDriverObject.clientApi</h3>
+
+<p>WebDriver API  </p>
+
+<p><a href="../web/rest/client.html#webRestApiObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/web/rest/client.html#webRestApiObject">返回对象:webRestApiObject</a></p>
+
+<p><a id="chromeDriverObject.close"></a></p>
+
+<h3>chromeDriverObject.close()</h3>
+
+<p>关闭ChromeDriver服务端,<br>
+程序退出前也会自动关闭ChromeDriver服务端</p>
+
+<p><a id="chromeDriverObject.createBrowser"></a></p>
+
+<h3>chromeDriverObject.createBrowser(desiredCap,requiredCap)</h3>
+
+<p>打开Chrome并创建会话,返回会话信息,<br>
+startBrowser会自动调用此函数,参数用法参考startBrowser</p>
+
+<p><a id="chromeDriverObject.debuggerAddress"></a></p>
+
+<h3>chromeDriverObject.debuggerAddress</h3>
+
+<p>指定Chrome远程调试地址，<br>
+格式为 IP或主机:端口号，例如 127.0.0.1:38947<br>
+Chrome Driver将直接附加到该浏览器实例</p>
+
+<p><a id="chromeDriverObject.debuggerPort"></a></p>
+
+<h3>chromeDriverObject.debuggerPort</h3>
+
+<p>指定Chrome远程调试端口<br>
+Chrome Driver将直接附加到该浏览器实例</p>
+
+<p><a id="chromeDriverObject.driverPath"></a></p>
+
+<h3>chromeDriverObject.driverPath</h3>
+
+<p>****driver.exe 程序路径</p>
+
+<p><a id="chromeDriverObject.getCapabilities"></a></p>
+
+<h3>chromeDriverObject.getCapabilities()</h3>
+
+<p>返回浏览器创建会话的desiredCap默认参数<br>
+可选在参数中自定义部分字段</p>
+
+<p><a id="chromeDriverObject.isHeadless"></a></p>
+
+<h3>chromeDriverObject.isHeadless</h3>
+
+<p>启动参数是否指定了 --headless</p>
+
+<p><a id="chromeDriverObject.lastRequestUrl"></a></p>
+
+<h3>chromeDriverObject.lastRequestUrl()</h3>
+
+<p>返回最后一次请求的URL</p>
+
+<p><a id="chromeDriverObject.lastResponse"></a></p>
+
+<h3>chromeDriverObject.lastResponse()</h3>
+
+<p>返回最后一次响应的内容</p>
+
+<p><a id="chromeDriverObject.removeArguments"></a></p>
+
+<h3>chromeDriverObject.removeArguments()</h3>
+
+<p>排除一个或多个Chrome启动参数,<br>
+参数也可以是一个包含多个启动参数的数组</p>
+
+<p><a id="chromeDriverObject.server"></a></p>
+
+<h3>chromeDriverObject.server</h3>
+
+<p>服务端进程,process.poen 对象  </p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html#processPopenObject'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html#processPopenObject">返回对象:processPopenObject</a></p>
+
+<p><a id="chromeDriverObject.setOptions"></a></p>
+
+<h3>chromeDriverObject.setOptions()</h3>
+
+<p>设置Chrome启动选项,参数应当是键值对组成的表<br>
+<a href="javascript:if(confirm('http://chromedriver.chromium.org/capabilities  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://chromedriver.chromium.org/capabilities'" tppabs="http://chromedriver.chromium.org/capabilities">ChromeDriver选项文档</a></p>
+
+<p><a id="chromeDriverObject.setProxy"></a></p>
+
+<h3>chromeDriverObject.setProxy(代理配置)</h3>
+
+<pre><code class="aardio language-aardio">chromeDriverObject.setProxy(  
+    proxyType = &quot;manual&quot;;  
+    httpProxy = &quot;127.0.0.1:12043&quot;  
+)
+</code></pre>
+
+<p><a id="chromeDriverObject.startAppBrowser"></a></p>
+
+<h3>chromeDriverObject.startAppBrowser</h3>
+
+<p>打开 Chrome 并创建 APP 模式会话,返回该会话的 REST API对象</p>
+
+<p><a id="chromeDriverObject.startAppBrowser"></a></p>
+
+<h3>chromeDriverObject.startAppBrowser()</h3>
+
+<p><a href="#chromeDriverSesObject">返回对象:chromeDriverSesObject</a></p>
+
+<p><a id="chromeDriverObject.startAppBrowser"></a></p>
+
+<h3>chromeDriverObject.startAppBrowser(app,args,desiredCap,requiredCap)</h3>
+
+<p>打开Chrome并创建APP模式会话,返回该会话的REST API对象<br>
+app应当是一个chrome.app对象,args是包含chrome启动参数的数组<br>
+其他参数为可选参数</p>
+
+<p><a id="chromeDriverObject.startAppBrowser"></a></p>
+
+<h3>chromeDriverObject.startAppBrowser(url,desiredCap,requiredCap)</h3>
+
+<p>打开Chrome并创建APP模式会话,返回该会话的REST API对象<br>
+url指定要打开的网址,其他参数为可选参数</p>
+
+<p><a id="chromeDriverObject.startBrowser"></a></p>
+
+<h3>chromeDriverObject.startBrowser</h3>
+
+<p>打开Chrome并创建会话,返回该会话的REST API对象</p>
+
+<p><a id="chromeDriverObject.startBrowser"></a></p>
+
+<h3>chromeDriverObject.startBrowser()</h3>
+
+<p><a href="#chromeDriverSesObject">返回对象:chromeDriverSesObject</a></p>
+
+<p><a id="chromeDriverObject.startBrowser"></a></p>
+
+<h3>chromeDriverObject.startBrowser(desiredCap,requiredCap)</h3>
+
+<p>打开Chrome并创建会话,返回该会话的REST API对象,<br>
+参数可选,aardio自动添加必要的默认参数,<br>
+参数用法参考文档<br>
+<a href="javascript:if(confirm('http://chromedriver.chromium.org/capabilities  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://chromedriver.chromium.org/capabilities'" tppabs="http://chromedriver.chromium.org/capabilities">Chrome选项文档</a></p>
+
+<p><a id="chromeDriverObject.startServer"></a></p>
+
+<h3>chromeDriverObject.startServer</h3>
+
+<p>启动ChromeDriver服务端</p>
+
+<p><a id="chromeDriverObject.startServer"></a></p>
+
+<h3>chromeDriverObject.startServer()</h3>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html#processPopenObject'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html#processPopenObject">返回对象:processPopenObject</a></p>
+
+<p><a id="chromeDriverObject.startServer"></a></p>
+
+<h3>chromeDriverObject.startServer(端口,其他启动参数)</h3>
+
+<p>启动ChromeDriver服务端,所有参数可选,<br>
+不指定端口时自动分配空闲端口,不会与其他程序冲突<br>
+如果指定参数@2会作为process.popen的附加启动参数,<br>
+返回process.popen对象</p>
+
+<p><a id="chromeDriverSesObject"></a></p>
+
+<h2>chromeDriverSesObject 成员列表</h2>
+
+<p><a id="chromeDriverSesObject.?"></a></p>
+
+<h3>chromeDriverSesObject.?</h3>
+
+<p>可输入任意资源名<br>
+对象负责转换为资源请求URL  </p>
+
+<p><a href="../web/rest/client.html#webRestApiObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/web/rest/client.html#webRestApiObject">返回对象:webRestApiObject</a></p>
+
+<p><a id="chromeDriverSesObject.actions"></a></p>
+
+<h3>chromeDriverSesObject.actions()</h3>
+
+<p>执行动作<br>
+HTTP接口：POST /session/{session id}/actions</p>
+
+<p><a id="chromeDriverSesObject.back"></a></p>
+
+<h3>chromeDriverSesObject.back()</h3>
+
+<p>后退<br>
+HTTP接口：POST /session/{session id}/back</p>
+
+<p><a id="chromeDriverSesObject.cdp"></a></p>
+
+<h3>chromeDriverSesObject.cdp</h3>
+
+<p>执行 CDP 命令。<br>
+调用成功则第一个返回值为 CDP 返回的表对象。<br>
+调用失败则第二个返回值为错误信息。<br>
+注意 CDP 调用成功不等于命令执行成功，<br>
+即使调用成功且第一个返回值为表对象，<br>
+该返回值仍解码器能包含错误状态码与错误信息。<br>
+返回表对象的字段含义请参考 CDP 文档。  </p>
+
+<p>HTTP接口：POST /session/{session id}/goog|ms/cdp/execute</p>
+
+<p><a id="chromeDriverSesObject.close"></a></p>
+
+<h3>chromeDriverSesObject.close()</h3>
+
+<p>关闭当前会话的当前活动浏览器窗口（输入焦点所在窗口）</p>
+
+<p><a id="chromeDriverSesObject.closeAll"></a></p>
+
+<h3>chromeDriverSesObject.closeAll()</h3>
+
+<p>关闭会话创建的所有浏览器窗口</p>
+
+<p><a id="chromeDriverSesObject.cookie"></a></p>
+
+<h3>chromeDriverSesObject.cookie()</h3>
+
+<p>修改cookie<br>
+HTTP接口：POST /session/{session id}/cookie</p>
+
+<p><a id="chromeDriverSesObject.delete"></a></p>
+
+<h3>chromeDriverSesObject.delete</h3>
+
+<p>DELETE方法提交请求,删除资源<br>
+调用时可以写 delete() 或 delete.其他资源名()<br>
+请求参数可以指定表或字符串,如果是表请求前会转换为字符串  </p>
+
+<p><a href="../web/rest/client.html#webRestApiObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/web/rest/client.html#webRestApiObject">返回对象:webRestApiObject</a></p>
+
+<p><a id="chromeDriverSesObject.delete"></a></p>
+
+<h3>chromeDriverSesObject.delete()</h3>
+
+<p>删除会话<br>
+DELETE  /session/{session id}</p>
+
+<p><a id="chromeDriverSesObject.doScript"></a></p>
+
+<h3>chromeDriverSesObject.doScript</h3>
+
+<p>执行脚本<br>
+HTTP接口：POST /session/{session id}/execute/sync</p>
+
+<p><a id="chromeDriverSesObject.doScript"></a></p>
+
+<h3>chromeDriverSesObject.doScript(&quot;JS脚本&quot;,其他调用参数)</h3>
+
+<p>JS脚本会被放到一个匿名函数中执行,<br>
+可添加任意个调用参数,节点对象可作为参数<br>
+成功返回该匿名函数的返回值,<br>
+失败返回null,以及REST API返回的响应对象</p>
+
+<p><a id="chromeDriverSesObject.eachWindow"></a></p>
+
+<h3>chromeDriverSesObject.eachWindow()</h3>
+
+<pre><code class="aardio language-aardio">for( index,window,title,url in chromeDriverSesObject.eachWindow() ){
+    /*遍历所有窗口,已自动切换焦点到当前遍历的窗口*/
+}
+</code></pre>
+
+<p><a id="chromeDriverSesObject.findTitle"></a></p>
+
+<h3>chromeDriverSesObject.findTitle()</h3>
+
+<p>查找并等待出现网页窗口标题并切换到该窗口,<br>
+参数指定窗口标题,支持模式匹配语法,成功返回 true</p>
+
+<p><a id="chromeDriverSesObject.findUrl"></a></p>
+
+<h3>chromeDriverSesObject.findUrl()</h3>
+
+<p>使用网址查找网页窗口并切换到该窗口,<br>
+参数指定网址,支持模式匹配语法,成功返回true</p>
+
+<p><a id="chromeDriverSesObject.forward"></a></p>
+
+<h3>chromeDriverSesObject.forward()</h3>
+
+<p>前进<br>
+HTTP接口：POST /session/{session id}/forward</p>
+
+<p><a id="chromeDriverSesObject.frame"></a></p>
+
+<h3>chromeDriverSesObject.frame(id=&quot;字符串参数&quot;)</h3>
+
+<p>切换框架。<br>
+id 参数可指定 string,number,null,WebElement JSON Object 等类型。<br>
+细节请参考 WebDriver 文档。<br>
+HTTP接口：POST /session/{session id}/frame</p>
+
+<p><a id="chromeDriverSesObject.get"></a></p>
+
+<h3>chromeDriverSesObject.get</h3>
+
+<p>GET方法提交请求,获取资源<br>
+调用时可以写 get() 或 get.其他资源名()<br>
+请求参数可以指定表或字符串,如果是表请求前会转换为字符串  </p>
+
+<p><a href="../web/rest/client.html#webRestApiObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/web/rest/client.html#webRestApiObject">返回对象:webRestApiObject</a></p>
+
+<p><a id="chromeDriverSesObject.getCurrentTitle"></a></p>
+
+<h3>chromeDriverSesObject.getCurrentTitle()</h3>
+
+<p>获取当前网页窗口标题，成功返回字符串</p>
+
+<p><a id="chromeDriverSesObject.getCurrentUrl"></a></p>
+
+<h3>chromeDriverSesObject.getCurrentUrl()</h3>
+
+<p>获取当前URL，成功返回字符串</p>
+
+<p><a id="chromeDriverSesObject.getCurrentWindow"></a></p>
+
+<h3>chromeDriverSesObject.getCurrentWindow()</h3>
+
+<p>获取当前网页窗口句柄标识，成功返回字符串</p>
+
+<p><a id="chromeDriverSesObject.go"></a></p>
+
+<h3>chromeDriverSesObject.go(&quot;字符串参数&quot;)</h3>
+
+<p>打开指定网址<br>
+HTTP接口：GET /session/{session id}/url</p>
+
+<p><a id="chromeDriverSesObject.head"></a></p>
+
+<h3>chromeDriverSesObject.head</h3>
+
+<p>HEAD方法提交请求<br>
+如果该函数返回非null值为成功,请使用lastResponseHeaders获取应答HTTP头<br>
+调用时可以写 head() 或 head.其他资源名()<br>
+请求参数可以指定表或字符串,如果是表请求前会转换为字符串</p>
+
+<p><a id="chromeDriverSesObject.isHeadless"></a></p>
+
+<h3>chromeDriverSesObject.isHeadless</h3>
+
+<p>启动参数是否指定了 --headless</p>
+
+<p><a id="chromeDriverSesObject.loadScript"></a></p>
+
+<h3>chromeDriverSesObject.loadScript(&quot;字符串参数&quot;)</h3>
+
+<p>加载JS脚本文件<br>
+参数指定JS文件网址  </p>
+
+<p>此函数发送请求后立即返回,不会等待脚本加载完成</p>
+
+<p><a id="chromeDriverSesObject.notify"></a></p>
+
+<h3>chromeDriverSesObject.notify</h3>
+
+<pre><code class="aardio language-aardio">chromeDriverSesObject.notify(  
+    function(){  
+        /*此函数中执行的请求不阻塞，并且忽略返回值*/  
+    }  
+)
+</code></pre>
+
+<p><a id="chromeDriverSesObject.patch"></a></p>
+
+<h3>chromeDriverSesObject.patch</h3>
+
+<p>PATCH方法提交请求,更新资源<br>
+调用时可以写 patch() 或 patch.其他资源名()<br>
+请求参数可以指定表或字符串,如果是表请求前会转换为字符串  </p>
+
+<p><a href="../web/rest/client.html#webRestApiObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/web/rest/client.html#webRestApiObject">返回对象:webRestApiObject</a></p>
+
+<p><a id="chromeDriverSesObject.post"></a></p>
+
+<h3>chromeDriverSesObject.post</h3>
+
+<p>POST方法提交请求,新增或修改资源<br>
+调用时可以写 post() 或 post.其他资源名()<br>
+请求参数可以指定表或字符串,如果是表请求前会转换为字符串  </p>
+
+<p><a href="../web/rest/client.html#webRestApiObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/web/rest/client.html#webRestApiObject">返回对象:webRestApiObject</a></p>
+
+<p><a id="chromeDriverSesObject.put"></a></p>
+
+<h3>chromeDriverSesObject.put</h3>
+
+<p>PUT方法提交请求,替换或更新资源<br>
+调用时可以写 put() 或 put.其他资源名()<br>
+请求参数可以指定表或字符串,如果是表请求前会转换为字符串  </p>
+
+<p><a href="../web/rest/client.html#webRestApiObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/web/rest/client.html#webRestApiObject">返回对象:webRestApiObject</a></p>
+
+<p><a id="chromeDriverSesObject.query"></a></p>
+
+<h3>chromeDriverSesObject.query()</h3>
+
+<p><a href="#chromeDriverEleObject">返回对象:chromeDriverEleObject</a></p>
+
+<p><a id="chromeDriverSesObject.query"></a></p>
+
+<h3>chromeDriverSesObject.query(查询参数)</h3>
+
+<pre><code class="aardio language-aardio">chromeDriverSesObject.query([&quot;partial link text&quot;]=&quot;链接文本&quot;/*使用指定键值对查询网页元素,不指定参数获取当前活动元素*/)
+</code></pre>
+
+<p><a id="chromeDriverSesObject.queryAll"></a></p>
+
+<h3>chromeDriverSesObject.queryAll()</h3>
+
+<p><a href="#chromeDriverEleObject">返回对象:chromeDriverEleObject</a></p>
+
+<p><a id="chromeDriverSesObject.queryAll"></a></p>
+
+<h3>chromeDriverSesObject.queryAll(查询参数)</h3>
+
+<pre><code class="aardio language-aardio">chromeDriverSesObject.query([&quot;partial link text&quot;]=&quot;链接文本&quot;/*使用指定键值对查询并返回网页元素数组*/)
+</code></pre>
+
+<p><a id="chromeDriverSesObject.querySelector"></a></p>
+
+<h3>chromeDriverSesObject.querySelector(&quot;字符串参数&quot;)</h3>
+
+<p>指定CSS选择器并返回节点对象<br>
+HTTP接口：POST /session/{session id}/element</p>
+
+<p><a id="chromeDriverSesObject.querySelector"></a></p>
+
+<h3>chromeDriverSesObject.querySelector()</h3>
+
+<p><a href="#chromeDriverEleObject">返回对象:chromeDriverEleObject</a></p>
+
+<p><a id="chromeDriverSesObject.querySelectorAll"></a></p>
+
+<h3>chromeDriverSesObject.querySelectorAll(&quot;字符串参数&quot;)</h3>
+
+<p>指定CSS选择器并返回节点对象数组<br>
+HTTP接口：POST /session/{session id}/elements</p>
+
+<p><a id="chromeDriverSesObject.querySelectorAll"></a></p>
+
+<h3>chromeDriverSesObject.querySelectorAll()</h3>
+
+<p><a href="#chromeDriverEleObject">返回对象:chromeDriverEleObject</a></p>
+
+<p><a id="chromeDriverSesObject.refresh"></a></p>
+
+<h3>chromeDriverSesObject.refresh()</h3>
+
+<p>前进<br>
+HTTP接口：POST /session/{session id}/refresh</p>
+
+<p><a id="chromeDriverSesObject.sendKeys"></a></p>
+
+<h3>chromeDriverSesObject.sendKeys()</h3>
+
+<p>在活动节点发送按键。<br>
+参数可指定一个或多个键名，也可用一个字符串数组指定一个或多个键名。<br>
+可用键名为 chrome.driver.KEYS 定义的键名。<br>
+不是键名的其他字符串作为普通文本直接发送。</p>
+
+<p><a id="chromeDriverSesObject.sessionInfo"></a></p>
+
+<h3>chromeDriverSesObject.sessionInfo</h3>
+
+<p>浏览器会话信息</p>
+
+<p><a id="chromeDriverSesObject.switchWindow"></a></p>
+
+<h3>chromeDriverSesObject.switchWindow()</h3>
+
+<p>切换窗口,<br>
+参数@1可用字符串指定窗口句柄标识,<br>
+也可以用数值参数指定窗口索引。<br>
+成功返回 true</p>
+
+<p><a id="chromeDriverSesObject.timeouts"></a></p>
+
+<h3>chromeDriverSesObject.timeouts()</h3>
+
+<p>设置超时<br>
+HTTP接口：POST /session/{session id}/timeouts</p>
+
+<p><a id="chromeDriverSesObject.waitEle"></a></p>
+
+<h3>chromeDriverSesObject.waitEle(&quot;字符串参数&quot;)</h3>
+
+<p>等待并返回指定 CSS 选择器匹配的节点对象。<br>
+可选用参数 @2 指定超时（毫秒），可选用参数 @3 指定检测间隔（毫秒）。<br>
+HTTP接口：POST /session/{session id}/element</p>
+
+<p><a id="chromeDriverSesObject.waitTitle"></a></p>
+
+<h3>chromeDriverSesObject.waitTitle()</h3>
+
+<p>等待指定标题的网页窗口并切换到该窗口。<br>
+参数 @1 指定窗口标题，支持模式匹配语法。<br>
+可选用参数 @2 指定超时（毫秒），可选用参数 @3 指定检测间隔（毫秒）。<br>
+成功返回true</p>
+
+<p><a id="chromeDriverSesObject.waitUrl"></a></p>
+
+<h3>chromeDriverSesObject.waitUrl()</h3>
+
+<p>等待指定网址的网页窗口并切换到该窗口。<br>
+参数 @1 指定网址，支持模式匹配语法。<br>
+可选用参数 @2 指定超时（毫秒），可选用参数 @3 指定检测间隔（毫秒）。<br>
+成功返回true</p>
+
+<p><a id="chromeDriverSesObject.waitUrlParam"></a></p>
+
+<h3>chromeDriverSesObject.waitUrlParam(&quot;字符串参数&quot;,&quot;字符串参数&quot;)</h3>
+
+<p>等待参数@1指定的网址打开，支持模式匹配。<br>
+参数 @1 的等待规则与 waitUrl 函数相同。  </p>
+
+<p>参数 @2 指定要等待的 URL 参数名，<br>
+如果找到该参数则返回参数值，否则继续等待到参数出现或社会窗口关闭</p>
+
+<p><a id="chromeDriverSesObject.window"></a></p>
+
+<h3>chromeDriverSesObject.window()</h3>
+
+<p>切换窗口<br>
+HTTP接口：POST /session/{session id}/window</p>
+
+<p><a id="chromeDriverSesObject.actions"></a></p>
+
+<h2>chromeDriverSesObject.actions 成员列表</h2>
+
+<p><a id="chromeDriverSesObject.actions.delete"></a></p>
+
+<h3>chromeDriverSesObject.actions.delete()</h3>
+
+<p>删除动作<br>
+DELETE  /session/{session id}/actions</p>
+
+<p><a id="chromeDriverSesObject.alert"></a></p>
+
+<h2>chromeDriverSesObject.alert 成员列表</h2>
+
+<p><a id="chromeDriverSesObject.alert.accept"></a></p>
+
+<h3>chromeDriverSesObject.alert.accept()</h3>
+
+<p>取消alert<br>
+HTTP接口：POST /session/{session id}/alert/accept</p>
+
+<p><a id="chromeDriverSesObject.alert.dismiss"></a></p>
+
+<h3>chromeDriverSesObject.alert.dismiss()</h3>
+
+<p>取消alert<br>
+HTTP接口：POST /session/{session id}/alert/dismiss</p>
+
+<p><a id="chromeDriverSesObject.alert.text"></a></p>
+
+<h3>chromeDriverSesObject.alert.text()</h3>
+
+<p>发送alert文本<br>
+HTTP接口：POST /session/{session id}/alert/text</p>
+
+<p><a id="chromeDriverSesObject.alert.text"></a></p>
+
+<h2>chromeDriverSesObject.alert.text 成员列表</h2>
+
+<p><a id="chromeDriverSesObject.alert.text.get"></a></p>
+
+<h3>chromeDriverSesObject.alert.text.get()</h3>
+
+<p>获取alert文本<br>
+HTTP接口：GET /session/{session id}/alert/text</p>
+
+<p><a id="chromeDriverSesObject.browser"></a></p>
+
+<h2>chromeDriverSesObject.browser 成员列表</h2>
+
+<p>浏览器自定义命令接口。<br>
+Edge 浏览器为 /session/{session id}/ms ，<br>
+Chrome 浏览器为 /session/{session id}/goog</p>
+
+<p><a id="chromeDriverSesObject.browser.name"></a></p>
+
+<h3>chromeDriverSesObject.browser.name</h3>
+
+<p>浏览器名称，Edge 浏览器为 &quot;MicrosoftEdge&quot; 或 &quot;chrome&quot;</p>
+
+<p><a id="chromeDriverSesObject.browser.userDataDir"></a></p>
+
+<h3>chromeDriverSesObject.browser.userDataDir</h3>
+
+<p>用户数据目录</p>
+
+<p><a id="chromeDriverSesObject.browser.version"></a></p>
+
+<h3>chromeDriverSesObject.browser.version</h3>
+
+<p>浏览器版本</p>
+
+<p><a id="chromeDriverSesObject.chromium"></a></p>
+
+<h2>chromeDriverSesObject.chromium 成员列表</h2>
+
+<p><a id="chromeDriverSesObject.chromium.network_conditions"></a></p>
+
+<h3>chromeDriverSesObject.chromium.network_conditions()</h3>
+
+<p>修改用于仿真的网络条件<br>
+session/:session_id/chromium/network_conditions</p>
+
+<p><a id="chromeDriverSesObject.chromium.network_conditions"></a></p>
+
+<h2>chromeDriverSesObject.chromium.network_conditions 成员列表</h2>
+
+<p><a id="chromeDriverSesObject.chromium.network_conditions.get"></a></p>
+
+<h3>chromeDriverSesObject.chromium.network_conditions.get()</h3>
+
+<p>获取用于仿真的网络条件<br>
+session/:session_id/chromium/network_conditions</p>
+
+<p><a id="chromeDriverSesObject.cookie"></a></p>
+
+<h2>chromeDriverSesObject.cookie 成员列表</h2>
+
+<p><a id="chromeDriverSesObject.cookie.delete"></a></p>
+
+<h3>chromeDriverSesObject.cookie.delete()</h3>
+
+<p>删除cookie,<br>
+也可以写为cookie.name.delete删除指定名字cookie<br>
+DELETE  /session/{session id}/cookie/{name}</p>
+
+<p><a id="chromeDriverSesObject.cookie.get"></a></p>
+
+<h3>chromeDriverSesObject.cookie.get()</h3>
+
+<p>获取cookie,也可以写为cookie.name.get<br>
+HTTP接口：GET /session/{session id}/cookie</p>
+
+<p><a id="chromeDriverSesObject.execute"></a></p>
+
+<h2>chromeDriverSesObject.execute 成员列表</h2>
+
+<p><a id="chromeDriverSesObject.execute.async"></a></p>
+
+<h3>chromeDriverSesObject.execute.async()</h3>
+
+<p>异步执行脚本<br>
+HTTP接口POST /session/{session id}/execute/async</p>
+
+<p><a id="chromeDriverSesObject.frame"></a></p>
+
+<h2>chromeDriverSesObject.frame 成员列表</h2>
+
+<p><a id="chromeDriverSesObject.frame.parent"></a></p>
+
+<h3>chromeDriverSesObject.frame.parent()</h3>
+
+<p>切换到父框架，无参数。<br>
+如果当前已经是顶层框架则忽略此调用。<br>
+HTTP接口：POST /session/{session id}/frame/parent</p>
+
+<p><a id="chromeDriverSesObject.screenshot"></a></p>
+
+<h2>chromeDriverSesObject.screenshot 成员列表</h2>
+
+<p><a id="chromeDriverSesObject.screenshot.get"></a></p>
+
+<h3>chromeDriverSesObject.screenshot.get()</h3>
+
+<p>截屏<br>
+HTTP接口：GET /session/{session id}/screenshot</p>
+
+<p><a id="chromeDriverSesObject.se"></a></p>
+
+<h2>chromeDriverSesObject.se 成员列表</h2>
+
+<p><a id="chromeDriverSesObject.se.log"></a></p>
+
+<h3>chromeDriverSesObject.se.log()</h3>
+
+<p>返回日志,<br>
+使用一个表参数并在types字段里指定要获取的日志类型</p>
+
+<p><a id="chromeDriverSesObject.se.log.types"></a></p>
+
+<h2>chromeDriverSesObject.se.log.types 成员列表</h2>
+
+<p><a id="chromeDriverSesObject.se.log.types.get"></a></p>
+
+<h3>chromeDriverSesObject.se.log.types.get()</h3>
+
+<p>返回可用日志类型</p>
+
+<p><a id="chromeDriverSesObject.source"></a></p>
+
+<h2>chromeDriverSesObject.source 成员列表</h2>
+
+<p><a id="chromeDriverSesObject.source.get"></a></p>
+
+<h3>chromeDriverSesObject.source.get()</h3>
+
+<p>获取页面源码<br>
+HTTP接口：GET /session/{session id}/source</p>
+
+<p>获取页面源码<br>
+HTTP接口：GET /session/{session id}/source</p>
+
+<p><a id="chromeDriverSesObject.status"></a></p>
+
+<h2>chromeDriverSesObject.status 成员列表</h2>
+
+<p><a id="chromeDriverSesObject.status.get"></a></p>
+
+<h3>chromeDriverSesObject.status.get()</h3>
+
+<p>获取当前状态<br>
+HTTP接口：GET /status</p>
+
+<p><a id="chromeDriverSesObject.timeouts"></a></p>
+
+<h2>chromeDriverSesObject.timeouts 成员列表</h2>
+
+<p><a id="chromeDriverSesObject.timeouts.get"></a></p>
+
+<h3>chromeDriverSesObject.timeouts.get()</h3>
+
+<p>获取超时<br>
+HTTP接口：GET /session/{session id}/timeouts</p>
+
+<p><a id="chromeDriverSesObject.title"></a></p>
+
+<h2>chromeDriverSesObject.title 成员列表</h2>
+
+<p><a id="chromeDriverSesObject.title.get"></a></p>
+
+<h3>chromeDriverSesObject.title.get()</h3>
+
+<p>获取标题<br>
+HTTP接口：GET /session/{session id}/title</p>
+
+<p><a id="chromeDriverSesObject.url"></a></p>
+
+<h2>chromeDriverSesObject.url 成员列表</h2>
+
+<p><a id="chromeDriverSesObject.url.get"></a></p>
+
+<h3>chromeDriverSesObject.url.get()</h3>
+
+<p>获取当前URL<br>
+HTTP接口：GET    /session/{session id}/url</p>
+
+<p><a id="chromeDriverSesObject.window"></a></p>
+
+<h2>chromeDriverSesObject.window 成员列表</h2>
+
+<p><a id="chromeDriverSesObject.window.delete"></a></p>
+
+<h3>chromeDriverSesObject.window.delete()</h3>
+
+<p>关闭当前窗口<br>
+DELETE  /session/{session id}/window</p>
+
+<p><a id="chromeDriverSesObject.window.get"></a></p>
+
+<h3>chromeDriverSesObject.window.get()</h3>
+
+<p>获取当前窗口<br>
+HTTP接口：GET /session/{session id}/window</p>
+
+<p><a id="chromeDriverSesObject.window.maximize"></a></p>
+
+<h3>chromeDriverSesObject.window.maximize()</h3>
+
+<p>最大化<br>
+HTTP接口：POST /session/{session id}/window/maximize</p>
+
+<p><a id="chromeDriverSesObject.window.minimize"></a></p>
+
+<h3>chromeDriverSesObject.window.minimize()</h3>
+
+<p>最小化<br>
+HTTP接口：POST /session/{session id}/window/minimize</p>
+
+<p><a id="chromeDriverSesObject.window.rect"></a></p>
+
+<h3>chromeDriverSesObject.window.rect()</h3>
+
+<p>前进\POST    /session/{session id}/window/rect</p>
+
+<p><a id="chromeDriverSesObject.window.handles"></a></p>
+
+<h2>chromeDriverSesObject.window.handles 成员列表</h2>
+
+<p><a id="chromeDriverSesObject.window.handles.get"></a></p>
+
+<h3>chromeDriverSesObject.window.handles.get()</h3>
+
+<p>获取所有窗口句柄<br>
+HTTP接口：GET /session/{session id}/window/handles</p>
+
+<p><a id="chromeDriverSesObject.window.rect"></a></p>
+
+<h2>chromeDriverSesObject.window.rect 成员列表</h2>
+
+<p><a id="chromeDriverSesObject.window.rect.get"></a></p>
+
+<h3>chromeDriverSesObject.window.rect.get()</h3>
+
+<p>获取窗口位置<br>
+HTTP接口：GET /session/{session id}/window/rect</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/chrome/driver.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/chrome/driver.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/chrome/driver.md">Markdown 格式</a></p>
+
+</body> 
+</html>

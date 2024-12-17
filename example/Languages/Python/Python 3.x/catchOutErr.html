@@ -1,0 +1,60 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - aardio 捕获 Python 标准输出'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - aardio 捕获 Python 标准输出</title> 
+<link rel="stylesheet" href="../../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 捕获 Python 标准输出</h1><pre><code class="aardio language-aardio">//aardio 捕获 Python 标准输出
+import win.dlg.message;
+import py3;
+
+var pyCode = /**
+import sys
+
+#写个输出信息的类
+class CatchOutErr:
+    def __init__(self):
+        self.value = &#39;&#39;
+    def write(self, txt):
+        self.value += txt
+
+#创建有输出功能的对象 
+catchOutErr = CatchOutErr()
+
+#标准输出重定向到 catchOutErr (不再输出到默认的『控制台命令行黑窗口』)
+sys.stdout = catchOutErr
+
+#标准错误输出重定向到 catchOutErr(不再输出到默认的『控制台命令行黑窗口』)
+sys.stderr = catchOutErr
+**/
+py3.exec( pyCode )
+
+/*
+看不懂 Python 代码怎么办？建议看 Python 教程，前面的范例就有链接。
+不懂什么是『标准输出』怎么办？aardio 文档、Python 文档都有解释。
+不懂什么是『重定向』怎么办？aardio 文档、Python 文档都有解释。
+也不能每个 aardio 范例都塞一本书进来。
+*/
+
+//执行 Python 代码
+py3.exec(&quot;print(1+123)&quot;);
+
+//获取 Python 中的属性值
+var pyStdoutStr = tostring(  py3.main.catchOutErr.value );
+
+win.dlg.message().doModal( 
+    &quot;Python 中 print 语句输出了：&quot; + tostring(pyStdoutStr),false
+);
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/Python/Python 3.x/catchOutErr.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/Python/Python 3.x/catchOutErr.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Languages/Python/Python 3.x/catchOutErr.md">Markdown 格式</a>
+</body> 
+</html>

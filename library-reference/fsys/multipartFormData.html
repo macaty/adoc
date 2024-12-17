@@ -1,0 +1,112 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - fsys.multipartFormData 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - fsys.multipartFormData 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>fsys.multipartFormData 库模块帮助文档</h1>
+
+<p><a id="fsys"></a></p>
+
+<h2>fsys 成员列表</h2>
+
+<p><a id="fsys.multipartFormData"></a></p>
+
+<h3>fsys.multipartFormData</h3>
+
+<p>multipart/form-data格式文件解析器</p>
+
+<p><a id="fsys.multipartFormData"></a></p>
+
+<h3>fsys.multipartFormData(&quot;文件路径&quot;,&quot;分隔符&quot;)</h3>
+
+<p>解析文件返回表对象<br>
+可选在参数@3中指定读写缓冲区大小</p>
+
+<p><a id="fsys.multipartFormData"></a></p>
+
+<h3>fsys.multipartFormData()</h3>
+
+<pre><code class="aardio language-aardio">!stdfsysmultipartFormData
+</code></pre>
+
+<p><a id="fsysmultipartFormDataObject"></a></p>
+
+<h2>fsysmultipartFormDataObject 成员列表</h2>
+
+<p><a id="fsysmultipartFormDataObject.?"></a></p>
+
+<h3>fsysmultipartFormDataObject.?</h3>
+
+<p>multipart/form-data对象的每个键名下保存每个字段的信息  </p>
+
+<p><a href="#fsysmultipartFormFieldObject">返回对象:fsysmultipartFormFieldObject</a></p>
+
+<p><a id="fsysmultipartFormDataObject.getPath"></a></p>
+
+<h3>fsysmultipartFormDataObject.getPath()</h3>
+
+<p>参数中指定的文件路径</p>
+
+<p><a id="fsysmultipartFormFieldObject"></a></p>
+
+<h2>fsysmultipartFormFieldObject 成员列表</h2>
+
+<p><a id="fsysmultipartFormFieldObject.contentLength"></a></p>
+
+<h3>fsysmultipartFormFieldObject.contentLength</h3>
+
+<p>数据长度</p>
+
+<p><a id="fsysmultipartFormFieldObject.contentOffset"></a></p>
+
+<h3>fsysmultipartFormFieldObject.contentOffset</h3>
+
+<p>偏移位置</p>
+
+<p><a id="fsysmultipartFormFieldObject.contentType"></a></p>
+
+<h3>fsysmultipartFormFieldObject.contentType</h3>
+
+<p>MIME类型</p>
+
+<p><a id="fsysmultipartFormFieldObject.filename"></a></p>
+
+<h3>fsysmultipartFormFieldObject.filename</h3>
+
+<p>文件名<br>
+如果不是文件则为空</p>
+
+<p><a id="fsysmultipartFormFieldObject.name"></a></p>
+
+<h3>fsysmultipartFormFieldObject.name</h3>
+
+<p>字段名称</p>
+
+<p><a id="fsysmultipartFormFieldObject.save"></a></p>
+
+<h3>fsysmultipartFormFieldObject.save(&quot;文件路径&quot;)</h3>
+
+<p>保存文件<br>
+上传文件数据如果不保存,在请求结束将被自动删除</p>
+
+<p><a id="fsysmultipartFormFieldObject.value"></a></p>
+
+<h3>fsysmultipartFormFieldObject.value()</h3>
+
+<p>此函数直接读取并返回此字段的数据<br>
+较大文件应使用save函数转存文件</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/fsys/multipartFormData.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/fsys/multipartFormData.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/fsys/multipartFormData.md">Markdown 格式</a></p>
+
+</body> 
+</html>

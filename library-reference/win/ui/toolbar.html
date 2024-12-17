@@ -1,0 +1,572 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - win.ui.toolbar 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - win.ui.toolbar 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>win.ui.toolbar 库模块帮助文档</h1>
+
+<p><a id="toolbarButtonObject"></a></p>
+
+<h2>toolbarButtonObject 成员列表</h2>
+
+<p><a id="toolbarButtonObject.checked"></a></p>
+
+<h3>toolbarButtonObject.checked</h3>
+
+<p>是否选中</p>
+
+<p><a id="toolbarButtonObject.click"></a></p>
+
+<h3>toolbarButtonObject.click()</h3>
+
+<p>点击按钮</p>
+
+<p><a id="toolbarButtonObject.delete"></a></p>
+
+<h3>toolbarButtonObject.delete()</h3>
+
+<p>删除按钮</p>
+
+<p><a id="toolbarButtonObject.disabled"></a></p>
+
+<h3>toolbarButtonObject.disabled</h3>
+
+<p>是否禁用</p>
+
+<p><a id="toolbarButtonObject.getInfo"></a></p>
+
+<h3>toolbarButtonObject.getInfo( _TBIF )</h3>
+
+<p>获取TBBUTTONINFO结构体</p>
+
+<p><a id="toolbarButtonObject.getRect"></a></p>
+
+<h3>toolbarButtonObject.getRect()</h3>
+
+<p>返回按钮区块  </p>
+
+<p><a href="../../global/_.html#rectObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/global/_.html#rectObject">返回对象:rectObject</a></p>
+
+<p><a id="toolbarButtonObject.id"></a></p>
+
+<h3>toolbarButtonObject.id</h3>
+
+<p>命令ID</p>
+
+<p><a id="toolbarButtonObject.index"></a></p>
+
+<h3>toolbarButtonObject.index()</h3>
+
+<p>返回按钮索引</p>
+
+<p><a id="toolbarButtonObject.setInfo"></a></p>
+
+<h3>toolbarButtonObject.setInfo(  )</h3>
+
+<p>设置TBBUTTONINFO结构体,可指定部分字段</p>
+
+<p><a id="toolbarButtonObject.state"></a></p>
+
+<h3>toolbarButtonObject.state</h3>
+
+<p>读写按钮状态</p>
+
+<p><a id="toolbarButtonObject.text"></a></p>
+
+<h3>toolbarButtonObject.text</h3>
+
+<p>按钮文本</p>
+
+<p><a id="toolbarObject"></a></p>
+
+<h2>toolbarObject 成员列表</h2>
+
+<p><a id="toolbarObject.add"></a></p>
+
+<h3>toolbarObject.add()</h3>
+
+<p>添加一个分隔条  </p>
+
+<p><a href="#toolbarButtonObject">返回对象:toolbarButtonObject</a></p>
+
+<p><a id="toolbarObject.add"></a></p>
+
+<h3>toolbarObject.add(标题,回调函数,图像索引,可选指定命令ID)</h3>
+
+<pre><code class="aardio language-aardio">toolbarObject.add(  
+    &quot;文字&quot;,   
+    function (id) {  
+
+    },1  
+)
+</code></pre>
+
+<p><a id="toolbarObject.adjust"></a></p>
+
+<h3>toolbarObject.adjust()</h3>
+
+<p>重新设置工具栏大小</p>
+
+<p><a id="toolbarObject.bottom"></a></p>
+
+<h3>toolbarObject.bottom</h3>
+
+<p>底部坐标。<br>
+只能获取，修改无效  </p>
+
+<p>注意工具条是默认已经做过 DPI 缩放的，<br>
+所以请在 winform.enableDpiScaling(&quot;init&quot;); 以后使用这些属性</p>
+
+<p><a id="toolbarObject.buttons[1索引]"></a></p>
+
+<h3>toolbarObject.buttons[1索引]</h3>
+
+<p>返回指定的按钮对象</p>
+
+<p><a id="toolbarObject.capture"></a></p>
+
+<h3>toolbarObject.capture</h3>
+
+<p>是否捕获全局鼠标消息</p>
+
+<p><a id="toolbarObject.className"></a></p>
+
+<h3>toolbarObject.className</h3>
+
+<p>运行时类名</p>
+
+<p><a id="toolbarObject.cls"></a></p>
+
+<h3>toolbarObject.cls</h3>
+
+<p>设计时类名</p>
+
+<p><a id="toolbarObject.create"></a></p>
+
+<h3>toolbarObject.create(tParam)</h3>
+
+<p>创建工具条,注意工具条会占用父窗口上的空间,<br>
+可选传入 @tParam 参数表,可包含 style,exstyle 等样式参数<br>
+可用样式可参考:<br>
+ <a href="javascript:if(confirm('https://docs.microsoft.com/en-us/windows/win32/controls/toolbar-control-and-button-styles  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='https://docs.microsoft.com/en-us/windows/win32/controls/toolbar-control-and-button-styles'" tppabs="https://docs.microsoft.com/en-us/windows/win32/controls/toolbar-control-and-button-styles">https://docs.microsoft.com/en-us/windows/win32/controls/toolbar-control-and-button-styles</a></p>
+
+<p><a id="toolbarObject.disabled"></a></p>
+
+<h3>toolbarObject.disabled</h3>
+
+<p>是否禁用</p>
+
+<p><a id="toolbarObject.getButton"></a></p>
+
+<h3>toolbarObject.getButton()</h3>
+
+<p><a href="#toolbarButtonObject">返回对象:toolbarButtonObject</a></p>
+
+<p><a id="toolbarObject.getButton"></a></p>
+
+<h3>toolbarObject.getButton(索引)</h3>
+
+<p>返回按钮对象</p>
+
+<p><a id="toolbarObject.getButtonById"></a></p>
+
+<h3>toolbarObject.getButtonById()</h3>
+
+<p><a href="#toolbarButtonObject">返回对象:toolbarButtonObject</a></p>
+
+<p><a id="toolbarObject.getButtonById"></a></p>
+
+<h3>toolbarObject.getButtonById(idCommand)</h3>
+
+<p>返回按钮对象</p>
+
+<p><a id="toolbarObject.getClientRect"></a></p>
+
+<h3>toolbarObject.getClientRect()</h3>
+
+<p>控件客户区块位置，返回值为 ::RECT结构体  </p>
+
+<p><a href="../../global/_.html#rectObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/global/_.html#rectObject">返回对象:rectObject</a></p>
+
+<p><a id="toolbarObject.getExtended"></a></p>
+
+<h3>toolbarObject.getExtended()</h3>
+
+<p>获取工具条扩展样式</p>
+
+<p><a id="toolbarObject.getExtended"></a></p>
+
+<h3>toolbarObject.getExtended(exstyle)</h3>
+
+<p>获取工具条指定扩展样式</p>
+
+<p><a id="toolbarObject.getFont"></a></p>
+
+<h3>toolbarObject.getFont(true)</h3>
+
+<p>返回控件字体，返回值为 ::LOGFONT 结构体  </p>
+
+<p><a href="#logfontObject">返回对象:logfontObject</a></p>
+
+<p><a id="toolbarObject.getForm"></a></p>
+
+<h3>toolbarObject.getForm()</h3>
+
+<p>如果是窗体返回自身<br>
+如果是控件则返回 _parentForm   </p>
+
+<p><a href="_.html#winform" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/_.html#winform">返回对象:winform</a></p>
+
+<p><a id="toolbarObject.getNotifyInfo"></a></p>
+
+<h3>toolbarObject.getNotifyInfo(ptr)</h3>
+
+<p>在通知回调中获取 PNMTOOLBAR 结构体，<br>
+ptr 为 onnotify 回调传过来的指针参数</p>
+
+<p><a id="toolbarObject.getParent"></a></p>
+
+<h3>toolbarObject.getParent()</h3>
+
+<p>返回父窗口  </p>
+
+<p><a href="_.html#winform" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/_.html#winform">返回对象:winform</a></p>
+
+<p><a id="toolbarObject.getPos"></a></p>
+
+<h3>toolbarObject.getPos()</h3>
+
+<p>返回相对父窗口客户区的坐标,宽,高,<br>
+参数为 true 返回屏幕坐标,宽,高  </p>
+
+<p>注意工具条是默认已经做过 DPI 缩放的，<br>
+所以请在 winform.enableDpiScaling(&quot;init&quot;); 以后使用这些属性</p>
+
+<p><a id="toolbarObject.getRect"></a></p>
+
+<h3>toolbarObject.getRect()</h3>
+
+<p>控件区块位置，返回值为 ::RECT结构体  </p>
+
+<p><a href="../../global/_.html#rectObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/global/_.html#rectObject">返回对象:rectObject</a></p>
+
+<p><a id="toolbarObject.getRect"></a></p>
+
+<h3>toolbarObject.getRect(true)</h3>
+
+<p>控件屏幕区块位置，返回值为 ::RECT结构体</p>
+
+<p><a id="toolbarObject.getRoot"></a></p>
+
+<h3>toolbarObject.getRoot()</h3>
+
+<p>获取顶层父窗口</p>
+
+<p><a id="toolbarObject.height"></a></p>
+
+<h3>toolbarObject.height</h3>
+
+<p>获取时返回工具条实际高度。<br>
+只能获取，修改无效。  </p>
+
+<p>注意工具条是默认已经做过 DPI 缩放的，<br>
+所以请在 winform.enableDpiScaling(&quot;init&quot;); 以后使用这些属性</p>
+
+<p><a id="toolbarObject.hide"></a></p>
+
+<h3>toolbarObject.hide</h3>
+
+<p>控件是否隐藏</p>
+
+<p><a id="toolbarObject.hwnd"></a></p>
+
+<h3>toolbarObject.hwnd</h3>
+
+<p>控件句柄</p>
+
+<p><a id="toolbarObject.imageList"></a></p>
+
+<h3>toolbarObject.imageList</h3>
+
+<p>指定工具条控件的图像列表。<br>
+指定的图像列表支持 DPI 自适应缩放<br>
+发送 _CCM_DPISCALE 消息且其他参数为 0 可关闭  DPI 自适应</p>
+
+<p><a id="toolbarObject.left"></a></p>
+
+<h3>toolbarObject.left</h3>
+
+<p>左侧坐标。<br>
+只能获取，修改无效  </p>
+
+<p>注意工具条是默认已经做过 DPI 缩放的，<br>
+所以请在 winform.enableDpiScaling(&quot;init&quot;); 以后使用这些属性</p>
+
+<p><a id="toolbarObject.modifyStyle"></a></p>
+
+<h3>toolbarObject.modifyStyle(移除样式,添加样式)</h3>
+
+<p>所有参数可选,默认为0<br>
+使用 <em>TBSTYLE</em> 前缀常量表示样式</p>
+
+<p><a id="toolbarObject.onDestroy"></a></p>
+
+<h3>toolbarObject.onDestroy</h3>
+
+<pre><code class="aardio language-aardio">toolbarObject.onDestroy = function(){  
+    /*窗口销毁前触发*/  
+}
+</code></pre>
+
+<p><a id="toolbarObject.onnotify"></a></p>
+
+<h3>toolbarObject.onnotify</h3>
+
+<pre><code class="aardio language-aardio">toolbarObject.onnotify = function(id,code,ptr){  
+    /*通知事件触发*/  
+}
+</code></pre>
+
+<p><a id="toolbarObject.postMessage"></a></p>
+
+<h3>toolbarObject.postMessage(msg,wParam,lParam)</h3>
+
+<p>投递窗口消息到消息队列中<br>
+此函数用法请参考 ::User32.PostMessage</p>
+
+<p><a id="toolbarObject.redraw"></a></p>
+
+<h3>toolbarObject.redraw()</h3>
+
+<p>刷新</p>
+
+<p><a id="toolbarObject.redrawTransparent"></a></p>
+
+<h3>toolbarObject.redrawTransparent()</h3>
+
+<p>刷新<br>
+透明背景时请使用此函数替代redraw()</p>
+
+<p><a id="toolbarObject.right"></a></p>
+
+<h3>toolbarObject.right</h3>
+
+<p>右侧坐标。<br>
+只能获取，修改无效  </p>
+
+<p>注意工具条是默认已经做过 DPI 缩放的，<br>
+所以请在 winform.enableDpiScaling(&quot;init&quot;); 以后使用这些属性</p>
+
+<p><a id="toolbarObject.sendMessage"></a></p>
+
+<h3>toolbarObject.sendMessage(msg,wParam,lParam)</h3>
+
+<p>发送窗口消息<br>
+此函数用法请参考 ::User32.SendMessage</p>
+
+<p><a id="toolbarObject.setExtended"></a></p>
+
+<h3>toolbarObject.setExtended(exstyle)</h3>
+
+<p>启用工具条指定扩展样式</p>
+
+<p><a id="toolbarObject.setExtended"></a></p>
+
+<h3>toolbarObject.setExtended(exstyle,false)</h3>
+
+<p>取消工具条指定扩展样式</p>
+
+<p><a id="toolbarObject.setFont"></a></p>
+
+<h3>toolbarObject.setFont(指定字体)</h3>
+
+<p>指定LOGFONT字体对象,或逻辑字体句柄</p>
+
+<p><a id="toolbarObject.setPos"></a></p>
+
+<h3>toolbarObject.setPos(x坐标,y坐标,宽,高,插入位置,参数)</h3>
+
+<p>调整窗口位置或排序,所有参数可选<br>
+同时指定x,y坐标则移动位置<br>
+同时指定宽高则改变大小<br>
+指定插入位置(句柄或_HWND前缀常量)则调整Z序</p>
+
+<p><a id="toolbarObject.setRect"></a></p>
+
+<h3>toolbarObject.setRect(rc)</h3>
+
+<p>设置控件区块位置，返回值为 ::RECT结构体</p>
+
+<p><a id="toolbarObject.setRect"></a></p>
+
+<h3>toolbarObject.setRect(rc,true)</h3>
+
+<p>设置控件屏幕区块位置，返回值为 ::RECT结构体</p>
+
+<p><a id="toolbarObject.setRedraw"></a></p>
+
+<h3>toolbarObject.setRedraw(false)</h3>
+
+<p>禁止重绘</p>
+
+<p><a id="toolbarObject.setRedraw"></a></p>
+
+<h3>toolbarObject.setRedraw(true)</h3>
+
+<p>恢复重绘</p>
+
+<p><a id="toolbarObject.show"></a></p>
+
+<h3>toolbarObject.show(true)</h3>
+
+<p>显示控件</p>
+
+<p><a id="toolbarObject.showLabel"></a></p>
+
+<h3>toolbarObject.showLabel</h3>
+
+<p>是否在按钮上显示文字</p>
+
+<p><a id="toolbarObject.style"></a></p>
+
+<h3>toolbarObject.style</h3>
+
+<p>工具栏样式,数值,<br>
+ 使用 <em>TBSTYLE</em> 前缀常量表示样式,<br>
+也支持 <em>CCS</em> 前缀的样式常量,<br>
+直接设置此样式会覆盖工具条原来的一些默认样式,<br>
+例如 让工具条显示在顶部的 _CCS_TOP,这会导致工具条移到底部,<br>
+建议用 modifyStyle 修改样式可避免此问题</p>
+
+<p><a id="toolbarObject.theme"></a></p>
+
+<h3>toolbarObject.theme</h3>
+
+<p>外观主题,例如<br>
+winform.button.theme = &quot;Explorer&quot;<br>
+winform.button.theme = false</p>
+
+<p><a id="toolbarObject.top"></a></p>
+
+<h3>toolbarObject.top</h3>
+
+<p>顶部坐标。<br>
+只能获取，修改无效  </p>
+
+<p>注意工具条是默认已经做过 DPI 缩放的，<br>
+所以请在 winform.enableDpiScaling(&quot;init&quot;); 以后使用这些属性</p>
+
+<p><a id="toolbarObject.width"></a></p>
+
+<h3>toolbarObject.width</h3>
+
+<p>工具条宽度。<br>
+只能获取，修改无效  </p>
+
+<p>注意工具条是默认已经做过 DPI 缩放的，<br>
+所以请在 winform.enableDpiScaling(&quot;init&quot;); 以后使用这些属性</p>
+
+<p><a id="toolbarObject.wndproc"></a></p>
+
+<h3>toolbarObject.wndproc</h3>
+
+<pre><code class="aardio language-aardio">toolbarObject.wndproc = function(hwnd,message,wParam,lParam){  
+    /*窗口消息回调，返回任意非null值阻止默认回调  
+wndproc重复赋值时追加函数而不是覆盖之前的回调  
+设为null添除所有消息回调函数  
+wndproc也可以是一个表,键要为处理的消息,值为对应的消息回调函数*/     
+}
+</code></pre>
+
+<p><a id="toolbarObject.buttons"></a></p>
+
+<h2>toolbarObject.buttons 成员列表</h2>
+
+<p><a id="toolbarObject.buttons.?"></a></p>
+
+<h3>toolbarObject.buttons.?</h3>
+
+<p><a href="#toolbarButtonObject">返回对象:toolbarButtonObject</a></p>
+
+<p><a id="win.ui"></a></p>
+
+<h2>win.ui 成员列表</h2>
+
+<p><a id="win.ui.toolbar"></a></p>
+
+<h3>win.ui.toolbar()</h3>
+
+<p><a href="#toolbarObject">返回对象:toolbarObject</a></p>
+
+<p><a id="win.ui.toolbar"></a></p>
+
+<h3>win.ui.toolbar(父窗口)</h3>
+
+<p>工具条控件。  </p>
+
+<p>此控件不建议使用，请改用高级选项（ win.ui.tabs ），<br>
+高级选项卡可以更好地支持字体图标、 DPI 缩放等</p>
+
+<h3>自动完成常量</h3>
+
+<p>_CCS_ADJUSTABLE=0x20<br>
+_CCS_BOTTOM=3<br>
+_CCS_LEFT=0x81<br>
+_CCS_NODIVIDER=0x40<br>
+_CCS_NOMOVEX=0x82<br>
+_CCS_NOMOVEY=2<br>
+_CCS_NOPARENTALIGN=8<br>
+_CCS_NORESIZE=4<br>
+_CCS_RIGHT=0x83<br>
+_CCS_TOP=1<br>
+_CCS_VERT=0x80<br>
+_TBIF_COMMAND=0x20<br>
+_TBIF_IMAGE=1<br>
+_TBIF_LPARAM=0x10<br>
+_TBIF_SIZE=0x40<br>
+_TBIF_STATE=4<br>
+_TBIF_STYLE=8<br>
+_TBIF_TEXT=2<br>
+_TBSTYLE_ALTDRAG=0x400<br>
+_TBSTYLE_AUTOSIZE=0x10<br>
+_TBSTYLE_BUTTON=0<br>
+_TBSTYLE_CHECK=2<br>
+_TBSTYLE_CHECKGROUP=6<br>
+_TBSTYLE_CUSTOMERASE=0x2000<br>
+_TBSTYLE_DROPDOWN=8<br>
+_TBSTYLE_FLAT=0x800<br>
+_TBSTYLE_GROUP=4<br>
+_TBSTYLE_LIST=0x1000<br>
+_TBSTYLE_NOPREFIX=0x20<br>
+_TBSTYLE_REGISTERDROP=0x4000<br>
+_TBSTYLE_SEP=1<br>
+_TBSTYLE_TOOLTIPS=0x100<br>
+_TBSTYLE_TRANSPARENT=0x8000<br>
+_TBSTYLE_WRAPABLE=0x200<br>
+_TB_CHANGEBITMAP=0x42B<br>
+_TB_GETBITMAP=0x42C<br>
+_TB_GETBUTTONSIZE=0x43A<br>
+_TB_GETBUTTONTEXT=0x42D<br>
+_TB_GETDISABLEDIMAGELIST=0x437<br>
+_TB_GETRECT=0x433<br>
+_TB_GETSTYLE=0x439<br>
+_TB_GETTOOLTIPS=0x423<br>
+_TB_SETBUTTONWIDTH=0x43B<br>
+_TB_SETDISABLEDIMAGELIST=0x436<br>
+_TB_SETSTYLE=0x438<br>
+_TB_SETTOOLTIPS=0x424  </p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/ui/toolbar.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/ui/toolbar.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/toolbar.md">Markdown 格式</a></p>
+
+</body> 
+</html>

@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 在 aardio 中使用 .NET 枚举（enum）'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 在 aardio 中使用 .NET 枚举（enum）</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 在 aardio 中使用 .NET 枚举（enum）</h1><pre><code class="aardio language-aardio">//在 aardio 中使用 .NET 枚举（enum）
+import console;
+import dotNet; 
+var compiler = dotNet.createCompiler(&quot;C#&quot;);
+compiler.Source = /***
+namespace CSharpLibrary  
+{   
+    public class Object  
+    {     
+        public enum HardwareType
+        {
+            Mainboard, SuperIO, CPU, RAM, GpuNvidia, GpuAti, TBalancer, Heatmaster, HDD
+        }
+
+        public static HardwareType TestEnum(HardwareType v)
+        {
+             return v;
+        }
+    }   
+} 
+***/
+
+compiler.import(&quot;CSharpLibrary&quot;); 
+
+//调用 C# 函数，枚举参数传数值，C# 不会报找不到函数错误，因为 aardio 会自动将其转换为参数所需的枚举类型
+var ret = CSharpLibrary.Object.TestEnum(1);
+
+//Enum 其实就是 int 类型的 32 位整数，aardio 整数默认就是这个类型
+console.log(ret);
+
+//也支持像下面这样直接访问枚举类型。
+console.log( CSharpLibrary.Object.HardwareType.GpuAti );
+/***
+直接写数值速度更快，可以将枚举名写到注释里，例如 5/*HardwareType.GpuAti*/
+那种没事把枚举值顺序改来改去的组件非常罕见（ 但也是有的 ）
+当然，aardio 会记录解析的枚举值，所以不会重复解析。
+***/
+
+console.pause();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/dotNet/Enum.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/dotNet/Enum.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Languages/dotNet/Enum.md">Markdown 格式</a>
+</body> 
+</html>

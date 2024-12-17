@@ -1,0 +1,128 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - sys.input 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - sys.input 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>sys.input 库模块帮助文档</h1>
+
+<p><a id="sys.input"></a></p>
+
+<h2>sys.input 成员列表</h2>
+
+<p>系统输入法相关函数，<br>
+可用于 Win7/Win10/Win11 以及之后的系统  </p>
+
+<p>相关库：win.rt.bcp47</p>
+
+<p><a id="sys.input.?"></a></p>
+
+<h3>sys.input.?</h3>
+
+<p>可不用声明直接在此输入函数名并调用 input.dll 的 API 函数</p>
+
+<p><a id="sys.input.disable"></a></p>
+
+<h3>sys.input.disable</h3>
+
+<p>禁用与启用键盘布局或输入法<br>
+可使用 win.rt.bcp47.getInputMethods 函数返回所有可用键盘布局或输入法</p>
+
+<p><a id="sys.input.disable"></a></p>
+
+<h3>sys.input.disable(layoutOrTip,enabled)</h3>
+
+<p>禁用与启用键盘布局或输入法，<br>
+@layoutOrTip 使用字符串指定键盘布局或输入法，<br>
+例如 &quot;0409:00000409&quot; 为英文键盘。<br>
+@disabled 参数指定是否禁用输入法，省略参数则默认值为 true</p>
+
+<p><a id="sys.input.getDescription"></a></p>
+
+<h3>sys.input.getDescription</h3>
+
+<p>返回键盘布局或输入法描述</p>
+
+<p><a id="sys.input.getDescription"></a></p>
+
+<h3>sys.input.getDescription(layoutOrTip)</h3>
+
+<p>返回键盘布局或输入法描述<br>
+@layoutOrTip 使用字符串指定键盘布局或输入法，<br>
+例如 &quot;0409:00000409&quot; 为英文键盘</p>
+
+<p><a id="sys.input.getEnabledLayoutOrTips"></a></p>
+
+<h3>sys.input.getEnabledLayoutOrTips()</h3>
+
+<p>返回一个包含所有启用的输入法或键盘布局状态的表，<br>
+键为键盘布局或输入法的 ID，例如 &quot;0409:00000409&quot; ，<br>
+值为如下类型之一，<br>
+键盘布局的值为 2 _LOTP_KEYBOARDLAYOUT，输入法的值为 1 _LOTP_INPUTPROCESSOR</p>
+
+<p><a id="sys.input.getLayoutOrTips"></a></p>
+
+<h3>sys.input.getLayoutOrTips</h3>
+
+<p>返回所有键盘布局与输入法的数组</p>
+
+<p><a id="sys.input.getLayoutOrTips"></a></p>
+
+<h3>sys.input.getLayoutOrTips(enabled)</h3>
+
+<p>返回所有键盘布局与输入法的数组，<br>
+如果参数 @1 为 true，则不返回已禁用的元素。<br>
+数组成员为 LAYOUTORTIPPROFILE 结构体，<br>
+详细用法请查看函数源码  </p>
+
+<p>一般可使用简化了的 getEnabledLayoutOrTips 函数</p>
+
+<p><a id="sys.input.install"></a></p>
+
+<h3>sys.input.install</h3>
+
+<p>禁用与启用键盘布局或输入法<br>
+可使用 win.rt.bcp47.getInputMethods 函数返回所有可用键盘布局或输入法</p>
+
+<p><a id="sys.input.install"></a></p>
+
+<h3>sys.input.install(layoutOrTip,flags)</h3>
+
+<p>禁用与启用键盘布局或输入法，<br>
+@layoutOrTip 使用字符串指定键盘布局或输入法，<br>
+例如 &quot;0409:00000409&quot; 为英文键盘。<br>
+@flags 用一个数值指定选项，1 为禁用，0 为启用，<br>
+其他可用值参考 <a href="javascript:if(confirm('https://docs.microsoft.com/en-us/windows/win32/tsf/installlayoutortip  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='https://docs.microsoft.com/en-us/windows/win32/tsf/installlayoutortip'" tppabs="https://docs.microsoft.com/en-us/windows/win32/tsf/installlayoutortip">https://docs.microsoft.com/en-us/windows/win32/tsf/installlayoutortip</a></p>
+
+<p><a id="sys.input.setDefault"></a></p>
+
+<h3>sys.input.setDefault(layoutOrTip,flags)</h3>
+
+<p>设置默认输入法，<br>
+@layoutOrTip 使用字符串指定键盘布局或输入法，<br>
+@flags 参数不必指定  </p>
+
+<p>仅支持 Win10,Win11 或之后的操作系统，<br>
+必须提前导入库： win.rt.bcp47  </p>
+
+<p>系统设置每个应用窗口使用不同输入法才能实时看到效果，<br>
+可用 SystemParametersInfo 修改该设置（参考 ImTip 源码）</p>
+
+<h3>自动完成常量</h3>
+
+<p>_LOTP_INPUTPROCESSOR=1<br>
+_LOTP_KEYBOARDLAYOUT=2  </p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/sys/input.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/sys/input.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/sys/input.md">Markdown 格式</a></p>
+
+</body> 
+</html>

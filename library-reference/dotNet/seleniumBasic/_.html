@@ -1,0 +1,527 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - dotNet.seleniumBasic 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - dotNet.seleniumBasic 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>dotNet.seleniumBasic 库模块帮助文档</h1>
+
+<p><details>  <summary>说明</summary>  <p>
+只是调用 ChromeDriver 在 aardio 里用 chrome.driver 更简单一些。
+aardio 实际不需要任何第三方组件即可调用 ChromeDriver，这是因为 aardio 可以
+自动将任意 Web 接口转换为 aardio 对象，所以实现 WebDriver 协议只需要极少的代码。</p>
+
+<p>dotNet.seleniumBasic 基于开源的 SeleniumBasic，
+但不再需要注册 COM 控件，不再需要带一堆 DLL，可以生成绿色独立的 EXE 文件。
+支持自动检测并配置运行环境，如果没有 .Net 4.x 则自动安装，如果没有 Chrome 则自动安装,
+自动匹配 Chrome 版本下载合适的 ChromeDriver 版本，自动配置所有路径参数。</p>
+
+<p><a href="javascript:if(confirm('https://github.com/florentbr/SeleniumBasic  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='https://github.com/florentbr/SeleniumBasic'" tppabs="https://github.com/florentbr/SeleniumBasic">https://github.com/florentbr/SeleniumBasic</a>
+<a href="javascript:if(confirm('https://www.cnblogs.com/ryueifu-VBA/p/13661378.html  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='https://www.cnblogs.com/ryueifu-VBA/p/13661378.html'" tppabs="https://www.cnblogs.com/ryueifu-VBA/p/13661378.html">https://www.cnblogs.com/ryueifu-VBA/p/13661378.html</a> </p>
+
+<p>可以用 ILSpy 查看 SeleniumBasic.dll 的源代码
+ILSpy 下载： <a href="javascript:if(confirm('https://github.com/icsharpcode/ILSpy  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='https://github.com/icsharpcode/ILSpy'" tppabs="https://github.com/icsharpcode/ILSpy">https://github.com/icsharpcode/ILSpy</a> 
+SeleniumBasic.dll 使用 aardio 中的程序集合并工具生成。
+在 aardio 扩展库管理器中双击 dotNet.merge 可以打开此工具源代码。
+</p></details></p>
+
+<p><a id="dotNet.seleniumBasic"></a></p>
+
+<h2>dotNet.seleniumBasic 成员列表</h2>
+
+<p>SeleniumBasic 浏览器自动化工具,<br>
+不需要注册 COM 控件，不需要带一堆 DLL，可以生成绿色独立的 EXE 文件。<br>
+自动检测并配置运行环境，如果没有 .Net 4.x 则自动安装，如果没有 Chrome 则自动安装,<br>
+自动匹配 Chrome 版本下载合适的 ChromeDriver 版本，自动配置所有路径参数  </p>
+
+<p>导入此扩展库自动导入全局名字空间 SeleniumBasic</p>
+
+<p><a id="dotNet.seleniumBasic.CreateDefaultChromeService"></a></p>
+
+<h3>dotNet.seleniumBasic.CreateDefaultChromeService()</h3>
+
+<p>创建并返回默认<br>
+SeleniumBasic.ChromeDriverService,SeleniumBasic.ChromeOptions<br>
+注意函数会返回2个值  </p>
+
+<p>如果返回2个值表示已经成功找到或自动安装 Chrome 与 ChromeDriver,<br>
+Chrome 与 ChromeDriver 路径这些已经指定,不用再修改,<br>
+不指定参数@1为 true,默认排除 enable-logging 参数并隐藏控制台,<br>
+失败返回 null</p>
+
+<p><a id="dotNet.seleniumBasic.CreateDefaultWebDriver"></a></p>
+
+<h3>dotNet.seleniumBasic.CreateDefaultWebDriver</h3>
+
+<p>建议直接用这个函数创建 WebDriver 客户端<br>
+代码量少，自动兼容系统安装的 Chrome 或 Edge Chromium<br>
+没有安装会自动安装</p>
+
+<p><a id="dotNet.seleniumBasic.CreateDefaultWebDriver"></a></p>
+
+<h3>dotNet.seleniumBasic.CreateDefaultWebDriver()</h3>
+
+<p><a href="#dotNetSeleniumBasicIWebDriverObject">返回对象:dotNetSeleniumBasicIWebDriverObject</a></p>
+
+<p><a id="dotNet.seleniumBasic.CreateDefaultWebDriver"></a></p>
+
+<h3>dotNet.seleniumBasic.CreateDefaultWebDriver(chromeService,ChromeOption)</h3>
+
+<p>不需要指定参数,<br>
+调用 dotNet.seleniumBasic.CreateDefaultChromeService 的返回值也可作为此函数参数</p>
+
+<p><a id="dotNet.seleniumBasic.IWebDriver"></a></p>
+
+<h3>dotNet.seleniumBasic.IWebDriver()</h3>
+
+<p>创建 WebDriver 客户端  </p>
+
+<p><a href="#dotNetSeleniumBasicIWebDriverObject">返回对象:dotNetSeleniumBasicIWebDriverObject</a></p>
+
+<p><a id="SeleniumBasic"></a></p>
+
+<h2>SeleniumBasic 成员列表</h2>
+
+<p><a id="SeleniumBasic.CreateDefaultChromeService"></a></p>
+
+<h3>SeleniumBasic.CreateDefaultChromeService()</h3>
+
+<p>创建并返回默认<br>
+SeleniumBasic.ChromeDriverService,SeleniumBasic.ChromeOptions<br>
+注意函数会返回2个值  </p>
+
+<p>如果返回2个值表示已经成功找到或自动安装 Chrome 与 ChromeDriver,<br>
+Chrome 与 ChromeDriver 路径这些已经指定,不用再修改,<br>
+不指定参数@1为 true,默认排除 enable-logging 参数并隐藏控制台,<br>
+失败返回 null</p>
+
+<p><a id="SeleniumBasic.CreateDefaultWebDriver"></a></p>
+
+<h3>SeleniumBasic.CreateDefaultWebDriver</h3>
+
+<p>建议直接用这个函数创建 WebDriver 客户端<br>
+代码量少，自动兼容系统安装的 Chrome 或 Edge Chromium<br>
+没有安装会自动安装</p>
+
+<p><a id="SeleniumBasic.CreateDefaultWebDriver"></a></p>
+
+<h3>SeleniumBasic.CreateDefaultWebDriver()</h3>
+
+<p><a href="#dotNetSeleniumBasicIWebDriverObject">返回对象:dotNetSeleniumBasicIWebDriverObject</a></p>
+
+<p><a id="SeleniumBasic.CreateDefaultWebDriver"></a></p>
+
+<h3>SeleniumBasic.CreateDefaultWebDriver(chromeService,ChromeOption)</h3>
+
+<p>不需要指定参数,<br>
+调用 dotNet.seleniumBasic.CreateDefaultChromeService 的返回值也可作为此函数参数</p>
+
+<p><a id="SeleniumBasic.IWebDriver"></a></p>
+
+<h3>SeleniumBasic.IWebDriver()</h3>
+
+<p>创建 WebDriver 客户端  </p>
+
+<p><a href="#dotNetSeleniumBasicIWebDriverObject">返回对象:dotNetSeleniumBasicIWebDriverObject</a></p>
+
+<p><a id="dotNetSeleniumBasicEleObject"></a></p>
+
+<h2>dotNetSeleniumBasicEleObject 成员列表</h2>
+
+<p><a id="dotNetSeleniumBasicEleObject.Clear"></a></p>
+
+<h3>dotNetSeleniumBasicEleObject.Clear()</h3>
+
+<p>清空</p>
+
+<p><a id="dotNetSeleniumBasicEleObject.Click"></a></p>
+
+<h3>dotNetSeleniumBasicEleObject.Click()</h3>
+
+<p>点击</p>
+
+<p><a id="dotNetSeleniumBasicEleObject.DeselectAll"></a></p>
+
+<h3>dotNetSeleniumBasicEleObject.DeselectAll()</h3>
+
+<p>取消选择所有节点</p>
+
+<p><a id="dotNetSeleniumBasicEleObject.DeselectByIndex"></a></p>
+
+<h3>dotNetSeleniumBasicEleObject.DeselectByIndex(index)</h3>
+
+<p>根据参数@1指定的索引取消选择节点</p>
+
+<p><a id="dotNetSeleniumBasicEleObject.DeselectByText"></a></p>
+
+<h3>dotNetSeleniumBasicEleObject.DeselectByText(Text)</h3>
+
+<p>根据参数@1指定的文本取消选择节点</p>
+
+<p><a id="dotNetSeleniumBasicEleObject.DeselectByValue"></a></p>
+
+<h3>dotNetSeleniumBasicEleObject.DeselectByValue(Value)</h3>
+
+<p>根据参数@1指定的 value 值取消选择节点</p>
+
+<p><a id="dotNetSeleniumBasicEleObject.Displayed"></a></p>
+
+<h3>dotNetSeleniumBasicEleObject.Displayed</h3>
+
+<p>是否显示</p>
+
+<p><a id="dotNetSeleniumBasicEleObject.Enabled"></a></p>
+
+<h3>dotNetSeleniumBasicEleObject.Enabled</h3>
+
+<p>是否可用</p>
+
+<p><a id="dotNetSeleniumBasicEleObject.FindElementByClassName"></a></p>
+
+<h3>dotNetSeleniumBasicEleObject.FindElementByClassName()</h3>
+
+<p>根据参数@1指定的类名查找节点</p>
+
+<p><a href="#dotNetSeleniumBasicEleObject">返回对象:dotNetSeleniumBasicEleObject</a></p>
+
+<p><a id="dotNetSeleniumBasicEleObject.FindElementByCssSelector"></a></p>
+
+<h3>dotNetSeleniumBasicEleObject.FindElementByCssSelector()</h3>
+
+<p>根据参数@1指定的CSS选择器查找节点</p>
+
+<p><a href="#dotNetSeleniumBasicEleObject">返回对象:dotNetSeleniumBasicEleObject</a></p>
+
+<p><a id="dotNetSeleniumBasicEleObject.FindElementById"></a></p>
+
+<h3>dotNetSeleniumBasicEleObject.FindElementById()</h3>
+
+<p>根据参数@1指定的ID查找节点</p>
+
+<p><a href="#dotNetSeleniumBasicEleObject">返回对象:dotNetSeleniumBasicEleObject</a></p>
+
+<p><a id="dotNetSeleniumBasicEleObject.FindElementByLinkText"></a></p>
+
+<h3>dotNetSeleniumBasicEleObject.FindElementByLinkText()</h3>
+
+<p>根据参数@1指定的链接文本查找节点</p>
+
+<p><a href="#dotNetSeleniumBasicEleObject">返回对象:dotNetSeleniumBasicEleObject</a></p>
+
+<p><a id="dotNetSeleniumBasicEleObject.FindElementByName"></a></p>
+
+<h3>dotNetSeleniumBasicEleObject.FindElementByName()</h3>
+
+<p>根据参数@1指定的 name 属性查找节点</p>
+
+<p><a href="#dotNetSeleniumBasicEleObject">返回对象:dotNetSeleniumBasicEleObject</a></p>
+
+<p><a id="dotNetSeleniumBasicEleObject.FindElementByPartialLinkText"></a></p>
+
+<h3>dotNetSeleniumBasicEleObject.FindElementByPartialLinkText()</h3>
+
+<p>根据参数@1指定的部分链接文本查找节点</p>
+
+<p><a href="#dotNetSeleniumBasicEleObject">返回对象:dotNetSeleniumBasicEleObject</a></p>
+
+<p><a id="dotNetSeleniumBasicEleObject.FindElementByTagName"></a></p>
+
+<h3>dotNetSeleniumBasicEleObject.FindElementByTagName()</h3>
+
+<p>根据参数@1指定的标签名查找节点</p>
+
+<p><a href="#dotNetSeleniumBasicEleObject">返回对象:dotNetSeleniumBasicEleObject</a></p>
+
+<p><a id="dotNetSeleniumBasicEleObject.FindElementByXPath"></a></p>
+
+<h3>dotNetSeleniumBasicEleObject.FindElementByXPath()</h3>
+
+<p>根据参数@1指定的XPath查找节点</p>
+
+<p><a href="#dotNetSeleniumBasicEleObject">返回对象:dotNetSeleniumBasicEleObject</a></p>
+
+<p><a id="dotNetSeleniumBasicEleObject.FindElementsByClassName"></a></p>
+
+<h3>dotNetSeleniumBasicEleObject.FindElementsByClassName()</h3>
+
+<p>根据参数@1指定的类名查找多个节点</p>
+
+<p><a id="dotNetSeleniumBasicEleObject.FindElementsByCssSelector"></a></p>
+
+<h3>dotNetSeleniumBasicEleObject.FindElementsByCssSelector()</h3>
+
+<p>根据参数@1指定的CSS选择器查找多个节点</p>
+
+<p><a id="dotNetSeleniumBasicEleObject.FindElementsById"></a></p>
+
+<h3>dotNetSeleniumBasicEleObject.FindElementsById(id)</h3>
+
+<p>根据参数@1指定的ID查找多个节点</p>
+
+<p><a id="dotNetSeleniumBasicEleObject.FindElementsByLinkText"></a></p>
+
+<h3>dotNetSeleniumBasicEleObject.FindElementsByLinkText(linkText)</h3>
+
+<p>根据参数@1指定的链接文本查找多个节点</p>
+
+<p><a id="dotNetSeleniumBasicEleObject.FindElementsByName"></a></p>
+
+<h3>dotNetSeleniumBasicEleObject.FindElementsByName(Name)</h3>
+
+<p>根据参数@1指定的 name 属性查找多个节点</p>
+
+<p><a id="dotNetSeleniumBasicEleObject.FindElementsByPartialLinkText"></a></p>
+
+<h3>dotNetSeleniumBasicEleObject.FindElementsByPartialLinkText(partialLinkText)</h3>
+
+<p>根据参数@1指定的部分链接文本查找多个节点</p>
+
+<p><a id="dotNetSeleniumBasicEleObject.FindElementsByTagName"></a></p>
+
+<h3>dotNetSeleniumBasicEleObject.FindElementsByTagName(tagName)</h3>
+
+<p>根据参数@1指定的标签名查找多个节点</p>
+
+<p><a id="dotNetSeleniumBasicEleObject.FindElementsByXPath"></a></p>
+
+<h3>dotNetSeleniumBasicEleObject.FindElementsByXPath(xpath)</h3>
+
+<p>根据参数@1指定的XPath查找多个节点</p>
+
+<p><a id="dotNetSeleniumBasicEleObject.IsMultiple"></a></p>
+
+<h3>dotNetSeleniumBasicEleObject.IsMultiple</h3>
+
+<p>是否为支持多选的下拉框</p>
+
+<p><a id="dotNetSeleniumBasicEleObject.SelectByIndex"></a></p>
+
+<h3>dotNetSeleniumBasicEleObject.SelectByIndex()</h3>
+
+<p>根据参数@1指定的索引选择节点</p>
+
+<p><a id="dotNetSeleniumBasicEleObject.SelectByText"></a></p>
+
+<h3>dotNetSeleniumBasicEleObject.SelectByText(Text,partialMatch)</h3>
+
+<p>根据参数@1指定的文本选择节点,<br>
+可选用参数@2指定是否使用部分匹配</p>
+
+<p><a id="dotNetSeleniumBasicEleObject.SelectByValue"></a></p>
+
+<h3>dotNetSeleniumBasicEleObject.SelectByValue()</h3>
+
+<p>根据参数@1指定的 value 值选择节点</p>
+
+<p><a id="dotNetSeleniumBasicEleObject.Selected"></a></p>
+
+<h3>dotNetSeleniumBasicEleObject.Selected</h3>
+
+<p>是否处于勾选状态</p>
+
+<p><a id="dotNetSeleniumBasicEleObject.SendKeys"></a></p>
+
+<h3>dotNetSeleniumBasicEleObject.SendKeys()</h3>
+
+<p>发送参数 @1 指定的字符串</p>
+
+<p><a id="dotNetSeleniumBasicEleObject.Size"></a></p>
+
+<h3>dotNetSeleniumBasicEleObject.Size</h3>
+
+<p>返回元素的尺寸</p>
+
+<p><a id="dotNetSeleniumBasicEleObject.Submit"></a></p>
+
+<h3>dotNetSeleniumBasicEleObject.Submit()</h3>
+
+<p>提交</p>
+
+<p><a id="dotNetSeleniumBasicEleObject.Text"></a></p>
+
+<h3>dotNetSeleniumBasicEleObject.Text</h3>
+
+<p>返回元素的内部文本（InnerText）</p>
+
+<p><a id="dotNetSeleniumBasicEleObject.tagName"></a></p>
+
+<h3>dotNetSeleniumBasicEleObject.tagName</h3>
+
+<p>返回元素的标签名称</p>
+
+<p><a id="dotNetSeleniumBasicIWebDriverObject"></a></p>
+
+<h2>dotNetSeleniumBasicIWebDriverObject 成员列表</h2>
+
+<p><a id="dotNetSeleniumBasicIWebDriverObject.CreateWaiter"></a></p>
+
+<h3>dotNetSeleniumBasicIWebDriverObject.CreateWaiter()</h3>
+
+<p>创建等待工具,<br>
+参数 @1 指定超时，以秒为单位，参数不省略  </p>
+
+<p><a href="#dotNetSeleniumBasicWaiterObject">返回对象:dotNetSeleniumBasicWaiterObject</a></p>
+
+<p><a id="dotNetSeleniumBasicIWebDriverObject.FindElementByClassName"></a></p>
+
+<h3>dotNetSeleniumBasicIWebDriverObject.FindElementByClassName()</h3>
+
+<p>根据参数 @1 指定的类名查找节点</p>
+
+<p><a href="#dotNetSeleniumBasicEleObject">返回对象:dotNetSeleniumBasicEleObject</a></p>
+
+<p><a id="dotNetSeleniumBasicIWebDriverObject.FindElementByCssSelector"></a></p>
+
+<h3>dotNetSeleniumBasicIWebDriverObject.FindElementByCssSelector()</h3>
+
+<p>根据参数@1指定的CSS选择器查找节点</p>
+
+<p><a href="#dotNetSeleniumBasicEleObject">返回对象:dotNetSeleniumBasicEleObject</a></p>
+
+<p><a id="dotNetSeleniumBasicIWebDriverObject.FindElementById"></a></p>
+
+<h3>dotNetSeleniumBasicIWebDriverObject.FindElementById()</h3>
+
+<p>根据参数@1指定的ID查找节点</p>
+
+<p><a href="#dotNetSeleniumBasicEleObject">返回对象:dotNetSeleniumBasicEleObject</a></p>
+
+<p><a id="dotNetSeleniumBasicIWebDriverObject.FindElementByLinkText"></a></p>
+
+<h3>dotNetSeleniumBasicIWebDriverObject.FindElementByLinkText()</h3>
+
+<p>根据参数@1指定的链接文本查找节点</p>
+
+<p><a href="#dotNetSeleniumBasicEleObject">返回对象:dotNetSeleniumBasicEleObject</a></p>
+
+<p><a id="dotNetSeleniumBasicIWebDriverObject.FindElementByName"></a></p>
+
+<h3>dotNetSeleniumBasicIWebDriverObject.FindElementByName()</h3>
+
+<p>根据参数@1指定的 name 属性查找节点</p>
+
+<p><a href="#dotNetSeleniumBasicEleObject">返回对象:dotNetSeleniumBasicEleObject</a></p>
+
+<p><a id="dotNetSeleniumBasicIWebDriverObject.FindElementByPartialLinkText"></a></p>
+
+<h3>dotNetSeleniumBasicIWebDriverObject.FindElementByPartialLinkText()</h3>
+
+<p>根据参数@1指定的部分链接文本查找节点</p>
+
+<p><a href="#dotNetSeleniumBasicEleObject">返回对象:dotNetSeleniumBasicEleObject</a></p>
+
+<p><a id="dotNetSeleniumBasicIWebDriverObject.FindElementByTagName"></a></p>
+
+<h3>dotNetSeleniumBasicIWebDriverObject.FindElementByTagName()</h3>
+
+<p>根据参数@1指定的标签名查找节点</p>
+
+<p><a href="#dotNetSeleniumBasicEleObject">返回对象:dotNetSeleniumBasicEleObject</a></p>
+
+<p><a id="dotNetSeleniumBasicIWebDriverObject.FindElementByXPath"></a></p>
+
+<h3>dotNetSeleniumBasicIWebDriverObject.FindElementByXPath()</h3>
+
+<p>根据参数@1指定的XPath查找节点</p>
+
+<p><a href="#dotNetSeleniumBasicEleObject">返回对象:dotNetSeleniumBasicEleObject</a></p>
+
+<p><a id="dotNetSeleniumBasicIWebDriverObject.FindElementsByClassName"></a></p>
+
+<h3>dotNetSeleniumBasicIWebDriverObject.FindElementsByClassName()</h3>
+
+<p>根据参数@1指定的类名查找多个节点</p>
+
+<p><a id="dotNetSeleniumBasicIWebDriverObject.FindElementsByCssSelector"></a></p>
+
+<h3>dotNetSeleniumBasicIWebDriverObject.FindElementsByCssSelector()</h3>
+
+<p>根据参数@1指定的CSS选择器查找多个节点</p>
+
+<p><a id="dotNetSeleniumBasicIWebDriverObject.FindElementsById"></a></p>
+
+<h3>dotNetSeleniumBasicIWebDriverObject.FindElementsById(id)</h3>
+
+<p>根据参数@1指定的ID查找多个节点</p>
+
+<p><a id="dotNetSeleniumBasicIWebDriverObject.FindElementsByLinkText"></a></p>
+
+<h3>dotNetSeleniumBasicIWebDriverObject.FindElementsByLinkText(linkText)</h3>
+
+<p>根据参数@1指定的链接文本查找多个节点</p>
+
+<p><a id="dotNetSeleniumBasicIWebDriverObject.FindElementsByName"></a></p>
+
+<h3>dotNetSeleniumBasicIWebDriverObject.FindElementsByName(Name)</h3>
+
+<p>根据参数@1指定的 name 属性查找多个节点</p>
+
+<p><a id="dotNetSeleniumBasicIWebDriverObject.FindElementsByPartialLinkText"></a></p>
+
+<h3>dotNetSeleniumBasicIWebDriverObject.FindElementsByPartialLinkText(partialLinkText)</h3>
+
+<p>根据参数@1指定的部分链接文本查找多个节点</p>
+
+<p><a id="dotNetSeleniumBasicIWebDriverObject.FindElementsByTagName"></a></p>
+
+<h3>dotNetSeleniumBasicIWebDriverObject.FindElementsByTagName(tagName)</h3>
+
+<p>根据参数@1指定的标签名查找多个节点</p>
+
+<p><a id="dotNetSeleniumBasicIWebDriverObject.FindElementsByXPath"></a></p>
+
+<h3>dotNetSeleniumBasicIWebDriverObject.FindElementsByXPath(xpath)</h3>
+
+<p>根据参数@1指定的XPath查找多个节点</p>
+
+<p><a id="dotNetSeleniumBasicIWebDriverObject.New_ChromeDriver"></a></p>
+
+<h3>dotNetSeleniumBasicIWebDriverObject.New_ChromeDriver()</h3>
+
+<p>启动 ChromeDriver 客户端</p>
+
+<p><a id="dotNetSeleniumBasicIWebDriverObject.New_ChromeDriver"></a></p>
+
+<h3>dotNetSeleniumBasicIWebDriverObject.New_ChromeDriver(chromeService,ChromeOption)</h3>
+
+<p>请使用 dotNet.seleniumBasic.CreateDefaultChromeService 函数<br>
+的返回值作为参数即可</p>
+
+<p><a id="dotNetSeleniumBasicWaiterObject"></a></p>
+
+<h2>dotNetSeleniumBasicWaiterObject 成员列表</h2>
+
+<p><a id="dotNetSeleniumBasicWaiterObject.Until"></a></p>
+
+<h3>dotNetSeleniumBasicWaiterObject.Until</h3>
+
+<p>等待并返回符合条件的节点</p>
+
+<p><a id="dotNetSeleniumBasicWaiterObject.Until"></a></p>
+
+<h3>dotNetSeleniumBasicWaiterObject.Until()</h3>
+
+<p><a href="#dotNetSeleniumBasicEleObject">返回对象:dotNetSeleniumBasicEleObject</a></p>
+
+<p><a id="dotNetSeleniumBasicWaiterObject.Until"></a></p>
+
+<h3>dotNetSeleniumBasicWaiterObject.Until(attributeName,attributeValue)</h3>
+
+<p>等待指定节点<br>
+@attributeName 参数指定要等待的属性名,<br>
+@attributeValue 参数指定要等待的属性值,<br>
+参数都是字符串，不可省略</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/dotNet/seleniumBasic/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/dotNet/seleniumBasic/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/dotNet/seleniumBasic/_.md">Markdown 格式</a></p>
+
+</body> 
+</html>

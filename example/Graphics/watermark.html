@@ -1,0 +1,88 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 在图片上添加文字水印'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 在图片上添加文字水印</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 在图片上添加文字水印</h1><pre><code class="aardio language-aardio">//文字水印
+import fsys.dlg;
+import gdip.bitmap;
+import gdip.graphics;
+import gdip.family;
+import gdip.stringformat;
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;在图片上添加文字水印&quot;;right=759;bottom=469)
+winform.add(
+button={cls=&quot;button&quot;;text=&quot;选择图片并添加水印&quot;;left=277;top=400;right=482;bottom=442;z=1}
+)
+/*}}*/
+
+winform.button.oncommand = function(id,event){
+    // 选择图片文件
+    var path = fsys.dlg.open(&quot;图片文件|*.jpg;*.png;*.bmp||&quot;, &quot;请选择要添加水印的图片&quot;);
+    if(!path) return;
+
+    // 加载图片
+    var bmp = gdip.bitmap(path);
+    if(!bmp) return winform.msgboxErr(&quot;无法加载图片&quot;);
+
+    // 创建画布
+    var graphics = gdip.graphics(bmp);
+
+    // 设置抗锯齿效果
+    graphics.textRenderingHint = 3/*_TextRenderingHintAntiAliasGridFit*/;
+
+    // 设置文字内容和颜色
+    var text = &quot;aardio 水印设置文字内容和颜色&quot;;
+    var brush = gdip.solidBrush(0x80FF0000); // 半透明白色
+
+    // 设置文字对齐
+    var strformat = gdip.stringformat();
+    strformat.align = 0/*_GdipStringAlignmentNear*/;
+    strformat.lineAlign = 0/*_GdipStringAlignmentNear*/;
+
+    // 设置字体家族
+    var family = gdip.family(&quot;微软雅黑&quot;);
+
+    // 创建 10pt 大小字体，注意最后一个参数指定单位
+    var font = family.createFont(10,0/*_FontStyleRegular*/,3/*_UnitPoint*/);;
+
+    // 画布大小
+    var rc = ::RECTF(0,0,bmp.width, bmp.height);
+
+        // 计算文字在输出后的大小
+    var rc = graphics.measureString(text, font,rc,strformat, brush)
+
+        // 文字移动到右下角
+    rc.x = bmp.width - rc.width;
+    rc.y = bmp.height - rc.height 
+
+    // 输出文字
+    graphics.drawString(text, font,rc ,strformat, brush);
+
+    // 保存结果 
+    bmp.save(&quot;/水印.jpg&quot;);
+
+    // 释放资源
+    graphics.delete();
+    bmp.dispose();
+
+    winform.msgbox(&quot;水印添加成功！&quot; );
+}
+
+winform.show();
+win.loopMessage();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Graphics/watermark.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Graphics/watermark.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Graphics/watermark.md">Markdown 格式</a>
+</body> 
+</html>

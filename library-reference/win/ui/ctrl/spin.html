@@ -1,0 +1,381 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - win.ui.ctrl.spin 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - win.ui.ctrl.spin 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>win.ui.ctrl.spin 库模块帮助文档</h1>
+
+<p><a id="win.ui.ctrl"></a></p>
+
+<h2>win.ui.ctrl 成员列表</h2>
+
+<p><a id="win.ui.ctrl.spin"></a></p>
+
+<h3>win.ui.ctrl.spin()</h3>
+
+<p>滚动选框控件  </p>
+
+<p><a href="#spinbuttonObject">返回对象:spinbuttonObject</a></p>
+
+<p><a id="spinbuttonObject"></a></p>
+
+<h2>spinbuttonObject 成员列表</h2>
+
+<p><a id="spinbuttonObject._parentForm"></a></p>
+
+<h3>spinbuttonObject._parentForm</h3>
+
+<p>创建该控件的父窗口（win.form对象）,<br>
+设计时窗体容器是所有拖放在窗体上的控件的 _parentForm,  </p>
+
+<p>即使窗口移除子窗口样式、更改父子关系，或以 orphanWindow显示,<br>
+控件的 _parentForm 始终都不会改变  </p>
+
+<p><a href="../_.html#winform" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/_.html#winform">返回对象:winform</a></p>
+
+<p><a id="spinbuttonObject.addCtrl"></a></p>
+
+<h3>spinbuttonObject.addCtrl</h3>
+
+<pre><code class="aardio language-aardio">spinbuttonObject.addCtrl(  
+    button={ cls=&quot;button&quot;;text=&quot;button&quot;;left=33;top=32;right=126;bottom=81;autoResize=false }    
+)
+</code></pre>
+
+<p><a id="spinbuttonObject.base"></a></p>
+
+<h3>spinbuttonObject.base</h3>
+
+<p>显示数值进制基数,10或16</p>
+
+<p><a id="spinbuttonObject.bottom"></a></p>
+
+<h3>spinbuttonObject.bottom</h3>
+
+<p>底部坐标</p>
+
+<p><a id="spinbuttonObject.buddy"></a></p>
+
+<h3>spinbuttonObject.buddy</h3>
+
+<p>设置、获取伙伴窗口。<br>
+伙伴窗口必须是 edit 控件（自动启用限制输入数字）。<br>
+spin 控件可放在 edit 控件内部或外部左侧、右侧。<br>
+调整窗口大小时，spin 控件会自动吸附于 edit 控件左侧或右侧。  </p>
+
+<p>如果 spin 控件在 edit 控件左侧，建议添加 align=&quot;left&quot; 属性，<br>
+如果 spin 控件在 edit 控件右侧，建议添加 align=&quot;right&quot; 属性  </p>
+
+<p><a href="edit.html#editObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/edit.html#editObject">返回对象:editObject</a></p>
+
+<p><a id="spinbuttonObject.capture"></a></p>
+
+<h3>spinbuttonObject.capture</h3>
+
+<p>是否捕获全局鼠标消息</p>
+
+<p><a id="spinbuttonObject.className"></a></p>
+
+<h3>spinbuttonObject.className</h3>
+
+<p>运行时类名</p>
+
+<p><a id="spinbuttonObject.close"></a></p>
+
+<h3>spinbuttonObject.close()</h3>
+
+<p>关闭控件窗口</p>
+
+<p><a id="spinbuttonObject.cls"></a></p>
+
+<h3>spinbuttonObject.cls</h3>
+
+<p>设计时类名</p>
+
+<p><a id="spinbuttonObject.disabled"></a></p>
+
+<h3>spinbuttonObject.disabled</h3>
+
+<p>是否禁用</p>
+
+<p><a id="spinbuttonObject.getClientRect"></a></p>
+
+<h3>spinbuttonObject.getClientRect()</h3>
+
+<p>控件客户区块位置(::RECT结构体)  </p>
+
+<p><a href="../../../global/_.html#rectObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/global/_.html#rectObject">返回对象:rectObject</a></p>
+
+<p><a id="spinbuttonObject.getFont"></a></p>
+
+<h3>spinbuttonObject.getFont()</h3>
+
+<p>控件字体(::LOGFONT结构体)  </p>
+
+<p><a href="#logfontObject">返回对象:logfontObject</a></p>
+
+<p><a id="spinbuttonObject.getParent"></a></p>
+
+<h3>spinbuttonObject.getParent()</h3>
+
+<p>返回父窗口  </p>
+
+<p><a href="#spinbuttonObject">返回对象:spinbuttonObject</a></p>
+
+<p><a id="spinbuttonObject.getPos"></a></p>
+
+<h3>spinbuttonObject.getPos()</h3>
+
+<p>返回相对坐标,宽,高</p>
+
+<p><a id="spinbuttonObject.getRect"></a></p>
+
+<h3>spinbuttonObject.getRect()</h3>
+
+<p>控件区块位置(::RECT结构体)</p>
+
+<p><a id="spinbuttonObject.getRect"></a></p>
+
+<h3>spinbuttonObject.getRect(true)</h3>
+
+<p>控件屏幕区块位置(::RECT结构体)</p>
+
+<p><a id="spinbuttonObject.height"></a></p>
+
+<h3>spinbuttonObject.height</h3>
+
+<p>高度</p>
+
+<p><a id="spinbuttonObject.hide"></a></p>
+
+<h3>spinbuttonObject.hide</h3>
+
+<p>控件是否隐藏</p>
+
+<p><a id="spinbuttonObject.hwnd"></a></p>
+
+<h3>spinbuttonObject.hwnd</h3>
+
+<p>控件句柄</p>
+
+<p><a id="spinbuttonObject.id"></a></p>
+
+<h3>spinbuttonObject.id</h3>
+
+<p>控件ID</p>
+
+<p><a id="spinbuttonObject.inc"></a></p>
+
+<h3>spinbuttonObject.inc</h3>
+
+<p>设置步长</p>
+
+<p><a id="spinbuttonObject.invalidate(/*可选使用::RECT"></a></p>
+
+<h3>spinbuttonObject.invalidate(/*可选使用::RECT()对象指定客户区*/)</h3>
+
+<p>使窗口绘图区无效</p>
+
+<p><a id="spinbuttonObject.invalidate(/*可选使用::RECT"></a></p>
+
+<h3>spinbuttonObject.invalidate(/*可选使用::RECT()对象指定客户区*/,0)</h3>
+
+<p>使窗口绘图区无效<br>
+不刷新背景</p>
+
+<p><a id="spinbuttonObject.left"></a></p>
+
+<h3>spinbuttonObject.left</h3>
+
+<p>左侧坐标</p>
+
+<p><a id="spinbuttonObject.modifyStyle"></a></p>
+
+<h3>spinbuttonObject.modifyStyle(remove,add,swpFlags)</h3>
+
+<p>修改窗口样式,所有参数都是可选参数,<br>
+@remove 用数值指定要移除的样式,可使用 <em>WS</em> 前缀的常量<br>
+@add 用数值指定要添加的样式,可使用 <em>WS</em> 前缀的常量<br>
+@swpFlags 可选用数值指定调整窗口选项,可使用 <em>SWP</em> 前缀的常量<br>
+如果指定了 @swpFlag ,则使用该参数调用::SetWindowPos<br>
+细节请参考 win.modifyStyle 函数源码</p>
+
+<p><a id="spinbuttonObject.modifyStyleEx"></a></p>
+
+<h3>spinbuttonObject.modifyStyleEx(remove,add,swpFlags)</h3>
+
+<p>修改窗口扩展样式,所有参数都是可选参数,<br>
+@remove 用数值指定要移除的样式,可使用 <em>WS_EX</em> 前缀的常量<br>
+@add 用数值指定要添加的样式,可使用 <em>WS_EX</em> 前缀的常量<br>
+@swpFlags 可选用数值指定调整窗口选项,可使用 <em>SWP</em> 前缀的常量<br>
+如果指定了 @swpFlag ,则使用该参数调用::SetWindowPos<br>
+细节请参考 win.modifyStyle 函数源码</p>
+
+<p><a id="spinbuttonObject.onnotify"></a></p>
+
+<h3>spinbuttonObject.onnotify</h3>
+
+<pre><code class="aardio language-aardio">spinbuttonObject.onnotify = function(id,code,ptr){ 
+    if(code==0xFFFFFD2E/*_UDN_DELTAPOS*/){
+        var nmUpDown = ..raw.convert(ptr, {
+            struct hdr = ::NMHDR();
+            int pos;
+            int delta; 
+        } ); 
+        /*pos为当前位置,delta为增减量,单击向下箭头此值为负数*/
+    } 
+}
+</code></pre>
+
+<p><a id="spinbuttonObject.pos"></a></p>
+
+<h3>spinbuttonObject.pos</h3>
+
+<p>当前位置数值</p>
+
+<p><a id="spinbuttonObject.postMessage"></a></p>
+
+<h3>spinbuttonObject.postMessage(msg,wParam,lParam)</h3>
+
+<p>投递窗口消息到消息队列中<br>
+此函数用法请参考 ::User32.PostMessage</p>
+
+<p><a id="spinbuttonObject.redraw"></a></p>
+
+<h3>spinbuttonObject.redraw()</h3>
+
+<p>刷新</p>
+
+<p><a id="spinbuttonObject.right"></a></p>
+
+<h3>spinbuttonObject.right</h3>
+
+<p>右侧坐标</p>
+
+<p><a id="spinbuttonObject.sendMessage"></a></p>
+
+<h3>spinbuttonObject.sendMessage(msg,wParam,lParam)</h3>
+
+<p>发送窗口消息<br>
+此函数用法请参考 ::User32.SendMessage</p>
+
+<p><a id="spinbuttonObject.setFocus"></a></p>
+
+<h3>spinbuttonObject.setFocus()</h3>
+
+<p>设置焦点</p>
+
+<p><a id="spinbuttonObject.setFont"></a></p>
+
+<h3>spinbuttonObject.setFont(指定字体)</h3>
+
+<p>指定LOGFONT字体对象,或逻辑字体句柄</p>
+
+<p><a id="spinbuttonObject.setFont"></a></p>
+
+<h3>spinbuttonObject.setFont(混入字体属性)</h3>
+
+<pre><code class="aardio language-aardio">spinbuttonObject.setFont(point=10;name=&quot;宋体&quot;);
+</code></pre>
+
+<p><a id="spinbuttonObject.setParent"></a></p>
+
+<h3>spinbuttonObject.setParent(控件对象)</h3>
+
+<p>改变父窗口</p>
+
+<p><a id="spinbuttonObject.setPos"></a></p>
+
+<h3>spinbuttonObject.setPos(x坐标,y坐标,宽,高,插入位置,参数)</h3>
+
+<p>调整窗口位置或排序,所有参数可选<br>
+同时指定x,y坐标则移动位置<br>
+同时指定宽高则改变大小<br>
+指定插入位置(句柄或_HWND前缀常量)则调整Z序</p>
+
+<p><a id="spinbuttonObject.setRange"></a></p>
+
+<h3>spinbuttonObject.setRange(最小值,最大值)</h3>
+
+<p>设置数值范围<br>
+同时修改pos属性为最小值</p>
+
+<p><a id="spinbuttonObject.setRect"></a></p>
+
+<h3>spinbuttonObject.setRect(rc)</h3>
+
+<p>设置控件区块位置(::RECT结构体)</p>
+
+<p><a id="spinbuttonObject.setRect"></a></p>
+
+<h3>spinbuttonObject.setRect(rc,true)</h3>
+
+<p>设置控件屏幕区块位置(::RECT结构体)</p>
+
+<p><a id="spinbuttonObject.show"></a></p>
+
+<h3>spinbuttonObject.show(true)</h3>
+
+<p>显示控件</p>
+
+<p><a id="spinbuttonObject.text"></a></p>
+
+<h3>spinbuttonObject.text</h3>
+
+<p>控件文本</p>
+
+<p><a id="spinbuttonObject.theme"></a></p>
+
+<h3>spinbuttonObject.theme</h3>
+
+<p>外观主题,例如<br>
+winform.button.theme = &quot;Explorer&quot;<br>
+winform.button.theme = false</p>
+
+<p><a id="spinbuttonObject.threadCallable"></a></p>
+
+<h3>spinbuttonObject.threadCallable()</h3>
+
+<p>开启此控件的跨线程调用功能</p>
+
+<p><a id="spinbuttonObject.top"></a></p>
+
+<h3>spinbuttonObject.top</h3>
+
+<p>顶部坐标</p>
+
+<p><a id="spinbuttonObject.update"></a></p>
+
+<h3>spinbuttonObject.update()</h3>
+
+<p>重绘invalidate函数指定的区块</p>
+
+<p><a id="spinbuttonObject.width"></a></p>
+
+<h3>spinbuttonObject.width</h3>
+
+<p>宽度</p>
+
+<h3>自动完成常量</h3>
+
+<p>_UDM_GETACCEL=0x46C<br>
+_UDM_SETACCEL=0x46B<br>
+_UDN_DELTAPOS=0xFFFFFD2E<br>
+_UDS_ALIGNLEFT=8<br>
+_UDS_ALIGNRIGHT=4<br>
+_UDS_ARROWKEYS=0x20  </p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/spin.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/spin.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/spin.md">Markdown 格式</a></p>
+
+</body> 
+</html>

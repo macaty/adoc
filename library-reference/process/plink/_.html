@@ -1,0 +1,183 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - process.plink 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - process.plink 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>process.plink 库模块帮助文档</h1>
+
+<p><a id="process"></a></p>
+
+<h2>process 成员列表</h2>
+
+<p><a id="process.plink"></a></p>
+
+<h3>process.plink()</h3>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html#processPopenObject'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html#processPopenObject">返回对象:processPopenObject</a></p>
+
+<p><a id="process.plink"></a></p>
+
+<h3>process.plink(命令行参数)</h3>
+
+<pre><code class="aardio language-aardio">process.plink(    
+    ,&quot;-l&quot;,&quot;用户名&quot;  
+    ,&quot;-pw&quot;,&quot;密码&quot;  
+    ,&quot;-P&quot;,&quot;22&quot;,&quot;服务器IP&quot;   
+    /*,&quot;-m&quot;,io.fullpath(&quot;/更多shell命令.txt&quot;)*/  
+    ,&quot;ls /*shell命令中请使用单引号代替双引号*/&quot;  
+    )
+</code></pre>
+
+<p><a id="process.plink"></a></p>
+
+<h2>process.plink 成员列表</h2>
+
+<p>使用管道调用Putty命令行连接工具plink.exe<br>
+<a href="javascript:if(confirm('https://the.earth.li/%7Esgtatham/putty/0.71/htmldoc/Chapter7.html  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='https://the.earth.li/%7Esgtatham/putty/0.71/htmldoc/Chapter7.html#plink-usage'" tppabs="https://the.earth.li/%7Esgtatham/putty/0.71/htmldoc/Chapter7.html#plink-usage">plink参数列表</a></p>
+
+<p><a id="process.plink.limitKill"></a></p>
+
+<h3>process.plink.limitKill</h3>
+
+<p>默认值为 true ,如果此参数为 true,<br>
+则创建的所有 plink 进程绑定到 process.job.limitKill 作业对象,<br>
+当前进程退出时,这些 plink 进程也会自动退出</p>
+
+<p><a id="process.plink.shell"></a></p>
+
+<h3>process.plink.shell</h3>
+
+<p>用于自动登录</p>
+
+<p><a id="process.plink.shell"></a></p>
+
+<h3>process.plink.shell()</h3>
+
+<p><a href="#plinkShellObject">返回对象:plinkShellObject</a></p>
+
+<p><a id="process.plink.shell"></a></p>
+
+<h3>process.plink.shell(服务器IP,登录密码,用户名,端口,私钥)</h3>
+
+<p>除服务器IP以外其他参数都是可选参数<br>
+用户名默认为&quot;root&quot;,端口默认为22<br>
+如果已经配置了SSH Key可以不用指定密码</p>
+
+<p><a id="process.plink.terminate"></a></p>
+
+<h3>process.plink.terminate()</h3>
+
+<p>关闭所有创建的plink进程</p>
+
+<p><a id="plinkShellObject"></a></p>
+
+<h2>plinkShellObject 成员列表</h2>
+
+<p><a id="plinkShellObject.bash"></a></p>
+
+<h3>plinkShellObject.bash</h3>
+
+<p>执行脚本并关闭交互模式</p>
+
+<p><a id="plinkShellObject.bash"></a></p>
+
+<h3>plinkShellObject.bash()</h3>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html#processPopenObject'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html#processPopenObject">返回对象:processPopenObject</a></p>
+
+<p><a id="plinkShellObject.bash"></a></p>
+
+<h3>plinkShellObject.bash(脚本,其他参数)</h3>
+
+<p>参数@1可以是脚本或文件路径<br>
+其他参数注意包含空格且不含引号则会自动置入双引号内,<br>
+标准输入输出、脚本参数默认使用 UTF-8 编码</p>
+
+<p><a id="plinkShellObject.download"></a></p>
+
+<h3>plinkShellObject.download</h3>
+
+<p>下载文件</p>
+
+<p><a id="plinkShellObject.download"></a></p>
+
+<h3>plinkShellObject.download(远程路径,本地路径)</h3>
+
+<p>本地路径可以指定下载目录,也可以指定完整的文件路径<br>
+默认为工程目录</p>
+
+<p><a id="plinkShellObject.exec"></a></p>
+
+<h3>plinkShellObject.exec</h3>
+
+<p>执行脚本并回显进程输出</p>
+
+<p><a id="plinkShellObject.exec"></a></p>
+
+<h3>plinkShellObject.exec(脚本,其他参数)</h3>
+
+<p>参数@1可以是脚本或文件路径<br>
+其他参数注意包含空格且不含引号则会自动置入双引号内,<br>
+标准输入输出、脚本参数默认使用 UTF-8 编码</p>
+
+<p><a id="plinkShellObject.logger"></a></p>
+
+<h3>plinkShellObject.logger</h3>
+
+<p>回显对象<br>
+该对象必须有log或write成员函数用于进程回显</p>
+
+<p><a id="plinkShellObject.open"></a></p>
+
+<h3>plinkShellObject.open</h3>
+
+<p>执行脚本并返回创建的进程</p>
+
+<p><a id="plinkShellObject.open"></a></p>
+
+<h3>plinkShellObject.open()</h3>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html#processPopenObject'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html#processPopenObject">返回对象:processPopenObject</a></p>
+
+<p><a id="plinkShellObject.open"></a></p>
+
+<h3>plinkShellObject.open(脚本,其他参数)</h3>
+
+<p>参数@1可以是脚本或文件路径<br>
+其他参数注意包含空格且不含引号则会自动置入双引号内,<br>
+标准输入输出、脚本参数默认使用 UTF-8 编码</p>
+
+<p><a id="plinkShellObject.upload"></a></p>
+
+<h3>plinkShellObject.upload</h3>
+
+<p>上传文件</p>
+
+<p><a id="plinkShellObject.upload"></a></p>
+
+<h3>plinkShellObject.upload(本地路径,远程目录)</h3>
+
+<p>远程目录默认为当前目录<br>
+本地路径如果指定目录时不能包含空格,建议使用压缩包上传<br>
+在服务端使用 7z -y x 指今解压缩</p>
+
+<p><a id="plinkShellObject.verify"></a></p>
+
+<h3>plinkShellObject.verify()</h3>
+
+<p>忽略首次登录时的服务器验证</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/process/plink/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/process/plink/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/process/plink/_.md">Markdown 格式</a></p>
+
+</body> 
+</html>

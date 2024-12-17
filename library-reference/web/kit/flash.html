@@ -1,0 +1,438 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - web.kit.flash 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - web.kit.flash 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>web.kit.flash 库模块帮助文档</h1>
+
+<p><a id="web.kit.flash"></a></p>
+
+<h2>web.kit.flash 成员列表</h2>
+
+<p>用 web.kit.form 加载 Flash</p>
+
+<p><a id="web.kit.flash.transparent"></a></p>
+
+<h3>web.kit.flash.transparent()</h3>
+
+<p><a href="#wkeFlashObject">返回对象:wkeFlashObject</a></p>
+
+<p><a id="web.kit.flash.transparent"></a></p>
+
+<h3>web.kit.flash.transparent(winform,param)</h3>
+
+<p>嵌入透明 FLASH 控件,<br>
+参数@1为窗体或控件对象<br>
+可选在参数@2中使用一个表对象设定Flash控件的属性值</p>
+
+<p><a id="web.kit"></a></p>
+
+<h2>web.kit 成员列表</h2>
+
+<p><a id="web.kit.flash"></a></p>
+
+<h3>web.kit.flash()</h3>
+
+<p><a href="#wkeFlashObject">返回对象:wkeFlashObject</a></p>
+
+<p><a id="web.kit.flash"></a></p>
+
+<h3>web.kit.flash(winform,param)</h3>
+
+<p>嵌入 FLASH 控件,<br>
+参数@1为窗体或控件对象<br>
+可选在参数@2中使用一个表对象设定Flash控件的属性值</p>
+
+<p><a id="wkeFlashObject"></a></p>
+
+<h2>wkeFlashObject 成员列表</h2>
+
+<p><a id="wkeFlashObject._form"></a></p>
+
+<h3>wkeFlashObject._form</h3>
+
+<p>窗体对象  </p>
+
+<p><a href="../../win/ui/_.html#winform" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/_.html#winform">返回对象:winform</a></p>
+
+<p><a id="wkeFlashObject._host"></a></p>
+
+<h3>wkeFlashObject._host</h3>
+
+<p>容器对象</p>
+
+<p><a id="wkeFlashObject._host.adjust"></a></p>
+
+<h3>wkeFlashObject._host.adjust()</h3>
+
+<p>调整控件窗口大小</p>
+
+<p><a id="wkeFlashObject._object"></a></p>
+
+<h3>wkeFlashObject._object</h3>
+
+<p>控件对象</p>
+
+<p><a id="wkeFlashObject.allowFullScreen"></a></p>
+
+<h3>wkeFlashObject.allowFullScreen</h3>
+
+<p>布尔值,是否允许全屏</p>
+
+<p><a id="wkeFlashObject.allowNetworking"></a></p>
+
+<h3>wkeFlashObject.allowNetworking</h3>
+
+<p>是否允许网络交互,可选值:<br>
+&quot;all&quot;,&quot;internal&quot;,&quot;none&quot;</p>
+
+<p><a id="wkeFlashObject.allowScriptAccess"></a></p>
+
+<h3>wkeFlashObject.allowScriptAccess</h3>
+
+<p>是否允许调用外部脚本,可选值:<br>
+&quot;always&quot;,&quot;sameDomain&quot;,&quot;never&quot;</p>
+
+<p><a id="wkeFlashObject.back"></a></p>
+
+<h3>wkeFlashObject.back()</h3>
+
+<p>影片后退一帧并停止播放</p>
+
+<p><a id="wkeFlashObject.bgcolor"></a></p>
+
+<h3>wkeFlashObject.bgcolor</h3>
+
+<p>背景色<br>
+用&quot;#RRGGBB&quot;格式的文本表示</p>
+
+<p><a id="wkeFlashObject.body"></a></p>
+
+<h3>wkeFlashObject.body</h3>
+
+<p>网页 body 元素 HTML 代码节点,<br>
+修改此元素属性后需要调用 render 函数才会生效  </p>
+
+<p><a href="#eleObject">返回对象:eleObject</a></p>
+
+<p><a id="wkeFlashObject.currentFrame"></a></p>
+
+<h3>wkeFlashObject.currentFrame()</h3>
+
+<p>当前帧索引,注意第一帧索引为0</p>
+
+<p><a id="wkeFlashObject.disableLocalSecurity"></a></p>
+
+<h3>wkeFlashObject.disableLocalSecurity()</h3>
+
+<p>禁用本地安全,<br>
+请不要在播放动画以后调用此函数,<br>
+播放的swf是程序自带的可信任文件时应当禁用本地安全<br>
+当指定控件的external接口时也会自动调用此函数</p>
+
+<p><a id="wkeFlashObject.embedMovie"></a></p>
+
+<h3>wkeFlashObject.embedMovie</h3>
+
+<p>该值如果为true则允许在加载后删除swf文件</p>
+
+<p><a id="wkeFlashObject.enforceLocalSecurity"></a></p>
+
+<h3>wkeFlashObject.enforceLocalSecurity()</h3>
+
+<p>启用本地安全,<br>
+请不要在播放动画以后调用此函数,<br>
+如果播放的swf是程序自带的可信任文件应当启用本地安全</p>
+
+<p><a id="wkeFlashObject.external"></a></p>
+
+<h3>wkeFlashObject.external</h3>
+
+<pre><code class="aardio language-aardio">wkeFlashObject.external = {
+    函数名 = function(参数){
+        /*在FLASH中可使用 ExternalInterface.call() 调用这里的函数*/
+        return &quot;返回值&quot;;
+    } 
+}
+</code></pre>
+
+<p><a id="wkeFlashObject.flashVars"></a></p>
+
+<h3>wkeFlashObject.flashVars</h3>
+
+<p>等价于parameters属性,参考该属性说明</p>
+
+<p><a id="wkeFlashObject.forward"></a></p>
+
+<h3>wkeFlashObject.forward()</h3>
+
+<p>影片后退一帧并停止播放</p>
+
+<p><a id="wkeFlashObject.getPersistStream"></a></p>
+
+<h3>wkeFlashObject.getPersistStream()</h3>
+
+<p>返回数据流对象  </p>
+
+<p><a href="#IPersistStreamInitObject">返回对象:IPersistStreamInitObject</a></p>
+
+<p><a id="wkeFlashObject.getVariable"></a></p>
+
+<h3>wkeFlashObject.getVariable(&quot;字符串参数&quot;)</h3>
+
+<p>获取FLASH变量</p>
+
+<p><a id="wkeFlashObject.gotoFrame"></a></p>
+
+<h3>wkeFlashObject.gotoFrame(索引)</h3>
+
+<p>将影片跳转到指定的帧并停止播放.<br>
+必须首先调用percentLoaded()函数保证影片完全加载</p>
+
+<p><a id="wkeFlashObject.hwndControl"></a></p>
+
+<h3>wkeFlashObject.hwndControl</h3>
+
+<p>Flash控件窗口句柄</p>
+
+<p><a id="wkeFlashObject.loadMovie"></a></p>
+
+<h3>wkeFlashObject.loadMovie(layer,url)</h3>
+
+<p>将由url指定的影片载入到由layer指定的层上<br>
+如果url指定了一个资源文件路径,使用临时文件加载,并设置embedMovie属性为 true</p>
+
+<p><a id="wkeFlashObject.loop"></a></p>
+
+<h3>wkeFlashObject.loop</h3>
+
+<p>是否循环播放</p>
+
+<p><a id="wkeFlashObject.menu"></a></p>
+
+<h3>wkeFlashObject.menu</h3>
+
+<p>右键是否显示Flash控制菜单</p>
+
+<p><a id="wkeFlashObject.movie"></a></p>
+
+<h3>wkeFlashObject.movie</h3>
+
+<p>设置swf文件网址,<br>
+参数必须是网址,<br>
+本地文件建议使用 wsock.tcp.simpleHttpServer.startUrl 转换为网址</p>
+
+<p><a id="wkeFlashObject.pan"></a></p>
+
+<h3>wkeFlashObject.pan(x,y,mode)</h3>
+
+<p>将一个放大过的影片平移由x和y指定的距离,x和y均为相对值,<br>
+mode默认值为1,按百分比计算,如果设为0则以像素计算</p>
+
+<p><a id="wkeFlashObject.parameters"></a></p>
+
+<h3>wkeFlashObject.parameters</h3>
+
+<p>设置初始化参数,也就是AS里的loaderInfo.parameters,<br>
+参数格式与URL参数相同,设置一个表参数可自动转换为字符串,<br>
+读取属性时返回字符串</p>
+
+<p><a id="wkeFlashObject.percentLoaded"></a></p>
+
+<h3>wkeFlashObject.percentLoaded()</h3>
+
+<p>返回影片加载的百分比</p>
+
+<p><a id="wkeFlashObject.play"></a></p>
+
+<h3>wkeFlashObject.play()</h3>
+
+<p>播放</p>
+
+<p><a id="wkeFlashObject.playing"></a></p>
+
+<h3>wkeFlashObject.playing</h3>
+
+<p>影片是否正在播放</p>
+
+<p><a id="wkeFlashObject.putMovie"></a></p>
+
+<h3>wkeFlashObject.putMovie(&quot;/res/ui.swf&quot;)</h3>
+
+<p>加载Flash文件,<br>
+参数可以是网址,文件名,支持内嵌资源目录文件名<br>
+参数也可以是Flash文件的内存数据<br>
+加载内存或资源文件时,直接调用write函数写入内存</p>
+
+<p><a id="wkeFlashObject.quality"></a></p>
+
+<h3>wkeFlashObject.quality</h3>
+
+<p>获取设置影片质量,可选使用以下字符串表示值:<br>
+&quot;Low&quot;:偏重于播放速度而不管显示效果.<br>
+&quot;High&quot;:偏重于画面而不管播放速度<br>
+&quot;AutoLow&quot;:先着重于播放速度,但只要有可能就改善显示效果.<br>
+&quot;AutoHigh&quot;:一开始是播放速度和显示效果并重,但如有必要就牺牲画质确保速度.</p>
+
+<p><a id="wkeFlashObject.readyState"></a></p>
+
+<h3>wkeFlashObject.readyState</h3>
+
+<p>返回影片的当前状态,readyState值有:<br>
+0:正在载入<br>
+1:未初始化<br>
+2:已载入<br>
+3:正在交互<br>
+4:完成例子</p>
+
+<p><a id="wkeFlashObject.render"></a></p>
+
+<h3>wkeFlashObject.render()</h3>
+
+<p>更新属性并重新创建 Flash 控件,<br>
+修改 Flash 控件属性后需要调用此函数才会生效,<br>
+修改 movie 属性自动调用此函数</p>
+
+<p><a id="wkeFlashObject.rewind"></a></p>
+
+<h3>wkeFlashObject.rewind()</h3>
+
+<p>返回到影片的第一帧</p>
+
+<p><a id="wkeFlashObject.sAlign"></a></p>
+
+<h3>wkeFlashObject.sAlign</h3>
+
+<p>使用字符串表示对齐:<br>
+&quot;L&quot;:即左对齐<br>
+&quot;T&quot;:即顶对齐<br>
+&quot;R&quot;:即右对齐<br>
+&quot;B&quot;:即底对齐<br>
+上面的值可组合使用,但LTRB的先后顺序不能变,如:左和底的对齐必须写为&quot;LB&quot;</p>
+
+<p><a id="wkeFlashObject.scale"></a></p>
+
+<h3>wkeFlashObject.scale</h3>
+
+<p>缩放模式:<br>
+&quot;NoScale&quot;:显示原始大小不缩放,<br>
+&quot;ShowAll&quot;:显示全部影片区域,保持影片长宽比例不变.<br>
+&quot;NoBorder&quot;:显示部分影片区域,保持影片长宽比例不变.<br>
+&quot;ExactFit&quot;:显示全部影片区域,强制将影片的长宽等于控件的长宽.</p>
+
+<p><a id="wkeFlashObject.setVariable"></a></p>
+
+<h3>wkeFlashObject.setVariable(&quot;变量名&quot;,值)</h3>
+
+<p>设置FLASH变量</p>
+
+<p><a id="wkeFlashObject.show"></a></p>
+
+<h3>wkeFlashObject.show()</h3>
+
+<p>显示Flash所在窗口</p>
+
+<p><a id="wkeFlashObject.stop"></a></p>
+
+<h3>wkeFlashObject.stop()</h3>
+
+<p>暂停</p>
+
+<p><a id="wkeFlashObject.swfObject"></a></p>
+
+<h3>wkeFlashObject.swfObject</h3>
+
+<p>网页 Flash 控件 HTML 代码节点,<br>
+修改此元素属性后需要调用 render 函数才会生效  </p>
+
+<p><a href="#eleObject">返回对象:eleObject</a></p>
+
+<p><a id="wkeFlashObject.totalFrames"></a></p>
+
+<h3>wkeFlashObject.totalFrames</h3>
+
+<p>返回影片总帧数</p>
+
+<p><a id="wkeFlashObject.translateUrl"></a></p>
+
+<h3>wkeFlashObject.translateUrl</h3>
+
+<pre><code class="aardio language-aardio">wkeFlashObject.translateUrl = function(url){
+    /*可在此函数中转换 movie 属性传入的 URL 参数  
+也可以直接使用 wsock.tcp.simpleHttpServer.startUrl 等函数*/
+    return url;
+}
+</code></pre>
+
+<p><a id="wkeFlashObject.transparent"></a></p>
+
+<h3>wkeFlashObject.transparent</h3>
+
+<p>是否启用透明模式,只写属性,<br>
+应当写在初始化参数中</p>
+
+<p><a id="wkeFlashObject.version"></a></p>
+
+<h3>wkeFlashObject.version</h3>
+
+<p>flash控件版本</p>
+
+<p><a id="wkeFlashObject.wMode"></a></p>
+
+<h3>wkeFlashObject.wMode</h3>
+
+<p>控件的窗口模式,可选值&quot;Window&quot;,&quot;Opaque&quot;,&quot;Transparent&quot;</p>
+
+<p><a id="wkeFlashObject.wait"></a></p>
+
+<h3>wkeFlashObject.wait()</h3>
+
+<p>等待影片加载完成</p>
+
+<p><a id="wkeFlashObject.wait"></a></p>
+
+<h3>wkeFlashObject.wait(true)</h3>
+
+<p>等待影片播放完成</p>
+
+<p><a id="wkeFlashObject.wke"></a></p>
+
+<h3>wkeFlashObject.wke</h3>
+
+<p>浏览器对象  </p>
+
+<p><a href="#webKitViewObject">返回对象:webKitViewObject</a></p>
+
+<p><a id="wkeFlashObject.write"></a></p>
+
+<h3>wkeFlashObject.write()</h3>
+
+<p>直接通过写入内存数据重新加载swf文件</p>
+
+<p><a id="wkeFlashObject.writeStream"></a></p>
+
+<h3>wkeFlashObject.writeStream()</h3>
+
+<p>写入数据流<br>
+参数应是fsys.strem等兼容IStream接口的对象</p>
+
+<p><a id="wkeFlashObject.xcall"></a></p>
+
+<h3>wkeFlashObject.xcall(&quot;FLASH函数名&quot;,其他参数)</h3>
+
+<p>调用FLASH中使用ExternalInterface.addCallback()导出的函数</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/web/kit/flash.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/web/kit/flash.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/web/kit/flash.md">Markdown 格式</a></p>
+
+</body> 
+</html>

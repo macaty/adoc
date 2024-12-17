@@ -1,0 +1,66 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - COM 接口 - 免注册调用远程桌面控件'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - COM 接口 - 免注册调用远程桌面控件</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: COM 接口 - 免注册调用远程桌面控件</h1><pre><code class="aardio language-aardio">//COM 接口 - 免注册调用远程桌面控件
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;远程桌面客户端&quot;;right=599;bottom=799)
+winform.add()
+/*}}*/
+
+winform.onEraseBkgnd = lambda() 0;
+winform.show(); 
+
+import com.lite;
+var dll = com.lite(&quot;MsTscAx.dll&quot;);
+
+//如果不是内存 DLL 可以省略参数@2里指定的类名( aardio 会自动获取)
+var tsc = dll.createEmbedEx(winform,&quot;{7cacbd7b-0d99-468f-ac33-22e495c0afe5}&quot;) 
+
+//响应远程桌面事件,控件容器对象是默认的事件监听对象
+tsc.OnDisconnected = function(discReason){  
+    select (discReason)  {  
+        case 2{
+            winform.msgbox(&quot;已注销登录&quot;);  
+        }
+        else{
+            winform.msgbox(&quot;远程连接失败&quot;);  
+        } 
+    } 
+}  
+
+//设置远程登录参数 https://docs.microsoft.com/en-us/windows/win32/termserv/mstscax
+tsc.Server = &quot;服务器地址&quot;; 
+tsc.UserName = &quot;登录用户名&quot;; 
+tsc.AdvancedSettings2.ClearTextPassword = &quot;登录密码&quot;; //保存密码可省略
+tsc.AdvancedSettings2.EnableCredSspSupport = true; //启用凭据安全服务提供程序(CredSSP)
+
+tsc.AdvancedSettings2.RDPPort = 3389; //端口
+tsc.AdvancedSettings2.RedirectPrinters = false; //取消共享打印
+tsc.AdvancedSettings2.RedirectDrives = true; //允许共享磁盘
+tsc.AdvancedSettings2.SmartSizing = true; //自动调整大小
+tsc.DesktopWidth = &quot;800&quot; //桌面宽度
+tsc.DesktopHeight = &quot;600&quot;; //桌面高度
+tsc.FullScreen = false;//是否全屏
+tsc.FullScreenTitle = winform.text;//全屏标题
+tsc.ColorDepth = 32;//32位颜色
+tsc.ConnectingText = &quot;正在连接......&quot;
+tsc.Connect(); //连接
+
+win.loopMessage();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/COM/RegFree/MsTscAx.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/COM/RegFree/MsTscAx.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/COM/RegFree/MsTscAx.md">Markdown 格式</a>
+</body> 
+</html>

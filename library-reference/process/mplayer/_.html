@@ -1,0 +1,280 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - process.mplayer 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - process.mplayer 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>process.mplayer 库模块帮助文档</h1>
+
+<p><a id="process"></a></p>
+
+<h2>process 成员列表</h2>
+
+<p><a id="process.mplayer"></a></p>
+
+<h3>process.mplayer</h3>
+
+<p>MPlayer 播放器组件，<br>
+基于标准库 process.popen 实现管道调用 MPlayer 播放器。[MPlayer / slave  mode] <a href="javascript:if(confirm('http://www.mplayerhq.hu/DOCS/tech/slave.txt  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://www.mplayerhq.hu/DOCS/tech/slave.txt'" tppabs="http://www.mplayerhq.hu/DOCS/tech/slave.txt">http://www.mplayerhq.hu/DOCS/tech/slave.txt</a></p>
+
+<p>创建播放器</p>
+
+<p><a id="process.mplayer"></a></p>
+
+<h3>process.mplayer()</h3>
+
+<p><a href="#processMplayerObject">返回对象:processMplayerObject</a></p>
+
+<p><a id="process.mplayer"></a></p>
+
+<h3>process.mplayer(播放器路径,输出窗口,默认视频路径,其他启动参数,... )</h3>
+
+<p>创建播放器<br>
+参数@1 可省略，参数@2可指定窗口对象或 custom 控件对象，<br>
+其他参数可选 - 启动参数用于process.popen</p>
+
+<p><a id="processMplayerObject"></a></p>
+
+<h2>processMplayerObject 成员列表</h2>
+
+<p><a id="processMplayerObject.core"></a></p>
+
+<h3>processMplayerObject.core</h3>
+
+<p>播放器管道对象，<br>
+如果当前未打开播放器进程则返回 null，<br>
+除了检测 null 值，不应直接使用此对象，  </p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html#processPopenObject'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html#processPopenObject">返回对象:processPopenObject</a></p>
+
+<p><a id="processMplayerObject.expect"></a></p>
+
+<h3>processMplayerObject.expect</h3>
+
+<p>等待直到模式匹配成功,返回匹配结果,</p>
+
+<p><a id="processMplayerObject.expect"></a></p>
+
+<h3>processMplayerObject.expect(&quot;模式表达式&quot;,超时,文本最大长度)</h3>
+
+<p>超时参数是以毫秒为单位的估算值,可省略<br>
+参数@3可省略，默认为1024</p>
+
+<p><a id="processMplayerObject.frameStep"></a></p>
+
+<h3>processMplayerObject.frameStep()</h3>
+
+<p>播放一帧</p>
+
+<p><a id="processMplayerObject.fullscreen"></a></p>
+
+<h3>processMplayerObject.fullscreen(是否全屏)</h3>
+
+<p>设置全屏</p>
+
+<p><a id="processMplayerObject.getFullscreen"></a></p>
+
+<h3>processMplayerObject.getFullscreen()</h3>
+
+<p>当前是否全屏</p>
+
+<p><a id="processMplayerObject.getPercentPos"></a></p>
+
+<h3>processMplayerObject.getPercentPos()</h3>
+
+<p>返回播放进度<br>
+百分比</p>
+
+<p><a id="processMplayerObject.getProperty"></a></p>
+
+<h3>processMplayerObject.getProperty(&quot;字符串参数&quot;)</h3>
+
+<p>获取属性值<br>
+可选使用参数@2指定超时,默认为100毫秒,传入0表示禁用超时</p>
+
+<p><a id="processMplayerObject.getProperty"></a></p>
+
+<h3>processMplayerObject.getProperty(&quot;属性名&quot;,&quot;属性值&quot;)</h3>
+
+<p>修改属性值</p>
+
+<p><a id="processMplayerObject.getResponse"></a></p>
+
+<h3>processMplayerObject.getResponse(&quot;模式表达式&quot;)</h3>
+
+<p>获取格式输出</p>
+
+<p><a id="processMplayerObject.getTimeLength"></a></p>
+
+<h3>processMplayerObject.getTimeLength()</h3>
+
+<p>返回视频总长度</p>
+
+<p><a id="processMplayerObject.getTimePos"></a></p>
+
+<h3>processMplayerObject.getTimePos()</h3>
+
+<p>返回当前播放位置<br>
+视频播放结束返回null</p>
+
+<p><a id="processMplayerObject.getVideoResolution"></a></p>
+
+<h3>processMplayerObject.getVideoResolution()</h3>
+
+<p>返回视频分辨率<br>
+返回两个值</p>
+
+<p><a id="processMplayerObject.isPaused"></a></p>
+
+<h3>processMplayerObject.isPaused()</h3>
+
+<p>当前是否暂停状态</p>
+
+<p><a id="processMplayerObject.isPlaying"></a></p>
+
+<h3>processMplayerObject.isPlaying()</h3>
+
+<p>当前是否播放状态,<br>
+这需要发送查询指令，不必要在获取播放进度前调用这个函数，<br>
+检测播放器进程是否已创建可以简单地检测 core 属性是否为 null</p>
+
+<p><a id="processMplayerObject.keyDownEvent"></a></p>
+
+<h3>processMplayerObject.keyDownEvent(虚拟键码)</h3>
+
+<p>发送按键事件</p>
+
+<p><a id="processMplayerObject.loadfile"></a></p>
+
+<h3>processMplayerObject.loadfile</h3>
+
+<p>打开视频文件,成功返回 true，失败返回 nulll</p>
+
+<p><a id="processMplayerObject.loadfile"></a></p>
+
+<h3>processMplayerObject.loadfile(&quot;视频文件&quot;,是否添加到播放列表)</h3>
+
+<p>打开视频文件，<br>
+成功返回 true，失败返回 nulll，<br>
+不指定参数@1直接返回 null，<br>
+参数@2默认为false</p>
+
+<p><a id="processMplayerObject.pause"></a></p>
+
+<h3>processMplayerObject.pause()</h3>
+
+<p>暂停。<br>
+如果当前已暂停则取消暂停</p>
+
+<p><a id="processMplayerObject.print"></a></p>
+
+<h3>processMplayerObject.print(&quot;字符串参数&quot;)</h3>
+
+<p>写入命令，支持一个或多个参数<br>
+多个参数间添加空格,尾部添加换行</p>
+
+<p><a id="processMplayerObject.printf"></a></p>
+
+<h3>processMplayerObject.printf(&quot;字符串参数&quot;)</h3>
+
+<p>写入命令，<br>
+调用string.format函数格式化参数,尾部添加换行</p>
+
+<p><a id="processMplayerObject.quit"></a></p>
+
+<h3>processMplayerObject.quit()</h3>
+
+<p>退出</p>
+
+<p>退出</p>
+
+<p><a id="processMplayerObject.seek"></a></p>
+
+<h3>processMplayerObject.seek</h3>
+
+<p>移动到指定位置<br>
+参数为相对当前位置的值</p>
+
+<p><a id="processMplayerObject.seekPercent"></a></p>
+
+<h3>processMplayerObject.seekPercent</h3>
+
+<p>按百分比移动到指定位置</p>
+
+<p><a id="processMplayerObject.seekSecond"></a></p>
+
+<h3>processMplayerObject.seekSecond</h3>
+
+<p>移动到指定位置</p>
+
+<p><a id="processMplayerObject.setMousePos"></a></p>
+
+<h3>processMplayerObject.setMousePos(x,y)</h3>
+
+<p>发送鼠标位置，参数 x,y 为窗口坐标</p>
+
+<p><a id="processMplayerObject.stop"></a></p>
+
+<h3>processMplayerObject.stop()</h3>
+
+<p>停止播放</p>
+
+<p><a id="processMplayerObject.subAlignment"></a></p>
+
+<h3>processMplayerObject.subAlignment</h3>
+
+<p>字幕对齐<br>
+0 顶部对齐<br>
+1 居中对齐<br>
+2 底部对齐</p>
+
+<p><a id="processMplayerObject.subDelay"></a></p>
+
+<h3>processMplayerObject.subDelay</h3>
+
+<p>调整字幕偏移值</p>
+
+<p><a id="processMplayerObject.subDelay"></a></p>
+
+<h3>processMplayerObject.subDelay(偏移值,是否绝对值)</h3>
+
+<p>参数@2可省略</p>
+
+<p><a id="processMplayerObject.subLoad"></a></p>
+
+<h3>processMplayerObject.subLoad</h3>
+
+<p>添加字幕文件</p>
+
+<p><a id="processMplayerObject.subLoad"></a></p>
+
+<h3>processMplayerObject.subLoad(&quot;字幕文件&quot;)</h3>
+
+<p>添加字幕文件</p>
+
+<p><a id="processMplayerObject.volume"></a></p>
+
+<h3>processMplayerObject.volume</h3>
+
+<p>调整声音大小</p>
+
+<p><a id="processMplayerObject.volume"></a></p>
+
+<h3>processMplayerObject.volume(音量,是否绝对值)</h3>
+
+<p>参数@1为百分比<br>
+参数@2请指定为true</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/process/mplayer/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/process/mplayer/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/process/mplayer/_.md">Markdown 格式</a></p>
+
+</body> 
+</html>

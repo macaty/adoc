@@ -1,0 +1,97 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - COM 接口'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - COM 接口</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: COM 接口</h1><pre><code class="aardio language-aardio">//COM 接口
+import vc6; 
+var vc = vc6( &quot;/&quot; )  
+
+//输入 C++ 源码，自动存为 /comMain.cpp
+vc.comMain  = /****** 
+#include &lt;afxwin.h&gt; 
+#include &lt;afxdisp.h&gt;
+
+class CTestObject: public CCmdTarget
+{ 
+    DECLARE_DYNCREATE(CTestObject)
+    CTestObject(); 
+protected:
+    virtual ~CTestObject();
+    CString strName;
+public:
+    afx_msg BSTR GetName();
+    afx_msg void SetName(LPCTSTR lpszName); 
+    DECLARE_DISPATCH_MAP()
+};
+
+IMPLEMENT_DYNCREATE(CTestObject, CCmdTarget)
+CTestObject::CTestObject() {
+    EnableAutomation();
+    AfxOleLockApp(); 
+}
+CTestObject::~CTestObject() {
+    AfxOleUnlockApp();
+}
+
+BEGIN_DISPATCH_MAP(CTestObject, CCmdTarget) 
+    DISP_PROPERTY_EX(CTestObject, &quot;name&quot;, GetName, SetName, VT_BSTR) 
+END_DISPATCH_MAP()
+
+BSTR CTestObject::GetName() 
+{ 
+     return strName.AllocSysString();
+}
+
+void  CTestObject::SetName(LPCTSTR lpszName) 
+{ 
+    strName = lpszName;
+} 
+
+extern &quot;C&quot; __declspec(dllexport) LPDISPATCH __cdecl CreateIDispatchObject() {
+   LPDISPATCH pDispatch = ( new CTestObject() )-&gt;GetIDispatch(FALSE);//参数FALSE指定不要添加引用计数
+   return pDispatch;
+}
+******/ 
+
+//编译生成DLL 
+vc.exec(
+    &#39;cl comMain.cpp&#39;
+    ,&#39;/W3&#39; /*警告等级*/
+    ,&#39;/MD&#39; /*使用多线程动态运行库*/
+    ,&#39;/O2 /Ot /EHsc&#39; /*代码优化选项*/
+    ,&#39;/D &quot;WIN32&quot; /D &quot;_WINDOWS&quot; /D &quot;_MBCS&quot; /D &quot;_USRDLL&quot; /D &quot;_AFXDLL&quot; &#39; /*定义常数和宏*/
+    ,&#39;/I&quot;./INCLUDE&quot;&#39;/*指定头文件目录*/
+    ,&#39;kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib&#39; /*导入库*/
+    ,&#39;/link /SUBSYSTEM:WINDOWS /MACHINE:X86&#39; /*后面是链接参数 */
+    ,&#39;/out:test.disp.dll&#39;/*输出文件名*/
+    ,&#39;/dll&#39; /*输出DLL*/ 
+    ,&#39;/LIBPATH:&quot;.\LIB&quot; /LIBPATH:&quot;.\LIB2&quot;&#39; /*指定库目录*/
+)
+
+//加载 DLL
+var dll = raw.loadDll(&quot;/test.disp.dll&quot;,,&quot;cdecl&quot;);
+
+//创建 COM 对象，aardio 可自动支持 IDispatch 接口
+//https://www.aardio.com/zh-cn/doc/library-guide/builtin/com/com.html
+import com;
+var comObject = com.QueryObjectR( dll.CreateIDispatchObjectP() );
+
+//使用 COM 对象
+comObject.name = &quot;测试&quot;;
+console.log( comObject.name ); 
+console.pause();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/CPP/com.IDispatch.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/CPP/com.IDispatch.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Languages/CPP/com.IDispatch.md">Markdown 格式</a>
+</body> 
+</html>

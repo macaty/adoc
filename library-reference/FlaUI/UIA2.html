@@ -1,0 +1,164 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - FlaUI.UIA2 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - FlaUI.UIA2 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>FlaUI.UIA2 库模块帮助文档</h1>
+
+<p><a id="FlaUI.UIA2"></a></p>
+
+<h2>FlaUI.UIA2 成员列表</h2>
+
+<p><a id="FlaUI.UIA2.UIA2Automation"></a></p>
+
+<h3>FlaUI.UIA2.UIA2Automation</h3>
+
+<p>UIA2 自动化接口。<br>
+UIA2 老旧卡，建议使用更新更快的 FlaUI.UIA3。<br>
+注意：不要在同一进程中同时导入 FlaUI.UIA2 与 FlaUI.UIA3</p>
+
+<p><a id="FlaUI.UIA2.UIA2Automation"></a></p>
+
+<h3>FlaUI.UIA2.UIA2Automation()</h3>
+
+<p>创建 UIA2Automation 对象  </p>
+
+<p><a href="#FlaUIA2AutomationObject">返回对象:FlaUIA2AutomationObject</a></p>
+
+<p><a id="FlaUIA2AutomationObject"></a></p>
+
+<h2>FlaUIA2AutomationObject 成员列表</h2>
+
+<p><a id="FlaUIA2AutomationObject.By"></a></p>
+
+<h3>FlaUIA2AutomationObject.By()</h3>
+
+<p><a href="#FlaUICondition2Object">返回对象:FlaUICondition2Object</a></p>
+
+<p><a id="FlaUIA2AutomationObject.By"></a></p>
+
+<h3>FlaUIA2AutomationObject.By(condition)</h3>
+
+<pre><code class="aardio language-aardio">FlaUIA2AutomationObject.By(  
+    ControlType = &quot;Edit&quot;;  
+    Name = &quot;输入&quot;;/*创建节点搜索条件。  
+表参数@1 中每个键值对指定一个匹配条件，多个条件为 And 关系。  
+返回对象提供 And,Or,Not 函数，  
+And,Or 可以此函数创建的其他搜索条件对象作为参数*/  
+)
+</code></pre>
+
+<p><a id="FlaUIA2AutomationObject.ConditionFactory"></a></p>
+
+<h3>FlaUIA2AutomationObject.ConditionFactory</h3>
+
+<p>用于创建节点搜索条件</p>
+
+<p><a id="FlaUIA2AutomationObject.ConnectionTimeout"></a></p>
+
+<h3>FlaUIA2AutomationObject.ConnectionTimeout</h3>
+
+<p>连接超时，<br>
+值为 System.TimeSpan 对象。<br>
+默认值为 2 秒</p>
+
+<p><a id="FlaUIA2AutomationObject.FindWindow"></a></p>
+
+<h3>FlaUIA2AutomationObject.FindWindow</h3>
+
+<p>查找窗口对象</p>
+
+<p><a id="FlaUIA2AutomationObject.FindWindow"></a></p>
+
+<h3>FlaUIA2AutomationObject.FindWindow()</h3>
+
+<p><a href="#FlaUIElementObject">返回对象:FlaUIElementObject</a></p>
+
+<p><a id="FlaUIA2AutomationObject.FindWindow"></a></p>
+
+<h3>FlaUIA2AutomationObject.FindWindow(进程,窗口类名,标题,超时)</h3>
+
+<p>所有参数可选（至少指定一个查找条件）。<br>
+参数@1可指定 process 对象、进程ID、EXE文件名、EXE路径。<br>
+窗口类名、标题都支持模式匹配语法。<br>
+超时可选指定一个单位为毫秒的数值</p>
+
+<p><a id="FlaUIA2AutomationObject.FocusedElement"></a></p>
+
+<h3>FlaUIA2AutomationObject.FocusedElement()</h3>
+
+<p>返回输入焦点所在节点</p>
+
+<p><a id="FlaUIA2AutomationObject.FromHandle"></a></p>
+
+<h3>FlaUIA2AutomationObject.FromHandle()</h3>
+
+<p><a href="#FlaUIElementObject">返回对象:FlaUIElementObject</a></p>
+
+<p><a id="FlaUIA2AutomationObject.FromHwnd"></a></p>
+
+<h3>FlaUIA2AutomationObject.FromHwnd()</h3>
+
+<p>自参数@1指定的窗口句柄获取节点  </p>
+
+<p><a href="#FlaUIElementObject">返回对象:FlaUIElementObject</a></p>
+
+<p><a id="FlaUIA2AutomationObject.FromPoint"></a></p>
+
+<h3>FlaUIA2AutomationObject.FromPoint()</h3>
+
+<p>自参数@1指定的坐标获取节点。<br>
+参数@1 应为 System.Drawing.Point 类型</p>
+
+<p><a href="#FlaUIElementObject">返回对象:FlaUIElementObject</a></p>
+
+<p><a id="FlaUIA2AutomationObject.GetDesktop"></a></p>
+
+<h3>FlaUIA2AutomationObject.GetDesktop()</h3>
+
+<p>返回桌面窗口</p>
+
+<p><a id="FlaUIA2AutomationObject.TransactionTimeout"></a></p>
+
+<h3>FlaUIA2AutomationObject.TransactionTimeout</h3>
+
+<p>处理超时，<br>
+值为 System.TimeSpan 对象。<br>
+默认值为 2 秒</p>
+
+<p><a id="FlaUICondition2Object"></a></p>
+
+<h2>FlaUICondition2Object 成员列表</h2>
+
+<p><a id="FlaUICondition2Object.And"></a></p>
+
+<h3>FlaUICondition2Object.And()</h3>
+
+<p>逻辑与，参数 @1 可指定 By 函数返回的其他搜索条件对象</p>
+
+<p><a id="FlaUICondition2Object.Not"></a></p>
+
+<h3>FlaUICondition2Object.Not()</h3>
+
+<p>逻辑取反</p>
+
+<p><a id="FlaUICondition2Object.Or"></a></p>
+
+<h3>FlaUICondition2Object.Or()</h3>
+
+<p>逻辑或，参数 @1 可指定 By 函数返回的其他搜索条件对象</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/FlaUI/UIA2.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/FlaUI/UIA2.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/FlaUI/UIA2.md">Markdown 格式</a></p>
+
+</body> 
+</html>

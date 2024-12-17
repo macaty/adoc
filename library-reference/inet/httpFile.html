@@ -1,0 +1,174 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - inet.httpFile 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - inet.httpFile 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>inet.httpFile 库模块帮助文档</h1>
+
+<p><a id="inet"></a></p>
+
+<h2>inet 成员列表</h2>
+
+<p><a id="inet.httpFile"></a></p>
+
+<h3>inet.httpFile</h3>
+
+<p>下载文件,支持断点续传</p>
+
+<p><a id="inet.httpFile"></a></p>
+
+<h3>inet.httpFile()</h3>
+
+<p><a href="#inetFileObject">返回对象:inetFileObject</a></p>
+
+<p><a id="inet.httpFile"></a></p>
+
+<h3>inet.httpFile(URL,存储路径,配置文件路径,userAgent,proxy,...)</h3>
+
+<p>存储路径如果是目录则必须以反斜杠结尾,<br>
+存储路径如果是目录或者未指定后缀名,则尝试自动获取文件名<br>
+配置文件可指定目录,也可以是文件路径（必须指定后缀名）<br>
+如果不指定配置文件路径,则指定为存储路径 + &quot;.dow!oad&quot;<br>
+其他可选参数用于创建http对象,参考inet.http构造函数说明</p>
+
+<p><a id="inetFileObject"></a></p>
+
+<h2>inetFileObject 成员列表</h2>
+
+<p><a id="inetFileObject.bufferSize"></a></p>
+
+<h3>inetFileObject.bufferSize</h3>
+
+<p>缓冲区大小<br>
+不指定则默认为128KB</p>
+
+<p><a id="inetFileObject.close"></a></p>
+
+<h3>inetFileObject.close()</h3>
+
+<p>关闭连接</p>
+
+<p><a id="inetFileObject.complete"></a></p>
+
+<h3>inetFileObject.complete</h3>
+
+<p>是否下载完成</p>
+
+<p><a id="inetFileObject.contentLength"></a></p>
+
+<h3>inetFileObject.contentLength</h3>
+
+<p>需要下载的文件长度<br>
+如果文件长度为零,并且modified属性为false,表示不需要重新下载<br>
+download函数返回值为 true 则 contentLength 表示已下载文件总长度</p>
+
+<p><a id="inetFileObject.download"></a></p>
+
+<h3>inetFileObject.download(HTTP头,引用网址,accept,flags,postData)</h3>
+
+<p>下载文件,所有参数都是可选参数.<br>
+下载成功返回true,<br>
+文件已下载成功无需重新下载返回true,错误信息,<br>
+下载失败返回null以及错误信息<br>
+取消返回false,无错误信息  </p>
+
+<p>可通过complete属性检测本次下载文件是否成功</p>
+
+<p><a id="inetFileObject.filename"></a></p>
+
+<h3>inetFileObject.filename</h3>
+
+<p>存储文件名,<br>
+仅在存储路径为目录时有效,<br>
+可在调用download函数以前修改,<br>
+如果未指定则在调用 test 或 download 函数时自动获取</p>
+
+<p><a id="inetFileObject.isModified"></a></p>
+
+<h3>inetFileObject.isModified()</h3>
+
+<p>检测已下载的文件在服务器上是否已被修改,<br>
+ 该函数会调用 download() 进行测试(不会启动下载)</p>
+
+<p><a id="inetFileObject.modified"></a></p>
+
+<h3>inetFileObject.modified</h3>
+
+<p>文件是否己更新</p>
+
+<p><a id="inetFileObject.onReceive"></a></p>
+
+<h3>inetFileObject.onReceive</h3>
+
+<pre><code class="aardio language-aardio">inetFileObject.onReceive = function(buffer,readSize,contentLength){
+
+}
+</code></pre>
+
+<p><a id="inetFileObject.onReceiveBegin"></a></p>
+
+<h3>inetFileObject.onReceiveBegin</h3>
+
+<pre><code class="aardio language-aardio">inetFileObject.onReceiveBegin = function(statusCode,contentLength,fileSize){
+    if( statusCode == 206/*断点续传*/ ){
+
+    }
+}
+</code></pre>
+
+<p><a id="inetFileObject.path"></a></p>
+
+<h3>inetFileObject.path</h3>
+
+<p>存储路径,<br>
+可在调用download函数以前修改</p>
+
+<p><a id="inetFileObject.removeResumeFile"></a></p>
+
+<h3>inetFileObject.removeResumeFile()</h3>
+
+<p>移除断点续传配置文件</p>
+
+<p><a id="inetFileObject.resumePath"></a></p>
+
+<h3>inetFileObject.resumePath</h3>
+
+<p>续传文件路径,<br>
+可在调用download函数以前修改</p>
+
+<p><a id="inetFileObject.session"></a></p>
+
+<h3>inetFileObject.session</h3>
+
+<p>HTTP连接对象  </p>
+
+<p><a href="#inetHttpObject">返回对象:inetHttpObject</a></p>
+
+<p><a id="inetFileObject.statusCode"></a></p>
+
+<h3>inetFileObject.statusCode</h3>
+
+<p>HTTP状态码</p>
+
+<p><a id="inetFileObject.test"></a></p>
+
+<h3>inetFileObject.test(HTTP头,引用网址,accept,flags,postData)</h3>
+
+<p>检测是否已下载最新文件<br>
+已下载文件未变更返回true<br>
+需要下载或续传返回false,下载错误返回null以及错误信息</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/inet/httpFile.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/inet/httpFile.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/inet/httpFile.md">Markdown 格式</a></p>
+
+</body> 
+</html>

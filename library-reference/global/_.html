@@ -1,0 +1,1961 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - global 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - global 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>global 库模块帮助文档</h1>
+
+<p><a id="global"></a></p>
+
+<h2>global 成员列表</h2>
+
+<p>全局名字空间<br>
+global.x 等价于 ..x<br>
+.</p>
+
+<p><a id="_AARDIO_VERSION"></a></p>
+
+<h3>_AARDIO_VERSION</h3>
+
+<p>aardio 内核版本号</p>
+
+<p><a id="_ARGV"></a></p>
+
+<h3>_ARGV</h3>
+
+<p>解析后的进程启动参数表，已解析双引号、命令行参数转义符等并转换为数组,<br>
+命令行解析规则请参考标准库中 string.cmdline 的源码,  </p>
+
+<p>ARGV 既包含命令行参数数组,也包含按下列规则解析的键值对:<br>
+以斜杠或短横线开始的前导参数作为键(键名移除一个或多个相同的前导字符,区分大小写)，<br>
+如果前导参数包含等号,则以等号拆分为键值对,等号前后不应有空格,<br>
+否则检查下一参数如果没有相同的首字符则设为此键对应的值，<br>
+如果一个前导参数没有指定值,则默认值为空字符串（逻辑值为true）  </p>
+
+<p>_ARGV仅在发布后的进程启动线程中存在,开发环境中 _ARGV 为空表。<br>
+非主线程请改用 thread.cmdline</p>
+
+<p><a id="_CMDLINE"></a></p>
+
+<h3>_CMDLINE</h3>
+
+<p>命令行参数的原始文本<br>
+也可以使用 _ARGV 获取解析后的命令行参数<br>
+_CMDLINE 仅在启动线程中存在,一般用于main.aardio,开发环境中为null<br>
+可使用#操作符检测参数是否为空</p>
+
+<p><a id="_HAPPICON"></a></p>
+
+<h3>_HAPPICON</h3>
+
+<p>应用程序图标句柄，可在工程属性中自定义该图标，<br>
+图标在不再使用时会自动释放,不要手动释放该图标<br>
+_HAPPICON仅在启动线程中存在</p>
+
+<p><a id="_HINSTANSE"></a></p>
+
+<h3>_HINSTANSE</h3>
+
+<p>当前应用程序的实例句柄</p>
+
+<p><a id="_IMPORTURL"></a></p>
+
+<h3>_IMPORTURL</h3>
+
+<p>用于注册远程扩展库安装网址的表,<br>
+可添加新的键值，键为库名称，值为库安装文件网址,<br>
+网址可指定 *.tar.lzma 格式安装包或 *.aardio 格式库文件&quot;<br>
+必须写在引用扩展库的语句之前</p>
+
+<p><a id="_INVALID_HANDLE_VALUE"></a></p>
+
+<h3>_INVALID_HANDLE_VALUE</h3>
+
+<p>topointer(-1)<br>
+表示无效句柄</p>
+
+<p><a id="_STUDIO_INVOKED"></a></p>
+
+<h3>_STUDIO_INVOKED</h3>
+
+<p>判断是否在aardio开发环境中运行aardio程序,<br>
+如果在IDE开发环境中运行,该值是一个描述运行模式的字符串,否则为null,<br>
+其值为&quot;thread&quot;时作为嵌入IDE的线程模式运行，值为&quot;process&quot;时是以独立的进程模式运行<br>
+在IDE开发环境中,aardio程序的启动代码首个import的库为ide时即以线程模式运行<br>
+以独立进程模式调试有更好的稳定性</p>
+
+<p><a id="_WIN10_LATER"></a></p>
+
+<h3>_WIN10_LATER</h3>
+
+<p>当前系统是否为WIN10/Win2016或之后的版本</p>
+
+<p><a id="_WIN7_LATER"></a></p>
+
+<h3>_WIN7_LATER</h3>
+
+<p>当前系统是否为WIN7/Win2008 R2或之后的版本</p>
+
+<p><a id="_WINE"></a></p>
+
+<h3>_WINE</h3>
+
+<p>如果程序在 Linux(Wine、CrossOver) 环境下运行此常量包含wine版本号<br>
+否则为null</p>
+
+<p><a id="_WINXP"></a></p>
+
+<h3>_WINXP</h3>
+
+<p>当前系统是否为WINXP或Win2003<br>
+否则为Vista/WIN2008或以后的版本</p>
+
+<p><a id="_WIN_64"></a></p>
+
+<h3>_WIN_64</h3>
+
+<p>_WIN_64 = 当前系统是否为64位</p>
+
+<p><a id="_WIN_VER_BUILD"></a></p>
+
+<h3>_WIN_VER_BUILD</h3>
+
+<p>Windows 构建版本号<br>
+Windows10 构建版本号与发行版本号的对应关系请参考 win.versionEx</p>
+
+<p><a id="_WIN_VER_MAJOR"></a></p>
+
+<h3>_WIN_VER_MAJOR</h3>
+
+<p>Windows 主版本号</p>
+
+<p><a id="_WIN_VER_MINOR"></a></p>
+
+<h3>_WIN_VER_MINOR</h3>
+
+<p>Windows 副版本号</p>
+
+<p><a id="_struct_aligned"></a></p>
+
+<h3>_struct_aligned</h3>
+
+<p>用于结构体中自定义对齐<br>
+指定为1按按照实际字节数对齐</p>
+
+<p><a id="assert()"></a></p>
+
+<h3>assert()</h3>
+
+<p>断言函数<br>
+第一个参数为真则返回此参数<br>
+否则将第二个参数作为异常抛出</p>
+
+<p><a id="assert2(2,)"></a></p>
+
+<h3>assert2(2,)</h3>
+
+<p>断言函数<br>
+参数 @2 为真则返回其他值,否则抛出异常<br>
+参数 @1 指定抛出异常的调用级别,2 为调用者,1 为当前代码</p>
+
+<p><a id="assertf()"></a></p>
+
+<h3>assertf()</h3>
+
+<p>反断言函数<br>
+第一个参数为假则返回第二个参数)<br>
+否则将第二个参数作为异常抛出</p>
+
+<p><a id="beforeSystemEndSesssion"></a></p>
+
+<h3>beforeSystemEndSesssion</h3>
+
+<pre><code class="aardio language-aardio">..subscribe(&quot;beforeSystemEndSesssion&quot;,function(){  
+    /*即将关机执行此回调，不可执行耗时操作*/  
+} );
+</code></pre>
+
+<p><a id="beforeUnload"></a></p>
+
+<h3>beforeUnload</h3>
+
+<pre><code class="aardio language-aardio">..subscribe(&quot;beforeUnload&quot;,function(){  
+    /*进程的启动线程退出前执行此回调非。  
+启动线程可用 table.gc 注册析构函数。*/  
+} );
+</code></pre>
+
+<p><a id="call(函数,owner,其他调用参数...)"></a></p>
+
+<h3>call(函数,owner,其他调用参数...)</h3>
+
+<p>调用函数,可自定义owner对象,<br>
+参数@1可以是类、函数等可调用的对象,<br>
+即使是不可调用类型或者null值也不会抛出异常,<br>
+可以有任意个其他调用参数  </p>
+
+<p>成功首个返回值true,其他返回值为被调用函数返回值,<br>
+失败返回 false,错误信息</p>
+
+<p><a id="callex(错误处理函数,调用函数,owner,其他参数)"></a></p>
+
+<h3>callex(错误处理函数,调用函数,owner,其他参数)</h3>
+
+<p>调用函数,可自定义owner对象,<br>
+不指定错误处理函数时调用默认错误处理函数,可触发global.onError,<br>
+返回值一表示调用是否成功,其他返回值为函数返回值<br>
+失败返回false,错误信息</p>
+
+<p><a id="collectgarbage(."collect")"></a></p>
+
+<h3>collectgarbage(.&quot;collect&quot;)</h3>
+
+<p>运行完整的垃圾回收</p>
+
+<p><a id="collectgarbage(."count")"></a></p>
+
+<h3>collectgarbage(.&quot;count&quot;)</h3>
+
+<p>查询内存占用(Kb)</p>
+
+<p><a id="collectgarbage(."restart")"></a></p>
+
+<h3>collectgarbage(.&quot;restart&quot;)</h3>
+
+<p>重启垃圾收集器</p>
+
+<p><a id="collectgarbage(."setpause")"></a></p>
+
+<h3>collectgarbage(.&quot;setpause&quot;)</h3>
+
+<p>垃圾收集暂停时间值<br>
+第二参数除以100代表内存回收前要等多久，<br>
+默认值为200，指定内存达到上一个周期结束时的两倍时进入下一个周期，<br>
+函数返回原来的设置值</p>
+
+<p><a id="collectgarbage(."setstepmul")"></a></p>
+
+<h3>collectgarbage(.&quot;setstepmul&quot;)</h3>
+
+<p>设置垃圾收集器步长倍增器的值<br>
+第二参数除以100代表单步的速度，<br>
+默认值为200，也即内存分配速度的两倍<br>
+函数返回原来的设置值</p>
+
+<p><a id="collectgarbage(."step",1)"></a></p>
+
+<h3>collectgarbage(.&quot;step&quot;,1)</h3>
+
+<p>进行一次垃圾回收迭代,<br>
+参数2越大，执行的次数越多，执行时间越久,<br>
+如果已经是最后一次迭代返回true</p>
+
+<p><a id="collectgarbage(."stop")"></a></p>
+
+<h3>collectgarbage(.&quot;stop&quot;)</h3>
+
+<p>禁用垃圾收集器</p>
+
+<p><a id="dumpcode()"></a></p>
+
+<h3>dumpcode()</h3>
+
+<p>将函数输出为字节码,<br>
+参数一可以是aardio代码，aardio源文件路径，或函数对象,<br>
+可选用参数@2自定义代码块名称<br>
+可选用参数@3指定是否移除调试信息</p>
+
+<p><a id="error"></a></p>
+
+<h3>error</h3>
+
+<p>抛出一个异常。  </p>
+
+<p>如果库函数报错，也可以临时增加代码检查异常参数，<br>
+并使用 error 函数向指定的调用级别抛出异常，以辅助定位错误的调用代码  </p>
+
+<p>禁止在 catch 语句内部调用 error 函数（ global.onError 更方便 ）  </p>
+
+<p>如果发布程序禁用调试信息则 error 输出的信息会被精简。<br>
+而 errput 输出的错误信息会被保留（调用栈信息仍会被精简）</p>
+
+<p><a id="error(错误信息,调用级别)"></a></p>
+
+<h3>error(错误信息,调用级别)</h3>
+
+<p>抛出一个异常。  </p>
+
+<p>可选用参数 @2 指定抛出异常的调用级别，<br>
+1 为自身，2 为上层调用者，依次上推……  </p>
+
+<p>如果库函数报错，也可以临时增加代码检查异常参数，<br>
+并使用 error 函数向指定的调用级别抛出异常，以辅助定位错误的调用代码</p>
+
+<p><a id="errput"></a></p>
+
+<h3>errput</h3>
+
+<p>输出错误信息，但不会抛出异常。</p>
+
+<p><a id="errput(错误信息,错误标题)"></a></p>
+
+<h3>errput(错误信息,错误标题)</h3>
+
+<p>输出错误信息。<br>
+如果参数@1为空则忽略不执行任何操作，参数 @2 可省略。<br>
+此函数会首先触发默认错误处理程序，<br>
+如果错误处理程序或 onError 返回 null 则不输出错误信息。  </p>
+
+<p>error 函数会中断执行并抛出异常，直到异常被捕获。<br>
+errput 则不会抛出异常，错误信息输出以后程序会继续向后执行。  </p>
+
+<p>如果发布程序禁用调试信息则 error 输出的信息会被精简。<br>
+而 errput 输出的错误信息会被保留（调用栈信息仍会被精简）</p>
+
+<p><a id="eval("字符串参数")"></a></p>
+
+<h3>eval(&quot;字符串参数&quot;)</h3>
+
+<p>将字符串转换为代码执行,并返回一个或多个值<br>
+失败抛出异常<br>
+注意，如果是开发网站或服务端，<br>
+应避免用户提交的字符串可以在eval中执行,<br>
+服务端到客户端传输数据时不应使用eval实现序列化<br>
+因为eval可以执行任意的代码<br>
+服务端到客户端间序列化数据，应当改用普通的数据解析器,例如json</p>
+
+<p><a id="execute("字符串参数")"></a></p>
+
+<h3>execute(&quot;字符串参数&quot;)</h3>
+
+<p>调用系统命令行,成功返回 0，此函数会打开命令行窗口。<br>
+以下库或函数提供类似且更强大的功能：<br>
+raw.execute,<br>
+process,<br>
+process.execute,<br>
+process.popen,<br>
+process.popen.cmd 专用于启动命令行,<br>
+process.popen.cmd64 专用于启动 64 位命令行,<br>
+process.popen.ps,<br>
+process.wow64.execute 专用于启动 64 位程序,<br>
+console.pause</p>
+
+<p><a id="gcdata(元表)"></a></p>
+
+<h3>gcdata(元表)</h3>
+
+<pre><code class="aardio language-aardio">..gcdata(    
+    _topointer =  /*pointer指针*/   
+    _gc = function(){  
+
+    }   
+)
+</code></pre>
+
+<p><a id="invoke(调用函数,owner,其他调用参数...)"></a></p>
+
+<h3>invoke(调用函数,owner,其他调用参数...)</h3>
+
+<p>调用函数,可自定义被调用函数的owner参数,<br>
+返回值为函数返回值,失败则直接抛出异常<br>
+可添加任意个数的调用参数  </p>
+
+<p>这个函数的参数用法与 call 函数完全相同，<br>
+但 invoke 只有修改 owner 的作用，不会捕获异常，<br>
+也不会改变函数的返回值</p>
+
+<p><a id="lambda"></a></p>
+
+<h3>lambda</h3>
+
+<pre><code class="aardio language-aardio">lambda(/*lambda定义一个匿名函数，  
+用于接收输入参数并返回一个表达式，  
+不能使用表达式以外的其他语句或语句块，  
+不能返回多个值*/)
+</code></pre>
+
+<p><a id="lambdaλ"></a></p>
+
+<h3>lambdaλ</h3>
+
+<pre><code class="aardio language-aardio">λ(/*lambda定义一个匿名函数，  
+用于接收输入参数并返回一个表达式，  
+不能使用表达式以外的其他语句或语句块，  
+不能返回多个值*/)
+</code></pre>
+
+<p><a id="lasterr(err)"></a></p>
+
+<h3>lasterr(err)</h3>
+
+<p>返回WINAPI或COM API的最后一次错误信息,第二个返回值为错误码<br>
+无错误则返回null空值,<br>
+可选使用参数 @err 自定义错误代码</p>
+
+<p><a id="loadcode()"></a></p>
+
+<h3>loadcode()</h3>
+
+<p>编译aardio代码并返回函数对象,失败返回null以及错误信息,<br>
+参数可以是aardio文件,或者aardio代码,或者指定的loader函数<br>
+可选使用参数@2自定义代码块名称  </p>
+
+<p>注意使用相对路径时的参考目录必须是应用程序根目录,并以斜杠作为路径首字符<br>
+参数不应使用参考当前目录的路径,因为当前目录是可变的,<br>
+可自工程中拖动文件到代码中生成正确路径</p>
+
+<p><a id="loadcodex"></a></p>
+
+<h3>loadcodex</h3>
+
+<p>加载并运行aardio文件或代码<br>
+注意使用相对路径时的参考目录必须是应用程序根目录,并以斜杠作为路径首字符<br>
+参数不应使用参考当前目录的路径,因为当前目录是可变的,<br>
+可自工程中拖动文件到代码中生成正确路径</p>
+
+<p><a id="loadcodex(aardio代码,...)"></a></p>
+
+<h3>loadcodex(aardio代码,...)</h3>
+
+<p>加载并运行aardio文件或代码,可指定多个调用参数,<br>
+被调用文件可在开始处使用 ... 操作接收多个参数<br>
+返回值为被调用文件的返回值</p>
+
+<p><a id="loadcodex(函数,...)"></a></p>
+
+<h3>loadcodex(函数,...)</h3>
+
+<p>运行函数,可指定多个调用参数<br>
+返回值为被调用函数的返回值</p>
+
+<p><a id="messageGet(msg)"></a></p>
+
+<h3>messageGet(msg)</h3>
+
+<p>等待并获取窗口消息,<br>
+msg参数可以是MSG结构体，也可以是一个空表用于接收新的MSG结构体,也可以省略<br>
+成功返回已填充消息的MSG结构体（如果指定了msg参数则该参数就是此返回值),<br>
+失败返回false,程序退出返回null</p>
+
+<p><a id="messagePeek(msg,窗口句柄,最小消息,最大消息,选项)"></a></p>
+
+<h3>messagePeek(msg,窗口句柄,最小消息,最大消息,选项)</h3>
+
+<p>检查并获取窗口消息,<br>
+msg参数可以是MSG结构体，也可以是一个空表用于接收新的MSG结构体,也可以省略<br>
+成功返回已填充消息的MSG结构体（如果指定了msg参数则该参数就是此返回值),<br>
+无消息返回false,程序退出返回null  </p>
+
+<p>所有参数都是可选参数<br>
+选项不指定则默认为 _PM_REMOVE 表示自消息队列移除该消息<br>
+其他选项请参考同名WINAPI的说明</p>
+
+<p><a id="messageTranslateDispatch(msg)"></a></p>
+
+<h3>messageTranslateDispatch(msg)</h3>
+
+<p>分发处理窗口消息,<br>
+参数为消息对象.</p>
+
+<p><a id="namespace"></a></p>
+
+<h3>namespace</h3>
+
+<pre><code class="aardio language-aardio">namespace /*指定名字空间路径，打开存在的名字空间或创建新名字空间。  
+namespace 语句不会触发名字空间的元方法（with 语句则相反）。  
+注意 .NET 名字空间依赖元方法自动导入下级名字空间。  
+
+名字空间作用域为当前函数体（以及内部函数），单个代码文件属于匿名函数。  
+namespace 语句块必须执行完成（没有中途跳出）才能恢复原名字空间。  
+如果当前文件不需要恢复名字空间，可省略后面的语句块。*/{  
+    //在名空空间内应使用 .. 操作符访问外部全局名字空间下面的对象  
+
+}
+</code></pre>
+
+<p><a id="onError(错误信息,是否已退出退用栈)"></a></p>
+
+<h3>onError(错误信息,是否已退出退用栈)</h3>
+
+<pre><code class="aardio language-aardio">//此函数应在主线程中定义并自动注册到子线程，应遵守线程函数规则  
+global.onError = function( err,over ){   
+    if(!over){  
+        import debug;  
+        var stack = debug.traceback(,&quot;调用栈&quot;,3);  
+    }  
+
+    if( _STUDIO_INVOKED ) return err;/*IDE中返回错误信息以继续显示*/   
+}
+</code></pre>
+
+<p><a id="print"></a></p>
+
+<h3>print</h3>
+
+<p>aardio 代码在解析模板语法时，将自动调用此函数输出数据。<br>
+在不同类型的应用中，print 可能指向不同的输出函数。<br>
+例如在 HTTP 服务端中 print 将自动指向 response.write 函数。<br>
+而在调用 string.loadcode 时 print 将临时指向拼接字符串的代码。  </p>
+
+<p>用户不应随意改动 print 函数的指向，应交由负责模板输出的库或框架自动管理,<br>
+也不应将 print 赋值到其他变量后再进行调用，因为 print 函数随时可能被改变指向。<br>
+用户应当调用确定的 response.write，console.log 等函数而不是可变的 print 函数。  </p>
+
+<p>在未调用重写 print 函数的库或函数的默认情况下：<br>
+如果在开发环境中且首次调用模板或 print 输出的是 HTML 代码，则创建网页控件并显示 HTML，<br>
+否则 print 函数将默认调用 io.print 函数向控制台窗口输出内容。<br>
+print 在默认调用 io.print 前会自动打开控制台，之后在退出非界面线程前会暂停控制台。</p>
+
+<p><a id="print(...)"></a></p>
+
+<h3>print(...)</h3>
+
+<p>aardio 代码在解析模板语法时，将自动调用此函数输出数据。<br>
+支持多个不定参数，每个参数都会自动调用 tostring 转换为字符串。<br>
+此函数可能实际指向不同的输出函数。</p>
+
+<p><a id="publish("字符串参数",)"></a></p>
+
+<h3>publish(&quot;字符串参数&quot;,)</h3>
+
+<p>在当前线程内发布消息,<br>
+运行当前线程所有所有通过调用 subscribe 函数订阅此消息的函数,<br>
+可添加任意个触发参数</p>
+
+<p><a id="reduce(数组,回调函数,初始值)"></a></p>
+
+<h3>reduce(数组,回调函数,初始值)</h3>
+
+<pre><code class="aardio language-aardio">reduce(/*从左到右遍历数组中的值并应用回调函数归约运算为单个值。  
+prev 参数数为上次调用返回的值或初始值。  
+无初始值则取首个成员值为初始值，并自第2个成员开始遍历。  
+next 参数为下一个成员值，index 参数为下一个成员索引。  
+arr 参数为正在遍历的数组，arr 与 owner 参数指向同一对象。*/,function(prev,next,index,arr){  
+    return prev + next  
+})
+</code></pre>
+
+<p><a id="rget(函数或起始位置,)"></a></p>
+
+<h3>rget(函数或起始位置,)</h3>
+
+<p>参数@2通常使用一个函数调用并可能返回多个值,<br>
+参数@1指定截取返回值的起始位置,可使用负数表示尾部倒计数</p>
+
+<p><a id="setlocale(."all")"></a></p>
+
+<h3>setlocale(.&quot;all&quot;)</h3>
+
+<p>返回当前区域设置</p>
+
+<p><a id="setlocale(."all","chs")"></a></p>
+
+<h3>setlocale(.&quot;all&quot;,&quot;chs&quot;)</h3>
+
+<p>简体中文语言区域设置<br>
+返回区域设置全称</p>
+
+<p><a id="setlocale(."all","enu")"></a></p>
+
+<h3>setlocale(.&quot;all&quot;,&quot;enu&quot;)</h3>
+
+<p>英文语言区域设置<br>
+返回区域设置全称</p>
+
+<p><a id="setlocale(."all","字符串参数")"></a></p>
+
+<h3>setlocale(.&quot;all&quot;,&quot;字符串参数&quot;)</h3>
+
+<p>修改当前区域设置为默认设置<br>
+返回区域设置全称</p>
+
+<p><a id="setlocale(."collate","字符串参数")"></a></p>
+
+<h3>setlocale(.&quot;collate&quot;,&quot;字符串参数&quot;)</h3>
+
+<p>设置 string.collate 函数比较文本时使用的本地化区域,<br>
+返回区域设置全称,仅获取设置可省略参数 @2</p>
+
+<p><a id="setlocale(."ctype","字符串参数" )"></a></p>
+
+<h3>setlocale(.&quot;ctype&quot;,&quot;字符串参数&quot; )</h3>
+
+<p>设置当前程序字符类别及转换使用的本地化区域,<br>
+返回区域设置全称,仅获取设置可省略参数 @2</p>
+
+<p><a id="setlocale(."monetary","字符串参数" )"></a></p>
+
+<h3>setlocale(.&quot;monetary&quot;,&quot;字符串参数&quot; )</h3>
+
+<p>设置当前程序金融货币使用的本地化区域,<br>
+返回区域设置全称,仅获取设置可省略参数 @2</p>
+
+<p><a id="setlocale(."numeric","字符串参数" )"></a></p>
+
+<h3>setlocale(.&quot;numeric&quot;,&quot;字符串参数&quot; )</h3>
+
+<p>设置当前程序使用的数值本地化区域，影响默认小数点，<br>
+主要影响的是 tonumber 与 tostring 等数值与文本转换函数，<br>
+不会影响 aardio 语法解析中的小数点（总是句点）。  </p>
+
+<p>汉语和多数英语环境小数点默认为句点,多数欧洲国家小数点默认为逗号,<br>
+返回区域设置全称,仅获取设置可省略参数 @2</p>
+
+<p><a id="setlocale(."time","chs")"></a></p>
+
+<h3>setlocale(.&quot;time&quot;,&quot;chs&quot;)</h3>
+
+<p>设置时间日期格式使用简体中文语言区域区域,<br>
+返回区域设置全称,仅获取设置可省略参数 @2</p>
+
+<p><a id="setlocale(."time","enu")"></a></p>
+
+<h3>setlocale(.&quot;time&quot;,&quot;enu&quot;)</h3>
+
+<p>设置时间日期格式使用英文语言区域,<br>
+返回区域设置全称</p>
+
+<p><a id="setlocale(."time","字符串参数" )"></a></p>
+
+<h3>setlocale(.&quot;time&quot;,&quot;字符串参数&quot; )</h3>
+
+<p>设置当前程序时间日期格式使用的本地化区域,<br>
+返回区域设置全称,仅获取设置可省略参数 @2</p>
+
+<p><a id="setprivilege('SeDebugPrivilege',true)"></a></p>
+
+<h3>setprivilege(&#39;SeDebugPrivilege&#39;,true)</h3>
+
+<p>设置指定进程权限<br>
+成功返回true,失败返回false</p>
+
+<p><a id="sleep(毫秒)"></a></p>
+
+<h3>sleep(毫秒)</h3>
+
+<p>延时（CPU 休眠.）<br>
+此函数返回值总是为 true。<br>
+提升 sleep 函数计时精度请使用 time.period 或改用 time.performance.delay。  </p>
+
+<p>sleep 函数会卡界面并影响其他依赖消息处理的功能。<br>
+界面线程请改用 thread.delay 函数。<br>
+界面线程请改用 thread.delay 函数。<br>
+界面线程请改用 thread.delay 函数。</p>
+
+<p><a id="subscribe()"></a></p>
+
+<h3>subscribe()</h3>
+
+<p><a href="#SubscriberObject">返回对象:SubscriberObject</a></p>
+
+<p><a id="subscribe(订阅消息名,触发函数,是否前置)"></a></p>
+
+<h3>subscribe(订阅消息名,触发函数,是否前置)</h3>
+
+<pre><code class="aardio language-aardio">subscribe(&quot;/*要订阅的消息名称, 请使用 publish 函数触发此消息。  
+调用 subscribe 函数返回对象的 remove 成员函数可撤消本次订阅。  
+在订阅触发函数中返回 false 也可以撤消所属订阅。  
+
+如果在触发函数中可能使用已关闭的窗口对象，  
+应当先检查窗口的 valid 属性判断窗口是否有效。  
+对于这类窗口改用 thread.command 更合适*/&quot;,function(...){  
+
+} )
+</code></pre>
+
+<p><a id="tonumber"></a></p>
+
+<h3>tonumber</h3>
+
+<p>转换参数并返回数值,不修改输入参数,失败返回 null<br>
+转换成功会返回多个值，将返回值放入圆括号可转换为单个值。  </p>
+
+<p>在数值运算，以及 math 函数库除有特别说明以外都支持字符串参数自动转数值。<br>
+其他函数的数值参数如用于上述数值运算，同样支持字符串自动转数值。<br>
+原生 API 函数，COM 函数则应当明确区分字符串与数值</p>
+
+<p><a id="tonumber(值)"></a></p>
+
+<h3>tonumber(值)</h3>
+
+<p>转换参数并返回数值,<br>
+如果参数@1是指针类型变量转换为内存地址,<br>
+如果参数@1是布尔值,false转为0,true转为1<br>
+如果参数是字符串或buffer类型,转换成功返回数值以及转换的字符串长度,<br>
+其他对象尝试调用_tonumber元方法转换为数值<br>
+转换失败返回null</p>
+
+<p><a id="tonumber(字符串,进制,开始位置,默认小数点)"></a></p>
+
+<h3>tonumber(字符串,进制,开始位置,默认小数点)</h3>
+
+<p>强制转换字符串为数值类型,自动识别进制,<br>
+忽略首尾空白字符,空白字符串返回 null,<br>
+注意空白字符串在算式或等式中会自动转换为 0 而不是 null,  </p>
+
+<p>参数@1可以是字符串或buffer类型,<br>
+可选用参数@2指定进制，可选用参数@3指定开始位置<br>
+参数@4可选用表示字节码的数值自定义小数点，<br>
+不指定使用当前区域默认小数点：<br>
+汉语和多数英语环境小数点默认为句点,多数欧洲国家小数点默认为逗号,<br>
+可调用 setlocale(&quot;numeric&quot;) 修改默认区域,<br>
+请注意:即使指定了小数点,区域默认小数点仍然是有效的。  </p>
+
+<p>转换成功返回数值,以及转换为数值的字符串长度<br>
+转换失败返回null</p>
+
+<p><a id="topointer"></a></p>
+
+<h3>topointer</h3>
+
+<p>转换参数并返回指针,不修改输入参数</p>
+
+<p><a id="topointer(内存地址)"></a></p>
+
+<h3>topointer(内存地址)</h3>
+
+<p>转换数值参数并返回指针，不修改输入参数。<br>
+参数 @1 为 0 或 null 时返回 null，忽略其他参数。<br>
+topointer(0) 是多余无意义的写法，请直接写 null 。  </p>
+
+<p>此函数仅作类型转换,不能提取对象内部指针<br>
+提取指针应使用raw.toPointer函数</p>
+
+<p><a id="topointer(指针,偏移值)"></a></p>
+
+<h3>topointer(指针,偏移值)</h3>
+
+<p>指针必须是 pointer 类型指针, 参数@1 为 null 时返回 null 。<br>
+偏移值以字节为单位，可以为负数。  </p>
+
+<p>此函数仅作类型转换，不能提取对象内部指针。<br>
+提取指针应使用 raw.toPointer函数</p>
+
+<p><a id="tostring"></a></p>
+
+<h3>tostring</h3>
+
+<p>转换参数@1指定的值为字符串类型,不修改输入参数,</p>
+
+<p><a id="tostring(number,radix,decPoint)"></a></p>
+
+<h3>tostring(number,radix,decPoint)</h3>
+
+<p>转换 @number 指定的数值为字符串。<br>
+可选用参数@2指定进制,指定16进制添加0x前缀,其他进制无前缀。  </p>
+
+<p>参数 @decPoint 可选用表示字节码的数值指定小数点，<br>
+不指定则使用当前区域默认小数点:<br>
+汉语和多数英语环境使用句点,多数欧洲国家使用逗号。<br>
+可调用 setlocale(&quot;numeric&quot;) 修改区域以改变默认小数点</p>
+
+<p><a id="tostring(time,format,locale)"></a></p>
+
+<h3>tostring(time,format,locale)</h3>
+
+<p>转换 @time 指定的时间对象为字符串。<br>
+可选用 @format 自定义时间格式化串，参数 time 对象文档，<br>
+可选用 @locale 指定格式化区域，用法与 setlocale 参数@2相同,<br>
+例如简体中文为 &quot;chs&quot; 英语为 &quot;enu&quot;</p>
+
+<p><a id="tostring(value,...)"></a></p>
+
+<h3>tostring(value,...)</h3>
+
+<p>转换参数@1指定的值为字符串类型,不修改输入参数。  </p>
+
+<p>如果对象指定了 _tostring 元方法则调用该元方法返回值,<br>
+tostring 第二个参数开始会传递为 _tostring 元方法的参数</p>
+
+<p><a id="with"></a></p>
+
+<h3>with</h3>
+
+<pre><code class="aardio language-aardio">with /*请指定要设为当前名字空间的表达式。  
+with语句将对象临时绑定到当前名字空间，执行结束释放绑定。  
+名字空间作用域为当前函数体（以及内部函数），单个代码文件属于匿名函数。  
+with 语句必须执行完成（没有中途跳出）才能恢复当前函数名字空间。*/{  
+    //在名空空间内应使用 .. 操作符访问外部全局名字空间下面的对象  
+
+}
+</code></pre>
+
+<p><a id="::Kernel32"></a></p>
+
+<h2>::Kernel32 成员列表</h2>
+
+<p><a id="::Kernel32.?"></a></p>
+
+<h3>::Kernel32.?</h3>
+
+<p>可不用声明直接在此输入函数名并调用API函数  </p>
+
+<p>一、传入参数规则：<br>
+1、null参数不可省略<br>
+2、32位整数类型，小于32位的整数、以及枚举类型都可以直接在API参数中写数值。<br>
+3、对于任何数值类型的指针（输出参数）一律使用结构体表示，例如double * v 表示为{ double v }<br>
+4、数组使用结构体表示<br>
+5、所有结构体传给API的都是指针地址，都是输出参数并增加返回值  </p>
+
+<p>二、返回值规则：<br>
+1、返回值默认为int类型,可用 &gt;&gt;&gt; 0 强制转为无符号数,<br>
+2、可以使用[API尾标]改变返回值为其他类型  </p>
+
+<p>三、所有可用的【API尾标】:<br>
+::Kernel32.ApiNameW() 切换到Unicode版本，字符串UTF8-UTF16双向转换<br>
+::Kernel32.ApiNameA() 切换到ANSI版本,字符串不作任何转换<br>
+::Kernel32.ApiNameL() 返回值为64位LONG类型<br>
+::Kernel32.ApiNameP() 返回值为指针类型<br>
+::Kernel32.ApiNameD() 返回值为double浮点数<br>
+::Kernel32.ApiNameF() 返回值为float浮点数<br>
+::Kernel32.ApiNameB() 返回值为C++中的8位bool类型<br>
+注意【尾标】前必须是小写字母</p>
+
+<p><a id="::Kernel32.GetACP"></a></p>
+
+<h3>::Kernel32.GetACP()</h3>
+
+<p>返回当前ANSI代码页</p>
+
+<p><a id="::Kernel32.GetFileAttributes"></a></p>
+
+<h3>::Kernel32.GetFileAttributes()</h3>
+
+<p>获取参数 @1 指定路径的文件属性，文件不存在返回 -1。<br>
+参数 @1 应当使用 io.fullpath 转换为完整路径。  </p>
+
+<p>文件属性使用 <em>FILE_ATTRIBUTE</em> 前缀的常量表示。<br>
+使用 fsys.attrib 函数获取或修改文件属性更方便。</p>
+
+<p><a id="::Kernel32.GetSystemDefaultLCID"></a></p>
+
+<h3>::Kernel32.GetSystemDefaultLCID()</h3>
+
+<p>返回系统默认区域 ID</p>
+
+<p><a id="::Kernel32.GetThreadId"></a></p>
+
+<h3>::Kernel32.GetThreadId(线程句柄)</h3>
+
+<p>将参数 @1 指定的线程句柄转换为线程 ID 。<br>
+使用 thread.open 函数可将线程 ID 转为线程句柄。</p>
+
+<p><a id="::Kernel32.GetUserDefaultLangID"></a></p>
+
+<h3>::Kernel32.GetUserDefaultLangID()</h3>
+
+<p>返回当前用户使用的默认区域语言 ID，<br>
+这与系统设置：区域语言 / 格式 一致。<br>
+可使用 sys.locale.setUserDefault 函数修改此设置</p>
+
+<p><a id="::Kernel32.LocalFree"></a></p>
+
+<h3>::Kernel32.LocalFree(hMem)</h3>
+
+<p>一些API返回的内存句柄需要使用此函数释放，<br>
+@hMem参数指定内存句柄</p>
+
+<p><a id="::Kernel32.RtlMoveMemory"></a></p>
+
+<h3>::Kernel32.RtlMoveMemory(目标内存地址,源数据,源数据长度)</h3>
+
+<p>复制内存<br>
+此函数支持所有API兼容指针类型参数，直接操作内存请小心使用</p>
+
+<p>源数据可以是字符串、内存指针、或结构体</p>
+
+<p><a id="::Kernel32.SetDllDirectory"></a></p>
+
+<h3>::Kernel32.SetDllDirectory(&quot;DLL搜索目录&quot;)</h3>
+
+<p>设置加载DLL的默认目录</p>
+
+<p><a id="::Kernel32.SetDllDirectory"></a></p>
+
+<h3>::Kernel32.SetDllDirectory(null)</h3>
+
+<p>恢复DLL默认搜索目录</p>
+
+<p><a id="::Kernel32.SetErrorMode"></a></p>
+
+<h3>::Kernel32.SetErrorMode(0)</h3>
+
+<p>显示所有系统错误对话框</p>
+
+<p><a id="::Kernel32.api("字符串参数","void"></a></p>
+
+<h3>::Kernel32.api(&quot;字符串参数&quot;,&quot;void()&quot; )</h3>
+
+<p>声明Kernel32 API函数</p>
+
+<p><a id="::Kernel32.gethandle"></a></p>
+
+<h3>::Kernel32.gethandle()</h3>
+
+<p>返回句柄</p>
+
+<p><a id="::Shell32"></a></p>
+
+<h2>::Shell32 成员列表</h2>
+
+<p><a id="::Shell32.?"></a></p>
+
+<h3>::Shell32.?</h3>
+
+<p>可不用声明直接在此输入函数名并调用API函数  </p>
+
+<p>一、传入参数规则：<br>
+1、null参数不可省略<br>
+2、32位整数类型，小于32位的整数、以及枚举类型都可以直接在API参数中写数值。<br>
+3、对于任何数值类型的指针（输出参数）一律使用结构体表示，例如double * v 表示为{ double v }<br>
+4、数组使用结构体表示<br>
+5、所有结构体传给API的都是指针地址，都是输出参数并增加返回值  </p>
+
+<p>二、返回值规则：<br>
+1、返回值默认为int类型<br>
+2、可以使用[API尾标]改变返回值为其他类型  </p>
+
+<p>三、所有可用的【API尾标】:<br>
+::Shell32.ApiNameW() 切换到Unicode版本，字符串UTF8-UTF16双向转换<br>
+::Shell32.ApiNameA() 切换到ANSI版本,字符串不作任何转换<br>
+::Shell32.ApiNameL() 返回值为64位LONG类型<br>
+::Shell32.ApiNameP() 返回值为指针类型<br>
+::Shell32.ApiNameD() 返回值为double浮点数<br>
+::Shell32.ApiNameF() 返回值为float浮点数<br>
+::Shell32.ApiNameB() 返回值为C++中的8位bool类型<br>
+注意【尾标】前必须是小写字母</p>
+
+<p><a id="::Shell32.Control_RunDLL"></a></p>
+
+<h3>::Shell32.Control_RunDLL(hwnd,hinst,cmdLine,cmdShow)</h3>
+
+<p>可用于启动控制面板命令,<br>
+hwnd可指定为0,hinst 可指定为 _HINSTANSE,<br>
+cmdLine 指定启动参数,cmdShow 指定为1即可,<br>
+也可以通过process.rundll 运行此函数,<br>
+或通过 process.control 直接执行控制面板命令</p>
+
+<p><a id="::Shell32.SHChangeNotify"></a></p>
+
+<h3>::Shell32.SHChangeNotify(_SHCNE,0,0,0)</h3>
+
+<p>通知操作系统外壳刷新,例如刷新桌面图标等<br>
+参数依次为@eventId,@flags,@item1,@item2<br>
+参数@flags的值为5时函数名必须加上 W 尾标，即 ::Shell32.SHChangeNotifyW</p>
+
+<p><a id="::Shell32.ShellExecute"></a></p>
+
+<h3>::Shell32.ShellExecute(hwnd,operation,path,param,workDir,cmdShow)</h3>
+
+<p>执行 path 指定的程序,<br>
+第一个参数为数值格式的句柄,<br>
+最后一个参数为数值,指定为1即可,其他参数都是字符串,<br>
+详细用法请参考该 API 文档,<br>
+注意省略的参数也要指定 null 值,<br>
+非声明式调用 API 不能减少参数个数,<br>
+raw.execute 函数提供类似功能，但所有参数都可以省略。<br>
+process.execute 函数也提供类似功能</p>
+
+<p><a id="::Shell32.api("字符串参数","void"></a></p>
+
+<h3>::Shell32.api(&quot;字符串参数&quot;,&quot;void()&quot; )</h3>
+
+<p>声明Kernel32 API函数</p>
+
+<p><a id="::User32"></a></p>
+
+<h2>::User32 成员列表</h2>
+
+<p><a id="::User32.?"></a></p>
+
+<h3>::User32.?</h3>
+
+<p>可不用声明直接在此输入函数名并调用API函数  </p>
+
+<p>一、传入参数规则：<br>
+1、null参数不可省略<br>
+2、32位整数类型，小于32位的整数、以及枚举类型都可以直接在API参数中写数值。<br>
+3、对于任何数值类型的指针（输出参数）一律使用结构体表示，例如double * v 表示为{ double v }<br>
+4、数组使用结构体表示<br>
+5、所有结构体传给API的都是指针地址，都是输出参数并增加返回值  </p>
+
+<p>二、返回值规则：<br>
+1、返回值默认为int类型,可用 &gt;&gt;&gt; 0 强制转为无符号数,<br>
+2、可以使用[API尾标]改变返回值为其他类型  </p>
+
+<p>三、所有可用的【API尾标】:<br>
+::User32.ApiNameW() 切换到Unicode版本，字符串UTF8-UTF16双向转换<br>
+::User32.ApiNameA() 切换到ANSI版本,字符串不作任何转换<br>
+::User32.ApiNameL() 返回值为64位LONG类型<br>
+::User32.ApiNameP() 返回值为指针类型<br>
+::User32.ApiNameD() 返回值为double浮点数<br>
+::User32.ApiNameF() 返回值为float浮点数<br>
+::User32.ApiNameB() 返回值为C++中的8位bool类型<br>
+注意【尾标】前必须是小写字母</p>
+
+<p><a id="::User32.DestroyWindow"></a></p>
+
+<h3>::User32.DestroyWindow()</h3>
+
+<p>销毁窗口，<br>
+参数指定窗口句柄，也就是窗口对象的 hwnd 属性。<br>
+销毁窗口不会触发窗口的 onClose 事件，<br>
+但会触发 onDestroy 事件</p>
+
+<p><a id="::User32.GetCursorPos"></a></p>
+
+<h3>::User32.GetCursorPos()</h3>
+
+<p>返回鼠标当前位置,参数应当是一个::POINT结构体<br>
+成功返回非零值</p>
+
+<p><a id="::User32.GetSystemMetrics"></a></p>
+
+<h3>::User32.GetSystemMetrics()</h3>
+
+<p>返回系统系统与数值有关的设置,宽高有关的数值以像素为单位,<br>
+参数以 <em>SM</em> 前缀的常量指定要获取的设置索引</p>
+
+<p><a id="::User32.GetWindowThreadProcessId"></a></p>
+
+<h3>::User32.GetWindowThreadProcessId(hwnd,pid)</h3>
+
+<p>返回 @hwnd 参数指定窗口句柄的窗口所在线程 ID,<br>
+@pid 如果不为 null 则必须传入结构体 {addr value},<br>
+也可以改用 win.getThreadProcessId 函数</p>
+
+<p><a id="::User32.PostMessage"></a></p>
+
+<h3>::User32.PostMessage</h3>
+
+<p>通过创建目标窗口线程的消息队列发送消息给目标窗口,不等待返回，<br>
+注意消息队列等待处理的消息超过 10000 条消息时将会丢弃消息</p>
+
+<p><a id="::User32.PostMessage"></a></p>
+
+<h3>::User32.PostMessage(hwnd,message,wParam,lParam)</h3>
+
+<p>通过消息队列发送消息给目标窗口,不等待返回。<br>
+@hwnd 指定目标窗口句柄，设为 0xFFFF（65535） 则发送到所有顶层窗口。<br>
+参数@2为消息ID，一般是 <em>WM</em> 开头的常量。<br>
+一定要指定4个参数,省略参数输入null或0不可省略<br>
+注意不要在参数中包含在调用函数后可能释放的指针</p>
+
+<p><a id="::User32.SendMessage"></a></p>
+
+<h3>::User32.SendMessage</h3>
+
+<p>发送消息到目标窗口，并等待返回，<br>
+如果目标窗口卡住，可能导致不必要的等待过程</p>
+
+<p><a id="::User32.SendMessage"></a></p>
+
+<h3>::User32.SendMessage(hwnd,message,wParam,lParam)</h3>
+
+<p>发送消息到目标窗口，并等待返回。<br>
+@hwnd 指定目标窗口句柄，设为 0xFFFF（65535） 则发送到所有顶层窗口。<br>
+参数@2为消息ID，一般是 <em>WM</em> 开头的常量。<br>
+一定要指定4个参数,省略参数输入null或0不可省略</p>
+
+<p><a id="::User32.SendMessageTimeout"></a></p>
+
+<h3>::User32.SendMessageTimeout</h3>
+
+<p>发送消息到目标窗口，并可设置超时参数</p>
+
+<p><a id="::User32.SendMessageTimeout"></a></p>
+
+<h3>::User32.SendMessageTimeout(hwnd, message, wParam,lParam,flags,timeout,pRet)</h3>
+
+<p>用法请参考该 API 文档</p>
+
+<p><a id="::User32.SendNotifyMessage"></a></p>
+
+<h3>::User32.SendNotifyMessage</h3>
+
+<p>发送消息到目标窗口，<br>
+发生到调用线程创建的窗口等待窗口消息处理完消息后返回，<br>
+发生到其他线程不等待立即返回。  </p>
+
+<p>注意这个函数并非将消息发送到消息队列，<br>
+不会因为消息队列满被丢弃</p>
+
+<p><a id="::User32.SendNotifyMessage"></a></p>
+
+<h3>::User32.SendNotifyMessage(hwnd,message,wParam,lParam)</h3>
+
+<p>发送消息到目标窗口，<br>
+@hwnd 指定目标窗口句柄，设为 0xFFFF（65535） 则发送到所有顶层窗口。<br>
+参数@2为消息ID，一般是 <em>WM</em> 开头的常量。<br>
+一定要指定4个参数,省略参数输入null或0不可省略<br>
+注意不要在参数中包含在调用函数后可能释放的指针，<br>
+但对 0xFFFF 发送 _WM_SETTINGCHANGE 消息时可指定字符串参数</p>
+
+<p><a id="::User32.SetCursorPos"></a></p>
+
+<h3>::User32.SetCursorPos(x,y)</h3>
+
+<p>设置鼠标当前位置,参数指定x,y坐标<br>
+成功返回非零值</p>
+
+<p><a id="::User32.SystemParametersInfo"></a></p>
+
+<h3>::User32.SystemParametersInfo(uiAction,uiParam,pvParam,fWinIni)</h3>
+
+<p>设置或获取系统参数,<br>
+失败返回0,成功返回非零值,  </p>
+
+<p>参数@1指定 <em>SPI</em> 前缀常量,@pvParam 为指针或结构体指针,<br>
+其他参数都为无符号32位整数。参数 @4 设为 3 也即<br>
+_SPIF_UPDATEINIFILE | _SPIF_SENDWININICHANGE<br>
+用于刷新配置,读取值时参数 @4 设为 0 即可  </p>
+
+<p>这个函数的设置项非常多,细节请参考该 API 文档</p>
+
+<p><a id="::User32.api("字符串参数","void"></a></p>
+
+<h3>::User32.api(&quot;字符串参数&quot;,&quot;void()&quot; )</h3>
+
+<p>声明Kernel32 API函数</p>
+
+<p><a id="SubscriberObject"></a></p>
+
+<h2>SubscriberObject 成员列表</h2>
+
+<p><a id="SubscriberObject.remove"></a></p>
+
+<h3>SubscriberObject.remove()</h3>
+
+<p>撤消本次订阅。  </p>
+
+<p>如果在需要重复创建的窗体内订阅消息，应在 winform.onDestroy 事件内取消订阅。<br>
+或改用 thread.command 可在窗体关闭后自动取消订阅。  </p>
+
+<p>如果只是想调用窗体的成员函数，这本来就可以直接调用，<br>
+不必使用 subscribe</p>
+
+<p><a id="_ARGV"></a></p>
+
+<h2>_ARGV 成员列表</h2>
+
+<p><a id="_ARGV.?"></a></p>
+
+<h3>_ARGV.?</h3>
+
+<p>请输入命令行参数中以斜杠或短横线开始的前导参数名。<br>
+注意参数名区分大小写</p>
+
+<p><a id="_IMPORTURL"></a></p>
+
+<h2>_IMPORTURL 成员列表</h2>
+
+<p><a id="_IMPORTURL.?"></a></p>
+
+<h3>_IMPORTURL.?</h3>
+
+<p>键为库名称值为远程库网址,<br>
+网址可指定 *.tar.lzma 格式安装包或 *.aardio 格式库文件,  </p>
+
+<p>例如:<br>
+&quot;<a href="javascript:if(confirm('https://github.com/.../releases/latest/download/yourlibname.tar.lzma  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='https://github.com/.../releases/latest/download/yourlibname.tar.lzma'" tppabs="https://github.com/.../releases/latest/download/yourlibname.tar.lzma">https://github.com/.../releases/latest/download/yourlibname.tar.lzma</a>&quot;<br>
+必须写在引用扩展库的语句之前</p>
+
+<p><a id="pointObject"></a></p>
+
+<h2>pointObject 成员列表</h2>
+
+<p>::POINT 结构体对象，包含用于表示坐标的数值字段 x,y</p>
+
+<p><a id="pointObject.x"></a></p>
+
+<h3>pointObject.x</h3>
+
+<p>x坐标</p>
+
+<p><a id="pointObject.y"></a></p>
+
+<h3>pointObject.y</h3>
+
+<p>y坐标</p>
+
+<p><a id="rectObject"></a></p>
+
+<h2>rectObject 成员列表</h2>
+
+<p>::RECT 结构体对象，包含用于表示区块位置的数值字段 left,top,right,bottom</p>
+
+<p><a id="rectObject.bottom"></a></p>
+
+<h3>rectObject.bottom</h3>
+
+<p>下</p>
+
+<p><a id="rectObject.contains"></a></p>
+
+<h3>rectObject.contains(x,y)</h3>
+
+<p>检测指定的 x,y 坐标是否位于矩形区块内</p>
+
+<p><a id="rectObject.copy"></a></p>
+
+<h3>rectObject.copy</h3>
+
+<p>复制并返回新的矩形区块结构体</p>
+
+<p><a id="rectObject.copy"></a></p>
+
+<h3>rectObject.copy()</h3>
+
+<p><a href="_.html#rectObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/global/_.html#rectObject">返回对象:rectObject</a></p>
+
+<p><a id="rectObject.copy"></a></p>
+
+<h3>rectObject.copy(width,height)</h3>
+
+<p>可选在参数中指定新的宽度、高度<br>
+所有参数都可以省略</p>
+
+<p><a id="rectObject.expand"></a></p>
+
+<h3>rectObject.expand</h3>
+
+<p>扩展或缩小右下角坐标</p>
+
+<p><a id="rectObject.expand"></a></p>
+
+<h3>rectObject.expand()</h3>
+
+<p><a href="_.html#rectObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/global/_.html#rectObject">返回对象:rectObject</a></p>
+
+<p><a id="rectObject.expand"></a></p>
+
+<h3>rectObject.expand(dx,dy)</h3>
+
+<p>dx指定正数扩展右边,负数缩小右边,<br>
+dy指定正数扩展底边,负数缩小底边<br>
+左上角不变,<br>
+返回自身</p>
+
+<p><a id="rectObject.float"></a></p>
+
+<h3>rectObject.float()</h3>
+
+<p>无参数时转换为 ::RECTF 结构体并返回该结构体<br>
+如果参数中指定::RECTF结构体,则使用参数更新位区块自身,<br>
+指定参数则此函数无返回值  </p>
+
+<p><a href="../gdip/core.html#rectfObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/gdip/core.html#rectfObject">返回对象:rectfObject</a></p>
+
+<p><a id="rectObject.height"></a></p>
+
+<h3>rectObject.height()</h3>
+
+<p>高度</p>
+
+<p><a id="rectObject.inflate"></a></p>
+
+<h3>rectObject.inflate</h3>
+
+<p>扩大区块并返回矩形区块自身</p>
+
+<p><a id="rectObject.inflate"></a></p>
+
+<h3>rectObject.inflate()</h3>
+
+<p><a href="_.html#rectObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/global/_.html#rectObject">返回对象:rectObject</a></p>
+
+<p><a id="rectObject.inflate"></a></p>
+
+<h3>rectObject.inflate(左右单位,上下单位)</h3>
+
+<p>扩大区块并返回矩形区块自身<br>
+忽略参数请传入0,不可省略<br>
+上,下,左,右分别扩大指定的单位<br>
+负数为缩小</p>
+
+<p><a id="rectObject.intersect"></a></p>
+
+<h3>rectObject.intersect</h3>
+
+<p>检测与参数指定的矩形区块相交</p>
+
+<p><a id="rectObject.intersect"></a></p>
+
+<h3>rectObject.intersect(rc)</h3>
+
+<p>检测与参数指定的矩形区块相交<br>
+成功修改当前区块并返回自身,失败返回空</p>
+
+<p><a id="rectObject.intersectsWith"></a></p>
+
+<h3>rectObject.intersectsWith</h3>
+
+<p>检测两个矩形区块是否碰撞相交</p>
+
+<p><a id="rectObject.intersectsWith"></a></p>
+
+<h3>rectObject.intersectsWith(rc)</h3>
+
+<p>检测两个矩形区块是否碰撞相交</p>
+
+<p><a id="rectObject.left"></a></p>
+
+<h3>rectObject.left</h3>
+
+<p>左</p>
+
+<p><a id="rectObject.ltrb"></a></p>
+
+<h3>rectObject.ltrb</h3>
+
+<p>用于将 x,y,width,height 转换为 left,top,right.bottom 并返回</p>
+
+<p><a id="rectObject.ltrb"></a></p>
+
+<h3>rectObject.ltrb()</h3>
+
+<p>返回结构体的 left,top,right,bottom 等4个值</p>
+
+<p><a id="rectObject.ltrb"></a></p>
+
+<h3>rectObject.ltrb(x,y,width,height)</h3>
+
+<p>使用传入参数修改左、上坐标,以及宽度、高度,<br>
+返回结构体的left,top,right,bottom等4个值</p>
+
+<p><a id="rectObject.move"></a></p>
+
+<h3>rectObject.move</h3>
+
+<p>移动左上角坐标</p>
+
+<p><a id="rectObject.move"></a></p>
+
+<h3>rectObject.move()</h3>
+
+<p><a href="_.html#rectObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/global/_.html#rectObject">返回对象:rectObject</a></p>
+
+<p><a id="rectObject.move"></a></p>
+
+<h3>rectObject.move(dx,dy)</h3>
+
+<p>使用参数指定的x,y坐标偏移量移动左上角坐标,<br>
+正数向右下移动,负数向左上移动,<br>
+右下角位置不变<br>
+返回自身<br>
+如果需要移动坐标且大小不变请改用offset函数<br>
+移动到指定坐标而不是偏移量请改用setPos函数</p>
+
+<p><a id="rectObject.offset"></a></p>
+
+<h3>rectObject.offset</h3>
+
+<p>移动矩形框并返回自身</p>
+
+<p><a id="rectObject.offset"></a></p>
+
+<h3>rectObject.offset()</h3>
+
+<p><a href="_.html#rectObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/global/_.html#rectObject">返回对象:rectObject</a></p>
+
+<p><a id="rectObject.offset"></a></p>
+
+<h3>rectObject.offset(横偏移,纵偏移)</h3>
+
+<p>移动矩形框并返回自身,矩形大小不变,<br>
+左上移使用负坐标,右下移使用正坐标<br>
+忽略参数请传入0,不可省略</p>
+
+<p><a id="rectObject.right"></a></p>
+
+<h3>rectObject.right</h3>
+
+<p>右</p>
+
+<p><a id="rectObject.setPos"></a></p>
+
+<h3>rectObject.setPos</h3>
+
+<p>重新调整坐标与大小,<br>
+返回结构体自身</p>
+
+<p><a id="rectObject.setPos"></a></p>
+
+<h3>rectObject.setPos()</h3>
+
+<p><a href="_.html#rectObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/global/_.html#rectObject">返回对象:rectObject</a></p>
+
+<p><a id="rectObject.setPos"></a></p>
+
+<h3>rectObject.setPos(x,y,cx,cy)</h3>
+
+<p>移动到x,y指定的坐标,<br>
+可选用cx,cy重新指定宽度和高度,<br>
+所有参数可选,不指定则保持旧值</p>
+
+<p><a id="rectObject.top"></a></p>
+
+<h3>rectObject.top</h3>
+
+<p>上</p>
+
+<p><a id="rectObject.width"></a></p>
+
+<h3>rectObject.width()</h3>
+
+<p>宽度</p>
+
+<p><a id="rectObject.xywh"></a></p>
+
+<h3>rectObject.xywh</h3>
+
+<p>用于将left,top,right.bottom转换为 x,y,width,height 并返回</p>
+
+<p><a id="rectObject.xywh"></a></p>
+
+<h3>rectObject.xywh()</h3>
+
+<p>返回结构体的左上角坐标x,y 以及宽度width,高度height等4个值</p>
+
+<p><a id="rectObject.xywh"></a></p>
+
+<h3>rectObject.xywh(left,top,right,bottom)</h3>
+
+<p>修改左、上、右、下的值,<br>
+返回结构体的左上角坐标x,y 以及宽度width,高度height等4个值</p>
+
+<p><a id="sizeObject"></a></p>
+
+<h2>sizeObject 成员列表</h2>
+
+<p>::SIZE 结构体对象，包含用于表示大小的数值字段 cx,cy</p>
+
+<p><a id="sizeObject.cx"></a></p>
+
+<h3>sizeObject.cx</h3>
+
+<p>宽</p>
+
+<p><a id="sizeObject.cy"></a></p>
+
+<h3>sizeObject.cy</h3>
+
+<p>高</p>
+
+<p><a id="type"></a></p>
+
+<h2>type 成员列表</h2>
+
+<p>对象类型检测</p>
+
+<p>类型检测函数</p>
+
+<p><a id="type(需要返回数据类型的变量)"></a></p>
+
+<h3>type(需要返回数据类型的变量)</h3>
+
+<p>检测数据类型,返回值1为基本数据类型<br>
+如果返回两个或三个值，最后的返回值为元表中_type的值,<br>
+结构体返回三个值，第二个返回值为结构体声明</p>
+
+<p><a id="type.boolean"></a></p>
+
+<h3>type.boolean</h3>
+
+<p>布尔值：基本数据类型</p>
+
+<p><a id="type.buffer"></a></p>
+
+<h3>type.buffer</h3>
+
+<p>原生字节数组：基本数据类型<br>
+由 raw.buffer 函数分配的可读写、固定长度的内存，<br>
+可用于存取各种二进制数据，几乎所有字符串函数中都可以作为字符串使用。</p>
+
+<p><a id="type.callable"></a></p>
+
+<h3>type.callable()</h3>
+
+<p>判断参数是否函数、类、或其他可调用对象</p>
+
+<p><a id="type.cdata"></a></p>
+
+<h3>type.cdata</h3>
+
+<p>内核对象：基本数据类型</p>
+
+<p><a id="type.class"></a></p>
+
+<h3>type.class</h3>
+
+<p>类：基本数据类型</p>
+
+<p><a id="type.eq"></a></p>
+
+<h3>type.eq(, )</h3>
+
+<p>比较两个对象的数据类型、元类型、结构体类型是否完全相同,<br>
+如果一个函数的返回值用于逻辑判断，此类函数返回布尔值（true,false），<br>
+在aardio 一个说明返回布尔值的函数，实际允许返回任意类型的值，<br>
+如果此类函数无返回值，应视为返回 null值，<br>
+如果此类函数返回 null 值，应视为 false 值，<br>
+具体请参考 aardio 基础语法文档中的说明，<br>
+aardio支持宽松的类型转换，在其他类似函数中不再做额外说明</p>
+
+<p><a id="type.fiber"></a></p>
+
+<h3>type.fiber</h3>
+
+<p>纤程：基本数据类型</p>
+
+<p><a id="type.file"></a></p>
+
+<h3>type.file</h3>
+
+<p>元类型名&quot;io.file&quot;。<br>
+使用 io.file 打开的文件以及标准输入输出对象的元类型。</p>
+
+<p><a id="type.function"></a></p>
+
+<h3>type.function</h3>
+
+<p>函数：基本数据类型</p>
+
+<p><a id="type.isFile"></a></p>
+
+<h3>type.isFile()</h3>
+
+<p>参数 @1 如果是 io.file,fsys.file,fsys.stream 对象则返回 true。</p>
+
+<p><a id="type.isString"></a></p>
+
+<h3>type.isString()</h3>
+
+<p>参数 @1 如果是 string 或 buffer 类型返回 true</p>
+
+<p><a id="type.null"></a></p>
+
+<h3>type.null</h3>
+
+<p>空值：基本数据类型</p>
+
+<p><a id="type.number"></a></p>
+
+<h3>type.number</h3>
+
+<p>数值：基本数据类型</p>
+
+<p><a id="type.pointer"></a></p>
+
+<h3>type.pointer</h3>
+
+<p>指针值：基本数据类型</p>
+
+<p><a id="type.rget"></a></p>
+
+<h3>type.rget()</h3>
+
+<p>调用type函数检测对象类型<br>
+并返回最后一个类型描述<br>
+type 函数检测一个对象时，可能返回一个或多个类型描述，<br>
+分别为数据类型、元类型、结构体类型</p>
+
+<p><a id="type.string"></a></p>
+
+<h3>type.string</h3>
+
+<p>字符串：基本数据类型</p>
+
+<p><a id="type.table"></a></p>
+
+<h3>type.table</h3>
+
+<p>表：基本数据类型</p>
+
+<h3>全局常量</h3>
+
+<p><a id="::CopyMemory(目标内存地址,源地址,源数据长度)"></a></p>
+
+<h3>::CopyMemory(目标内存地址,源地址,源数据长度)</h3>
+
+<p>复制内存<br>
+此函数调用::Kernel32.RtlMoveMemory</p>
+
+<p><a id="::CopyMemoryByStruct(目标内存地址,源结构体,源结构体长度)"></a></p>
+
+<h3>::CopyMemoryByStruct(目标内存地址,源结构体,源结构体长度)</h3>
+
+<p>复制结构体到目标内存<br>
+此函数调用::Kernel32.RtlMoveMemory</p>
+
+<p><a id="::FILETIME()"></a></p>
+
+<h3>::FILETIME()</h3>
+
+<p>FILETIME 结构体,<br>
+用于表示自 1601年1月1日 开始以 100纳秒 为间隔的数值。<br>
+100纳秒 也就是 0.0001毫秒。  </p>
+
+<p>此结构体包含 2 个 32 无符号位整数字段：dwLowDateTime,dwHighDateTime。  </p>
+
+<p>标准库 fsys.time 可创建 ::FILETIME 兼容结构体，<br>
+并且提供了更多功能</p>
+
+<p><a id="::GetLastError()"></a></p>
+
+<h3>::GetLastError()</h3>
+
+<p>返回系统错误代码</p>
+
+<p><a id="::GetModuleHandle(模块名)"></a></p>
+
+<h3>::GetModuleHandle(模块名)</h3>
+
+<p>返回动态链接库的模块句柄</p>
+
+<p><a id="::GlobalAlloc(分配选项,内存长度)"></a></p>
+
+<h3>::GlobalAlloc(分配选项,内存长度)</h3>
+
+<p>在进程堆上分配内存,<br>
+分配选项可选参数如下:  </p>
+
+<p>0x40/*_GPTR*/ 返回指针,内存数据初始化为零<br>
+0x42/*_GHND*/ 返回句柄,内存数据初始化为零,<br>
+0x0/*_GMEM_FIXED*/ 返回指针<br>
+0x2/*_GMEM_MOVEABLE*/ 返回句柄<br>
+内存句柄需要调用 ::GlobalLock 函数转换为内存指针</p>
+
+<p><a id="::GlobalFree(内存句柄)"></a></p>
+
+<h3>::GlobalFree(内存句柄)</h3>
+
+<p>释放::GlobalAlloc()分配的内存<br>
+如果成功返回null,否则返回传入句柄</p>
+
+<p><a id="::GlobalLock(内存句柄)"></a></p>
+
+<h3>::GlobalLock(内存句柄)</h3>
+
+<p>锁定::GlobalAlloc(0x2/*_GMEM_MOVEABLE*/)创建的内存句柄,<br>
+并返回内存指针指针</p>
+
+<p><a id="::GlobalReAlloc(内存句柄,新的长度,分配选项)"></a></p>
+
+<h3>::GlobalReAlloc(内存句柄,新的长度,分配选项)</h3>
+
+<p>改变GlobalAlloc函数申请的内存大小<br>
+分配选项参考 GlobalAlloc() 说明</p>
+
+<p><a id="::GlobalSize(内存句柄)"></a></p>
+
+<h3>::GlobalSize(内存句柄)</h3>
+
+<p>获取内存长度</p>
+
+<p><a id="::GlobalUnlock(内存句柄)"></a></p>
+
+<h3>::GlobalUnlock(内存句柄)</h3>
+
+<p>解锁::GlobalAlloc(0x2/*_GMEM_MOVEABLE*/)创建的内存句柄,<br>
+成功返回true</p>
+
+<p><a id="::HIBYTE"></a></p>
+
+<h3>::HIBYTE</h3>
+
+<pre><code class="aardio language-aardio">function(l) {return   (l   &gt;&gt; 8) &amp; 0xff  }
+</code></pre>
+
+<p><a id="::HIWORD"></a></p>
+
+<h3>::HIWORD</h3>
+
+<pre><code class="aardio language-aardio">function(l) {return  (l &gt;&gt; 16) &amp; 0xffff }
+</code></pre>
+
+<p><a id="::Kernel32"></a></p>
+
+<h3>::Kernel32</h3>
+
+<p>默认已加载的Kernel32.dll模块对象<br>
+Kernel32.dll是Windows内置库,提供很多常用API</p>
+
+<p><a id="::LOBYTE"></a></p>
+
+<h3>::LOBYTE</h3>
+
+<pre><code class="aardio language-aardio">function(l) {return l  &amp; 0xff }
+</code></pre>
+
+<p><a id="::LOWORD"></a></p>
+
+<h3>::LOWORD</h3>
+
+<pre><code class="aardio language-aardio">function(l) {return l &amp; 0xffff }
+</code></pre>
+
+<p><a id="::MAKELONG"></a></p>
+
+<h3>::MAKELONG</h3>
+
+<pre><code class="aardio language-aardio">function(a,b){ return ( ( (b &amp; 0xFFFF) &lt;&lt; 16) | (a &amp; 0xFFFF) ) &amp; 0xFFFFFFFF }
+</code></pre>
+
+<p><a id="::MAKEWORD"></a></p>
+
+<h3>::MAKEWORD</h3>
+
+<pre><code class="aardio language-aardio">function (a,b){ return ( ( ( b &amp; 0xFF) &lt;&lt; 8) | ( a &amp; 0xFF) ) &amp; 0xFFFF  }
+</code></pre>
+
+<p><a id="::Ntdll"></a></p>
+
+<h3>::Ntdll</h3>
+
+<p>默认已加载的系统DLL组件ntdll.dll  </p>
+
+<p><a href="../raw/_.html#dllModuleObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/raw/_.html#dllModuleObject">返回对象:dllModuleObject</a></p>
+
+<p><a id="::OffsetRect(rc,dx,dy)"></a></p>
+
+<h3>::OffsetRect(rc,dx,dy)</h3>
+
+<p>移动矩形框，<br>
+此函数已废弃，请直接调用 rc.offset 函数</p>
+
+<p><a id="::POINT"></a></p>
+
+<h3>::POINT</h3>
+
+<p>整型坐标结构体<br>
+此结构体通过标准库 builtin.struct 默认加载</p>
+
+<p><a id="::POINT()"></a></p>
+
+<h3>::POINT()</h3>
+
+<p><a href="#pointObject">返回对象:pointObject</a></p>
+
+<p><a id="::POINT(x,y)"></a></p>
+
+<h3>::POINT(x,y)</h3>
+
+<p>创建整型坐标结构体<br>
+可选在参数中指定 x,y 坐标初始值</p>
+
+<p><a id="::RECT"></a></p>
+
+<h3>::RECT</h3>
+
+<p>表示矩形区块的结构体<br>
+此结构体通过标准库 builtin.struct 默认加载</p>
+
+<p><a id="::RECT()"></a></p>
+
+<h3>::RECT()</h3>
+
+<p><a href="_.html#rectObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/global/_.html#rectObject">返回对象:rectObject</a></p>
+
+<p><a id="::RECT(left,top,right,bottom)"></a></p>
+
+<h3>::RECT(left,top,right,bottom)</h3>
+
+<p>创建矩形区块结构体<br>
+可选在参数中指定左,上,右,下初始值</p>
+
+<p><a id="::SIZE"></a></p>
+
+<h3>::SIZE</h3>
+
+<p>整型尺寸结构体<br>
+此结构体通过标准库 builtin.struct 默认加载</p>
+
+<p><a id="::SIZE()"></a></p>
+
+<h3>::SIZE()</h3>
+
+<p><a href="#sizeObject">返回对象:sizeObject</a></p>
+
+<p><a id="::SIZE(cx,cy)"></a></p>
+
+<h3>::SIZE(cx,cy)</h3>
+
+<p>创建整型尺寸结构体<br>
+可选在参数中指定宽高 cx,cy 初始值</p>
+
+<p><a id="::Shell32"></a></p>
+
+<h3>::Shell32</h3>
+
+<p>默认已加载的Shell32.dll模块对象（参考标准库：peload.io），<br>
+提供Windows系统外壳 API</p>
+
+<p><a id="::Ucrtbase"></a></p>
+
+<h3>::Ucrtbase</h3>
+
+<p>UCRT 运行时，<br>
+Windows 10 以及之后的系统已经自带了 UCRT。  </p>
+
+<p>加载此 DLL 的代码如下：<br>
+::Ucrtbase := ..raw.loadDll(&quot;ucrtbase.dll&quot;,,&quot;cdecl&quot;);<br>
+注意等号前必须加冒号。  </p>
+
+<p><a href="../raw/_.html#dllModuleObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/raw/_.html#dllModuleObject">返回对象:dllModuleObject</a></p>
+
+<p><a id="::User32"></a></p>
+
+<h3>::User32</h3>
+
+<p>默认已加载的User32.dll模块对象<br>
+User32.dll提供Windows用户界面相关API</p>
+
+<p><a id="_AARDIO_VERSION"></a></p>
+
+<h3>_AARDIO_VERSION</h3>
+
+<p>aardio 内核版本号</p>
+
+<p><a id="_ARGV"></a></p>
+
+<h3>_ARGV</h3>
+
+<p>解析后的进程启动参数表，已解析双引号、命令行参数转义符等并转换为数组,<br>
+命令行解析规则请参考标准库中 string.cmdline 的源码,  </p>
+
+<p>ARGV 既包含命令行参数数组,也包含按下列规则解析的键值对:<br>
+以斜杠或短横线开始的前导参数作为键(键名移除一个或多个相同的前导字符,区分大小写)，<br>
+如果前导参数包含等号,则以等号拆分为键值对,等号前后不应有空格,<br>
+否则检查下一参数如果没有相同的首字符则设为此键对应的值，<br>
+如果一个前导参数没有指定值,则默认值为空字符串（逻辑值为true）  </p>
+
+<p>_ARGV仅在发布后的进程启动线程中存在,开发环境中 _ARGV 为空表。<br>
+非主线程请改用 thread.cmdline</p>
+
+<p><a id="_CMDLINE"></a></p>
+
+<h3>_CMDLINE</h3>
+
+<p>命令行参数的原始文本<br>
+也可以使用 _ARGV 获取解析后的命令行参数<br>
+_CMDLINE 仅在启动线程中存在,一般用于main.aardio,开发环境中为null<br>
+可使用#操作符检测参数是否为空</p>
+
+<p><a id="_HAPPICON"></a></p>
+
+<h3>_HAPPICON</h3>
+
+<p>应用程序图标句柄，可在工程属性中自定义该图标，<br>
+图标在不再使用时会自动释放,不要手动释放该图标<br>
+_HAPPICON仅在启动线程中存在</p>
+
+<p><a id="_HINSTANSE"></a></p>
+
+<h3>_HINSTANSE</h3>
+
+<p>当前应用程序的实例句柄</p>
+
+<p><a id="_IMPORTURL"></a></p>
+
+<h3>_IMPORTURL</h3>
+
+<p>用于注册远程扩展库安装网址的表,<br>
+可添加新的键值，键为库名称，值为库安装文件网址,<br>
+网址可指定 *.tar.lzma 格式安装包或 *.aardio 格式库文件&quot;<br>
+必须写在引用扩展库的语句之前</p>
+
+<p><a id="_INVALID_HANDLE_VALUE"></a></p>
+
+<h3>_INVALID_HANDLE_VALUE</h3>
+
+<p>topointer(-1)<br>
+表示无效句柄</p>
+
+<p><a id="_STUDIO_INVOKED"></a></p>
+
+<h3>_STUDIO_INVOKED</h3>
+
+<p>判断是否在aardio开发环境中运行aardio程序,<br>
+如果在IDE开发环境中运行,该值是一个描述运行模式的字符串,否则为null,<br>
+其值为&quot;thread&quot;时作为嵌入IDE的线程模式运行，值为&quot;process&quot;时是以独立的进程模式运行<br>
+在IDE开发环境中,aardio程序的启动代码首个import的库为ide时即以线程模式运行<br>
+以独立进程模式调试有更好的稳定性</p>
+
+<p><a id="_WIN10_LATER"></a></p>
+
+<h3>_WIN10_LATER</h3>
+
+<p>当前系统是否为WIN10/Win2016或之后的版本</p>
+
+<p><a id="_WIN7_LATER"></a></p>
+
+<h3>_WIN7_LATER</h3>
+
+<p>当前系统是否为WIN7/Win2008 R2或之后的版本</p>
+
+<p><a id="_WINE"></a></p>
+
+<h3>_WINE</h3>
+
+<p>如果程序在 Linux(Wine、CrossOver) 环境下运行此常量包含wine版本号<br>
+否则为null</p>
+
+<p><a id="_WINXP"></a></p>
+
+<h3>_WINXP</h3>
+
+<p>当前系统是否为WINXP或Win2003<br>
+否则为Vista/WIN2008或以后的版本</p>
+
+<p><a id="_WIN_64"></a></p>
+
+<h3>_WIN_64</h3>
+
+<p>_WIN_64 = 当前系统是否为64位</p>
+
+<p><a id="_WIN_VER_BUILD"></a></p>
+
+<h3>_WIN_VER_BUILD</h3>
+
+<p>Windows 构建版本号<br>
+Windows10 构建版本号与发行版本号的对应关系请参考 win.versionEx</p>
+
+<p><a id="_WIN_VER_MAJOR"></a></p>
+
+<h3>_WIN_VER_MAJOR</h3>
+
+<p>Windows 主版本号</p>
+
+<p><a id="_WIN_VER_MINOR"></a></p>
+
+<h3>_WIN_VER_MINOR</h3>
+
+<p>Windows 副版本号</p>
+
+<h3>自动完成常量</h3>
+
+<p>_MAX_PATH_U16=0x208<br>
+_MAX_PATH_U8=0x410<br>
+_O_BINARY=0x8000<br>
+_O_TEXT=0x4000<br>
+_SH_DENYNO=0x40<br>
+_SH_DENYRD=0x30<br>
+_SH_DENYRW=0x10<br>
+_SH_DENYWR=0x20<br>
+_SH_SECURE=0x80  </p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/global/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/global/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/global/_.md">Markdown 格式</a></p>
+
+</body> 
+</html>

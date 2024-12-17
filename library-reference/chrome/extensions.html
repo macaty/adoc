@@ -1,0 +1,98 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - chrome.extensions 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - chrome.extensions 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>chrome.extensions 库模块帮助文档</h1>
+
+<p><a id="chrome.extensions"></a></p>
+
+<h2>chrome.extensions 成员列表</h2>
+
+<p>已安装的浏览器扩展。<br>
+相关库： web.nativeMessaging, fsys.crx</p>
+
+<p><a id="chrome.extensions.find"></a></p>
+
+<h3>chrome.extensions.find(kw,profile)</h3>
+
+<p>获取 Edge 与 Chrome 浏览器扩展安装信息。<br>
+@kw 可指定系统浏览器扩展 ID、或名称、描述包含的关键字（忽略大小写）。<br>
+@profile 指定配置，默认为 &quot;Default&quot;。</p>
+
+<p><a id="chrome.extensions.findChrome"></a></p>
+
+<h3>chrome.extensions.findChrome(kw,profile)</h3>
+
+<p>获取 Chrome 浏览器扩展安装信息。<br>
+@kw 可指定系统浏览器扩展 ID、或名称、描述包含的关键字（忽略大小写）。<br>
+@profile 指定配置，默认为 &quot;Default&quot;。</p>
+
+<p><a id="chrome.extensions.findEdge"></a></p>
+
+<h3>chrome.extensions.findEdge(kw,profile)</h3>
+
+<p>获取 Edge 浏览器扩展安装信息。<br>
+@kw 可指定系统浏览器扩展 ID、或名称、描述包含的关键字（忽略大小写）。<br>
+@profile 指定配置，默认为 &quot;Default&quot;。</p>
+
+<p><a id="chrome.extensions.get"></a></p>
+
+<h3>chrome.extensions.get()</h3>
+
+<p>返回 Chrome 已安装的扩展程序数组。<br>
+可选用参数 @2 自定义 profile，可选用参数 @2 自定义扩展所在目录。  </p>
+
+<p>可用 &num; 操作符取数组长度判断返回结果是否为空。</p>
+
+<p><a id="chrome.extensions.getEdge"></a></p>
+
+<h3>chrome.extensions.getEdge()</h3>
+
+<p>返回 Edge 已安装的扩展程序数组。<br>
+可选用参数 @2 自定义 profile，可选用参数 @2 自定义扩展所在目录。  </p>
+
+<p>可用 &num; 操作符取数组长度判断返回结果是否为空。</p>
+
+<p><a id="chrome.extensions.getPath"></a></p>
+
+<h3>chrome.extensions.getPath(kw,profile)</h3>
+
+<p>获取 Edge 与 Chrome 浏览器扩展所在目录路径。<br>
+@kw 可指定系统浏览器扩展 ID、或名称、描述包含的关键字（忽略大小写）。<br>
+@profile 指定配置，默认为 &quot;Default&quot;。</p>
+
+<p><a id="chrome.extensions.getProfilePath"></a></p>
+
+<h3>chrome.extensions.getProfilePath(profile,path,userDataDir)</h3>
+
+<p>获取用户配置文件（Profile）所在目录。  </p>
+
+<p>所有参数可选：<br>
+@profile 指定配置目录名。<br>
+@path 批定子路径。<br>
+@userDataDir 指定用户数据根目录。<br>
+如果返回的文件路径（拼接 @path 以后）不存在则返回 null 。</p>
+
+<p><a id="chrome.extensions.open"></a></p>
+
+<h3>chrome.extensions.open(kw,profile)</h3>
+
+<p>获取 Edge 与 Chrome 浏览器扩展所在目录路径并打开目录。<br>
+@kw 可指定系统浏览器扩展 ID、或名称、描述包含的关键字（忽略大小写）。<br>
+@profile 指定配置，默认为 &quot;Default&quot;。</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/chrome/extensions.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/chrome/extensions.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/chrome/extensions.md">Markdown 格式</a></p>
+
+</body> 
+</html>

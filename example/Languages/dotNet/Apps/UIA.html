@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 使用 .NET 调用 UIA 接口'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 使用 .NET 调用 UIA 接口</title> 
+<link rel="stylesheet" href="../../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 使用 .NET 调用 UIA 接口</h1><pre><code class="aardio language-aardio">//使用 .NET 调用 UIA 接口 
+//探测工具  file://~/tools/Spy/inspect.aardio
+
+//运行程序
+import process;  
+process.execute(&quot;notepad.exe&quot;,{io.getSpecial(0x25/*_CSIDL_SYSTEM*/,&quot;drivers\etc\HOSTS&quot;)});
+
+//等待激活的窗口句柄，文本框句柄
+import winex;
+var hwnd,hEdit = winex.waitActive(,,&quot;Notepad&quot;
+    ,&quot;&lt;RichEditD2DPT&gt;|&lt;Edit&gt;&quot;);//模式语法：类名为 RichEditD2DPT 或 Edit
+
+//导入 .NET 类  
+//https://learn.microsoft.com/zh-cn/dotnet/api/system.windows.automation?view=netframework-4.6
+import System.Windows.Automation;//通过 UIAutomationClient 加载
+//改为 import System.Windows.Automation.3 可支持 TextPattern2 等接口，下面的代码不必更改。
+
+//访问 .NET 类的静态成员
+Automation = System.Windows.Automation;   
+
+//查找写字板窗口。由 System.Windows.Automation.And 生成查询条件。
+var wordpad = Automation.FindByAnd({
+    ClassName = &quot;Notepad&quot;,
+    ControlType = &quot;Window&quot;;
+}) 
+
+if(!wordpad) error(&quot;未发现目标窗口&quot;); 
+
+//查找写字板的编辑框。由 System.Windows.Automation.Or 生成查询条件。 
+var editBox = Automation.FindByOr({
+    ClassName = {&quot;RichEditD2DPT&quot;,&quot;RICHEDIT50W&quot;,&quot;Edit&quot; } 
+},wordpad) 
+
+var hwnd = editBox.Current.NativeWindowHandle;//窗口句柄
+
+//鼠标操作，移动鼠标到控件位置
+import mouse;
+mouse.moveTo(editBox.Current.BoundingRectangle);
+
+//获取写字板内的文本 
+//https://learn.microsoft.com/en-us/dotnet/api/system.windows.automation.textpattern?view=netframework-4.0
+var textPattern;
+try {
+    //获取 Pattern 失败会抛出异常
+    textPattern = editBox.GetCurrentPattern(Automation.TextPattern.Pattern);
+}
+
+import win.dlg.message;
+if(textPattern){
+    var text = textPattern.DocumentRange.GetText(50);
+    win.dlg.message().info(text + &quot; ……&quot;);
+}   
+else{
+    return win.dlg.message().info(&quot;写字板文本框句柄：&quot; + hwnd) 
+}
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/dotNet/Apps/UIA.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/dotNet/Apps/UIA.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Languages/dotNet/Apps/UIA.md">Markdown 格式</a>
+</body> 
+</html>

@@ -1,0 +1,794 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - console 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - console 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>console 库模块帮助文档</h1>
+
+<p><a id="console"></a></p>
+
+<h2>console 成员列表</h2>
+
+<p>控制台扩展函数库<br>
+Win10 以上系统控制台支持以下快捷键:<br>
+ Alt + Enter 切换全屏<br>
+Ctrl + Shift + 加号/减号 调整透明度</p>
+
+<p><a id="console.askYesNo"></a></p>
+
+<h3>console.askYesNo(&quot;按Y键继续,按N键取消&quot;)</h3>
+
+<p>等待用户按Y或N键</p>
+
+<p><a id="console.box"></a></p>
+
+<h3>console.box(列,行,终止列,终止行,背景色,边框标题)</h3>
+
+<p>在控制台画一个色块,边框标题可省略,<br>
+参数@1,@2省略则自动居中<br>
+返回列,行,终止列,终止行</p>
+
+<p><a id="console.clearInputBuffer"></a></p>
+
+<h3>console.clearInputBuffer()</h3>
+
+<p>刷新控制台输入缓冲区<br>
+丢弃缓冲区的所有输入</p>
+
+<p><a id="console.clearScreen"></a></p>
+
+<h3>console.clearScreen()</h3>
+
+<p>清屏</p>
+
+<p><a id="console.close"></a></p>
+
+<h3>console.close()</h3>
+
+<p>关闭控制台</p>
+
+<p><a id="console.dump"></a></p>
+
+<h3>console.dump</h3>
+
+<p>显示变量的值,支持多参数</p>
+
+<p><a id="console.dump"></a></p>
+
+<h3>console.dump(comObj)</h3>
+
+<p>参数 @1 指定 COM 对象，且无其他参数，<br>
+则在控制台输出调用 com.DumpTypeInfo 函数返回的类型信息。<br>
+调用 com.tlbDoc.dump 函数可打印 COM 对象更详细的类型库信息</p>
+
+<p><a id="console.dump"></a></p>
+
+<h3>console.dump(comObj,enumType)</h3>
+
+<p>参数 @1 指定 COM 对象，参数 @2 指定枚举类型名，<br>
+在控制台输出该枚举类型的所有名值对。  </p>
+
+<p>通常枚举名值对也是 COM 常量名值对，<br>
+可以使用列举的枚举名字（不用指定枚举类型名）<br>
+作为 COM 对象的成员名获取枚举值</p>
+
+<p><a id="console.dump"></a></p>
+
+<h3>console.dump(value,...)</h3>
+
+<p>在控制台显示普通 table,string,number 等类型的值,不显示函数等,<br>
+table 对象仅显示键名为字符串的值，以及数值索引自 1 开始的顺序数组</p>
+
+<p><a id="console.dumpFile"></a></p>
+
+<h3>console.dumpFile(文件路径)</h3>
+
+<p>输出参数 @1 指定文件路径的文件内容</p>
+
+<p><a id="console.dumpJson"></a></p>
+
+<h3>console.dumpJson(变量)</h3>
+
+<p>将对像转换为格式化的 JSON 文本并输出到控制台<br>
+对象如果包含数值索引自1开始的顺序数组成员则转换为 JSON 数组<br>
+JSON 数组会忽略其他索引不在数组范围内的成员</p>
+
+<p><a id="console.dumpTable"></a></p>
+
+<h3>console.dumpTable(表对象)</h3>
+
+<p>如果参数 @1 传入字符串或 buffer，转换为字节码数组再输出。  </p>
+
+<p>如果参数 @1 传入表参数,<br>
+使用 ..util.table.stringify 函数格式化为文本然后输出到控制台。<br>
+仅转换表包含的文本、数值、布尔值、嵌套表对象,<br>
+小数精度最大为 6 位、并自动清除小数尾部多余的 0,<br>
+如果表定义了 tostring 元方法、则转换为字符串<br>
+忽略其他类型,忽略循环引用的表</p>
+
+<p><a id="console.eraseLine"></a></p>
+
+<h3>console.eraseLine()</h3>
+
+<p>清除当前行<br>
+可选指定要在当前行输出的一个或多个参数</p>
+
+<p><a id="console.eraseToEndOfLine"></a></p>
+
+<h3>console.eraseToEndOfLine()</h3>
+
+<p>清除当前输入光标到行尾的所有字符<br>
+注意用‘\r’虽然能回退光标到行首，但并不擦除已输出的字符</p>
+
+<p><a id="console.error"></a></p>
+
+<h3>console.error(&quot;字符串参数&quot;)</h3>
+
+<p>使用标准错误输出流（io.stderr）输出，可以重定向，<br>
+可指定任意个参数，参数转换为字符串以后输出。  </p>
+
+<p>在开发环境中会自动打开控制台以红色字体输出参数，并输出当前调用栈信息。<br>
+发布后的程序不会自动打开控制台，不会输出调用栈信息。</p>
+
+<p><a id="console.fullscreen"></a></p>
+
+<h3>console.fullscreen()</h3>
+
+<p>控制台窗口全屏切换</p>
+
+<p><a id="console.getCodePage"></a></p>
+
+<h3>console.getCodePage()</h3>
+
+<p>获取输入代码页,输出代码页</p>
+
+<p><a id="console.getCursorInfo"></a></p>
+
+<h3>console.getCursorInfo()</h3>
+
+<p>返回光标信息,<br>
+用法请参考此函数源码</p>
+
+<p><a id="console.getErrorHandle"></a></p>
+
+<h3>console.getErrorHandle()</h3>
+
+<p>错误输出句柄</p>
+
+<p><a id="console.getInputHandle"></a></p>
+
+<h3>console.getInputHandle()</h3>
+
+<p>标准输入句柄</p>
+
+<p><a id="console.getNumber"></a></p>
+
+<h3>console.getNumber( &quot;请输入数值:&quot; )</h3>
+
+<p>读取用户输入的数值,<br>
+如果用户输入错误的数值则显示错误提示并重新读取输入直到成功,<br>
+可选在参数@2中指定缓冲区大小</p>
+
+<p><a id="console.getOutputHandle"></a></p>
+
+<h3>console.getOutputHandle()</h3>
+
+<p>标准输出句柄</p>
+
+<p><a id="console.getPassword"></a></p>
+
+<h3>console.getPassword()</h3>
+
+<p>读取密码<br>
+可选使用参数一指定控制台回显掩码,默认显示星号</p>
+
+<p><a id="console.getPos"></a></p>
+
+<h3>console.getPos()</h3>
+
+<p>返回光标坐标</p>
+
+<p><a id="console.getScreenBufferInfo"></a></p>
+
+<h3>console.getScreenBufferInfo()</h3>
+
+<p>返回屏幕缓冲区信息</p>
+
+<p><a id="console.getSize"></a></p>
+
+<h3>console.getSize()</h3>
+
+<p>返回控制台屏幕缓冲区每行可输入的字符数,<br>
+以及可输入的字符行数</p>
+
+<p><a id="console.getText"></a></p>
+
+<h3>console.getText( &quot;请输入文本:&quot; )</h3>
+
+<p>此函数内部调用io.getText自控制台读取用户输入,<br>
+可选在参数@2中指定缓冲区大小<br>
+此函数不调用io.stdin.read等标准输入函数</p>
+
+<p><a id="console.getTextAttribute"></a></p>
+
+<h3>console.getTextAttribute()</h3>
+
+<p>获取控制台文本颜色,<br>
+返回颜色值为 背景色 * 0x10 + 前景色</p>
+
+<p><a id="console.getTitle"></a></p>
+
+<h3>console.getTitle()</h3>
+
+<p>获取控制台标题</p>
+
+<p><a id="console.getWindow"></a></p>
+
+<h3>console.getWindow()</h3>
+
+<p>返回控制台窗口句柄<br>
+使用此函数可判断当前是否已打开控制台窗口;</p>
+
+<p><a id="console.getch"></a></p>
+
+<h3>console.getch()</h3>
+
+<p>读取输入字节码,中文字返回两个字节码<br>
+控制台不回显字符</p>
+
+<p><a id="console.getche"></a></p>
+
+<h3>console.getche()</h3>
+
+<p>读取输入字符<br>
+控制台回显字符</p>
+
+<p><a id="console.hex"></a></p>
+
+<h3>console.hex()</h3>
+
+<p>调用console.log以16进制输出字符串、或缓冲区的所有字节码,<br>
+也可以使用 console.dumpTable 函数将字符串或buffer转换为字节码数组输出</p>
+
+<p><a id="console.isCursorVisible"></a></p>
+
+<h3>console.isCursorVisible()</h3>
+
+<p>控制台当前是否显示光标</p>
+
+<p><a id="console.isOpened"></a></p>
+
+<h3>console.isOpened()</h3>
+
+<p>是否已显示控制台窗口。</p>
+
+<p><a id="console.kbHit"></a></p>
+
+<h3>console.kbHit()</h3>
+
+<p>检测键盘有没有输入</p>
+
+<p><a id="console.kbRead"></a></p>
+
+<h3>console.kbRead()</h3>
+
+<p>读取用户按键返回keyEvent对象  </p>
+
+<p><a href="#consoleKbeventObject">返回对象:consoleKbeventObject</a></p>
+
+<p><a id="console.kbRead"></a></p>
+
+<h3>console.kbRead(true)</h3>
+
+<p>等待用户按任意键并返回keyEvent对象(不包含释放按键事件)</p>
+
+<p><a id="console.log"></a></p>
+
+<h3>console.log()</h3>
+
+<p>调用 console.writeText 在控制台输出信息，支持多参数。<br>
+多个参数间输出时用制表符分隔，并且在最后输入一个换行。<br>
+此函数必须先导入 console 库才能使用。  </p>
+
+<p>参数支持 UTF8/UTF16/ANSI 字符串，<br>
+二进制或非 UTF8 或系统 ANSI 编码的字符串请改用 console.hex 函数。  </p>
+
+<p>该函数可自动打开控制台窗口,而无需事先调用 io.open 。<br>
+注意 console.log 与 console.print 指向同一函数。<br>
+如果是输出错误信息，请改用 console.error 函数。</p>
+
+<p><a id="console.logPause"></a></p>
+
+<h3>console.logPause()</h3>
+
+<p>调用 console.log 函数输入所有参数,<br>
+然后调用 console.pause 函数暂停</p>
+
+<p><a id="console.modifyMode"></a></p>
+
+<h3>console.modifyMode(输入输出句柄,移除模式,添加模式)</h3>
+
+<p>设置控制台的显示模式<br>
+参数用法参考 WINAPI SetConsoleMode<br>
+参数@1如果省略则默认为标准输出句柄<br>
+成功返回当前模式,失败返回null</p>
+
+<p><a id="console.more"></a></p>
+
+<h3>console.more</h3>
+
+<p>等待并在按任意键以后继续，用于在控制台分页输出时等待按键。</p>
+
+<p><a id="console.more"></a></p>
+
+<h3>console.more(分页大小,是否清屏)</h3>
+
+<p>略参数  @1 则参数默认为 1 。<br>
+如果参数 @2 为true，按任意键以后清除控制台已显示的内容。</p>
+
+<p><a id="console.open"></a></p>
+
+<h3>console.open()</h3>
+
+<p>打开控制台窗口,<br>
+如果控制台窗口已打开,该函数不进行任何操作,<br>
+如果参数为 true 则将 console.utf8 设为true,<br>
+请参考 console.utf8 的说明  </p>
+
+<p>此函数重定向 msvcrt.dll 定义的 stdin,stdout,stderr 到控制台</p>
+
+<p><a id="console.pause"></a></p>
+
+<h3>console.pause</h3>
+
+<p>暂停,<br>
+按任意键继续</p>
+
+<p><a id="console.pause"></a></p>
+
+<h3>console.pause(按键后是否关闭控制台,提示)</h3>
+
+<p>返回用户按键键码</p>
+
+<p><a id="console.peek"></a></p>
+
+<h3>console.peek()</h3>
+
+<p>测试键盘有没有输入<br>
+有则读取并返回keyEvent对象,否则返回空  </p>
+
+<p><a href="#consoleKbeventObject">返回对象:consoleKbeventObject</a></p>
+
+<p><a id="console.print"></a></p>
+
+<h3>console.print(&quot;字符串参数&quot;)</h3>
+
+<p>调用console.writeText在控制台输出信息,支持多参数<br>
+多个参数间使用制表符分隔，并且在最后输入一个换行,<br>
+参数支持UTF8/UTF16/ANSI字符串，<br>
+该函数可自动打开控制台窗口,而无需事先调用io.open();<br>
+注意console.log与console.print指向同一函数<br>
+如果是输出调试信息,建议大家使用 console.error 函数</p>
+
+<p><a id="console.printf"></a></p>
+
+<h3>console.printf(&quot;%s&quot;, )</h3>
+
+<p>自动打开控制台<br>
+调用console.log函数输出格式化字符串,<br>
+格式化语法与string.format相同</p>
+
+<p><a id="console.readOutputCharacter"></a></p>
+
+<h3>console.readOutputCharacter()</h3>
+
+<p>读取标准输出缓冲区文本。<br>
+可选用参数 @1 指定要读取的缓冲区大小，<br>
+如果不指定则自动获取缓冲区长度</p>
+
+<p><a id="console.setCodePage"></a></p>
+
+<h3>console.setCodePage(输入代码页,输出代码页)</h3>
+
+<p>设置代码页<br>
+应在打开控制台后使用该函数</p>
+
+<p><a id="console.setColor"></a></p>
+
+<h3>console.setColor(前景色,背景色)</h3>
+
+<p>设置控制台前景色与背景色<br>
+参数必须使用 console.color 的成员值<br>
+无参数恢复默认颜色</p>
+
+<p><a id="console.setCtrlHandlerThread"></a></p>
+
+<h3>console.setCtrlHandlerThread(hander,add,owner)</h3>
+
+<pre><code class="aardio language-aardio">console.setCtrlHandlerThread( function(ctrlType){  
+    /*控制台程序退出前是否触发 @hander 参数指定的线程函数，  
+@add 为 true 添加触发函数，为 false 移除，默认值为 true。  
+可选用 @owner 指定线程函数的 owner 参数。  
+
+使用前请先阅读多线程入门教程，了解线程函数基本规则。  
+
+ctrlType 为 null 表示控制台正常关闭，不可取消。  
+ctrlType 为 0 表示按下 Ctrl+ C。  
+ctrlType 为 1 表示按下 Ctrl + Break。  
+ctrlType 为 0 或 1 时返回 true 可阻止控制台退出  
+
+在此函数内不应再使用任何控制台函数*/  
+});
+</code></pre>
+
+<p><a id="console.setCursorInfo"></a></p>
+
+<h3>console.setCursorInfo(info)</h3>
+
+<p>修改光标信息,<br>
+用法请参考此函数源码</p>
+
+<p><a id="console.setCursorVisible"></a></p>
+
+<h3>console.setCursorVisible(visible)</h3>
+
+<p>设置控制台是否显示光标</p>
+
+<p><a id="console.setLoadingDots"></a></p>
+
+<h3>console.setLoadingDots(动画字符数组,是否显示在尾部,动画间隔毫秒数)</h3>
+
+<p>指定showLoading函数使用的默认动画字符数组<br>
+除参数@1必须指定之外，其他参数可选</p>
+
+<p><a id="console.setPos"></a></p>
+
+<h3>console.setPos(列,行)</h3>
+
+<p>设置光标坐标</p>
+
+<p><a id="console.setTextAttribute"></a></p>
+
+<h3>console.setTextAttribute</h3>
+
+<p>设置文本前景色与背景色,<br>
+设置整个窗口的背景色请使用 console.setColor;</p>
+
+<p><a id="console.setTextAttribute"></a></p>
+
+<h3>console.setTextAttribute(前景色,背景色)</h3>
+
+<p>参数必须使用 console.color 的成员值<br>
+无参数恢复默认颜色</p>
+
+<p><a id="console.setTextAttribute"></a></p>
+
+<h3>console.setTextAttribute(颜色)</h3>
+
+<p>颜色值必须为 背景色 * 0x10 + 前景色,<br>
+前景色,背景色必须使用 console.color 的成员值</p>
+
+<p><a id="console.setTitle"></a></p>
+
+<h3>console.setTitle(&quot;字符串参数&quot;)</h3>
+
+<p>设置控制台标题,<br>
+此函数会打开控制台窗口</p>
+
+<p><a id="console.showLoading"></a></p>
+
+<h3>console.showLoading</h3>
+
+<p>显示进度动画</p>
+
+<p><a id="console.showLoading"></a></p>
+
+<h3>console.showLoading(状态文本,动画颜色)</h3>
+
+<p>n所有参数都可以省略,状态文本为false关闭动画,<br>
+调用console.open,console.log等函数都能自动关闭动画<br>
+参数@2只能使用 console.color 的成员值</p>
+
+<p><a id="console.stderr"></a></p>
+
+<h3>console.stderr</h3>
+
+<p>标准错误输出  </p>
+
+<p><a href="../io/_.html#ioFileObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/io/_.html#ioFileObject">返回对象:ioFileObject</a></p>
+
+<p><a id="console.stdin"></a></p>
+
+<h3>console.stdin</h3>
+
+<p>标准输入  </p>
+
+<p><a href="../io/_.html#ioFileObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/io/_.html#ioFileObject">返回对象:ioFileObject</a></p>
+
+<p><a id="console.stdout"></a></p>
+
+<h3>console.stdout</h3>
+
+<p>标准输出  </p>
+
+<p><a href="../io/_.html#ioFileObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/io/_.html#ioFileObject">返回对象:ioFileObject</a></p>
+
+<p><a id="console.utf8"></a></p>
+
+<h3>console.utf8</h3>
+
+<p>控制台是否启用UTF-8编码,<br>
+所有线程设置必须相同,否则会导致重新打开控制台,<br>
+如果操作系统为英文环境,控制台启用 UTF-8 可正常显示中文,<br>
+此值为 null（默认值） 时由 aardio 自动选择编码（WIN10 以上系统默认开启 UTF-8）,<br>
+启用这个选项在 WIN10 以下系统可能出现显示不正常的问题,<br>
+但有一些程序，例如 Electron 主进程输出默认需要打开此选项</p>
+
+<p><a id="console.varDump"></a></p>
+
+<h3>console.varDump(变量)</h3>
+
+<p>此函数显示一个或多个参数的类型与值</p>
+
+<p><a id="console.writeBack"></a></p>
+
+<h3>console.writeBack()</h3>
+
+<p>控制台输出字符串并覆盖最后显示的等长字符<br>
+如果有多个参数则调用string.format格式化后输出</p>
+
+<p><a id="console.writeColorText"></a></p>
+
+<h3>console.writeColorText</h3>
+
+<p>调用 console.writeText 输出指定颜色文本,<br>
+此函数不会自动打开控制台窗口</p>
+
+<p><a id="console.writeColorText"></a></p>
+
+<h3>console.writeColorText(文本,前景色,背景色)</h3>
+
+<p>参数@2、参数@3只能使用 console.color 的成员值<br>
+背景色可以省略</p>
+
+<p><a id="console.writeText"></a></p>
+
+<h3>console.writeText()</h3>
+
+<p>直接写入控制台，<br>
+参数支持UTF8/UTF16/ANSI字符串，<br>
+支持1个或多个参数，但遇到null参数会停止输出后面的参数,<br>
+注意这个函数不会自动打开控制台，<br>
+此函数不调用io.stdout.write,io.print等标准输出函数<br>
+并且可以支持更多的Unicode字符</p>
+
+<p><a id="global"></a></p>
+
+<h2>全局对象 成员列表</h2>
+
+<p><a id="afterConsoleOpen"></a></p>
+
+<h3>afterConsoleOpen</h3>
+
+<pre><code class="aardio language-aardio"> if(::Kernel32.GetConsoleWindow()){  
+
+ }  
+ ..subscribe(&quot;afterConsoleOpen&quot;,function(){  
+    /*console 库打开控制台执行此回调*/  
+} );
+</code></pre>
+
+<p><a id="console.color"></a></p>
+
+<h2>console.color 成员列表</h2>
+
+<p><a id="console.color.   black"></a></p>
+
+<h3>console.color.  black</h3>
+
+<p>0; //黑色</p>
+
+<p><a id="console.color.blue"></a></p>
+
+<h3>console.color.blue</h3>
+
+<p>9; //蓝色</p>
+
+<p><a id="console.color.cyan"></a></p>
+
+<h3>console.color.cyan</h3>
+
+<p>0xB; //青色</p>
+
+<p><a id="console.color.darkBlue"></a></p>
+
+<h3>console.color.darkBlue</h3>
+
+<p>1; //暗蓝色</p>
+
+<p><a id="console.color.darkCyan"></a></p>
+
+<h3>console.color.darkCyan</h3>
+
+<p>3; //暗青色</p>
+
+<p><a id="console.color.darkGray"></a></p>
+
+<h3>console.color.darkGray</h3>
+
+<p>8; //深灰色</p>
+
+<p><a id="console.color.darkGreen"></a></p>
+
+<h3>console.color.darkGreen</h3>
+
+<p>2; //暗绿色</p>
+
+<p><a id="console.color.darkMagenta"></a></p>
+
+<h3>console.color.darkMagenta</h3>
+
+<p>5; //暗紫色</p>
+
+<p><a id="console.color.darkRed"></a></p>
+
+<h3>console.color.darkRed</h3>
+
+<p>4; //暗红色</p>
+
+<p><a id="console.color.darkYellow"></a></p>
+
+<h3>console.color.darkYellow</h3>
+
+<p>6; //暗黄色</p>
+
+<p><a id="console.color.gray"></a></p>
+
+<h3>console.color.gray</h3>
+
+<p>7; //灰色</p>
+
+<p><a id="console.color.green"></a></p>
+
+<h3>console.color.green</h3>
+
+<p>0xA; //绿色</p>
+
+<p><a id="console.color.magenta"></a></p>
+
+<h3>console.color.magenta</h3>
+
+<p>0xD; //紫色</p>
+
+<p><a id="console.color.red"></a></p>
+
+<h3>console.color.red</h3>
+
+<p>0xC; //红色</p>
+
+<p><a id="console.color.white"></a></p>
+
+<h3>console.color.white</h3>
+
+<p>0xF //白色</p>
+
+<p><a id="console.color.yellow"></a></p>
+
+<h3>console.color.yellow</h3>
+
+<p>0xE; //黄色</p>
+
+<p><a id="consoleKbeventObject"></a></p>
+
+<h2>consoleKbeventObject 成员列表</h2>
+
+<p><a id="consoleKbeventObject.bKeyDown"></a></p>
+
+<h3>consoleKbeventObject.bKeyDown</h3>
+
+<p>按键是否释放</p>
+
+<p><a id="consoleKbeventObject.isCapsLkOn"></a></p>
+
+<h3>consoleKbeventObject.isCapsLkOn</h3>
+
+<p>是否打开大写</p>
+
+<p><a id="consoleKbeventObject.isEnhanced"></a></p>
+
+<h3>consoleKbeventObject.isEnhanced</h3>
+
+<p>是否扩展键</p>
+
+<p><a id="consoleKbeventObject.isLeftAltPressed"></a></p>
+
+<h3>consoleKbeventObject.isLeftAltPressed</h3>
+
+<p>是否按下左ALT键</p>
+
+<p><a id="consoleKbeventObject.isLeftCtrlPressed"></a></p>
+
+<h3>consoleKbeventObject.isLeftCtrlPressed</h3>
+
+<p>是否按下左CTRL键</p>
+
+<p><a id="consoleKbeventObject.isNumLkOn"></a></p>
+
+<h3>consoleKbeventObject.isNumLkOn</h3>
+
+<p>是否打开NumLk键</p>
+
+<p><a id="consoleKbeventObject.isRightAltPressed"></a></p>
+
+<h3>consoleKbeventObject.isRightAltPressed</h3>
+
+<p>是否按下右ALT键</p>
+
+<p><a id="consoleKbeventObject.isRightCtrlPressed"></a></p>
+
+<h3>consoleKbeventObject.isRightCtrlPressed</h3>
+
+<p>是否按下右CTRL键</p>
+
+<p><a id="consoleKbeventObject.isScrLkOn"></a></p>
+
+<h3>consoleKbeventObject.isScrLkOn</h3>
+
+<p>是否打开ScrLk键</p>
+
+<p><a id="consoleKbeventObject.isShiftPressed"></a></p>
+
+<h3>consoleKbeventObject.isShiftPressed</h3>
+
+<p>是否按下SHIFT键</p>
+
+<p><a id="consoleKbeventObject.uChar.asciiChar"></a></p>
+
+<h3>consoleKbeventObject.uChar.asciiChar</h3>
+
+<p>ASCII字节码</p>
+
+<p><a id="consoleKbeventObject.uChar.dwControlKeyState"></a></p>
+
+<h3>consoleKbeventObject.uChar.dwControlKeyState</h3>
+
+<p>控制键状态码</p>
+
+<p><a id="consoleKbeventObject.uChar.unicodeChar"></a></p>
+
+<h3>consoleKbeventObject.uChar.unicodeChar</h3>
+
+<p>Unicode字节码</p>
+
+<p><a id="consoleKbeventObject.wRepeatCount"></a></p>
+
+<h3>consoleKbeventObject.wRepeatCount</h3>
+
+<p>重复次数</p>
+
+<p><a id="consoleKbeventObject.wVirtualKeyCode"></a></p>
+
+<h3>consoleKbeventObject.wVirtualKeyCode</h3>
+
+<p>虚拟键码</p>
+
+<p><a id="consoleKbeventObject.wVirtualScanCode"></a></p>
+
+<h3>consoleKbeventObject.wVirtualScanCode</h3>
+
+<p>扫描码</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/console/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/console/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/console/_.md">Markdown 格式</a></p>
+
+</body> 
+</html>

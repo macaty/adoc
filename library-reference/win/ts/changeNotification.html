@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - win.ts.changeNotification 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - win.ts.changeNotification 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>win.ts.changeNotification 库模块帮助文档</h1>
+
+<p><a id="win.ts"></a></p>
+
+<h2>win.ts 成员列表</h2>
+
+<p><a id="win.ts.changeNotification"></a></p>
+
+<h3>win.ts.changeNotification</h3>
+
+<p>监听用户对桌面会话的操作</p>
+
+<p><a id="win.ts.changeNotification"></a></p>
+
+<h3>win.ts.changeNotification()</h3>
+
+<p><a href="#wtsChangeNotificationObject">返回对象:wtsChangeNotificationObject</a></p>
+
+<p><a id="win.ts.changeNotification"></a></p>
+
+<h3>win.ts.changeNotification(窗口对象)</h3>
+
+<p>注册文件监听窗口\监听用户对桌面会话的操作,<br>
+省略参数则创建 message only window</p>
+
+<p><a id="wtsChangeNotificationObject"></a></p>
+
+<h2>wtsChangeNotificationObject 成员列表</h2>
+
+<p><a id="wtsChangeNotificationObject._form"></a></p>
+
+<h3>wtsChangeNotificationObject._form</h3>
+
+<p><a href="../ui/_.html#winform" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/_.html#winform">返回对象:winform</a></p>
+
+<p><a id="wtsChangeNotificationObject.deregister"></a></p>
+
+<h3>wtsChangeNotificationObject.deregister()</h3>
+
+<p>注销并关闭监听</p>
+
+<p><a id="wtsChangeNotificationObject.onSessionChange"></a></p>
+
+<h3>wtsChangeNotificationObject.onSessionChange</h3>
+
+<pre><code class="aardio language-aardio">wtsChangeNotificationObject.onSessionChange = function(sessionId,statusText,statusCode){  
+    /*桌面会话改变，：例如用户登录，远程桌面连接断开等*/  
+}
+</code></pre>
+
+<p><a id="wtsChangeNotificationObject.register"></a></p>
+
+<h3>wtsChangeNotificationObject.register(选项)</h3>
+
+<p>注册并启用文件监视功能,<br>
+所有参数都可以省略,默认使 _NOTIFY_FOR_ALL_SESSIONS 选项</p>
+
+<h3>自动完成常量</h3>
+
+<p>_NOTIFY_FOR_ALL_SESSIONS=1<br>
+_NOTIFY_FOR_THIS_SESSION=0  </p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/ts/changeNotification.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/ts/changeNotification.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ts/changeNotification.md">Markdown 格式</a></p>
+
+</body> 
+</html>

@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - process.gifsicle 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - process.gifsicle 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>process.gifsicle 库模块帮助文档</h1>
+
+<p><a id="process"></a></p>
+
+<h2>process 成员列表</h2>
+
+<p><a id="process.gifsicle"></a></p>
+
+<h3>process.gifsicle()</h3>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html#processPopenObject'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html#processPopenObject">返回对象:processPopenObject</a></p>
+
+<p><a id="process.gifsicle"></a></p>
+
+<h3>process.gifsicle(output,...)</h3>
+
+<p>创建 gifsicle 管道进程<br>
+@output 参数指定输出文件,<br>
+@output 为 null 修改文件自身,<br>
+@output 为 &quot;-&quot; 文件输出到管道,<br>
+其他参数请参考 gifsicle 文档  </p>
+
+<p>一般不建议直接使用此构造函数,<br>
+应改用 process.gifsicle.optimize 函数</p>
+
+<p><a id="process.gifsicle"></a></p>
+
+<h2>process.gifsicle 成员列表</h2>
+
+<p>GIF 图像优化与处理工具<br>
+ <a href="javascript:if(confirm('https://github.com/kohler/gifsicle/blob/master/COPYING  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='https://github.com/kohler/gifsicle/blob/master/COPYING'" tppabs="https://github.com/kohler/gifsicle/blob/master/COPYING">https://github.com/kohler/gifsicle/blob/master/COPYING</a></p>
+
+<p>创建 gifsicle 管道进程<br>
+一般不建议直接使用此构造函数,<br>
+应改用 process.gifsicle.optimize 函数</p>
+
+<p><a id="process.gifsicle.get"></a></p>
+
+<h3>process.gifsicle.get(input,output,cmdline...)</h3>
+
+<pre><code class="aardio language-aardio">process.gifsicle.get(input,output,cmdline...get(/*执行命令并返回进程输出  
+成功进程输出为空字符串，否则返回错误信息,  
+参数@1指定输入 GIF 文件路径,  
+可选用参数@2 指定输出 GIF 文件路径,  
+参数@3可以用文本、数组、或多个文本参数指定命令行参数*/,,&quot;--optimize=3 --colors 128 --lossy=20&quot;)
+</code></pre>
+
+<p><a id="process.gifsicle.optimize"></a></p>
+
+<h3>process.gifsicle.optimize(input,output,level,lossiness)</h3>
+
+<pre><code class="aardio language-aardio">input 指定输入 GIF 文件路径,  
+@output 参数指定输出文件,  
+省略 @output 为 null 修改文件自身,  
+@output 为 &quot;-&quot; 文件输出到管道  
+@level 指定优化级别,可选值1到3,默认为3  
+可选用 @lossiness 指定损耗值以启用有损压缩,建议值 20
+</code></pre>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/process/gifsicle/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/process/gifsicle/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/process/gifsicle/_.md">Markdown 格式</a></p>
+
+</body> 
+</html>

@@ -1,0 +1,928 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - web.rest.client 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - web.rest.client 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>web.rest.client 库模块帮助文档</h1>
+
+<p><a id="web.rest"></a></p>
+
+<h2>web.rest 成员列表</h2>
+
+<p><a id="web.rest.client"></a></p>
+
+<h3>web.rest.client</h3>
+
+<p>REST客户端</p>
+
+<p>创建 REST 客户端。</p>
+
+<p><a id="web.rest.client"></a></p>
+
+<h3>web.rest.client()</h3>
+
+<p><a href="client.html#webRestClientObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/web/rest/client.html#webRestClientObject">返回对象:webRestClientObject</a></p>
+
+<p><a id="web.rest.client"></a></p>
+
+<h3>web.rest.client(config)</h3>
+
+<p>创建 REST 客户端。<br>
+可选用一个表参数指定 API 自定义的配置项。<br>
+参数存为对象的 config 属性。</p>
+
+<p><a id="web.rest.client"></a></p>
+
+<h3>web.rest.client(userAgent,proxy,proxyBypass,httpFlags)</h3>
+
+<p>创建 REST 客户端，所有参数可选。<br>
+userAgent 参数用于自定义 User-Agent 请求标头，用于服务器识别请求程序特征。<br>
+HTTP 代理服务器请指定为 &quot;代理服务器地址:端口&quot; 格式，<br>
+proxy 参数指定代理，proxyBypass 参数指定绕过代理的主机。<br>
+└──  <a href="../../../library-guide/std/inet/proxy.html" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/std/inet/proxy.html">代理参数格式说明</a><br>
+httpFlags 可选用一个数值指定 HTTP 连接选项，一般不需要指定。   </p>
+
+<p>可选传入一个表指定以上参数以及其他 API 自定义设置。<br>
+如果传入表参数则存为对象的 config 属性。</p>
+
+<p><a id="webRestApiObject"></a></p>
+
+<h2>webRestApiObject 成员列表</h2>
+
+<p><a id="webRestApiObject.?"></a></p>
+
+<h3>webRestApiObject.?</h3>
+
+<p>可输入任意 HTTP API 资源名<br>
+返回一个  HTTP API 调用对象,<br>
+返回对象可以使用成员操作符继续获取下级资源，<br>
+也可以作为函数直接调用并发送请求,<br>
+作为函数使用时,<br>
+可选用参数@1指定请求数据参表，也可直接指定请求字符串,<br>
+可选用参数@2指定URL参数表,<br>
+可选用参数 @2 或 @3 指定 inet.http对象的 onReceive 回调函数。<br>
+指定 onReceive 回调函数则自动支持自动解析 SSE 流，兼容 ndjson 流。<br>
+作为函数调用时成功返回解析后数据，失败返回 null,错误信息,错误代码  </p>
+
+<p><a href="client.html#webRestApiObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/web/rest/client.html#webRestApiObject">返回对象:webRestApiObject</a></p>
+
+<p><a id="webRestApiObject.delete"></a></p>
+
+<h3>webRestApiObject.delete()</h3>
+
+<p>DELETE方法提交请求,删除资源,<br>
+请求参数@1可以指定表或字符串、缓冲区,如果是表请求前会转换为字符串<br>
+可选用参数@2指定URL参数表,<br>
+可选用参数@3指定inet.http对象的onReceive回调函数<br>
+如果资源URL名称需要用到 delete，请使用[&quot;/delete&quot;]替代以避免被识别为默认HTTP方法</p>
+
+<p><a id="webRestApiObject.deleteDelete"></a></p>
+
+<h3>webRestApiObject.deleteDelete()</h3>
+
+<p>返回 HTTP API 调用对象，<br>
+URL 资源名称与 HTTP 请求方法都设为 &quot;get&quot;<br>
+这是 delete[&quot;/delete&quot;] 的缩略写法</p>
+
+<p><a href="client.html#webRestApiObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/web/rest/client.html#webRestApiObject">返回对象:webRestApiObject</a></p>
+
+<p><a id="webRestApiObject.get"></a></p>
+
+<h3>webRestApiObject.get()</h3>
+
+<p>GET方法提交请求,获取资源,<br>
+请求参数@1可以指定表或字符串、缓冲区,如果是表请求前会转换为字符串<br>
+如果资源URL名称需要用到 get，请使用[&quot;/get&quot;]替代以避免被识别为默认HTTP方法</p>
+
+<p><a id="webRestApiObject.getGet"></a></p>
+
+<h3>webRestApiObject.getGet()</h3>
+
+<p>返回 HTTP API 调用对象，<br>
+URL 资源名称与 HTTP 请求方法都设为 &quot;get&quot;<br>
+这是 get[&quot;/get&quot;] 的缩略写法</p>
+
+<p><a href="client.html#webRestApiObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/web/rest/client.html#webRestApiObject">返回对象:webRestApiObject</a></p>
+
+<p><a id="webRestApiObject.getUrl"></a></p>
+
+<h3>webRestApiObject.getUrl()</h3>
+
+<p>返回当前对象发送请求使用的 URL 地址，<br>
+如果有远程函数与此函数同名，写为 [&quot;/getUrl&quot;] 即可</p>
+
+<p><a id="webRestApiObject.head"></a></p>
+
+<h3>webRestApiObject.head()</h3>
+
+<p>HEAD方法提交请求<br>
+如果该函数返回非null值为成功,请使用lastResponseHeaders获取应答HTTP头<br>
+请求参数可以指定表或字符串,如果是表请求前会转换为字符串</p>
+
+<p><a id="webRestApiObject.headHead"></a></p>
+
+<h3>webRestApiObject.headHead()</h3>
+
+<p>返回 HTTP API 调用对象，<br>
+URL 资源名称与 HTTP 请求方法都设为 &quot;get&quot;<br>
+这是 head[&quot;/head&quot;] 的缩略写法</p>
+
+<p><a href="client.html#webRestApiObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/web/rest/client.html#webRestApiObject">返回对象:webRestApiObject</a></p>
+
+<p><a id="webRestApiObject.patch"></a></p>
+
+<h3>webRestApiObject.patch()</h3>
+
+<p>PATCH方法提交请求,更新资源,<br>
+请求参数@1可以指定表或字符串、缓冲区,如果是表请求前会转换为字符串<br>
+可选用参数@2指定URL参数表,<br>
+可选用参数@3指定inet.http对象的onReceive回调函数</p>
+
+<p><a id="webRestApiObject.patchPatch"></a></p>
+
+<h3>webRestApiObject.patchPatch()</h3>
+
+<p>返回 HTTP API 调用对象，<br>
+URL 资源名称与 HTTP 请求方法都设为 &quot;get&quot;<br>
+这是 patch[&quot;/patch&quot;] 的缩略写法</p>
+
+<p><a href="client.html#webRestApiObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/web/rest/client.html#webRestApiObject">返回对象:webRestApiObject</a></p>
+
+<p><a id="webRestApiObject.post"></a></p>
+
+<h3>webRestApiObject.post()</h3>
+
+<p>POST方法提交请求,新增或修改资源,<br>
+请求参数@1可以指定表或字符串、缓冲区,如果是表请求前会转换为字符串<br>
+可选用参数@2指定URL参数表,<br>
+可选用参数@3指定inet.http对象的onReceive回调函数</p>
+
+<p><a id="webRestApiObject.postPost"></a></p>
+
+<h3>webRestApiObject.postPost()</h3>
+
+<p>返回 HTTP API 调用对象，<br>
+URL 资源名称与 HTTP 请求方法都设为 &quot;get&quot;<br>
+这是 post[&quot;/post&quot;] 的缩略写法</p>
+
+<p><a href="client.html#webRestApiObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/web/rest/client.html#webRestApiObject">返回对象:webRestApiObject</a></p>
+
+<p><a id="webRestApiObject.put"></a></p>
+
+<h3>webRestApiObject.put()</h3>
+
+<p>PUT方法提交请求,替换或更新资源,<br>
+请求参数@1可以指定表或字符串、缓冲区,如果是表请求前会转换为字符串<br>
+可选用参数@2指定URL参数表,<br>
+可选用参数@3指定inet.http对象的onReceive回调函数</p>
+
+<p><a id="webRestApiObject.putPut"></a></p>
+
+<h3>webRestApiObject.putPut()</h3>
+
+<p>返回 HTTP API 调用对象，<br>
+URL 资源名称与 HTTP 请求方法都设为 &quot;get&quot;<br>
+这是 put[&quot;/put&quot;] 的缩略写法</p>
+
+<p><a href="client.html#webRestApiObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/web/rest/client.html#webRestApiObject">返回对象:webRestApiObject</a></p>
+
+<p><a id="webRestApiObject.receiveFile"></a></p>
+
+<h3>webRestApiObject.receiveFile</h3>
+
+<p>配置下次下载文件的参数，<br>
+此配置在后续用 get,post 等函数提交请求后自动清空  </p>
+
+<p>此函数成功返回对象自身，创建文件失败返回 null,错误信息</p>
+
+<p><a id="webRestApiObject.receiveFile"></a></p>
+
+<h3>webRestApiObject.receiveFile()</h3>
+
+<p><a href="client.html#webRestApiObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/web/rest/client.html#webRestApiObject">返回对象:webRestApiObject</a></p>
+
+<p><a id="webRestApiObject.receiveFile"></a></p>
+
+<h3>webRestApiObject.receiveFile(savePath,callback,saveDir)</h3>
+
+<p>配置下次下载文件的参数，<br>
+此配置在后续用 get,post 等函数提交请求后自动清空<br>
+此函数返回对象自身  </p>
+
+<p>@savePath 参数指定下载文件路径，<br>
+可选用 @saveDir 指定下载根目录，指定此参数则参数 @1 应为相对路径。<br>
+可选用 @callback 参数指定下载进度回调函数,<br>
+进度回调函数参数依次为 recvData,recvSize,contentLength，<br>
+其中 recvData 为本次下载的数据，<br>
+recvSize 为本次下载的字节数，<br>
+contentLength 为需要下载的总字节数</p>
+
+<p><a id="webRestApiObject.sendFile"></a></p>
+
+<h3>webRestApiObject.sendFile(&quot;上传文件路径&quot;,进度回调函数,MIME,分块大小)</h3>
+
+<pre><code class="aardio language-aardio">webRestApiObject.sendFile( &quot;上传文件路径&quot;   
+    ,function(sendData,sendSize,contentLength,remainSize){  
+        /*上传进度回调函数以及其他参数都可以省略，  
+如果打开文件失败，sendFile 函数返回 null 与错误信息，  
+否则返回响应数据*/  
+    }  
+);
+</code></pre>
+
+<p><a id="webRestApiObject.sendMultipartForm"></a></p>
+
+<h3>webRestApiObject.sendMultipartForm(上传字段表,进度回调函数,分块大小)</h3>
+
+<pre><code class="aardio language-aardio">webRestApiObject.sendMultipartForm( {  
+        file = &quot;@/*上传文件路径字前必须添加@字符，  
+上传表单可添加多个字段，  
+上传进度回调函数以及其他参数都可以省略*/&quot;  
+    },function(sendData,sendSize,contentLength,remainSize){  
+        ..io.print(&quot;正在上传&quot;,sendSize,contentLength);  
+    }  
+);
+</code></pre>
+
+<p><a id="webRestClientObject"></a></p>
+
+<h2>webRestClientObject 成员列表</h2>
+
+<p><a id="webRestClientObject.?"></a></p>
+
+<h3>webRestClientObject.?</h3>
+
+<p>web.rest.client 或继承自 web.rest.client 的对象的其他成员函数或属性。<br>
+请查看相关库函数文档或源码</p>
+
+<p><a id="webRestClientObject._http"></a></p>
+
+<h3>webRestClientObject._http</h3>
+
+<p>inet.http客户端，用于执行http请求  </p>
+
+<p><a href="#inetHttpObject">返回对象:inetHttpObject</a></p>
+
+<p><a id="webRestClientObject.acceptType"></a></p>
+
+<h3>webRestClientObject.acceptType</h3>
+
+<p>期望返回的MIME内容类型,多个类型用逗号分隔</p>
+
+<p><a id="webRestClientObject.addHeaders"></a></p>
+
+<h3>webRestClientObject.addHeaders</h3>
+
+<p>替换所有请求默认添加的HTTP头<br>
+请求结束时不会清空此属性<br>
+该值可以是一个字符串,也可以是键值对组成的table对象</p>
+
+<p><a id="webRestClientObject.afterSend"></a></p>
+
+<h3>webRestClientObject.afterSend</h3>
+
+<pre><code class="aardio language-aardio">webRestClientObject.afterSend = function(statusCode,contentLength){
+    /*向服务器发送数据结束触发此回调函数*/ 
+}
+</code></pre>
+
+<p><a id="webRestClientObject.afterStringifyRequestParameters"></a></p>
+
+<h3>webRestClientObject.afterStringifyRequestParameters(提交参数,代码页)</h3>
+
+<pre><code class="aardio language-aardio">webRestClientObject.afterStringifyRequestParameters = function(params,codepage){
+    /*此时参数 params 已转换为字符串并准备提交到服务器。  
+codepage 参数为请求数据使用的代码页。  
+必须用第一个返回值返回新的 params 。*/
+    return params; 
+}
+</code></pre>
+
+<p><a id="webRestClientObject.api"></a></p>
+
+<h3>webRestClientObject.api</h3>
+
+<p>定义API对象，使用成员操作符或下标获取API对象的成员时将会自动转换为新的API对象</p>
+
+<p><a id="webRestClientObject.api"></a></p>
+
+<h3>webRestClientObject.api(&quot;网址模板&quot;,&quot;HTTP动词&quot;,&quot;模式串&quot;)</h3>
+
+<p>网址模板可使用 {name}、{/name}、或 {...} 指定模板参数,<br>
+大括号内的参数名可使用英文字符或数字,<br>
+模板参数名首字符为斜杠（例如{/name}）表示使用实参替换后保留斜杠，<br>
+ {...} 表示不定个数的模板参数,如使用多个实参替换则自动使用斜杠拼接，<br>
+默认在网址模板尾部自动添加 {...}  </p>
+
+<p>返回API对象使用下标指定模板实参，<br>
+如果下标是字符串，按下标出现的前后顺序替换模板参数，<br>
+如果下标是表对象，则表中的键值对用于替换与键同名的模板参数,  </p>
+
+<p>可选用参数@2指定HTTP动词,默认值为&quot;POST&quot;  </p>
+
+<p>参数@3如果为模式串，则使用模式匹配转换响应数据并返回。<br>
+参数@3如果为函数，则调用该函数转换转换响应数据并返回。<br>
+参数@3如果为数组，则作为string.map的模式参数@2转换响应数据并返回</p>
+
+<p><a id="webRestClientObject.api"></a></p>
+
+<h3>webRestClientObject.api(&quot;网址模板&quot;,&quot;HTTP动词&quot;,&quot;模式串&quot;,HTTP选项)</h3>
+
+<p>可选在参数@4用 <em>INTERNET_FLAG</em> 前缀常量自定义http请求选项<br>
+其他参数用法同上</p>
+
+<p><a id="webRestClientObject.api"></a></p>
+
+<h3>webRestClientObject.api()</h3>
+
+<p><a href="client.html#webRestApiObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/web/rest/client.html#webRestApiObject">返回对象:webRestApiObject</a></p>
+
+<p><a id="webRestClientObject.beforeRequestHeaders"></a></p>
+
+<h3>webRestClientObject.beforeRequestHeaders(提交参数,提交数据,请求网址,请求方法,请求类型)</h3>
+
+<pre><code class="aardio language-aardio">webRestClientObject.beforeRequestHeaders = function(params,payload,url,httpMethod,contentType){
+    /*每次请求前触发此函数。  
+params 参数为本次请求的提交参数，  
+payload 为转换为字符串格式的提交数据  
+url 参数为本次请求网址。  
+httpMethod 参数为 HTTP 方法（大写）。  
+contentType 参数为请求内容类型。  
+可选以字符串、数组、键值等 web.joinHeaders 函数支持的格式返回 HTTP 头。  
+*/
+    return {}; 
+}
+</code></pre>
+
+<p><a id="webRestClientObject.beforeSend"></a></p>
+
+<h3>webRestClientObject.beforeSend</h3>
+
+<pre><code class="aardio language-aardio">webRestClientObject.beforeSend = function(){
+    /*已准备向服务器发送数据触发此回调函数*/ 
+}
+</code></pre>
+
+<p><a id="webRestClientObject.beforeStringifyRequestParameters"></a></p>
+
+<h3>webRestClientObject.beforeStringifyRequestParameters(提交参数,代码页)</h3>
+
+<pre><code class="aardio language-aardio">webRestClientObject.beforeStringifyRequestParameters = function(params,codepage){
+    /*可以在该函数中修改提交提交参数表,或在此添加默认参数  
+此函数在stringifyRequestParameters之前调用  
+参数可能是字符串或者表*/
+    return params; 
+}
+</code></pre>
+
+<p><a id="webRestClientObject.charset"></a></p>
+
+<h3>webRestClientObject.charset</h3>
+
+<p>指定服务端使用的编码,默认为&quot;UTF-8&quot;,<br>
+服务端HTTP响应头里如果显式指定了编码，会自动修改此属性<br>
+对于服务端返回的数据,会根据charset自动转换为aardio默认的UTF8编码<br>
+对于请求参数,如果使用JSON编码统一转换为Unicode编码格式,不需要考虑编码转换,<br>
+如果使用UrlEncode编码与浏览器的规则一致，根据charset转换为对应编码后提交，<br>
+开发服务端接口应统一使用UTF8编码,可避免任何乱码问题</p>
+
+<p><a id="webRestClientObject.checkResponseResult"></a></p>
+
+<h3>webRestClientObject.checkResponseResult(result)</h3>
+
+<pre><code class="aardio language-aardio">webRestClientObject.checkResponseResult = function(result){
+    if(result[[&quot;errcode&quot;]]==40014){
+        var lastRequestInfo = http.lastRequestInfo;
+        /*此函数在成功解析服务器响数数据后调用  
+可在此函数中检查token是否过期并重新发送请求*/
+        return http.requestEx(lastRequestInfo);
+    }
+
+    return result;
+}
+</code></pre>
+
+<p><a id="webRestClientObject.close"></a></p>
+
+<h3>webRestClientObject.close()</h3>
+
+<p>关闭对象释放资源</p>
+
+<p><a id="webRestClientObject.config"></a></p>
+
+<h3>webRestClientObject.config</h3>
+
+<p>自定义的 API 配置表。<br>
+默认指向创建对象时指定的表参数。<br>
+如果构造对象未指定表参数，此配置默认为 null 值。</p>
+
+<p><a id="webRestClientObject.contentType"></a></p>
+
+<h3>webRestClientObject.contentType</h3>
+
+<p>写入HTTP头ContentType属性的内容类型<br>
+设为null空值,或每次请求完成将自动重置为defaultContentType</p>
+
+<p><a id="webRestClientObject.defaultContentType"></a></p>
+
+<h3>webRestClientObject.defaultContentType</h3>
+
+<p>默认内容类型</p>
+
+<p><a id="webRestClientObject.defaultUrlTemplate"></a></p>
+
+<h3>webRestClientObject.defaultUrlTemplate</h3>
+
+<p>默认API网址模板</p>
+
+<p><a id="webRestClientObject.delete"></a></p>
+
+<h3>webRestClientObject.delete(网址,参数表)</h3>
+
+<p>使用该DELETE方法提交请求,删除资源<br>
+请求参数可以指定表或字符串,如果是表请求前会转换为字符串<br>
+成功返回数据,失败返回空值,错误信息,错误代码</p>
+
+<p><a id="webRestClientObject.encodeKey"></a></p>
+
+<h3>webRestClientObject.encodeKey</h3>
+
+<p>自定义替换 API 网址变量值使用的编码函数,<br>
+此函数接收一个资源名参数,返回编码后的资源名,<br>
+必须在定义 API 对象之前指定,<br>
+默认已指定为 inet.url.encodeMbcs 函数</p>
+
+<p><a id="webRestClientObject.endRequest"></a></p>
+
+<h3>webRestClientObject.endRequest()</h3>
+
+<p>可用于afterSend事件提前结束当前请求</p>
+
+<p><a id="webRestClientObject.extraParameters"></a></p>
+
+<h3>webRestClientObject.extraParameters</h3>
+
+<p>指定附加到所有请求参数中的默认参数<br>
+该值应当是一个表,请求参数指定表对象时或为null才会附加extraParameters</p>
+
+<p><a id="webRestClientObject.extraUrlParameters"></a></p>
+
+<h3>webRestClientObject.extraUrlParameters</h3>
+
+<p>指定附加到所有请求 URL 的默认参数。<br>
+该值可以是一个表或字符串。<br>
+表参数使用 inet.url.stringifyParameters 转换为字符串。<br>
+表中的值如果是函数则每次请求都调用该函数取值</p>
+
+<p><a id="webRestClientObject.get"></a></p>
+
+<h3>webRestClientObject.get(网址,参数表)</h3>
+
+<p>使用该GET方法提交请求,获取资源<br>
+请求参数将会自动转换为URL附加参数,<br>
+请求参数可以指定表或字符串,如果是表请求前会转换为字符串<br>
+成功返回数据,失败返回空值,错误信息,错误代码</p>
+
+<p><a id="webRestClientObject.get"></a></p>
+
+<h3>webRestClientObject.get(网址,参数表,接收数据回调函数)</h3>
+
+<p>使用该GET方法提交请求,获取资源<br>
+请求参数将会自动转换为URL附加参数,<br>
+请求参数可以指定表或字符串,如果是表请求前会转换为字符串<br>
+如果服务端返回内容类型为 text/event-stream，<br>
+则接收数据回调函数的参数为解析服务端每次推送数据的表对象，<br>
+否则回调参数依次为：当前响应数据，本次响应数据长度，响应数据总长度</p>
+
+<p><a id="webRestClientObject.getUserAgent"></a></p>
+
+<h3>webRestClientObject.getUserAgent()</h3>
+
+<p>返回HTTP客户端请求HTTP头中用户代理头的值,<br>
+该值可在创建HTTP客户端的构造参数中指定</p>
+
+<p><a id="webRestClientObject.head"></a></p>
+
+<h3>webRestClientObject.head(网址,参数表)</h3>
+
+<p>使用 HEAD 方法提交请求<br>
+如果该函数返回非 null 值为成功,请使用 lastResponseHeaders 获取应答HTTP头。<br>
+成功返回 true,失败返回 null,错误信息,错误代码</p>
+
+<p><a id="webRestClientObject.headGet"></a></p>
+
+<h3>webRestClientObject.headGet(网址,参数表)</h3>
+
+<p>使用 GET 方法提交请求，但仅获取 HTTP 头。<br>
+如果该函数返回非 null 值为成功,请使用 lastResponseHeaders 获取应答HTTP头<br>
+成功返回数据,失败返回空值,错误信息,错误代码</p>
+
+<p><a id="webRestClientObject.headPost"></a></p>
+
+<h3>webRestClientObject.headPost(网址,参数表)</h3>
+
+<p>使用 POST 方法提交请求，但仅获取 HTTP 头。<br>
+如果该函数返回非 null 值为成功,请使用 lastResponseHeaders 获取应答HTTP头<br>
+成功返回数据,失败返回空值,错误信息,错误代码</p>
+
+<p><a id="webRestClientObject.lastRequestInfo"></a></p>
+
+<h3>webRestClientObject.lastRequestInfo</h3>
+
+<p>最后一次请示使用的所有参数信息</p>
+
+<p><a id="webRestClientObject.lastRequestMethod"></a></p>
+
+<h3>webRestClientObject.lastRequestMethod</h3>
+
+<p>最后一次请示使用的HTTP方法</p>
+
+<p><a id="webRestClientObject.lastRequestUrl"></a></p>
+
+<h3>webRestClientObject.lastRequestUrl</h3>
+
+<p>获取最后一次请求的URL</p>
+
+<p><a id="webRestClientObject.lastResponse"></a></p>
+
+<h3>webRestClientObject.lastResponse()</h3>
+
+<p>获取最后一次服务器返回的数据,<br>
+如果控制台已打开或在开发环境中导入 console 库则在控制台输出数据<br>
+下载文件时该值为空</p>
+
+<p><a id="webRestClientObject.lastResponseContentType"></a></p>
+
+<h3>webRestClientObject.lastResponseContentType</h3>
+
+<p>服务器响应头 Content-Type 的值</p>
+
+<p><a id="webRestClientObject.lastResponseError"></a></p>
+
+<h3>webRestClientObject.lastResponseError()</h3>
+
+<p>返回服务器最后一次返回的错误响应，并转换为错误对象。<br>
+与调用 API 时转换响应数据一样，支持相同的服务器响应格式 。<br>
+如果错误来自本地（lastStatusCode 属性为 null）则此函数返回 null 。<br>
+如果最后一次发生请求成功，则此函数返回 null 。  </p>
+
+<p>如果在参数 @1 中指定返回字段，且错误对象包含该字段则使用直接下标获取并返回字段值。<br>
+获取字段失败返回 null 而非抛出异常</p>
+
+<p><a id="webRestClientObject.lastResponseHeaderList"></a></p>
+
+<h3>webRestClientObject.lastResponseHeaderList(&quot;字符串参数&quot;)</h3>
+
+<p>获取所有指定字符串作为开始段的 HTTP 头。<br>
+忽略大小写，不忽略冒号以后部分。<br>
+不指定参数则读取全部响应头。<br>
+返回键值对组成的表对象，键名转为小写，每个值都是一个数组。<br>
+如果调用 head, headGet, headPost 等函数。<br>
+或调用 或 API 对象的 head.get,head.post 等函数，<br>
+则在请求成功后可调用此函数读取 HTTP 头</p>
+
+<p><a id="webRestClientObject.lastResponseHeaders"></a></p>
+
+<h3>webRestClientObject.lastResponseHeaders</h3>
+
+<p>获取返回的 HTTP 响应头</p>
+
+<p><a id="webRestClientObject.lastResponseHeaders"></a></p>
+
+<h3>webRestClientObject.lastResponseHeaders(&quot;Content-Length:&quot;)</h3>
+
+<p>获取单个指定的 HTTP 服务器响应头，返回字符串。<br>
+参数指定HTTP头名字或部分名字，忽略大小写，忽略冒号以后部分。<br>
+如果调用 head, headGet, headPost 等函数。<br>
+或调用 或 API 对象的 head.get,head.post 等函数，<br>
+则在请求成功后可调用此函数读取 HTTP 头</p>
+
+<p><a id="webRestClientObject.lastResponseHeaders"></a></p>
+
+<h3>webRestClientObject.lastResponseHeaders()</h3>
+
+<p>获取返回的 HTTP 响应头。<br>
+如果调用 head, headGet, headPost 等函数。<br>
+或调用 或 API 对象的 head.get,head.post 等函数，<br>
+则在请求成功后可调用此函数读取 HTTP 头</p>
+
+<p><a id="webRestClientObject.lastResponseString"></a></p>
+
+<h3>webRestClientObject.lastResponseString()</h3>
+
+<p>获取最后一次服务器返回的原始数据，<br>
+请求失败，或者下载文件时此属性值为空</p>
+
+<p><a id="webRestClientObject.lastStatusCode"></a></p>
+
+<h3>webRestClientObject.lastStatusCode</h3>
+
+<p>获取最近一次请求返回的HTTP状态码<br>
+100 ~ 101 为信息提示<br>
+200 ~ 206 表示请求成功<br>
+300 ~ 305 表示重定向<br>
+400 ~ 415 表求客户端请求出错<br>
+500 ~ 505 表示服务端错误</p>
+
+<p><a id="webRestClientObject.lastStatusMessage"></a></p>
+
+<h3>webRestClientObject.lastStatusMessage()</h3>
+
+<p>获取最近返回的HTTP状态码文本描述<br>
+第二个返回值为状态码</p>
+
+<p><a id="webRestClientObject.notify"></a></p>
+
+<h3>webRestClientObject.notify(回调函数)</h3>
+
+<pre><code class="aardio language-aardio">webRestClientObject.notify(  
+    function(){  
+        /*在此回调函数中所有请求在发送数据后立即关闭连接*/  
+    }   
+)
+</code></pre>
+
+<p><a id="webRestClientObject.ok"></a></p>
+
+<h3>webRestClientObject.ok()</h3>
+
+<p>最后一次请求是否成功<br>
+服务器应答并且状态码为2XX该函数返回真</p>
+
+<p><a id="webRestClientObject.onAuthenticate"></a></p>
+
+<h3>webRestClientObject.onAuthenticate</h3>
+
+<p>function(authHeader){
+    __/*请求遇到401错误触发此函数,<br>
+authHeader为服务器响应HTT头WWW-Authenticate的值<br>
+登录成功请返回true以重新发送上次失败的请求*/ 
+}</p>
+
+<p><a id="webRestClientObject.parseResponseResult"></a></p>
+
+<h3>webRestClientObject.parseResponseResult(响应数据,单个流式数据块)</h3>
+
+<pre><code class="aardio language-aardio">webRestClientObject.parseResponseResult = function(resp,streamChunk){
+    /*用于解析服务器应答数据。  
+此函数一般由库文件定义，一般调用不应修改此函数。  
+resp 为服务器应答字符串，  
+streamChunk 指示是否在 SSE 或 ndjson 流回调函数中解析单个块*/
+    return resp;
+}
+</code></pre>
+
+<p><a id="webRestClientObject.patch"></a></p>
+
+<h3>webRestClientObject.patch(网址,参数表)</h3>
+
+<p>使用该PATCH方法提交请求,更新资源<br>
+请求参数可以指定表或字符串,如果是表请求前会转换为字符串<br>
+成功返回数据,失败返回空值,错误信息,错误代码</p>
+
+<p><a id="webRestClientObject.post"></a></p>
+
+<h3>webRestClientObject.post(网址,参数表)</h3>
+
+<p>使用该POST方法提交请求,新增或修改资源<br>
+请求参数可以指定表或字符串,如果是表请求前会转换为字符串<br>
+成功返回数据,失败返回空值,错误信息,错误代码</p>
+
+<p><a id="webRestClientObject.post"></a></p>
+
+<h3>webRestClientObject.post(网址,参数表,接收数据回调函数)</h3>
+
+<p>使用该POST方法提交请求,新增或修改资源<br>
+请求参数可以指定表或字符串,如果是表请求前会转换为字符串  </p>
+
+<p>如果服务端返回内容类型为 text/event-stream，<br>
+则接收数据回调函数的参数为解析服务端每次推送数据的表对象，<br>
+否则回调参数依次为：当前响应数据，本次响应数据长度，响应数据总长度</p>
+
+<p><a id="webRestClientObject.put"></a></p>
+
+<h3>webRestClientObject.put(网址,参数表)</h3>
+
+<p>使用该PUT方法提交请求,替换或更新资源<br>
+请求参数可以指定表或字符串,如果是表请求前会转换为字符串<br>
+成功返回数据,失败返回空值,错误信息,错误代码</p>
+
+<p><a id="webRestClientObject.receiveFile"></a></p>
+
+<h3>webRestClientObject.receiveFile</h3>
+
+<p>配置下次下载文件的参数，<br>
+此配置在后续用 get,post 等函数提交请求后自动清空  </p>
+
+<p>此函数成功返回对象自身，创建文件失败返回 null,错误信息</p>
+
+<p><a id="webRestClientObject.receiveFile"></a></p>
+
+<h3>webRestClientObject.receiveFile()</h3>
+
+<p><a href="client.html#webRestClientObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/web/rest/client.html#webRestClientObject">返回对象:webRestClientObject</a></p>
+
+<p><a id="webRestClientObject.receiveFile"></a></p>
+
+<h3>webRestClientObject.receiveFile(savePath,callback,saveDir)</h3>
+
+<p>配置下次下载文件的参数，<br>
+此配置在后续用 get,post 等函数提交请求后自动清空<br>
+此函数成功则返回对象自身  </p>
+
+<p>@savePath 参数指定下载文件路径，<br>
+可选用 @saveDir 指定下载根目录，指定此参数则参数 @1 应为相对路径。</p>
+
+<p><a id="webRestClientObject.referer"></a></p>
+
+<h3>webRestClientObject.referer</h3>
+
+<p>引用页地址<br>
+如果此属性指定了一个值，则每次请求都会使用该引用页<br>
+如果不指定，每次请求都会自动设置上次请求的网址为引用页<br>
+这个属性不像inet.http对象的referer属性那样每次请求结束都会清空</p>
+
+<p><a id="webRestClientObject.request"></a></p>
+
+<h3>webRestClientObject.request</h3>
+
+<p>发送请求,<br>
+该函数不会解析URL中的模板参数</p>
+
+<p><a id="webRestClientObject.request"></a></p>
+
+<h3>webRestClientObject.request(网址,参数表,&quot;HTTP动词&quot;,URL参数表)</h3>
+
+<p>除参数@1以外，其他所有参数都可以省略,<br>
+省略参数@3则使用默认的调用方法<br>
+成功返回数据,失败返回空值,错误信息,错误代码</p>
+
+<p><a id="webRestClientObject.requestEx"></a></p>
+
+<h3>webRestClientObject.requestEx(lastRequstInfo)</h3>
+
+<p>用于重新发送请求，<br>
+参数必须指定当前对象的lastRequestInfo属性</p>
+
+<p><a id="webRestClientObject.sendFile"></a></p>
+
+<h3>webRestClientObject.sendFile(&quot;上传文件路径&quot;,进度回调函数)</h3>
+
+<pre><code class="aardio language-aardio">webRestClientObject.sendFile( &quot;上传文件路径&quot;   
+    ,function(sendData,sendSize,contentLength,remainSize){  
+        /*上传进度回调函数以及其他参数都可以省略，  
+如果打开文件失败，sendFile 函数返回 null 与错误信息，  
+否则返回响应数据*/  
+    }  
+);
+</code></pre>
+
+<p><a id="webRestClientObject.sendFile"></a></p>
+
+<h3>webRestClientObject.sendFile()</h3>
+
+<p><a href="client.html#webRestClientObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/web/rest/client.html#webRestClientObject">返回对象:webRestClientObject</a></p>
+
+<p><a id="webRestClientObject.sendMultipartForm"></a></p>
+
+<h3>webRestClientObject.sendMultipartForm()</h3>
+
+<p><a href="client.html#webRestClientObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/web/rest/client.html#webRestClientObject">返回对象:webRestClientObject</a></p>
+
+<p><a id="webRestClientObject.sendMultipartForm"></a></p>
+
+<h3>webRestClientObject.sendMultipartForm(上传字段表,进度回调函数)</h3>
+
+<pre><code class="aardio language-aardio">webRestClientObject.sendMultipartForm( {  
+        file = &quot;@/*上传文件路径字前必须添加@字符，  
+上传表单可添加多个字段，  
+上传进度回调函数以及其他参数都可以省略*/&quot;  
+    },function(sendData,sendSize,contentLength,remainSize){  
+
+    }  
+);
+</code></pre>
+
+<p><a id="webRestClientObject.setAuth"></a></p>
+
+<h3>webRestClientObject.setAuth</h3>
+
+<p>设置登录名,密码，或者设置 API Key 与 Secret Key</p>
+
+<p><a id="webRestClientObject.setAuth"></a></p>
+
+<h3>webRestClientObject.setAuth(&quot;API Key&quot;,&quot;Secret Key&quot;)</h3>
+
+<p>设置 API Key，Secret Key。<br>
+此函数会清空 setAuthToken 设置的认证令牌（token）</p>
+
+<p><a id="webRestClientObject.setAuth"></a></p>
+
+<h3>webRestClientObject.setAuth(&quot;登录名&quot;,&quot;密码&quot;)</h3>
+
+<p>设置登录名,密码,<br>
+默认用于HTTP登录认证<br>
+,<br>
+支持 Basic , Digest 认证  </p>
+
+<p>此函数会清空 setAuthToken 设置的认证令牌（token）</p>
+
+<p><a id="webRestClientObject.setAuthToken"></a></p>
+
+<h3>webRestClientObject.setAuthToken</h3>
+
+<p>设置认证令牌（token）</p>
+
+<p><a id="webRestClientObject.setAuthToken"></a></p>
+
+<h3>webRestClientObject.setAuthToken(token,tokenType)</h3>
+
+<p>设置认证令牌（token）。<br>
+@token 可指定令牌，也可以指定返回令牌的网址。<br>
+@tokenType 为可选参数，默认为&quot;Bearer&quot;。<br>
+如果指定了令牌，则会添加请求头 &quot;Authorization:Bearer 令牌&quot;。<br>
+@tokenType 也可以指定为空字符串。  </p>
+
+<p>此函数会清空 setAuth 设置的用户名与密码</p>
+
+<p><a id="webRestClientObject.setCookie"></a></p>
+
+<h3>webRestClientObject.setCookie</h3>
+
+<p>调用 inet.setCookie 设置 Cookies 。<br>
+web.rest,inet.http,web.form 等共享 Cookies 设置。  </p>
+
+<p>此函数用法与 inet.setCookie 函数完全相同。<br>
+这里仅列出几种常用的参数用法，<br>
+其他用法请查看 inet.setCookie 函数说明</p>
+
+<p><a id="webRestClientObject.setCookie"></a></p>
+
+<h3>webRestClientObject.setCookie(&quot;网址&quot;,&quot;值&quot;,&quot;键&quot;,过期时间或天数)</h3>
+
+<p>设定指定网址的 Cookie。<br>
+第一个参数指定 Cookie 生效的网址。<br>
+如果不指定值则删除删除指定名字的会话 cookie 与持久 Cookie，<br>
+如果指定名字与值则设置 Cookie，如果不指定过期时间则仅设置会话 Cookie，<br>
+否则设置为持久 Cookie。<br>
+可选参数 @4 使用 time 对象指定过期时间，或用数值指定过期天数</p>
+
+<p><a id="webRestClientObject.setCookie"></a></p>
+
+<h3>webRestClientObject.setCookie(webView)</h3>
+
+<p>传入 web.view 可直接获取浏览器控件的 Cookies<br>
+作为 inet.setCookie 的参数，设置为 inet.http 可用的 Cookies 。<br>
+web.form,web.rest,inet.http 共享此 Cookies 设置</p>
+
+<p><a id="webRestClientObject.setHeaders"></a></p>
+
+<h3>webRestClientObject.setHeaders</h3>
+
+<p>设置所有请求默认添加的HTTP头</p>
+
+<p><a id="webRestClientObject.setHeaders"></a></p>
+
+<h3>webRestClientObject.setHeaders(headers)</h3>
+
+<p>参数 @headers 必须指定一个表中,<br>
+用该表中的键值对更新 addHeaders 属性中的键值<br>
+如果addHeaders的原属性值不是一个表,则先清空该属性</p>
+
+<p><a id="webRestClientObject.strictParsing"></a></p>
+
+<h3>webRestClientObject.strictParsing</h3>
+
+<p>对于 JSON 客户端，如果此属性设为 true：<br>
+且服务器响应头未声明 JSON 类型，返回数据第一个字符不是 { 也不是 [，<br>
+则直接返回包含服务器响应数据的字符串。  </p>
+
+<p>此属性值默认为 null</p>
+
+<p><a id="webRestClientObject.stringifyRequestParameters"></a></p>
+
+<h3>webRestClientObject.stringifyRequestParameters(提交参数表,代码页)</h3>
+
+<pre><code class="aardio language-aardio">webRestClientObject.stringifyRequestParameters = function(params,codepage){
+    /*参数是表对象时调用此函数转换为字符串  
+此函数一般由库文件定义，一般调用不应修改此函数  
+注意返回的文本格式应与 owner.contentType 一致  
+在该函数中可获取或修改对象的 lastRequestUrl, lastRequestMethod 属性*/
+    return params;
+}
+</code></pre>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/web/rest/client.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/web/rest/client.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/web/rest/client.md">Markdown 格式</a></p>
+
+</body> 
+</html>

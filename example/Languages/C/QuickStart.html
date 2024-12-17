@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - aardio 调用 C 语言快速入门'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - aardio 调用 C 语言快速入门</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 调用 C 语言快速入门</h1><pre><code class="aardio language-aardio">//aardio 调用 C 语言快速入门
+//扩展库体积很小，支持发布后生成独立 EXE
+import tcc;  
+
+/*
+C 语言快速入门
+https://quickref.me/zh-CN/docs/c.html
+https://learnxinyminutes.com/docs/zh-cn/c-cn
+*/
+
+//编译 DLL
+tcc.build( &quot;/start.dll&quot; ).code = /***
+#include &lt;windows.h&gt; 
+__declspec(dllexport) int Add( int a,int b ) 
+{     
+    return a + b;
+} 
+***/
+
+//加载 DLL,改为 $&quot;/start.dll&quot; 可将 DLL 嵌入代码，发布后不再需要外部 DLL 文件
+var dll = raw.loadDll( &quot;/start.dll&quot;,,&quot;cdecl&quot; );
+
+//调用 C函数
+var result = dll.Add(12,3);
+
+import win;
+win.msgbox(result);
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/C/QuickStart.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/C/QuickStart.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Languages/C/QuickStart.md">Markdown 格式</a>
+</body> 
+</html>

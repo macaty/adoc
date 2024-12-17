@@ -1,0 +1,204 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - win.scrnsave 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - win.scrnsave 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>win.scrnsave 库模块帮助文档</h1>
+
+<p><a id="win"></a></p>
+
+<h2>win 成员列表</h2>
+
+<p><a id="win.scrnsave"></a></p>
+
+<h3>win.scrnsave()</h3>
+
+<p><a href="#winScrnsaveObject">返回对象:winScrnsaveObject</a></p>
+
+<p><a id="win.scrnsave"></a></p>
+
+<h3>win.scrnsave(主窗体)</h3>
+
+<p>主窗体应无边框,背景可设置为黑色,样式设为popup<br>
+生成的EXE文件必须修改后缀名为&quot;scr&quot;</p>
+
+<p><a id="win.scrnsave"></a></p>
+
+<h2>win.scrnsave 成员列表</h2>
+
+<p>屏幕保护程序,<br>
+现代显示器已不再需要屏幕保护程序,<br>
+但仍然可以使用此机制在空闲时运行程序</p>
+
+<p><a id="win.scrnsave.getConfig"></a></p>
+
+<h3>win.scrnsave.getConfig()</h3>
+
+<p>返回系统屏幕保护设置  </p>
+
+<p><a href="#winScrnsaveConfigObject">返回对象:winScrnsaveConfigObject</a></p>
+
+<p><a id="win.scrnsave.isRunning"></a></p>
+
+<h3>win.scrnsave.isRunning()</h3>
+
+<p>屏幕保护是否正在运行</p>
+
+<p><a id="win.scrnsave.setConfig"></a></p>
+
+<h3>win.scrnsave.setConfig(cfg)</h3>
+
+<pre><code class="aardio language-aardio">win.scrnsave.setConfig(
+</code></pre>
+
+<p><a id="global"></a></p>
+
+<h2>全局对象 成员列表</h2>
+
+<p><a id="active"></a></p>
+
+<h3>active</h3>
+
+<pre><code class="aardio language-aardio">active,
+</code></pre>
+
+<p><a id="path"></a></p>
+
+<h3>path</h3>
+
+<pre><code class="aardio language-aardio">path,
+</code></pre>
+
+<p><a id="secure"></a></p>
+
+<h3>secure</h3>
+
+<p>secure,__/*修改屏幕保护程序配置,<br>
+参数中的所有字段不指定则不修改并保持系统原来的配置值,<br>
+path 为屏保程序路径,设为空字符串删除配置中的路径,<br>
+active 指定是否启用屏保,<br>
+timeout 指定启动屏保前的空闲超时,以秒为单位,<br>
+secure 指定退出屏保是否显示登录界面,用户未设置登录密码时忽略此值*/</p>
+
+<p><a id="timeout"></a></p>
+
+<h3>timeout</h3>
+
+<pre><code class="aardio language-aardio">timeout,
+</code></pre>
+
+<p><a id="winScrnsaveConfigObject"></a></p>
+
+<h2>winScrnsaveConfigObject 成员列表</h2>
+
+<p><a id="winScrnsaveConfigObject.active"></a></p>
+
+<h3>winScrnsaveConfigObject.active</h3>
+
+<p>是否启用</p>
+
+<p><a id="winScrnsaveConfigObject.path"></a></p>
+
+<h3>winScrnsaveConfigObject.path</h3>
+
+<p>屏幕保护程序路径,文件名后缀必须为 scr</p>
+
+<p><a id="winScrnsaveConfigObject.secure"></a></p>
+
+<h3>winScrnsaveConfigObject.secure</h3>
+
+<p>退出屏幕保护时是否显示登录界面</p>
+
+<p><a id="winScrnsaveConfigObject.timeout"></a></p>
+
+<h3>winScrnsaveConfigObject.timeout</h3>
+
+<p>运行屏幕保护前的最少空闲时间,<br>
+以秒为单位</p>
+
+<p><a id="winScrnsaveConfigObject.update"></a></p>
+
+<h3>winScrnsaveConfigObject.update()</h3>
+
+<p>使用此配置对象更新系统屏幕保护设置</p>
+
+<p><a id="winScrnsaveObject"></a></p>
+
+<h2>winScrnsaveObject 成员列表</h2>
+
+<p><a id="winScrnsaveObject.command"></a></p>
+
+<h3>winScrnsaveObject.command</h3>
+
+<p>&quot;s&quot;为全屏运行屏幕保护<br>
+&quot;p&quot;为预览<br>
+&quot;c&quot;为设置选项</p>
+
+<p><a id="winScrnsaveObject.onChangePassword"></a></p>
+
+<h3>winScrnsaveObject.onChangePassword</h3>
+
+<pre><code class="aardio language-aardio">winScrnsaveObject.onChangePassword = function(parent){
+    /*设置密码触发此函数,  
+parent 为父窗口句柄*/ 
+}
+</code></pre>
+
+<p><a id="winScrnsaveObject.onFullScreen"></a></p>
+
+<h3>winScrnsaveObject.onFullScreen</h3>
+
+<pre><code class="aardio language-aardio">winScrnsaveObject.onFullScreen = function(parent){
+    /*全屏运行屏幕保护程序触发此函数*/       
+    mainForm.onMouseDown  = function(wParam,lParam){
+        mainForm.close();   
+    }
+
+    mainForm.onActivateApp = function(activated,threadId){
+        if(!activated) mainForm.close(); 
+    }   
+}
+</code></pre>
+
+<p><a id="winScrnsaveObject.onPreview"></a></p>
+
+<h3>winScrnsaveObject.onPreview</h3>
+
+<pre><code class="aardio language-aardio">winScrnsaveObject.onPreview = function(parent){
+    /*预览模式触发此函数,  
+parent 为父窗口句柄*/     
+}
+</code></pre>
+
+<p><a id="winScrnsaveObject.onShowConfigDlg"></a></p>
+
+<h3>winScrnsaveObject.onShowConfigDlg</h3>
+
+<pre><code class="aardio language-aardio">winScrnsaveObject.onShowConfigDlg = function(parent){
+    win.msgbox(&quot;此屏幕保护程序没有可设置的选项&quot;,&quot;屏幕保护程序&quot;);
+    /*显示屏幕保护设置触发此函数,  
+parent 为父窗口句柄*/
+}
+</code></pre>
+
+<p><a id="winScrnsaveObject.parentWindow"></a></p>
+
+<h3>winScrnsaveObject.parentWindow</h3>
+
+<p>父窗口句柄,<br>
+全屏运行屏幕保护该值为空</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/scrnsave/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/scrnsave/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/scrnsave/_.md">Markdown 格式</a></p>
+
+</body> 
+</html>

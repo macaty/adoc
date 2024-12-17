@@ -1,0 +1,167 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - odisasm 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - odisasm 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>odisasm 库模块帮助文档</h1>
+
+<p><a id="odisasm"></a></p>
+
+<h2>odisasm 成员列表</h2>
+
+<p><a id="odisasm.asm"></a></p>
+
+<h3>odisasm.asm(汇编代码)</h3>
+
+<p>32位汇编一行返回机器码</p>
+
+<p><a id="odisasm.dasm"></a></p>
+
+<h3>odisasm.dasm(机器码)</h3>
+
+<p>32位反汇编,<br>
+可返回继续的多行汇编代码</p>
+
+<p><a id="odisasm.eachAsm"></a></p>
+
+<h3>odisasm.eachAsm(汇编代码)</h3>
+
+<pre><code class="aardio language-aardio">for( bin,line in odisasm.eachAsm(/*汇编代码*/) ){
+    io.print( odisasm.hex(bin),line ) 
+}
+</code></pre>
+
+<p><a id="odisasm.eachDasm"></a></p>
+
+<h3>odisasm.eachDasm(不定个数机器码)</h3>
+
+<pre><code class="aardio language-aardio">for code in odisasm.eachDasm(  
+    &#39;\x55&#39;, /*push ebp*/  
+    &#39;\x89\xE5&#39;, /*mov ebp,esp*/   
+    ){  
+    io.print( code )  
+}
+</code></pre>
+
+<p><a id="odisasm.hex"></a></p>
+
+<h3>odisasm.hex(二进制数据)</h3>
+
+<p>返回十六进制编码字符串</p>
+
+<p><a id="odisasm.nextAsm"></a></p>
+
+<h3>odisasm.nextAsm(汇编代码)</h3>
+
+<p>32位汇编一行返回机器码,汇编代码,下一行汇编代码,<br>
+失败返回null,错误信息</p>
+
+<h3>自动完成常量</h3>
+
+<p>_C_BAD=0xF0<br>
+_C_CAL=0x70<br>
+_C_CMD=0<br>
+_C_DANGER=3<br>
+_C_DANGER95=1<br>
+_C_DANGERLOCK=7<br>
+_C_DAT=0xD0<br>
+_C_EXPL=1<br>
+_C_FLG=0x90<br>
+_C_FLT=0x40<br>
+_C_JMC=0x60<br>
+_C_JMP=0x50<br>
+_C_MMX=0x30<br>
+_C_NOW=0xE0<br>
+_C_POP=0x20<br>
+_C_PRI=0xC0<br>
+_C_PSH=0x10<br>
+_C_RARE=8<br>
+_C_REP=0xB0<br>
+_C_RET=0x80<br>
+_C_RTF=0xA0<br>
+_C_SIZEMASK=7<br>
+_C_TYPEMASK=0xF0<br>
+_DAW_DANGER95=0x1000<br>
+_DAW_DANGEROUS=0x3000<br>
+_DAW_FARADDR=1<br>
+_DAW_IO=8<br>
+_DAW_LOCK=0x40<br>
+_DAW_PREFIX=0x20<br>
+_DAW_PRIV=4<br>
+_DAW_SEGMENT=2<br>
+_DAW_SHIFT=0x10<br>
+_DAW_STACK=0x80<br>
+_DECR_3DNOW=0x2D<br>
+_DECR_BYTE=0x21<br>
+_DECR_DWORD=0x24<br>
+_DECR_FLOAT10=0x29<br>
+_DECR_ISREG=0x20<br>
+_DECR_QWORD=0x28<br>
+_DECR_SEG=0x2A<br>
+_DECR_TYPEMASK=0x3F<br>
+_DECR_WORD=0x22<br>
+_DEC_3DNOW=0xD<br>
+_DEC_BYTE=1<br>
+_DEC_BYTESW=0x11<br>
+_DEC_CALLDEST=0x1F<br>
+_DEC_CHECKED=0x80<br>
+_DEC_COMMAND=0x1D<br>
+_DEC_DWORD=4<br>
+_DEC_FLOAT10=9<br>
+_DEC_FLOAT4=5<br>
+_DEC_FLOAT8=7<br>
+_DEC_FWORD=6<br>
+_DEC_JMPDEST=0x1E<br>
+_DEC_NEXTCODE=0x13<br>
+_DEC_NEXTDATA=3<br>
+_DEC_PBODY=0x40<br>
+_DEC_PEND=0x60<br>
+_DEC_PROC=0x20<br>
+_DEC_PROCMASK=0x60<br>
+_DEC_QWORD=8<br>
+_DEC_STRING=0xB<br>
+_DEC_TBYTE=0xA<br>
+_DEC_TYPEMASK=0x1F<br>
+_DEC_UNICODE=0xC<br>
+_DEC_UNKNOWN=0<br>
+_DEC_WORD=2<br>
+_DISASM_CODE=4<br>
+_DISASM_DATA=1<br>
+_DISASM_FILE=3<br>
+_DISASM_SIZE=0<br>
+_INT3=0xCC<br>
+_MAXCALSIZE=8<br>
+_MAXCMDSIZE=0x10<br>
+_NMODELS=8<br>
+_NOP=0x90<br>
+_REG_EAX=0<br>
+_REG_EBP=5<br>
+_REG_EBX=3<br>
+_REG_ECX=1<br>
+_REG_EDI=7<br>
+_REG_EDX=2<br>
+_REG_ESI=6<br>
+_REG_ESP=4<br>
+_SEG_CS=1<br>
+_SEG_DS=3<br>
+_SEG_ES=0<br>
+_SEG_FS=4<br>
+_SEG_GS=5<br>
+_SEG_SS=2<br>
+_SEG_UNDEF=-1<br>
+_TRAPFLAG=0x100  </p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/odisasm/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/odisasm/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/odisasm/_.md">Markdown 格式</a></p>
+
+</body> 
+</html>

@@ -1,0 +1,98 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - MSXML 读写'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - MSXML 读写</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: MSXML 读写</h1><pre><code class="aardio language-aardio">//MSXML 读写
+
+import console;
+import web.msxml
+
+xmlstr =/*&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;国家 id=&quot;china&quot;&gt;
+    &lt;省份&gt;
+        &lt;省份详情 id=&quot;shanxi&quot;&gt;陕西&lt;/省份详情&gt;
+        &lt;地区&gt;
+            &lt;市 id=&quot;xian&quot;&gt;西安&lt;/市&gt;
+            &lt;市 id=&quot;xianyang&quot;&gt;咸阳&lt;/市&gt;
+        &lt;/地区&gt;
+    &lt;/省份&gt;
+    &lt;省份&gt;
+        &lt;省份详情 id=&quot;hunan&quot;&gt;湖南&lt;/省份详情&gt;
+        &lt;地区&gt;
+            &lt;市 id=&quot;changsha&quot;&gt;长沙&lt;/市&gt;
+            &lt;市 id=&quot;zhuzhou&quot;&gt;株洲&lt;/市&gt;
+        &lt;/地区&gt;
+    &lt;/省份&gt;
+&lt;/国家&gt;*/
+
+//解析 XML
+var xmlDoc = web.msxml(xmlstr);
+
+//可转换为字符串，下面代码等价于 console.log( tostring(xmlDoc.xml) ); 
+console.log( xmlDoc.xml ); 
+
+//XPath 查询
+var eles = xmlDoc.selectNodes(&quot;/国家/省份[2]/地区[1]/市[1]&quot;);
+//XPath 语法速查: https://quickref.me/zh-CN/docs/xpath.html
+
+//长度
+console.log(&quot;XPath返回数组长度&quot;,eles.length)
+console.log(&quot;XPath返回节点文本&quot;,eles[0].text)   
+
+//按条件查询节点
+qNodes = xmlDoc.queryNodes( tagName=&quot;市&quot;;text =&quot;西安&quot; ) 
+console.log( qNodes.text ); 
+
+//eachNode() 参数一可选指定tagName,参数二可选指定父节点
+for(k,xnode in xmlDoc.eachNode( &quot;省份&quot;) ){ 
+    for(k,xnode in xmlDoc.eachNode( &quot;省份详情&quot;,xnode) ){ 
+        console.log( &quot;省份详情 Id: &quot; ,  xnode.attributes(0).nodeValue  );
+        console.log( &quot;省份详情 value: &quot; ,xnode.text  );
+    } 
+    for(k,xnode in xmlDoc.eachNode( &quot;地区&quot;,xnode ) ){ 
+        for(k,xnode in xmlDoc.eachNode( &quot;市&quot;,xnode ) ){
+            console.log( &quot;   市 Id: &quot;, xnode.attributes(0).nodeValue );
+            console.log( &quot;   市 value: &quot;, xnode.text ); 
+        }
+    }
+}
+
+var root = xmlDoc.documentElement
+
+//修改国家下属第一个字节点的文本内容
+//注意 aardio数组下标从1开始,而com数组下标从零开始
+//下面两句的作用是一样的
+root.childNodes(0).Text=&quot;testitem&quot; 
+
+//COM 对象可在属性名字前加上set前缀、并以函数形式调用属性方法
+root.childNodes(0).setText(&quot;testitem2&quot;) 
+
+//下面这几句作用是一样的
+var text = root.childNodes(0).Text;
+var text = root.childNodes(0).getText() //在属性名字前加上get前缀、并以函数形式调用属性方法
+var text = root.childNodes.item(0).getText() 
+console.log( text)
+
+//更简单的方法
+console.log( xmlDoc.市(0).text  ); 
+
+//保存xml文件
+xmlDoc.save( &quot;/result.xmlDoc&quot; )
+
+import process;
+process.execute(&quot;notepad.exe&quot;,xmlDoc.url )
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Web/XML/msxml.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Web/XML/msxml.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Web/XML/msxml.md">Markdown 格式</a>
+</body> 
+</html>

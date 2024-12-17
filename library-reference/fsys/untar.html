@@ -1,0 +1,123 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - fsys.untar 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - fsys.untar 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>fsys.untar 库模块帮助文档</h1>
+
+<p><a id="fsys"></a></p>
+
+<h2>fsys 成员列表</h2>
+
+<p><a id="fsys.untar"></a></p>
+
+<h3>fsys.untar</h3>
+
+<p>tar文件操作</p>
+
+<p><a id="fsys.untar"></a></p>
+
+<h3>fsys.untar(&quot;tar文件路径&quot;,存储路径)</h3>
+
+<p>参数@1可以是 *.tar, *.tar.gz, *.tgz 类型文件路径,<br>
+参数 @1 也可以指定 fsys.stream 或 fsys.file,io.file 等文件对象,<br>
+如果参数@1为文件路径,则参数@2为可选参数</p>
+
+<p><a id="fsys.untar"></a></p>
+
+<h3>fsys.untar()</h3>
+
+<p><a href="#fsysUntarfileObject">返回对象:fsysUntarfileObject</a></p>
+
+<p><a id="fsysUntarfileObject"></a></p>
+
+<h2>fsysUntarfileObject 成员列表</h2>
+
+<p><a id="fsysUntarfileObject.blocksCount"></a></p>
+
+<h3>fsysUntarfileObject.blocksCount</h3>
+
+<p>数据块总数,<br>
+仅供进度条使用的估算值</p>
+
+<p><a id="fsysUntarfileObject.close"></a></p>
+
+<h3>fsysUntarfileObject.close()</h3>
+
+<p>关闭文件,<br>
+如果解包完成返回true</p>
+
+<p><a id="fsysUntarfileObject.complete"></a></p>
+
+<h3>fsysUntarfileObject.complete</h3>
+
+<p>所有文件是否解包完成</p>
+
+<p><a id="fsysUntarfileObject.eachBlock"></a></p>
+
+<h3>fsysUntarfileObject.eachBlock(posRange)</h3>
+
+<pre><code class="aardio language-aardio">for(fileName,writeSize,remainSize,pos in fsysUntarfileObject.eachBlock() ){
+     /*循环展开所有文件块,  
+文件块较多时指定posRange参数可以减少循环次数以优化性能  
+posRange参数可选指定一个表示进度上限的数值,  
+指定posRange参数则返回值pos表示当前进度*/
+}
+</code></pre>
+
+<p><a id="fsysUntarfileObject.lastError"></a></p>
+
+<h3>fsysUntarfileObject.lastError</h3>
+
+<p>调用eachBlock解包时，可使用lastError获取错误信息</p>
+
+<p><a id="fsysUntarfileObject.nextBlock"></a></p>
+
+<h3>fsysUntarfileObject.nextBlock()</h3>
+
+<p>释放下一个块,<br>
+成功返回文件名,释放大小,<br>
+同一文件可能需要释放多个文件块</p>
+
+<p><a id="fsysUntarfileObject.onProgressFile"></a></p>
+
+<h3>fsysUntarfileObject.onProgressFile</h3>
+
+<pre><code class="aardio language-aardio">fsysUntarfileObject.onProgressFile = function(path){
+    /*正在创建文件*/
+}
+</code></pre>
+
+<p><a id="fsysUntarfileObject.onProgressFolder"></a></p>
+
+<h3>fsysUntarfileObject.onProgressFolder</h3>
+
+<pre><code class="aardio language-aardio">fsysUntarfileObject.onProgressFolder = function(path){
+    /*正在创建目录*/
+}
+</code></pre>
+
+<p><a id="fsysUntarfileObject.utf8"></a></p>
+
+<h3>fsysUntarfileObject.utf8</h3>
+
+<p>tar 文件名是否使用 UTF8 编码。<br>
+设为 false ，表示文件名使用 ANSI 多字节编码。<br>
+设为 true 表示文件名使用 utf8 编码,<br>
+设为 null 则自动检测。<br>
+目前 tar 文件一般使用 UTF-8 编码文件名，使用 ANSI 编码不常见。</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/fsys/untar.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/fsys/untar.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/fsys/untar.md">Markdown 格式</a></p>
+
+</body> 
+</html>

@@ -1,0 +1,109 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - Sciter 调用图表组件: Chart.js'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - Sciter 调用图表组件: Chart.js</title> 
+<link rel="stylesheet" href="../../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: Sciter 调用图表组件: Chart.js</h1><pre><code class="aardio language-aardio">//入门
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;Sciter 调用图表组件: Chart.js&quot;;right=1063;bottom=729)
+winform.add(
+button={cls=&quot;button&quot;;text=&quot;aardio 修改数据&quot;;left=832;top=683;right=990;bottom=723;db=1;dr=1;z=2};
+lbBrowser={cls=&quot;static&quot;;left=15;top=8;right=1053;bottom=680;db=1;dl=1;dr=1;dt=1;z=1}
+)
+/*}}*/
+
+import web.sciter; 
+import web.sciter.compatibility.chart;
+var sciter = web.sciter(winform.lbBrowser);
+
+import web.sciter.debug;
+sciter.attachEventHandler( web.sciter.debug );
+
+sciter.external = {
+    getData = function(){
+        var data = {{
+            label: &#39;# of Votes&#39;,
+            data: {12, 19, 3, 5, 2, 3},
+            backgroundColor: {
+                &#39;rgba(255, 99, 132, 0.2)&#39;,
+                &#39;rgba(54, 162, 235, 0.2)&#39;,
+                &#39;rgba(255, 206, 86, 0.2)&#39;,
+                &#39;rgba(75, 192, 192, 0.2)&#39;,
+                &#39;rgba(153, 102, 255, 0.2)&#39;,
+                &#39;rgba(255, 159, 64, 0.2)&#39;
+            },
+            borderColor: {
+                &#39;rgba(255, 99, 132, 1)&#39;,
+                &#39;rgba(54, 162, 235, 1)&#39;,
+                &#39;rgba(255, 206, 86, 1)&#39;,
+                &#39;rgba(75, 192, 192, 1)&#39;,
+                &#39;rgba(153, 102, 255, 1)&#39;,
+                &#39;rgba(255, 159, 64, 1)&#39;
+            },
+            borderWidth: 1
+        }}
+
+        //转换为纯 JS 对象
+        return web.sciter.jsObject(data,true);
+    };
+} 
+
+winform.button.oncommand = function(id,event){ 
+    sciter.doScript( `
+    chart.data.datasets[0].data[2] = %d;  
+    chart.update();
+    `,math.random(1,100) );
+}
+
+/*
+实际开发建议下载 JS,CSS 到本地。
+中文文档请参考: https://chartjs.bootcss.com
+*/ 
+
+sciter.html = /**
+&lt;!doctype html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt; 
+    &lt;script src=&quot;https://lib.baomitu.com/Chart.js/3.9.1/chart.js&quot;&gt;&lt;/script&gt;
+   &lt;style&gt;
+      canvas { 
+        display:block;
+      }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body &gt; 
+
+&lt;canvas id=&quot;myChart&quot; style=&quot;width:100%;height:100%;&quot;&gt;&lt;/canvas&gt; 
+
+&lt;script&gt;
+
+window.chart = new Chart(document.getElementById(&#39;myChart&#39;), {
+    type: &#39;bar&#39;,
+    data: {
+        labels: [&#39;Red&#39;, &#39;Blue&#39;, &#39;Yellow&#39;, &#39;Green&#39;, &#39;Purple&#39;, &#39;Orange&#39;],
+        datasets:  ( external.getData() )
+    } 
+});
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+**/
+
+winform.show();
+return win.loopMessage();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/WebUI/Sciter.JS/Chart.js/QuickStart.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/WebUI/Sciter.JS/Chart.js/QuickStart.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/WebUI/Sciter.JS/Chart.js/QuickStart.md">Markdown 格式</a>
+</body> 
+</html>

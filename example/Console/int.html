@@ -1,0 +1,36 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 控制台程序 - 拦截 Ctrl + C'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 控制台程序 - 拦截 Ctrl + C</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 控制台程序 - 拦截 Ctrl + C</h1><pre><code class="aardio language-aardio">//控制台程序 - 拦截 Ctrl + C
+import console.int;
+
+//拦截 Ctrl + C 等中断信号
+var ctrlHandle = console.int();
+
+ctrlHandle.run(
+    function(){
+        sleep(1000);
+        console.log(time(),&quot;按 Ctrl + C 退出！&quot;)
+    }   
+)
+
+/*
+导入 console.int 以后，
+线程退出时，如果控制台已打开会自动调用 console.pause()
+*/
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Console/int.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Console/int.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Console/int.md">Markdown 格式</a>
+</body> 
+</html>

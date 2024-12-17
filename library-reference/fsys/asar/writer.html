@@ -1,0 +1,132 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - fsys.asar.writer 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - fsys.asar.writer 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>fsys.asar.writer 库模块帮助文档</h1>
+
+<p><a id="fsys.asar"></a></p>
+
+<h2>fsys.asar 成员列表</h2>
+
+<p><a id="fsys.asar.writer"></a></p>
+
+<h3>fsys.asar.writer()</h3>
+
+<p>创建asar文件打包生成器  </p>
+
+<p><a href="#fsysAsarWriterObject">返回对象:fsysAsarWriterObject</a></p>
+
+<p><a id="fsysAsarWriterObject"></a></p>
+
+<h2>fsysAsarWriterObject 成员列表</h2>
+
+<p><a id="fsysAsarWriterObject.add"></a></p>
+
+<h3>fsysAsarWriterObject.add()</h3>
+
+<p>添加文件或目录到asar文件</p>
+
+<p><a id="fsysAsarWriterObject.allFiles"></a></p>
+
+<h3>fsysAsarWriterObject.allFiles</h3>
+
+<p>所有准备添加到asar文件中的文件路径</p>
+
+<p><a id="fsysAsarWriterObject.clear"></a></p>
+
+<h3>fsysAsarWriterObject.clear()</h3>
+
+<p>清空所有文件</p>
+
+<p><a id="fsysAsarWriterObject.createInfo"></a></p>
+
+<h3>fsysAsarWriterObject.createInfo()</h3>
+
+<p>创建文件目录,成功返回this.info<br>
+失败返回null,错误信息</p>
+
+<p><a id="fsysAsarWriterObject.eachPack"></a></p>
+
+<h3>fsysAsarWriterObject.eachPack(输出路径,buffer)</h3>
+
+<pre><code class="aardio language-aardio">for(path,size,progress in fsysAsarWriterObject.eachPack(&quot;/test.asar&quot;)){
+    /*path为正在处理的文件相对路径  
+size是已处理的文件大小  
+progress是进度,0到1之间的小数  
+输出路径必须使用.asar后缀,可选在参数@2中指定 buffer*/
+}
+</code></pre>
+
+<p><a id="fsysAsarWriterObject.filter"></a></p>
+
+<h3>fsysAsarWriterObject.filter</h3>
+
+<pre><code class="aardio language-aardio">fsysAsarWriterObject.filter = function(path){ 
+    return /*参数为待添加文件路径,返回布尔值控制是否继续添加*/;
+}
+</code></pre>
+
+<p><a id="fsysAsarWriterObject.info"></a></p>
+
+<h3>fsysAsarWriterObject.info</h3>
+
+<p>createInfo函数生成的asar文件目录</p>
+
+<p><a id="fsysAsarWriterObject.lasterr"></a></p>
+
+<h3>fsysAsarWriterObject.lasterr</h3>
+
+<p>执行成功此属性为空,否则是错误信息</p>
+
+<p><a id="fsysAsarWriterObject.pack"></a></p>
+
+<h3>fsysAsarWriterObject.pack(输出路径)</h3>
+
+<p>直接打包为asar文件<br>
+输出路径必须使用.asar后缀<br>
+如果需要获取进度,请使用eachPack迭代器</p>
+
+<p><a id="fsysAsarWriterObject.remove"></a></p>
+
+<h3>fsysAsarWriterObject.remove()</h3>
+
+<p>在已添加的asar的文件列表中移除文件或目录<br>
+返回删除的文件数目</p>
+
+<p><a id="fsysAsarWriterObject.rootDirectory"></a></p>
+
+<h3>fsysAsarWriterObject.rootDirectory</h3>
+
+<p>指定根目录,如果不指定则自动生成此属性  </p>
+
+<p>自动生成规则为：<br>
+所有添加的文件路径中取最短路径,如果是目录则设为根路径,<br>
+否则将其父目录设为根路径</p>
+
+<p><a id="fsysAsarWriterObject.totalSize"></a></p>
+
+<h3>fsysAsarWriterObject.totalSize</h3>
+
+<p>在写入asar文件之前,totalSize会更新为所有文件的字节数总和</p>
+
+<p><a id="fsysAsarWriterObject.treeData"></a></p>
+
+<h3>fsysAsarWriterObject.treeData()</h3>
+
+<p>对已添加的文件生成可在treeview控件中显示的数据表</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/fsys/asar/writer.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/fsys/asar/writer.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/fsys/asar/writer.md">Markdown 格式</a></p>
+
+</body> 
+</html>

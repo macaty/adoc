@@ -1,0 +1,145 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 在aardio中嵌入electron'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 在aardio中嵌入electron</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 在aardio中嵌入electron</h1><pre><code class="aardio language-aardio">//使用远程调试接口
+//请改用微软的 WebView2（也就是 aardio 标准库里的 web.view ）
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;在aardio中嵌入electron&quot;;right=1276;bottom=767;clipch=1)
+winform.add(
+txtMessage={cls=&quot;richedit&quot;;left=1277;top=285;right=1758;bottom=799;bgcolor=16777215;db=1;dr=1;edge=1;link=1;multiline=1;vscroll=1;z=1}
+)
+/*}}*/
+
+import electron.app;
+var theApp = electron.app(winform);
+
+//启动主进程的 main.js
+theApp.jsMain =/**  
+    const aardio = require(&#39;aardio&#39;)  //启动RPC服务允许调aardio/electron互调函数,创建BrowserWindow主窗口
+    const app = require(&#39;electron&#39;).app //管理electron进程的生命周期
+
+    app.on(&#39;window-all-closed&#39;, () =&gt; {
+        app.quit();//退出electron进程
+    }) 
+**/
+
+theApp.html = /** 
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+
+  &lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;aardio嵌入electron演示&lt;/title&gt;
+    &lt;script type=&quot;text/javascript&quot;&gt;    
+        //导入aardio中的app.external 对象
+         aardio = require(&quot;aardio&quot;); 
+    &lt;/script&gt;
+  &lt;/head&gt;
+
+  &lt;body&gt;
+
+    &lt;h2 onmousedown=&quot;aardio.hitCaption();return false;&quot; 
+        style=&quot;-webkit-user-select: none;cursor:default;&quot;&gt;按这里调用aardio.hitCaption()拖动窗口!&lt;/h2&gt;
+
+   &lt;button onclick=&quot;aardio.quit();&quot;&gt;点这里调用aardio关闭窗口&lt;/button&gt; &lt;br&gt;&lt;br&gt;
+
+   &lt;button onclick=&quot;aardio.showDevtools();&quot;&gt;点这里打开chrome开发工具&lt;/button&gt;&lt;br&gt;&lt;br&gt; 
+
+   &lt;button onclick=&quot;aardio.connectDebugging();&quot;&gt;第一步：连接远程调试端口&lt;/button&gt;&lt;br&gt;&lt;br&gt; 
+   &lt;button onclick=&quot;aardio.testDebugging();&quot;&gt;第二步：使用远程调试接口控制网页&lt;/button&gt;&lt;br&gt;&lt;br&gt; 
+    &lt;/body&gt;    
+
+
+
+&lt;/html&gt;
+**/ 
+
+
+import web.socket.chrome;
+var wsRemotetDebugging = web.socket.chrome();
+
+//导出对象给electron
+theApp.external = {
+    showDevtools = function(){ 
+        for id,title,wsUrl,devtoolsUrl in wsRemotetDebugging.eachDebuggingPage() {
+            import process;
+            process.execute(devtoolsUrl);
+            break;
+        } 
+
+    }
+    connectDebugging = function(){ 
+        //先让JS函数返回，推迟异步打开调试端口,试验这样比较流畅，反之偶尔会出现卡的现象
+        winform.setTimeout( function(){
+            if(!wsRemotetDebugging.connect()){
+                winform.txtMessage.print(wsRemotetDebugging.getDebuggingInfo())
+                winform.txtMessage.print(&quot;没有可用的远程调试接口,请先关闭连接到本页面的远程调试开发工具,注意远程调试接口只能被一个客户端独占&quot;);
+            }   
+        }); 
+    }
+    testDebugging = function(){
+        wsRemotetDebugging.Network.enable( maxTotalBufferSize = 10240;).end = function(result,err){
+            winform.txtMessage.print(&quot;调用Network.enable结果:&quot;,result,err)
+        }   
+
+        wsRemotetDebugging.Page.navigate( url = &quot;http://bbs.aardio.com/forum.php?mod=viewthread&amp;tid=11486&amp;from=portal&quot;).end = function(result,err){
+            winform.txtMessage.print(&quot;调用Page.navigate返回参数&quot;,err)
+        }  
+    }
+
+}
+
+theApp.ws.onError = function(hSocket,err){
+    winform.txtMessage.print(&quot;WebSocket服务端出错：&quot;,err );       
+}
+
+//启用远程调试，并自动分配空闲不会冲突的端口
+theApp.remoteDebuggingPort = 0;
+
+//启动electron,也可以省略其他启动参数,直接指定要启动的网页地址
+theApp.start(&quot;/res/main.aardio&quot;)
+
+//监听chrome事件
+wsRemotetDebugging.on(&quot;Inspector.detached&quot;,function(param){
+    winform.txtMessage.print(&quot;chrome已主动断开连接,原因：&quot;,param);
+}) 
+
+wsRemotetDebugging.on(&quot;Network.requestWillBeSent&quot;,function(param){
+    winform.txtMessage.print(&quot;准备发送请求：&quot;,param );       
+})
+
+//打开连接触发的事件
+wsRemotetDebugging.on(&quot;open&quot;,function(){ 
+    winform.txtMessage.print(&quot;已打开连接&quot;)      
+})
+
+wsRemotetDebugging.on(&quot;close&quot;,function(){
+    winform.txtMessage.print(&quot;已关闭连接&quot;)       
+});
+
+wsRemotetDebugging.on(&quot;error&quot;,function(err){ 
+    winform.txtMessage.print(&quot;出错了&quot;,err);
+});  
+
+winform.txtMessage.orphanWindow()
+
+winform.show() 
+win.loopMessage();
+
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/WebUI/Electron/remoteDebugging.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/WebUI/Electron/remoteDebugging.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/WebUI/Electron/remoteDebugging.md">Markdown 格式</a>
+</body> 
+</html>

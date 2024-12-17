@@ -1,0 +1,147 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - process.putty 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - process.putty 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>process.putty 库模块帮助文档</h1>
+
+<p><a id="process"></a></p>
+
+<h2>process 成员列表</h2>
+
+<p><a id="process.putty"></a></p>
+
+<h3>process.putty()</h3>
+
+<p><a href="#processPuttyObject">返回对象:processPuttyObject</a></p>
+
+<p><a id="process.putty"></a></p>
+
+<h3>process.putty(主机,密码)</h3>
+
+<p>一般两个参数即可自动登录<br>
+用户名默认为root,参数@1可以是IP或会话设置名<br>
+输入IP则自动查找合适的会话设置  </p>
+
+<p>不输入任何参数打开设置界面<br>
+设置也可以自注册表修改,参考此扩展库源码</p>
+
+<p><a id="process.putty"></a></p>
+
+<h3>process.putty(主机,密码,用户名,会话设置名,端口,私钥,其他参数)</h3>
+
+<p>除主机名,密码以外其他参数可选<br>
+参数@1可以是主机IP,或会话设置名<br>
+如果不指定会话设置则自动查找合适的设置<br>
+用户名可省略,默认为&quot;root&quot;</p>
+
+<p><a id="process.putty"></a></p>
+
+<h2>process.putty 成员列表</h2>
+
+<p>putty自动登录工具</p>
+
+<p>创建putty进程</p>
+
+<p><a id="process.putty.reg"></a></p>
+
+<h3>process.putty.reg()</h3>
+
+<p><a href="#regObject">返回对象:regObject</a></p>
+
+<p><a id="process.putty.reg"></a></p>
+
+<h3>process.putty.reg(会话设置名)</h3>
+
+<p>打开当前会话注册表设置</p>
+
+<p><a id="processPuttyObject"></a></p>
+
+<h2>processPuttyObject 成员列表</h2>
+
+<p><a id="processPuttyObject.close"></a></p>
+
+<h3>processPuttyObject.close()</h3>
+
+<p>注销并退出程序<br>
+不会弹出关闭确认对话框</p>
+
+<p><a id="processPuttyObject.copyAll"></a></p>
+
+<h3>processPuttyObject.copyAll()</h3>
+
+<p>复制所有功能到剪帖板</p>
+
+<p><a id="processPuttyObject.download"></a></p>
+
+<h3>processPuttyObject.download</h3>
+
+<p>下载文件</p>
+
+<p><a id="processPuttyObject.download"></a></p>
+
+<h3>processPuttyObject.download(远程路径,本地路径,回显函数)</h3>
+
+<p>回显函数不必指定<br>
+默认输出到控制台,如果导入了console则打开控制台</p>
+
+<p><a id="processPuttyObject.exePath"></a></p>
+
+<h3>processPuttyObject.exePath</h3>
+
+<p>putty执行文件路径</p>
+
+<p><a id="processPuttyObject.process"></a></p>
+
+<h3>processPuttyObject.process</h3>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/process/_.html  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/process/_.html#processObject'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/process/_.html#processObject">返回对象:processObject</a></p>
+
+<p><a id="processPuttyObject.send"></a></p>
+
+<h3>processPuttyObject.send(&#39;shell命令&#39;)</h3>
+
+<p>使用键盘输入shell命令<br>
+该函数自动追加一个换行在命令尾部</p>
+
+<p><a id="processPuttyObject.session"></a></p>
+
+<h3>processPuttyObject.session</h3>
+
+<p>会话设置名</p>
+
+<p><a id="processPuttyObject.upload"></a></p>
+
+<h3>processPuttyObject.upload</h3>
+
+<p>上传文件</p>
+
+<p><a id="processPuttyObject.upload"></a></p>
+
+<h3>processPuttyObject.upload(本地路径,远程目录,回显函数,)</h3>
+
+<p>回显函数不必指定<br>
+默认输出到控制台,如果导入了console则打开控制台<br>
+远程目录路径默认为&quot;.&quot;,即用户当前目录</p>
+
+<p><a id="processPuttyObject.waitString"></a></p>
+
+<h3>processPuttyObject.waitString(&quot;:[~/\w]+[#\$]\s*$&quot;)</h3>
+
+<p>等待直到模式匹配控制台输出成功<br>
+该功能会占用剪贴板</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/process/putty/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/process/putty/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/process/putty/_.md">Markdown 格式</a></p>
+
+</body> 
+</html>

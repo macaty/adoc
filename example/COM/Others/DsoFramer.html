@@ -1,0 +1,114 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - dsoFramer 嵌入 Office 文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - dsoFramer 嵌入 Office 文档</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: dsoFramer 嵌入 Office 文档</h1><pre><code class="aardio language-aardio">//dsoFramer 嵌入 Office 文档
+/* 
+DsoFramer 是微软开源的控件用于嵌入 Word、 Excel、 PPT 文档，
+这个控件是开源的，一般还是够用的。并且这个扩展库已经实现了免注册调用，支持生成独立EXE文件。
+而且这个控件的体积非常小。
+
+但是要注意微软已经不维护这个控件了，
+如果你还有更多的改进想法，可自行到网上下载 DsoFramer 源码并进行改进。
+*/
+import win.ui;
+/*DSG{{*/
+mainForm = win.form(text=&quot;dsoFrame控件测试&quot;;right=1191;bottom=769;bgcolor=16448250)
+mainForm.add(
+btnExcel={cls=&quot;button&quot;;text=&quot;创建表格&quot;;left=40;top=710;right=162;bottom=755;db=1;dl=1;z=2};
+button={cls=&quot;button&quot;;text=&quot;打开文档、表格、或幻灯片&quot;;left=187;top=711;right=384;bottom=756;db=1;dl=1;z=6};
+chkMenubar={cls=&quot;checkbox&quot;;text=&quot;显示菜单栏&quot;;left=613;top=721;right=716;bottom=748;bgcolor=16448250;z=3};
+chkTitlebar={cls=&quot;checkbox&quot;;text=&quot;显示标题栏&quot;;left=930;top=721;right=1033;bottom=748;bgcolor=16448250;z=5};
+chkToolbars={cls=&quot;checkbox&quot;;text=&quot;显示工具条&quot;;left=771;top=721;right=874;bottom=748;bgcolor=16448250;z=4};
+custom={cls=&quot;custom&quot;;text=&quot;自定义控件&quot;;left=0;top=7;right=1186;bottom=690;bgcolor=16777215;db=1;dl=1;dr=1;dt=1;z=1}
+)
+/*}}*/
+
+mainForm.show(0x3/*_SW_MAXIMIZE*/);
+
+import com.dsoFramer;
+var dsoFrame = com.dsoFramer(mainForm.custom) 
+dsoFrame.menubar = false //去掉菜单栏  
+dsoFrame.titlebar = false; //去掉标题栏
+dsoFrame.toolbars = false; //去掉工具条
+dsoFrame.borderStyle = 0; //去掉边框（默认值）
+
+//新建或打开文档触发此事件
+dsoFrame.OnDocumentOpened = function( path, document){
+    mainForm.text = #path ? path : &quot;新文档&quot;
+}
+
+mainForm.btnExcel.oncommand = function(id,event){
+    dsoFrame.createNewExcel();
+    dsoFrame.activeDocument.Sheets(1).Cells(1,1).Value2 = &quot;测试一下&quot;;   
+
+    //监听文档事件
+    com.Connect(dsoFrame.activeDocument,{ 
+        SheetSelectionChange = function(sheet,targetRange){
+
+        };
+        SheetBeforeDoubleClick = function(sheet,targetRange,Cancel){
+
+        }; 
+        SheetChange = function(sheet,targetRange){
+            //https://docs.microsoft.com/en-us/office/vba/api/excel.workbook.sheetchange 
+            mainForm.text = &quot;修改了：&quot;+ targetRange.getValue2();
+        };
+    })
+}
+
+mainForm.chkMenubar.oncommand = function(id,event){
+    dsoFrame.menubar = mainForm.chkMenubar.checked;
+}
+
+mainForm.chkToolbars.oncommand = function(id,event){
+    dsoFrame.toolbars = mainForm.chkToolbars.checked;   
+}
+
+mainForm.chkTitlebar.oncommand = function(id,event){
+    dsoFrame.titlebar = mainForm.chkTitlebar.checked;   
+}
+
+import fsys.dlg;
+mainForm.button.oncommand = function(id,event){
+    var path = fsys.dlg.open(&quot;Word 文档|*.doc;*.docx|Excel 表格|*.xls;*.xlsx|演示文稿|*.ppt;*.pptx||&quot;,&quot;打开 Office 文档&quot;);
+    if(path) {
+        dsoFrame.openFile(path);
+
+        //如果打开的是 PPT
+        if(dsoFrame.activeDocumentTypeName() == &quot;PowerPoint&quot;){
+            //自动全屏播放
+            dsoFrame.activeDocument.SlideShowSettings.Run();
+        } 
+    }
+}
+
+/*
+dsoFrame.activeDocument 的用法：
+
+Word 文档对象请参考：
+https://docs.microsoft.com/en-us/office/vba/api/word.document
+
+Excel 文档对象请参考： 
+https://docs.microsoft.com/en-us/office/vba/api/excel.workbook
+
+PowerPoint 文档对象请参考： 
+https://docs.microsoft.com/en-us/office/vba/api/powerpoint.presentation
+*/
+return win.loopMessage();
+
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/COM/Others/DsoFramer.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/COM/Others/DsoFramer.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/COM/Others/DsoFramer.md">Markdown 格式</a>
+</body> 
+</html>

@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 使用 web.form 实现网页自动化操作'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 使用 web.form 实现网页自动化操作</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 使用 web.form 实现网页自动化操作</h1><pre><code class="aardio language-aardio">//使用 web.form 实现网页自动化操作
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;使用webform调用网页上的对象、函数&quot;;right=848;bottom=585)
+winform.add()
+/*}}*/
+
+//创建web窗体
+import web.form;
+var wb = web.form( winform );
+wb.noScriptErr = true;
+
+//打开网页
+wb.go(&quot;https://www.bing.com&quot;) 
+
+//显示窗口
+winform.show();
+
+//等待节点创建成功
+wb.waitEle(&quot;sb_form_q&quot;)
+//wb.waitEle(&quot;input&quot;).value = &quot;aardio web.form&quot;; //这样设置值也行
+
+//改变节点的默认属性值（这里指 value 属性）,支持 React 文本框
+wb.setEle(&quot;sb_form_q&quot;,&quot;web.form&quot;);
+
+/* 
+调用click函数模拟点击按钮。
+wb.getEle(&quot;search-button&quot;).click() 也可以
+wb.click()多了一些模拟真实点击的代码，参考此函数源代码
+*/
+wb.click(&quot;search_icon&quot;)
+
+/*
+等待网页打开,
+参数可以指定期待的网址（或者网址的一部分）
+*/
+wb.wait(&quot;q=web.form&quot;);
+
+win.loopMessage();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Automation/Web/web.form.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Automation/Web/web.form.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Automation/Web/web.form.md">Markdown 格式</a>
+</body> 
+</html>

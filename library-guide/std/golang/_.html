@@ -1,0 +1,724 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - aardio 调用 Go 语言入门指南'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - aardio 调用 Go 语言入门指南</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 调用 Go 语言入门指南</h1>
+
+<h2>一. aardio 调用 Go 编写的 DLL <a id="dll" href="#dll">&#x23;</a></h2>
+
+<p>Go 写的 DLL 具有轻量、快速、无依赖的优势，而 aardio 可以方便地将 Go 写的 DLL 内存加载，并生成独立的 EXE 文件。</p>
+
+<p>首先，运行以下 aardio 代码来编译 Go 源码并生成 DLL 文件。aardio 会自动配置编译环境。  </p>
+
+<pre><code class="aardio language-aardio">import golang;
+var go = golang(); 
+
+go.main = /**********
+package main
+
+import &quot;C&quot; //启用 CGO 
+
+//下面这句注释指令导出 DLL 函数
+//export Add 
+func Add(a int32,b int32) int32{
+    
+    //aardio 中整数默认为 int32 类型，小数默认为 double 类型
+    return a + b;
+} 
+
+//初始化函数，可以重复写多个
+func init() {}
+
+//必须写个空的入口函数，实际不会执行
+func main() {} 
+**********/
+
+//编译 Go 源码生成同名 DLL 文件
+go.buildShared(&quot;/.go/start.go&quot;);
+</code></pre>
+
+<p>Go 代码有一个好处，几句代码就是一个完整的程序。 </p>
+
+<p>要想用 Go 编译 DLL，首先要导入 C 库启用 cgo 。  </p>
+
+<pre><code class="go language-go">import &quot;C&quot; 
+</code></pre>
+
+<p>这句代码前面的注释被称为 cgo 前导注释，用于指定 C 编译器指令、C语言代码。所以不要在这里写其他普通注释（可以为空行）。</p>
+
+<p>Go 注释用途不小，例如函数前面的 export 注释被用来声明 DLL 导出函数。  </p>
+
+<pre><code class="go language-go">//export Add 
+func Add(a int32,b int32) int32{
+    
+    //aardio 中整数默认为 int32 类型，小数默认为 double 类型
+    return a + b;
+} 
+</code></pre>
+
+<p>其实 aardio 中的注释也有一些特殊用途：例如注释赋值给变量可用于表示复杂的字符串值（ 上面的 Go 源码就是放在注释里赋值为字符串 ），aardio 还可以利用注释中的 import 语句引用库到发布程序但又并不实际加载（用于 fastcgi.exe 这种需要后期按需加载库的程序 ）。</p>
+
+<p>下面我们用 aardio 调用上面的 DLL：</p>
+
+<pre><code class="aardio language-aardio">/*
+$操作符将 DLL 编译到内存（发布后不需要外部 DLL 文件）。
+注意 cgo 生成的 DLL 要指定 cdecl 调用约定。 
+*/
+var dll = raw.loadDll($&quot;/.go/start.dll&quot;,&quot;start.dll&quot;,&quot;cdecl&quot;);
+ 
+//然后就可以直接调用 DLL 函数了
+var c = dll.Add(2,3);
+</code></pre>
+
+<p>aardio 调用 DLL 的语法特别简单，一般不需要声明。</p>
+
+<p>如果要先声明 DLL 的导出函数，可以这样写：</p>
+
+<pre><code class="aardio language-aardio">//加载 DLL，参数 @2 要指定 DLL 共享名避免重复加载（文末解释原因）
+var dll = raw.loadDll($&quot;/.go/start.dll&quot;,&quot;start.dll&quot;,&quot;cdecl&quot;);
+
+//声明 API，明确指定参数与返回值类型
+var add = dll.api(&quot;Add&quot;,&quot;int(int a,int b)&quot; );
+
+var c = add(2,3);
+</code></pre>
+
+<p>用起来都是很简单的。  </p>
+
+<p>下面我们用 aardio 写个图形界面调用 Go 代码。  </p>
+
+<ul>
+<li><p>先新建一个 aardio 空白工程。</p></li>
+<li><p>然后从『界面控件』拖放文本框、按钮到窗体设计器。  </p></li>
+<li><p>双击按钮切换到代码视图。</p></li>
+</ul>
+
+<p>然后我们编写 aardio 代码如下：</p>
+
+<pre><code class="aardio language-aardio">//加载 DLL
+var dll = raw.loadDll(&quot;/.go/start.dll&quot;,&quot;cdecl&quot;);
+
+//点击按钮触发事件
+mainForm.btnGo.oncommand = function(id,event){
+     
+    //获取控件文本，并转换为数值
+    var a,b = tonumber(mainForm.editX.text),tonumber(mainForm.editY.text);
+    
+    //调用 Go 函数
+    var c = dll.Add();
+  
+    //显示函数返回值
+    mainForm.edit.text = c;
+}
+</code></pre>
+
+<p>aardio 写图形界面很轻松，调用 Go 语言写的 DLL 也非常简单 。</p>
+
+<h2>二. aardio 调用 Go 语言如何操作结构体 <a id="struct" href="#struct">&#x23;</a></h2>
+
+<p>有很多编程语言操作结构体并不容易，但 aardio 与 Go 语言操作结构体（ struct ）都很方便。</p>
+
+<p>首先用 aardio 代码调用 Go 语言编译一个 DLL:  </p>
+
+<pre><code class="aardio language-aardio">import console.int;
+import golang; 
+
+var go = golang();
+ 
+go.main = /**********
+package main
+
+import &quot;C&quot;
+import &quot;unsafe&quot;
+import &quot;fmt&quot;
+
+//声明结构体
+type Point struct { 
+  x    int  
+  y    int   
+}
+
+//export SetPoint 
+func SetPoint(p uintptr) {  
+    
+    // aardio 结构体转换为 Go 结构体
+    point := (*Point)(unsafe.Pointer(p)) 
+    point.x = 1
+    point.y = 2  
+
+    fmt.Println( &quot;在 Go 中打印结构体：&quot;,point );
+}
+
+func main() {} 
+**********/
+ 
+go.buildShared(&quot;/.go/TestStruct.go&quot;);
+ 
+</code></pre>
+
+<p>然后 aardio 调用 DLL 的代码如下：</p>
+
+<pre><code class="aardio language-aardio">import console.int;
+
+//加载 Go 写的 DLL
+var goDll = raw.loadDll(&quot;/.go/TestStruct.dll&quot;,,&quot;cdecl&quot;);
+ 
+//声明结构体 
+class Point {
+    int x;
+    int y;
+}
+
+//创建结构体
+var point = Point();
+
+//调用 Go 函数，传结构体（结构体总是传址）
+goDll.SetPoint(point);
+
+//打印结构体
+console.dumpJson(point); 
+
+//结构体就是表（table），也可以这样直接写
+goDll.SetPoint({
+    int x = 1;
+    int y = 2;
+});
+</code></pre>
+
+<p>aardio，C 语言，cgo，Go 原生类型对应关系如下：</p>
+
+<table><thead>
+<tr>
+<th>aardio 原生类型</th>
+<th>C 语言</th>
+<th>cgo</th>
+<th>Go</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>BYTE</td>
+<td>char</td>
+<td>C.char</td>
+<td>byte, bool</td>
+</tr>
+<tr>
+<td>byte</td>
+<td>singed char</td>
+<td>C.schar</td>
+<td>int8</td>
+</tr>
+<tr>
+<td>BYTE</td>
+<td>unsigned char</td>
+<td>C.uchar</td>
+<td>uint8, byte</td>
+</tr>
+<tr>
+<td>word</td>
+<td>short</td>
+<td>C.short</td>
+<td>int16</td>
+</tr>
+<tr>
+<td>WORD</td>
+<td>unsigned short</td>
+<td>C.ushort</td>
+<td>uint16</td>
+</tr>
+<tr>
+<td>int</td>
+<td>int</td>
+<td>C.int</td>
+<td>int32, rune</td>
+</tr>
+<tr>
+<td>INT</td>
+<td>unsigned int</td>
+<td>C.uint</td>
+<td>uint32</td>
+</tr>
+<tr>
+<td>int</td>
+<td>long</td>
+<td>C.long</td>
+<td>int32</td>
+</tr>
+<tr>
+<td>INT</td>
+<td>unsigned long</td>
+<td>C.ulong</td>
+<td>uint32</td>
+</tr>
+<tr>
+<td>long</td>
+<td>long long</td>
+<td>C.longlong</td>
+<td>int64</td>
+</tr>
+<tr>
+<td>LONG</td>
+<td>unsigned long long</td>
+<td>C.ulonglong</td>
+<td>uint64</td>
+</tr>
+<tr>
+<td>float</td>
+<td>float</td>
+<td>C.float</td>
+<td>float32</td>
+</tr>
+<tr>
+<td>double</td>
+<td>double</td>
+<td>C.double</td>
+<td>float64</td>
+</tr>
+<tr>
+<td>INT</td>
+<td>size_t</td>
+<td>C.size_t</td>
+<td>uint</td>
+</tr>
+<tr>
+<td>pointer</td>
+<td>void *</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>unsafe.Pointer</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p>注意这里指的是 aardio 原生类型（主要用于 DLL 接口编程）。在 aardio 里大写的整数类型名都表示无符号数（只有正值，没有负值）。</p>
+
+<p>请参考：<a href="../../builtin/raw/datatype.html" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/builtin/raw/datatype.html">aardio 原生类型</a></p>
+
+<h2>三. aardio 调用 Go 语言通过 JSON 交互 <a id="json" href="#json">&#x23;</a></h2>
+
+<p>Go语言与 aardio 操作 JSON 都很方便。</p>
+
+<p>不过想拿 Go 的字符串指针有些麻烦，默认对输出的指针有严格的检查。如果按常规的方法调用 cgo 传字符串指针也是有些繁琐的。</p>
+
+<p>这里需要一点小技巧。  </p>
+
+<p>Go 的 DLL 里导出函数如下：</p>
+
+<pre><code class="go language-go">//export TestStringPtr
+func TestStringPtr(str *string)  {  
+    fmt.Printf(&quot;Go 通过 *string 收到 aardio 字符串: %s!\n&quot;,  *str) ; 
+    *str = &quot;这是新的字符串&quot;;
+}
+</code></pre>
+
+<p>是不是变简单了？！</p>
+
+<p>然后在 aardio 这样调：</p>
+
+<pre><code class="aardio language-aardio">import golang.string;  
+var goStr = golang.string(&quot;这是 aardio 字符串，UTF-8 编码&quot;);
+
+//在 Go 里这个参数应当声明为 *string 指针类型（aardio 结构体总是传址）
+goDll.TestStringPtr(goStr);//不要在 Go 中保存 aardio 传过去的字符串
+</code></pre>
+
+<p>在 aardio 中得到 <code>goStr</code> 以后要立即调用 <code>tostring( goStr )</code> 转换为 aardio 字符串（自动释放 Go 的内存指针）。原理可以看 golang.string 的源码。</p>
+
+<p>传字符串方便了，传 JSON 也就简单了。  </p>
+
+<p>下面先用 aardio 调用 Go 写一个 DLL:  </p>
+
+<pre><code class="aardio language-aardio">import golang;
+var go = golang();
+  
+go.main = /**********
+package main
+ 
+import &quot;C&quot;
+import (  
+    &quot;time&quot;
+    &quot;aardio&quot; 
+)
+ 
+/*
+Go 结构的 JSON 字段要大写首字母，
+每个字段可以在类型名后面额外添加 tag 字符串声明在 JSON 中的字段名。 
+*/
+type QueryParam struct {
+    Service             string           `json:&quot;service&quot;`   
+    Domain              string           `json:&quot;domain&quot;`   
+    Timeout             time.Duration    `json:&quot;timeout&quot;`     
+}
+
+//export Query 
+func Query(json *string) {   
+    
+    //创建结构体
+    var queryParam = QueryParam{} 
+    
+    /*
+    解析 JSON 到结构体，
+    aardio.JsonParam() 返回函数对象用于更新 JSON。
+    defer 语句用于推迟到函数退出前调用。 
+    */
+    defer aardio.JsonParam(json, &amp;queryParam)() 
+    
+    //读取结构体的值，修改结构体的值，aardio 可以自动获取新值
+    queryParam.Domain = queryParam.Domain + &quot;|www.aardio.com&quot; 
+}
+
+func main(){}
+**********/
+
+go.buildShared(&quot;/.go/jsonTest.go&quot;);
+</code></pre>
+
+<p>在 Go 语言里只要下面这一句：</p>
+
+<pre><code class="go language-go">  defer aardio.JsonParam(json, &amp;queryParam)()
+</code></pre>
+
+<p>在 Go 语言里就可以将 aardio 传过来的 JSON 解析为结构体，并且可以修改结构体，在函数退出前能够自动更新 aardio 里的 JSON 。</p>
+
+<p>然后我们看 aardio 语言里的调用代码：</p>
+
+<pre><code class="aardio language-aardio">import console.int;
+import golang.string; 
+
+//加载 DLL
+var dll = raw.loadDll(&quot;/.go/jsonTest.dll&quot;,,&quot;cdecl&quot;);
+
+//参数不是字符串、buffer、null 时会自动转换为 JSON 字符串
+var jsonParam = golang.string({
+    service = &quot;_services._dns-sd._udp&quot;;
+    domain = &quot;local&quot;;
+    timeout = 1000;
+})
+
+//调用 Go 函数
+dll.Query( jsonParam );
+
+//获取 Go 修改后的对象
+var goObject = jsonParam.value;
+ 
+//查看对象的字段值，已经被 Go 修改了
+console.dumpJson( goObject.domain )
+
+</code></pre>
+
+<p>Go 语言只要简单地通过 JSON 就可以获取、更新 aardio 里的对象。  </p>
+
+<p>整个代码量都很少。</p>
+
+<p>Go 是一个有趣的编程语言。所以 aardio + Go 有很多有趣的用法，例如aardio 自带范例里的:  </p>
+
+<ul>
+<li><a href="../../../example/Languages/Go/aardio.Call-1.html" tppabs="https://www.aardio.com/zh-cn/doc//example/Languages/Go/aardio.Call.html">aardio.call</a></li>
+<li><a href="../../../example/Languages/Go/aardio.callPtr-1.html" tppabs="https://www.aardio.com/zh-cn/doc//example/Languages/Go/aardio.callPtr.html">aardio.callPtr</a></li>
+<li><a href="../../../example/Languages/Go/aardio.callJson-1.html" tppabs="https://www.aardio.com/zh-cn/doc//example/Languages/Go/aardio.callJson.html">aardio.callJson</a></li>
+</ul>
+
+<h2>四. aardio 调用 Go 编写的 EXE <a id="exe" href="#exe">&#x23;</a></h2>
+
+<p>用 EXE 代替 DLL 作为运行模块是如今非常流行的一个方式。</p>
+
+<p>不同的 EXE 运行在不同的进程，这种多进程交互的方式首先是非常稳定。一个 EXE 就算崩溃了也不会影响到另一个进程。其次跨进程调用可以兼容 32位、64 位 EXE，代码不需要任何改动。</p>
+
+<p>我之前发布了一个很有意思的扩展库 process.util  ，其中用到的 ProcessUtilRpc.dll 实际上就是用 Go 语言写的一个 EXE 程序，只不过后缀名改成了 DLL ( 后缀名无关紧要，可以随便改 )。</p>
+
+<p>下面我们详细讲解 aardio 如何调用 Go 写的 EXE。  </p>
+
+<p>首先在 aardio 中运行下面的 Go 代码生成一个 EXE 程序。没有安装 Go 环境都没有关系，aardio 会自动安装。没有任何复杂步骤。  </p>
+
+<pre><code class="aardio language-aardio">//导入支持库
+import golang;
+
+//创建 Go 编译器
+var go = golang();
+
+//编写 Go 源码
+go.main = /********** 
+package main
+
+//导入模块
+import (  
+    &quot;net/rpc&quot;
+    &quot;aardio/jsonrpc&quot;
+)
+
+//定义结构体
+type Calculator struct{}
+
+//定义下面的函数参数结构
+type Args struct {
+    X, Y int
+} 
+
+//定义允许 aardio 调用的远程函数
+func (t *Calculator) Add(args *Args, reply *int) error {
+    *reply = args.X + args.Y 
+    return nil
+}
+
+//EXE 主启动函数
+func main() { 
+    //创建 RPC（远程函数调用） 服务端
+    server := rpc.NewServer() 
+    
+    //导出允许客户端调用的对象
+    server.Register( new(Calculator) )   
+    
+    //运行服务端
+    jsonrpc.Run(server)
+}
+**********/
+ 
+//生成 EXE 文件
+go.buildStrip(&quot;/goRpc.go&quot;);
+</code></pre>
+
+<p>改用 go.buildStrip64 可以生成 64 位 EXE（ aardio 都可以调用 ） 。</p>
+
+<p>生成的 goRpc.exe 负责运行 RPC （远程函数调用）服务端。</p>
+
+<p>所有 Go 导出的 RPC 函数都必须有 2 个参数：  </p>
+
+<ol>
+<li>args 参数接收 aardio 的调用参数。<br></li>
+<li>reply 参数用于保存函数返回值。<br></li>
+</ol>
+
+<p>Go 函数的返回值必须是 error 对象名 nil ，返回 nil 表示没有发生错误。</p>
+
+<p>下面用 aardio 调用上面的 Go 程序：  </p>
+
+<pre><code class="aardio language-aardio">import process.rpc.jsonClient;
+
+//启动 Go 服务端 
+var go = process.rpc.jsonClient(&quot;/goRpc.exe&quot;); 
+
+//调用 Go 函数
+var reply = go.Calculator.Add({
+    X = 2;
+    Y = 3;
+} )
+
+//获取函数返回值
+var result = reply[[&quot;result&quot;]];
+</code></pre>
+
+<p>代码非常简单。</p>
+
+<p><code>reply</code> 是服务端函数返回的响应对象。调用失败则 <code>reply.error</code> 为错误信息。调用成功则远程函数返回值放在 <code>reply.result</code> 里。</p>
+
+<p>双 <code>[[]]</code>是 aardio 的直接下标操作符，当写为 <code>reply[[&quot;result&quot;]]</code> 时，即使 <code>reply</code> 是 <code>null</code> 或任何不包含 <code>result</code> 的对象都不会报错而是返回 <code>null</code> 值。</p>
+
+<p>借用上面第一个例子里的窗体界面：  </p>
+
+<p>双击按钮切换到代码视图，编写代码如下：  </p>
+
+<pre><code class="aardio language-aardio">import process.rpc.jsonClient;
+
+//创建远程函数调用客户端
+var go = process.rpc.jsonClient(&quot;/goRpc.exe&quot;); 
+
+//点击按钮触发事件
+mainForm.btnGo.oncommand = function(id,event){
+     
+    //调用 Go 函数
+    var reply = go.Calculator.Add({
+        X = tonumber(mainForm.editX.text);
+        Y = tonumber(mainForm.editY.text);
+    } )
+    
+    //获取函数返回值
+    mainForm.editReply.text = reply[[&quot;result&quot;]];
+}
+</code></pre>
+
+<p>按 F5 运行就能看到效果了。  </p>
+
+<p>当然可以将 goRpc.exe 改名为 goRpc.dll ，后缀名无关紧要。  </p>
+
+<p>如果不想软件带个 goRpc.exe 文件，可以在 aardio 发布生成 EXE 后弹出的对话框上点击『转换为独立 EXE 』。</p>
+
+<h2>五、aardio , Go 语言通过 COM 接口交互 <a id="com" href="#com">&#x23;</a></h2>
+
+<p>我们首先用 aardio 调用 Go 语言创建项目，自动安装 go-ole 模块，然后编写一个 DLL：</p>
+
+<pre><code class="aardio language-aardio"> 
+import console.int; 
+import golang;
+
+//参数 @1 指定工作目录，默认为 &quot;/&quot;
+var go = golang(&quot;/go&quot;)
+go.setGoProxy(&quot;https://mirrors.aliyun.com/goproxy/,direct&quot;);
+
+//初始化 GO 项目
+go.mod(&quot;init golang/dispDemo&quot;)
+
+//安装第三方模块
+go.get(&quot;github.com/go-ole/go-ole&quot;) 
+
+go.main = /**********
+package main
+
+import (
+    &quot;C&quot;
+    &quot;unsafe&quot;
+    &quot;github.com/go-ole/go-ole&quot;
+    &quot;github.com/go-ole/go-ole/oleutil&quot;
+    &quot;fmt&quot;
+)
+
+//export TestDispatch
+func TestDispatch(dispatchIn uintptr) uintptr {
+    //这里不需要初始化 OLE，aardio 自动支持这些
+    
+    // 获取传入的 IDispatch 指针
+    dispatch := (*ole.IDispatch)(unsafe.Pointer(dispatchIn))
+
+    // 调用 dispatch 对象的方法
+    result := oleutil.MustCallMethod(dispatch, &quot;Add&quot;, 1, 2)
+    defer result.Clear()
+    
+    // 假设 Add 方法返回一个数值，可以这样获取返回值
+    // value := result.Value() // 返回 interface{}
+    // valueInt := result.ToInt() // 返回 int
+    // valueFloat := result.ToFloat() // 返回 float64
+    // valueString := result.ToString() // 返回 string
+    
+    // 打印结果（假设返回一个数值）
+    fmt.Println(&quot;Result:&quot;, result.Value())
+    
+    // 创建新的 IDispatch 对象 
+    clsid, err := ole.CLSIDFromProgID(&quot;Scripting.Dictionary&quot;)
+    if err != nil {
+        panic(err)
+    }
+
+    unknown, err := ole.CreateInstance(clsid, nil)
+    if err != nil {
+        panic(err)
+    }
+    defer unknown.Release()
+
+    //这里增加引用计数
+    newDispatch, err := unknown.QueryInterface(ole.IID_IDispatch)
+    if err != nil {
+        panic(err)
+    }
+
+    // 返回新的 IDispatch 对象的指针（不必释放引用计数，由 aardio 接收时释放）
+    return uintptr(unsafe.Pointer(newDispatch))
+}
+
+func main() {
+    // 需要有一个空的 main 函数以满足 go build
+}
+**********/
+go.buildShared(&quot;/dispDemo.go&quot;);
+ 
+</code></pre>
+
+<p>下面在 aardio 里调用上面的 DLL:</p>
+
+<pre><code class="aardio language-aardio">//调用 DLL
+import console.int; 
+console.open();
+
+//内存加载 DLL，请先编译 Go 代码生成 DLL
+var dll = raw.loadDll($&quot;/dispDemo.dll&quot;,,&quot;cdecl&quot;); 
+
+//aardio 对象转换为 COM 对象（COM 接口会自动转换，原生 DLL 接口要调用 com.ImplInterface ）
+import com;
+var disp = com.ImplInterface( 
+    //任意表对象或函数都可以转换为 COM 对象（IDispatch 接口对象）
+    Add = function(a,b){
+        
+        console.log(&quot;Add 函数被 Go 语言调用了&quot;);
+        return a + b;
+    } 
+);
+
+//调用 Go 函数
+var pDisp = dll.TestDispatchP(disp);
+
+//将 Go 函数返回的 IDispatch 指针转换为 COM 对象
+var comObj = com.QueryObjectR(pDisp);//转换同时释放一次引用计数
+
+//操作 COM 对象
+comObj.Add(&quot;key&quot;,&quot;value&quot;);
+comObj.Add(&quot;key2&quot;,&quot;value2&quot;);
+
+//遍历 COM 对象
+for index,key in com.each(comObj) {
+    //输出字典的键值
+    console.log( key,comObj.Item(key) )
+} 
+
+console.log(ptr)
+</code></pre>
+
+<p>aardio 操作 COM 对象很方便，不需要额外的封装。  </p>
+
+<p>aardio 最常用的表对象自动兼容 COM 接口，在 COM 接口函数里会自动转换为 IDispatch 接口。  </p>
+
+<p>但是在 DLL 函数里要明确调用  <code>com.ImplInterface</code> 函数创建 COM 接口对象，例如:  </p>
+
+<pre><code class="aardio language-aardio">var disp = com.ImplInterface( 
+    //任意表对象或函数都可以转换为 COM 对象（IDispatch 接口对象）
+    Add = function(a,b){
+        
+        console.log(&quot;Add 函数被 Go 语言调用了&quot;);
+        return a + b;
+    } 
+);
+</code></pre>
+
+<p>disp 对象传入 Go 函数就是一个 IDispatch 接口指针，go-ole 操作 IDispatch 指针就很方便：</p>
+
+<pre><code class="aardio language-aardio">// 获取传入的 IDispatch 指针
+dispatch := (*ole.IDispatch)(unsafe.Pointer(dispatchIn))
+
+// 调用 dispatch 对象的方法
+result := oleutil.MustCallMethod(dispatch, &quot;Add&quot;, 1, 2)
+</code></pre>
+
+<h2>六. Go 编写 DLL 注意事项 <a id="note" href="#note">&#x23;</a></h2>
+
+<p>相比 C/C++写的 DLL，Go 写的 DLL 有几个需要特别注意的地方：</p>
+
+<ol>
+<li><p>在主线程加载 Go 写的 DLL，保持 DLL 对象不被释放（避免第二次加载同一 DLL ）。其他线程加载同一 DLL 就只会增加引用计数， 不会重复加载。</p></li>
+<li><p>如果用 $ 操作符，从内存加载 Go 写的 DLL，就必须在第二个参数中指定共享名称，这样 aardio 也不会重复加载内存 DLL，只会增加引用计数。</p>
+
+<pre><code class="aardio language-aardio">var dll = raw.loadDll($&quot;/.go/start.dll&quot;,&quot;start.dll&quot;,&quot;cdecl&quot;);
+</code></pre></li>
+<li><p>加载 DLL 的主线程不要退出太快，除了测试，实际开发其实也不太可能这样干，谁会写个软件只有几句代码呢。真要这样干加个 sleep 语句延时一下（ 实际上就是等 Go 初始化完成，但 Go 没有提供一个等待初始化或销毁完成的机制 ）。 </p></li>
+</ol>
+
+<p>如果不注意上面这些要点，重复加载相同 DLL，退出加载线程太快，Go 有一定机率会崩溃。这是 Go 语言的对有的问题，其他编程语言写的 DLL 也没有相同问题。</p>
+
+<p>其实没太大影响，稍加注意就能规避问题。  </p>
+
+<p>不求完美，很多事情就简单。</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-guide/std/golang/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-guide/std/golang/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/std/golang/_.md">Markdown 格式</a></p>
+
+</body> 
+</html>

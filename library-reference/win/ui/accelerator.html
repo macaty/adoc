@@ -1,0 +1,69 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - win.ui.accelerator 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - win.ui.accelerator 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>win.ui.accelerator 库模块帮助文档</h1>
+
+<p><a id="win.ui"></a></p>
+
+<h2>win.ui 成员列表</h2>
+
+<p><a id="win.ui.accelerator"></a></p>
+
+<h3>win.ui.accelerator</h3>
+
+<p>快捷键<br>
+在绑定的窗体范围内有效</p>
+
+<p><a id="win.ui.accelerator"></a></p>
+
+<h3>win.ui.accelerator()</h3>
+
+<p><a href="#winUiAcceleratorObject">返回对象:winUiAcceleratorObject</a></p>
+
+<p><a id="win.ui.accelerator"></a></p>
+
+<h3>win.ui.accelerator(accTable,winform)</h3>
+
+<pre><code class="aardio language-aardio">//每个窗体仅能绑定快捷键表一次，  
+//绑定后将会重定义窗体的preTranslateAccelerator事件用于响应快捷键  
+win.ui.accelerator({  
+    { ctrl = true; vkey = &#39;N&#39;#; oncommand = function(id,event){ } }   
+    { ctrl = true; vkey = &#39;O&#39;#; cmd = /*可以用cmd指定消息ID，或使用oncommand指定一个消息处理函数*/ }   
+},winform);
+</code></pre>
+
+<p><a id="winUiAcceleratorObject"></a></p>
+
+<h2>winUiAcceleratorObject 成员列表</h2>
+
+<p><a id="winUiAcceleratorObject.destroy"></a></p>
+
+<h3>winUiAcceleratorObject.destroy()</h3>
+
+<p>删除此快捷键对象<br>
+此函数在窗体关闭时将被自动调用</p>
+
+<p><a id="winUiAcceleratorObject.translate"></a></p>
+
+<h3>winUiAcceleratorObject.translate(msg.hwnd)</h3>
+
+<p>可用于重定义窗体的preTranslateAccelerator事件时响应快捷键使之生效<br>
+msg为preTranslateAccelerator事件的消息参数,hwnd一般应该省略<br>
+也可以在子窗体中响应父窗体的快捷键</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/ui/accelerator.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/ui/accelerator.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/accelerator.md">Markdown 格式</a></p>
+
+</body> 
+</html>

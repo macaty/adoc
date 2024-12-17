@@ -1,0 +1,399 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - win.ui.ctrl.splitter 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - win.ui.ctrl.splitter 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>win.ui.ctrl.splitter 库模块帮助文档</h1>
+
+<p><details>  <summary>用法说明</summary>  <p></p>
+
+<p>要点：</p>
+
+<ol>
+<li><p>使用控件的 split 函数拆分多个控件。</p>
+
+<p>例如:</p>
+
+<pre><code>winform.splitter1.split( winform.edit1,winform.edit2 )  
+</code></pre>
+
+<p>参数也可以是控件数组，每个控件数组必须包含位于拆分条同一侧的控件。</p>
+
+<p>例如:</p>
+
+<pre><code>winform.splitter1.split( winform.edit1,{ winform.edit2,winform.edit3} )  
+</code></pre></li>
+<li><p>在调整窗口大小时，拆分条会负责让被拆分的控件吸附在自己的两侧。</p>
+
+<p>但是被拆分控件以及拆分条本身的其他固定边距属性、自适应大小属性应当自行根据需要设置。</p></li>
+</ol>
+
+<p></p></details></p>
+
+<p><a id="win.ui.ctrl"></a></p>
+
+<h2>win.ui.ctrl 成员列表</h2>
+
+<p><a id="win.ui.ctrl.splitter"></a></p>
+
+<h3>win.ui.ctrl.splitter</h3>
+
+<p>拆分条控件支持库</p>
+
+<p><a id="win.ui.ctrl.splitter"></a></p>
+
+<h3>win.ui.ctrl.splitter()</h3>
+
+<p>拆分条控件  </p>
+
+<p><a href="#splitterObject">返回对象:splitterObject</a></p>
+
+<p><a id="splitterObject"></a></p>
+
+<h2>splitterObject 成员列表</h2>
+
+<p><a id="splitterObject._parentForm"></a></p>
+
+<h3>splitterObject._parentForm</h3>
+
+<p>创建该控件的父窗口（win.form对象）,<br>
+设计时窗体容器是所有拖放在窗体上的控件的 _parentForm,  </p>
+
+<p>即使窗口移除子窗口样式、更改父子关系，或以 orphanWindow显示,<br>
+控件的 _parentForm 始终都不会改变  </p>
+
+<p><a href="../_.html#winform" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/_.html#winform">返回对象:winform</a></p>
+
+<p><a id="splitterObject.adjust"></a></p>
+
+<h3>splitterObject.adjust</h3>
+
+<pre><code class="aardio language-aardio">splitterObject.adjust = function( cx,cy,wParam ) {     
+
+};
+</code></pre>
+
+<p><a id="splitterObject.adjust"></a></p>
+
+<h3>splitterObject.adjust()</h3>
+
+<p>调整窗口 - 自定义事件函数</p>
+
+<p><a id="splitterObject.bottom"></a></p>
+
+<h3>splitterObject.bottom</h3>
+
+<p>底部坐标</p>
+
+<p><a id="splitterObject.capture"></a></p>
+
+<h3>splitterObject.capture</h3>
+
+<p>是否捕获全局鼠标消息</p>
+
+<p><a id="splitterObject.className"></a></p>
+
+<h3>splitterObject.className</h3>
+
+<p>运行时类名</p>
+
+<p><a id="splitterObject.close"></a></p>
+
+<h3>splitterObject.close()</h3>
+
+<p>关闭控件窗口</p>
+
+<p><a id="splitterObject.cls"></a></p>
+
+<h3>splitterObject.cls</h3>
+
+<p>设计时类名</p>
+
+<p><a id="splitterObject.disabled"></a></p>
+
+<h3>splitterObject.disabled</h3>
+
+<p>是否禁用</p>
+
+<p><a id="splitterObject.getClientRect"></a></p>
+
+<h3>splitterObject.getClientRect()</h3>
+
+<p>控件客户区块位置(::RECT结构体)  </p>
+
+<p><a href="../../../global/_.html#rectObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/global/_.html#rectObject">返回对象:rectObject</a></p>
+
+<p><a id="splitterObject.getParent"></a></p>
+
+<h3>splitterObject.getParent()</h3>
+
+<p>返回父窗口  </p>
+
+<p><a href="#splitterObject">返回对象:splitterObject</a></p>
+
+<p><a id="splitterObject.getPos"></a></p>
+
+<h3>splitterObject.getPos()</h3>
+
+<p>返回相对坐标,宽,高<br>
+x,y,cx,cy=win.getPos(hwnd)</p>
+
+<p><a id="splitterObject.getRect"></a></p>
+
+<h3>splitterObject.getRect()</h3>
+
+<p>控件区块位置(::RECT结构体)</p>
+
+<p><a id="splitterObject.getRect"></a></p>
+
+<h3>splitterObject.getRect(true)</h3>
+
+<p>控件屏幕区块位置(::RECT结构体)</p>
+
+<p><a id="splitterObject.height"></a></p>
+
+<h3>splitterObject.height</h3>
+
+<p>高度</p>
+
+<p><a id="splitterObject.hide"></a></p>
+
+<h3>splitterObject.hide</h3>
+
+<p>控件是否隐藏</p>
+
+<p><a id="splitterObject.horz"></a></p>
+
+<h3>splitterObject.horz</h3>
+
+<p>是否水平拆分条</p>
+
+<p><a id="splitterObject.hwnd"></a></p>
+
+<h3>splitterObject.hwnd</h3>
+
+<p>控件句柄</p>
+
+<p><a id="splitterObject.id"></a></p>
+
+<h3>splitterObject.id</h3>
+
+<p>控件ID</p>
+
+<p><a id="splitterObject.invalidate(/*可选使用::RECT"></a></p>
+
+<h3>splitterObject.invalidate(/*可选使用::RECT()对象指定客户区*/)</h3>
+
+<p>使窗口绘图区无效</p>
+
+<p><a id="splitterObject.invalidate(/*可选使用::RECT"></a></p>
+
+<h3>splitterObject.invalidate(/*可选使用::RECT()对象指定客户区*/,0)</h3>
+
+<p>使窗口绘图区无效<br>
+不刷新背景</p>
+
+<p><a id="splitterObject.left"></a></p>
+
+<h3>splitterObject.left</h3>
+
+<p>左侧坐标</p>
+
+<p><a id="splitterObject.ltControl"></a></p>
+
+<h3>splitterObject.ltControl</h3>
+
+<p>拆分条左边或上边的控件。<br>
+可以是控件对象，也可以是包含控件的数组。<br>
+只能调用 split 函数修改此属性。  </p>
+
+<p><a href="static.html#staticObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/static.html#staticObject">返回对象:staticObject</a></p>
+
+<p><a id="splitterObject.ltMin"></a></p>
+
+<h3>splitterObject.ltMin</h3>
+
+<p>前面的控件最小尺寸</p>
+
+<p><a id="splitterObject.modifyStyle"></a></p>
+
+<h3>splitterObject.modifyStyle(remove,add,swpFlags)</h3>
+
+<p>修改窗口样式,所有参数都是可选参数,<br>
+@remove 用数值指定要移除的样式,可使用 <em>WS</em> 前缀的常量<br>
+@add 用数值指定要添加的样式,可使用 <em>WS</em> 前缀的常量<br>
+@swpFlags 可选用数值指定调整窗口选项,可使用 <em>SWP</em> 前缀的常量<br>
+如果指定了 @swpFlag ,则使用该参数调用::SetWindowPos<br>
+细节请参考 win.modifyStyle 函数源码</p>
+
+<p><a id="splitterObject.modifyStyleEx"></a></p>
+
+<h3>splitterObject.modifyStyleEx(remove,add,swpFlags)</h3>
+
+<p>修改窗口扩展样式,所有参数都是可选参数,<br>
+@remove 用数值指定要移除的样式,可使用 <em>WS_EX</em> 前缀的常量<br>
+@add 用数值指定要添加的样式,可使用 <em>WS_EX</em> 前缀的常量<br>
+@swpFlags 可选用数值指定调整窗口选项,可使用 <em>SWP</em> 前缀的常量<br>
+如果指定了 @swpFlag ,则使用该参数调用::SetWindowPos<br>
+细节请参考 win.modifyStyle 函数源码</p>
+
+<p><a id="splitterObject.onSplitterMoved"></a></p>
+
+<h3>splitterObject.onSplitterMoved</h3>
+
+<pre><code class="aardio language-aardio">splitterObject.onSplitterMoved = function(l,t,r,b){
+    /*拆分条已被拖拽移动到新位置，l,r,r,b 分别为左上右下坐标*/
+}
+</code></pre>
+
+<p><a id="splitterObject.postMessage"></a></p>
+
+<h3>splitterObject.postMessage(msg,wParam,lParam)</h3>
+
+<p>投递窗口消息到消息队列中<br>
+此函数用法请参考 ::User32.PostMessage</p>
+
+<p><a id="splitterObject.rbControl"></a></p>
+
+<h3>splitterObject.rbControl</h3>
+
+<p>拆分条右边或下边的控件。<br>
+可以是控件对象，也可以是包含控件的数组。<br>
+只能调用 split 函数修改此属性。  </p>
+
+<p><a href="static.html#staticObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/static.html#staticObject">返回对象:staticObject</a></p>
+
+<p><a id="splitterObject.rbMin"></a></p>
+
+<h3>splitterObject.rbMin</h3>
+
+<p>后面的控件最小尺寸</p>
+
+<p><a id="splitterObject.redraw"></a></p>
+
+<h3>splitterObject.redraw()</h3>
+
+<p>刷新</p>
+
+<p><a id="splitterObject.redrawTransparent"></a></p>
+
+<h3>splitterObject.redrawTransparent()</h3>
+
+<p>刷新<br>
+透明背景时请使用此函数替代redraw()</p>
+
+<p><a id="splitterObject.right"></a></p>
+
+<h3>splitterObject.right</h3>
+
+<p>右侧坐标</p>
+
+<p><a id="splitterObject.sendMessage"></a></p>
+
+<h3>splitterObject.sendMessage(msg,wParam,lParam)</h3>
+
+<p>发送窗口消息<br>
+此函数用法请参考 ::User32.SendMessage</p>
+
+<p><a id="splitterObject.setParent"></a></p>
+
+<h3>splitterObject.setParent(控件对象)</h3>
+
+<p>改变父窗口</p>
+
+<p><a id="splitterObject.setPos"></a></p>
+
+<h3>splitterObject.setPos(x坐标,y坐标,宽,高,插入位置,参数)</h3>
+
+<p>调整窗口位置或排序,所有参数可选<br>
+同时指定x,y坐标则移动位置<br>
+同时指定宽高则改变大小<br>
+指定插入位置(句柄或_HWND前缀常量)则调整Z序</p>
+
+<p><a id="splitterObject.setRect"></a></p>
+
+<h3>splitterObject.setRect(rc)</h3>
+
+<p>设置控件区块位置(::RECT结构体)</p>
+
+<p><a id="splitterObject.setRect"></a></p>
+
+<h3>splitterObject.setRect(rc,true)</h3>
+
+<p>设置控件屏幕区块位置(::RECT结构体)</p>
+
+<p><a id="splitterObject.show"></a></p>
+
+<h3>splitterObject.show(true)</h3>
+
+<p>显示控件</p>
+
+<p><a id="splitterObject.split"></a></p>
+
+<h3>splitterObject.split(前面的控件,后面的控件)</h3>
+
+<p>指定需要拆分的控件。<br>
+参数可以是控件对象，也可以是包含控件对象的数组。<br>
+同一数组中的控件必须位于拆分条的同一侧。<br>
+被折分的控件可在控件属性中指定是否支持自动调整大小。  </p>
+
+<p>也可以将更多控件可放入子窗口并以 custom 控件作为容器加载，然后再拆分。  </p>
+
+<p>listbox 反复改变高度会因为自动适应项目行高而越来越小,<br>
+要用拆分条改变 listbox 高度时最好也放入 custom 容器</p>
+
+<p><a id="splitterObject.text"></a></p>
+
+<h3>splitterObject.text</h3>
+
+<p>控件文本</p>
+
+<p><a id="splitterObject.theme"></a></p>
+
+<h3>splitterObject.theme</h3>
+
+<p>外观主题,例如<br>
+winform.button.theme = &quot;Explorer&quot;<br>
+winform.button.theme = false</p>
+
+<p><a id="splitterObject.top"></a></p>
+
+<h3>splitterObject.top</h3>
+
+<p>顶部坐标</p>
+
+<p><a id="splitterObject.translateAccelerator"></a></p>
+
+<h3>splitterObject.translateAccelerator</h3>
+
+<pre><code class="aardio language-aardio">splitterObject.translateAccelerator = function(msg){   
+    /*返回是否快捷键*/  
+}
+</code></pre>
+
+<p><a id="splitterObject.update"></a></p>
+
+<h3>splitterObject.update()</h3>
+
+<p>重绘invalidate函数指定的区块</p>
+
+<p><a id="splitterObject.width"></a></p>
+
+<h3>splitterObject.width</h3>
+
+<p>宽度</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/splitter.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/splitter.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/splitter.md">Markdown 格式</a></p>
+
+</body> 
+</html>

@@ -1,0 +1,808 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - win.ui.tabs 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - win.ui.tabs 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>win.ui.tabs 库模块帮助文档</h1>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-guide/std/win/ui/tabs/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-guide/std/win/ui/tabs/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/std/win/ui/tabs/_.md">高级选项卡使用指南</a></p>
+
+<p><a id="win.ui.tabs"></a></p>
+
+<h2>win.ui.tabs 成员列表</h2>
+
+<p>高级选项卡（ tab plus ）。<br>
+高级选项卡并不是一个控件，而是用于管理一组 plus 控件（ win.ui.ctrl.plus ）以实现选项卡效果的管理组件。</p>
+
+<p>创建高级选项卡（ tab plus ）。<br>
+自动查找附近合适的 custom 控件作为页面容器。<br>
+优先选择未禁用、未隐藏、未设置透明的 custom 控件。<br>
+如果是水平选项卡，应在下侧放置 custom 控件作为页面容器,<br>
+如果是垂直选项卡,应在右侧放置 custom 控件作为页面容器。  </p>
+
+<p>为了避免在启动软件时一次性加载大量子窗口导致启动速度慢,<br>
+为每一个选项卡添加子窗口时，win.ui.tabs 默认会创建并返回伪窗口。<br>
+直到点击该选项卡或访问伪窗口的属性与方法（fake 属性除外）时才会真正初始化相应的子窗口</p>
+
+<p><a id="win.ui.tabs.defaultStyle"></a></p>
+
+<h3>win.ui.tabs.defaultStyle</h3>
+
+<pre><code class="aardio language-aardio">win.ui.tabs.defaultStyle = {  
+    foreground={  
+        active=0xFFFFFFFF;  
+        default=0x00FFFFFF;  
+        hover=0x38FFFFFF  
+    };  
+    color = {  
+        default=0xFFFFFFFF;   
+    };  
+    checked={  
+        foreground={default=0xFFFFFFFF;};   
+        color={default=0xFF42A875;};/*默认选项卡样式*/  
+    }  
+}
+</code></pre>
+
+<p><a id="win.ui.tabs.dropButtonStyle"></a></p>
+
+<h3>win.ui.tabs.dropButtonStyle</h3>
+
+<pre><code class="aardio language-aardio">win.ui.tabs.dropButtonStyle = {     
+    color = {   
+        hover = 0xff99ffcc;  
+        active = 0xffff6666;   
+        default = 0xffffffff;   
+    }/*选项卡下拉按钮默认样式*/  
+}
+</code></pre>
+
+<p><a id="win.ui"></a></p>
+
+<h2>win.ui 成员列表</h2>
+
+<p><a id="win.ui.tabs"></a></p>
+
+<h3>win.ui.tabs()</h3>
+
+<p><a href="#winUiTabsObject">返回对象:winUiTabsObject</a></p>
+
+<p><a id="win.ui.tabs"></a></p>
+
+<h3>win.ui.tabs(headerTab1,headerTab2)</h3>
+
+<p>创建高级选项卡。<br>
+参数必须指定至少2个已创建的 plus 控件模板,对象创建成功可选清除模板<br>
+如果不需要动态增删选项卡,参数中的 plus 控件无需保持均匀间隔,  </p>
+
+<p>动态增加选项卡时会根据模板控件的样式与位置,<br>
+自动分析是水平排列还是垂直排列,自动分析排列间距，<br>
+并动态添加选项卡,可选显示删除选项卡的按钮  </p>
+
+<p>添加的选项卡数目超出显示范围时可自动折叠到下拉菜单，<br>
+自动折叠功能会保证新增选项卡、当前选项卡位于可见位置,<br>
+这会导致选项卡在必要时自动调整位置,<br>
+所以同一索引并不一定指向同一选项卡</p>
+
+<p><a id="winUiTabsObject"></a></p>
+
+<h2>winUiTabsObject 成员列表</h2>
+
+<p><a id="winUiTabsObject.add"></a></p>
+
+<h3>winUiTabsObject.add(tabConfig)</h3>
+
+<pre><code class="aardio language-aardio">winUiTabsObject.add({  
+    text=&quot;标题文本&quot;;  
+    iconText=&#39;\uF0AD&#39;;  
+    foreground=&quot;\res\images\icon.png&quot;;  
+    hasCloseButton=true;/*添加选项卡按钮 - 使用plus控件创建,  
+参数@1可以指定部分创建 plus 控件的参数,未指定的参数自动补全,  
+text字段可用于指定显示文本,foreground 字段可用于指定前景图标  
+如果指定 hasCloseButton 为 true，鼠标悬停会显示关闭按钮,  
+参数@1也可以使用一个数组指定创建多个选项卡的选项  
+
+如果存在多个参数,  
+自参数 @2 开始作为 loadForm 函数的参数加载窗体并绑定当前选项卡  
+
+此函数成功返回新增的选项卡索引,注意如果超出显示范围,  
+新增选项卡会自动替换到可显示位置*/  
+})
+</code></pre>
+
+<p><a id="winUiTabsObject.addItems"></a></p>
+
+<h3>winUiTabsObject.addItems(options)</h3>
+
+<p>参数@option指定一个数组，<br>
+遍历数组中的项并作为参数调用add函数创建多个选项卡,<br>
+参数为null或空数组时忽略不执行任何操作</p>
+
+<p><a id="winUiTabsObject.adjust"></a></p>
+
+<h3>winUiTabsObject.adjust()</h3>
+
+<pre><code class="aardio language-aardio">winUiTabsObject.adjust = function(){
+    var x,y,cx,cy = owner.getPos();
+    /*选项卡已重新调整布局*/
+}
+</code></pre>
+
+<p><a id="winUiTabsObject.adjustLayout"></a></p>
+
+<h3>winUiTabsObject.adjustLayout()</h3>
+
+<p>调整布局<br>
+高级选项卡会在需要的时候自动调用此函数</p>
+
+<p><a id="winUiTabsObject.beforeShowCloseButton"></a></p>
+
+<h3>winUiTabsObject.beforeShowCloseButton(tab,rcTabItem,rcCloseButton,dpiScaleX,dpiScaleY)</h3>
+
+<pre><code class="aardio language-aardio">winUiTabsObject.beforeShowCloseButton = function(tab,rcTab,rcCloseButton){
+    /*返回关闭按钮显示的x,y坐标,需要返回2个值  
+不返回值取消显示  
+
+参数 tab 为请求显示关闭按钮的选项卡  
+rcTab为选项卡所在的区块,::RECT对象,  
+rcCloseButton为关闭按钮所在的的区块,::RECT对象  
+dpiScaleX,dpiScaleY为X,Y轴上的DPI缩放比例,1表示100%*/
+}
+</code></pre>
+
+<p><a id="winUiTabsObject.clear"></a></p>
+
+<h3>winUiTabsObject.clear()</h3>
+
+<p>清空所有选项卡、清空所有加载的子窗口</p>
+
+<p><a id="winUiTabsObject.closeButton"></a></p>
+
+<h3>winUiTabsObject.closeButton</h3>
+
+<p>选项卡上关闭按钮,plus控件<br>
+可调用skin函数自定义外观样式<br>
+可通过beforeShowCloseButton事件自定义显示坐标<br>
+注意这是一个orphanWindow浮动窗口  </p>
+
+<p><a href="ctrl/plus.html#uiCtrlPlusObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/plus.html#uiCtrlPlusObject">返回对象:uiCtrlPlusObject</a></p>
+
+<p><a id="winUiTabsObject.count"></a></p>
+
+<h3>winUiTabsObject.count()</h3>
+
+<p>返回选项卡总数</p>
+
+<p><a id="winUiTabsObject.create"></a></p>
+
+<h3>winUiTabsObject.create()</h3>
+
+<p><a href="ctrl/plus.html#uiCtrlPlusObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/plus.html#uiCtrlPlusObject">返回对象:uiCtrlPlusObject</a></p>
+
+<p><a id="winUiTabsObject.create"></a></p>
+
+<h3>winUiTabsObject.create(参数表)</h3>
+
+<p>此函数与add函数用法相同<br>
+但创建选项卡以后会同时创建对应的子窗口,<br>
+返回2个值,分别为创建的选项卡对象、子窗体对象  </p>
+
+<p>注意,调用add,create函数添加选项卡,<br>
+如果超出可见范围,会自动折叠其他选项卡,并将新增的选项卡移动到可见位置<br>
+所以增加选项卡可能导致选项卡调整位置,索引发生变化</p>
+
+<p><a id="winUiTabsObject.delete"></a></p>
+
+<h3>winUiTabsObject.delete()</h3>
+
+<p>删除指定索引的选项卡<br>
+参数用数值指定选项所在位置索引</p>
+
+<p><a id="winUiTabsObject.deleteByForm"></a></p>
+
+<h3>winUiTabsObject.deleteByForm()</h3>
+
+<p>删除指定的选项卡<br>
+参数指定相同索引位置的子窗体对象</p>
+
+<p><a id="winUiTabsObject.deleteByTab"></a></p>
+
+<h3>winUiTabsObject.deleteByTab()</h3>
+
+<p>删除指定的选项卡<br>
+参数指定选项卡按钮对象</p>
+
+<p><a id="winUiTabsObject.dropButton"></a></p>
+
+<h3>winUiTabsObject.dropButton</h3>
+
+<p>下拉菜单按钮,<br>
+如果存在超出显示范围的选项卡,这个控件会自动显示<br>
+这是一个plus控件对象  </p>
+
+<p><a href="ctrl/plus.html#uiCtrlPlusObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/plus.html#uiCtrlPlusObject">返回对象:uiCtrlPlusObject</a></p>
+
+<p><a id="winUiTabsObject.dropButtonMargin"></a></p>
+
+<h3>winUiTabsObject.dropButtonMargin</h3>
+
+<p>下拉菜单按钮边距</p>
+
+<p><a id="winUiTabsObject.each"></a></p>
+
+<h3>winUiTabsObject.each()</h3>
+
+<pre><code class="aardio language-aardio">for(tab,form,idx in winUiTabsObject.each() ){
+    /*遍历所有选项卡,  
+tab 为选项卡对象,form为对应的子窗口,idx为索引位置  
+遍历时不应当执行删除、新增选项卡,设置当前选项卡等改变索引位置的操作*/
+}
+</code></pre>
+
+<p><a id="winUiTabsObject.getPos"></a></p>
+
+<h3>winUiTabsObject.getPos()</h3>
+
+<p>返回x,y,cx,cy等4个值,<br>
+分别表示高级选项卡当前左,上坐标,宽度,高度</p>
+
+<p><a id="winUiTabsObject.hitTest"></a></p>
+
+<h3>winUiTabsObject.hitTest(x,y)</h3>
+
+<p>参数指定屏幕坐标，返回该坐标所在的选项卡，以及选项索引</p>
+
+<p><a id="winUiTabsObject.indexOfForm"></a></p>
+
+<h3>winUiTabsObject.indexOfForm()</h3>
+
+<p>获取子窗口所在的选项卡索引位置<br>
+参数指定相同索引位置的子窗体对象</p>
+
+<p><a id="winUiTabsObject.indexOfTab"></a></p>
+
+<h3>winUiTabsObject.indexOfTab()</h3>
+
+<p>获取选项卡所在的索引位置<br>
+参数指定选项卡按钮对象</p>
+
+<p><a id="winUiTabsObject.initPopup"></a></p>
+
+<h3>winUiTabsObject.initPopup(handleCtrl,transparent)</h3>
+
+<p>初始化为弹出菜单样式<br>
+@handleCtrl指定接收输入事件的控件,<br>
+自动修改该控件的checked属性为是否弹出状态,<br>
+transparent指定菜单是否透明,<br>
+所有参数可选</p>
+
+<p><a id="winUiTabsObject.isVisible"></a></p>
+
+<h3>winUiTabsObject.isVisible()</h3>
+
+<p>选项卡是否可见</p>
+
+<p><a id="winUiTabsObject.itemMargin"></a></p>
+
+<h3>winUiTabsObject.itemMargin</h3>
+
+<p>选项卡间隔距离,可以为负数</p>
+
+<p><a id="winUiTabsObject.keepSpace"></a></p>
+
+<h3>winUiTabsObject.keepSpace</h3>
+
+<p>是否保持选项之间的间距不变,<br>
+该属性建议由aardio自动设置</p>
+
+<p><a id="winUiTabsObject.lastVisibleIndex"></a></p>
+
+<h3>winUiTabsObject.lastVisibleIndex</h3>
+
+<p>最后一个显示状态的选项卡索引<br>
+在这后面是因为超出显示范围被自动隐藏的选项卡</p>
+
+<p><a id="winUiTabsObject.lastVisibleItem"></a></p>
+
+<h3>winUiTabsObject.lastVisibleItem</h3>
+
+<p>最后一个显示状态的选项卡<br>
+在这后面是因为超出显示范围被自动隐藏的选项卡<br>
+这是一个plus控件对象  </p>
+
+<p><a href="ctrl/plus.html#uiCtrlPlusObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/plus.html#uiCtrlPlusObject">返回对象:uiCtrlPlusObject</a></p>
+
+<p><a id="winUiTabsObject.loadForm"></a></p>
+
+<h3>winUiTabsObject.loadForm</h3>
+
+<p>加载窗体到高级选项卡的页面容器控件，并绑定选项卡。<br>
+选项卡必须已经匹配到可用的页面容器，<br>
+也就是说 panel 属性不为空值。  </p>
+
+<p>高级选项卡默认会自动查找附近合适的 custom 控件作为页面容器<br>
+也可以手动指定 panel 指向的窗口  </p>
+
+<p>loadForm 函数默认会加载延迟创建实际窗口的伪窗口。<br>
+访问伪窗口的任何属性或方法都会自动创建真实窗口。</p>
+
+<p><a id="winUiTabsObject.loadForm"></a></p>
+
+<h3>winUiTabsObject.loadForm()</h3>
+
+<p>在页面容器控件创建默认子窗体并绑定到最后一个选项卡。<br>
+返回创建的子窗口对象。</p>
+
+<p><a id="winUiTabsObject.loadForm"></a></p>
+
+<h3>winUiTabsObject.loadForm(index)</h3>
+
+<p>在页面容器控件创建默认子窗体并绑定到指定的选项卡。<br>
+数 @index 指定索引，可用负索引表示倒计数，-1 表示最后一个选项卡。<br>
+如果不指定索引则默认取 forms 属性的数组长度并加 1 作为索引。<br>
+与其他函数同的是：此函数省略参数 @1 可不用占位，允许参数 @2 写为 参数 @1。<br>
+省略参数 @2 则立即创建默认子窗体并加载到页面，然后返回该窗体。</p>
+
+<p><a id="winUiTabsObject.loadForm"></a></p>
+
+<h3>winUiTabsObject.loadForm(index,&quot;请输入窗体代码文件路径&quot;)</h3>
+
+<p>在页面容器控件内预加载创建子窗体的代码文件，<br>
+并绑定到参数 @index 指定索引的选项卡。<br>
+参数 @index 可用负索引表示倒计数，-1 表示最后一个选项卡。<br>
+在开发环境中,请注意保存外部窗体文件以后测试运行。  </p>
+
+<p>默认会创建并返回一个伪窗口对象，<br>
+并延迟到用户切换到所属选项卡时才会真正创建窗口。<br>
+访问伪窗口除 fake 以外的任何属性方法也会立即创建窗口。</p>
+
+<p><a id="winUiTabsObject.loadForm"></a></p>
+
+<h3>winUiTabsObject.loadForm(index,@tParam)</h3>
+
+<p>在页面容器控件内创建子窗体并绑定到参数@1指定索引的选项卡。<br>
+参数 @index 可用负索引表示倒计数，-1 表示最后一个选项卡。  </p>
+
+<p>默认会创建并返回一个伪窗口对象，<br>
+并延迟到用户切换到所属选项卡时才会真正创建窗口。<br>
+访问伪窗口除 fake 以外的任何属性方法也会立即创建窗口。</p>
+
+<p><a id="winUiTabsObject.loadForm"></a></p>
+
+<h3>winUiTabsObject.loadForm(index,winform)</h3>
+
+<p>将 @winform 指定的子窗体添加到页面容器，<br>
+并绑定到参数 @index 指定索引的选项卡。<br>
+参数 @index 可用负索引表示倒计数，-1 表示最后一个选项卡。<br>
+如果不指定索引（可省略参数占位）则默认取 forms 属性的数组长度并加 1 作为索引。<br>
+返回参数 @2 指定的窗体对象。</p>
+
+<p><a id="winUiTabsObject.margin"></a></p>
+
+<h3>winUiTabsObject.margin</h3>
+
+<p>可设置选项卡按钮尾部最少预留的边距,<br>
+超出显示范围时自动折叠选项卡并在此显示下拉菜单，<br>
+默认会根据下拉按钮的大小自动设置此值,<br>
+如果设置为0则禁用自动折叠功能。  </p>
+
+<p>此属性应设置为系统 DPI 缩放前的原始值</p>
+
+<p><a id="winUiTabsObject.next"></a></p>
+
+<h3>winUiTabsObject.next()</h3>
+
+<p>切换到下一个</p>
+
+<p><a id="winUiTabsObject.onCancel"></a></p>
+
+<h3>winUiTabsObject.onCancel()</h3>
+
+<pre><code class="aardio language-aardio">winUiTabsObject.onCancel = function(){
+    /*用户关闭弹出列表﻿并且未确认选项*/
+}
+</code></pre>
+
+<p><a id="winUiTabsObject.onDrawEnd"></a></p>
+
+<h3>winUiTabsObject.onDrawEnd</h3>
+
+<pre><code class="aardio language-aardio">winUiTabsObject.onDrawEnd = function(graphics,rc){
+    /*所有绘制操作结束触发此事件,  
+graphics 为gdip.graphics对象(GDI+画板),  
+rc为客户区RECT结构体*/
+}
+</code></pre>
+
+<p><a id="winUiTabsObject.onDrawForegroundEnd"></a></p>
+
+<h3>winUiTabsObject.onDrawForegroundEnd</h3>
+
+<pre><code class="aardio language-aardio">winUiTabsObject.onDrawForegroundEnd = function(graphics,rc,rcContent){
+    /*背景前景绘制后,绘制文本前触发此事件,  
+graphics 为gdip.graphics对象(GDI+画板),  
+rc为客户区RECT结构体,rcContent为去掉内边距后的RECT结构体*/
+}
+</code></pre>
+
+<p><a id="winUiTabsObject.onDrawString"></a></p>
+
+<h3>winUiTabsObject.onDrawString(...)</h3>
+
+<pre><code class="aardio language-aardio">winUiTabsObject.onDrawString(...onDrawString = function(graphics,text,font,rectf,strformat,brush){
+    graphics.drawString(text,font,rectf,strformat,brush); 
+    /*自绘所有选项卡控钮上的文本  
+注意owner参数指向当前选项卡按钮*/
+}
+</code></pre>
+
+<p><a id="winUiTabsObject.onFocusGot"></a></p>
+
+<h3>winUiTabsObject.onFocusGot(hLostFocus)</h3>
+
+<pre><code class="aardio language-aardio">winUiTabsObject.onFocusGot = function(hLostFocus){
+    ..win.setFocus(hLostFocus);/*得到焦点触发此事件,hLostFocus为失去焦点的窗口句柄*/
+}
+</code></pre>
+
+<p><a id="winUiTabsObject.onFocusLost"></a></p>
+
+<h3>winUiTabsObject.onFocusLost(hFocus)</h3>
+
+<pre><code class="aardio language-aardio">winUiTabsObject.onFocusLost = function(hFocus){
+    /*失去焦点触发此事件,hFocus为得到焦点的窗口句柄*/
+}
+</code></pre>
+
+<p><a id="winUiTabsObject.onMouseDown"></a></p>
+
+<h3>winUiTabsObject.onMouseDown(tab,wParam,lParam)</h3>
+
+<pre><code class="aardio language-aardio">winUiTabsObject.onMouseDown = function(tab,wParam,lParam){
+    /*在选项卡对象 tab 上按下鼠标,即将切换当前选项卡,  
+wParam,lParam为窗口消息参数*/
+}
+</code></pre>
+
+<p><a id="winUiTabsObject.onMouseHover"></a></p>
+
+<h3>winUiTabsObject.onMouseHover(tab,wParam,lParam)</h3>
+
+<pre><code class="aardio language-aardio">winUiTabsObject.onMouseHover = function(tab,wParam,lParam){
+    /*鼠标正悬浮于选项卡对象 tab 之上,  
+wParam,lParam为窗口消息参数*/
+}
+</code></pre>
+
+<p><a id="winUiTabsObject.onMouseLeave"></a></p>
+
+<h3>winUiTabsObject.onMouseLeave(tab,wParam,lParam)</h3>
+
+<pre><code class="aardio language-aardio">winUiTabsObject.onMouseLeave = function(tab,wParam,lParam){
+    /*鼠标离开选项卡对象 tab,  
+wParam,lParam为窗口消息参数*/
+}
+</code></pre>
+
+<pre><code class="aardio language-aardio">winUiTabsObject.onMouseLeave = function(tab,wParam,lParam){
+    /*鼠标离开选项卡对象 tab,  
+wParam,lParam为窗口消息参数*/
+}
+</code></pre>
+
+<p><a id="winUiTabsObject.onMouseUp"></a></p>
+
+<h3>winUiTabsObject.onMouseUp(tab,wParam,lParam)</h3>
+
+<pre><code class="aardio language-aardio">winUiTabsObject.onMouseUp = function(tab,wParam,lParam){
+    /*在选项卡对象 tab 上放开鼠标,选项卡切换操作已完成,  
+wParam,lParam为窗口消息参数*/
+}
+</code></pre>
+
+<p><a id="winUiTabsObject.onOk"></a></p>
+
+<h3>winUiTabsObject.onOk(tab)</h3>
+
+<pre><code class="aardio language-aardio">winUiTabsObject.onOk = function(tab){
+    /*用户在弹出列表中选择并确认选项,且即将关闭弹出列表*/
+}
+</code></pre>
+
+<p><a id="winUiTabsObject.onPopup"></a></p>
+
+<h3>winUiTabsObject.onPopup(showing)</h3>
+
+<pre><code class="aardio language-aardio">winUiTabsObject.onPopup = function(showing){
+    /*弹出状态变更时触发此事件  
+弹出状态@showing参数为true，显示为弹出状态@showing参数为false*/
+}
+</code></pre>
+
+<p><a id="winUiTabsObject.onSelchange"></a></p>
+
+<h3>winUiTabsObject.onSelchange(idx,tab,form)</h3>
+
+<pre><code class="aardio language-aardio">winUiTabsObject.onSelchange = function(idx,tab,form){
+    /*切换选项卡会触发此事件,idx为当前选中索引  
+tab 为当前选项卡,form为当前子窗口*/
+}
+</code></pre>
+
+<p><a id="winUiTabsObject.onVisualStateChanged"></a></p>
+
+<h3>winUiTabsObject.onVisualStateChanged(showing)</h3>
+
+<pre><code class="aardio language-aardio">winUiTabsObject.onVisualStateChanged = function(showing){
+    /*显示或隐藏时触发此事件  
+显示@showing参数为true，隐藏@showing参数为false*/
+}
+</code></pre>
+
+<p><a id="winUiTabsObject.oncommand"></a></p>
+
+<h3>winUiTabsObject.oncommand(tab,id,event)</h3>
+
+<pre><code class="aardio language-aardio">winUiTabsObject.oncommand = function(tab,id,event){
+    /*点击选项卡触发此函数  
+tab 为触发事件的选项卡  
+id为控件id,event目前值总是0*/
+}
+</code></pre>
+
+<p><a id="winUiTabsObject.panel"></a></p>
+
+<h3>winUiTabsObject.panel</h3>
+
+<p>用于构成选项卡内容区域（ tab body area ）的容器控件。<br>
+必须是一个 custom 控件（win.ui.ctrl.custom 控件）。<br>
+创建高级选项卡时，panel 属性会自动指定为附近可用的 custom 控件。<br>
+也可以在加载子窗口以前手工指定此对象  </p>
+
+<p><a href="_.html#winform" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/_.html#winform">返回对象:winform</a></p>
+
+<p><a id="winUiTabsObject.popup"></a></p>
+
+<h3>winUiTabsObject.popup</h3>
+
+<p>切换到弹出列表模式，<br>
+用于显示简单的弹出列表或菜单，<br>
+如果当前项目列表数组为空,则无论传入什么参数都会切换到隐藏状态</p>
+
+<p><a id="winUiTabsObject.popup"></a></p>
+
+<h3>winUiTabsObject.popup(false)</h3>
+
+<p>隐藏列表，并将selIndex置为null<br>
+如果当前项目列表数组为空,则无论传入什么参数都会切换到隐藏状态</p>
+
+<p><a id="winUiTabsObject.popup"></a></p>
+
+<h3>winUiTabsObject.popup(true,ctrl,mode)</h3>
+
+<p>弹出列表<br>
+ctrl指定控件，弹出列表显示在该控件边上,<br>
+自动修改该控件的checked属性为是否弹出状态,<br>
+可选使用mode参数指定&quot;up&quot;,&quot;down&quot;,&quot;left&quot;,&quot;right&quot;等显示位置</p>
+
+<p><a id="winUiTabsObject.popup"></a></p>
+
+<h3>winUiTabsObject.popup(true,x,y)</h3>
+
+<p>弹出列表<br>
+可选使用x,y指定列表左上角在屏幕上的坐标</p>
+
+<p><a id="winUiTabsObject.prev"></a></p>
+
+<h3>winUiTabsObject.prev()</h3>
+
+<p>切换到上一个</p>
+
+<p><a id="winUiTabsObject.query"></a></p>
+
+<h3>winUiTabsObject.query()</h3>
+
+<p><a href="_.html#winform" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/_.html#winform">返回对象:winform</a></p>
+
+<p><a id="winUiTabsObject.query"></a></p>
+
+<h3>winUiTabsObject.query(查询属性)</h3>
+
+<pre><code class="aardio language-aardio">winUiTabsObject.query(  
+    text = &quot;标题&quot;;  
+    tabsName = &quot;名字&quot;;/*使用选项卡的指定属性查询对应的子窗口,  
+如果子窗口没有加载将会立即加载,  
+选项卡的任一属性值与查询条件相同即可  
+自定义属性建议加上tabs前缀以避免冲突  
+也可以用一个字符串参数直接查询选项卡标题,  
+返回窗口对象,以及所在索引*/  
+)
+</code></pre>
+
+<p><a id="winUiTabsObject.queryTab"></a></p>
+
+<h3>winUiTabsObject.queryTab()</h3>
+
+<p><a href="ctrl/plus.html#uiCtrlPlusObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/plus.html#uiCtrlPlusObject">返回对象:uiCtrlPlusObject</a></p>
+
+<p><a id="winUiTabsObject.queryTab"></a></p>
+
+<h3>winUiTabsObject.queryTab(查询属性)</h3>
+
+<pre><code class="aardio language-aardio">winUiTabsObject.queryTab(text = &quot;标题&quot;/*使用选项卡的指定属性查询对应的选项卡,  
+选项卡的任一属性值与查询条件相同即可  
+自定义属性建议加上tabs前缀以避免冲突  
+也可以用一个字符串参数直接查询选项卡标题,  
+返回选项卡对象,以及所在索引*/)
+</code></pre>
+
+<p><a id="winUiTabsObject.selForm"></a></p>
+
+<h3>winUiTabsObject.selForm</h3>
+
+<p>当前选中的子窗口  </p>
+
+<p><a href="_.html#winform" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/_.html#winform">返回对象:winform</a></p>
+
+<p><a id="winUiTabsObject.selIndex"></a></p>
+
+<h3>winUiTabsObject.selIndex</h3>
+
+<p>获取或指定当前选中项索引,设为null清除当前选项,<br>
+如果新的选中项已被自动折叠,则会自动移动到可见位置<br>
+所以设置selIndex时可能导致selIndex移动位置</p>
+
+<p><a id="winUiTabsObject.selTab"></a></p>
+
+<h3>winUiTabsObject.selTab</h3>
+
+<p>获取或指定当前选中的选项卡按钮<br>
+指定null或不存在于tabs中的控件时清除选中项,  </p>
+
+<p><a href="ctrl/plus.html#uiCtrlPlusObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/plus.html#uiCtrlPlusObject">返回对象:uiCtrlPlusObject</a></p>
+
+<p><a id="winUiTabsObject.selText"></a></p>
+
+<h3>winUiTabsObject.selText</h3>
+
+<p>获取当前选中项文本,<br>
+也可以指定一个文本用于切换到显示该文本的选项卡</p>
+
+<p><a id="winUiTabsObject.setItemTexts"></a></p>
+
+<h3>winUiTabsObject.setItemTexts</h3>
+
+<p>使用文本数组更新选项卡数组,<br>
+此函数可重用已创建的选项卡，所以有更好的性能</p>
+
+<p><a id="winUiTabsObject.setItemTexts"></a></p>
+
+<h3>winUiTabsObject.setItemTexts(texts,limit,selIndex)</h3>
+
+<p>使用参数@texts指定的字符串数组创建选项卡数组,<br>
+其中的每个字符串用于指定选项卡上的显示文本。<br>
+可选用@limit参数指定最大显示条数,<br>
+可选用@selIndex参数指定默认选中索引,<br>
+此函数返回实际显示条数</p>
+
+<p><a id="winUiTabsObject.setItems"></a></p>
+
+<h3>winUiTabsObject.setItems</h3>
+
+<p>使用控件初始化选项数组更新选项卡数组,<br>
+此函数可重用已创建的选项卡，所以有更好的性能</p>
+
+<p><a id="winUiTabsObject.setItems"></a></p>
+
+<h3>winUiTabsObject.setItems(items,limit,selIndex)</h3>
+
+<p>使用参数@items指定的选项数组更新选项卡数组,<br>
+每个选项提供控件的初始化属性并将被传入add函数。<br>
+可选用@limit参数指定最大显示条数,<br>
+可选用@selIndex参数指定默认选中索引,<br>
+此函数返回实际显示条数</p>
+
+<p><a id="winUiTabsObject.setTabs"></a></p>
+
+<h3>winUiTabsObject.setTabs(属性名,属性值数组)</h3>
+
+<p>设置所有选项卡的指定属性值</p>
+
+<p><a id="winUiTabsObject.show"></a></p>
+
+<h3>winUiTabsObject.show(可选输入显示参数)</h3>
+
+<p>显示或隐藏所有选项卡,可选输入以_SW_为前缀的显示参数<br>
+参数@1也可以传入true,false控制是否显示选项卡</p>
+
+<p><a id="winUiTabsObject.showDropButton"></a></p>
+
+<h3>winUiTabsObject.showDropButton(true)</h3>
+
+<p>参数为true显示下拉菜单按钮<br>
+参数为false隐式该按钮<br>
+高级选项卡会在需要的时候自动调用此函数</p>
+
+<p><a id="winUiTabsObject.skin"></a></p>
+
+<h3>winUiTabsObject.skin</h3>
+
+<pre><code class="aardio language-aardio">winUiTabsObject.skin({  
+    background = {   
+        hover = &quot;/res/images/button-hover.png&quot;;  
+        focus = &quot;/res/images/button-focus.png&quot;;  
+        active = &quot;/res/images/button-active.png&quot;;  
+        disabled = 0xFFCCCCCC;   
+    };  
+    color = {  
+        hover = 0xF00000FF;/*用格式为0xAARRGGBB的16进制数值,指定鼠标放到控件上的字体颜色,  
+AA为透明度,RR为红色分量,GG为绿色分量,BB为蓝色分量*/   
+    };  
+    border = {   
+        hover = {left=5;color=0xFFFF0000;padding=15;}   
+    };   
+})
+</code></pre>
+
+<p><a id="winUiTabsObject.swap"></a></p>
+
+<h3>winUiTabsObject.swap(a,b)</h3>
+
+<p>交换两个索引的选项卡位置<br>
+参数a,b应当是有效的选项卡索引<br>
+这个函数如果没有弄清楚原理最好不要使用,<br>
+高级选项卡会在需要的时候自动调用此函数,<br>
+成功返回true,失败返回null</p>
+
+<p><a id="winUiTabsObject.updateItemRegion"></a></p>
+
+<h3>winUiTabsObject.updateItemRegion()</h3>
+
+<p>更新选项卡绘图区域,<br>
+参数必须是兼容 win.region.png 接口的对象</p>
+
+<p><a id="winUiTabsObject.forms"></a></p>
+
+<h2>winUiTabsObject.forms 成员列表</h2>
+
+<p>用于显示页面内容的子窗口数组，<br>
+选中的子窗口将在 panel 属性指定的容器控件中显示。</p>
+
+<p><a id="winUiTabsObject.forms.?"></a></p>
+
+<h3>winUiTabsObject.forms.?</h3>
+
+<p>子窗口是 win.form 对象  </p>
+
+<p><a href="_.html#winform" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/_.html#winform">返回对象:winform</a></p>
+
+<p><a id="winUiTabsObject.tabList"></a></p>
+
+<h2>winUiTabsObject.tabList 成员列表</h2>
+
+<p>用于构成选项卡头部区域（ tab header area ）的选项卡按钮数组。<br>
+所有选项卡按钮都是 plus 控件（win.ui.ctrl.plus 控件）。</p>
+
+<p><a id="winUiTabsObject.tabList.?"></a></p>
+
+<h3>winUiTabsObject.tabList.?</h3>
+
+<p>选项卡按钮数组包含的按钮对象。<br>
+所有选项卡按钮都是 plus 控件（win.ui.ctrl.plus 控件）。  </p>
+
+<p><a href="ctrl/plus.html#uiCtrlPlusObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/plus.html#uiCtrlPlusObject">返回对象:uiCtrlPlusObject</a></p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/ui/tabs.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/ui/tabs.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/tabs.md">Markdown 格式</a></p>
+
+</body> 
+</html>

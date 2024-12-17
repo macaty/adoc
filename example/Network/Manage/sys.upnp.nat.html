@@ -1,0 +1,145 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - UPnP 端口映射查看工具'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - UPnP 端口映射查看工具</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: UPnP 端口映射查看工具</h1><pre><code class="aardio language-aardio">//端口映射管理
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;UPnP 端口映射查看工具&quot;;right=966;bottom=622)
+winform.add()
+/*}}*/
+
+import web.view;
+var wb = web.view(winform);
+
+import sys.upnp.nat;
+var natUpnp = sys.upnp.nat();
+
+//测试添加端口映射，除第一个参数以外的其他参数都可以省略
+natUpnp.add(9973,&quot;TCP&quot;,9973,,&quot;添加端口映射测试&quot;)
+
+wb.external = {
+    getMappingCollection = function(){
+        return web.json.stringifyArray(natUpnp.getTable());
+    };
+    deleteItem = function(externalPort,protocol){
+        return natUpnp.remove(externalPort,protocol)
+    };
+    natUpnpValid = function(){  
+        return natUpnp.valid();
+    };
+}
+
+wb.html = /**
+&lt;!DOCTYPE html&gt;&lt;html&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot; /&gt;
+    &lt;title&gt;WebView2&lt;/title&gt; 
+    &lt;script src=&quot;https://lib.baomitu.com/react/17.0.2/umd/react.production.min.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://lib.baomitu.com/react-dom/17.0.2/umd/react-dom.production.min.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://lib.baomitu.com/antd/4.17.0-alpha.3/antd.min.js&quot;&gt;&lt;/script&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://lib.baomitu.com/antd/4.17.0-alpha.3/antd.min.css&quot;&gt; 
+    &lt;script src=&quot;https://unpkg.com/@babel/standalone@7/babel.min.js&quot;&gt;&lt;/script&gt;
+    &lt;style type=&quot;text/css&quot;&gt; 
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;  
+
+&lt;script type=&quot;text/babel&quot;&gt; 
+    const { useState,useEffect,useCallback,useRef } =  React;
+    const { Button,Table,DatePicker,Alert,Tooltip,Space,Tag,Popconfirm } = antd;
+
+    const App = () =&gt; { 
+            const [data,setData] = useState([]);
+            const [valid,setValid] = useState(true);
+
+            useEffect(
+                async ()=&gt; {
+                    var ds = JSON.parse(await aardio.getMappingCollection());
+                    setData(ds);
+
+                    if(!ds.length){
+                        setValid(await aardio.natUpnpValid());
+                    } 
+                },[]
+            )   
+
+            return ( 
+                &lt;div style={{ width: &#39;100%&#39;, margin: &#39;0 auto&#39;, padding:&#39;10px&#39; }}&gt;   
+                { !valid &amp;&amp; &lt;Alert message=&quot;当前网络不支持 UPnP 自动端口映射&quot; type=&quot;error&quot; showIcon  closable  /&gt; }    
+                &lt;Table size=&quot;middle&quot;  dataSource={data} columns={[
+                        {
+                            title: &#39;协议&#39;,
+                            dataIndex: &#39;protocol&#39;,
+                            width: 300, 
+                        },
+                        {
+                            title: &#39;外网端口&#39;,
+                            dataIndex: &#39;externalPort&#39;, 
+                        },
+                        {
+                            title: &#39;内网端口&#39;,
+                            dataIndex: &#39;internalPort&#39;, 
+                        },
+                        {
+                            title: &#39;内网主机&#39;,
+                            dataIndex: &#39;internalClient&#39;, 
+                        },
+                        {
+                            title: &#39;描述&#39;,
+                            dataIndex: &#39;description&#39;, 
+                        },
+                        {
+                            title: &#39;启用&#39;,
+                            dataIndex: &#39;enabled&#39;, 
+                            render: enabled =&gt; (
+                                &lt;&gt;
+                                    &lt;Tag color={ enabled  ? &#39;green&#39; : &#39;#CCC&#39; } &gt;
+                                        {enabled ? &quot;启用&quot; : &quot;禁用&quot;}
+                                    &lt;/Tag&gt;
+                                &lt;/&gt;)
+                        },
+                        {
+                            title: &#39;操作&#39;,
+                            key: &#39;action&#39;,
+                            render: (text, record) =&gt; (
+                            &lt;Space size=&quot;middle&quot;&gt; 
+                                &lt;Popconfirm title={&quot;确定删除外网映射端口：&quot;+record.externalPort+&quot; 协议：&quot;+record.protocol+&quot; 吗&quot;} onConfirm={ async ()=&gt;{ 
+                                    await aardio.deleteItem(record.externalPort,record.protocol)  
+                                    setData(JSON.parse(await aardio.getMappingCollection()));
+                                } } okText=&quot;确认&quot; cancelText=&quot;取消&quot;&gt;
+                                    &lt;a&gt;删除&lt;/a&gt;
+                                &lt;/Popconfirm&gt;
+                            &lt;/Space&gt;
+                            ),
+                        },
+                ]} /&gt;
+
+                &lt;/div&gt; 
+            );
+    };
+
+    ReactDOM.render(&lt;App /&gt;, document.querySelector(&#39;#app&#39;)); 
+&lt;/script&gt;
+
+&lt;div id=&quot;app&quot;&gt;&lt;/div&gt;
+&lt;/body&gt; 
+**/
+
+winform.show();
+win.loopMessage();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Network/Manage/sys.upnp.nat.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Network/Manage/sys.upnp.nat.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Network/Manage/sys.upnp.nat.md">Markdown 格式</a>
+</body> 
+</html>

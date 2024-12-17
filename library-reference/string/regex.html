@@ -1,0 +1,137 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - string.regex 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - string.regex 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>string.regex 库模块帮助文档</h1>
+
+<p><a id="string"></a></p>
+
+<h2>string 成员列表</h2>
+
+<p><a id="string.regex"></a></p>
+
+<h3>string.regex</h3>
+
+<p>VBS正则表达式支持库</p>
+
+<p><a id="string.regex"></a></p>
+
+<h3>string.regex(&quot;字符串参数&quot;)</h3>
+
+<p>创建正则表达式</p>
+
+<p><a id="string.regex"></a></p>
+
+<h3>string.regex()</h3>
+
+<p><a href="#vbsrgxObject">返回对象:vbsrgxObject</a></p>
+
+<p><a id="vbsrgxMatchObject"></a></p>
+
+<h2>vbsrgxMatchObject 成员列表</h2>
+
+<p><a id="vbsrgxMatchObject.FirstIndex"></a></p>
+
+<h3>vbsrgxMatchObject.FirstIndex</h3>
+
+<p>位置</p>
+
+<p><a id="vbsrgxMatchObject.Length"></a></p>
+
+<h3>vbsrgxMatchObject.Length</h3>
+
+<p>长度</p>
+
+<p><a id="vbsrgxMatchObject.SubMatches"></a></p>
+
+<h3>vbsrgxMatchObject.SubMatches(索引)</h3>
+
+<p>匹配子串(用括号指定的分组)</p>
+
+<p><a id="vbsrgxMatchObject.Value"></a></p>
+
+<h3>vbsrgxMatchObject.Value</h3>
+
+<p>匹配结果</p>
+
+<p><a id="vbsrgxObject"></a></p>
+
+<h2>vbsrgxObject 成员列表</h2>
+
+<p><a id="vbsrgxObject.find"></a></p>
+
+<h3>vbsrgxObject.find(目标字符串)</h3>
+
+<p>搜索字符串,成功返回true</p>
+
+<p><a id="vbsrgxObject.find"></a></p>
+
+<h3>vbsrgxObject.find(目标字符串,&quot;.+&quot;)</h3>
+
+<p>搜索字符串,成功返回true</p>
+
+<p><a id="vbsrgxObject.global"></a></p>
+
+<h3>vbsrgxObject.global</h3>
+
+<p>是否全局匹配<br>
+只能设为0或1<br>
+默认为1表示启用全局匹配</p>
+
+<p><a id="vbsrgxObject.gmatch"></a></p>
+
+<h3>vbsrgxObject.gmatch()</h3>
+
+<p><a href="#vbsrgxMatchObject">返回对象:vbsrgxMatchObject</a></p>
+
+<p><a id="vbsrgxObject.gmatch"></a></p>
+
+<h3>vbsrgxObject.gmatch(str)</h3>
+
+<pre><code class="aardio language-aardio">for i,smatch in regex.gmatch(/*要匹配的字符串*/){
+
+}
+</code></pre>
+
+<p><a id="vbsrgxObject.gmatch"></a></p>
+
+<h3>vbsrgxObject.gmatch(str,pattern)</h3>
+
+<pre><code class="aardio language-aardio">for i,smatch in regex.gmatch(/*要匹配的字符串*/,&quot;.+&quot;){
+
+}
+</code></pre>
+
+<p><a id="vbsrgxObject.ignoreCase"></a></p>
+
+<h3>vbsrgxObject.ignoreCase</h3>
+
+<p>是否忽略大小写</p>
+
+<p><a id="vbsrgxObject.pattern"></a></p>
+
+<h3>vbsrgxObject.pattern</h3>
+
+<p>设置或返回用于搜索的正则表达式</p>
+
+<p><a id="vbsrgxObject.replace"></a></p>
+
+<h3>vbsrgxObject.replace(源字符串,替换字符串)</h3>
+
+<p>替换</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/string/regex.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/string/regex.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/string/regex.md">Markdown 格式</a></p>
+
+</body> 
+</html>

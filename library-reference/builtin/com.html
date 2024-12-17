@@ -1,0 +1,1218 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - builtin.com 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - builtin.com 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>builtin.com 库模块帮助文档</h1>
+
+<p><a id="com"></a></p>
+
+<h2>com 成员列表</h2>
+
+<p>COM 组件支持库,<br>
+虽然这是内置库，但例外的是这个库不会自动导入,<br>
+如果在已经导入win.ui 的界面线程，win.ui 会负责自动导入 com 库<br>
+<a href="../../library-guide/builtin/com/com.html" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/builtin/com/com.html">使用手册相关文档</a></p>
+
+<p><a id="com.AddConnection"></a></p>
+
+<h3>com.AddConnection</h3>
+
+<p>绑定事件监听对象</p>
+
+<p><a id="com.AddConnection"></a></p>
+
+<h3>com.AddConnection(COM对象,事件监听对象)</h3>
+
+<p>事件监听对象用 com.ImplInterface 创建<br>
+返回一个表示事件连接点的 cookie,<br>
+可用于释放绑定的 com.ReleaseConnection 函数。  </p>
+
+<p>参数 @1 指定的对象如果被释放回收，事件监听也会自动解除。<br>
+注意 excel.ActiveWorkbook 这种动态属性应当先保存到变量，再绑定事件</p>
+
+<p><a id="com.Connect"></a></p>
+
+<h3>com.Connect</h3>
+
+<p>注册事件接收表<br>
+此函数返回sink,cookie 共2个返回值，<br>
+sink为事件接收器,cookie是一个数字值,用来记录连接点，<br>
+这2个返回值可以用于 com.ReleaseConnection 释放事件表。</p>
+
+<p><a id="com.Connect"></a></p>
+
+<h3>com.Connect(COM对象,事件监听表)</h3>
+
+<p>参数 @2 指定一个 table 类型的表对象<br>
+该表对象被转换为COM对象的默认事件监听器并实现默认事件接口,<br>
+如果需要显式指定接口类型请使用 com.AddConnection。  </p>
+
+<p>com.Connect 绑定的事件监听表会被强引用到 COM对象<br>
+如果COM对象与事件接收表存在循环引用自身会导致无法释放,<br>
+可用 com.ReleaseConnection 手动释放事件绑定,<br>
+或者改用 com.ConnectWeak,com.CreateEmbedEx 也可以避免该问题。  </p>
+
+<p>参数 @1 指定的对象如果被释放回收，事件监听也会自动解除。<br>
+注意 excel.ActiveWorkbook 这种动态属性应当先保存到变量，再绑定事件</p>
+
+<p><a id="com.ConnectWeak"></a></p>
+
+<h3>com.ConnectWeak</h3>
+
+<p>注册弱引用自身的事件接收表<br>
+此函数返回sink,cookie 共2个返回值，<br>
+sink为事件接收器,cookie是一个数字值,用来记录连接点，<br>
+这2个返回值可以用于 com.ReleaseConnection 释放事件表</p>
+
+<p><a id="com.ConnectWeak"></a></p>
+
+<h3>com.ConnectWeak(COM对象,事件接收表)</h3>
+
+<p>参数@2指定一个table类型的表对象<br>
+该表对象被创建为COM对象的默认事件接口并注册为事件接收器。  </p>
+
+<p>在COM对象销毁前，com.Connect绑定的事件接收表会被强引用并被阻止回收，<br>
+如果COM对象与事件接收表存在循环引用自身会导致COM对象无法释放,<br>
+com.ConnectWeak函数通过创建一个中间代理对象弱引用事件接收表，可以避免该问题，<br>
+但要注意回调事件访问的owner对象是代理对象,使用owner.realSink可以获取真正的事件表</p>
+
+<p><a id="com.CreateEmbed"></a></p>
+
+<h3>com.CreateEmbed</h3>
+
+<p>创建 COM 控件对象,<br>
+通常不会直接使用此函数,<br>
+应改用窗口或控件对象提供的 CreateEmbed 或 CreateEmbedEx 函数,<br>
+或者 com.lite 提供的 CreateEmbed 或 CreateEmbedEx 函数</p>
+
+<p><a id="com.CreateEmbed"></a></p>
+
+<h3>com.CreateEmbed()</h3>
+
+<p><a href="../com/_.html#embedObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/com/_.html#embedObject">返回对象:embedObject</a></p>
+
+<p><a id="com.CreateEmbed"></a></p>
+
+<h3>com.CreateEmbed(embedObject,formOrCtrl,comObject)</h3>
+
+<p>创建 COM 控件对象并嵌入 @formOrCtrl 指定的窗体或控件窗口<br>
+@comObject 参数指定 com.IDispatch 对象,<br>
+@embedObject 用一个表指定容器对象</p>
+
+<p><a id="com.CreateEmbed"></a></p>
+
+<h3>com.CreateEmbed(embedObject,formOrCtrl,progId)</h3>
+
+<p>创建 COM 控件对象并嵌入 @formOrCtrl 指定的窗体或控件窗口<br>
+@progId 指定要创建的 COM 控件的 ProgID 或者 CLSID<br>
+@embedObject 用一个表指定容器对象<br>
+容器对象可以是一个空的表用于接管 COM对象   </p>
+
+<p>函数返回该容器对象并添加成员_host,_object,_form<br>
+_object 成员是创建的 COM对象 ,<br>
+_form 是传入参数中的 @formOrCtrl,<br>
+_host 是 COM 控件宿主对象,提供部分 OLE 接口函数,  </p>
+
+<p>容器对象可通过添加成员函数响应 COM对象 事件，<br>
+容器对象的另主要作用是充当访问 COM对象 的中间代理对象。<br>
+通常使用 util.metaProperty 为容器对象添加属性元表，<br>
+属性元表可拦截属性、函数调用并调用 _object 对象</p>
+
+<p><a id="com.CreateEmbedEx"></a></p>
+
+<h3>com.CreateEmbedEx</h3>
+
+<p>创建 COM 控件，返回控件容器对象。<br>
+容器对象的 <em>object 成员是创建的 COM 对象。<br>
+容器对象的 __event</em>_ 成员为 COM 对象默认事件监听器。  </p>
+
+<p>返回容器已添加元表，可通过容器对象的成员代理访问 COM 对象成员。<br>
+也可以通过指定容器对象的成员函数响应 COM 对象事件</p>
+
+<p><a id="com.CreateEmbedEx"></a></p>
+
+<h3>com.CreateEmbedEx(clsId,ctrlOrForm,embedObject)</h3>
+
+<p>创建 COM 控件,返回控件容器对象。<br>
+此函数返回的容器已添加元表并创建代理以直接访问 COM对象，<br>
+也可以通过指定容器对象的成员函数响应 COM 对象事件。<br>
+@clsId 指定控件 CLSID 或者 ProgID 。<br>
+可选用 @ctrlOrForm 指定宿主窗口，<br>
+如果指定了窗主窗口，在窗口销毁时解除默认事件监听器并释放 COM 对象。<br>
+可选在参数 @embedObjec 中指定 COM对象 绑定的容器对象</p>
+
+<p><a id="com.CreateObject"></a></p>
+
+<h3>com.CreateObject(&quot;字符串参数&quot;)</h3>
+
+<p>创建并返回 com.IDispatch 对象,参数@1可指定 CLSID 或 ProgID,<br>
+创建失败会抛出异常,使用 com.TryCreateObject 代替不会抛异常</p>
+
+<p><a id="com.DoObjectVerb"></a></p>
+
+<h3>com.DoObjectVerb(OLE对象,-1)</h3>
+
+<p>执行OLE对象的动词,<br>
+参数2可使用_OLEIVERB_前缀常量</p>
+
+<p><a id="com.DumpTypeInfo"></a></p>
+
+<h3>com.DumpTypeInfo</h3>
+
+<p>输出 COM对象  类型信息、成员函数列表，<br>
+输出到控制台可使用 console.dump 函数。  </p>
+
+<p>调用 com.tlbDoc.dump 函数可打印 COM对象 更详细的类型库信息</p>
+
+<p><a id="com.DumpTypeInfo"></a></p>
+
+<h3>com.DumpTypeInfo(comObject)</h3>
+
+<p>返回一个字符串<br>
+包含 COM对象  类型信息、成员函数列表,<br>
+此函数不会输出到控制台,<br>
+输出到控制台请使用 console.dump 函数</p>
+
+<p><a id="com.GetEnumerator"></a></p>
+
+<h3>com.GetEnumerator()</h3>
+
+<p>获取枚举对象,<br>
+参数 @1 指定 COM对象</p>
+
+<p><a href="#comEnumeratorObject">返回对象:comEnumeratorObject</a></p>
+
+<p><a id="com.GetIUnknown"></a></p>
+
+<h3>com.GetIUnknown(COM对象 或指针,GUID)</h3>
+
+<p>使用 GUID 指定接口获取 com.IUnknown 托管指针<br>
+参数@1可是任何可以转换为指针的对象,与API参数规则相同,<br>
+可选在参数@2使用字符串或GUID指定接口<br>
+该指针自动管理引用计数，无须手动释放</p>
+
+<p><a id="com.GetObject"></a></p>
+
+<h3>com.GetObject(&quot;字符串参数&quot;)</h3>
+
+<p>从已运行的实例获取并返回 com.IDispatch 对象,<br>
+参数@1可指定CLSID或ProgID,也可指定打开的文件路径,如 doc 文件,<br>
+获取对象失败会抛出异常,使用 com.TryGetObject 代替不会抛异常。   </p>
+
+<p>如果当前进程与目标 COM 服务进程不具有相同权限，则会报错『无效的操作』。</p>
+
+<p><a id="com.GetOrCreateObject"></a></p>
+
+<h3>com.GetOrCreateObject(&quot;字符串参数&quot;)</h3>
+
+<p>参数可指定一个或多个CLSID/ProgID,<br>
+首先调用 com.TryGetObject 尝试获取并返回已运行的实例,<br>
+如果失败则调用 com.TryCreateObject 函数尝试创建并返回对象,  </p>
+
+<p>创建失败返回null,错误信息,不会抛出异。  </p>
+
+<p>如果当前进程与目标 COM 服务进程不具有相同权限，<br>
+则 TryGetObject 不能获取该进程创建的 COM 对象。</p>
+
+<p><a id="com.GetPointer"></a></p>
+
+<h3>com.GetPointer(COM对象 )</h3>
+
+<p>获取 IDispatch 指针<br>
+该指针返回前已调用 AddRef 增加 COM 引用计数,<br>
+不再使用时必须及时调用 com.Release 释放</p>
+
+<p><a id="com.GetPointer"></a></p>
+
+<h3>com.GetPointer(COM对象 或指针,GUID)</h3>
+
+<p>使用 GUID 指定接口获取原生指针,<br>
+该指针返回前已调用AddRef增加COM引用计数,<br>
+不再使用时必须及时调用 com.Release 释放,<br>
+参数@1可是 COM对象  、com.IUnknown对象、或可转换为指针的对象<br>
+参数@2可用文本格式表示,省略时默认为IID_IUnknown</p>
+
+<p><a id="com.GetTypeInfo"></a></p>
+
+<h3>com.GetTypeInfo()</h3>
+
+<p><a href="#comTypeInfoObject">返回对象:comTypeInfoObject</a></p>
+
+<p><a id="com.GetTypeInfo"></a></p>
+
+<h3>com.GetTypeInfo(/*COM对象 */)</h3>
+
+<p>返回类型信息</p>
+
+<p><a id="com.ImplInterface"></a></p>
+
+<h3>com.ImplInterface(implObject)</h3>
+
+<p>将 aardio 对象转换为支持 IDispatch 接口的 COM对象 ，<br>
+参数@1可以是普通表对象、函数对象、类对象、cdata对象。  </p>
+
+<p>如果参数@1是函数或类对象,回调时onwer参数为 dispIdMember 数值。<br>
+如果参数@1是表对象转换为 COM对象 ，直接作为 COM 函数调用时支持 _call元方法，<br>
+如果未定义 _call元方法则调用表对象中索引为0的函数<br>
+通过 COM 接口调用表的成员函数时支持 _get 元方法，并将 onwerCall 参数设为 true。  </p>
+
+<p>表对象或表的成员函数作为COM函数回调时 onwer 参数总是指向表对象自身,<br>
+dispIdMember小于0时总是调用表索引中对应的函数,  </p>
+
+<p>在与 COM 接口交互时，<br>
+无法自动转换为 COM对象的 aardio 对象也会调用此函数自动转换</p>
+
+<p><a id="com.ImplInterface"></a></p>
+
+<h3>com.ImplInterface(implTable,progID,interfaceName)</h3>
+
+<p>使用一个 table 表转换为 @interfaceName 指定的接口对象<br>
+例如：com.ImplInterface( flash.callevent ,&quot;ShockwaveFlash.ShockwaveFlash&quot;,&quot;_IShockwaveFlashEvents&quot;)</p>
+
+<p><a id="com.ImplInterfaceFromTypelib"></a></p>
+
+<h3>com.ImplInterfaceFromTypelib(implTable,typelibPath,interfaceName,coclassNname)</h3>
+
+<p>使用类型库实现com接口</p>
+
+<p><a id="com.IsIUnknown"></a></p>
+
+<h3>com.IsIUnknown(任意参数)</h3>
+
+<p>检测参数是否一个托管 com.IUnknown 指针</p>
+
+<p><a id="com.IsMember"></a></p>
+
+<h3>com.IsMember(comObject,memberName)</h3>
+
+<p>返回参数 @memberName 指定的名字是否 @comObject 参数指定 COM 对象的成员。</p>
+
+<p><a id="com.IsNetObject"></a></p>
+
+<h3>com.IsNetObject(任意对象)</h3>
+
+<p>检测参数是否一个 .Net 原生对象，是则返回非 0 值。<br>
+如果是普通 .Net 对象返回 1，如果是 DispatchableObject 对象返回 2</p>
+
+<p><a id="com.IsObject"></a></p>
+
+<h3>com.IsObject(任意对象)</h3>
+
+<p>检测参数是否一个动态 COM对象（IDispatch 对象）</p>
+
+<p><a id="com.LoadTypeLibrary"></a></p>
+
+<h3>com.LoadTypeLibrary(&quot;.tlb&quot;)</h3>
+
+<p>加载类型库<br>
+参数可以是CLSID、类型库路径、或包含类型库资源的组件路径</p>
+
+<p><a id="com.LoadTypeLibrary"></a></p>
+
+<h3>com.LoadTypeLibrary()</h3>
+
+<p><a href="#comTypeLibObject">返回对象:comTypeLibObject</a></p>
+
+<p><a id="com.NewControl"></a></p>
+
+<h3>com.NewControl(tab,progId)</h3>
+
+<p>创建COM控件,可选使用参数@3指定tlb类型库路径<br>
+此函数详细用法请参考标准库com.activeX的源代码</p>
+
+<p><a id="com.NewObject"></a></p>
+
+<h3>com.NewObject(tab,progId)</h3>
+
+<p>创建COM对象,可选使用参数@3指定tlb类型库路径<br>
+此函数详细用法请参考标准库com.activeX的源代码</p>
+
+<p><a id="com.QueryObject"></a></p>
+
+<h3>com.QueryObject(IUnknown指针 )</h3>
+
+<p>查询 IDispatch 接口、并创建 com.IDispatch 对象</p>
+
+<p><a id="com.QueryObjectR"></a></p>
+
+<h3>com.QueryObjectR(IUnknown指针 )</h3>
+
+<p>查询 IDispatch 接口、并创建 com.IDispatch 对象<br>
+如果成功则调用 com.Release 释放传入的 IUnknown 指针<br>
+使其引用计数减一,释放的指针不应再使用,<br>
+返回的 COM对象 会增加引用计数,<br>
+并在对象释放时自动减一</p>
+
+<p><a id="com.Release"></a></p>
+
+<h3>com.Release()</h3>
+
+<p>释放 COM 对象、.NET 对象、IUnknown 指针、com.interface 创建的对象。<br>
+如果参数 是 pointer 类型指针调用 IUnknown 接口 Release 函数使引用计数减一<br>
+如果参数是 cdata 内核对象或自元表中返回 cdata,则调用 cdata 的 _gc 析构函数  </p>
+
+<p>参数 @1 为 null 抛出异常</p>
+
+<p><a id="com.ReleaseConnection"></a></p>
+
+<h3>com.ReleaseConnection(comObject)</h3>
+
+<p>释放默认事件监听器,<br>
+@comObject 指定要解除事件监听器的 COM对象 ,<br>
+默认事件监听器由 com.Connect 函数绑定  </p>
+
+<p>即使不调用此函数,<br>
+在 COM对象 销毁后所有事件监听器会自动释放</p>
+
+<p><a id="com.ReleaseConnection"></a></p>
+
+<h3>com.ReleaseConnection(comObject,eventSink, cookie)</h3>
+
+<p>释放事件监听器,<br>
+@comObject 指定要解除事件监听器的 COM对象 ,<br>
+@eventSink 可以是 com.ImplInterface 创建的事件监听器,<br>
+也可以使用 com.Connect 的第一个返回值<br>
+@cookie 来自 com.AddConnection 的返回值  </p>
+
+<p>即使不调用此函数,<br>
+在 COM对象 销毁后所有事件监听器会自动释放</p>
+
+<p><a id="com.RoundTrip"></a></p>
+
+<h3>com.RoundTrip()</h3>
+
+<p>将aardio对象转换为COM对象，<br>
+再将该 COM对象 转换为aardio对象</p>
+
+<p><a id="com.SafeArray"></a></p>
+
+<h3>com.SafeArray(_VT元素类型)</h3>
+
+<p>创建 COM 安全数组（ SAFEARRAY ）,<br>
+可增加一个或多个参数指定数组成员,<br>
+返回的数组兼容普通数组,但 数组@._safearray_type 指定了COM类型，<br>
+COM 函数传入传出 COM 数组均使用此格式,  </p>
+
+<p>元素类型不指定时默认为VT_VARIANT,VT_VARIANT数组兼容 VBS 数组<br>
+类型为 VT_ILLEGAL 则单个值与数组元素类型均自动设定,这是调用 COM 接口的默认规则。<br>
+纯字符串数组默认元素类型为 _VT_BSTR,纯数值类型默认元素类型为 _VT_R8（double）,<br>
+IDispatch 对象数组元素类型为 _VT_DISPATCH，<br>
+其他数组元素类型默认为 _VT_VARIANT</p>
+
+<p><a id="com.SafeArrayType"></a></p>
+
+<h3>com.SafeArrayType()</h3>
+
+<p>如果传入参数为 SafeArray 数组,<br>
+返回一个表示数组元素类型的数值,该值应以 <em>VT</em> 前缀的常量进行比对<br>
+支持 com.SafeArray 创建的数组,或 COM 函数返回的数组,<br>
+参数如果是 com.SafeArrayV 创建的 SafeArray 数组封装对象,返回 null,<br>
+参数如果是 com.Variant 创建的 Variant 对象,返回 null,<br>
+参数是其他类型值,也返回 null</p>
+
+<p><a id="com.SafeArrayV"></a></p>
+
+<h3>com.SafeArrayV(数组,元素类型)</h3>
+
+<p>返回 SAFEARRAY 数组包装对象,<br>
+该对象的 _safearray 属性指向参数传入的数组,_type 指向数组类型,<br>
+注意此函数返回的对象不是 SafeArray 数组，也不会修改传入的数组，<br>
+返回对象仅用于在调用 COM 函数时自动转换为 SAFEARRAY 数组。  </p>
+
+<p>参数@1可以是数组,字符串,buffer,也可以指定null值并转换为空数组,<br>
+元素类型不指定时默认为VT_VARIANT,VT_VARIANT数组兼容 VBS 数组。<br>
+类型为 VT_ILLEGAL 则单个值与数组元素类型均自动设定,这是调用 COM 接口的默认规则,<br>
+纯字符串数组默认元素类型为 _VT_BSTR,纯数值类型默认元素类型为 _VT_R8（double）,<br>
+IDispatch 对象数组元素类型为 _VT_DISPATCH，<br>
+其他数组元素类型默认为 _VT_VARIANT</p>
+
+<p><a id="com.SetPreferredArrayType"></a></p>
+
+<h3>com.SetPreferredArrayType(/*COM 对象*/,0xC/*_VT_VARIANT*/)</h3>
+
+<p>设置调用该 COM对象 时 aardio 数组参数转 COM 数组的默认类型，<br>
+参数只能设为 _VT_VARIANT 或 _VT_ILLEGAL,默认已设置为 _VT_ILLEGAL。<br>
+此设置值会自动传递到该 COM对象 返回的其他 COM对象 。  </p>
+
+<p>此选项设为 _VT_ILLEGAL 将自动调整为合适的类型,规则如下：<br>
+纯字符串数组类型设为 _VT_BSTR,<br>
+纯数值数组类型设为 _VT_R8（double），<br>
+其他数组类型设为 _VT_VARIANT，<br>
+这也是所有 COM对象 的默认设置。  </p>
+
+<p>如果要创建明确指定 COM 类型的数组参数，<br>
+可使用 com.Variant,COM.SafeArray,COM.SafeArrayV,com.int...等函数</p>
+
+<p><a id="com.ShowHelp"></a></p>
+
+<h3>com.ShowHelp(/*COM对象 */)</h3>
+
+<p>显示帮助</p>
+
+<p><a id="com.TryCreateObject"></a></p>
+
+<h3>com.TryCreateObject(cls,...)</h3>
+
+<p>参数可指定一个或多个CLSID/ProgID,逐个测试直到创建成功,<br>
+成功返回 com.IDispatch 对象,<br>
+创建失败返回null,错误信息,不会抛出异常,<br>
+参数@1可指定 CLSID或 ProgID</p>
+
+<p><a id="com.TryGetObject"></a></p>
+
+<h3>com.TryGetObject(&quot;字符串参数&quot;)</h3>
+
+<p>从已运行的实例获取并返回 com.IDispatch 对象,<br>
+参数可指定一个或多个 CLSID/ProgID,也可指定要打开的文件路径,如doc文件,  </p>
+
+<p>创建失败返回null,错误信息,不会抛出异常。  </p>
+
+<p>如果当前进程与目标 COM 服务进程不具有相同权限，则会返回 null。</p>
+
+<p><a id="com.Variant"></a></p>
+
+<h3>com.Variant</h3>
+
+<p>创建 VARIANT 变体对象。<br>
+可用于普通 COM对象 传值或传址参数。<br>
+可用于 .NET 普通输入参数，不支持 .NET 输出参数（可改用 dotNet.object）。<br>
+可用于 API 函数中 VARIANT* 指针类型参数。</p>
+
+<p><a id="com.Variant"></a></p>
+
+<h3>com.Variant()</h3>
+
+<p><a href="#comVariantObject">返回对象:comVariantObject</a></p>
+
+<p><a id="com.Variant"></a></p>
+
+<h3>com.Variant(初始值,变体类型,输出引用)</h3>
+
+<p>可选指定一个初始值，可以是任意适用于 COM 参数的值或数组。  </p>
+
+<p>参数 @2 可选用一个 <em>VT</em> 前缀的整数常量指定期望的 COM 变体类型。<br>
+变体类型指定数值，且参数 @1 为无元表的空表或非空数组时都会处理为 COM 数组。  </p>
+
+<p>若省略类型或设为 _VT_VARIANT，则单值自动选择类型，未明确类型的数组设为 VT_VARIANT。<br>
+如果变体类型为 _VT_ILLEGAL，则单值与数组均自动选择类型，此为 COM 接口默认规则。  </p>
+
+<p>单整数默认类型为 _VT_I4（int）,小数默认类型为 _VT_R8（double）,<br>
+纯字符串数组默认为 _VT_BSTR 数组,纯数值类型默认为 _VT_R8（double）数组,<br>
+其他数组类型默认为 _VT_VARIANT 数组。  </p>
+
+<p>可选参数 @3 如果设为 true，就可以用于 COM 输出参数。</p>
+
+<p><a id="com.Variant"></a></p>
+
+<h3>com.Variant(指针,true)</h3>
+
+<p>创建 VARIANT 变体对象<br>
+如果参数@2为 true ，则参数 @1 必须为 VARIANT 指针。<br>
+调用 VariantCopyInd 函数拷贝参数指定的源 VARIANT 对象</p>
+
+<p><a id="com.byte"></a></p>
+
+<h3>com.byte()</h3>
+
+<p>定义数值类型为 8 位整数，<br>
+作为输入参数可兼容 .Net System.SByte 类型数值。<br>
+参数 @1 可以为数值或数组，<br>
+参数 @2 为 true 则用于 COM 输出引用参数。  </p>
+
+<p>此函数返回 com.Variant 对象。</p>
+
+<p><a href="#comVariantObject">返回对象:comVariantObject</a></p>
+
+<p><a id="com.double"></a></p>
+
+<h3>com.double()</h3>
+
+<p>定义数值类型为 64 位浮点数，<br>
+此函数返回 com.Variant 对象。<br>
+作为输入参数可兼容 .Net System.Double 类型数值。<br>
+参数 @1 可以为数值或数组，<br>
+参数 @2 为 true 则用于 COM 输出引用参数。  </p>
+
+<p>注意普通数值传入 COM 参数时，<br>
+整数默认转为32位整数，小数默认按double类型处理</p>
+
+<p><a href="#comVariantObject">返回对象:comVariantObject</a></p>
+
+<p><a id="com.each"></a></p>
+
+<h3>com.each</h3>
+
+<pre><code class="aardio language-aardio">for index,obj in com.each() {  
+
+} //迭代遍历com集合对象，参数可以直接传入COM迭代器
+</code></pre>
+
+<p><a id="com.eachRunning"></a></p>
+
+<h3>com.eachRunning(interface,name)</h3>
+
+<pre><code class="aardio language-aardio">for object,interface,name,index in com.eachRunning() {
+    /*遍历ROT（运行对象表）  
+参数 @interface 可选限定接口名（完全匹配），参数 @name 可选用模式串限定显示名称。   
+返回 object为 COM 对象 ,interface 为接口名称（可能为 null）,name 为显示名称。index 为序号*/
+}
+</code></pre>
+
+<p><a id="com.enumRunning"></a></p>
+
+<h3>com.enumRunning(回调函数)</h3>
+
+<pre><code class="aardio language-aardio">com.enumRunning(   
+    function(displayName,object){    
+        /*枚举ROT（运行对象表）并获取COM对象,  
+此回调函数返回true中止枚举*/  
+    }  
+)
+</code></pre>
+
+<p><a id="com.first"></a></p>
+
+<h3>com.first()</h3>
+
+<p>对传入的 COM对象 调用 com.each 创建迭代器,<br>
+执行该迭代器并返回第一次返回的 COM对象 ,<br>
+如果传入参数为 null 或 false 则直接返回</p>
+
+<p><a id="com.float"></a></p>
+
+<h3>com.float()</h3>
+
+<p>定义数值类型为 32 位浮点数，<br>
+作为输入参数可兼容 .Net System.Single 类型数值。<br>
+参数 @1 可以为数值或数组，<br>
+参数 @2 为 true 则用于 COM 输出引用参数。  </p>
+
+<p>此函数返回 com.Variant 对象。</p>
+
+<p><a id="com.int"></a></p>
+
+<h3>com.int()</h3>
+
+<p>定义数值类型为 32 位整数，<br>
+此函数返回 com.Variant 对象。<br>
+作为输入参数可兼容 .Net System.Int32 类型数值。<br>
+参数 @1 可以为数值或数组，<br>
+参数 @2 为 true 则用于 COM 输出引用参数。  </p>
+
+<p>注意普通数值传入 COM 参数时，<br>
+整数默认转为32位整数，小数默认按double类型处理</p>
+
+<p><a href="#comVariantObject">返回对象:comVariantObject</a></p>
+
+<p><a id="com.isEnumerator"></a></p>
+
+<h3>com.isEnumerator(对象)</h3>
+
+<p>检查并返回参数指定的对象是否 COM 迭代器</p>
+
+<p><a id="com.long"></a></p>
+
+<h3>com.long()</h3>
+
+<p>定义数值类型为 64 位整数，<br>
+作为输入参数可兼容 .Net System.Int64 类型数值。<br>
+参数 @1 可以为数值或数组，<br>
+参数 @2 为 true 则用于 COM 输出引用参数。  </p>
+
+<p>此函数返回 com.Variant 对象。</p>
+
+<p><a href="#comVariantObject">返回对象:comVariantObject</a></p>
+
+<p><a id="com.ubyte"></a></p>
+
+<h3>com.ubyte()</h3>
+
+<p>定义数值类型为 8 位无符号整数，兼容 .Net System.Byte 类型数值。<br>
+参数 @1 可以为数值或数组，<br>
+参数 @2 为 true 则用于 COM 输出引用参数。  </p>
+
+<p>此函数返回 com.Variant 对象。</p>
+
+<p><a href="#comVariantObject">返回对象:comVariantObject</a></p>
+
+<p><a id="com.uint"></a></p>
+
+<h3>com.uint()</h3>
+
+<p>定义数值类型为 32 位无符号整数，<br>
+作为输入参数可兼容 .Net System.UInt32 类型数值。<br>
+参数 @1 可以为数值或数组，<br>
+参数 @2 为 true 则用于 COM 输出引用参数。  </p>
+
+<p>此函数返回 com.Variant 对象。</p>
+
+<p><a href="#comVariantObject">返回对象:comVariantObject</a></p>
+
+<p><a id="com.ulong"></a></p>
+
+<h3>com.ulong()</h3>
+
+<p>定义数值类型为 64 位无符号整数，<br>
+作为输入参数可兼容 .Net System.UInt64 类型数值。<br>
+参数 @1 可以为数值或数组，<br>
+参数 @2 为 true 则用于 COM 输出引用参数。  </p>
+
+<p>此函数返回 com.Variant 对象。</p>
+
+<p><a href="#comVariantObject">返回对象:comVariantObject</a></p>
+
+<p><a id="com.uword"></a></p>
+
+<h3>com.uword()</h3>
+
+<p>定义数值类型为 16 位无符号整数，兼容 .Net System.UInt16 类型数值。<br>
+参数 @1 可以为数值或数组，<br>
+参数 @2 为 true 则用于 COM 输出引用参数。  </p>
+
+<p>此函数返回 com.Variant 对象。</p>
+
+<p><a href="#comVariantObject">返回对象:comVariantObject</a></p>
+
+<p><a id="com.word"></a></p>
+
+<h3>com.word()</h3>
+
+<p>定义数值类型为 16 位整数，<br>
+作为输入参数可兼容 .Net System.Int16 类型数值。<br>
+参数 @1 可以为数值或数组，<br>
+参数 @2 为 true 则用于 COM 输出引用参数。  </p>
+
+<p>此函数返回 com.Variant 对象。</p>
+
+<p><a href="#comVariantObject">返回对象:comVariantObject</a></p>
+
+<p><a id="comEnumeratorObject"></a></p>
+
+<h2>comEnumeratorObject 成员列表</h2>
+
+<p><a id="comEnumeratorObject.Clone"></a></p>
+
+<h3>comEnumeratorObject.Clone()</h3>
+
+<p>复制对象  </p>
+
+<p><a href="#comEnumeratorObject">返回对象:comEnumeratorObject</a></p>
+
+<p><a id="comEnumeratorObject.Next"></a></p>
+
+<h3>comEnumeratorObject.Next(n)</h3>
+
+<p>向后获取并返回 n 个元素的值</p>
+
+<p><a id="comEnumeratorObject.Reset"></a></p>
+
+<h3>comEnumeratorObject.Reset()</h3>
+
+<p>重置到开始位置</p>
+
+<p><a id="comEnumeratorObject.Skip"></a></p>
+
+<h3>comEnumeratorObject.Skip(n)</h3>
+
+<p>跳过 n 个元素的值,成功返回 true</p>
+
+<p><a id="comTypeAttrObject"></a></p>
+
+<h2>comTypeAttrObject 成员列表</h2>
+
+<p><a id="comTypeAttrObject.Funcs"></a></p>
+
+<h3>comTypeAttrObject.Funcs</h3>
+
+<p>函数总数</p>
+
+<p><a id="comTypeAttrObject.GUID"></a></p>
+
+<h3>comTypeAttrObject.GUID</h3>
+
+<pre><code class="aardio language-aardio">GUID
+</code></pre>
+
+<p><a id="comTypeAttrObject.ImplTypes"></a></p>
+
+<h3>comTypeAttrObject.ImplTypes</h3>
+
+<p>实现接口总数</p>
+
+<p><a id="comTypeAttrObject.Vars"></a></p>
+
+<h3>comTypeAttrObject.Vars</h3>
+
+<p>属性值总数</p>
+
+<p><a id="comTypeAttrObject.typekind"></a></p>
+
+<h3>comTypeAttrObject.typekind</h3>
+
+<p>类型,<br>
+值为&quot;coclass&quot;,&quot;enumeration&quot;,&quot;interface&quot;,&quot;dispinterface&quot;<br>
+&quot;alias&quot;,&quot;union&quot;,&quot;record&quot;,&quot;module&quot;之一</p>
+
+<p><a id="comTypeAttrObject.flags"></a></p>
+
+<h2>comTypeAttrObject.flags 成员列表</h2>
+
+<p><a id="comTypeAttrObject.flags.appobject"></a></p>
+
+<h3>comTypeAttrObject.flags.appobject</h3>
+
+<pre><code class="aardio language-aardio">appobject
+</code></pre>
+
+<p><a id="comTypeAttrObject.flags.cancreate"></a></p>
+
+<h3>comTypeAttrObject.flags.cancreate</h3>
+
+<pre><code class="aardio language-aardio">cancreate
+</code></pre>
+
+<p><a id="comTypeAttrObject.flags.control"></a></p>
+
+<h3>comTypeAttrObject.flags.control</h3>
+
+<pre><code class="aardio language-aardio">control
+</code></pre>
+
+<p><a id="comTypeAttrObject.flags.dispatchable"></a></p>
+
+<h3>comTypeAttrObject.flags.dispatchable</h3>
+
+<pre><code class="aardio language-aardio">dispatchable
+</code></pre>
+
+<p><a id="comTypeAttrObject.flags.hidden"></a></p>
+
+<h3>comTypeAttrObject.flags.hidden</h3>
+
+<pre><code class="aardio language-aardio">hidden
+</code></pre>
+
+<p><a id="comTypeAttrObject.flags.oleautomation"></a></p>
+
+<h3>comTypeAttrObject.flags.oleautomation</h3>
+
+<pre><code class="aardio language-aardio">oleautomation
+</code></pre>
+
+<p><a id="comTypeDocObject"></a></p>
+
+<h2>comTypeDocObject 成员列表</h2>
+
+<p><a id="comTypeDocObject.helpstring"></a></p>
+
+<h3>comTypeDocObject.helpstring</h3>
+
+<p>对象的描述</p>
+
+<p><a id="comTypeDocObject.name"></a></p>
+
+<h3>comTypeDocObject.name</h3>
+
+<p>对象接口名称</p>
+
+<p><a id="comTypeFuncObject"></a></p>
+
+<h2>comTypeFuncObject 成员列表</h2>
+
+<p><a id="comTypeFuncObject.Params"></a></p>
+
+<h3>comTypeFuncObject.Params</h3>
+
+<p>参数数量</p>
+
+<p><a id="comTypeFuncObject.ParamsOpt"></a></p>
+
+<h3>comTypeFuncObject.ParamsOpt</h3>
+
+<p>可选参数数量</p>
+
+<p><a id="comTypeFuncObject.description"></a></p>
+
+<h3>comTypeFuncObject.description</h3>
+
+<p>描述</p>
+
+<p><a id="comTypeFuncObject.dispatchable"></a></p>
+
+<h3>comTypeFuncObject.dispatchable</h3>
+
+<p>是否动态接口函数</p>
+
+<p><a id="comTypeFuncObject.helpcontext"></a></p>
+
+<h3>comTypeFuncObject.helpcontext</h3>
+
+<p>数值，帮助上下文</p>
+
+<p><a id="comTypeFuncObject.helpfile"></a></p>
+
+<h3>comTypeFuncObject.helpfile</h3>
+
+<p>帮助</p>
+
+<p><a id="comTypeFuncObject.invkind"></a></p>
+
+<h3>comTypeFuncObject.invkind</h3>
+
+<p>调用类型<br>
+可能的值为&quot;_get&quot;,&quot;_set&quot;,&quot;_setByRef&quot;,&quot;function&quot;</p>
+
+<p><a id="comTypeFuncObject.memid"></a></p>
+
+<h3>comTypeFuncObject.memid</h3>
+
+<p>成员ID</p>
+
+<p><a id="comTypeFuncObject.name"></a></p>
+
+<h3>comTypeFuncObject.name</h3>
+
+<p>函数名</p>
+
+<p><a id="comTypeFuncObject.restricted"></a></p>
+
+<h3>comTypeFuncObject.restricted</h3>
+
+<p>是否不适合动态调用</p>
+
+<p><a id="comTypeFuncObject.type"></a></p>
+
+<h3>comTypeFuncObject.type</h3>
+
+<p>返回值类型，字符串</p>
+
+<p><a id="comTypeFuncObject.vt"></a></p>
+
+<h3>comTypeFuncObject.vt</h3>
+
+<p>返回值类型，数值,<br>
+数值含义与 com.Variant 对象的 vt 字段相同</p>
+
+<p><a id="comTypeFuncObject.parameters"></a></p>
+
+<h2>comTypeFuncObject.parameters 成员列表</h2>
+
+<p>参数描述数组</p>
+
+<p><a id="comTypeFuncObject.parameters.?"></a></p>
+
+<h3>comTypeFuncObject.parameters.?</h3>
+
+<p><a href="#comTypeParameterObject">返回对象:comTypeParameterObject</a></p>
+
+<p><a id="comTypeInfoObject"></a></p>
+
+<h2>comTypeInfoObject 成员列表</h2>
+
+<p><a id="comTypeInfoObject.DumpTypeInfo"></a></p>
+
+<h3>comTypeInfoObject.DumpTypeInfo()</h3>
+
+<p>返回一个字符串,<br>
+列出此类型所有的成员</p>
+
+<p><a id="comTypeInfoObject.GetDocumentation"></a></p>
+
+<h3>comTypeInfoObject.GetDocumentation()</h3>
+
+<p>返回文档信息  </p>
+
+<p><a href="#comTypeDocObject">返回对象:comTypeDocObject</a></p>
+
+<p><a id="comTypeInfoObject.GetFuncDesc"></a></p>
+
+<h3>comTypeInfoObject.GetFuncDesc()</h3>
+
+<p><a href="#comTypeFuncObject">返回对象:comTypeFuncObject</a></p>
+
+<p><a id="comTypeInfoObject.GetFuncDesc"></a></p>
+
+<h3>comTypeInfoObject.GetFuncDesc(索引)</h3>
+
+<p>返回函数描述<br>
+注意超始索引为1</p>
+
+<p><a id="comTypeInfoObject.GetImplType"></a></p>
+
+<h3>comTypeInfoObject.GetImplType()</h3>
+
+<p><a href="#comTypeInfoObject">返回对象:comTypeInfoObject</a></p>
+
+<p><a id="comTypeInfoObject.GetImplType"></a></p>
+
+<h3>comTypeInfoObject.GetImplType(索引)</h3>
+
+<p>返回实现接口<br>
+注意超始索引为1</p>
+
+<p><a id="comTypeInfoObject.GetImplTypeFlags"></a></p>
+
+<h3>comTypeInfoObject.GetImplTypeFlags(索引)</h3>
+
+<p>实现接口类型属性表<br>
+返回表包含字段default,source,restricted,defaultVTable,都是布尔值,<br>
+注意超始索引为1</p>
+
+<p><a id="comTypeInfoObject.GetTypeAttr"></a></p>
+
+<h3>comTypeInfoObject.GetTypeAttr()</h3>
+
+<p>返回类型属性  </p>
+
+<p><a href="#comTypeAttrObject">返回对象:comTypeAttrObject</a></p>
+
+<p><a id="comTypeInfoObject.GetTypeLib"></a></p>
+
+<h3>comTypeInfoObject.GetTypeLib()</h3>
+
+<p>返回类型库  </p>
+
+<p><a href="#comTypeLibObject">返回对象:comTypeLibObject</a></p>
+
+<p><a id="comTypeInfoObject.GetVarDesc"></a></p>
+
+<h3>comTypeInfoObject.GetVarDesc(索引)</h3>
+
+<p>COM变量/常量描述<br>
+注意超始索引为1</p>
+
+<p><a id="comTypeLibObject"></a></p>
+
+<h2>comTypeLibObject 成员列表</h2>
+
+<p><a id="comTypeLibObject.ExportConstants"></a></p>
+
+<h3>comTypeLibObject.ExportConstants()</h3>
+
+<p>导出常量名值对组成的表。<br>
+可以使用常量名作为 COM 对象的成员名获取常量值</p>
+
+<p><a id="comTypeLibObject.ExportEnumerations"></a></p>
+
+<h3>comTypeLibObject.ExportEnumerations()</h3>
+
+<p>导出全部枚举类型，<br>
+返回一个表，键为枚举类型名，值为该类型的枚举名值对组成的表。  </p>
+
+<p>通常枚举名值对也是 COM 常量名值对，<br>
+可以使用枚举名字（不用指定枚举类型名）<br>
+作为 COM 对象的成员名获取枚举值</p>
+
+<p><a id="comTypeLibObject.GetDocumentation"></a></p>
+
+<h3>comTypeLibObject.GetDocumentation()</h3>
+
+<p>返回文档信息  </p>
+
+<p><a href="#comTypeDocObject">返回对象:comTypeDocObject</a></p>
+
+<p><a id="comTypeLibObject.GetTypeInfo"></a></p>
+
+<h3>comTypeLibObject.GetTypeInfo()</h3>
+
+<p><a href="#comTypeInfoObject">返回对象:comTypeInfoObject</a></p>
+
+<p><a id="comTypeLibObject.GetTypeInfo"></a></p>
+
+<h3>comTypeLibObject.GetTypeInfo(索引)</h3>
+
+<p>返回类型信息<br>
+注意超始索引为1</p>
+
+<p><a id="comTypeLibObject.GetTypeInfoCount"></a></p>
+
+<h3>comTypeLibObject.GetTypeInfoCount()</h3>
+
+<p>类型信息总数</p>
+
+<p><a id="comTypeLibObject.ShowHelp"></a></p>
+
+<h3>comTypeLibObject.ShowHelp()</h3>
+
+<p>显示帮助</p>
+
+<p><a id="comTypeParameterObject"></a></p>
+
+<h2>comTypeParameterObject 成员列表</h2>
+
+<p><a id="comTypeParameterObject.default"></a></p>
+
+<h3>comTypeParameterObject.default</h3>
+
+<p>参数的默认值</p>
+
+<p><a id="comTypeParameterObject.in"></a></p>
+
+<h3>comTypeParameterObject.in</h3>
+
+<p>是否输入参数</p>
+
+<p><a id="comTypeParameterObject.opt"></a></p>
+
+<h3>comTypeParameterObject.opt</h3>
+
+<p>是否可选参数</p>
+
+<p><a id="comTypeParameterObject.out"></a></p>
+
+<h3>comTypeParameterObject.out</h3>
+
+<p>是否输出参数</p>
+
+<p><a id="comTypeParameterObject.type"></a></p>
+
+<h3>comTypeParameterObject.type</h3>
+
+<p>参数类型，字符串</p>
+
+<p><a id="comTypeParameterObject.vt"></a></p>
+
+<h3>comTypeParameterObject.vt</h3>
+
+<p>参数类型，数值,<br>
+数值含义与 com.Variant 对象的 vt 字段相同</p>
+
+<p><a id="comTypeVarObject"></a></p>
+
+<h2>comTypeVarObject 成员列表</h2>
+
+<p><a id="comTypeVarObject.name"></a></p>
+
+<h3>comTypeVarObject.name</h3>
+
+<p>COM变量名</p>
+
+<p><a id="comTypeVarObject.value"></a></p>
+
+<h3>comTypeVarObject.value</h3>
+
+<p>COM常量值</p>
+
+<p><a id="comVariantObject"></a></p>
+
+<h2>comVariantObject 成员列表</h2>
+
+<p><a id="comVariantObject.bstrVal"></a></p>
+
+<h3>comVariantObject.bstrVal</h3>
+
+<p>只读属性,获取BSTR指针</p>
+
+<p><a id="comVariantObject.clear"></a></p>
+
+<h3>comVariantObject.clear()</h3>
+
+<p>清空值<br>
+调用VariantClear函数清空值并重新初始化对象<br>
+调用了此函数以后,对象的vt置为0，<br>
+其他所有成员置为null，包括clear函数也置为null，<br>
+除非通过value属性重新赋值,clear函数才会变为可用  </p>
+
+<p>即使不调用这个函数，<br>
+aardio在析构回收对象时也会自动调用VariantClear函数释放资源</p>
+
+<p><a id="comVariantObject.parray"></a></p>
+
+<h3>comVariantObject.parray</h3>
+
+<p>只读属性,获取SAFEARRAY指针</p>
+
+<p><a id="comVariantObject.pdispVal"></a></p>
+
+<h3>comVariantObject.pdispVal</h3>
+
+<p>只读属性,获取IDispatch指针</p>
+
+<p><a id="comVariantObject.punkVal"></a></p>
+
+<h3>comVariantObject.punkVal</h3>
+
+<p>只读属性,获取IUnknown指针</p>
+
+<p><a id="comVariantObject.value"></a></p>
+
+<h3>comVariantObject.value</h3>
+
+<p>读写值遵守com与aardio间的数据类型转换规则</p>
+
+<p><a id="comVariantObject.vt"></a></p>
+
+<h3>comVariantObject.vt</h3>
+
+<p>Variant类型，数值，<br>
+只读属性，不可修改</p>
+
+<p><a id="embedObject"></a></p>
+
+<h2>embedObject 成员列表</h2>
+
+<p><a id="embedObject._form"></a></p>
+
+<h3>embedObject._form</h3>
+
+<p>COM 对象的容器窗口。<br>
+这是一个 win.form 对象或者 win.form 对象内部的控件对象。  </p>
+
+<p><a href="../win/ui/ctrl/static.html#staticObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/static.html#staticObject">返回对象:staticObject</a></p>
+
+<p><a id="embedObject._object"></a></p>
+
+<h3>embedObject._object</h3>
+
+<p>原生 COM 控件对象。<br>
+原生 COM 控件对象不等于事件监听表，一般不用于直接绑定 COM 事件。<br>
+应当用 com.Connect 绑定事件监听表。<br>
+CreateEmbedEx 或 CreateEmbed 返回的容器对象也可自动绑定 COM 事件。</p>
+
+<p><a id="embedObject._host"></a></p>
+
+<h2>embedObject._host 成员列表</h2>
+
+<p>COM 控件宿主对象。<br>
+提供部分 OLE 接口函数，一般没必要直接使用这个对象。</p>
+
+<p><a id="embedObject._host._adjust"></a></p>
+
+<h3>embedObject._host._adjust()</h3>
+
+<p>自动调整控件窗口大小</p>
+
+<p><a id="embedObject._host.close"></a></p>
+
+<h3>embedObject._host.close()</h3>
+
+<p>关闭</p>
+
+<p><a id="embedObject._host.doObjectVerb"></a></p>
+
+<h3>embedObject._host.doObjectVerb( _OLEIVERB )</h3>
+
+<p>执行指定的动词命令</p>
+
+<p><a id="embedObject._host.tranacc"></a></p>
+
+<h3>embedObject._host.tranacc(MSG消息对象)</h3>
+
+<p>解析快捷键,<br>
+如果是快捷键返回真值</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/builtin/com.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/builtin/com.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/builtin/com.md">Markdown 格式</a></p>
+
+</body> 
+</html>

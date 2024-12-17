@@ -1,0 +1,151 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - gdip.privateFontCollection 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - gdip.privateFontCollection 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>gdip.privateFontCollection 库模块帮助文档</h1>
+
+<p><a id="gdip"></a></p>
+
+<h2>gdip 成员列表</h2>
+
+<p><a id="gdip.privateFontCollection"></a></p>
+
+<h3>gdip.privateFontCollection()</h3>
+
+<p>私有字体集合,调用时不应在参数中指定指针<br>
+较老的系统在私有字体集合释放后,会导致该容器加载并仍在使用的的字体异常<br>
+稳妥的方式是调用 gdip.privateFontCollection.getInstance 函数<br>
+获取私有字体集合的单一实例  </p>
+
+<p><a href="#gdipprvfontcollObject">返回对象:gdipprvfontcollObject</a></p>
+
+<p><a id="gdip.privateFontCollection"></a></p>
+
+<h2>gdip.privateFontCollection 成员列表</h2>
+
+<p>私有字体集合,<br>
+请在 fonts 名字空间下添加库,并调用 fonts.createFamily 函数注册嵌入字体</p>
+
+<p><a id="gdip.privateFontCollection.createFamily"></a></p>
+
+<h3>gdip.privateFontCollection.createFamily(字体路径,字体名)</h3>
+
+<p>创建字体家族,创建失败返回空值<br>
+参数@1可以是路径或资源文件、内存数据<br>
+如果不指定名字,则返回字体列表中的第一个字体家族</p>
+
+<p><a id="gdip.privateFontCollection.createFont"></a></p>
+
+<h3>gdip.privateFontCollection.createFont(字体路径,字体名,大小,样式,单位)</h3>
+
+<p>创建字体<br>
+参数@1可以是路径或资源文件、内存数据<br>
+单位默认为像素</p>
+
+<p><a id="gdip.privateFontCollection.getInstance"></a></p>
+
+<h3>gdip.privateFontCollection.getInstance()</h3>
+
+<p>获取默认的私有字体集合,<br>
+较老的系统在私有字体集合释放后,会导致该容器加载并仍在使用的的字体异常,<br>
+ 稳妥的方式是调用此函数获取单一实例的自定义容器<br>
+aardio 会在程序结束前自动释放此容器对象,<br>
+但手动调用此对象的 delete 函数将被忽略,  </p>
+
+<p><a href="#gdipprvfontcollObject">返回对象:gdipprvfontcollObject</a></p>
+
+<p><a id="gdipprvfontcollObject"></a></p>
+
+<h2>gdipprvfontcollObject 成员列表</h2>
+
+<p><a id="gdipprvfontcollObject.add"></a></p>
+
+<h3>gdipprvfontcollObject.add</h3>
+
+<p>添加自字义字体</p>
+
+<p><a id="gdipprvfontcollObject.add"></a></p>
+
+<h3>gdipprvfontcollObject.add(字体)</h3>
+
+<p>参数可以是字体文件,资源文件<br>
+或字体文件加载到内存的数据</p>
+
+<p><a id="gdipprvfontcollObject.count"></a></p>
+
+<h3>gdipprvfontcollObject.count()</h3>
+
+<p>返回字体列表中包含的字体家族总数,<br>
+一个字体家族可以用于创建不同大小、不同样式的同名字体</p>
+
+<p><a id="gdipprvfontcollObject.createFamily"></a></p>
+
+<h3>gdipprvfontcollObject.createFamily</h3>
+
+<p>创建字体家族对象</p>
+
+<p><a id="gdipprvfontcollObject.createFamily"></a></p>
+
+<h3>gdipprvfontcollObject.createFamily(&quot;字体名&quot;)</h3>
+
+<p>参数为字体名<br>
+如果不指定名字,则返回字体列表中的最后一个添加的字体家族</p>
+
+<p><a id="gdipprvfontcollObject.createFamily"></a></p>
+
+<h3>gdipprvfontcollObject.createFamily()</h3>
+
+<p><a href="#gdipfamilyObject">返回对象:gdipfamilyObject</a></p>
+
+<p><a id="gdipprvfontcollObject.delete"></a></p>
+
+<h3>gdipprvfontcollObject.delete()</h3>
+
+<p>删除字体</p>
+
+<p><a id="gdipprvfontcollObject.getFamilies"></a></p>
+
+<h3>gdipprvfontcollObject.getFamilies</h3>
+
+<p>返回字体集合中的字体家族数组,<br>
+一个字体家族可以用于创建不同大小、不同样式的同名字体</p>
+
+<p><a id="gdipprvfontcollObject.getFamilies"></a></p>
+
+<h3>gdipprvfontcollObject.getFamilies(sought,clone)</h3>
+
+<p>返回字体集合中的字体家族数组,所有参数可选,<br>
+参数  @sought 指定期望返回的字体家族数目,<br>
+不指定则自动获取全部字体家族并返回,clone参数指定是否复制字体家族对象,<br>
+如果不复制，在字体列表被删除以后，此函数返回的字体家族也不能再使用</p>
+
+<p><a id="gdipprvfontcollObject.getLastFamily"></a></p>
+
+<h3>gdipprvfontcollObject.getLastFamily()</h3>
+
+<p><a href="#gdipfamilyObject">返回对象:gdipfamilyObject</a></p>
+
+<p><a id="gdipprvfontcollObject.getLastFamily"></a></p>
+
+<h3>gdipprvfontcollObject.getLastFamily(clone)</h3>
+
+<p>返回字体集合中的最后一个添加的字体家族,<br>
+可选参数 @sought 指定期望返回的字体家族数目,<br>
+不指定则自动获取全部字体家族并返回,clone参数指定是否复制字体家族对象,<br>
+如果不复制，在字体列表被删除以后，此函数返回的字体家族也不能再使用</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/gdip/privateFontCollection.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/gdip/privateFontCollection.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/gdip/privateFontCollection.md">Markdown 格式</a></p>
+
+</body> 
+</html>

@@ -1,0 +1,252 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - tesseract 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - tesseract 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>tesseract 库模块帮助文档</h1>
+
+<p><a id="tesseract"></a></p>
+
+<h2>tesseract 成员列表</h2>
+
+<p>开源OCR引擎Tesseract</p>
+
+<p><a id="tesseract.ocr"></a></p>
+
+<h3>tesseract.ocr()</h3>
+
+<p>创建Tesseract OCR组件的BaseAPI对象  </p>
+
+<p><a href="#tesseractOcrObject">返回对象:tesseractOcrObject</a></p>
+
+<p><a id="liblept"></a></p>
+
+<h2>liblept 成员列表</h2>
+
+<p><a id="liblept.pixDestroy"></a></p>
+
+<h3>liblept.pixDestroy({addr pix=})</h3>
+
+<p>释放像素数据占用的内存</p>
+
+<p><a id="liblept.pixRead"></a></p>
+
+<h3>liblept.pixRead(图像文件路径)</h3>
+
+<p>参数应使用完整路径,返回像素首地址</p>
+
+<p><a id="libtesseract"></a></p>
+
+<h2>libtesseract 成员列表</h2>
+
+<p><a id="libtesseract.TessDeleteIntArray"></a></p>
+
+<h3>libtesseract.TessDeleteIntArray(整数数组指针地址)</h3>
+
+<p>释放tesseract分配的内存</p>
+
+<p><a id="libtesseract.TessDeleteText"></a></p>
+
+<h3>libtesseract.TessDeleteText(文本指针地址)</h3>
+
+<p>释放tesseract分配的内存</p>
+
+<p><a id="libtesseract.TessDeleteTextArray"></a></p>
+
+<h3>libtesseract.TessDeleteTextArray(文本数组指针地址)</h3>
+
+<p>释放tesseract分配的内存</p>
+
+<p><a id="libtesseract.TessVersion"></a></p>
+
+<h3>libtesseract.TessVersion()</h3>
+
+<p>组件版本</p>
+
+<p><a id="tesseractOcrObject"></a></p>
+
+<h2>tesseractOcrObject 成员列表</h2>
+
+<p><a id="tesseractOcrObject.clear"></a></p>
+
+<h3>tesseractOcrObject.clear()</h3>
+
+<p>清除图像数据</p>
+
+<p><a id="tesseractOcrObject.delete"></a></p>
+
+<h3>tesseractOcrObject.delete()</h3>
+
+<p>删除对象</p>
+
+<p><a id="tesseractOcrObject.end"></a></p>
+
+<h3>tesseractOcrObject.end()</h3>
+
+<p>重置对象</p>
+
+<p><a id="tesseractOcrObject.getBoolVariable"></a></p>
+
+<h3>tesseractOcrObject.getBoolVariable(name)</h3>
+
+<p>获取变量布尔值</p>
+
+<p><a id="tesseractOcrObject.getDoubleVariable"></a></p>
+
+<h3>tesseractOcrObject.getDoubleVariable(name)</h3>
+
+<p>获取变量浮点值</p>
+
+<p><a id="tesseractOcrObject.getIntVariable"></a></p>
+
+<h3>tesseractOcrObject.getIntVariable(name)</h3>
+
+<p>获取变量整数值</p>
+
+<p><a id="tesseractOcrObject.getStringVariable"></a></p>
+
+<h3>tesseractOcrObject.getStringVariable(name)</h3>
+
+<p>获取变量文本值</p>
+
+<p><a id="tesseractOcrObject.getText"></a></p>
+
+<h3>tesseractOcrObject.getText()</h3>
+
+<p>返回文本</p>
+
+<p><a id="tesseractOcrObject.getUnicodeText"></a></p>
+
+<h3>tesseractOcrObject.getUnicodeText()</h3>
+
+<p>返回Unicode文本</p>
+
+<p><a id="tesseractOcrObject.init"></a></p>
+
+<h3>tesseractOcrObject.init(lang,datapath,oem,configs)</h3>
+
+<p>初始化样本语言包,成功返回0,<br>
+如果样本语言包不存在，aardio将会自动下载,注意语言包与引擎的版本必须一致(3.02)不然会报错,<br>
+除参数@1以外,其他参数都可以省略<br>
+可选使用datapath指定tessdata所在目录,默认为~\lib\tesseract.res\</p>
+
+<p><a id="tesseractOcrObject.initLangMod"></a></p>
+
+<h3>tesseractOcrObject.initLangMod(lang,datapath)</h3>
+
+<p>初始化样本语言包<br>
+可选使用datapath指定tessdata所在目录,默认为~\lib\tesseract.res\</p>
+
+<p><a id="tesseractOcrObject.printVariablesToFile"></a></p>
+
+<h3>tesseractOcrObject.printVariablesToFile(filename)</h3>
+
+<p>输出变量到文件</p>
+
+<p><a id="tesseractOcrObject.processPages"></a></p>
+
+<h3>tesseractOcrObject.processPages(filename,retryConfig,timeoutMillisec)</h3>
+
+<p>识别图像,返回文本,<br>
+除参数@1指定图像路径以外,其他参数可省略</p>
+
+<p><a id="tesseractOcrObject.processPagesUnicode"></a></p>
+
+<h3>tesseractOcrObject.processPagesUnicode(filename,retryConfig,timeoutMillisec)</h3>
+
+<p>识别图像,返回Unicode文本,<br>
+除参数@1指定图像路径以外,其他参数可省略</p>
+
+<p><a id="tesseractOcrObject.readConfigFile"></a></p>
+
+<h3>tesseractOcrObject.readConfigFile(filename)</h3>
+
+<p>读取配置文件</p>
+
+<p><a id="tesseractOcrObject.readDebugConfigFile"></a></p>
+
+<h3>tesseractOcrObject.readDebugConfigFile(filename)</h3>
+
+<p>读取调试配置文件</p>
+
+<p><a id="tesseractOcrObject.recognize"></a></p>
+
+<h3>tesseractOcrObject.recognize()</h3>
+
+<p>识别图像,成功返回0</p>
+
+<p><a id="tesseractOcrObject.recognizeForChopTest"></a></p>
+
+<h3>tesseractOcrObject.recognizeForChopTest(etextMonitor)</h3>
+
+<p>识别图像,成功返回0</p>
+
+<p><a id="tesseractOcrObject.setDebugVariable"></a></p>
+
+<h3>tesseractOcrObject.setDebugVariable(name,value)</h3>
+
+<p>设置调试变量</p>
+
+<p><a id="tesseractOcrObject.setImage"></a></p>
+
+<h3>tesseractOcrObject.setImage(imagedata,width,height,bytesPerPixel,bytesPerLine)</h3>
+
+<p>设置图像</p>
+
+<p><a id="tesseractOcrObject.setImage2"></a></p>
+
+<h3>tesseractOcrObject.setImage2(pix)</h3>
+
+<p>设置像素数据,参数为内存地址</p>
+
+<p><a id="tesseractOcrObject.setInputName"></a></p>
+
+<h3>tesseractOcrObject.setInputName(name)</h3>
+
+<p>设置输入名</p>
+
+<p><a id="tesseractOcrObject.setOutputName"></a></p>
+
+<h3>tesseractOcrObject.setOutputName(filename)</h3>
+
+<p>设置输出名</p>
+
+<p><a id="tesseractOcrObject.setRectangle"></a></p>
+
+<h3>tesseractOcrObject.setRectangle(left,top,width,height)</h3>
+
+<p>设置区块</p>
+
+<p><a id="tesseractOcrObject.setSourceResolution"></a></p>
+
+<h3>tesseractOcrObject.setSourceResolution(ppi)</h3>
+
+<p>设置分辨率</p>
+
+<p><a id="tesseractOcrObject.setVariable"></a></p>
+
+<h3>tesseractOcrObject.setVariable(name,value)</h3>
+
+<p>设置变量</p>
+
+<h3>自动完成常量</h3>
+
+<p>_TESS_OEM_CUBE_ONLY=1<br>
+_TESS_OEM_DEFAULT=3<br>
+_TESS_OEM_TESSERACT_CUBE_COMBINED=2<br>
+_TESS_OEM_TESSERACT_ONLY=0  </p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/tesseract/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/tesseract/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/tesseract/_.md">Markdown 格式</a></p>
+
+</body> 
+</html>

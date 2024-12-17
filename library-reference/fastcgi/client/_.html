@@ -1,0 +1,599 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - fastcgi.client 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - fastcgi.client 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>fastcgi.client 库模块帮助文档</h1>
+
+<p><a id="fastcgi"></a></p>
+
+<h2>fastcgi 成员列表</h2>
+
+<p>FastCGI协议实现模块</p>
+
+<p><a id="fastcgi.client"></a></p>
+
+<h3>fastcgi.client</h3>
+
+<p>FastCGI客户端</p>
+
+<p><a id="fastcgi.client"></a></p>
+
+<h3>fastcgi.client()</h3>
+
+<p>创建FastCGI客户端  </p>
+
+<p><a href="#fastcgiclientObject">返回对象:fastcgiclientObject</a></p>
+
+<p><a id="global"></a></p>
+
+<h2>全局对象 成员列表</h2>
+
+<p><a id="session["字符串参数"]"></a></p>
+
+<h3>session[&quot;字符串参数&quot;]</h3>
+
+<p>获取或设置session<br>
+值不允许包含函数、类等可执行代码</p>
+
+<p><a id="fastcgiclientObject"></a></p>
+
+<h2>fastcgiclientObject 成员列表</h2>
+
+<p><a id="fastcgiclientObject.customErrors"></a></p>
+
+<h3>fastcgiclientObject.customErrors</h3>
+
+<pre><code class="aardio language-aardio">fastcgiclientObject.customErrors = {  
+    [404] = function(response){  
+        response.status = &quot;404 Not Found&quot;;  
+        response.write(&quot;404 Not Found&quot;); /*自定义错误页*/  
+    }   
+}
+</code></pre>
+
+<p><a id="fastcgiclientObject.getStream"></a></p>
+
+<h3>fastcgiclientObject.getStream</h3>
+
+<p>function(){
+    if(!owner.stream){ 
+        __/*参考fastcgi.stream*/
+    }
+    return owner.stream;<br>
+}</p>
+
+<p><a id="fastcgiclientObject.run"></a></p>
+
+<h3>fastcgiclientObject.run( httpProc )</h3>
+
+<pre><code class="aardio language-aardio">fastcgiclientObject.run(   
+    function(response,request,session){   
+         response.loadcode( request.path /*可省略,可增加多个模板参数,  
+在被调用文件的函数外部可使用owner参数获取首个模板参数,  
+也可以使用...获取多个模板参数*/ );  
+    }     
+);
+</code></pre>
+
+<p><a id="request"></a></p>
+
+<h2>request 成员列表</h2>
+
+<p>Web服务端请求对象,<br>
+request对象必须由服务端框架自动维护，<br>
+用户发起不同的请求时request对象都是不同的，<br>
+并且由服务端框架自动设置为全局变量。<br>
+注意在单线程异步HTTP服务端内，应优先通过函数参数传递此对象,  </p>
+
+<p>request的接口规范由标准库中fastcgi.client定义，<br>
+目前aardio提供的所有HTTP服务端框架都兼容此接口。</p>
+
+<p><a id="request.contentLength"></a></p>
+
+<h3>request.contentLength</h3>
+
+<p>请求消息正文的长度<br>
+数值</p>
+
+<p><a id="request.contentType"></a></p>
+
+<h3>request.contentType</h3>
+
+<p>请求信息的MIME类型</p>
+
+<p><a id="request.cookies[]"></a></p>
+
+<h3>request.cookies[]</h3>
+
+<pre><code class="aardio language-aardio">request.cookies[&quot;/*名字请小写*/&quot;]
+</code></pre>
+
+<p><a id="request.createSessionId"></a></p>
+
+<h3>request.createSessionId()</h3>
+
+<p>应用程序可调用此函数重新创建新的会话ID</p>
+
+<p><a id="request.documentBase"></a></p>
+
+<h3>request.documentBase</h3>
+
+<p>嵌入 HTTP 服务器网站根目录,<br>
+此路径不同于 aardio 应用程序根目录。<br>
+在 FastCGI 环境下总是为 &quot;/&quot;  </p>
+
+<p>request.path 等于 request.documentBase + request.pathInfo</p>
+
+<p><a id="request.documentRoot"></a></p>
+
+<h3>request.documentRoot</h3>
+
+<p>网站应用程序根目录，<br>
+也是当前 aardio 应用程序根目录</p>
+
+<p><a id="request.environ"></a></p>
+
+<h3>request.environ</h3>
+
+<p>CGI环境变量,<br>
+环境变量是由多个键值对组成的表,<br>
+所有具有值的变量都是字符串类型,即使是端口号也不可能出现数值<br>
+键名必须大写</p>
+
+<p><a id="request.get["字符串参数"]"></a></p>
+
+<h3>request.get[&quot;字符串参数&quot;]</h3>
+
+<p>URL请求参数<br>
+名值对组成的表对象,参数名一律小写</p>
+
+<p><a id="request.headers["字符串参数"]"></a></p>
+
+<h3>request.headers[&quot;字符串参数&quot;]</h3>
+
+<p>HTTP请求头,表对象,<br>
+所有请求头的键名已全部转为小写,请求头的值值都是字符串类型  </p>
+
+<p>http服务端可选同时以数组形式保存原始http头<br>
+数组的第个元素都是包含键、值两个元素的子数组<br>
+但服务端可选不使用数组存放任何HTTP头</p>
+
+<p><a id="request.host"></a></p>
+
+<h3>request.host</h3>
+
+<p>请求的网站域名</p>
+
+<p><a id="request.keepAlive"></a></p>
+
+<h3>request.keepAlive</h3>
+
+<p>客户端是否请求保持连接</p>
+
+<p><a id="request.method"></a></p>
+
+<h3>request.method</h3>
+
+<p>HTTP请求方法<br>
+例如&quot;GET&quot;、&quot;POST&quot;</p>
+
+<p><a id="request.path"></a></p>
+
+<h3>request.path</h3>
+
+<p>请求 URL 中的路径部分，前面包含 documentBase 目录。<br>
+注意请求路径不能开始于&quot;/config/&quot;,&quot;/lib/&quot;  </p>
+
+<p>request.path 等于 request.documentBase + request.pathInfo</p>
+
+<p><a id="request.pathInfo"></a></p>
+
+<h3>request.pathInfo</h3>
+
+<p>请求 URL 中的路径部分，忽略 documentBase 目录。<br>
+注意请求路径不能开始于&quot;/config/&quot;,&quot;/lib/&quot;  </p>
+
+<p>request.path 等于 request.documentBase + request.pathInfo</p>
+
+<p><a id="request.postData"></a></p>
+
+<h3>request.postData()</h3>
+
+<p>获取原始上传数据<br>
+multipart/form-data表单上传的文件数据应使用postFileData函数读取</p>
+
+<p><a id="request.postFileData"></a></p>
+
+<h3>request.postFileData()</h3>
+
+<p>可以使用此函数判断当前请求是否上传文件<br>
+获取multipart/form-data表单上传的文件数据<br>
+如果无上传数据返回空值,<br>
+解析出错返回空值并发送400错误后关闭页面输出  </p>
+
+<p>此函数的返回值是一个fsys.multipartFormData对象<br>
+关于数据的格式请参考标准库中该对象的文档,  </p>
+
+<p><a href="#fsysmultipartFormDataObject">返回对象:fsysmultipartFormDataObject</a></p>
+
+<p><a id="request.postJson"></a></p>
+
+<h3>request.postJson()</h3>
+
+<p>如果请求格式为 application/json 或 text/json ,<br>
+返回 JSON 格式请求数据并解析为 aardio 对象返回<br>
+解析失败返回 null</p>
+
+<p><a id="request.post["字符串参数"]"></a></p>
+
+<h3>request.post[&quot;字符串参数&quot;]</h3>
+
+<p>提交表单参数<br>
+名值对组成的表对象,参数名一律小写</p>
+
+<p><a id="request.protocol"></a></p>
+
+<h3>request.protocol</h3>
+
+<p>HTTP协议版本</p>
+
+<p><a id="request.query"></a></p>
+
+<h3>request.query(&quot;字符串参数&quot;)</h3>
+
+<p>返回URL参数或表单参数<br>
+参数名请一律小写</p>
+
+<p><a id="request.remoteAddr"></a></p>
+
+<h3>request.remoteAddr</h3>
+
+<p>客户端IP地址</p>
+
+<p><a id="request.scheme"></a></p>
+
+<h3>request.scheme</h3>
+
+<p>请求URL中协议部分,值为&quot;http&quot;或&quot;https&quot;</p>
+
+<p>URL协议部分</p>
+
+<p><a id="request.serverPort"></a></p>
+
+<h3>request.serverPort</h3>
+
+<p>请求的服务器端口，数值</p>
+
+<p><a id="request.sessionId"></a></p>
+
+<h3>request.sessionId</h3>
+
+<p>会话ID,<br>
+应用程序需要自行管理会话过期时间</p>
+
+<p><a id="request.uri"></a></p>
+
+<h3>request.uri</h3>
+
+<p>请求路径<br>
+带GET参数</p>
+
+<p><a id="request.url"></a></p>
+
+<h3>request.url</h3>
+
+<p>请求URL<br>
+不带GET参数</p>
+
+<p><a id="response"></a></p>
+
+<h2>response 成员列表</h2>
+
+<p>Web服务端响应对象,<br>
+response对象必须由服务端框架自动维护，<br>
+用户发起不同的请求时response对象都是不同的，<br>
+并且由服务端框架自动设置为全局变量。<br>
+注意在单线程异步HTTP服务端内，应优先通过函数参数传递此对象,  </p>
+
+<p>response的接口规范由标准库中fastcgi.client定义，<br>
+目前aardio提供的所有HTTP服务端框架都兼容此接口。</p>
+
+<p><a id="response.charset"></a></p>
+
+<h3>response.charset</h3>
+
+<p>输出字符集<br>
+可以为空,默认值为UTF-8<br>
+不建议更改此值</p>
+
+<p><a id="response.close"></a></p>
+
+<h3>response.close()</h3>
+
+<p>关闭输出<br>
+此函数终止执行页面后续代码</p>
+
+<p><a id="response.close"></a></p>
+
+<h3>response.close(true)</h3>
+
+<p>关闭页面输出<br>
+但继续执行页面后续代码</p>
+
+<p><a id="response.closed"></a></p>
+
+<h3>response.closed</h3>
+
+<p>HTTP应答对象是否已关闭<br>
+用于判断本次HTTP应答是否已被 response.close 函数关闭<br>
+因为response.close() 会抛出空异常自动退出当前代码,<br>
+所以一般不需要判断这个值<br>
+此属性的值应由HTTP服务器自动维护,用户不可修改</p>
+
+<p><a id="response.contentType"></a></p>
+
+<h3>response.contentType</h3>
+
+<pre><code class="aardio language-aardio">response.contentType = &quot;application/json&quot;;/*指定响应数据的MIME类型,默认为&quot;text/html&quot;*/
+</code></pre>
+
+<p><a id="response.cookieDomain"></a></p>
+
+<h3>response.cookieDomain</h3>
+
+<p>默认cookie域名</p>
+
+<p><a id="response.cookieHttpOnly"></a></p>
+
+<h3>response.cookieHttpOnly</h3>
+
+<p>设为true所有cookie默认加上HttpOnly属性</p>
+
+<p><a id="response.cookiePath"></a></p>
+
+<h3>response.cookiePath</h3>
+
+<p>默认cookie目录</p>
+
+<p><a id="response.cookieSecure"></a></p>
+
+<h3>response.cookieSecure</h3>
+
+<p>设为true所有cookie默认加上secure属性</p>
+
+<p><a id="response.cookies[]"></a></p>
+
+<h3>response.cookies[]</h3>
+
+<pre><code class="aardio language-aardio">response.cookies[&quot;/*键名*/&quot;] = {
+    value = &quot;值&quot;;
+    expires = time().addday(7);
+    maxAge = 3600;
+}
+</code></pre>
+
+<p><a id="response.customErrors[404]"></a></p>
+
+<h3>response.customErrors[404]</h3>
+
+<pre><code class="aardio language-aardio">response.customErrors[404] = function(response,request,session){
+    response.status = &quot;404 Not Found&quot;;
+    response.write(&quot;404 Not Found&quot;); /*自定义错误处理函数,  
+每次请求仅第一个自定义错误处理函数会被调用*/
+}
+</code></pre>
+
+<p><a id="response.defalutDocument"></a></p>
+
+<h3>response.defalutDocument</h3>
+
+<p>指定loadcode函数加载aardio代码时的默认文件名<br>
+默认为&quot;main.aardio&quot;,不建议修改</p>
+
+<p><a id="response.error"></a></p>
+
+<h3>response.error()</h3>
+
+<p>输出一个或多个500错误信息,<br>
+必须在页面尚未输出响应头时调用,<br>
+参数将自动转换为字符串对象<br>
+table转换为格式化的对象输出<br>
+此函数终止执行页面后续代码</p>
+
+<p><a id="response.errorStatus"></a></p>
+
+<h3>response.errorStatus()</h3>
+
+<p>数值参数@1为HTTP错误代码，<br>
+可选用字符串参数 @2 指定页面默认输出的文本信息。<br>
+触发自定义错误处理函数、或返回对应HTTP状态码。<br>
+必须在页面尚未输出响应头时调用,<br>
+此函数终止执行页面后续代码</p>
+
+<p><a id="response.eventStream"></a></p>
+
+<h3>response.eventStream</h3>
+
+<p>按 text/event-stream 协议格式输出表对象。<br>
+wsock.tcp.simpleHttpServer,wsock.tcp.asynHttpServer 已自动支持。<br>
+IIS 需要在处理程序映射配置中添加 responseBufferLimit=&quot;0&quot;（注意备份原配置）</p>
+
+<p><a id="response.eventStream"></a></p>
+
+<h3>response.eventStream(message)</h3>
+
+<p>将参数 @message 指定的表对象按 text/event-stream 格式输出。<br>
+该表对象中值类型为表的对象自动转换为 JSON 输出。<br>
+response.contentType 自动指定为 &quot;text/event-stream&quot;</p>
+
+<p><a id="response.headers[]"></a></p>
+
+<h3>response.headers[]</h3>
+
+<p>响应HTTP头,<br>
+值可以是字符串、或者多个字符串值组成的数组,<br>
+值是数组时则自动输出多个名值对到客户端,<br>
+键名的每个单词的首字母必须大写、其他字母必须小写<br>
+注意：这与请求头统一小写是不同的</p>
+
+<p><a id="response.jsonPrettyPrint"></a></p>
+
+<h3>response.jsonPrettyPrint</h3>
+
+<pre><code class="aardio language-aardio">response.jsonPrettyPrint = true;/*指定respose.write函数将对象转换为JSON输出时否缩进格式化*/
+</code></pre>
+
+<p><a id="response.keepAlive"></a></p>
+
+<h3>response.keepAlive</h3>
+
+<p>服务端是否保持连接<br>
+此属性为标准库为HTTP服务器所保留<br>
+HTTP服务器可以忽略该值<br>
+或者由HTTP服务器自动维护该值<br>
+用户不应修改此属性</p>
+
+<p><a id="response.loadcode"></a></p>
+
+<h3>response.loadcode</h3>
+
+<p>运行服务端 aardio 代码或下载其他文件。  </p>
+
+<p>参数 @1 如果指定 *.aardio 文件则执行并解析 aardio 模板代码。<br>
+如果指定其他类型的文件则直接下载文件。  </p>
+
+<p>注意下载是比较复杂的功能，直接调用这个函数是更可靠的选择。<br>
+自己去实现这一套代码工作量可能很大，一般没有必要。  </p>
+
+<p>可以参考『扫码传文件』范例，这个程序在网上转发很多，用的人也不少。<br>
+上传下载都支持，其中下载就是调用这里的 response.loadcode 函数。</p>
+
+<p><a id="response.loadcode"></a></p>
+
+<h3>response.loadcode(&quot;文件路径&quot;,...)</h3>
+
+<p>省略参数则默认以  request.path 为参数。  </p>
+
+<p>参数 @1 如果指定 *.aardio 文件则执行并解析 aardio 模板代码。<br>
+后面的其他参数作为模板参数传给被调用的 aardio 文件。<br>
+在被调用文件的函数外部可使用 owner 参数获取首个模板参数，<br>
+也可以使用...获取多个模板参数。<br>
+关于模板语法请查看<a href="../../../language-reference/templating/syntax.html" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/templating/syntax.html">帮助文档</a>。  </p>
+
+<p>如果指定其他文件路径，则下载文件。<br>
+注意下载是比较复杂的功能，直接调用这个函数是更可靠的选择。</p>
+
+<p><a id="response.preheaders"></a></p>
+
+<h3>response.preheaders</h3>
+
+<p>指定在headers发送到客户端以前发送的HTTP头<br>
+此值将使用 web.joinHeaders 函数格式化然后再发送<br>
+可以指定字符串,数组,或键值对,键值对的值可以是多个值组成的数组<br>
+如果参数是键值对,自动对值中的宽字符按UTF-8编码进行UrlEncode编码</p>
+
+<p><a id="response.redirect"></a></p>
+
+<h3>response.redirect(&quot;字符串参数&quot;)</h3>
+
+<p>302重定向,<br>
+必须在页面尚未输出响应头时调用,<br>
+参数@1可以是相对路径或任意网址,<br>
+此函数终止执行页面后续代码</p>
+
+<p><a id="response.redirect"></a></p>
+
+<h3>response.redirect(&quot;字符串参数&quot;,301)</h3>
+
+<p>301重定向,<br>
+必须在页面尚未输出响应头时调用,<br>
+参数@1可以是相对路径或任意网址,<br>
+此函数终止执行页面后续代码</p>
+
+<p><a id="response.status"></a></p>
+
+<h3>response.status</h3>
+
+<p>响应状态码,值可以为数值或文本,<br>
+默认为&quot;200 OK&quot;</p>
+
+<p><a id="response.transferChunked"></a></p>
+
+<h3>response.transferChunked</h3>
+
+<p>是否使用分块传输协议<br>
+此属性为标准库为HTTP服务器所保留<br>
+HTTP服务器可以忽略该值<br>
+或者由HTTP服务器自动维护该值<br>
+用户不应修改此属性</p>
+
+<p><a id="response.write"></a></p>
+
+<h3>response.write()</h3>
+
+<p>输出一个或多个值,<br>
+参数将自动转换为字符串对象<br>
+可直接输出结构体,其他table转换为JSON输出</p>
+
+<p><a id="response.writeBuffer"></a></p>
+
+<h3>response.writeBuffer(buffer,长度)</h3>
+
+<p>输出 buffer 对象中的数据</p>
+
+<p><a id="session"></a></p>
+
+<h2>session 成员列表</h2>
+
+<p>Web服务端会话对象,<br>
+session对象必须由服务端框架自动维护，<br>
+用户发起不同的请求时session对象都是不同的，<br>
+并且由服务端框架自动设置为全局变量。  </p>
+
+<p>session的接口规范由标准库中fastcgi.client定义，<br>
+目前aardio提供的所有HTTP服务端框架都兼容此接口。</p>
+
+<p><a id="session.?"></a></p>
+
+<h3>session.?</h3>
+
+<p>获取或设置session<br>
+值不允许包含函数、类等可执行代码</p>
+
+<p><a id="session.clear"></a></p>
+
+<h3>session.clear()</h3>
+
+<p>清空session</p>
+
+<p><a id="session.save"></a></p>
+
+<h3>session.save()</h3>
+
+<p>保存session，此函数在请求结束时会自动调用</p>
+
+<p><a id="session.start"></a></p>
+
+<h3>session.start()</h3>
+
+<p>载入session,<br>
+此函数会在sessionHandler名字空间下查找自定义的加载器,<br>
+如果没有找到默认会使用sessionHandler.default加载session,<br>
+可选在参数中指定过期时间,以秒为单位<br>
+如果没有调用此函数,首次访问session的键值时会自动调用</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/fastcgi/client/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/fastcgi/client/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/fastcgi/client/_.md">Markdown 格式</a></p>
+
+</body> 
+</html>

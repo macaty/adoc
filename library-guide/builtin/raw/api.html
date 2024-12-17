@@ -1,0 +1,244 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - raw 库 - 声明原生 API 函数'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - raw 库 - 声明原生 API 函数</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>raw 库 - 声明原生 API 函数</h1>
+
+<p>使用 raw 库函数可操作<a href="datatype.html" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/builtin/raw/datatype.html">原生数据类型</a>、可导入外部 DLL 文件提供的原生 API 函数。</p>
+
+<h2>一、加载 dll 模块 <a id="loadDll" href="#loadDll">&#x23;</a></h2>
+
+<p>语法：</p>
+
+<p><code>dll = raw.loadDll( path | strMemoryDll,shareName,callingConvention=&quot;stdcall&quot;);</code></p>
+
+<p>说明：</p>
+
+<p>raw.loadDll 从路径 path 或内存数据 strMemoryDll 中加载 DLL 模块，然后我们可以使用 dll.api 函数声明我们需要用到的api函数。 </p>
+
+<p>如果自内存加载 DLL，可选使用 shareName 参数指定多线程共享名， 指定 shareName 后，多个线程可共享同一内存DLL模块，指定 shareName 参数后可省略参数@1 —— 此时仅查找已加载的DLL。  </p>
+
+<p>callingConvention 参数指定默认调用约定，可省略，不指定时默认值为 &quot;stdcall&quot; 。操作系统 API 使用默认的 &quot;stdcall&quot; 调用约定。C 语言编写的 DLL 一般会使用 C 语言调用约定 &quot;cdecl&quot; 。callingConvention 最常见的参数就是  &quot;stdcall&quot; 或者 &quot;cdecl&quot;。更多细节请查看 <a href="#calling-convention">DLL 调用约定</a>。</p>
+
+<p>加载内存 DLL 示例：</p>
+
+<pre><code class="aardio language-aardio">dllmodule := raw.loadDll($&quot;d:\\hardware.dll&quot;);
+</code></pre>
+
+<p>参考：<a href="../../../language-reference/operator/include.html" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/operator/include.html">包含文件操作符 $</a></p>
+
+<p>aardio 已默认加载以下 DLL 模块  </p>
+
+<pre><code class="aardio language-aardio">::User32, ::Kernel32, ::Ntdll, ::Shell32
+</code></pre>
+
+<p>使用 aardio『工具 / 转换工具 / API 转换』工具可自动转换 C/C++ 的 API 函数声明为　aardio 格式，并自动识别 <code>::User32, ::Kernel32, ::Ntdll, ::Shell32</code> 这些 DLL 模块提供的函数。</p>
+
+<p>注意: <a id="arch" href="#arch">&#x23;</a></p>
+
+<blockquote>
+<p>如果 DLL 厂商仅提供一个版本的 DLL，一般是 32 位的 DLL，在 aardio 可以直接加载， aardio 程序也是 32 位的，而 32 位程序兼容所有平台，而 64 位程序只能运行在 64 位平台。 如果 DLL 厂商提供了 64 位、32 位两个版本的 DLL，这时候你需要选择 32 位版本的 DLL 才能加载，如果 对方只提供 64 位的 DLL (比较罕见)，只要包装为进程调用，aardio 仍然可以支持。 aardio 做多进程、多线程开发都非常方便。 通过多进程交互，aardio 就可以非常方便地调用 64 位的组件。 </p>
+
+<p>一个常见的误解是认为 32 位不能调用 64 位程序，其实这种限制仅仅是进程内的限制，对跨进程调用并没有限制。而且目前跨进程调用更为普及，稳定性与兼容性都更好。典型的最常见的浏览器应用就是多进程架构。在 aardio 中利用标准库中的　web.view 就可以非常方便地调用 64 位的 WebView2 组件。</p>
+
+<p>aardio 中多进程组件以及可以用于多进程架构的库非常多，包括但不限于 web.view, process, process.popen, process.ruffle, process.python, process.command，process.rpc, web.rpc, web.socket, process.util,com,com.excel,com.activeX …… </p>
+</blockquote>
+
+<h2>二、声明 API 函数 <a id="api" href="#api">&#x23;</a></h2>
+
+<ol>
+<li><p>语法：</p>
+
+<pre><code class="aardio language-aardio">var dll = raw.loadDll( path | strMemoryDll,shareName,callingConvention=&quot;stdcall&quot; );
+
+dll.api( 函数名|函数序号,函数原型,调用约定=&quot;stdcall&quot;,this指针=null) 
+</code></pre></li>
+<li><p>说明</p>
+
+<p>这里的 dll 指 raw.loadDll 加载的 dll 模块对象。</p>
+
+<p>dll.api 函数的第一个参数是加载的 DLL 模块中导出的 API 函数名字，或导出函数序号。</p>
+
+<p>调用约定为可选参数，默认为加载 DLL 模块时指定的调用约定。如果加载 DLL 时未指定调用约定，则默认值为 &quot;stdcall&quot;。更多细节请查看 <a href="#calling-convention">API 调用约定</a>。</p>
+
+<p>可选的 this 指针参数用于 thiscall 调用约定绑定 C++ 中 this 对象的指针，也可用于其他调用约定中指定默认的第一个参数。 </p>
+
+<p>函数原型是以一个字符串表示的 API 函数声明，定义该函数的参数类型、返回值类型等, 这里的类型指原生数据类型. 例如:</p>
+
+<p><code>&quot;int(int a,int b)&quot;</code></p>
+
+<p>定义了一个函数原型,有一个 int 类型的参数a,一个 int 类型的参数 b,返回值为 int 类型。</p>
+
+<p>请参考: <a href="datatype.html" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/builtin/raw/datatype.html">原生数据类型</a></p></li>
+<li><p>UTF-16 API 与尾标 <a id="api-name-suffix" href="#api-name-suffix">&#x23;</a></p>
+
+<p>aardio 支持对 Unicode 版本 API 的字符串参数进行 UTF-16 与 UTF-8 编码的双向自动转换。</p>
+
+<p>请参考：<a href="utf16.html" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/builtin/raw/utf16.html">Unicode（UTF-16） API 函数</a></p>
+
+<p>API 尾标指的是 API 函数名尾部独立大写的特定字符。使用尾标可以修改默认的 API 调用规则。</p>
+
+<ul>
+<li>尾标必须是函数名的最后一个大写字母，前面不能有其他大写字母。</li>
+<li>无论真实的 API 函数名是不是包含实际的尾标字母，我们都可以在函数名后使用尾标并且尾标起的作用是相同的。</li>
+<li>aardio 会首先查找函数名称包含指定尾标的 API 函数。如果没有找到指定的 API 函数，aardio 会移除函数名称后面的尾标字母再次查找 API 函数。</li>
+<li>aardio 在找不到目标函数时，总是会自动加上 &#39;W&#39; 尾标寻找是否存在 Unicode 版本的函数。 </li>
+</ul>
+
+<p>在声明 API 时，可支持 &#39;W&#39;，&#39;A&#39; 两种尾标。</p>
+
+<p><a href="directCall.html#api-name-suffix" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/builtin/raw/directCall.html#api-name-suffix">免声明 API 再可以支持更多尾标。</a></p>
+
+<p>如果 API 函数名以 &#39;_w&#39; 结尾也会切换到 Unicode 版本，但 &#39;_w&#39; 不是尾标字母。&#39;_w&#39; 不能省略，aardio 也不会自动移除 &#39;_w&#39; 或 自动添加 &#39;_w&#39; 然后查找 API 函数。 </p>
+
+<p>如果不写函数原型参数，使用 <code>dll.api(&quot;导出符号名&quot;)</code> 格式搜索 DLL 导出符号则 aardio 不会自动添加或移除尾标。</p></li>
+<li><p>声明原生 API 示例</p>
+
+<pre><code class="aardio language-aardio">//导入DLL
+var dll = raw.loadDll(&quot;User32.dll&quot;); 
+
+//声明 API
+messageBox = dll.api( &quot;MessageBox&quot;, &quot;void(int hWnd,ustring lpText,ustring lpCaption ,INT uType )&quot;,&quot;stdcall&quot;) //最后一个参数可以省略
+
+//调用 API 函数
+messageBox( 0, &quot;这是一个测试对话框&quot;, &quot;对话框标题&quot;, 0 )
+</code></pre>
+
+<p>要注意  MessageBox 并不存在，aardio 会自动切换到 MessageBoxW ，并识别 <a href="#api-name-suffix">&#39;W&#39; 尾标</a>，切换到 <a href="utf16.html" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/builtin/raw/utf16.html">Unicode( UTF-16 ) API</a> ，然后参字符串参数与返回值进行 UTF-8 与 UTF-16 编码双向自动转换。</p>
+
+<p>aardio 已经默认导入了 <code>::User32, ::Kernel32, ::Ntdll, ::Shell32</code> 这几个 DLL 模块，所以上面的代码可简化为：</p>
+
+<pre><code class="aardio language-aardio">messageBox = ::User32.api( &quot;MessageBox&quot;, &quot;void(int hWnd,ustring lpText,ustring lpCaption ,INT uType )&quot;,&quot;stdcall&quot;) //最后一个参数可以省略
+
+//调用 API 函数
+messageBox( 0, &quot;这是一个测试对话框&quot;, &quot;对话框标题&quot;, 0 )
+</code></pre>
+
+<p>aardio 其实 <a href="directCall.html" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/builtin/raw/directCall.html">不用声明也可以直接使用 DLL 导出的 API 函数</a>，一般除非是有什么不能自动转换的类型，不必要先声明，aardio 提倡无声明直接调用 API 函数，例如：</p>
+
+<pre><code class="aardio language-aardio">::User32.MessageBox(0,&quot;这是一个测试对话框&quot;,&quot;对话框标题&quot;,0)
+</code></pre></li>
+</ol>
+
+<h3>三、声明内部函数 <a id="function-pointer" href="#function-pointer">&#x23;</a></h3>
+
+<p>语法：</p>
+
+<pre><code class="aardio language-aardio">var dll = raw.loadDll();
+var func = dll.api( 内部指针地址,函数原型 ) 
+</code></pre>
+
+<p>如果调用 raw.loadDll() 时未使用任何参数，则 dll.api 的第一个参数应当是一个内部函数指针。</p>
+
+<p>实际上 aardio 已经用以下的代码默认加载了 raw.main 模块：</p>
+
+<pre><code class="aardio language-aardio">raw.main = raw.loadDll();
+</code></pre>
+
+<p>所以我们可以直接写：</p>
+
+<pre><code class="aardio language-aardio">var func = raw.main.api( 内部指针地址,函数原型 ) 
+</code></pre>
+
+<p>一个有趣的示例(危险操作,请勿模仿):</p>
+
+<pre><code class="aardio language-aardio">import win; 
+
+var func = function(str){ win.msgbox( &quot;非法操作:&quot; + str) }
+
+//转换为原生函数指针 
+var func_c = raw.tostdcall(func,&quot;void(str)&quot; )
+
+//获取原生指针，对内核对象使用 topointer,tonumber 等函数是无效的 
+funcAddr = raw.toPointer(func_c)
+
+//声明一个特殊的API,调用内部函数指针 
+func_api = raw.main.api( funcAddr ,&quot;void(str)&quot; )
+
+//看来是一件很无聊的事,转来转去,我们只是调用 aardio 函数而已. 
+func_api(&quot;hello&quot;)
+</code></pre>
+
+<h2>四、API 调用约定  <a id="calling-convention" href="#calling-convention">&#x23;</a></h2>
+
+<p>加载 DLL 与声明 API 时都可选指定调用约定参数。</p>
+
+<p>调用约定参数也可以不指定，默认值为&quot;stdcall&quot;，可选值为&quot;cdecl&quot;,&quot;thiscall&quot;，&quot;fastcall&quot;，&quot;regparm(n)&quot;等.</p>
+
+<p>可以在调用约定后面紧跟一个逗号以及目标 DLL 的开发平台，可选值为&quot;,borland&quot;， &quot;,microsoft&quot; 。microsoft 是默认选项可以省略。实际上需要用到 &quot;,borland&quot; 这个选项的情况现在基本遇不到了，即使是调用 Delphi 编写的 DLL，&quot;stdcall&quot;,&quot;cdecl&quot; 等调用约定都不需要指定开发平台。 </p>
+
+<p>&quot;thiscall&quot; 是 C++ 对象调用约定，可在声明 API 时增加一个参数指定 this指针，如果不在声明时指定，也可以在调用时用首参数传递 this 指针。</p>
+
+<p>fastcall,regparm(n) 调用约定( 也就是寄存器传参方式 ) 详解:</p>
+
+<blockquote>
+<p>&quot;fastcall&quot;
+&quot;fastcall,microsoft&quot;
+以上两种写法作用相同，前2个小于等于32位的数值参数使用edx,ecx寄存器， &gt; 如果还有参数则自右向左依次压栈; 由被调者负责维护堆栈平衡(清除压入的参&gt; 数);如果函数有返回值则把返回值存放在eax寄存器中.</p>
+
+<p>&quot;fastcall,borland&quot;
+同上，前3个小于等于32位的数值参数使用eax,edx,ecx寄存器，</p>
+
+<p>&quot;fastcall,regparm(n)&quot;
+&quot;stdcall,regparm(n)&quot;
+以上两种写法作用相同，n可以为3,2,1,前n个参数使用eax,edx,ecx寄存器,如果为1则仅使用eax，为2仅使用eax,edx</p>
+
+<p>&quot;regparm(n)&quot;
+&quot;cdecl,regparm(n)&quot;
+以上两种写法作用相同，n可以为3,2,1,前n个参数使用eax,edx,ecx寄存器,如果为1则仅使用eax，为2仅使用 eax,edx 。如果还有参数则自右向左依次压栈; 由调者负责维护堆栈平衡(清除压入的参数);如果函数有返回值则把返回值存放在eax寄存器中.</p>
+</blockquote>
+
+<p>在调用 raw.loadDll 函数时，可以在调用约定中添加 &quot;,unicode&quot; 声明该 DLL 的所有 API 为 <a href="utf16.html" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/builtin/raw/utf16.html">UTF-16 API</a> 。例如：<code>raw.loadDll(&quot;test.dll&quot;,,&quot;stdcall,unicode&quot;)</code> 声明该 &quot;test.dll&quot; 中所有 API 为 UTF-16 API 。但要注意每个 API 函数仍然可以声明自己是不同的编码，API 参数也可以使用参数类型明确的声明是文本还是二进制字符串。  </p>
+
+<h3>五、DLL 导出符号 <a id="dllimport" href="#dllimport">&#x23;</a></h3>
+
+<ol>
+<li><p>语法：</p>
+
+<pre><code class="aardio language-aardio">var dll = raw.loadDll();
+var ptr = dll.api( &quot;导出符号名&quot; ) 
+</code></pre></li>
+<li><p>说明：</p>
+
+<p>dll.api 仅指定一个参数时直接返回导出符号指针而非返回原生函数对象。</p>
+
+<p>查找导出符号时会精确匹配&quot;导出符号名&quot;，不会对&quot;导出符号名&quot;自动添加或移除 A,W 尾标，</p>
+
+<p>此操作不会增加 DLL 的引用计数，在使用导出符号指针时 DLL 模块对象应在生存周期内。</p>
+
+<p>使用此方法可以获取 DLL 导出的数据指针，或者用精确匹配函数名的方式获取 DLL 的导出函数指针。</p></li>
+<li><p>示例</p>
+
+<pre><code class="aardio language-aardio">//取到 DLL 导出函数指针
+var pMsgbox = ::User32.api(&quot;MessageBoxW&quot;); 
+
+//将函数指针转换为函数 
+var msgbox = raw.main.api(pMsgbox,&quot;void(int,ustring,ustring,int)&quot; );
+
+//调用函数
+msgbox(0,&quot;消息&quot;,&quot;标题&quot;,0);
+
+</code></pre>
+
+<p>实际调用 DLL 导出函数不需要这么复杂，直接调用就可以了，例如：</p>
+
+<pre><code class="aardio language-aardio">//调用 DLL 导出函数
+::User32.MessageBox(0,&quot;消息&quot;,&quot;标题&quot;,0);
+</code></pre></li>
+</ol>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-guide/builtin/raw/api.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-guide/builtin/raw/api.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/builtin/raw/api.md">Markdown 格式</a></p>
+
+</body> 
+</html>

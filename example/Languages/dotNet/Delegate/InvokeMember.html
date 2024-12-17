@@ -1,0 +1,126 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - C# 使用 InvokeMember 调用 aardio'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - C# 使用 InvokeMember 调用 aardio</title> 
+<link rel="stylesheet" href="../../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: C# 使用 InvokeMember 调用 aardio</h1><pre><code class="aardio language-aardio">//C# 使用 InvokeMember 调用 aardio
+import dotNet; 
+var compiler = dotNet.createCompiler(&quot;C#&quot;); 
+compiler.Parameters.CompilerOptions = &quot;/optimize&quot;;
+
+compiler.Source = /****** 
+using System;
+using System.Reflection;
+using System.Collections;
+
+namespace CSharpLibrary
+{
+    public class DynObject : IEnumerable
+    {
+        private object target;
+        private Type type;
+        public DynObject(object aardioObject) { target = aardioObject; type = target.GetType(); }
+        IEnumerator IEnumerable.GetEnumerator() {return (target as IEnumerable).GetEnumerator(); }
+
+        public object InvokeMember(string method, params object[] args) { return type.InvokeMember(method, BindingFlags.InvokeMethod, null, target, args); }
+        public object InvokeMember(int dispId, params object[] args){ return type.InvokeMember(&quot;[DispId=&quot; + dispId + &quot;]&quot;, BindingFlags.InvokeMethod, null, target, args); }
+        public object Invoke(params object[] args) {return type.InvokeMember(&quot;&quot;, BindingFlags.InvokeMethod, null, target, args); }
+
+        public object this[string index]
+        {
+            get { return type.InvokeMember(index, BindingFlags.GetProperty, null, target, null); }
+            set { type.InvokeMember(index, BindingFlags.SetProperty, null, target, new object[] { value }); }
+        }
+    }
+
+    public class Object
+    {
+        public object Hello(object aardioObject)
+        {
+
+           //转换 aardio 对象
+            DynObject tab = new DynObject(aardioObject);
+
+            //调用成员函数
+            tab.InvokeMember(&quot;执行aardio&quot;, &quot; console.log(&#39;在C#中执行aardio代码&#39;) &quot;);
+
+             //调用 对象自身（如果对象不是函数而是表，调用表对象的 _call 元方法）
+            tab.Invoke(12, 3, this);
+
+            //遍历 aardio 对象
+            foreach (object item in tab)
+            {
+                Console.WriteLine(&quot;C#中遍历aardio对象键名：&quot; + item);
+            }
+
+            //修改属性
+            tab[&quot;属性名&quot;] = 456;
+
+            //读取属性
+            return tab[&quot;属性名&quot;];
+        }
+    }
+}
+******/
+
+compiler.import(&quot;CSharpLibrary&quot;);  
+
+//使用 C# 编写的类构造对象实例
+var cSharpObject = CSharpLibrary.Object();
+
+import console;
+var aardioObject =  {  
+    属性名 = 123; 
+    执行aardio = function( code ){ 
+        loadcode(code)(); 
+        return 123;
+    }; 
+    @{
+        _call = function(a,b,netObject){
+
+            /*
+            aardio 函数传给 .NET 时（委托、事件），
+            aardio 会在原函数外包装一层代理函数，并自动处理回调参数。
+            回调 aardio 函数的参数中的 .NET 对象会自动封装为 dotNet.object 。 
+
+            但 .NET 反过来直接回调 aardio 对象的成员函数时，
+            回调 aardio 函数的参数中的 .NET 对象没有经过处理，不会自动封装为 dotNet.object 。 
+
+            原生 .NET 对象在 aardio 中存为 COM 对象，
+            而原生 COM 接口不支持 .NET 的很多特性，例如重载（函数名相同，参数不同）。
+
+            .NET 原生对象传入 com.IsNetObject() 会返回非 0 值。
+            而 dotNet.object 传入 dotNet.getObject() 会返回非 null 值。 
+
+            解决方案：
+            如下将原生 .NET 对象转换为 aardio 中的 dotNet.object 。  
+            */
+            netObject = dotNet.object(netObject);
+
+            //无论.NET 回调是否在同一线程，被 .NET 回调的 aardio 函数总是在原调用线程执行（不必考虑多线程规则与同步）。  
+            console.log(&quot;aardio 对象被 C# 调用了，参数:&quot;,a,b)
+            return a + b; 
+        } 
+    }
+}
+
+//调用实时编译的 C# 函数
+var ret = cSharpObject.Hello( aardioObject ); 
+
+console.dump(ret);
+console.dumpJson(aardioObject);
+console.pause();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/dotNet/Delegate/InvokeMember.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/dotNet/Delegate/InvokeMember.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Languages/dotNet/Delegate/InvokeMember.md">Markdown 格式</a>
+</body> 
+</html>

@@ -1,0 +1,173 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 创建应用'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 创建应用</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 创建应用</h1><pre><code class="aardio language-aardio">//创建应用
+//请改用微软的 WebView2（也就是 aardio 标准库里的 web.view ））
+
+import electron.app;
+var theApp = electron.app();
+
+//这是启动electron主进程的main.js
+theApp.jsMain =/**  
+    const aardio = require(&#39;aardio&#39;)  //启动RPC服务允许调aardio/electron互调函数,创建BrowserWindow主窗口
+    const app = require(&#39;electron&#39;).app //管理electron进程的生命周期
+
+    /*
+     * aardio-electron 主进程已准备就绪,
+     * 主窗口(BrowserWindow)已创建触发此事件,
+     * 可叠加注册多个回调
+     */
+    aardio.ready( win=&gt; { 
+        //if( !aardio.studioInvoke  ){
+            win.removeMenu()
+        //} 
+
+       /*
+        * 不建议用下面的代码打开调试工具,
+        * 会有一些诡异的问题，例如不能输入中文,
+        * 建议改为在aardio中调用 web.socket.chrome从外部打开调试工具.
+        */
+       // mainWindow.webContents.openDevTools ()  
+    } )
+
+
+    app.on(&#39;window-all-closed&#39;, () =&gt; {
+        app.quit();
+
+    }) 
+**/
+
+
+// 可选在这里直接指定index.html的代码，实际开发请写到工程文件里
+theApp.html = /** 
+&lt;!DOCTYPE html&gt;
+&lt;html&gt; 
+  &lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;aardio嵌入electron演示&lt;/title&gt;
+  &lt;/head&gt;
+
+  &lt;body&gt;
+
+   &lt;h2 onmousedown=&quot;aardio.hitCaption();return false;&quot; 
+        style=&quot;-webkit-user-select: none;cursor:default;&quot;&gt;按这里调用aardio.hitCaption()拖动窗口!&lt;/h2&gt;
+
+   &lt;button onclick=&quot;aardio.exit();&quot;&gt;点这里调用aardio关闭窗口&lt;/button&gt; &lt;br&gt;&lt;br&gt;
+
+   &lt;button id=&quot;aardio&quot;&gt;点这里跟aardio互调一下函数&lt;/button&gt;&lt;br&gt;&lt;br&gt;
+
+    &lt;?
+    response.write(&quot;在electron中执行aardio代码&quot;)
+    ?&gt;
+
+    &lt;/body&gt;    
+
+    &lt;script type=&quot;text/javascript&quot;&gt;   
+
+    /*导入aardio中的app.external 对象*/
+    aardio = require(&quot;aardio&quot;);
+
+    /*响应按钮点击事件*/
+    document.querySelector(&quot;#aardio&quot;).onclick = function(e){ 
+
+        //调用aardio中的函数,hello要调用的函数名字,后面可以跟任意个调用参数
+        aardio.ex.hello( &quot;你点击了&quot; + e.target.innerHTML,1,2,3,&quot;有几个参数写几个&quot; )
+            .then( 
+                function(message){
+                    document.getElementById(&quot;aardio&quot;).innerText = &quot;aardio返回值&quot; + message;
+                } 
+            )
+    }
+
+    /*响应aardio服务端发起的调查任务*/
+    aardio.on(&quot;getUrl&quot;,function(){
+        return document.location.href;
+    });
+
+    &lt;/script&gt;
+
+&lt;/html&gt;
+**/
+
+/*
+在下面的external对象中指定允许electron渲染进程中使用JS直接调用的函数
+下面的external 会直接转换为js中的aardio对象，在JS中require(&#39;aardio&#39;)就可以使用
+*/
+theApp.external = {
+
+    ex = {
+        hello = function(...){
+            win.msgbox( {...} ,&quot;electron调用了aardio函数 hello &quot; )
+            return &quot;electron,我是aardio.ex.hello，一起玩怎么样！？&quot;
+        } 
+    }
+
+
+    exit = function(){
+        theApp.close();//关闭主窗口，退出程序
+    }
+
+    //如果函数名第一个字符是$，则第一个回调参数$用于表示当前客户端,可作为xcall的参数使用
+    $test = function($){
+        theApp.xcall($,&quot;js函数&quot;)
+    }
+}
+
+theApp.onUrlReady = function(hSocket,url){
+    // 加载一个页面完成都会触发这个事件
+}
+
+/*
+启动electron,下面使用一个aardio表对象指定的启动参数，
+在electron的主进程、渲染进程中都可以直接通过  aardio.startEnviron 访问。
+*/
+theApp.start(  
+
+    //electron打开的第一个页面,必须指定应用程序目录下的aardio代码文件
+    indexUrl = &quot;/res/main.aardio&quot;;
+
+    //指定electron创建浏览器窗口的启动参数, 可以不写,aardio会自动给出正确参数
+    browserWindow = {
+        frame = false;
+        webPreferences =  {
+            nodeIntegration = true;
+        }
+    }
+
+    /*
+    可选用args字段指定Chrome命令行参数,
+    必须在main.js中创建窗口以前就导入aardio模块才会生效
+    */
+    args ={
+
+    }
+);
+
+//调查任务结束，JS代码汇报结果到这里
+theApp.callback(&quot;getUrl&quot;,function(hSocket,result,err){
+    win.msgbox(result,&quot;打开了页面&quot;)
+})
+
+theApp.onReady = function(){
+    //对所有页面发起调查任务,
+    theApp.survey(&quot;getUrl&quot;);
+} 
+
+win.loopMessage();
+
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/WebUI/Electron/electron.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/WebUI/Electron/electron.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/WebUI/Electron/electron.md">Markdown 格式</a>
+</body> 
+</html>

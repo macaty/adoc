@@ -1,0 +1,921 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - raw 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - raw 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>raw 库模块帮助文档</h1>
+
+<p><a id="raw"></a></p>
+
+<h2>raw 成员列表</h2>
+
+<p>原生接口编程与原生类型操作支持库。<br>
+这是自动导入的内置库。   </p>
+
+<p><a href="../../library-guide/builtin/raw/api.html" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/builtin/raw/api.html">使用手册相关文档</a></p>
+
+<p><a id="raw._release"></a></p>
+
+<h3>raw._release(内核对象)</h3>
+
+<p>释放cdata类型内核对象,慎用.<br>
+此函数保证不会重复释放已释放的内核对象,所以参数可以是已释放的内核对象,<br>
+如果参数是cdata类型内核对象，或者参数的_topointer元方法中返回类型内核对象,则调用内核对象的_gc析构函数<br>
+传入null会忽略不执行任何操作  </p>
+
+<p>可用于释放cdata类型内核对象、com对象、IUnknown指针、com.interface创建的对象<br>
+不能用于释放table.gc或gcdata创建的cdata对象</p>
+
+<p><a id="raw.buffer"></a></p>
+
+<h3>raw.buffer</h3>
+
+<p>分配可读写的、固定长度的内存，<br>
+返回可读写该内存的原生字节数组（ buffer ），可存取各种二进制数据。  </p>
+
+<p>可用[]下标操作符读写 8 位无符号字节数值，可用 &num; 操作符取数组长度。<br>
+不支持连接操作符，支持 raw.concat,string.concat,string.join 等拼接函数。  </p>
+
+<p>在几乎所有字符串函数中都可以作为字符串使用。<br>
+在结构体中也可作为指针、 <code>BYTE[]</code>数组的值。<br>
+在原生 API 参数中可作为内存指针、字符串、输出字符串使用。<br>
+在 COM 函数中可作为安全数组使用。</p>
+
+<p><a id="raw.buffer"></a></p>
+
+<h3>raw.buffer(初始值)</h3>
+
+<p>分配可读写的、固定长度的内存，<br>
+返回可读写该内存的原生字节数组（ buffer ），可存取各种二进制数据。  </p>
+
+<p>参数可以是一个结构体、字符串、或 buffer,传入{ }返回null,<br>
+重新分配内存并复制初始值指定的数据,返回buffer对象,<br>
+buffer在多数字符串函数中都可以作为字符串使用<br>
+在API中可以作为字符串、指针、字节数组使用<br>
+在COM函数中可作为安全数组使用  </p>
+
+<p>buffer在json中会转换为{type=&quot;Buffer&quot;;data={} }格式的表对象,<br>
+这种表对象可作为raw.buffer的唯一参数还原为buffer对象</p>
+
+<p><a id="raw.buffer"></a></p>
+
+<h3>raw.buffer(长度,初始值)</h3>
+
+<p>分配可读写的、固定长度的内存，<br>
+返回可读写该内存的原生字节数组（ buffer ），可存取各种二进制数据。  </p>
+
+<p>参数一指定需要分配的内存大小,<br>
+,内存初始值可以用结构体、指针、buffer、或字符串指定一段内存数据,<br>
+也可用一个数值指定所有字节的初始值,不指定默认初始化所有字节为0,  </p>
+
+<p>如果初始值指定为字符串或buffer类型，<br>
+填充初始数据以后剩余的字节会全部初始为为0  </p>
+
+<p>此函数分配的内存是可读写的字节数组,可使用下标操作符读写字节值<br>
+buffer在多数字符串函数中都可以作为字符串使用<br>
+在API中可以作为字符串、指针、字节数组使用</p>
+
+<p><a id="raw.byte"></a></p>
+
+<h3>raw.byte()</h3>
+
+<p>转换参数@1指定的数值为 byte 类型数值（8位整数）包装对象,<br>
+返回对象支持 tonumber tostring 等类型转换函数。  </p>
+
+<p>用于调用非声明式原生 API 函数的参数,<br>
+默认传值,参数@2为 true 则用于传址参数（传数值的指针）。  </p>
+
+<p>用于 COM 函数参数则总是传值, COM 函数也可使用 com.byte 函数</p>
+
+<p><a href="#rawNumberObject">返回对象:rawNumberObject</a></p>
+
+<p><a id="raw.closehandle"></a></p>
+
+<h3>raw.closehandle()</h3>
+
+<p>关闭句柄资源</p>
+
+<p><a id="raw.concat"></a></p>
+
+<h3>raw.concat</h3>
+
+<p>此函数主要用于向raw.realloc创建的[动态指针]所指内存中追加数据</p>
+
+<p><a id="raw.concat"></a></p>
+
+<h3>raw.concat(buffer,追加字符串,buffer保留长度,追加长度)</h3>
+
+<p>二进制模式拼接字符串<br>
+文本模式拼接请使用string.concat<br>
+参数@1应为 buffer 对象,<br>
+buffer保留长度可省略,默认为0<br>
+追加长度可省略,默认为追加字符串长度<br>
+返回拼接后的有效数据长度,有效长度不会超过 buffer大小</p>
+
+<p><a id="raw.concat"></a></p>
+
+<h3>raw.concat(动态指针,追加数据,追加长度)</h3>
+
+<p>追加数据<br>
+参数@1必须是raw.realloc创建的[动态指针]<br>
+如果内存长度不够时,此函数会自动调用raw.realloc调整内存大小<br>
+此函数返回新的[动态指针],传入的动态指针地址可能改变必须弃用  </p>
+
+<p>追加数据可以是字符串、buffer、动态指针、普通指针、结构体<br>
+追加长度为可选参数,如果追加数据为指针、或动态指针则必须明确指定追加长度如果<br>
+如果追加参数是字符串、或 buffer，会在尾部添加<code>&#39;\u0000&#39;</code>(不计长度)  </p>
+
+<p>可选在第4个参数中指定动态调整指针内存大小时的默认增加长度,该值默认为1024</p>
+
+<p><a id="raw.convert"></a></p>
+
+<h3>raw.convert</h3>
+
+<p>转换并返回结构体</p>
+
+<p><a id="raw.convert"></a></p>
+
+<h3>raw.convert(源指针,目标结构体,字节单位偏移,结构体单位偏移)</h3>
+
+<p>读取内存数据到目标结构体，返回目标结构体,<br>
+参数@1可以是指针、buffer、字符串,<br>
+可选用参数@3指定在源指针上按字节单位计数的偏移位置,不指定默认为0,<br>
+如果在参数@4指定了按结构体为单位大小的偏移位置,则忽略参数@3</p>
+
+<p><a id="raw.convert"></a></p>
+
+<h3>raw.convert(源结构体,目标指针,字节单位偏移,结构体单位偏移)</h3>
+
+<p>把结构体写入内存，返回内存指针,<br>
+参数@2可以是指针、buffer,<br>
+可选用参数@3指定在目标指针上按字节单位计数的偏移位置,不指定默认为0,<br>
+如果在参数@4指定了按结构体为单位大小的偏移位置,则忽略参数@3</p>
+
+<p><a id="raw.convert"></a></p>
+
+<h3>raw.convert(源结构体,目标结构体)</h3>
+
+<p>转换结构体，返回目标结构体</p>
+
+<p><a id="raw.convertArray"></a></p>
+
+<h3>raw.convertArray(源内存指针,源数组长度,&quot;数据类型&quot;)</h3>
+
+<p>将指针指向的内存转换为普通数组,传入空指针返回空值<br>
+数据类型参数可省略,默认为&quot;pointer&quot;<br>
+类型类型也可以直接传入一个声明元素类型的结构体参数<br>
+注意该函数不会检测内存溢出错误,调用该函数时必须保证数组长度是正确的值</p>
+
+<p><a id="raw.copy"></a></p>
+
+<h3>raw.copy</h3>
+
+<p>复制内存数据</p>
+
+<p><a id="raw.copy"></a></p>
+
+<h3>raw.copy(目标指针,源数据,复制长度)</h3>
+
+<p>复制内存数据<br>
+参数@1允许指针，buffer类型参数，<br>
+参数@2允许使用指针,buffer,字符串,或结构体参数，<br>
+此函数不允许其他可自动转换为指针的非指针类型参数。  </p>
+
+<p>如果复制源或目标是buffer，字符串,或结构体等可获取内存长度的类型，<br>
+复制长度可以省略,如果未指定复制长度，并且源数据是buffer，或字符串时，<br>
+复制全部数据并且复制尾部隐藏的<code>&#39;\u0000&#39;</code>到目标内存，如果复制目标是指针，<br>
+那么要保证复制源加上这2个字节也不会超过目标内存长度。  </p>
+
+<p>如果aardio能获取复制源或目标的内存长度，<br>
+那么复制长度不会超过实际检测到的内存长度，<br>
+但如果参数是指针将无法自动检测到内存长度</p>
+
+<p><a id="raw.double"></a></p>
+
+<h3>raw.double()</h3>
+
+<p>转换参数@1指定的数值为 double 类型数值（64位浮点数）包装对象,<br>
+返回对象支持 tonumber tostring 等类型转换函数。  </p>
+
+<p>用于调用非声明式原生 API 函数的参数,<br>
+默认传值,参数@2为 true 则用于传址参数（传数值的指针）。  </p>
+
+<p>用于 COM 函数参数则总是传值, COM 函数也可使用 com.double 函数</p>
+
+<p><a href="#rawNumberObject">返回对象:rawNumberObject</a></p>
+
+<p><a id="raw.dup"></a></p>
+
+<h3>raw.dup(源句柄,源进程,目标进程,允许子进程继承)</h3>
+
+<p>返回复制的系统句柄<br>
+除参数1之外,其他参数可选<br>
+默认仅在当前进程中复制句柄<br>
+复制的句柄应使用raw.closehandle释放</p>
+
+<p><a id="raw.execute"></a></p>
+
+<h3>raw.execute</h3>
+
+<p>运行外部程序，成功返回 true。<br>
+ process.execute 函数提供类似的功能，区别可参考函数源码</p>
+
+<p><a id="raw.execute"></a></p>
+
+<h3>raw.execute(file,param,operation,showCmd,workDir,hwnd)</h3>
+
+<p>运行外部程序，成功返回 true。<br>
+@file 指定要运行的程序路径，其他所有参数可省略，<br>
+@param 字符串参数，可选指定启动参数。<br>
+@operation 可选用一个字符串指定执行动词，省略则使用默认动词或 &quot;open&quot;。<br>
+@showCmd 可选用 <em>SW</em> 前缀常量指定显示选项，默认为 _SW_SHOW。<br>
+@workDir 参数可选指定工作目录。<br>
+@hwnd 可选指定所有窗口句柄，默认取当前线程活动窗口</p>
+
+<p><a id="raw.explore"></a></p>
+
+<h3>raw.explore(path,args,...)</h3>
+
+<p>使用资源管理器（Explorer.exe）打开文件或目录。<br>
+第一个参数 @path 指定文件路径，可为空值（ null ）。<br>
+注意 Explorer.exe 不解析标准的命令行参数转义符，这一点与其他程序不同。<br>
+如参数 @path 尾部有双反斜杆<code>\\</code>则为无效路径并打开默认目录（打开我的文档，XP系统报错）。<br>
+如参数 @path 指定为 &quot;,&quot;或&quot;file:&quot; 则打开“此电脑（This PC）”。<br>
+如参数 @path 使用<code>shell:::</code>前缀则可以指定特殊路径的 CLSID。  </p>
+
+<p>可用第二个参数 @args 或更多参数指定 Explorer.exe 命令行选项，<br>
+例如指定  &quot;/select&quot; 在资源管理器选择指定路径。<br>
+注意 &quot;/n&quot; 等选项在新系统中是无意义的，Explorer 将总是打开新窗口。</p>
+
+<p><a id="raw.find"></a></p>
+
+<h3>raw.find</h3>
+
+<p>用法与string.find相同<br>
+区别是参数@1允许使用内存指针<br>
+并必须使用参数@2指定查找数据的内存长度<br>
+指定错误的指针或长度会导致内存错误，请谨慎使用此函数</p>
+
+<p><a id="raw.find"></a></p>
+
+<h3>raw.find(指针,内存长度,&quot;查找模式&quot;,开始位置)</h3>
+
+<p>使用模式串在字符串中查找子串的位置，<br>
+参数@1可以使用指针、字符串、或 buffer<br>
+无论指定任何类型,内存长度都不可省略,aardio不会检测指定的内存长度是否错误<br>
+开始位置为可选参数,默认为1，必须以字节计数，<br>
+函数返回匹配结果的起始,结束位置,以及所有捕获分组<br>
+如果有多个捕获分组,将附加为多个返回值</p>
+
+<p><a id="raw.float"></a></p>
+
+<h3>raw.float()</h3>
+
+<p>转换参数@1指定的数值为 float 类型数值（32位浮点数）包装对象,<br>
+返回对象支持 tonumber tostring 等类型转换函数。  </p>
+
+<p>用于调用非声明式原生 API 函数的参数,<br>
+默认传值,参数@2为 true 则用于传址参数（传数值的指针）。  </p>
+
+<p>用于 COM 函数参数则总是传值, COM 函数也可使用 com.float 函数</p>
+
+<p><a href="#rawNumberObject">返回对象:rawNumberObject</a></p>
+
+<p><a id="raw.indexOf"></a></p>
+
+<h3>raw.indexOf</h3>
+
+<p>与 string.indexOf 类似，<br>
+但 raw.indexOf 基于二进制搜索字符串，可查找包含 <code>&#39;\0&#39;</code> 的字符串。<br>
+更重要的区别是参数 @1允许使用内存指针，<br>
+并必须使用参数 @2 指定查找数据的内存长度。<br>
+指定错误的指针或长度会导致内存错误，请谨慎使用此函数。</p>
+
+<p><a id="raw.indexOf"></a></p>
+
+<h3>raw.indexOf(指针,查找内存长度,查找字符串,起始索引)</h3>
+
+<p>使用模式串在字符串中查找子串的位置，<br>
+参数@1可以使用指针、字符串、或 buffer<br>
+无论指定任何类型,内存长度都不可省略,aardio不会检测指定的内存长度是否错误<br>
+开始位置为可选参数,默认为1，必须以字节计数，<br>
+函数返回匹配结果的起始位置</p>
+
+<p><a id="raw.int"></a></p>
+
+<h3>raw.int()</h3>
+
+<p>转换参数@1指定的数值为 int 类型数值（32位整数）包装对象,<br>
+返回对象支持 tonumber tostring 等类型转换函数。  </p>
+
+<p>用于调用非声明式原生 API 函数的参数,<br>
+默认传值,参数@2为 true 则用于传址参数（传数值的指针）。  </p>
+
+<p>用于 COM 函数参数则总是传值, COM 函数也可使用 com.int 函数</p>
+
+<p><a href="#rawNumberObject">返回对象:rawNumberObject</a></p>
+
+<p><a id="raw.join"></a></p>
+
+<h3>raw.join(buffer数组,分隔字符串,起始索引,结束索引)</h3>
+
+<p>拼接字符串或 buffer 数组，返回 buffer。<br>
+如果拼接后长度为空，此函数返回 null。  </p>
+
+<p>参数@1指定的数组可包含字符串或buffer，<br>
+包含 buffer 的数组只能用 raw.join 拼接，不可使用 string.join 拼接<br>
+参数 @2 可选指定一个间隔字符串。<br>
+起始索引与结束索引为可选参数，可传入负数表示自数组尾部倒计数</p>
+
+<p><a id="raw.loadDll"></a></p>
+
+<h3>raw.loadDll</h3>
+
+<p>加载 DLL<br>
+DLL变量名如果为全局变量,首字母必须大写且必须按如下格式赋值<br>
+::User32 := raw.loadDll(&quot;User32.dll&quot;)  </p>
+
+<p>如果DLL厂商仅提供一个版本的DLL，一般是32位的DLL，在aardio可以直接加载，<br>
+如果DLL厂商提供了64位、32位两个版本的DLL，这时候你需要选择32位版本的DLL才能加载，<br>
+aardio程序也是32位的，主要是因为64位程序只能运行在64位平台，而32位程序兼容所有平台。  </p>
+
+<p>32位的进程的内存限制仅仅是限制单个进程的内存，<br>
+实际上一般的桌面软件基本都不可能用到好几个GB的内存<br>
+目前aardio提供process.command可以很方便的使用使用多进程交互<br>
+如果软件使用外部数据库、或者其他服务端口，因为跨进程都不会受单进程的内存限制。<br>
+编写网站的FastCGI同样是多进程模式。</p>
+
+<p><a id="raw.loadDll"></a></p>
+
+<h3>raw.loadDll(&quot;DLL路径&quot;,&quot;共享名字&quot;,&quot;调用约定&quot;)</h3>
+
+<p>第一个参数可以是DLL路径或DLL内存数据,<br>
+载入内存DLL数据时,可使用第二个参数指定共享模块名称以启用共享模式,<br>
+如果DLL本身是库文件,则共享名称应使用库名字空间路径.<br>
+参数@3可选指定调用约定,默认为&quot;stdcall,microsoft&quot;  </p>
+
+<p>路径首字符可用斜杠表示应用程序根目录，用~加斜杠表示EXE根目录<br>
+如果<code>~\</code>或<code>~/</code>开头的EXE根目录路径不存在，自动转换为应用程序根目录下的路径重试,  </p>
+
+<p>如果DLL文件依赖同目录下的其他DLL文件，而这些DLL不在默认搜索目录顺序内时，<br>
+aardio将会调用::Kernel32.SetDllDirectory()自动修正该问题，<br>
+并在操作完成后自动恢复默认设置</p>
+
+<p><a id="raw.loadDll"></a></p>
+
+<h3>raw.loadDll()</h3>
+
+<p><a href="_.html#dllModuleObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/raw/_.html#dllModuleObject">返回对象:dllModuleObject</a></p>
+
+<p><a id="raw.long"></a></p>
+
+<h3>raw.long()</h3>
+
+<p>转换参数@1指定的数值为 long 类型数值（64位整数）包装对象,<br>
+返回对象支持 tonumber tostring 等类型转换函数。  </p>
+
+<p>用于调用非声明式原生 API 函数的参数,<br>
+默认传值,参数@2为 true 则用于传址参数（传数值的指针）。  </p>
+
+<p>用于 COM 函数参数则总是传值, COM 函数也可使用 com.long 函数</p>
+
+<p><a href="#rawNumberObject">返回对象:rawNumberObject</a></p>
+
+<p><a id="raw.main"></a></p>
+
+<h3>raw.main</h3>
+
+<p>进程主模块,默认调用约定为stdcall<br>
+与raw.module(&quot;stdcall&quot;)返回的值相同,<br>
+可用于将当前进程中的函数指针转换为aardio函数  </p>
+
+<p><a href="_.html#dllModuleObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/raw/_.html#dllModuleObject">返回对象:dllModuleObject</a></p>
+
+<p><a id="raw.match"></a></p>
+
+<h3>raw.match</h3>
+
+<p>用法与string.match相同<br>
+区别是参数@1允许使用内存指针<br>
+并必须使用参数@2指定查找数据的内存长度<br>
+指定错误的指针或长度会导致内存错误，请谨慎使用此函数</p>
+
+<p><a id="raw.match"></a></p>
+
+<h3>raw.match(指针,内存长度,&quot;模式串&quot;,开始位置)</h3>
+
+<p>使用模式串在字符串中查找子串，<br>
+参数@1可以使用指针、字符串、或 buffer,<br>
+无论指定任何类型,内存长度都不可省略,aardio不会检测指定的内存长度是否错误<br>
+参数@3指定查找模式串。<br>
+参数@4可选,用于指定起始位置,负数表示尾部倒计数,<br>
+返回匹配字符串,如果使用了匹配分组则返回多个对应的匹配串,<br>
+返回值的顺序对应模式串中左圆括号的开始顺序</p>
+
+<p><a id="raw.mixin"></a></p>
+
+<h3>raw.mixin(指针,结构体对象,任意个混入对象)</h3>
+
+<p>混入新的值,支持任意个混入table对象,<br>
+自动更新指针指向内存,并返回结构体对象</p>
+
+<p><a id="raw.module"></a></p>
+
+<h3>raw.module(&quot;调用约定&quot;)</h3>
+
+<p>指定约定并返回进程主模块,<br>
+省略参数时调用约定默认为stdcall,<br>
+可用于将当前进程中的函数指针转换为aardio函数,</p>
+
+<p><a id="raw.module"></a></p>
+
+<h3>raw.module()</h3>
+
+<p><a href="_.html#dllModuleObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/raw/_.html#dllModuleObject">返回对象:dllModuleObject</a></p>
+
+<p><a id="raw.realloc"></a></p>
+
+<h3>raw.realloc</h3>
+
+<p>快速分配内存并返回[动态指针]<br>
+aardio会在[动态指针]头部倒退8个字节记录内存以及存储内容长度,<br>
+动态指针的头部结构体如下：  </p>
+
+<pre><code class="aardio language-aardio">{  
+    INT capacity;//分配的内存容量  
+    INT size;//存储的数据长度  
+}  
+</code></pre>
+
+<p>动态指针指向的内存尾部隐藏2个字节并放置<code>&#39;\u0000&#39;</code>(不计入内存长度)<br>
+[动态指针]可作为普通指针使用,并可用于 raw.concat 函数快速拼接数据<br>
+使用此函数将[动态指针]的长度设为0时可释放内存<br>
+[动态指针]不会被自动回收,必须手动释放</p>
+
+<p><a id="raw.realloc"></a></p>
+
+<h3>raw.realloc(0,动态指针)</h3>
+
+<p>长度指定为0则释放[动态指针],指针参数为null时忽略不报错<br>
+建议使用传入[动态指针]的变量接收空的返回值,以避免误用失效的指针变量</p>
+
+<p><a id="raw.realloc"></a></p>
+
+<h3>raw.realloc(内存长度)</h3>
+
+<p>快速分配内存并返回指针,<br>
+可选用参数3指定分配内存中所有字节的初始值<br>
+初始值可指定所有字节的字节码,也可指定字符串、结构体<br>
+返回分配的指针,该指针可作为普通指针使用<br>
+指针不会被自动回收,必须手动释放</p>
+
+<p><a id="raw.realloc"></a></p>
+
+<h3>raw.realloc(内存长度,动态指针,初始值)</h3>
+
+<p>调整内存大小,可能返回新指针<br>
+传入指针必须弃用,返回值是新的指针必须手动释放,<br>
+可选用参数3指定分配内存中所有字节的初始值,<br>
+初始值可指定所有字节的字节码,也可指定字符串、结构体<br>
+指定初始值会重置指针记录的数据长度  </p>
+
+<p>如果指定的初始值为字符串或 buffer，<br>
+并且其长度超过了动态指定已分配的内存长度，<br>
+则aardio会自动截断放不下去的尾部数据。</p>
+
+<p><a id="raw.remoteApi"></a></p>
+
+<h3>raw.remoteApi</h3>
+
+<p>在外部进程内创建远程调用函数</p>
+
+<p><a id="raw.remoteApi(目标进程,"void"></a></p>
+
+<h3>raw.remoteApi(目标进程,&quot;void()&quot;,&quot;dll名&quot;,&quot;函数名&quot;)</h3>
+
+<p>参数(进程ID或句柄,函数原型,加载DLL模块名,函数名,调用约定)<br>
+不指定调用约定时默认使用stdcall调用约定<br>
+不会在API函数名字后面自动添加或移除&quot;A&quot;,&quot;W&quot;编码声明后缀,<br>
+并且要注意搜索DLL时默认搜索路径包含目标EXE所在目录,而非当前EXE目录</p>
+
+<p><a id="raw.remoteApi(目标进程,"void"></a></p>
+
+<h3>raw.remoteApi(目标进程,&quot;void()&quot;,&quot;dll名&quot;,&quot;函数名&quot;,&quot;cdecl&quot;)</h3>
+
+<p>参数(进程ID或句柄,函数原型,加载DLL模块名,函数名,调用约定)<br>
+不会在API函数名字后面自动添加或移除&quot;A&quot;,&quot;W&quot;编码声明后缀,<br>
+并且要注意搜索DLL时默认搜索路径包含目标EXE所在目录,而非当前EXE目录</p>
+
+<p><a id="raw.remoteApi(目标进程,"void"></a></p>
+
+<h3>raw.remoteApi(目标进程,&quot;void()&quot;,CALL地址,调用约定)</h3>
+
+<p>参数(进程ID或句柄,函数原型,CALL地址,调用约定)<br>
+参数@1可以是进程ID，也可以是进程句柄(此函数不负责关闭该句柄)<br>
+注意参数@1不能指定当前进程ID或句柄,<br>
+不指定调用约定在数时默认使用stdcall调用约定</p>
+
+<p><a id="raw.remoteApi(目标进程,"void"></a></p>
+
+<h3>raw.remoteApi(目标进程,&quot;void(INT thisAddr)&quot;,&quot;dll名&quot;,&quot;函数名&quot;,&quot;thiscall&quot;)</h3>
+
+<p>参数(进程ID或句柄,函数原型,加载DLL模块名,函数名,调用约定)<br>
+thiscall使用第一个参数指定this指针地址<br>
+不会在API函数名字后面自动添加或移除&quot;A&quot;,&quot;W&quot;编码声明后缀,<br>
+并且要注意搜索DLL时默认搜索路径包含目标EXE所在目录,而非当前EXE目录</p>
+
+<p><a id="raw.serializeDupHandle"></a></p>
+
+<h3>raw.serializeDupHandle(&quot;类名&quot;,句柄)</h3>
+
+<p>复制进程内有效句柄并序列化对象<br>
+只能用于_serialize元方法，且必须kernelCall参数为真<br>
+序列化类构造函数必须支持指针参数1为指针类型句柄,参数2为true的参数<br>
+并负责在析构函数中调用 raw.closehandle 释放该句柄</p>
+
+<p><a id="raw.sizeof"></a></p>
+
+<h3>raw.sizeof( )</h3>
+
+<p>返回结构体、原生类型、动态指针内存长度<br>
+参数可以是结构体、或包含类型名的字符串<br>
+参数如果是指针，则必须是raw.realloc函数创建的动态指针,<br>
+传入动态指针，返回2个值，分别为存储数据长度、分配内存总长度<br>
+传入其他来源指针,因缺少指针头信息会导致崩溃<br>
+传入null值返回0<br>
+无参数报错</p>
+
+<p><a id="raw.str"></a></p>
+
+<h3>raw.str</h3>
+
+<p>转换为纯文本字符串(去掉尾部多余终结符)<br>
+参数为空返回null  </p>
+
+<p>如果输入参数是字符串，应当改用 string.str 函数</p>
+
+<p><a id="raw.str"></a></p>
+
+<h3>raw.str(指针,是否unicode,偏移)</h3>
+
+<p>转换为纯文本字符串(去掉尾部多余终结符)<br>
+参数一可以是指针或buffer,其余参数可省略,偏移默认为0<br>
+参数@2为true反回字符串标记会设置UTF-16标记,否则设为UTF-8标记,<br>
+注意此函数并不会转换编码,不可指定错误的编码参数<br>
+参数为空返回null</p>
+
+<p><a id="raw.str"></a></p>
+
+<h3>raw.str(结构体,是否unicode)</h3>
+
+<p>结构体内存数据转换为文本字符串<br>
+参数@2为 true 返回字符串标记会设置 UTF-16 标记,否则设为 UTF-8 标记<br>
+注意此函数并不会转换编码,不可指定错误的编码参数</p>
+
+<p><a id="raw.swap"></a></p>
+
+<h3>raw.swap(数值,&quot;INT&quot;);</h3>
+
+<p>反向转换整数的大小端字节序<br>
+参数@2指定API数据类型,支持&quot;INT&quot;,&quot;int&quot;,&quot;WORD&quot;,&quot;word&quot;,省略则默认为&quot;INT&quot;<br>
+64位整数请使用math.size64对象的swap函数转换</p>
+
+<p><a id="raw.toPointer"></a></p>
+
+<h3>raw.toPointer()</h3>
+
+<p>获取对象的指针,可选用参数@2指定偏移值,<br>
+所有可用于API函数 pointer 类型的对象都可以用此函数提取指针<br>
+参数不允许为数值,数值转换为指针类型应使用topointer函数  </p>
+
+<p>滥用此函数提取对象的原始指针在很多时候是不必要且不安全的，<br>
+可能在原对象被回收以后，仍然在错误的使用获得的指针，让程序变得不稳定。<br>
+实际上 buffer, 结构体等对象在很多函数里都可以直接作为指针使用，<br>
+这样更安全、更稳定、代码更简洁，也避免了不必要的函数调用。</p>
+
+<p><a id="raw.toarray"></a></p>
+
+<h3>raw.toarray</h3>
+
+<p>此函数的作用是在运行时创建一个确定长度的原生类型数组。<br>
+也可以直接定义不指定长度的原生数组，并在运行时使用  length 属性改变长度。<br>
+示例：<code>{ int array[] = { length = 10 } }</code></p>
+
+<p><a id="raw.toarray"></a></p>
+
+<h3>raw.toarray()</h3>
+
+<p><a href="#rawToArrayResultObject">返回对象:rawToArrayResultObject</a></p>
+
+<p><a id="raw.toarray"></a></p>
+
+<h3>raw.toarray(arrrayOrLength,rawTypename,fieldName)</h3>
+
+<p>创建一个包含指定长度原生类型数组的结构体。<br>
+参数@1指定数组长度值，也可以指定用于初始化原生数组的 aardio 数组。<br>
+可选参数 @2 指定数组元素类型,默认为&quot;struct&quot;,<br>
+可选参数@3指定数组字段名字,默认为&quot;array&quot;。</p>
+
+<p><a id="raw.tocdecl"></a></p>
+
+<h3>raw.tocdecl</h3>
+
+<p>创建cdecl调用约定的原生回调函数,  </p>
+
+<p>应保持原生回调函数在有效作用域内,否则会自动释放,<br>
+函数返回值应当先赋值到变量而不是直接写到调用参数里,<br>
+这会导致函数未返回但原生回调函数可能已释放。  </p>
+
+<p>如果原生回调函数被指定为某对象的成员,在函数内部又循环引用了该对象,<br>
+这会导致无法释放资源。使用参数@3将该对象指定为owner可避免该问题</p>
+
+<p><a id="raw.tocdecl(函数,"int"></a></p>
+
+<h3>raw.tocdecl(函数,&quot;int()&quot;,owner)</h3>
+
+<p>参数@2与API声明语法相同,可使用&amp;表示输出参数,<br>
+例如C中的int *指针在aardio回调中声明为int &amp;<br>
+有几个输出参数,就可增加相应个数的返回值用于更新输出参数值,<br>
+未返回的输出结构体参数忽略不更新传入的结构体。  </p>
+
+<p>回调参数声明可直接指定结构体,传入实参必须是结构体指针,<br>
+结构体声明不能再嵌套结构体,不能包含变量,<br>
+示例：<code>raw.tocdecl(func,&quot;int({int x;int y} &amp;pt)&quot;)</code>  </p>
+
+<p>返回值类型检测比输出参数宽松,数值,布尔值、null值可按C规则兼容转换,<br>
+返回值传结构体时必须返回不大于64位的结构体,且传值而非传址</p>
+
+<p><a id="raw.tofastcall"></a></p>
+
+<h3>raw.tofastcall</h3>
+
+<p>创建 ms-fastcall 调用约定的原生回调函数<br>
+注意前两个参数不能大于32位,  </p>
+
+<p>应保持原生回调函数在有效作用域内,否则会自动释放,<br>
+函数返回值应当先赋值到变量而不是直接写到调用参数里,<br>
+这会导致函数未返回但原生回调函数可能已释放。  </p>
+
+<p>如果原生回调函数被指定为某对象的成员,在函数内部又循环引用了该对象,<br>
+这会导致无法释放资源。使用参数@3将该对象指定为owner可避免该问题</p>
+
+<p><a id="raw.tofastcall(函数,"int"></a></p>
+
+<h3>raw.tofastcall(函数,&quot;int()&quot;,owner)</h3>
+
+<p>参数@2与API声明语法相同,可使用&amp;表示输出参数,<br>
+例如C中的int *指针在aardio回调中声明为int &amp;<br>
+有几个输出参数,就可增加相应个数的返回值用于更新输出参数值,<br>
+未返回的输出结构体参数忽略不更新传入的结构体。  </p>
+
+<p>回调参数声明可直接指定结构体,传入实参必须是结构体指针,<br>
+结构体声明不能再嵌套结构体,不能包含变量,<br>
+示例：<code>raw.tocdecl(func,&quot;int({int x;int y} &amp;pt)&quot;)</code>  </p>
+
+<p>返回值类型检测比输出参数宽松,数值,布尔值、null值可按C规则兼容转换,<br>
+返回值传结构体时必须返回不大于64位的结构体,且传值而非传址</p>
+
+<p><a id="raw.tostdcall"></a></p>
+
+<h3>raw.tostdcall</h3>
+
+<p>创建stdcall调用约定的原生回调函数,  </p>
+
+<p>应保持原生回调函数在有效作用域内,否则会自动释放,<br>
+函数返回值应当先赋值到变量而不是直接写到调用参数里,<br>
+这会导致函数未返回但原生回调函数可能已释放。  </p>
+
+<p>如果原生回调函数被指定为某对象的成员,在函数内部又循环引用了该对象,<br>
+这会导致无法释放资源。使用参数@3将该对象指定为owner可避免该问题</p>
+
+<p><a id="raw.tostdcall(函数,"int"></a></p>
+
+<h3>raw.tostdcall(函数,&quot;int()&quot;,owner)</h3>
+
+<p>参数@2与API声明语法相同,可使用&amp;表示输出参数,<br>
+例如C中的int *指针在aardio回调中声明为int &amp;<br>
+有几个输出参数,就可增加相应个数的返回值用于更新输出参数值,<br>
+未返回的输出结构体参数忽略不更新传入的结构体。  </p>
+
+<p>回调参数声明可直接指定结构体,传入实参必须是结构体指针,<br>
+结构体声明不能再嵌套结构体,不能包含变量,<br>
+示例：<code>raw.tocdecl(func,&quot;int({int x;int y} &amp;pt)&quot;)</code>  </p>
+
+<p>返回值类型检测比输出参数宽松,数值,布尔值、null值可按C规则兼容转换,<br>
+返回值传结构体时必须返回不大于64位的结构体,且传值而非传址</p>
+
+<p><a id="raw.tostring"></a></p>
+
+<h3>raw.tostring( )</h3>
+
+<p>将结构体、指针、或 buffer 对象转换为普通字符串<br>
+参数如果是结构体不需要指定截取位置<br>
+参数如果是 buffer 类型，自动获取 buffer 长度并设为截取长度<br>
+参数如果是指针且未指定长度时，以<code>&#39;\0&#39;</code>为终止符并设为截取长度，<br>
+转换为不包含<code>&#39;\0&#39;</code>的文本字符串,建议改用 raw.str 函数</p>
+
+<p><a id="raw.tostring"></a></p>
+
+<h3>raw.tostring( , start,end)</h3>
+
+<p>将指针、或 buffer 对象转换为普通字符串<br>
+start指定开始位置(省略则默认设为1),end指定结束位置,  </p>
+
+<p>如果未指定结束位置参数，<br>
+参数如果是buffer类型，自动获取buffer长度并设为结束位置<br>
+参数如果是指针，以<code>&#39;\0&#39;</code>为终止符并设为结束位置</p>
+
+<p><a id="raw.typeOfArray"></a></p>
+
+<h3>raw.typeOfArray()</h3>
+
+<p>如果参数是一个包含原生数组的结构体，<br>
+返回原生类型名，以及数组字段名字。<br>
+如果是其他对象则返回 null 。</p>
+
+<p><a id="raw.ubyte"></a></p>
+
+<h3>raw.ubyte()</h3>
+
+<p>转换参数@1指定的数值为 BYTE 类型数值（8位无符号整数）包装对象,<br>
+返回对象支持 tonumber tostring 等类型转换函数。  </p>
+
+<p>用于调用非声明式原生 API 函数的参数,<br>
+默认传值,参数@2为 true 则用于传址参数（传数值的指针）。  </p>
+
+<p>用于 COM 函数参数则总是传值, COM 函数也可使用 com.ubyte 函数,<br>
+注意在原生类型中使用大写的 BYTE 类型表示8位无符号整数</p>
+
+<p><a href="#rawNumberObject">返回对象:rawNumberObject</a></p>
+
+<p><a id="raw.uint"></a></p>
+
+<h3>raw.uint()</h3>
+
+<p>转换参数@1指定的数值为 INT 类型数值（32位无符号整数）包装对象,<br>
+返回对象支持 tonumber tostring 等类型转换函数。  </p>
+
+<p>用于调用非声明式原生 API 函数的参数,<br>
+默认传值,参数@2为 true 则用于传址参数（传数值的指针）。  </p>
+
+<p>用于 COM 函数参数则总是传值, COM 函数也可使用 com.uint 函数,<br>
+注意在原生类型中使用大写的 INT 类型表示32位无符号整数</p>
+
+<p><a href="#rawNumberObject">返回对象:rawNumberObject</a></p>
+
+<p><a id="raw.ulong"></a></p>
+
+<h3>raw.ulong()</h3>
+
+<p>参数@1可传入数值或 math.size64 对象,<br>
+返回适用于 LONG 类型数值（64位无符号整数）的包装对象,<br>
+返回对象支持 tonumber tostring 等类型转换函数。  </p>
+
+<p>用于调用非声明式原生 API 函数的参数,<br>
+默认传值,参数@2为 true 则用于传址参数（传数值的指针）。  </p>
+
+<p>用于 COM 函数参数则总是传值, COM 函数也可使用 com.ulong 函数,<br>
+注意在原生类型中使用大写的 LONG 类型表示64位无符号整数</p>
+
+<p><a href="#rawNumberObject">返回对象:rawNumberObject</a></p>
+
+<p><a id="raw.uword"></a></p>
+
+<h3>raw.uword()</h3>
+
+<p>转换参数@1指定的数值为 WORD 类型数值（16位无符号整数）包装对象,<br>
+返回对象支持 tonumber tostring 等类型转换函数。  </p>
+
+<p>用于调用非声明式原生 API 函数的参数,<br>
+默认传值,参数@2为 true 则用于传址参数（传数值的指针）。  </p>
+
+<p>用于 COM 函数参数则总是传值, COM 函数也可使用 com.uword 函数,<br>
+注意在原生类型中使用大写的 WORD 类型表示16位无符号整数</p>
+
+<p><a href="#rawNumberObject">返回对象:rawNumberObject</a></p>
+
+<p><a id="raw.word"></a></p>
+
+<h3>raw.word()</h3>
+
+<p>转换参数@1指定的数值为 word 类型数值（16位整数）包装对象,<br>
+返回对象支持 tonumber tostring 等类型转换函数。  </p>
+
+<p>用于调用非声明式原生 API 函数的参数,<br>
+默认传值,参数@2为 true 则用于传址参数（传数值的指针）。  </p>
+
+<p>用于 COM 函数参数则总是传值, COM 函数也可使用 com.word 函数</p>
+
+<p><a href="#rawNumberObject">返回对象:rawNumberObject</a></p>
+
+<p><a id="dllModuleObject"></a></p>
+
+<h2>dllModuleObject 成员列表</h2>
+
+<p><a id="dllModuleObject.?"></a></p>
+
+<h3>dllModuleObject.?</h3>
+
+<p>可不用声明直接在此输入函数名并调用API函数  </p>
+
+<p>一、传入参数规则：<br>
+1、调用约定在加载DLL的参数中指定,支持cdecl不定个数参数<br>
+2、null参数不可省略<br>
+3、32位整数类型，小于32位的整数、以及枚举类型都可以直接在API参数中写数值。<br>
+4、对于任何数值类型的指针（输出参数）一律使用结构体表示，例如double * v 表示为{ double v }<br>
+5、数组使用结构体表示<br>
+6、所有结构体传给API的都是指针地址，都是输出参数并增加返回值  </p>
+
+<p>二、返回值规则：<br>
+1、返回值默认为int类型,可用 &gt;&gt;&gt; 0 强制转为无符号数,<br>
+2、可以使用[API尾标]改变返回值为其他类型  </p>
+
+<p>三、所有可用的【API尾标】:<br>
+dll.ApiNameW() 切换到Unicode版本，字符串UTF8-UTF16双向转换<br>
+dll.ApiNameA() 切换到ANSI版本,字符串不作任何转换<br>
+dll.ApiNameL() 返回值为 math.size64 对象（64位无符号 LONG 类型）<br>
+dll.ApiNameP() 返回值为指针类型<br>
+dll.ApiNameD() 返回值为double浮点数<br>
+dll.ApiNameF() 返回值为float浮点数<br>
+dll.ApiNameB() 返回值为C++中的8位bool类型<br>
+注意尾标必须大写且尾标前没有大写字符,<br>
+API 已含W尾标时可省略，API以&#39;_w&#39;结尾也按 Unicode 版本处理。</p>
+
+<p><a id="dllModuleObject.api("字符串参数","void"></a></p>
+
+<h3>dllModuleObject.api(&quot;字符串参数&quot;,&quot;void()&quot; )</h3>
+
+<p>声明API函数,参数(函数名,函数原型,调用约定=&quot;stdcall,microsoft&quot;)<br>
+可选使用参数3指定调用约定,默认值为&quot;stdcall,microsoft&quot;,<br>
+返回值为原生函数对象（ cdata 类型 ）</p>
+
+<p><a id="dllModuleObject.api("字符串参数","void"></a></p>
+
+<h3>dllModuleObject.api(&quot;字符串参数&quot;,&quot;void()&quot; ,&quot;cdecl&quot;)</h3>
+
+<p>声明API函数,参数(函数名,函数原型,调用约定)<br>
+参数3使用一个字符串指定调用约定,逗号后面可选指定开发工具厂商,<br>
+返回值为原生函数对象（ cdata 类型 ）</p>
+
+<p><a id="dllModuleObject.api"></a></p>
+
+<h3>dllModuleObject.api(函数名,函数原型,调用约定,this指针)</h3>
+
+<p>声明API函数,<br>
+返回值为原生函数对象（ cdata 类型 ）,<br>
+参数@1也可以指定导出函数名，或用数值指定导出函数序号<br>
+调用约定可省略,默认为stdcall<br>
+this指针为可选参数，指定该参数以后在调用时可省略首参数</p>
+
+<p><a id="dllModuleObject.api"></a></p>
+
+<h3>dllModuleObject.api(函数地址,函数原型,调用约定,this指针)</h3>
+
+<p>如果模块是当前进程,<br>
+参数@1可用指针或数值指定原生函数的内存地址,<br>
+返回值为原生函数对象（ cdata 类型 ），  </p>
+
+<p>调用约定可省略,默认为stdcall<br>
+this指针为可选参数，指定该参数以后在调用时可省略首参数</p>
+
+<p><a id="dllModuleObject.api"></a></p>
+
+<h3>dllModuleObject.api(导出符号名)</h3>
+
+<p>仅指定一个参数时，<br>
+直接返回导出符号指针而非返回原生函数对象。<br>
+不会对参数 @1 自动添加或移除 A,W 尾标，<br>
+而是精确匹配导出符号名。  </p>
+
+<p>此操作不会增加DLL的引用计数,在使用导出符号指针时DLL变量应在生存周期内</p>
+
+<p><a id="dllModuleObject.gethandle"></a></p>
+
+<h3>dllModuleObject.gethandle()</h3>
+
+<p>返回模块句柄</p>
+
+<p><a id="rawNumberObject"></a></p>
+
+<h2>rawNumberObject 成员列表</h2>
+
+<p><a id="rawNumberObject.value"></a></p>
+
+<h3>rawNumberObject.value</h3>
+
+<p>对象存储的数值</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/raw/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/raw/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/raw/_.md">Markdown 格式</a></p>
+
+</body> 
+</html>

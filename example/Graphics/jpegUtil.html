@@ -1,0 +1,171 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - JPEG 压缩转换工具 - 复制图像自动加载'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - JPEG 压缩转换工具 - 复制图像自动加载</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: JPEG 压缩转换工具 - 复制图像自动加载</h1><pre><code class="aardio language-aardio">//JPEG 压缩转换
+import win.ui;
+import win.dlg.message;
+import fonts.fontAwesome;
+/*DSG{{*/
+var winform = win.form(text=&quot;JPEG 压缩转换工具 - 复制图像自动加载&quot;;right=1151;bottom=661)
+winform.add(
+btnChangeJpegExtension={cls=&quot;plus&quot;;text=&quot;更改&quot;;left=334;top=604;right=431;bottom=634;align=&quot;left&quot;;color=3947580;db=1;dl=1;font=LOGFONT(h=-13);iconStyle={align=&quot;left&quot;;font=LOGFONT(h=-13;name=&#39;FontAwesome&#39;);padding={left=8}};iconText=&#39;\uF0C7&#39;;notify=1;textPadding={left=25};z=11};
+btnClipboard={cls=&quot;plus&quot;;text=&quot;自剪贴板加载图像&quot;;left=606;top=608;right=765;bottom=638;align=&quot;left&quot;;color=3947580;db=1;dr=1;font=LOGFONT(h=-13);iconStyle={align=&quot;left&quot;;font=LOGFONT(h=-13;name=&#39;FontAwesome&#39;);padding={left=8}};iconText=&#39;\uF0EA&#39;;notify=1;textPadding={left=25};z=8};
+btnOpen={cls=&quot;plus&quot;;text=&quot;加载图像&quot;;left=784;top=608;right=881;bottom=638;align=&quot;left&quot;;color=3947580;db=1;dr=1;font=LOGFONT(h=-13);iconStyle={align=&quot;left&quot;;font=LOGFONT(h=-13;name=&#39;FontAwesome&#39;);padding={left=8}};iconText=&#39;\uF03E&#39;;notify=1;textPadding={left=25};z=6};
+btnSave={cls=&quot;plus&quot;;text=&quot;保存图像&quot;;left=910;top=606;right=1007;bottom=636;align=&quot;left&quot;;color=3947580;db=1;dr=1;font=LOGFONT(h=-13);iconStyle={align=&quot;left&quot;;font=LOGFONT(h=-13;name=&#39;FontAwesome&#39;);padding={left=8}};iconText=&#39;\uF0C7&#39;;notify=1;textPadding={left=25};z=7};
+editJpegExtension={cls=&quot;plus&quot;;left=242;top=602;right=324;bottom=628;align=&quot;right&quot;;border={bottom=1;color=-6908266};db=1;dl=1;editable=1;font=LOGFONT(h=-13);textPadding={top=6;bottom=2};z=10};
+lbSize={cls=&quot;static&quot;;left=1058;top=551;right=1146;bottom=575;db=1;dr=1;transparent=1;z=5};
+plus={cls=&quot;plus&quot;;left=0;top=0;right=568;bottom=515;db=1;dl=1;dt=1;repeat=&quot;scale&quot;;z=1};
+plus2={cls=&quot;plus&quot;;left=600;top=0;right=1168;bottom=515;db=1;dr=1;dt=1;repeat=&quot;scale&quot;;z=2};
+static={cls=&quot;static&quot;;text=&quot;输出质量:&quot;;left=101;top=559;right=221;bottom=583;align=&quot;right&quot;;db=1;dl=1;transparent=1;z=4};
+static2={cls=&quot;static&quot;;text=&quot;系统保存JPEG文件使用的默认后缀:&quot;;left=30;top=611;right=235;bottom=634;align=&quot;right&quot;;db=1;dl=1;transparent=1;z=9};
+trackbar={cls=&quot;trackbar&quot;;left=267;top=550;right=1048;bottom=580;db=1;dl=1;dr=1;max=100;min=0;z=3}
+)
+/*}}*/
+
+var preview = function(quality){
+    if(!winform.plus.backgroundBitmap) return;
+
+    var buf = winform.plus.backgroundBitmap.saveToBuffer(&quot;*.jpg&quot;,quality);
+    winform.plus2.background = buf;
+
+    winform.lbSize.text = math.size64(#buf).format();   
+}
+
+
+winform.trackbar.pos = 80;
+winform.trackbar.oncommand = function(id,event,pos){
+    if( event == 8/*_SB_ENDSCROLL*/ ){
+        preview(winform.trackbar.pos)
+    }
+}
+
+import fsys.dlg;
+winform.btnOpen.oncommand = function(id,event){
+    var path = fsys.dlg.open(&quot;图像文件|*.jpg;*.jpeg;*.jfif;*.bmp;*.gif;*.png;*.tif;*.tiff||&quot;,,,winform)
+    if(path){
+        winform.plus.background = path; 
+        winform.plus.backgroundBitmap = gdip.bitmap(path);
+        preview(winform.trackbar.pos);
+    }
+}
+
+winform.btnSave.oncommand = function(id,event){
+    if(winform.plus.backgroundBitmap){
+        var path = fsys.dlg.save(&quot;*.jpg|*.jpg|*.jpeg|*.jpeg|*.jfif|*.jfif|*.png|*.png||&quot;,,,winform) 
+        if(path){
+            var buf = winform.plus.backgroundBitmap.save(path,winform.trackbar.pos); 
+        }   
+    } 
+    else {
+        winform.msgErr(&quot;请先加载图像&quot;)
+    } 
+}
+
+winform.onDropFiles = function(files){
+    var path = files[1]
+    if(path){
+        winform.plus.backgroundBitmap = gdip.bitmap(path);
+        if(winform.plus.backgroundBitmap){
+            winform.plus.background = path; 
+            preview(winform.trackbar.pos);
+        } 
+    }
+}
+
+import win.clip;
+winform.btnClipboard.oncommand = function(id,event){
+    var hbmp = win.clip.readBitmap()
+    if(hbmp){
+        var bmp = gdip.bitmap(hbmp);
+        if(bmp){
+            winform.plus.backgroundBitmap = bmp;
+            winform.plus.background = bmp;
+            preview(winform.trackbar.pos);
+        }
+
+        ::DeleteObject(hbmp);
+    }
+}
+
+import win.reg;
+var reg = win.reg(&quot;HKEY_CURRENT_USER\SOFTWARE\Classes\MIME\Database\Content Type\image/jpeg&quot;)
+if(reg){
+    winform.editJpegExtension.text = reg.queryValue(&quot;Extension&quot;)
+    reg.close()
+}
+
+if(!#winform.editJpegExtension.text){
+    var reg = win.reg(&quot;HKEY_CLASSES_ROOT\MIME\Database\Content Type\image/jpeg&quot;)
+    if(reg){
+        winform.editJpegExtension.text = reg.queryValue(&quot;Extension&quot;)
+        reg.close()
+    }   
+}
+
+winform.btnChangeJpegExtension.oncommand = function(id,event){
+    var reg = win.reg(&quot;HKEY_CURRENT_USER\SOFTWARE\Classes\MIME\Database\Content Type\image/jpeg&quot;)
+    if(reg){
+        reg.setSzValue(&quot;Extension&quot;,winform.editJpegExtension.text)
+        winform.msgOk(&quot;已修改 JPEG 默认后缀名&quot;)
+    }
+}
+
+winform.btnClipboard.skin({
+    color={
+        active=0xFF00FF00;
+        default=0xFF3C3C3C;
+        disabled=0xFF6D6D6D;
+        hover=0xFFFF0000
+    }
+})
+
+winform.btnSave.skin({
+    color={
+        active=0xFF00FF00;
+        default=0xFF3C3C3C;
+        disabled=0xFF6D6D6D;
+        hover=0xFFFF0000
+    }
+})
+
+winform.btnOpen.skin({
+    color={
+        active=0xFF00FF00;
+        default=0xFF3C3C3C;
+        disabled=0xFF6D6D6D;
+        hover=0xFFFF0000
+    }
+})
+winform.btnChangeJpegExtension.skin({
+    color={
+        active=0xFF00FF00;
+        default=0xFF3C3C3C;
+        disabled=0xFF6D6D6D;
+        hover=0xFFFF0000
+    }
+})
+
+import win.clip.viewer;
+winform.clipViewer = win.clip.viewer(winform);
+winform.clipViewer.onDrawClipboard = function(){
+    winform.btnClipboard.oncommand();
+}
+
+winform.show()
+win.loopMessage();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Graphics/jpegUtil.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Graphics/jpegUtil.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Graphics/jpegUtil.md">Markdown 格式</a>
+</body> 
+</html>

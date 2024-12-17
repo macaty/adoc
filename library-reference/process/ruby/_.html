@@ -1,0 +1,195 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - process.ruby 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - process.ruby 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>process.ruby 库模块帮助文档</h1>
+
+<p><a id="process.ruby"></a></p>
+
+<h2>process.ruby 成员列表</h2>
+
+<p><a id="process.ruby.cmd"></a></p>
+
+<h3>process.ruby.cmd(&quot;命令文件名&quot;,其他命令行参数...)</h3>
+
+<p>运行 Ruby 命令,<br>
+此函数会打开控制台,  </p>
+
+<p>第一个参数指定cmd命令,可选自第二个参数开始指定命令行参数<br>
+多个命令行参数则调用 process.joinArguments 合成,<br>
+不在双引号内、且包含空白或需要转义的参数转义处理后首尾添加双引号</p>
+
+<p><a id="process.ruby.eval"></a></p>
+
+<h3>process.ruby.eval(&quot;字符串参数&quot;)</h3>
+
+<p>解析 Ruby 表达式的值并转换为 aardio 对象</p>
+
+<p><a id="process.ruby.exec"></a></p>
+
+<h3>process.ruby.exec(rubyCode,...)</h3>
+
+<p>以管道方式打开 Ruby 进程执行 Ruby 代码,<br>
+支持不定个数启动参数,也可以在一个字符串参数中写多个参数<br>
+参数@rubyCode可以是 *.rb 代码文件路径、Ruby代码</p>
+
+<p><a id="process.ruby.gem"></a></p>
+
+<h3>process.ruby.gem(命令行参数...)</h3>
+
+<p>创建进程运行 gem 命令。<br>
+用这个命令安装模块，查找模块可能要好久才有反应。<br>
+默认工作目录为 process.ruby.workDir,  </p>
+
+<p>第一个参数开始指定命令行参数，<br>
+多个命令行参数则调用 process.joinArguments 合成，<br>
+不在双引号内、且包含空白或需要转义的参数转义处理后首尾添加双引号</p>
+
+<p><a id="process.ruby.gemSource"></a></p>
+
+<h3>process.ruby.gemSource(url)</h3>
+
+<pre><code class="aardio language-aardio">process.ruby.gemSource(&quot;https://mirrors.tuna.tsinghua.edu.cn/rubygems/&quot;,true)//设置 GEM 源，参数 @2 为 true 则保存设置，否则仅对当前进程生效
+</code></pre>
+
+<p><a id="process.ruby.getScriptPath"></a></p>
+
+<h3>process.ruby.getScriptPath()</h3>
+
+<p>安装 Ruby 环境并返回 Ruby.exe 路径,<br>
+可选在参数中指定 7z 格式下载网址,<br>
+如果不指定参数，则首先查找系统已安装的 Ruby,<br>
+如果未找到则下载 Ruby 3.0<br>
+如果不调用此函数,在执行其他函数时会自动调用</p>
+
+<p><a id="process.ruby.loadcode"></a></p>
+
+<h3>process.ruby.loadcode(code,...)</h3>
+
+<p>使用 aardio 模板语法加载 R 代码。<br>
+此函数返回 process.popen 对象。<br>
+参数 code 可以是 aardio 代码或 aardio 代码文件路径。  </p>
+
+<p>自参数 @2 开始可选指定命令行参数。<br>
+命令行参数可以是 string.args.join 支持的任何对象（字符串、表、数组）。<br>
+多个命令行参数则调用 process.joinArguments 合成,<br>
+不在双引号内、且包含空白或需要转义的参数转义处理后首尾添加双引号</p>
+
+<p><a id="process.ruby.options"></a></p>
+
+<h3>process.ruby.options</h3>
+
+<p>Ruby 启动默认选项。<br>
+可指定 string.args.join 支持的任何命令行参数（表、数组或字符串）</p>
+
+<p><a id="process.ruby.path"></a></p>
+
+<h3>process.ruby.path</h3>
+
+<p>可选使用此属性自定义 Ruby.exe 路径</p>
+
+<p><a id="process.ruby.pcmd"></a></p>
+
+<h3>process.ruby.pcmd(&quot;命令文件名&quot;,其他命令行参数...)</h3>
+
+<p>创建进程管道运行Ruby命令,返回 process.popen 对象,<br>
+默认工作目录为 process.ruby.workDir  </p>
+
+<p>第一个参数指定cmd命令,可选自第二个参数开始指定命令行参数<br>
+多个命令行参数则调用 process.joinArguments 合成,<br>
+不在双引号内、且包含空白或需要转义的参数转义处理后首尾添加双引号</p>
+
+<p><a id="process.ruby.pcmd"></a></p>
+
+<h3>process.ruby.pcmd()</h3>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html#processPopenObject'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html#processPopenObject">返回对象:processPopenObject</a></p>
+
+<p><a id="process.ruby.rake"></a></p>
+
+<h3>process.ruby.rake(命令行参数...)</h3>
+
+<p>工作目录下应当先创建 rakefile 文件,<br>
+创建进程管道运行 rake 命令,返回标准输出,错误输出,<br>
+默认工作目录为 process.ruby.workDir,  </p>
+
+<p>自参数 @1 开始指定命令行参数，<br>
+多个命令行参数则调用 process.joinArguments 合成,<br>
+不在双引号内、且包含空白或需要转义的参数转义处理后首尾添加双引号</p>
+
+<p><a id="process.ruby.start"></a></p>
+
+<h3>process.ruby.start()</h3>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html#processPopenObject'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html#processPopenObject">返回对象:processPopenObject</a></p>
+
+<p><a id="process.ruby.start"></a></p>
+
+<h3>process.ruby.start(rubyCode,...)</h3>
+
+<p>以管道方式打开 Ruby 进程。<br>
+参数 @1 可指定 Ruby 代码或代码文件，也可以传入包含代码或代码文件的数组。<br>
+参数 @2 开始可以指定不定个数启动参数,也可以在一个字符串参数中写多个参数。<br>
+参数@rubyCode可以是 *.rb 代码文件路径、Ruby代码。<br>
+函数执行成功返回 process.popen 对象。<br>
+失败返回 null,错误信息。</p>
+
+<p><a id="process.ruby.startRpc"></a></p>
+
+<h3>process.ruby.startRpc</h3>
+
+<p>执行 Ruby 代码，并启动 启动 JSON-RPC 服务端，<br>
+返回 process.rpc.jsonClient 对象</p>
+
+<p><a id="process.ruby.startRpc"></a></p>
+
+<h3>process.ruby.startRpc()</h3>
+
+<p><a href="#processRpcJsonClientObject">返回对象:processRpcJsonClientObject</a></p>
+
+<p><a id="process.ruby.startRpc"></a></p>
+
+<h3>process.ruby.startRpc(code,...)</h3>
+
+<p>=参数 @1 指定 Ruby 代码，并启动 启动 JSON-RPC 服务端。</p>
+
+<p><a id="process.ruby.startX"></a></p>
+
+<h3>process.ruby.startX()</h3>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html#processPopenObject'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html#processPopenObject">返回对象:processPopenObject</a></p>
+
+<p><a id="process.ruby.startX"></a></p>
+
+<h3>process.ruby.startX(rubyCode,...)</h3>
+
+<p>以管道方式打开 Ruby 进程。<br>
+参数 @1 可指定 Ruby 代码或代码文件。<br>
+参数 @2 开始可以指定不定个数启动参数,也可以在一个字符串参数中写多个参数。<br>
+参数@rubyCode可以是 *.rb 代码文件路径、Ruby代码。<br>
+函数执行成功返回 process.popen 对象，但已经关闭进程输入管道。<br>
+改用 process.ruby.start 保留输入管道。<br>
+失败返回 null,错误信息。</p>
+
+<p><a id="process.ruby.workDir"></a></p>
+
+<h3>process.ruby.workDir</h3>
+
+<p>Ruby 工作目录<br>
+默认值为..io.fullpath(&quot;/&quot;)</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/process/ruby/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/process/ruby/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/process/ruby/_.md">Markdown 格式</a></p>
+
+</body> 
+</html>

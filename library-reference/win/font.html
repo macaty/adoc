@@ -1,0 +1,116 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - win.font 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - win.font 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>win.font 库模块帮助文档</h1>
+
+<p><a id="win.font"></a></p>
+
+<h2>win.font 成员列表</h2>
+
+<p><a id="win.font.add"></a></p>
+
+<h3>win.font.add</h3>
+
+<p>添加字体,<br>
+此函数加载的字体仅适用于GDI以及传统控件,<br>
+有个别控件可能不支持内存字体<br>
+建议改用 fonts.addFamily 函数可以支持GDI,GDI+,plus 控件等</p>
+
+<p><a id="win.font.add"></a></p>
+
+<h3>win.font.add(字体)</h3>
+
+<p>添加字体,<br>
+参数@!可以是字体文件路径,资源文件路径,或内存数据<br>
+参数2省略或为真删除成功后调用sendChange函数通知所有窗体<br>
+返回值1为字体路径或字体句柄,返回值2为添加字体数目,失败返回空值<br>
+注册的字体仅在当前进程可用，并可覆盖系统同名字体</p>
+
+<p><a id="win.font.enum"></a></p>
+
+<h3>win.font.enum(proc,logfond,hdc)</h3>
+
+<pre><code class="aardio language-aardio">win.font.enum(   
+    function(logfont,fullname,ftype,style,script,lpntme){  
+        if( ftype == 0x4/*_TRUETYPE_FONTTYPE*/ &amp; fullname[1] != &#39;@&#39;#/*翻转90度字体*/ ){  
+
+        }  
+    },{ charset = 0x86/*_GB2312_CHARSET*/; name = &quot;&quot; }  
+)
+</code></pre>
+
+<p><a id="win.font.getResourceInfo"></a></p>
+
+<h3>win.font.getResourceInfo(&quot;字体路径&quot;)</h3>
+
+<p>返回字体文件信息<br>
+注意此函数不支持内嵌资源文件</p>
+
+<p><a id="win.font.getResourceInfo"></a></p>
+
+<h3>win.font.getResourceInfo()</h3>
+
+<p><a href="#winFontResInfoObject">返回对象:winFontResInfoObject</a></p>
+
+<p><a id="win.font.remove"></a></p>
+
+<h3>win.font.remove(字体)</h3>
+
+<p>移除字体,参数必须是add函数的第一个非空返回值<br>
+参数2省略或为真删除成功后调用sendChange函数通知所有窗体</p>
+
+<p><a id="win.font.sendChange"></a></p>
+
+<h3>win.font.sendChange()</h3>
+
+<p>字体增删后可选使用此函数通知所有顶层窗口</p>
+
+<p><a id="winFontResInfoObject"></a></p>
+
+<h2>winFontResInfoObject 成员列表</h2>
+
+<p><a id="winFontResInfoObject.description"></a></p>
+
+<h3>winFontResInfoObject.description</h3>
+
+<p>字体描述</p>
+
+<p><a id="winFontResInfoObject.logfonts"></a></p>
+
+<h3>winFontResInfoObject.logfonts</h3>
+
+<p><a href="#logfontObject">返回对象:logfontObject</a></p>
+
+<h3>自动完成常量</h3>
+
+<p>_ANSI_CHARSET=0x0<br>
+_BALTIC_CHARSET=0xBA<br>
+_CHINESEBIG5_CHARSET=0x88<br>
+_DEFAULT_CHARSET=0x1<br>
+_EASTEUROPE_CHARSET=0xEE<br>
+_GB2312_CHARSET=0x86<br>
+_GREEK_CHARSET=0xA1<br>
+_HANGUL_CHARSET=0x81<br>
+_MAC_CHARSET=0x4D<br>
+_OEM_CHARSET=0xFF<br>
+_RUSSIAN_CHARSET=0xCC<br>
+_SHIFTJIS_CHARSET=0x80<br>
+_SYMBOL_CHARSET=0x2<br>
+_TURKISH_CHARSET=0xA2  </p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/font.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/font.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/font.md">Markdown 格式</a></p>
+
+</body> 
+</html>

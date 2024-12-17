@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 桶排序'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 桶排序</title> 
+<link rel="stylesheet" href="../../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 桶排序</h1><pre><code class="aardio language-aardio">import console;
+
+/*
+桶排序假设输入元素均匀而独立分布在区间[0,1) 即  0 &lt;= x and x &lt; 1;
+将区间划分成n个相同大小的子区间(桶),然后将n个输入按大小分布到各个桶中去,对每个桶内部进行排序。
+最后将所有桶的排序结果合并起来.
+*/
+
+//插入排序算法
+var insertSort = function( array ){
+
+    for( right=2;#array ) {
+        var top = array[right];
+
+        //Insert array[right] into the sorted seqquence array[1....right-1]
+        var left = right -1;
+        while( left and array[left]&gt;top){
+            array[left+1] = array[left];
+            left--;
+        }
+        array[left+1] = top;
+
+    }
+    return array;  
+}
+
+//桶排序算法
+var bucketSort = function( array ){
+    var n = #array;
+
+    var bucket ={}
+    for(i=0;n;1){
+        bucket[i] = {} //创建一个桶
+    }
+
+    var bucket_index
+    for(i=1;n;1){
+        bucket_index =  math.floor(n * array[i]); 
+        table.push( bucket [ bucket_index ],array[i] );//放到桶里去
+    }
+
+    for(i=1;n;1){
+        insertSort( bucket[i] ); //对每个桶进行插入排序
+    }
+
+    return table.concat( table.unpack(bucket) );
+
+}
+
+
+console.log(&quot;----------------&quot;);
+console.log(&quot;桶排序&quot;);
+console.log(&quot;----------------&quot;);
+
+var array={};
+
+//桶排序假设输入是由一个随机过程产生的小数
+for(i=1;20;1){
+    table.push( array,math.random() );
+}
+
+//排序
+array = bucketSort( array );
+
+//输出结果
+for(i=1;#array;1){
+    console.log( array[i] );
+}
+
+execute(&quot;pause&quot;);
+
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/aardio/Array/Non-CompareSort/BucketSort.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/aardio/Array/Non-CompareSort/BucketSort.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/aardio/Array/Non-CompareSort/BucketSort.md">Markdown 格式</a>
+</body> 
+</html>

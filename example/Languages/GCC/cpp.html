@@ -1,0 +1,120 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - aardio 调用 GCC 之 C++'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - aardio 调用 GCC 之 C++</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 调用 GCC 之 C++</h1><pre><code class="aardio language-aardio">//aardio 调用 GCC 之 C++
+import process.gcc;
+
+//创建 GCC 环境，参数指定 C/C++ 源码目录
+var gcc = process.gcc(&quot;/&quot;);
+//C++语法速览 https://quickref.me/zh-CN/docs/cpp.html
+
+//自动存为 main.cpp
+gcc[&quot;main.cpp&quot;] = /*************
+#include &lt;windows.h&gt; 
+
+struct TestInfo{
+    int x;
+    int y;
+    BYTE name[256];
+};
+
+class CTestObject
+{
+public: 
+    //注意函数声明前加上 virtual 以支持 aardio 中的 raw.interface
+    virtual void getName(char *buffer,int len); 
+    virtual void getInfo(TestInfo *pInfo);
+};
+
+void CTestObject::getName(char *buffer,int len){
+    strcpy(buffer,&quot;测试&quot;);
+}
+
+void CTestObject::getInfo(TestInfo *pInfo){
+    pInfo-&gt;x = 1;
+    pInfo-&gt;y = 2;
+    strcpy((char *)pInfo-&gt;name,&quot;测试&quot;);
+}
+
+extern &quot;C&quot; __declspec(dllexport) CTestObject* __cdecl CreateTestObject() { 
+    return new CTestObject();
+}
+
+extern &quot;C&quot; __declspec(dllexport) void __cdecl DeleteTestObject( CTestObject* pTest) {
+    delete pTest;
+}
+
+BOOL WINAPI DllMain(HINSTANCE inst,DWORD reason,LPVOID reserved ) 
+{
+    switch( reason ) 
+    { 
+        case DLL_PROCESS_ATTACH:
+            break;
+
+        case DLL_PROCESS_DETACH:
+            break;
+    }
+    return TRUE;
+}
+*************/
+
+//生成 DLL。参数：-shared 生成 DLL，-s 移除调试符号减小体积， -municode 启用 Unicode
+gcc.exec(&quot;main.cpp -o cpp.dll -shared -s -municode -m32 -O2 -static -lgcc -lstdc++&quot;);
+
+//也可以调用 gcc.exe 同目录的其他 exe，g++,make 可以省略 .exe 后缀。
+//gcc.exec(&quot;g++ main.cpp -o cpp.dll -shared -s -municode -m32 -O2 -static -lgcc -lstdc++&quot;);
+
+var dll = raw.loadDll(&quot;/cpp.dll&quot;,,&quot;cdecl&quot;);
+
+import raw.interface;
+class testObject{
+    ctor(){
+        //创建 C++ 对象,并获取指针，注意这里使用了 P 尾标获取指针。
+        var pTest = dll.CreateTestObjectP();
+
+        //C++ 对象指针转换为 aardio 对象。
+        this = ..raw.interface( pTest,&quot;
+            void getName(string &amp;buffer,int len);
+            void getInfo(struct &amp;pInfo); 
+            &quot;,&quot;thiscall&quot; //注意调用约定为thiscall
+        )
+
+        //添加析构函数    
+        ..table.gc(this,&quot;delete&quot;)   
+    };
+    delete = function(){
+        if(!owner.deleted){
+            dll.DeleteTestObject( owner );
+            owner.deleted = true;
+        } 
+    };
+}
+
+//创建对象
+var obj = testObject();
+
+//调用 C++ 函数
+var name = obj.getName(25,25);
+console.log(name);
+
+//调用 C++ 函数
+var info = obj.getInfo({ int x;int y;BYTE name[256]})
+console.log( info.name  );
+
+console.pause();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/GCC/cpp.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/GCC/cpp.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Languages/GCC/cpp.md">Markdown 格式</a>
+</body> 
+</html>

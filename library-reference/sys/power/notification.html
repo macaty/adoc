@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - sys.power.notification 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - sys.power.notification 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>sys.power.notification 库模块帮助文档</h1>
+
+<p><a id="sys.power"></a></p>
+
+<h2>sys.power 成员列表</h2>
+
+<p><a id="sys.power.notification"></a></p>
+
+<h3>sys.power.notification</h3>
+
+<p>用于注册接收电源设置或状态变更事件的通知窗体</p>
+
+<p>注册接收电源设置或状态变更事件的通知窗口，<br>
+相关文档： <a href="javascript:if(confirm('https://docs.microsoft.com/en-us/windows/win32/power/power-setting-guids  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='https://docs.microsoft.com/en-us/windows/win32/power/power-setting-guids'" tppabs="https://docs.microsoft.com/en-us/windows/win32/power/power-setting-guids">https://docs.microsoft.com/en-us/windows/win32/power/power-setting-guids</a></p>
+
+<p><a id="sys.power.notification"></a></p>
+
+<h3>sys.power.notification()</h3>
+
+<p><a href="#sysPowerNotificationObject">返回对象:sysPowerNotificationObject</a></p>
+
+<p><a id="sys.power.notification"></a></p>
+
+<h3>sys.power.notification(winform,guid,dataStruct)</h3>
+
+<p>参数 @winform 必须指定父窗口,<br>
+参数 @guid 可用字符串或 win.guid 对象指定事件 GUID，<br>
+可选用参数 @dataStruct 指定解析回调参数值的结构体。<br>
+如果结构体包含 value 字段，则回调参数值为 value 字段值。<br>
+不指定 @dataStruct 则默认为 {INT value}</p>
+
+<p><a id="sysPowerNotificationObject"></a></p>
+
+<h2>sysPowerNotificationObject 成员列表</h2>
+
+<p><a id="sysPowerNotificationObject.onPowerResuming"></a></p>
+
+<h3>sysPowerNotificationObject.onPowerResuming</h3>
+
+<pre><code class="aardio language-aardio">onPowerResuming = function(automatic){
+    /*自低耗电恢复触发此事件，  
+系统自动恢复则 automatic 参数为 true，  
+用户操作恢复则在数为 false*/
+}
+</code></pre>
+
+<p><a id="sysPowerNotificationObject.onPowerSettingChange"></a></p>
+
+<h3>sysPowerNotificationObject.onPowerSettingChange</h3>
+
+<pre><code class="aardio language-aardio">onPowerSettingChange = function(guid,data){
+    /*电源设置或设置状态变更，  
+参数为 guid 为设置 GUID，  
+data 为参数值*/  
+}
+</code></pre>
+
+<p><a id="sysPowerNotificationObject.onPowerStatusChange"></a></p>
+
+<h3>sysPowerNotificationObject.onPowerStatusChange</h3>
+
+<pre><code class="aardio language-aardio">onPowerStatusChange = function(systemPowerStatus){
+    /*电源状态变更，  
+参数为 SYSTEM_POWER_STATUS 结构体，  
+请参考该结构体相关资料*/  
+}
+</code></pre>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/sys/power/notification.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/sys/power/notification.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/sys/power/notification.md">Markdown 格式</a></p>
+
+</body> 
+</html>

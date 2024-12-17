@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - process.python - 切换 Python 版本'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - process.python - 切换 Python 版本</title> 
+<link rel="stylesheet" href="../../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: process.python - 切换 Python 版本</h1><pre><code class="aardio language-aardio">//切换版本
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;process.python - 切换 Python 版本&quot;;right=759;bottom=469)
+winform.add(
+edit={cls=&quot;edit&quot;;left=16;top=22;right=722;bottom=420;edge=1;multiline=1;z=1}
+)
+/*}}*/
+
+import process.python; 
+
+//可选自定义 python.exe 路径。
+//默认为 &quot;/py/python.exe&quot;，推荐放在这个目录。 
+//如果设为 &quot;python.exe&quot; 则调用系统安装的 python
+process.python.path = &quot;/py/python.exe&quot;;
+
+//如果 python.exe 不存在，aardio 会自动下载 python
+//可在下面指定需要下载的默认版本号。
+process.python.version = &quot;3.8.10&quot;; 
+
+//执行 Python 代码，
+var python = process.python.exec(`
+import sys  
+print( sys.version )
+`);
+
+//此函数会等待进程结束，但不会阻塞当前线程窗口消息。
+//读取进程输出（包含错误输出），错误输出（第二个返回值）
+var out,err = python.readAll();
+
+//在文本框中显示
+winform.edit.text = out;
+
+winform.show();
+win.loopMessage();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/Python/Python AnyVersion/version.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/Python/Python AnyVersion/version.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Languages/Python/Python AnyVersion/version.md">Markdown 格式</a>
+</body> 
+</html>

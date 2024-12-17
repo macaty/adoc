@@ -1,0 +1,62 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 数组'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 数组</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 数组</h1><pre><code class="aardio language-aardio">//数组
+import console.int;
+
+//创建数组，可以用分号（或逗号）分隔数组成员。
+var array = {&quot;a&quot;;&quot;b&quot;;&quot;c&quot;;&quot;d&quot;;&quot;e&quot;;&quot;f&quot;};
+
+//也可以用中括号包含数组索引（也称为“下标”或“键”），数组索引可以省略不写。
+var array = {
+    [1]=&quot;a&quot;;
+    [2]=&quot;b&quot;;
+    [3]=&quot;c&quot;;
+    [4]=&quot;d&quot;;
+    [5]=&quot;e&quot;;
+    [6]=&quot;f&quot;;
+};
+
+//截取并返回新数组，包含原数组索引 2 到数组索引 5 的所有元素。
+var array2 = table.slice(array,2,5); 
+
+//可以用负数表示从尾部倒计数位置，-1表示最后一个元素
+var array2 = table.slice(array,2,-3);
+
+//展开数组，返回多个值
+console.log( table.unpack(array2) )
+
+//返回数组尾部的 3 个元素，返回多个值（ 不是返回数组 ）
+console.log( table.right(array2,3) )
+
+//在数组中查找值
+var idx = table.find(array2,17);
+if( idx ){
+    console.log(&quot;数组 array2 包含值：17 在索引：&quot;+idx)
+}
+
+//在数组中查找所有符合条件的值，参数 @2 指定判断函数。
+var keys = table.findAll(array,function(v){
+    return string.indexAny(v,&quot;bcd&quot;);
+});
+
+console.dumpTable(keys);
+/*
+更多数组函数请查看《库函数文档》
+*/
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/aardio/Array/array.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/aardio/Array/array.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/aardio/Array/array.md">Markdown 格式</a>
+</body> 
+</html>

@@ -1,0 +1,460 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - win.ui.ctrl.syslink 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - win.ui.ctrl.syslink 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>win.ui.ctrl.syslink 库模块帮助文档</h1>
+
+<p><a id="win.ui.ctrl"></a></p>
+
+<h2>win.ui.ctrl 成员列表</h2>
+
+<p><a id="win.ui.ctrl.syslink"></a></p>
+
+<h3>win.ui.ctrl.syslink</h3>
+
+<p>超链接控件类</p>
+
+<p><a id="win.ui.ctrl.syslink"></a></p>
+
+<h3>win.ui.ctrl.syslink()</h3>
+
+<p>超链接控件。  </p>
+
+<p><a href="#syslinkObject">返回对象:syslinkObject</a></p>
+
+<p><a id="syslinkObject"></a></p>
+
+<h2>syslinkObject 成员列表</h2>
+
+<p><a id="syslinkObject._parentForm"></a></p>
+
+<h3>syslinkObject._parentForm</h3>
+
+<p>创建该控件的父窗口（win.form对象）,<br>
+设计时窗体容器是所有拖放在窗体上的控件的 _parentForm,  </p>
+
+<p>即使窗口移除子窗口样式、更改父子关系，或以 orphanWindow显示,<br>
+控件的 _parentForm 始终都不会改变  </p>
+
+<p><a href="../_.html#winform" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/_.html#winform">返回对象:winform</a></p>
+
+<p><a id="syslinkObject.adjust"></a></p>
+
+<h3>syslinkObject.adjust</h3>
+
+<pre><code class="aardio language-aardio">syslinkObject.adjust = function( cx,cy,wParam ) {      
+
+};
+</code></pre>
+
+<p><a id="syslinkObject.adjust"></a></p>
+
+<h3>syslinkObject.adjust()</h3>
+
+<p>调整窗口 - 自定义事件函数</p>
+
+<p><a id="syslinkObject.bottom"></a></p>
+
+<h3>syslinkObject.bottom</h3>
+
+<p>底部坐标</p>
+
+<p><a id="syslinkObject.capture"></a></p>
+
+<h3>syslinkObject.capture</h3>
+
+<p>是否捕获全局鼠标消息</p>
+
+<p><a id="syslinkObject.changeInterval"></a></p>
+
+<h3>syslinkObject.changeInterval(定时器ID,间隔时间,回调函数)</h3>
+
+<p>重新设置间隔时间或回调函数</p>
+
+<p><a id="syslinkObject.className"></a></p>
+
+<h3>syslinkObject.className</h3>
+
+<p>运行时类名</p>
+
+<p><a id="syslinkObject.clearInterval"></a></p>
+
+<h3>syslinkObject.clearInterval(定时器ID)</h3>
+
+<p>删除定时器</p>
+
+<p><a id="syslinkObject.close"></a></p>
+
+<h3>syslinkObject.close()</h3>
+
+<p>关闭控件窗口</p>
+
+<p><a id="syslinkObject.cls"></a></p>
+
+<h3>syslinkObject.cls</h3>
+
+<p>设计时类名</p>
+
+<p><a id="syslinkObject.disabled"></a></p>
+
+<h3>syslinkObject.disabled</h3>
+
+<p>是否禁用</p>
+
+<p><a id="syslinkObject.getClientRect"></a></p>
+
+<h3>syslinkObject.getClientRect()</h3>
+
+<p>控件客户区块位置(::RECT结构体)  </p>
+
+<p><a href="../../../global/_.html#rectObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/global/_.html#rectObject">返回对象:rectObject</a></p>
+
+<p><a id="syslinkObject.getFont"></a></p>
+
+<h3>syslinkObject.getFont()</h3>
+
+<p>控件字体(::LOGFONT结构体)  </p>
+
+<p><a href="#logfontObject">返回对象:logfontObject</a></p>
+
+<p><a id="syslinkObject.getForm"></a></p>
+
+<h3>syslinkObject.getForm()</h3>
+
+<p>如果是窗体返回自身<br>
+如果是控件则返回_parentForm  </p>
+
+<p><a href="../_.html#winform" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/_.html#winform">返回对象:winform</a></p>
+
+<p><a id="syslinkObject.getItem"></a></p>
+
+<h3>syslinkObject.getItem()</h3>
+
+<p><a href="#syslinklitemObject">返回对象:syslinklitemObject</a></p>
+
+<p><a id="syslinkObject.getItem"></a></p>
+
+<h3>syslinkObject.getItem(索引)</h3>
+
+<p>返回超链接设置,该值为 LITEM 结构体。<br>
+参数指定获取第几个超链接的设置，默认值为 1。</p>
+
+<p><a id="syslinkObject.getParent"></a></p>
+
+<h3>syslinkObject.getParent()</h3>
+
+<p>返回父窗口  </p>
+
+<p><a href="#syslinkObject">返回对象:syslinkObject</a></p>
+
+<p><a id="syslinkObject.getPos"></a></p>
+
+<h3>syslinkObject.getPos()</h3>
+
+<p>返回相对坐标,宽,高<br>
+x,y,cx,cy=win.getPos(hwnd)</p>
+
+<p><a id="syslinkObject.getRect"></a></p>
+
+<h3>syslinkObject.getRect()</h3>
+
+<p>控件区块位置(::RECT结构体)</p>
+
+<p><a id="syslinkObject.getRect"></a></p>
+
+<h3>syslinkObject.getRect(true)</h3>
+
+<p>控件屏幕区块位置(::RECT结构体)</p>
+
+<p><a id="syslinkObject.height"></a></p>
+
+<h3>syslinkObject.height</h3>
+
+<p>高度</p>
+
+<p><a id="syslinkObject.hide"></a></p>
+
+<h3>syslinkObject.hide</h3>
+
+<p>控件是否隐藏</p>
+
+<p><a id="syslinkObject.hwnd"></a></p>
+
+<h3>syslinkObject.hwnd</h3>
+
+<p>控件句柄</p>
+
+<p><a id="syslinkObject.id"></a></p>
+
+<h3>syslinkObject.id</h3>
+
+<p>控件 ID，注意这个不是指超链接的 ID。</p>
+
+<p><a id="syslinkObject.invalidate(/*可选使用::RECT"></a></p>
+
+<h3>syslinkObject.invalidate(/*可选使用::RECT()对象指定客户区*/)</h3>
+
+<p>使窗口绘图区无效</p>
+
+<p><a id="syslinkObject.invalidate(/*可选使用::RECT"></a></p>
+
+<h3>syslinkObject.invalidate(/*可选使用::RECT()对象指定客户区*/,0)</h3>
+
+<p>使窗口绘图区无效<br>
+不刷新背景</p>
+
+<p><a id="syslinkObject.left"></a></p>
+
+<h3>syslinkObject.left</h3>
+
+<p>左侧坐标</p>
+
+<p><a id="syslinkObject.link"></a></p>
+
+<h3>syslinkObject.link</h3>
+
+<p>创建、设置或者获取控件的第一个超链接地址。<br>
+这个参数应当指定一个网址，可使用任意协议。</p>
+
+<p><a id="syslinkObject.modifyStyle"></a></p>
+
+<h3>syslinkObject.modifyStyle(remove,add,swpFlags)</h3>
+
+<p>修改窗口样式,所有参数都是可选参数,<br>
+@remove 用数值指定要移除的样式,可使用 <em>WS</em> 前缀的常量<br>
+@add 用数值指定要添加的样式,可使用 <em>WS</em> 前缀的常量<br>
+@swpFlags 可选用数值指定调整窗口选项,可使用 <em>SWP</em> 前缀的常量<br>
+如果指定了 @swpFlag ,则使用该参数调用::SetWindowPos<br>
+细节请参考 win.modifyStyle 函数源码</p>
+
+<p><a id="syslinkObject.modifyStyleEx"></a></p>
+
+<h3>syslinkObject.modifyStyleEx(remove,add,swpFlags)</h3>
+
+<p>修改窗口扩展样式,所有参数都是可选参数,<br>
+@remove 用数值指定要移除的样式,可使用 <em>WS_EX</em> 前缀的常量<br>
+@add 用数值指定要添加的样式,可使用 <em>WS_EX</em> 前缀的常量<br>
+@swpFlags 可选用数值指定调整窗口选项,可使用 <em>SWP</em> 前缀的常量<br>
+如果指定了 @swpFlag ,则使用该参数调用::SetWindowPos<br>
+细节请参考 win.modifyStyle 函数源码</p>
+
+<p><a id="syslinkObject.onHyperlinkClick"></a></p>
+
+<h3>syslinkObject.onHyperlinkClick</h3>
+
+<pre><code class="aardio language-aardio">syslinkObject.onHyperlinkClick = function(nmSysLink,url,id,index){
+    raw.execute(url);/*点击超链接回调此事件，可使用此代码打开超链接。  
+如果不指定回调函数，控件会默认调用 raw.execute 打开链接。  
+nmSysLink 为通知消息使用的 LITEM 结构体，一般忽略即可。  
+url 为触发的超链接地址，也就是 href 属性。  
+id 为触发的链接 ID，也就是 id 属性。  
+index 为索引，一个控件可以有多个超链接，第一个超链接索引为 1。*/
+}
+</code></pre>
+
+<p><a id="syslinkObject.redraw"></a></p>
+
+<h3>syslinkObject.redraw()</h3>
+
+<p>刷新</p>
+
+<p><a id="syslinkObject.right"></a></p>
+
+<h3>syslinkObject.right</h3>
+
+<p>右侧坐标</p>
+
+<p><a id="syslinkObject.setFocus"></a></p>
+
+<h3>syslinkObject.setFocus()</h3>
+
+<p>设置焦点</p>
+
+<p><a id="syslinkObject.setFont"></a></p>
+
+<h3>syslinkObject.setFont(指定字体)</h3>
+
+<p>指定LOGFONT字体对象,或逻辑字体句柄</p>
+
+<p><a id="syslinkObject.setFont"></a></p>
+
+<h3>syslinkObject.setFont(混入字体属性)</h3>
+
+<pre><code class="aardio language-aardio">syslinkObject.setFont(point=10;name=&quot;宋体&quot;);
+</code></pre>
+
+<p><a id="syslinkObject.setInterval"></a></p>
+
+<h3>syslinkObject.setInterval(回调函数,延时毫秒数,...)</h3>
+
+<pre><code class="aardio language-aardio">syslinkObject.setInterval(回调函数,延时毫秒数,...setInterval(   
+    function(){  
+        /*参数@1指定执行函数,参数@2指定执行间隔，  
+可选指定一个或多个回调参数，不指定回调参数则默认为:  
+ hwnd,message,timerId,tick,  
+
+如果在定时器中执行了win.delay等继续消息循环的代码，  
+在定时器退出前不会再触发同一定时器（重入）。  
+
+定时器回调函数返回数值可修改时间间隔,  
+返回false取消该定时器*/  
+    },1000   
+)
+</code></pre>
+
+<p><a id="syslinkObject.setItem"></a></p>
+
+<h3>syslinkObject.setItem(item)</h3>
+
+<p>修改超链接设置,参数为 getItem 函数返回的 LITEM 结构体</p>
+
+<p><a id="syslinkObject.setParent"></a></p>
+
+<h3>syslinkObject.setParent(控件对象)</h3>
+
+<p>改变父窗口</p>
+
+<p><a id="syslinkObject.setPos"></a></p>
+
+<h3>syslinkObject.setPos(x坐标,y坐标,宽,高,插入位置,参数)</h3>
+
+<p>调整窗口位置或排序,所有参数可选<br>
+同时指定x,y坐标则移动位置<br>
+同时指定宽高则改变大小<br>
+指定插入位置(句柄或_HWND前缀常量)则调整Z序</p>
+
+<p><a id="syslinkObject.setRect"></a></p>
+
+<h3>syslinkObject.setRect(rc)</h3>
+
+<p>设置控件区块位置(::RECT结构体)</p>
+
+<p><a id="syslinkObject.setRect"></a></p>
+
+<h3>syslinkObject.setRect(rc,true)</h3>
+
+<p>设置控件屏幕区块位置(::RECT结构体)</p>
+
+<p><a id="syslinkObject.setRedraw"></a></p>
+
+<h3>syslinkObject.setRedraw(false)</h3>
+
+<p>禁止重绘</p>
+
+<p><a id="syslinkObject.setRedraw"></a></p>
+
+<h3>syslinkObject.setRedraw(true)</h3>
+
+<p>恢复重绘</p>
+
+<p><a id="syslinkObject.show"></a></p>
+
+<h3>syslinkObject.show(true)</h3>
+
+<p>显示控件</p>
+
+<p><a id="syslinkObject.text"></a></p>
+
+<h3>syslinkObject.text</h3>
+
+<p>控件文本。<br>
+此控件的文本属性支持 HTML 的超链接语法，也就是 a 标签。<br>
+可选使用 href 属性设置超链接，可选使用 id 属性指定链接 ID。<br>
+一个控件可以指定多个普通文本或者超链接，使用超链接索引区分。<br>
+不支持其他 HTML 语法，例如换行应当直接换行而不是使用 <code>&lt;br&gt;</code>换行。  </p>
+
+<p>可使用 link 属性获取或设置第一个超链接地址。</p>
+
+<p><a id="syslinkObject.theme"></a></p>
+
+<h3>syslinkObject.theme</h3>
+
+<p>外观主题,例如<br>
+winform.button.theme = &quot;Explorer&quot;<br>
+winform.button.theme = false</p>
+
+<p><a id="syslinkObject.top"></a></p>
+
+<h3>syslinkObject.top</h3>
+
+<p>顶部坐标</p>
+
+<p><a id="syslinkObject.translateAccelerator"></a></p>
+
+<h3>syslinkObject.translateAccelerator</h3>
+
+<pre><code class="aardio language-aardio">syslinkObject.translateAccelerator = function(msg){   
+    /*返回是否快捷键*/  
+}
+</code></pre>
+
+<p><a id="syslinkObject.update"></a></p>
+
+<h3>syslinkObject.update()</h3>
+
+<p>重绘invalidate函数指定的区块</p>
+
+<p><a id="syslinkObject.width"></a></p>
+
+<h3>syslinkObject.width</h3>
+
+<p>宽度</p>
+
+<p><a id="syslinklitemObject"></a></p>
+
+<h2>syslinklitemObject 成员列表</h2>
+
+<p><a id="syslinklitemObject.iLink"></a></p>
+
+<h3>syslinklitemObject.iLink</h3>
+
+<p>索引。<br>
+一个控件可以有多个超链接，第一个超链接索引为 1。</p>
+
+<p><a id="syslinklitemObject.id"></a></p>
+
+<h3>syslinklitemObject.id</h3>
+
+<p>超链接的 ID 属性。</p>
+
+<p><a id="syslinklitemObject.mask"></a></p>
+
+<h3>syslinklitemObject.mask</h3>
+
+<p>有效字段掩码。<br>
+默认已设为 _LIF_ITEMINDEX | _LIF_STATE | _LIF_ITEMID | _LIF_URL</p>
+
+<p><a id="syslinklitemObject.state"></a></p>
+
+<h3>syslinklitemObject.state</h3>
+
+<p>状态，一般用不上。<br>
+可选值为 _LIS_ENABLED, _LIS_FOCUSED, _LIS_VISITED 等</p>
+
+<p><a id="syslinklitemObject.stateMask"></a></p>
+
+<h3>syslinklitemObject.stateMask</h3>
+
+<p>有效状态掩码</p>
+
+<p><a id="syslinklitemObject.url"></a></p>
+
+<h3>syslinklitemObject.url</h3>
+
+<p>超链接的 URL 属性。</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/syslink.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/syslink.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/syslink.md">Markdown 格式</a></p>
+
+</body> 
+</html>

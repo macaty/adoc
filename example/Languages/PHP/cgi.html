@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - Hello World / PHP_CGI 服务器'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - Hello World / PHP_CGI 服务器</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: Hello World / PHP_CGI 服务器</h1><pre><code class="aardio language-aardio">//aardio 调用 PHP - CGI
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;Hello World / PHP_CGI 服务器&quot;;right=759;bottom=469)
+winform.add()
+/*}}*/
+
+import web.form;
+var wb = web.form( winform);
+
+/*
+PHP 快速入门
+https://quickref.me/zh-CN/docs/php.html
+https://learnxinyminutes.com/docs/zh-cn/php-cn/
+*/
+
+//导入 php 扩展库
+import process.php;
+
+//生成测试 PHP 文件。
+process.php.code[&quot;/test-cgi.php&quot;] = /********
+&lt;html&gt;
+&lt;head&gt; 
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;title&gt;PHP 测试&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;?php echo &#39;&lt;p&gt;Hello World / PHP_CGI 服务器&lt;/p&gt;&#39;; ?&gt;
+&lt;/body&gt; 
+********/ 
+
+/*
+启动多线程 HTTP 服务端，返回参数（可指定资源路径）指定页面的网址。
+默认自动分配空闲端口。在同一线程可多次调用不会重复启动 HTTP 服务端。
+当前线程结束 HTTP 服务端会自动退出。
+*/
+var url = process.php(&quot;/test-cgi.php&quot;); 
+
+wb.go(url);//调用浏览器组件显示网页
+
+winform.show();
+win.loopMessage();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/PHP/cgi.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/PHP/cgi.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Languages/PHP/cgi.md">Markdown 格式</a>
+</body> 
+</html>

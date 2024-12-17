@@ -1,0 +1,69 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - web.rest.aiChat 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - web.rest.aiChat 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>web.rest.aiChat 库模块帮助文档</h1>
+
+<p><a id="web.rest"></a></p>
+
+<h2>web.rest 成员列表</h2>
+
+<p><a id="web.rest.aiChat"></a></p>
+
+<h3>web.rest.aiChat</h3>
+
+<p>用于调用 Anthropic 或 OpenAI 兼容 AI 聊天接口。<br>
+<a href="../../../../example/Web/REST/aiChatCon.html" tppabs="https://www.aardio.com/zh-cn/doc/example/Web/REST/aiChatCon.html">范例</a></p>
+
+<p><a id="web.rest.aiChat"></a></p>
+
+<h3>web.rest.aiChat()</h3>
+
+<p><a href="#webRestAiChatObject">返回对象:webRestAiChatObject</a></p>
+
+<p><a id="web.rest.aiChat"></a></p>
+
+<h3>web.rest.aiChat(config)</h3>
+
+<pre><code class="aardio language-aardio">web.rest.aiChat(  
+    proxy = proxy,  
+    model = &quot;@claude-3-5-sonnet-latest&quot;,  
+    temperature = 0.1,  
+    maxTokens = 1024,  
+    url = &quot;&quot;  
+)/*创建 AI 聊天客户端。参数说明：  
+url 指定 Anthropic 或 OpenAI 兼容接口网址。  
+model 指定模型名称，首字符为 @ 则使用 Anthropic 接口。  
+可选用 proxy 指定代理服务器，代理格式: https://www.aardio.com/zh-cn/doc/library-guide/std/inet/proxy   
+temperature 指定温度。  
+maxTokens 限定最大回复长度。*/
+</code></pre>
+
+<p><a id="webRestAiChatObject"></a></p>
+
+<h2>webRestAiChatObject 成员列表</h2>
+
+<p><a id="webRestAiChatObject.messages"></a></p>
+
+<h3>webRestAiChatObject.messages(msg,writeDelta)</h3>
+
+<p>调用聊天会话接口。<br>
+msg 参数指定 web.rest.aiChat.message 对象。<br>
+writeDelta 指定输出 AI 回复文本的回调函数，<br>
+回调参数为文本时则应输出增量回复，回调参数为 null 时完成输出。</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/web/rest/aiChat/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/web/rest/aiChat/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/web/rest/aiChat/_.md">Markdown 格式</a></p>
+
+</body> 
+</html>

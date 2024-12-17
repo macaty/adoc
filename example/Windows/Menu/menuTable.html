@@ -1,0 +1,116 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 窗口程序 - 菜单'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 窗口程序 - 菜单</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 窗口程序 - 菜单</h1><pre><code class="aardio language-aardio">//窗口程序 - 菜单
+import win.ui;
+import win.ui.menu;
+/*DSG{{*/
+var winform = win.form(text=&quot;菜单用法演示&quot;;right=497;bottom=345)
+winform.add()
+/*}}*/
+
+/*
+注意使用菜单需要先调用 import win.ui.menu，不然发布后会报错。
+开发环境下运行，为了加快启动速度，不会百分百排除所有没有引用的库，
+当然大家也可以像其他开发工具那样，每次都发布成 EXE 文件后再运行。
+*/
+var menuFile = win.ui.popmenu(winform);//创建弹出菜单
+menuFile.add(
+    &quot;打开&quot;,
+    function(id){
+            winform.msgbox(&quot;打开文件&quot;)
+    } 
+) 
+
+//------------------------------------
+var menuHelp = win.ui.popmenu(winform);//创建弹出菜单
+menuHelp.add(
+    &quot;关于&quot;,
+    function(id){
+            winform.msgbox(&quot;关于&quot;)
+    } 
+)
+menuHelp.add(); //添加分隔线
+
+menuHelp.addTable( {
+    { &quot;帮助&quot;;
+        function(id){
+            winform.msgbox(&quot;帮助&quot;)
+        } 
+    };
+    { /*---分隔线---*/ };
+    { &quot;退出&quot;;
+        function(id){
+            winform.close()
+        } 
+    };
+} )
+
+var menuRadio = win.ui.popmenu(winform);//创建弹出菜单
+menuRadio.onMenuItemClick = function(id){
+    menuRadio.selId = id;
+    winform.msgbox( menuRadio.selText )
+}
+
+menuRadio.add(&quot;a&quot; ) 
+menuRadio.add(&quot;b&quot; ) 
+menuRadio.add(&quot;c&quot; ) 
+
+var menu = win.ui.menu(winform);//创建主菜单
+menu.add(&#39;文件&#39;,menuFile) 
+menu.add(&#39;帮助&#39;,menuHelp) 
+menu.add(&#39;选择其中一个&#39;,menuRadio)
+
+//主菜单构建完成后要用下面这句更新,menu.addTable()会自动调用redraw()
+//menu.redraw(); 
+
+menu.addTable( {
+    { &quot;测试菜单&quot;; 
+            { 
+                {   &quot;子菜单&quot;;
+                    function(id){
+                        winform.msgbox(&quot;测试菜单-&gt;子菜单&quot;)
+                    } 
+                };
+                {   &quot;子菜单2&quot;;
+                    function(id){
+                        winform.msgbox(&quot;测试菜单-&gt;子菜单2&quot;)
+                    } 
+                }   
+            } 
+    }; 
+    { &quot;测试菜单2&quot;; 
+            { 
+                {   &quot;子菜单&quot;;
+                    function(id){
+                        winform.msgbox(&quot;测试菜单2-&gt;子菜单&quot;)
+                    } 
+                };
+                {   &quot;子菜单2&quot;;
+                    function(id){
+                        winform.msgbox(&quot;测试菜单2-&gt;子菜单2&quot;)
+                    } 
+                }   
+            } 
+    }; 
+} )
+
+winform.show() 
+win.loopMessage();
+
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Windows/Menu/menuTable.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Windows/Menu/menuTable.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Windows/Menu/menuTable.md">Markdown 格式</a>
+</body> 
+</html>

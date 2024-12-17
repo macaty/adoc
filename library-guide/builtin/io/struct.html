@@ -1,0 +1,60 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - 读写结构体'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - 读写结构体</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>读写结构体</h1>
+
+<p>file 对象支持读写结构体( struct )，请参考:<a href="file.html" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/builtin/io/file.html">io 函数</a> <a href="../raw/datatype.html" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/builtin/raw/datatype.html">原生数据类型</a></p>
+
+<h2>读写结构体</h2>
+
+<p><a href="file.html#write" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/builtin/io/file.html#write">file.write</a> 或 <a href="file.html#read" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/builtin/io/file.html#read">file.read</a> 都可以指定任意多个参数，按顺序在文件流中写入或读取数据。而这两个函数都支持结构体( struct )。</p>
+
+<p>使用结构体可以非常方便地从文件中读写二进制数据。</p>
+
+<p><strong>示例代码：</strong>  </p>
+
+<pre><code class="aardio language-aardio">import console;
+
+//自定义一个结构体
+var testStruct ={
+    int a = 134;
+    BYTE b[] =&quot;我是配置文件&quot;;
+}
+
+//创建一个文件对象
+var file = io.file(&quot;/bin.bin&quot;,&quot;w+&quot;);
+
+//写入结构体
+file.write(&#39;下面是一个结构体\r\n&#39;,testStruct); //可以写入任意多个参数
+//从缓冲区写到文件
+file.flush();
+
+//移动读写指针到文件开始
+file.seek(&quot;set&quot;);
+//再读取结构体
+var desc,testStruct = file.read(&quot;%s&quot;/*%s表示读取一行*/,testStruct);
+
+//关闭文件
+file.close();
+
+console.print( desc ); 
+console.dumpTable( testStruct );
+console.pause();
+</code></pre>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-guide/builtin/io/struct.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-guide/builtin/io/struct.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/builtin/io/struct.md">Markdown 格式</a></p>
+
+</body> 
+</html>

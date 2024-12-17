@@ -1,0 +1,32 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio ç¼–ç¨‹è¯­è¨€èŒƒä¾‹ - Base64'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio ç¼–ç¨‹è¯­è¨€èŒƒä¾‹ - Base64</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio ç¼–ç¨‹è¯­è¨€æ–‡æ¡£é¦–é¡µ"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio æ–‡æ¡£</span></a>
+<h1>aardio èŒƒä¾‹: Base64</h1><pre><code class="aardio language-aardio">//Base64
+import crypt.bin;
+import console;
+
+base64 = crypt.bin.encodeBase64( &quot;base64ç¼–ç å¯ä»¥å°†ä¸å¯è§çš„äºŒè¿›åˆ¶å­—ç¬¦ä¸²è½¬æ¢ä¸ºå¯è§çš„æ–‡æœ¬æ ¼å¼&quot; );
+
+console.log( &quot;BASE64ç¼–ç ï¼š&quot;  , base64);
+console.log( &quot;BASE64è§£ç ï¼š&quot;  , crypt.bin.decodeBase64(base64) );
+
+console.log( &quot;BASE64è§£ç ï¼ˆæ”¯æŒPEMï¼ŒéBASE64æ–‡æœ¬ï¼‰ï¼š&quot;  , crypt.decodeBin(base64)   ); 
+console.log( crypt.pem(&quot;test&quot;,&quot;PEM&quot;) )
+
+console.pause();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Text/Hash/base64.md  \n\n¸ÃÎÄ¼şÎŞ·¨ÓÃ Teleport Ultra ÏÂÔØ, ÒòÎª Ëü²»ÔÚÏîÄ¿ÎÄ¼şÀàĞÍ¹æ·¶ÄÚ¡£  \n\nÄãÏëÔÚ·şÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='https://www.aardio.com/zh-cn/doc/example/Text/Hash/base64.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Text/Hash/base64.md">Markdown æ ¼å¼</a>
+</body> 
+</html>

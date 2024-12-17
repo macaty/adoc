@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - golang.string 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - golang.string 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>golang.string 库模块帮助文档</h1>
+
+<p><details>  <summary>必读，点这里展开</summary>  <p>
+golang.string() 创建 Go 字符串。
+在 Go 函数中可作为 *string 类型指针参数使用。
+Go 函数中用 * 号解引用访问 aardio 字符串。</p>
+
+<p>在 Go 中可修改字符串。
+在 aardio 中使用 tostring 转换 golang.string 对象为字符串，
+或者访问 golang.string 对象的 value 属性
+都可以获取到 Go 修改后的值。</p>
+
+<p>应在调用 Go 函数后立即访问 value 属性，或调用 tostring 转换字符串。
+aardio 会立即重新分配安全的内存存储新的值，Go 随后会安全回收分配的内存（不会泄漏）。
+而且只有在 Go 修改内存后 aardio 才会转换，不修改不会浪费内存，也不会有多余的转换。</p>
+
+<p>如果 golang.string 的构造参数是非字符串、非 buffer、非 null 参数，
+aardio 会先将其转换为 JSON，再转为 Go 字符串。</p>
+
+<p>如果以 JSON 存储了这样的 Go 字符串，
+则 Go 修改字符串时必须同样写入 JSON，
+aardio 在读取新的字符串值时，也同样会用 JSON 自动解析为对象。
+使用 golang.string 的 value 属性可以读取解析后的对象值。</p>
+
+<p>任何时候都可以通过 value 属性重新设置 golang.string 存储的值。</p>
+
+<p>请参考：aardio 范例 / 调用其他语言 / Go 语言
+</p></details></p>
+
+<p><a id="golang"></a></p>
+
+<h2>golang 成员列表</h2>
+
+<p><a id="golang.string"></a></p>
+
+<h3>golang.string()</h3>
+
+<p>创建 Go 字符串。<br>
+参数@1可指定 buffer、string、null 类型的值。<br>
+如果指定其他类型值自动转换为 JSON 字符串。<br>
+Go 修改字符串后 aardio 也会自动解析为对象。<br>
+使用 golang.string 对象的 value 属性可以读写存储值。  </p>
+
+<p>Go 函数的参数类型必须声明为 *string 指针。  </p>
+
+<p>自 Go 调用返回以后，建议立即用 tostring 转换为 aardio 字符串。<br>
+因为 Go 的内存回收器稍后会回收 Go 字符串的内存（至少在调用结束那一刻并不会立即回收）。<br>
+转换以后此对象的内部指针即安全地指向 aardio 分配的内存。<br>
+只要正确使用，go.string 不会造成内存泄漏。  </p>
+
+<p>如果不需要在 Go 中修改字符串，<br>
+更简单的方法是直接传 2 个参数（aardio 字符串，字符串长度）<br>
+代替 Go 字符串。 这种方式是传值，不是传指针</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/golang/string.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/golang/string.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/golang/string.md">Markdown 格式</a></p>
+
+</body> 
+</html>

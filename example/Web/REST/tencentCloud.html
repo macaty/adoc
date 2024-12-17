@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 调用腾讯云 API - 图像转 Excel'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 调用腾讯云 API - 图像转 Excel</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 调用腾讯云 API - 图像转 Excel</h1><pre><code class="aardio language-aardio">//调用腾讯云 API
+import win.ui;
+/*DSG{{*/
+mainForm = win.form(text=&quot;调用腾讯云 API - 图像转 Excel&quot;;right=757;bottom=467)
+mainForm.add(
+btnConvert={cls=&quot;button&quot;;text=&quot;图像转 Excel&quot;;left=352;top=394;right=668;bottom=460;color=14120960;font=LOGFONT(h=-14);note=&quot;请先拖动一个或多个包含表格的图像到窗口&quot;;z=1};
+edit={cls=&quot;edit&quot;;left=10;top=16;right=737;bottom=376;autohscroll=false;edge=1;multiline=1;vscroll=1;z=2}
+)
+/*}}*/
+
+//存储待处理图像路径
+var images = {};
+
+//接受拖放
+mainForm.onDropFiles = function(files){
+    table.append(images,files);
+    mainForm.edit.text = string.join(images,&#39;\r\n&#39;);
+}
+
+//声明腾讯云接口，接口鉴权使用 v3 签名方法 TC3-HMAC-SHA256 
+import web.rest.tencentCloud;
+var http = web.rest.tencentCloud(
+    secretId = &quot;secretId&quot;;
+    secretKey = &quot;secretKey&quot;;
+    action =  &quot;RecognizeTableAccurateOCR&quot;;
+    version = &quot;2018-11-19&quot;;
+    region =  &quot;ap-shanghai&quot;; 
+    service = &quot;ocr&quot;;
+);
+var ocrApi = http.api(&quot;https://ocr.tencentcloudapi.com&quot;);
+
+//响应按钮事件，图像转 Excel
+mainForm.btnConvert.oncommand = function(){
+
+    mainForm.btnConvert.disabled = true;
+    mainForm.edit.print();
+
+    //遍历所有图像
+    for(i,path in images){  
+        thread.delay(100);
+
+        // Base64 编码
+        var base64 = crypt.encodeBin(string.loadBuffer(path)) 
+
+        //调用 API
+        var result,err = ocrApi(ImageBase64 = base64);
+
+        var resp = result[[&quot;Response&quot;]];
+
+        var data = resp[[&quot;Data&quot;]]; 
+        if(data){
+
+            // Base64 解码
+            var xls = crypt.decodeBin(data); 
+
+            //保存文件
+            string.save(path+&#39;.xlsx&#39;,xls ) 
+
+            mainForm.edit.print(path + &#39;.xlsx&#39;);
+        } 
+        else {
+            mainForm.edit.print(resp[[&quot;Error&quot;]] || err);
+        }
+
+    }
+
+    mainForm.btnConvert.disabled = false;
+
+    //清空待处理图像
+    images = {};
+}
+
+mainForm.show();
+win.loopMessage();
+
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Web/REST/tencentCloud.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Web/REST/tencentCloud.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Web/REST/tencentCloud.md">Markdown 格式</a>
+</body> 
+</html>

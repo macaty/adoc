@@ -1,0 +1,60 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 虚拟文件路径'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 虚拟文件路径</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 虚拟文件路径</h1><pre><code class="aardio language-aardio">//虚拟文件路径
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;aardio form&quot;;right=759;bottom=469)
+winform.add()
+/*}}*/
+
+import wsock.tcp.asynHttpServer;
+var httpServer = wsock.tcp.asynHttpServer();
+
+/*
+asynHttpServer 可以极简单地在内存虚拟文件地址,
+写扩展库的时候利用这功能可以避免引用外部文件（请参考 com.cube3 扩展库的源码）。
+*/
+httpServer.run( {
+
+    //自定义某个路径返回的数据
+    [&quot;/index.html&quot;] = &quot;hello&quot;; //这里也可以用 $&quot;文件路径&quot; 将文件内容编译到一个字符串里
+
+    //自定义某个路径的响应程序
+    [&quot;/hello&quot;] = function(response,request,session){ 
+         response.loadcode(request.path);
+    }
+
+    //表里找不到的路径，仍然会正常访问存在的文件（支持资源文件）   
+} );
+
+//这里可以指定 IP 和端口，不指定则自动分配空闲端口 
+httpServer.start(&quot;127.0.0.1&quot;);
+
+//可以支持 aardio 服务端 HTML 模板语法
+var url = httpServer.getUrl(&quot;/index.html&quot;); //参数支持 aardio 工程嵌入资源目录路径
+
+import web.form;
+var wb = web.form(winform);
+
+//用浏览器组件打开网页试试
+wb.go(url);
+
+winform.show();
+win.loopMessage();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Web/HTTPServer/asynHttpServer.table.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Web/HTTPServer/asynHttpServer.table.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Web/HTTPServer/asynHttpServer.table.md">Markdown 格式</a>
+</body> 
+</html>

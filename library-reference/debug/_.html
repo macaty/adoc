@@ -1,0 +1,279 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - debug 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - debug 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>debug 库模块帮助文档</h1>
+
+<p><a id="debug"></a></p>
+
+<h2>debug 成员列表</h2>
+
+<p>调试函数库,<br>
+debug 属于内置库,但必须使用 import debug 导入才能使用</p>
+
+<p><a id="debug.callcount"></a></p>
+
+<h3>debug.callcount()</h3>
+
+<p>函数调用栈深度</p>
+
+<p><a id="debug.debug"></a></p>
+
+<h3>debug.debug()</h3>
+
+<p>插入断点<br>
+执行到该位置时打开控制台进入调试环境,<br>
+发布后程序忽略此函数不执行</p>
+
+<p><a id="debug.getfunction"></a></p>
+
+<h3>debug.getfunction(调用级)</h3>
+
+<p>返回函数对象</p>
+
+<p><a id="debug.getlocalvar"></a></p>
+
+<h3>debug.getlocalvar(纤程,调用级,索引)</h3>
+
+<p>返回局部变量名,变量值</p>
+
+<p><a id="debug.getlocalvar"></a></p>
+
+<h3>debug.getlocalvar(调用级,索引)</h3>
+
+<p>返回局部变量名,变量值</p>
+
+<p><a id="debug.getnamespace"></a></p>
+
+<h3>debug.getnamespace(对象)</h3>
+
+<p>返回对象的名字空间</p>
+
+<p><a id="debug.getupvar"></a></p>
+
+<h3>debug.getupvar(函数对象,索引)</h3>
+
+<p>返回函数闭包局部变量,变量值<br>
+注意只有该函数引用的外层函数局部变量才能获取</p>
+
+<p><a id="debug.hook"></a></p>
+
+<h3>debug.hook()</h3>
+
+<p><a href="#debugHookObject">返回对象:debugHookObject</a></p>
+
+<p><a id="debug.hook"></a></p>
+
+<h3>debug.hook(可选参数：可在此输入协程对象)</h3>
+
+<p>创建调试钩子</p>
+
+<p><a id="debug.queryinfo"></a></p>
+
+<h3>debug.queryinfo()</h3>
+
+<p><a href="#debugInfoObject">返回对象:debugInfoObject</a></p>
+
+<p><a id="debug.queryinfo"></a></p>
+
+<h3>debug.queryinfo(2,&quot;select source&quot;)</h3>
+
+<p>= 查询调用椎栈源码相关信息<br>
+参数一可以是函数名、或调用级别<br>
+1表示当前函数,2表示调用当前函数的函数</p>
+
+<p><a id="debug.queryinfo"></a></p>
+
+<h3>debug.queryinfo(2,&quot;select source,function,upvars,name,currentline,activelines&quot;)</h3>
+
+<p>查询调用椎栈信息<br>
+参数一可以是函数名、或调用级别<br>
+1表示当前函数,2表示调用当前函数的函数</p>
+
+<p><a id="debug.setlocalvar"></a></p>
+
+<h3>debug.setlocalvar(纤程,调用级,索引,新值)</h3>
+
+<p>修改局部变量值</p>
+
+<p><a id="debug.setlocalvar"></a></p>
+
+<h3>debug.setlocalvar(调用级,索引,新值)</h3>
+
+<p>修改局部变量值</p>
+
+<p><a id="debug.setupvar"></a></p>
+
+<h3>debug.setupvar(函数对象,索引,值)</h3>
+
+<p>设置函数闭包局部变量,变量值</p>
+
+<p><a id="debug.traceback"></a></p>
+
+<h3>debug.traceback</h3>
+
+<p>返回活动栈跟踪信息<br>
+通常用于global.onError函数或catch语句中</p>
+
+<p><a id="debug.traceback"></a></p>
+
+<h3>debug.traceback(纤程,&quot;标题&quot;,调用级别)</h3>
+
+<p>返回活动栈跟踪信息<br>
+所有参数为可选参数,<br>
+调用级别为1指当前函数,2为调用当前函数的函数,数值越大调用级别越高</p>
+
+<p><a id="debugHookObject"></a></p>
+
+<h2>debugHookObject 成员列表</h2>
+
+<p><a id="debugHookObject.call"></a></p>
+
+<h3>debugHookObject.call</h3>
+
+<pre><code class="aardio language-aardio">debugHookObject.call=function(){  
+/*调用函数触发此回调*/  
+}
+</code></pre>
+
+<p><a id="debugHookObject.close"></a></p>
+
+<h3>debugHookObject.close()</h3>
+
+<p>关闭调试钩子</p>
+
+<p><a id="debugHookObject.line"></a></p>
+
+<h3>debugHookObject.line</h3>
+
+<pre><code class="aardio language-aardio">debugHookObject.line=function(line){  
+/*每行代码触发此回调*/  
+}
+</code></pre>
+
+<p><a id="debugHookObject.return"></a></p>
+
+<h3>debugHookObject.return</h3>
+
+<pre><code class="aardio language-aardio">debugHookObject.return=function(line){  
+/*return 语句触发此回调*/  
+}
+</code></pre>
+
+<p><a id="debugHookObject.tailreturn"></a></p>
+
+<h3>debugHookObject.tailreturn</h3>
+
+<pre><code class="aardio language-aardio">debugHookObject.tailreturn=function(line){  
+/*尾定义触发此回调,  
+必须同时定义 return 语句回调函数,  
+如果仅指定 tailreturn 则不会被触发*/  
+}
+</code></pre>
+
+<p><a id="debugInfoObject"></a></p>
+
+<h2>debugInfoObject 成员列表</h2>
+
+<p><a id="debugInfoObject.activelines"></a></p>
+
+<h3>debugInfoObject.activelines</h3>
+
+<p>函数的有效代码行列表<br>
+无效行指的是空行或注释等</p>
+
+<p><a id="debugInfoObject.currentline"></a></p>
+
+<h3>debugInfoObject.currentline</h3>
+
+<p>当前行</p>
+
+<p><a id="debugInfoObject.function"></a></p>
+
+<h3>debugInfoObject.function</h3>
+
+<p>当前函数对象</p>
+
+<p><a id="debugInfoObject.name"></a></p>
+
+<h3>debugInfoObject.name</h3>
+
+<p>函数名字</p>
+
+<p><a id="debugInfoObject.name_where"></a></p>
+
+<h3>debugInfoObject.name_where</h3>
+
+<p>global(全局变量)、<br>
+self(当前名字空间成员变量)、<br>
+var(局部变量)、<br>
+upvar(上层语句块局部闭包变量)</p>
+
+<p><a id="debugInfoObject.upvars"></a></p>
+
+<h3>debugInfoObject.upvars</h3>
+
+<p>引用的上层函数闭包变量数目</p>
+
+<p><a id="debugInfoObject.source"></a></p>
+
+<h2>debugInfoObject.source 成员列表</h2>
+
+<p>源码相关信息</p>
+
+<p><a id="debugInfoObject.source.beginline"></a></p>
+
+<h3>debugInfoObject.source.beginline</h3>
+
+<p>开始定义行</p>
+
+<p><a id="debugInfoObject.source.code"></a></p>
+
+<h3>debugInfoObject.source.code</h3>
+
+<p>源码</p>
+
+<p><a id="debugInfoObject.source.endline"></a></p>
+
+<h3>debugInfoObject.source.endline</h3>
+
+<p>结束;定义行</p>
+
+<p><a id="debugInfoObject.source.file"></a></p>
+
+<h3>debugInfoObject.source.file</h3>
+
+<p>文件名</p>
+
+<p><a id="debugInfoObject.source.kind"></a></p>
+
+<h3>debugInfoObject.source.kind</h3>
+
+<p>类型<br>
+&quot;kernel&quot;表示内核函数<br>
+&quot;function&quot;<br>
+表示普通函数<br>
+&quot;main&quot;主函数<br>
+&quot;tail&quot;尾调用</p>
+
+<p><a id="debugInfoObject.source.src"></a></p>
+
+<h3>debugInfoObject.source.src</h3>
+
+<p>源码或文件名缩略信息</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/debug/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/debug/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/debug/_.md">Markdown 格式</a></p>
+
+</body> 
+</html>

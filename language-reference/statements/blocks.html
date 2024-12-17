@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - 语句块(block)'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - 语句块(block)</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>语句块(block)</h1>
+
+<p>参考: <a href="../basic-syntax.html#statement" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/basic-syntax.html#statement">基本语法 - 语句</a></p>
+
+<h2>语句块</h2>
+
+<p>语句块由一组顺序执行的语句组成。  </p>
+
+<p>使用 <code>{</code> 符号标记语句块开始、用 <code>}</code>  符号标记语句块结束。<code>{}</code> 要首尾配对使用。  </p>
+
+<p>示例：</p>
+
+<pre><code class="aardio language-aardio">{
+    var str = &quot;我是局部变量&quot; ; 
+
+    {
+        var str2 = &quot;一个语句块可以嵌套另一个语句块&quot; ; 
+    } ;
+
+};
+
+import console;
+console.log(str);  //输出：null
+</code></pre>
+
+<p>一个语句块可以嵌套另一个语句块。为了清晰地表示嵌套的层次，建议在增加嵌套层次同时使用 tab 制表符增加行缩进以示区分。<img src="../../icon/warning.gif" tppabs="https://www.aardio.com/zh-cn/doc/icon/warning.gif" alt=""> 建议不要使用过多层次的嵌套语句块，以避免降低代码可读性。</p>
+
+<p>aardio 也允许使用 <code>begin</code> 关键字标记语句块开始、用 <code>end</code> 关键字标记语句块结束（<code>begin</code>与<code>end</code>也要配对使用）。aardio 提供这个替代写法的初衷是为了在语句块嵌套过深时使用不同的标记区分不同的语句块，但这种情况原本就应当尽量避免。aardio 建议大家使用更简洁的 <code>{}</code> 包含语句块，而不是使用 <code>begin</code>与<code>end</code> 的替代写法。</p>
+
+<h2>语句块与局部变量</h2>
+
+<p>在语句块中可以使用 var 语句定义局部变量。</p>
+
+<p>参考：<a href="assignment.html#var" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/statements/assignment.html#var">var 语句</a> </p>
+
+<p>语句块中的局部变量拥有块级作用域，并用拥有最高存取优先级。</p>
+
+<p>aardio 根据标志符查找&quot;命名对象&quot;的顺序依次为：  </p>
+
+<ol>
+<li>当前语句块局部变量。</li>
+<li>在上层语句块就近搜索局部变量。</li>
+<li>如果有外层函数，则继续向上就近搜索所有外层函数的局部变量。</li>
+<li>搜索当前名字空间( self )的成员变量。</li>
+</ol>
+
+<p>要特别注意：</p>
+
+<blockquote>
+<p>如果当前名字空间不是全局名字空间，aardio 默认不会到全局表查找命名对象，除非标识符指向一个全局有效的命名对象（全局常量、保留常量、保留函数名）或使用 <code>..</code> 操作符明确指定仅在全局表中查找命名对象 。</p>
+</blockquote>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/language-reference/statements/blocks.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/language-reference/statements/blocks.md'" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/statements/blocks.md">Markdown 格式</a></p>
+
+</body> 
+</html>

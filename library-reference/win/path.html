@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - win.path 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - win.path 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>win.path 库模块帮助文档</h1>
+
+<p><a id="win.path"></a></p>
+
+<h2>win.path 成员列表</h2>
+
+<p><a id="win.path.add"></a></p>
+
+<h3>win.path.add</h3>
+
+<p>添加文件路径到当前进程的指定环境变量</p>
+
+<p><a id="win.path.add"></a></p>
+
+<h3>win.path.add(path,name,last)</h3>
+
+<p>添加 @path 指定的文件路径到当前进程的指定环境变量,<br>
+可选用 @name 参数指定环境变量名,默认值为&quot;Path&quot;,<br>
+可选参数 @last 如果为 true,<br>
+则添加到其他已存在的路径后面,否则插入到最前面</p>
+
+<p><a id="win.path.get"></a></p>
+
+<h3>win.path.get()</h3>
+
+<p>返回PATH环境变量中的目录路径数组</p>
+
+<p><a id="win.path.search"></a></p>
+
+<h3>win.path.search(&quot;字符串参数&quot;)</h3>
+
+<p>以当前目录、应用程序目录、EXE目录、系统目录,path环境变量指定的目录下查的文件</p>
+
+<p><a id="win.path.searchDll"></a></p>
+
+<h3>win.path.searchDll()</h3>
+
+<p>按系统加载DLL的查找规则查找DLL文件,<br>
+如果指定多个参数,只要一个参数指定的DLL没找到即返回null<br>
+如果所有指定的DLL都找到了,返回最后一个参数指定的DLL完整路径</p>
+
+<p><a id="win.path.update"></a></p>
+
+<h3>win.path.update(user,name)</h3>
+
+<p>自注册表读取指定环境变量的最新值,<br>
+并更新当前进程的环境变量,<br>
+以避免使用旧的值或从父进程继承了旧的值,<br>
+参数@user 如果指定为 true,则读取用户环境变量。<br>
+默认读取系统环境变量,<br>
+可选用 @name 参数指定环境变量名,默认值为&quot;Path&quot;  </p>
+
+<p>使用此函数之前调用代码必须自行导入 win.reg 库</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/path.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/path.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/path.md">Markdown 格式</a></p>
+
+</body> 
+</html>

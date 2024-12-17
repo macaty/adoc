@@ -1,0 +1,99 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 用IFrame做的浏览器'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 用IFrame做的浏览器</title> 
+<link rel="stylesheet" href="../../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 用IFrame做的浏览器</h1><pre><code class="aardio language-aardio">//跨域框架实现浏览器
+
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;用IFrame做的浏览器&quot;;right=735;bottom=479;)
+winform.add()
+/*}}*/
+
+//开启跨域
+import web.form.util;
+web.form.util.crossDomain() 
+
+//创建web窗体
+var wb = web.form( winform,0x40000/*_UIFLAG_THEME*/ ) 
+wb.noScriptErr = true;
+
+//自动启用禁用 前进、后退等按钮
+wb.CommandStateChange=function(cmd,enable) { 
+    select(cmd) { 
+        case 0x2/*_CSC_NAVIGATEBACK*/ { 
+            wb.getEle(&quot;btnBack&quot;).disabled = !enable
+        }
+        case 0x1/*_CSC_NAVIGATEFORWARD*/ { 
+            wb.getEle(&quot;btnForward&quot;).disabled = !enable
+        }    
+    }
+}   
+
+wb.html = /**
+&lt;html&gt;
+&lt;head&gt; 
+&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;
+&lt;/head&gt;
+&lt;body style=&quot;overflow:hide; margin:0px; &quot;&gt; 
+&lt;div id=&quot;navBar&quot; style=&quot; margin:5px;&quot;&gt;  
+        &lt;label for=&quot;txtUrl&quot;&gt;网址&lt;/label&gt;
+        &lt;input type=&quot;text&quot; name=&quot;txtUrl&quot; id=&quot;txtUrl&quot; value=&quot;https://www.aardio.com&quot;&gt;
+        &lt;input id=&quot;btnGo&quot; type=&quot;button&quot; onClick=&quot;external.go(document.getElementById(&#39;txtUrl&#39;).value )&quot;  value=&quot;打开&quot; /&gt; 
+        &lt;input id=&quot;btnRefresh&quot; type=&quot;button&quot; onClick=&quot;external.refresh()&quot;  value=&quot;刷新&quot; /&gt;
+        &lt;input id=&quot;btnBack&quot; type=&quot;button&quot; onClick=&quot;history.back()&quot;  value=&quot;后退&quot; /&gt;
+        &lt;input id=&quot;btnForward&quot; type=&quot;button&quot; onClick=&quot;history.forward()&quot;  value=&quot;前进&quot; /&gt;
+&lt;/div&gt; 
+        &lt;iframe name=&quot;xDomainFrame&quot; src=&quot;https://www.aardio.com&quot; frameborder=&quot;0&quot; scrolling=&quot;yes&quot; height=&quot;100%&quot; width=&quot;100%&quot; noresize=&quot;noresize&quot;&gt;
+        &lt;/iframe&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+**/  
+wb.wait();
+
+wbFrame = wb.getWebForm(&quot;xDomainFrame&quot;) 
+
+wb.BeforeNavigate2=function( pDisp, url, Flags, TargetFrameName, PostData, Headers, Cancel ) { 
+    winform.text = &quot;正在打开 &quot; + url + &quot; ......&quot;;  
+
+    ele = wb.getEle(&quot;txtUrl&quot;);
+    if(ele){
+        ele.value = wbFrame.location;
+    }
+} 
+wb.DocumentComplete=function( pDisp, url) {
+    winform.text = wbFrame.document.title;  
+    winform.text = wbFrame.location;
+
+    ele = wb.getEle(&quot;txtUrl&quot;);
+    if(ele){
+        ele.value = wbFrame.location;
+    }
+}  
+
+wb.external={
+    refresh = function(){
+        wbFrame.refresh2()
+    }
+    go = function(...){
+        wbFrame.go(...)
+    } 
+}
+
+winform.show(3/*_SW_MAXIMIZE*/);  
+win.loopMessage();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/WebUI/web.form/Browser/frameBrowser.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/WebUI/web.form/Browser/frameBrowser.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/WebUI/web.form/Browser/frameBrowser.md">Markdown 格式</a>
+</body> 
+</html>

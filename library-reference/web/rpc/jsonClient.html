@@ -1,0 +1,235 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - web.rpc.jsonClient 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - web.rpc.jsonClient 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>web.rpc.jsonClient 库模块帮助文档</h1>
+
+<p><a id="web.rpc"></a></p>
+
+<h2>web.rpc 成员列表</h2>
+
+<p><a id="web.rpc.jsonClient"></a></p>
+
+<h3>web.rpc.jsonClient</h3>
+
+<p>JSON-RPC 2.0客户端<br>
+<a href="javascript:if(confirm('http://www.jsonrpc.org/specification  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://www.jsonrpc.org/specification'" tppabs="http://www.jsonrpc.org/specification">关于JSON-RPC 2.0</a></p>
+
+<p><a id="web.rpc.jsonClient"></a></p>
+
+<h3>web.rpc.jsonClient(&quot;字符串参数&quot;)</h3>
+
+<p>创建REST客户端</p>
+
+<p><a id="web.rpc.jsonClient"></a></p>
+
+<h3>web.rpc.jsonClient()</h3>
+
+<p><a href="jsonClient.html#webRpcJsonClientObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/web/rpc/jsonClient.html#webRpcJsonClientObject">返回对象:webRpcJsonClientObject</a></p>
+
+<p><a id="webRpcJsonClientObject"></a></p>
+
+<h2>webRpcJsonClientObject 成员列表</h2>
+
+<p><a id="webRpcJsonClientObject.?"></a></p>
+
+<h3>webRpcJsonClientObject.?</h3>
+
+<p>远程对象名或远程方法名字。<br>
+远程函数调用成功则第一个返回值为表对象，<br>
+└── 该对象的 result 字段为返回值，error 为错误对象，两个字段不会同时存在。<br>
+└── error 对象的 message 为错误信息，code 为错误代码，data 为错误附加数据。<br>
+└── 如果存在 error 对象，则第 2 个返回值为 error 对象的 JSON 文本格式。<br>
+调用失败第一个返回值为 null ，第二个返回值为错误信息  </p>
+
+<p>如果调用 rpc.beginTrans 函数开始一个批量调用，<br>
+则返回一个可以指定 end 成员函数的对象，服务器应答时自动回调此 end 函数  </p>
+
+<p><a href="jsonClient.html#webRpcJsonClientObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/web/rpc/jsonClient.html#webRpcJsonClientObject">返回对象:webRpcJsonClientObject</a></p>
+
+<p><a id="webRpcJsonClientObject.rpc"></a></p>
+
+<h2>webRpcJsonClientObject.rpc 成员列表</h2>
+
+<p>RPC 本地客户端对象<br>
+所以本地函数放在这个对象里面<br>
+用户不得添加、删除、修改此对象的任何成员</p>
+
+<p><a id="webRpcJsonClientObject.rpc.afterJsonStringify"></a></p>
+
+<h3>webRpcJsonClientObject.rpc.afterJsonStringify</h3>
+
+<pre><code class="aardio language-aardio">webRpcJsonClientObject.rpc.afterJsonStringify = function(jsonData){
+    /*可以在这里加密客户端JSON,返回null中止本次调用*/
+    return jsonData;
+}
+</code></pre>
+
+<p><a id="webRpcJsonClientObject.rpc.beforeJsonParse"></a></p>
+
+<h3>webRpcJsonClientObject.rpc.beforeJsonParse</h3>
+
+<pre><code class="aardio language-aardio">webRpcJsonClientObject.rpc.beforeJsonParse = function(jsonData){
+    /*可以在这里解密服务端数据,返回null中止本次调用*/
+    return jsonData;
+}
+</code></pre>
+
+<p><a id="webRpcJsonClientObject.rpc.beforeRequest"></a></p>
+
+<h3>webRpcJsonClientObject.rpc.beforeRequest(请求数据)</h3>
+
+<pre><code class="aardio language-aardio">webRpcJsonClientObject.rpc.beforeRequest = function(reqData){
+    /*此回调事件在发送请求前触发  
+reqData.params是即将发送的参数*/
+    return reqData;
+}
+</code></pre>
+
+<p><a id="webRpcJsonClientObject.rpc.beginTrans"></a></p>
+
+<h3>webRpcJsonClientObject.rpc.beginTrans()</h3>
+
+<p>开始批量调用<br>
+批量调用时单次调用的返回值是一个表<br>
+可对返回值指定 end 成员函数，<br>
+end 函数会在 commitTrans 提交批量调用成功后被触发</p>
+
+<p><a id="webRpcJsonClientObject.rpc.charset"></a></p>
+
+<h3>webRpcJsonClientObject.rpc.charset</h3>
+
+<p>获取或修改编码,此值必须为大写，默认为&quot;UTF-8&quot;,<br>
+因为JSON规定了Unicode编码方案,所以不建议也不应该修改这个值</p>
+
+<p><a id="webRpcJsonClientObject.rpc.close"></a></p>
+
+<h3>webRpcJsonClientObject.rpc.close()</h3>
+
+<p>关闭RPC客户端并释放资源</p>
+
+<p><a id="webRpcJsonClientObject.rpc.commitTrans"></a></p>
+
+<h3>webRpcJsonClientObject.rpc.commitTrans()</h3>
+
+<p>完成批量调用</p>
+
+<p><a id="webRpcJsonClientObject.rpc.http"></a></p>
+
+<h3>webRpcJsonClientObject.rpc.http</h3>
+
+<p>用于执行http请求的inet.http对象  </p>
+
+<p><a href="#inetHttpObject">返回对象:inetHttpObject</a></p>
+
+<p><a id="webRpcJsonClientObject.rpc.lastResponse"></a></p>
+
+<h3>webRpcJsonClientObject.rpc.lastResponse()</h3>
+
+<p>获取最后一次服务器返回的原始数据,<br>
+如果控制台已打开或在开发环境中导入 console 库则在控制台输出数据<br>
+下载文件时该值为空</p>
+
+<p><a id="webRpcJsonClientObject.rpc.lastStatusCode"></a></p>
+
+<h3>webRpcJsonClientObject.rpc.lastStatusCode</h3>
+
+<p>获取最近一次请求返回的HTTP状态码<br>
+100 ~ 101 为信息提示<br>
+200 ~ 206 表示请求成功<br>
+300 ~ 305 表示重定向<br>
+400 ~ 415 表求客户端请求出错<br>
+500 ~ 505 表示服务端错误</p>
+
+<p><a id="webRpcJsonClientObject.rpc.lastStatusMessage"></a></p>
+
+<h3>webRpcJsonClientObject.rpc.lastStatusMessage()</h3>
+
+<p>获取最近返回的HTTP状态码文本描述<br>
+第二个返回值为状态码</p>
+
+<p><a id="webRpcJsonClientObject.rpc.notify"></a></p>
+
+<h3>webRpcJsonClientObject.rpc.notify(&quot;函数名&quot;,参数)</h3>
+
+<p>发送通知,服务器不返回值,<br>
+如果 varargs 属性指定为 true 时将不定个数参数合为数组，<br>
+varargs 为 false 时直接发送参数  </p>
+
+<p>成功返回 true，失败返回 null,错误信息</p>
+
+<p><a id="webRpcJsonClientObject.rpc.onError"></a></p>
+
+<h3>webRpcJsonClientObject.rpc.onError</h3>
+
+<p>function(errMessage,rpcError){
+    __/*出错时触发此函数，errMessage 为错误信息。<br>
+如果服务端按 jsonrpc 协议返回 error 对象，<br>
+则 rpcError 有值，包含 messge，code 字段。*/<br>
+}</p>
+
+<p><a id="webRpcJsonClientObject.rpc.rollbackTrans"></a></p>
+
+<h3>webRpcJsonClientObject.rpc.rollbackTrans()</h3>
+
+<p>撤消尚未提交的批量调用</p>
+
+<p><a id="webRpcJsonClientObject.rpc.setAuth"></a></p>
+
+<h3>webRpcJsonClientObject.rpc.setAuth(&quot;用户名&quot;,&quot;密码&quot;)</h3>
+
+<p>设置HTTP登录用户名,密码</p>
+
+<p><a id="webRpcJsonClientObject.rpc.varargs"></a></p>
+
+<h3>webRpcJsonClientObject.rpc.varargs</h3>
+
+<p>默认值为true,<br>
+值为true时将不定个数的参数放入数组发送给服务端<br>
+值为false时直接将单个参数发送给服务端  </p>
+
+<p>JSON-RPC 2.0一个会制造混乱的地方：<br>
+如果params是一个数组，并没有规定是展开为一个参数，还是作为一个数组参数。  </p>
+
+<p>目前aardio的RPC服务端会负责展开数组作为多个参数，<br>
+但客户端需要在这里手动设置</p>
+
+<p><a id="webRpcJsonClientObject.rpc.version"></a></p>
+
+<h3>webRpcJsonClientObject.rpc.version</h3>
+
+<p>值为JSON-RPC协议版本：&quot;2.0&quot;<br>
+不应该修改这个值</p>
+
+<p><a id="webRpcJsonClientObject.rpc.xcall"></a></p>
+
+<h3>webRpcJsonClientObject.rpc.xcall(&quot;函数名&quot;,参数)</h3>
+
+<p>调用远程函数。<br>
+如果 varargs 属性指定为 true 时将不定个数参数合为数组，<br>
+varargs 为 false 时直接发送参数  </p>
+
+<p>远程函数调用成功则第一个返回值为表对象，<br>
+└── 该对象的 result 字段为返回值，error 为错误对象，两个字段不会同时存在。<br>
+└── error 对象的 message 为错误信息，code 为错误代码，data 为错误附加数据。<br>
+└── 如果存在 error 对象，则第 2 个返回值为 error 对象的 JSON 文本格式。<br>
+调用失败第一个返回值为 null ，第二个返回值为错误信息  </p>
+
+<p>如果调用 rpc.beginTrans 函数开始一个批量调用，<br>
+则返回一个可以指定 end 成员函数的对象，服务器应答时自动回调此 end 函数</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/web/rpc/jsonClient.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/web/rpc/jsonClient.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/web/rpc/jsonClient.md">Markdown 格式</a></p>
+
+</body> 
+</html>

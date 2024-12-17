@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 事件对象同步'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 事件对象同步</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 事件对象同步</h1><pre><code class="aardio language-aardio">//事件对象同步
+/*
+请参考《多线程中的交通信号灯：thread.event》
+http://bbs.aardio.com/forum.php?mod=viewthread&amp;tid=11531
+*/
+
+import console;
+import thread.event;
+var evtMain = thread.event()
+var evtWorkThread = thread.event()
+
+thread.create( 
+    function(evtMain,evtWorkThread){ 
+
+        import console;
+
+        evtWorkThread.wait();
+        console.log(&quot;工作线程: 不在,有事请留言&quot;,&#39;\n&#39;)  
+        evtMain.set();
+
+        evtWorkThread.wait();
+        console.log(&quot;工作线程: 说了不在,有事请留言&quot;,&#39;\n&#39;) 
+        evtMain.set();
+
+        evtWorkThread.wait();
+        console.log(&quot;工作线程: 都说了不在！谁让你等一天了,不在就是不在！&quot;)  
+        evtMain.set();
+
+    },evtMain,evtWorkThread
+)
+
+console.log(&quot;主线程: 在吗?&quot;);
+sleep(1000); //加特效
+evtWorkThread.set(); //主线说完了,轮到工作线程了
+evtMain.wait(); //等待工作线程应答;
+
+console.log(&quot;主线程: 现在在了吗?&quot;)
+sleep(1000); //加特效
+evtWorkThread.set(); //主线说完了,轮到工作线程了
+evtMain.wait(); //等待工作线程应答;;
+
+console.log(&quot;主线程: 都等了一天了,你还是不在吗?&quot;)
+sleep(1000); //加特效
+evtWorkThread.set(); //主线说完了,轮到工作线程了
+evtMain.wait(); //等待工作线程应答;
+
+sleep(1000); //加特效
+console.pause(true,&quot;那好吧,请按任意键挂机！&quot;)
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/aardio/Thread/07.event.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/aardio/Thread/07.event.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/aardio/Thread/07.event.md">Markdown 格式</a>
+</body> 
+</html>

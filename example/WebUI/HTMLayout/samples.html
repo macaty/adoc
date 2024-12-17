@@ -1,0 +1,692 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - web.layout(HTMLayout) 界面范例浏览器'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - web.layout(HTMLayout) 界面范例浏览器</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: web.layout(HTMLayout) 界面范例浏览器</h1><pre><code class="aardio language-aardio">//界面预览
+import win.ui;
+import win.ui.menu;
+/*DSG{{*/
+var winform = win.form(text=&quot;web.layout(HTMLayout) 界面范例浏览器&quot;;right=856;bottom=542;)
+winform.add(
+tab={cls=&quot;tab&quot;;left=236;top=9;right=843;bottom=530;db=1;dl=1;dr=1;dt=1;edge=1;z=2};
+treeview={cls=&quot;treeview&quot;;left=23;top=10;right=231;bottom=527;asel=false;bgcolor=15793151;db=1;dl=1;dt=1;edge=1;hscroll=1;infoTip=1;vscroll=1;z=1}
+)
+/*}}*/
+
+import fsys;
+import zlib.unzip;
+import inet.downBox;
+if( !..io.exist(&quot;/html_samples&quot; ) ){
+    if( ..win.msgboxTest(  &quot;HTMLayout范例尚未安装,您需要下载安装HTMLayout范例吗?&quot;,&quot;aardio&quot;) ){ 
+
+        var downBox = inet.downBox(winform,&quot;aardio- 下载HTMLayout范例&quot;,true) 
+        if( not downBox.download(
+            &quot;http://download.aardio.com/v10.files/demo/htmlayout_samples.zip&quot;
+            ,&quot;/htmlayout_samples.zip&quot;
+            ,null,null,&quot;&quot;)  
+        ) {  
+            return;
+        }
+
+        try{
+            import console;
+            zlib.unzip.extract( &quot;/htmlayout_samples.zip&quot;,&quot;/&quot;,
+                function(fileName,extractPath,fileInfo,size,unitSize,unitName){
+                    console.log(&quot;正在解压缩&quot;,extractPath)
+                    return true;
+                }
+            )
+            io.close()
+        }
+        catch(e){
+            fsys.delete( &quot;/html_samples&quot; )
+        }
+
+        if( !..io.exist(&quot;/html_samples&quot; ) ){
+            winform.msgboxErr(&quot;下载HTMLayout范例失败&quot;,&quot;aardio&quot;)
+        }
+        fsys.attrib(&quot;/html_samples&quot;,/*移除*/,0x2/*_FILE_ATTRIBUTE_HIDDEN*/)
+    }
+}
+
+import fsys.codepage;   
+var frmPreview = winform.tab.add( text=&quot;效果预览&quot;; bottom=140;right=325 ) 
+var frmSourceCode = winform.tab.add( text=&quot;编辑源码&quot;;right=599;bottom=390 ) 
+frmSourceCode.add( 
+btnHelp={ dr=1;bottom=385;text=&quot;HTMLayout中文教程&quot;;left=20;top=353;z=3;db=1;right=159;cls=&quot;button&quot; };
+btnExplore={ disabled=1;dr=1;bottom=385;text=&quot;浏览 ...&quot;;left=200;top=353;z=5;db=1;right=314;cls=&quot;button&quot; };
+richedit={ dr=1;dl=1;bottom=346;vscroll=1;right=591;left=7;dt=1;top=6;multiline=1;z=1;db=1;hscroll=1;edge=1;cls=&quot;richedit&quot; };
+btnCreateProject={ dr=1;disabled=1;bottom=385;right=473;left=319;top=353;z=2;db=1;text=&quot;另存为 HTMLayout工程&quot;;cls=&quot;button&quot; };
+btnSave={ dr=1;disabled=1;bottom=385;text=&quot;保存更改&quot;;left=481;top=353;z=4;db=1;right=587;cls=&quot;button&quot; }
+)
+frmSourceCode.btnCreateProject.oncommand = function(id,event){
+     createDemoProject();
+}
+frmSourceCode.btnHelp.oncommand = function(id,event){
+    import process;;
+    process.openUrl(&quot;http://bbs.aardio.com/forum.php?mod=forumdisplay&amp;fid=128&amp;filter=typeid&amp;typeid=132&quot;)
+}
+frmSourceCode.richedit.modifyEvent(,0x1/*_ENM_CHANGE*/);
+frmSourceCode.richedit.oncommand = function(id,event){
+    if( event == 0x300/*_EN_CHANGE*/ ){
+        frmSourceCode.btnSave.disabled = false
+    }
+}
+frmSourceCode.btnSave.oncommand = function(id,event){
+    ..fsys.codepage.save(getCurrentHtmlFileUrl(), frmSourceCode.richedit.text,&quot;UTF-8&quot;); 
+    loadHtmlFile();  
+}
+frmSourceCode.btnExplore.oncommand = function(id,event){
+    exploreFile();
+}
+
+import web.layout;
+import web.layout.behavior.tabs;
+import web.layout.behavior.shellIcon;
+import web.layout.behavior.lightBoxDialog;
+import web.layout.behavior.collapsibleByIcon;
+import web.layout.behavior.grid;
+import web.layout.behavior.sortableGrid;
+import web.layout.behavior.scroller;
+import web.layout.behavior.dropdown; 
+import web.layout.behavior.popup;
+import web.layout.behavior.expandableList;
+import web.layout.behavior.collapsibleList;
+import web.layout.behavior.sizer;
+import web.layout.behavior.gripper;
+import web.layout.behavior.splitter;
+
+var wbLayout = web.layout(frmPreview);
+/*
+import web.layout.debug; //导入该库以显示HTMLayout错误
+wbLayout.attachEventHandler( web.layout.debug ); //为CSSS!添加全局函数 debug;
+*/
+
+getCurrentHtmlFileUrl = function(){ 
+    if(!winform.treeview.lastClickItem)
+        return;
+
+    var path = winform.treeview.getItemText(winform.treeview.lastClickItem )
+    if( #path ){
+        if( string.find(path,&quot;:&quot;) ){
+            //中文标题,使用子节点获取真实目录
+            var hitem = winform.treeview.getChildItem(winform.treeview.lastClickItem)
+            path = winform.treeview.getItemText( hitem );
+            path = fsys.getParentDir(path)
+            frmSourceCode.btnCreateProject.disabled = true;
+            return io.joinpath(&quot;/html_samples&quot;,path)
+        }
+
+        frmSourceCode.btnCreateProject.disabled = false; 
+        return io.joinpath(&quot;/html_samples&quot;,path)    
+    }
+}
+
+import fsys.dlg;
+var templateLayout = /********************
+import win.ui;
+/*DSG{{*/
+var winform = win.form( bottom=399;text=&quot;aardio form&quot;;right=599 ) 
+/*}}*/
+
+import web.layout;
+import web.layout.behavior.tabs;
+
+var wbLayout = web.layout(winform); 
+wbLayout.go(&quot;${URL}&quot;) 
+
+wbLayout.onButtonClick = function (ltTarget,ltOwner,reason,behaviorParams) {
+
+}
+
+winform.show() 
+win.loopMessage();
+
+            ********************/
+
+var templateLayoutHtml = /********************
+import win.ui;
+/*DSG{{*/
+var winform = win.form( bottom=399;text=&quot;aardio form&quot;;right=599 ) 
+/*}}*/
+
+import web.layout;
+import web.layout.behavior.tabs;
+var wbLayout = web.layout(winform); 
+
+import web.layout.debug; //导入该库以显示HTMLayout错误
+wbLayout.attachEventHandler( web.layout.debug ); //为CSSS!添加全局函数 debug;
+
+wbLayout.html = /*********
+${HTML}
+*********/
+
+wbLayout.onButtonClick = function (ltTarget,ltOwner,reason,behaviorParams) {
+
+}
+
+winform.show() 
+win.loopMessage();
+
+            ********************/
+
+import ide;     
+import fsys.dlg.dir;    
+createDemoProject = function(){ 
+    var targetDir = fsys.dlg.dir(,,&quot;请选择工程保存目录&quot;);
+    if(!targetDir)return; 
+    targetDir = io.joinpath(targetDir,&quot;/HTMLayout范例工程/&quot;)
+    fsys.createDir(targetDir);
+    fsys.copy( &quot;~\extensions\wizard\project\win&quot;,targetDir)
+    targetDir = io.joinpath(targetDir,&quot;win&quot;)
+    var samplesPath = getCurrentHtmlFileUrl(); 
+
+    if( wbLayout.loadFileCount &gt; 1 ){
+        var samplesDir = fsys.getParentDir(samplesPath); 
+        fsys.copy( samplesDir,io.joinpath(targetDir,&quot;\res&quot;) ); 
+
+        var url = fsys.path.relative( samplesPath ,fsys.getParentDir(samplesDir),true)  
+        string.save(io.joinpath(targetDir,&quot;default.main.aardio&quot;),( string.replace(templateLayout,&quot;@${URL}&quot;,io.joinpath(&quot;\res&quot;,url) ) ) ) 
+    }
+    else {
+            string.save(io.joinpath(targetDir,&quot;default.main.aardio&quot;),( string.replace(templateLayoutHtml,&quot;@${HTML}&quot;,fsys.codepage.load(samplesPath) ) ) ) 
+    }
+
+    ide.openDocument(io.joinpath(targetDir,&quot;default.aproj&quot;))
+}
+
+frmSourceCode.richedit.wndproc = function(hwnd,message,wParam,lParam){
+    if( message == 0x204/*_WM_RBUTTONDOWN*/  ){ 
+       owner.popMenu( { 
+        { &quot;在IDE中创建HTMLayout工程&quot;; createDemoProject }
+       } );
+    }
+}
+
+wbLayout.onDataLoaded = function(lParam) {
+    var dataLoaded = raw.convert(lParam,{
+        struct hdr = ::NMHDR();
+        ustring  uri; 
+        ptr data;
+        INT dataSize; 
+        INT dataType;
+        INT status; 
+    });
+    if( ! string.startWith(dataLoaded.uri,&quot;data:&quot;,true) ){
+        wbLayout.loadFileCount = wbLayout.loadFileCount + 1; 
+    };
+    frmSourceCode.btnCreateProject.disabled = false;
+} 
+
+import inet.http;
+var http = inet.http();
+import fsys.codepage;
+loadHtmlFile = function(){
+    var path = getCurrentHtmlFileUrl() 
+    if(!#path)return;
+    winform.text = &quot;web.layout(HTMLayout) 界面范例浏览器 &quot; + path;
+
+    win.ui.waitCursor(true)
+    frmSourceCode.richedit.text = &quot;正在加载......&quot;
+    wbLayout.write( &quot;&lt;body&gt;正在加载.......&lt;/body&gt;&quot; )   
+    winform.setTimeout( 
+        function(){
+            wbLayout.loadFileCount = 0;
+            wbLayout.go(path,,true);
+            frmSourceCode.btnExplore.disabled = false;
+            frmSourceCode.richedit.text = fsys.codepage.load(path,&quot;UTF-8&quot;); 
+            frmSourceCode.btnSave.disabled = true; 
+             win.ui.waitCursor(false)   
+        }
+    )    
+}
+
+import process;
+exploreFile = function(){
+    var path = getCurrentHtmlFileUrl() 
+    if(!#path)return;
+    if( fsys.isDir(path) )
+        process.explore(path)
+    else {
+        process.explore_select(path)
+    }
+}
+
+winform.treeview.onnotify = function(id,code,ptr){
+
+    if( code == 0xFFFFFFFE/*_NM_CLICK*/ ){  
+        var hItem = winform.treeview.hitTest()  
+        if( hItem ){ 
+             winform.treeview.lastClickItem = hItem
+             var path = winform.treeview.getItemText(hItem);
+             if( (#path) ? string.endWith(path,&quot;.htm&quot;,true) ){ 
+                loadHtmlFile()
+             }
+        }
+    }
+    elseif(code = 0xFFFFFFFB/*_NM_RCLICK*/){ 
+        var hItem,tvht = winform.treeview.hitTest();
+        winform.treeview.setSelected(hItem)
+        var menu = win.ui.popmenu(winform)
+        menu.add(&quot;预览效果&quot;,loadHtmlFile )
+        menu.add(&quot;使用资源管理器浏览...&quot;,exploreFile )
+        menu.add(&quot;在IDE中创建HTMLayout工程&quot;,createDemoProject )
+        menu.popup(x,y,true);
+    } 
+} 
+
+var tab = { 
+{ text=&quot;cssmap.htm&quot; };
+{ text=&quot;index.htm&quot; }; 
+{ text=&quot;CSS扩展&quot;;{ 
+        { text=&quot;css-plus\aspect-ratio.htm&quot; };
+        { text=&quot;css-plus\back-fore.htm&quot; };
+        { text=&quot;css-plus\big-scrollbar-styling.htm&quot; };
+        { text=&quot;css-plus\color-transform-gamma.htm&quot; };
+        { text=&quot;css-plus\color-transform.htm&quot; };
+        { text=&quot;css-plus\constants.htm&quot; };
+        { text=&quot;css-plus\content-transform.htm&quot; };
+        { text=&quot;css-plus\hsl-colors.htm&quot; };
+        { text=&quot;css-plus\opacity.htm&quot; };
+        { text=&quot;css-plus\outline-glow-on-black.htm&quot; };
+        { text=&quot;css-plus\outline-glow.htm&quot; };
+        { text=&quot;css-plus\outline-styles.htm&quot; };
+        { text=&quot;css-plus\scroll-manner-styling-flow-grid.htm&quot; };
+        { text=&quot;css-plus\scroll-manner-styling-table.htm&quot; };
+        { text=&quot;css-plus\scroll-manner-styling.htm&quot; };
+        { text=&quot;css-plus\scrollbar-styling.htm&quot; };
+        { text=&quot;css-plus\small-scrollbar-styling.htm&quot; };
+        { text=&quot;css-plus\table-of-content.htm&quot; };
+        { text=&quot;css-plus\theme-images.htm&quot; };
+        { text=&quot;css-plus\tree-view-lines.htm&quot; }
+   }
+};
+{ text=&quot;csss!脚本&quot;;{ 
+        { text=&quot;csss!\1.htm&quot; };
+        { text=&quot;csss!\animate-bounce.htm&quot; };
+        { text=&quot;csss!\animate-cubic.htm&quot; };
+        { text=&quot;csss!\animate-ease-list.htm&quot; };
+        { text=&quot;csss!\animation-expand-horz.htm&quot; };
+        { text=&quot;csss!\animation-expand.htm&quot; };
+        { text=&quot;csss!\animation-fade.htm&quot; };
+        { text=&quot;csss!\animation-simple.htm&quot; };
+        { text=&quot;csss!\animation-slide.htm&quot; };
+        { text=&quot;csss!\autofocus.htm&quot; };
+        { text=&quot;csss!\behavior-method-calls.htm&quot; };
+        { text=&quot;csss!\bound-slider.htm&quot; };
+        { text=&quot;csss!\calc-basic.htm&quot; };
+        { text=&quot;csss!\calc-dom.htm&quot; };
+        { text=&quot;csss!\calc-ext.htm&quot; };
+        { text=&quot;csss!\chart-custom-methods.htm&quot; };
+        { text=&quot;csss!\collapsible-by-checkbox.htm&quot; };
+        { text=&quot;csss!\collapsible-by-icon.htm&quot; };
+        { text=&quot;csss!\collapsible-when-action.htm&quot; };
+        { text=&quot;csss!\collapsible-with-behavior.htm&quot; };
+        { text=&quot;csss!\custom-tooltip-positioning.htm&quot; };
+        { text=&quot;csss!\dip-units.htm&quot; };
+        { text=&quot;csss!\dropdown-list.htm&quot; };
+        { text=&quot;csss!\frame-loading.htm&quot; };
+        { text=&quot;csss!\grid-sortable.htm&quot; };
+        { text=&quot;csss!\grid-with-collapsibles.htm&quot; };
+        { text=&quot;csss!\highlight-links.htm&quot; };
+        { text=&quot;csss!\keyboard-handling.htm&quot; };
+        { text=&quot;csss!\label-for-activation.htm&quot; };
+        { text=&quot;csss!\localization.htm&quot; };
+        { text=&quot;csss!\loops.htm&quot; };
+        { text=&quot;csss!\progress.htm&quot; };
+        { text=&quot;csss!\pure-css-tabs-states.htm&quot; };
+        { text=&quot;csss!\pure-css-tabs.htm&quot; };
+        { text=&quot;csss!\scroll-to-view.htm&quot; };
+        { text=&quot;csss!\show-popup.htm&quot; };
+        { text=&quot;csss!\size-changed.htm&quot; };
+        { text=&quot;csss!\slider-and-better-buddy.htm&quot; };
+        { text=&quot;csss!\styles-link-activation.htm&quot; };
+        { text=&quot;csss!\table-checkboxes.htm&quot; };
+        { text=&quot;csss!\text-width.htm&quot; };
+        { text=&quot;csss!\textarea-method-calls.htm&quot; };
+        { text=&quot;csss!\total.htm&quot; };
+        { text=&quot;csss!\use-of-consts.htm&quot; };
+        { text=&quot;csss!\use-of-other-dom-elements.htm&quot; };
+    };
+};
+{ text=&quot;入门&quot;;{ 
+        { text=&quot;generic\backgrounds.htm&quot; };
+        { text=&quot;generic\custom-control-border.htm&quot; };
+        { text=&quot;generic\hidden.htm&quot; };
+        { text=&quot;generic\iframe.htm&quot; };
+        { text=&quot;generic\overflows.htm&quot; };
+        { text=&quot;generic\selectors.htm&quot; };
+        { text=&quot;generic\sidebars.htm&quot; };
+        { text=&quot;generic\tabindex_navigation.htm&quot; }; 
+        { text=&quot;generic\backgrounds&quot; };
+        { text=&quot;generic\sidebars&quot; } 
+    };
+};
+{ text=&quot;推荐&quot;;{ 
+        { text=&quot;goodies\animated-cursor.htm&quot; };
+        { text=&quot;goodies\animatedgifs.htm&quot; };
+        { text=&quot;goodies\cursor.htm&quot; };
+        { text=&quot;goodies\custom-tags.htm&quot; };
+        { text=&quot;goodies\data-url.htm&quot; };
+        { text=&quot;goodies\file-icon.htm&quot; };
+        { text=&quot;goodies\gifs.htm&quot; };
+        { text=&quot;goodies\icon.htm&quot; };
+        { text=&quot;goodies\picture.htm&quot; };
+        { text=&quot;goodies\pictures&quot; };
+        { text=&quot;goodies\smiley&quot; };
+    }
+};
+{ text=&quot;特效&quot;;{
+        { text=&quot;effects\marquee.htm&quot; };
+        { text=&quot;effects\reflection.htm&quot; }
+    }
+};
+{ text=&quot;鱼眼特效&quot;;{ 
+        { text=&quot;fisheye\magnifier-4.htm&quot; };
+        { text=&quot;fisheye\magnifier-left-bottom.htm&quot; };
+        { text=&quot;fisheye\magnifier.htm&quot; };
+        { text=&quot;fisheye\magnifieranza.htm&quot; }
+    }
+};
+{ text=&quot;绝对定位&quot;;{
+        { text=&quot;abs\abs.htm&quot; };
+        { text=&quot;abs\abspos.htm&quot; };
+        { text=&quot;abs\abs_fix.htm&quot; };
+        { text=&quot;abs\fix_center.htm&quot; };
+        { text=&quot;abs\menus.htm&quot; };
+        { text=&quot;abs\rel_abs.htm&quot; }
+    }
+};
+{ text=&quot;背景&quot;;{ 
+        { text=&quot;back\alpha-back.htm&quot; };
+        { text=&quot;back\backdemo.htm&quot; };
+        { text=&quot;back\keep-ratio.htm&quot; }
+    }; 
+};
+{ text=&quot;圆角边框&quot;;{
+        { text=&quot;border-radius\border-radius.htm&quot; };
+        { text=&quot;border-radius\rounded-tabs-at-bottom.htm&quot; };
+        { text=&quot;border-radius\rounded-tabs.htm&quot; }
+    }
+};
+{ text=&quot;字体&quot;;{ 
+        { text=&quot;@font-face\test.htm&quot; }
+    }; 
+};
+{ text=&quot;svg绘图&quot;;{ 
+        { text=&quot;svg\gradient-svg.htm&quot; };
+        { text=&quot;svg\cowboy-svg.htm&quot; };
+    }
+};
+{ text=&quot;PNG动画&quot;;{ 
+        { text=&quot;animated-png\apng.htm&quot; };
+        { text=&quot;animated-png\disposal.htm&quot; };
+        { text=&quot;animated-png\loading.htm&quot; }
+    } 
+};
+{ text=&quot;动画&quot;;{ 
+        { text=&quot;animations\blend.htm&quot; };
+        { text=&quot;animations\h-sliding-bar-csss!.htm&quot; };
+        { text=&quot;animations\h-sliding-bar.htm&quot; };
+        { text=&quot;animations\popup-animations.htm&quot; };
+        { text=&quot;animations\sliding-bar-csss!.htm&quot; };
+        { text=&quot;animations\sliding-bar.htm&quot; };
+        { text=&quot;animations\sliding-list.htm&quot; }
+    }
+};
+{ text=&quot;渐变效果(transition)&quot;;{ 
+        { text=&quot;transitions\!transition-doc.htm&quot; };
+        { text=&quot;transitions\accordion.htm&quot; };
+        { text=&quot;transitions\border-animation.htm&quot; };
+        { text=&quot;transitions\easing-functions.htm&quot; };
+        { text=&quot;transitions\flex-units-transition.htm&quot; };
+        { text=&quot;transitions\folding.htm&quot; };
+        { text=&quot;transitions\margin-animation.htm&quot; };
+        { text=&quot;transitions\opacity.htm&quot; };
+        { text=&quot;transitions\reverse-modes.htm&quot; };
+        { text=&quot;transitions\to-intrinsic-height.htm&quot; }
+    }
+};
+{ text=&quot;交互扩展(behaviors)&quot;; { 
+        { text=&quot;behaviors\accesskeys.htm&quot; };
+        { text=&quot;behaviors\actions.htm&quot; };
+        { text=&quot;behaviors\chart.htm&quot; };
+        { text=&quot;behaviors\colorpopup.htm&quot; };
+        { text=&quot;behaviors\commands.htm&quot; };
+        { text=&quot;behaviors\dropdown-with-select.htm&quot; };
+        { text=&quot;behaviors\dropdown.htm&quot; };
+        { text=&quot;behaviors\editable-select.htm&quot; };
+        { text=&quot;behaviors\form-test.htm&quot; };
+        { text=&quot;behaviors\graphin-live-clock.htm&quot; };
+        { text=&quot;behaviors\htmlarea.htm&quot; };
+        { text=&quot;behaviors\hyperlinks.htm&quot; };
+        { text=&quot;behaviors\light-box-dialog.htm&quot; };
+        { text=&quot;behaviors\live-clock.htm&quot; };
+        { text=&quot;behaviors\more_tabs.htm&quot; };
+        { text=&quot;behaviors\path-behavior.htm&quot; };
+        { text=&quot;behaviors\scroller.htm&quot; };
+        { text=&quot;behaviors\select-buddy.htm&quot; };
+        { text=&quot;behaviors\shell-icon.htm&quot; };
+        { text=&quot;behaviors\sizer-popup.htm&quot; };
+        { text=&quot;behaviors\treeview.htm&quot; };
+        { text=&quot;behaviors\splitters.htm&quot; }; 
+        { text=&quot;behaviors\colorpopup&quot; };
+        { text=&quot;behaviors\more_tabs&quot; } 
+    }
+};
+{ text=&quot;提交表单&quot;; { 
+        { text=&quot;communication\file-upload.htm&quot; };
+        { text=&quot;communication\form-submission.htm&quot; }
+    }
+};
+
+{ text=&quot;拖放&quot;; { 
+        { text=&quot;drag-n-drop\drop-target-types.htm&quot; };
+        { text=&quot;drag-n-drop\gripper.htm&quot; };
+        { text=&quot;drag-n-drop\menu-dd.htm&quot; };
+        { text=&quot;drag-n-drop\shopping-cart.htm&quot; };
+        { text=&quot;drag-n-drop\tabs-reordering.htm&quot; };
+        { text=&quot;drag-n-drop\tree-view-context.htm&quot; };
+        { text=&quot;drag-n-drop\tree-view-rtl.htm&quot; };
+        { text=&quot;drag-n-drop\tree-view.htm&quot; }
+    }
+};
+{ text=&quot;窗口控件&quot;; { 
+    { text=&quot;forms\basiccontrols.htm&quot; };
+    { text=&quot;forms\buttons.htm&quot; };
+    { text=&quot;forms\custom-ctl-styles.htm&quot; };
+    { text=&quot;forms\custom-dropdown-selects.htm&quot; };
+    { text=&quot;forms\datetime.htm&quot; };
+    { text=&quot;forms\dropdown-select-tree.htm&quot; };
+    { text=&quot;forms\dropdown-selects.htm&quot; };
+    { text=&quot;forms\editable-dropdown-selects.htm&quot; };
+    { text=&quot;forms\edits.htm&quot; };
+    { text=&quot;forms\form.htm&quot; };
+    { text=&quot;forms\input-text-and-button.htm&quot; };
+    { text=&quot;forms\listview.htm&quot; };
+    { text=&quot;forms\multiselect.htm&quot; };
+    { text=&quot;forms\path-select.htm&quot; };
+    { text=&quot;forms\plaintext.htm&quot; };
+    { text=&quot;forms\popup-selector.htm&quot; };
+    { text=&quot;forms\progress.htm&quot; };
+    { text=&quot;forms\scrollbars.htm&quot; };
+    { text=&quot;forms\selects.htm&quot; };
+    { text=&quot;forms\slider.htm&quot; };
+    { text=&quot;forms\table-select.htm&quot; };
+    { text=&quot;forms\tabs-in-tabs.htm&quot; };
+    { text=&quot;forms\tabs.htm&quot; };
+    { text=&quot;forms\textarea.htm&quot; };
+    { text=&quot;forms\tree-view.htm&quot; };
+    { text=&quot;forms\tristate-checkbox.htm&quot; }
+    }; 
+};
+{ text=&quot;菜单&quot;; {
+        { text=&quot;menu\c-menu.htm&quot; };
+        { text=&quot;menu\context-menu.htm&quot; };
+        { text=&quot;menu\for-track-popup-test.htm&quot; };
+        { text=&quot;menu\menu-bar.htm&quot; };
+        { text=&quot;menu\non-rectangular-menu.htm&quot; };
+        { text=&quot;menu\popup-menu.htm&quot; }
+    }
+};
+{ text=&quot;tooltip提示&quot;; {  
+        { text=&quot;tooltips\month.htm&quot; };
+        { text=&quot;tooltips\titles.htm&quot; }
+    }
+};
+{ text=&quot;编辑器&quot;;{ 
+        { text=&quot;editor\index.htm&quot; }
+    }
+};
+{ text=&quot;richtext控件&quot;; { 
+        { text=&quot;richtext\help-shortcuts.htm&quot; };
+        { text=&quot;richtext\plaintext-modes.htm&quot; };
+        { text=&quot;richtext\plaintext.htm&quot; };
+        { text=&quot;richtext\richtext-list.htm&quot; };
+        { text=&quot;richtext\richtext.htm&quot; }
+    };  
+};
+{ text=&quot;fieldset标签&quot;; { 
+        { text=&quot;fieldset\layout.htm&quot; }
+    }
+};
+
+{ text=&quot;table表格&quot;; { 
+    { text=&quot;fixed-table\collapsible-sections-classic.htm&quot; };
+    { text=&quot;fixed-table\collapsible-sections.htm&quot; };
+    { text=&quot;fixed-table\simple-sections.htm&quot; };
+    { text=&quot;fixed-table\simple.htm&quot; };
+    { text=&quot;fixed-table\table-fixed-10000-rows-sections.htm&quot; };
+    { text=&quot;fixed-table\table-fixed-10000-rows.htm&quot; }
+    } 
+};
+{ text=&quot;布局模式&quot;; { 
+        { text=&quot;flows\columns.htm&quot; };
+        { text=&quot;flows\demo-at-w3c.htm&quot; };
+        { text=&quot;flows\dynamic-flow-tmpl.htm&quot; };
+        { text=&quot;flows\grid-layout-2.htm&quot; };
+        { text=&quot;flows\grid-layout-3.htm&quot; };
+        { text=&quot;flows\grid-layout-4.htm&quot; };
+        { text=&quot;flows\grid.htm&quot; };
+        { text=&quot;flows\h-flow.htm&quot; };
+        { text=&quot;flows\template-layout-using-indexes.htm&quot; };
+        { text=&quot;flows\template-layout.htm&quot; };
+        { text=&quot;flows\text-fragment.htm&quot; };
+        { text=&quot;flows\v-flow.htm&quot; };
+        { text=&quot;flows\content&quot;;  { 
+                    { text=&quot;flows\content\flow-and-floats.htm&quot; };
+                    { text=&quot;flows\content\flow-horizontal-flow.htm&quot; };
+                    { text=&quot;flows\content\flow-horizontal.htm&quot; };
+                    { text=&quot;flows\content\flow-template.htm&quot; };
+                    { text=&quot;flows\content\flow-vertical-flow.htm&quot; };
+                    { text=&quot;flows\content\flow-vertical.htm&quot; };
+                    { text=&quot;flows\content\lorem-ipsum.htm&quot; }
+            };  
+        }
+    }; 
+};
+{ text=&quot;for-at&quot;; {
+        { text=&quot;for-at\buttons.htm&quot; };
+        { text=&quot;for-at\ext-scrollbars.htm&quot; }
+    }
+};
+
+{ text=&quot;框架应用&quot;; { 
+        { text=&quot;frames\behaviors.htm&quot; };
+        { text=&quot;frames\border-spacing.htm&quot; };
+        { text=&quot;frames\frame-splitter-styling.htm&quot; };
+        { text=&quot;frames\frame1.htm&quot; };
+        { text=&quot;frames\frame2.htm&quot; };
+        { text=&quot;frames\frame3.htm&quot; };
+        { text=&quot;frames\frame4.htm&quot; };
+        { text=&quot;frames\frames-rtl.htm&quot; };
+        { text=&quot;frames\frames.htm&quot; };
+        { text=&quot;frames\frameset-splitter.htm&quot; };
+        { text=&quot;frames\large-content-in-frames.htm&quot; };
+        { text=&quot;frames\standalone-frame.htm&quot; };
+        { text=&quot;sort-of-frames\help.htm&quot; }
+    }
+};
+{  text=&quot;网格(grid)&quot;; {
+        { text=&quot;grid\scrollable-table.htm&quot; };
+        { text=&quot;grid\sortable-grid.htm&quot; };
+        { text=&quot;grid\table-tbody-thead.htm&quot; };
+        { text=&quot;grid\virtual-table.htm&quot; }
+    }
+};
+{ text=&quot;水平/垂直对齐&quot;; {
+        { text=&quot;horizontal-vertical-align\horizontal-align-flow.htm&quot; };
+        { text=&quot;horizontal-vertical-align\horizontal-align.htm&quot; };
+        { text=&quot;horizontal-vertical-align\vertical-align.htm&quot; }
+    }
+};
+{ text=&quot;include语法&quot;; { 
+        { text=&quot;includes\root.htm&quot; }
+        { text=&quot;includes\chunk1.htm&quot; };
+        { text=&quot;includes\chunk2.htm&quot; }; 
+    }
+};
+{ text=&quot;优化&quot;; { 
+        { text=&quot;optimizations\dyn-updates.htm&quot; }
+    }
+};
+{ text=&quot;打印&quot;; {
+        { text=&quot;printing\!readme!.htm&quot; };
+        { text=&quot;printing\page-break-after.htm&quot; };
+        { text=&quot;printing\page-break-before.htm&quot; };
+        { text=&quot;printing\page-break-inside.htm&quot; }
+    }
+}; 
+{ text=&quot;MSVS 起始页效果&quot;; { 
+        { text=&quot;MSVS-start-page\start-page.htm&quot; };
+        { text=&quot;MSVS-start-page\content\getting-started.htm&quot; };
+        { text=&quot;MSVS-start-page\content\headlines.htm&quot; };
+        { text=&quot;MSVS-start-page\content\list-of-projects.htm&quot; };
+        { text=&quot;MSVS-start-page\content\msdn-recent-news.htm&quot; }
+    } 
+};
+{ text=&quot;压力测试&quot;; {
+        { text=&quot;stress\animation.htm&quot; };
+        { text=&quot;stress\complex_tables.htm&quot; };
+        { text=&quot;stress\grid-1000-outline-glow.htm&quot; };
+        { text=&quot;stress\grid-1000-rounded-corners.htm&quot; };
+        { text=&quot;stress\grid-1000.htm&quot; };
+        { text=&quot;stress\grid-fixed-1000.htm&quot; };
+        { text=&quot;stress\grid-fixed-10000.htm&quot; };
+        { text=&quot;stress\select-10000.htm&quot; };
+        { text=&quot;stress\table-10000.htm&quot; };
+        { text=&quot;stress\table-fixed-10000.htm&quot; };
+        { text=&quot;stress\tabs&quot; ;
+            children={  
+                { text=&quot;stress\tabs\form.htm&quot; };
+                { text=&quot;stress\tabs\grid-1000.htm&quot; };
+                { text=&quot;stress\tabs\tabs.htm&quot; };
+                { text=&quot;stress\tabs\tree-view.htm&quot; };
+            }
+        }
+    };
+};
+{ text=&quot;HTML32.htm&quot; };
+}
+
+hitem = winform.treeview.insertItem( tab ) 
+
+
+winform.show(0x3/*_SW_MAXIMIZE*/) 
+win.loopMessage();
+
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/WebUI/HTMLayout/samples.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/WebUI/HTMLayout/samples.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/WebUI/HTMLayout/samples.md">Markdown 格式</a>
+</body> 
+</html>

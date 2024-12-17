@@ -1,0 +1,478 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - java 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - java 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>java 库模块帮助文档</h1>
+
+<p><a id="java"></a></p>
+
+<h2>java 成员列表</h2>
+
+<p>创建 JAVA 虚拟机,仅支持 32 位 JRE。<br>
+改用 java.openProcess  函数可兼容 32位、64位 JRE。<br>
+如果未找到可用的 JVM 运行库返回 null<br>
+在每个进程第一次创建JAVA 虚拟机或初始化 JVM 路径之前,<br>
+可调用 java.path.setJreHome 自定义搜索 JVM 的 JRE 运行时目录,<br>
+jar包搜索顺序为&quot;\&quot;,&quot;\java\&quot;,&quot;~\java&quot;,<br>
+可使用 java.addClassPath 函数添加搜索路径</p>
+
+<p><a id="java()"></a></p>
+
+<h3>java()</h3>
+
+<p><a href="#javaObject">返回对象:javaObject</a></p>
+
+<p><a id="java(命令行参数,...)"></a></p>
+
+<h3>java(命令行参数,...)</h3>
+
+<p>n可指定一个或多个启动命令行参数,<br>
+也可以把多个参数写到一个字符串参数或数组参数里,  </p>
+
+<p>参数类似 &quot;-D<propertyName>=value&quot;<br>
+在 JAVA 中可以使用 System.getProperty(&quot;propertyName&quot;) 得到value的值  </p>
+
+<p>对于每个打开的进程,JAVA虚拟机仅创建一次实例,<br>
+因此所有参数、搜索路径等仅在首次创建虚拟机时生效</p>
+
+<p><a id="java.addClassPath"></a></p>
+
+<h3>java.addClassPath()</h3>
+
+<p>添加一个或多个查找类的根目录<br>
+添加该目录时将自动添加该目录下已存在的 *.jar 文件<br>
+子目录下的jar文件将被忽略<br>
+注意:必须在进程首次创建 Java 虚拟机之前调用该函数</p>
+
+<p><a id="java.addLibPath"></a></p>
+
+<h3>java.addLibPath()</h3>
+
+<p>添加一个或多个目录<br>
+Java中调用System.loadLibrary()时将在指定的目录查找DLL组件</p>
+
+<p><a id="java.compile"></a></p>
+
+<h3>java.compile(&quot;java源文件路径&quot;)</h3>
+
+<p>编译java源文件<br>
+该函数需要系统安装JDK,可事先设置JAVA_HOME环境变量手动指定JDK位置<br>
+注意如果aardio自带了jre版本必须与JDK一致,不然java程序编译后可能无法运行</p>
+
+<p><a id="java.compile"></a></p>
+
+<h3>java.compile()</h3>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html#processPopenObject'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html#processPopenObject">返回对象:processPopenObject</a></p>
+
+<p><a id="java.encoding"></a></p>
+
+<h3>java.encoding</h3>
+
+<p>指定默认编码,<br>
+默认值为 &quot;utf-8&quot;,<br>
+UTF-8 目前是最好也是最通用的设置,<br>
+最好不要改也不必要改</p>
+
+<p><a id="java.openProcess"></a></p>
+
+<h3>java.openProcess(&quot;-jar&quot;,&quot;命令行参数&quot;, ... )</h3>
+
+<p>创建Java窗口应用程序返回process进程对象<br>
+命令行参数可以是数组或任意个文本参数,<br>
+如果命令行参数有多个,则包含空格的参数添加必要的双引号和转义,<br>
+如果参数@1是数组,<br>
+参数@2可指定 process.STARTUPINFO 结构体或部分字段,<br>
+规则考 process 构造函数</p>
+
+<p><a id="java.openProcess"></a></p>
+
+<h3>java.openProcess()</h3>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/process/_.html  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/process/_.html#processObject'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/process/_.html#processObject">返回对象:processObject</a></p>
+
+<p><a id="java.popenProcess"></a></p>
+
+<h3>java.popenProcess(&quot;-jar&quot;,&quot;命令行参数&quot;, ... )</h3>
+
+<p>创建Java控制台应用程序返回process.popen对象<br>
+命令行参数可以是数组或任意个文本参数,<br>
+如果命令行参数有多个,则包含空格的参数添加必要的双引号和转义,<br>
+如果参数@1是数组,<br>
+参数@2可指定 process.STARTUPINFO 结构体或部分字段,<br>
+规则考 process 构造函数</p>
+
+<p><a id="java.popenProcess"></a></p>
+
+<h3>java.popenProcess()</h3>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html#processPopenObject'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html#processPopenObject">返回对象:processPopenObject</a></p>
+
+<p><a id="java.runtimeVersion"></a></p>
+
+<h3>java.runtimeVersion(true)</h3>
+
+<p>返回 Java 运行时版号，数值。<br>
+版本号为 1.x 时返回第 2 位版本号，否则返回第 1 位版本号（Java 9 以上）。<br>
+如果不指定参数，则返回字符串格式的完整版本号。</p>
+
+<p><a id="java.version"></a></p>
+
+<h3>java.version</h3>
+
+<p>JVM 虚拟机接口版本,<br>
+在进程首次创建虚拟机以前用于指定最低兼容版本<br>
+默认会设为 0x10006/*_JNI_VERSION_1_6*/</p>
+
+<p><a id="javaObject"></a></p>
+
+<h2>javaObject 成员列表</h2>
+
+<p><a id="javaObject.addClassLoaderUrl"></a></p>
+
+<h3>javaObject.addClassLoaderUrl</h3>
+
+<p>添加类搜索目录到 CLASSPATH,<br>
+此函数仅支持 Java6~Java8<br>
+Java9 开始不再支持,可以改用 java.addClassPath,<br>
+但 java.addClassPath 仅支持 ANSI编码路径,<br>
+addClassLoaderUrl 函数支持 UTF-8 编码路径</p>
+
+<p><a id="javaObject.addClassLoaderUrl"></a></p>
+
+<h3>javaObject.addClassLoaderUrl(&quot;类搜索路径&quot;)</h3>
+
+<p>添加jar包或文件目录到 CLASSPATH,<br>
+Java 在 CLASSPATH 指定的目录或 jar 中搜索类,<br>
+参数可以是一个数组,也可以是多个路径参数</p>
+
+<p><a id="javaObject.array"></a></p>
+
+<h3>javaObject.array(&quot;int&quot;,)</h3>
+
+<p>将一个或多个基本类型转换为java数组对象<br>
+传入参数也可以是一个table类型字符串数组</p>
+
+<p><a id="javaObject.boolean"></a></p>
+
+<h3>javaObject.boolean()</h3>
+
+<p>创建布尔值-返回 Java 对象</p>
+
+<p><a id="javaObject.char"></a></p>
+
+<h3>javaObject.char()</h3>
+
+<p>创建8位整型数值-返回 Java 对象</p>
+
+<p><a id="javaObject.createInstance"></a></p>
+
+<h3>javaObject.createInstance(java类对象,...)</h3>
+
+<p>调用构造函数创建对象</p>
+
+<p><a id="javaObject.double"></a></p>
+
+<h3>javaObject.double()</h3>
+
+<p>创建64位浮点数值-返回 Java 对象</p>
+
+<p><a id="javaObject.exceptionClear"></a></p>
+
+<h3>javaObject.exceptionClear()</h3>
+
+<p>该函数如果检测到抛出的异常,并清除异常返回true<br>
+如果未检测到异常返回空值</p>
+
+<p><a id="javaObject.fieldExists"></a></p>
+
+<h3>javaObject.fieldExists(Java对象,&quot;字段名&quot;)</h3>
+
+<p>返回是否存在指定字段名</p>
+
+<p><a id="javaObject.float"></a></p>
+
+<h3>javaObject.float()</h3>
+
+<p>创建32位浮点数值-返回 Java 对象</p>
+
+<p><a id="javaObject.getFieldValue"></a></p>
+
+<h3>javaObject.getFieldValue(Java对象,&quot;字段名&quot;)</h3>
+
+<p>返回字段值</p>
+
+<p><a id="javaObject.import"></a></p>
+
+<h3>javaObject.import(&quot;类名&quot;,&quot;类文件路径&quot;)</h3>
+
+<p>加载指定的类<br>
+可选用参数@2指定类文件路径、或者自内存文件加载类<br>
+如果类不存在或加载失败返回null空值 - 不会抛出异常</p>
+
+<p><a id="javaObject.import"></a></p>
+
+<h3>javaObject.import()</h3>
+
+<p><a href="#JavaClassObject">返回对象:JavaClassObject</a></p>
+
+<p><a id="javaObject.int"></a></p>
+
+<h3>javaObject.int()</h3>
+
+<p>创建32位整型数值-返回 Java 对象</p>
+
+<p><a id="javaObject.interop"></a></p>
+
+<h3>javaObject.interop</h3>
+
+<p>aardio.interopServices.utility类</p>
+
+<p><a id="javaObject.invokeMethod"></a></p>
+
+<h3>javaObject.invokeMethod(类或对象,其他调用参数...)</h3>
+
+<p>调用Java函数,支持多个参数<br>
+对于数值类型,aardio将会自动检测适用的数值类型<br>
+也可以调用java.int,java.short,java.char,java.long等函数显式的声明数值类型</p>
+
+<p><a id="javaObject.isMainThread"></a></p>
+
+<h3>javaObject.isMainThread</h3>
+
+<p>仅第一次创建java虚拟机时该值为true,<br>
+随后创建的虚拟机都会返回false</p>
+
+<p><a id="javaObject.loadFileObject"></a></p>
+
+<h3>javaObject.loadFileObject()</h3>
+
+<p>自参数 @1 指定的文件路径反序化化 Java 对象</p>
+
+<p><a id="javaObject.long"></a></p>
+
+<h3>javaObject.long()</h3>
+
+<p>创建64位整型数值-返回 Java 对象</p>
+
+<p><a id="javaObject.object2Number"></a></p>
+
+<h3>javaObject.object2Number()</h3>
+
+<p>java数值对象转换为 aardio 数值</p>
+
+<p><a id="javaObject.object2String"></a></p>
+
+<h3>javaObject.object2String()</h3>
+
+<p>java字等串对象转换为 aardio 字符串</p>
+
+<p><a id="javaObject.objectIsNumber"></a></p>
+
+<h3>javaObject.objectIsNumber()</h3>
+
+<p>返回参数指定的Java对象是否数值</p>
+
+<p><a id="javaObject.objectIsString"></a></p>
+
+<h3>javaObject.objectIsString()</h3>
+
+<p>返回参数指定的Java对象是否字符串</p>
+
+<p><a id="javaObject.parseArray"></a></p>
+
+<h3>javaObject.parseArray(&quot;int&quot;,java数组)</h3>
+
+<p>将 Java 对象指针转换为 aardio 数组对象,参数一指定数组元素数据类型<br>
+注意:该函数会销毁传入的 Java 对象指针</p>
+
+<p><a id="javaObject.parseString"></a></p>
+
+<h3>javaObject.parseString()</h3>
+
+<p>将Java字符串转换为 aardio 字符串<br>
+注意:该函数会销毁传入的 Java 对象指针</p>
+
+<p><a id="javaObject.parseStringArray"></a></p>
+
+<h3>javaObject.parseStringArray(java数组)</h3>
+
+<p>将 Java 对象指针转换为 aardio 数组对象<br>
+注意:该函数会销毁传入的 Java 对象指针</p>
+
+<p><a id="javaObject.reopen"></a></p>
+
+<h3>javaObject.reopen(&quot;setErr&quot;,&quot;conerr$&quot;)</h3>
+
+<p>重定向错误输出到控制台</p>
+
+<p><a id="javaObject.reopen"></a></p>
+
+<h3>javaObject.reopen(&quot;setOut&quot;,&quot;conout$&quot;)</h3>
+
+<p>重定向标准输出到控制台,<br>
+如果在创建 Java 虚拟机以后打开控制台,<br>
+需要调用此函数才能在控制台看到 Java 的标准输出</p>
+
+<p><a id="javaObject.setFieldValue"></a></p>
+
+<h3>javaObject.setFieldValue(Java对象,&quot;字段名&quot;,字段值)</h3>
+
+<p>修改字段值</p>
+
+<p><a id="javaObject.short"></a></p>
+
+<h3>javaObject.short()</h3>
+
+<p>创建16位整型数值-返回 Java 对象</p>
+
+<p><a id="javaObject.string"></a></p>
+
+<h3>javaObject.string()</h3>
+
+<p>将aardio字符串转换为java字符串对象<br>
+返回对象指针</p>
+
+<p><a id="javaObject.stringArray"></a></p>
+
+<h3>javaObject.stringArray()</h3>
+
+<p>将一个或多个字符串转换为java字符串数组<br>
+传入参数也可以是一个table类型字符串数组</p>
+
+<p><a id="javaObject.version"></a></p>
+
+<h3>javaObject.version</h3>
+
+<p>JVM 虚拟机接口版本,<br>
+Java 8 的接口版本为 0x10008/*_JNI_VERSION_1_8*/,<br>
+目前 Java 10+ 的接口版本号都是 0xa0000/*JNI_VERSION_10*/</p>
+
+<p><a id="JavaClass()Object"></a></p>
+
+<h2>JavaClass()Object 成员列表</h2>
+
+<p><a href="#JavaObject">返回对象:JavaObject</a></p>
+
+<p><a id="JavaClassObject"></a></p>
+
+<h2>JavaClassObject 成员列表</h2>
+
+<p><a id="JavaClassObject.createInstance"></a></p>
+
+<h3>JavaClassObject.createInstance(...)</h3>
+
+<p>使用Java调用构造函数创建对象<br>
+不限制参数个数以及类型,<br>
+允许以类名本身替代此函数</p>
+
+<p><a id="JavaClassObject.createInstanceEx("void"></a></p>
+
+<h3>JavaClassObject.createInstanceEx(&quot;void()&quot;，...)</h3>
+
+<p>使用 JNI 调用构造函数创建对象<br>
+参数最多只能是一个参数,或者一个参数数组,<br>
+用户应使用createInstance，该函数不限制参数个数以及类型</p>
+
+<p><a id="JavaClassObject.createInstanceEx"></a></p>
+
+<h3>JavaClassObject.createInstanceEx()</h3>
+
+<p><a href="#JavaObject">返回对象:JavaObject</a></p>
+
+<p><a id="JavaClassObject.getField"></a></p>
+
+<h3>JavaClassObject.getField(&quot;字段名&quot;,&quot;int&quot;)</h3>
+
+<p>参数@2指定字段类型声明<br>
+与函数原型使用的语法一致</p>
+
+<p><a id="JavaClassObject.getMethod("函数名","int"></a></p>
+
+<h3>JavaClassObject.getMethod(&quot;函数名&quot;,&quot;int(int)&quot;)</h3>
+
+<p>返回静态函数，参数 @2 指定函数原型。<br>
+注意 Java 区分大小写，参数只能指定单个参数或数组类型,<br>
+如果需要使用多个参数或动态参数，请直接使用 对象.函数名 获取函数<br>
+注意返回的是原生函数,调用时数值、布尔值不可以使用Java对象</p>
+
+<p><a id="JavaClassObject.registerNative"></a></p>
+
+<h3>JavaClassObject.registerNative(函数,函数名,签名)</h3>
+
+<pre><code class="aardio language-aardio">JavaClassObject.registerNative(  
+    function(env,jobject,jstring){  
+        var str = owner.parseString(jstring)  
+
+        return owner.string( func() )  
+    },&quot;/*函数名*/&quot;,&quot;string(string)&quot;  
+)
+</code></pre>
+
+<p><a id="JavaClassObject.unregisterNatives"></a></p>
+
+<h3>JavaClassObject.unregisterNatives()</h3>
+
+<p>注销所有注册到Java类中的函数</p>
+
+<p><a id="JavaObject"></a></p>
+
+<h2>JavaObject 成员列表</h2>
+
+<p><a id="JavaObject.getField"></a></p>
+
+<h3>JavaObject.getField(&quot;字段名&quot;,&quot;int&quot;)</h3>
+
+<p>第二个参数指定字段类型声明<br>
+与函数原型使用的语法一致</p>
+
+<p><a id="JavaObject.getMethod"></a></p>
+
+<h3>JavaObject.getMethod(&quot;函数名&quot;)</h3>
+
+<p>返回对象的成员函数。<br>
+注意 Java 区分大小写，返回的函数支持任意个数参数。<br>
+注意无论 Java 对象是否存在该函数都会返回一个函数对象</p>
+
+<p><a id="JavaObject.getMethod("函数名","int"></a></p>
+
+<h3>JavaObject.getMethod(&quot;函数名&quot;,&quot;int(int)&quot;)</h3>
+
+<p>返回对象的成员函数，参数 @2 指定函数原型。<br>
+注意 Java 区分大小写，参数只能指定单个参数或数组类型,<br>
+如果需要使用多个参数或动态参数，请直接使用 对象.函数名 获取函数<br>
+注意返回的是原生函数,调用时数值、布尔值不可以使用Java对象</p>
+
+<h3>自动完成常量</h3>
+
+<p>_JNI_FALSE=0<br>
+_JNI_TRUE=1<br>
+_JNI_VERSION_10=0xA0000<br>
+_JNI_VERSION_11=0xB0000<br>
+_JNI_VERSION_12=0xC0000<br>
+_JNI_VERSION_13=0xD0000<br>
+_JNI_VERSION_14=0xE0000<br>
+_JNI_VERSION_15=0xF0000<br>
+_JNI_VERSION_1_1=0x10001<br>
+_JNI_VERSION_1_2=0x10002<br>
+_JNI_VERSION_1_4=0x10004<br>
+_JNI_VERSION_1_6=0x10006<br>
+_JNI_VERSION_1_7=0x10007<br>
+_JNI_VERSION_1_8=0x10008<br>
+_JNI_VERSION_9=0x90000  </p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/java/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/java/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/java/_.md">Markdown 格式</a></p>
+
+</body> 
+</html>

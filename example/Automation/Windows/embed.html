@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 窗口自动化 - 嵌入外部窗口'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 窗口自动化 - 嵌入外部窗口</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 窗口自动化 - 嵌入外部窗口</h1><pre><code class="aardio language-aardio">//窗口自动化 - 嵌入外部窗口
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;aardio form&quot;;right=886;bottom=627;)
+winform.add(
+button={cls=&quot;button&quot;;text=&quot;点这里试试&quot;;left=554;top=561;right=801;bottom=620;color=14120960;db=1;dr=1;font=LOGFONT(h=-14);note=&quot;这点里操作记事本的编辑框&quot;;z=2};
+static={cls=&quot;static&quot;;left=46;top=22;right=854;bottom=542;db=1;dl=1;dr=1;dt=1;z=1}
+)
+/*}}*/
+
+import process;
+if( !process.executeWaitInput(&quot;wordpad.exe&quot;) ){
+    error(&quot;系统未安装写字板&quot;);
+}
+
+import winex; 
+var hwndNotepad,hNotepadEdit = winex.waitActive(,,&quot;WordPadClass&quot;,&quot;RICHEDIT50W&quot;);
+
+//悬浮影子窗口：外部进程窗口附加到 winform.static 并如影随形的自适应缩放调整位置
+winex.orphanWindow(winform.static,hwndNotepad)
+
+//退出程序前让记事本退出
+winform.onClose = function(hwnd,message,wParam,lParam){
+   if(!winex.closeAndWait(hwndNotepad)) return 1; 
+}
+
+import winex.ctrl.edit;
+var edit = winex.ctrl.edit(hNotepadEdit);
+winform.button.oncommand = function(id,event){ 
+    edit.text=&quot;测试一下&quot;;
+    edit.print(&quot;测试调用函数&quot;,123,{
+        1,2,3
+    })  
+}
+
+winform.show(); 
+win.loopMessage();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Automation/Windows/embed.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Automation/Windows/embed.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Automation/Windows/embed.md">Markdown 格式</a>
+</body> 
+</html>

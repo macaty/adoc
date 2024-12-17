@@ -1,0 +1,163 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - 获取DOM节点对象'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - 获取DOM节点对象</title> 
+<link rel="stylesheet" href="../../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>获取DOM节点对象</h1>
+
+<p>参考: <a href="webform.html" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/std/web/form/webform.html">创建 Web 窗体</a>   </p>
+
+<h2>DOM简介</h2>
+
+<p>网页上是一个个的HTML节点表示的 DOM 节点对象,节点象一颗树,所有节点的根是 wb.document 对象,一个节点可以包含另外的一个或多个节点,在 Web 窗体中,我们通过获取节点对象就可以读写网页上任意节点的数据、并控制这些节点的行为，从而实现自动化的目的。</p>
+
+<p>本手册中约定使用 wb 变量名表示 web.form 类创建的 Web 窗体对象.使用 ele 表示 Web 窗体中的元素对象,这也是 aardio 中默认约定具有特殊意义的变量名,不应将这些默认变量名用于其他目的。</p>
+
+<p>在获取节点对象以前,我们必须调用<a href="control.html#go" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/std/web/form/control.html#go">wb.go</a>打开网页,并调用<a href="wait.html#wait" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/std/web/form/wait.html#wait">wb.wait</a>等待网页下载完毕并完全打开。</p>
+
+<h2>wb.document</h2>
+
+<p>wb.document是网页上所有节点对象的根节点,这是一个com对象,可以使用 com.DumpTypeInfo 或 console.dump 函数列出该对象的成员,请参考HTML DOM文档以了解document的成员。</p>
+
+<pre><code class="aardio language-aardio">import console;
+console.dump( wb.document );
+</code></pre>
+
+<h2>wb.getDoc</h2>
+
+<ol>
+<li><p>函数原型：   </p>
+
+<p><code>doc = wb.getDoc( 框架名 )</code></p></li>
+<li><p>函数说明：   </p>
+
+<p>获取指定框架窗口的document对象,框架名可省略.<br>
+如果无参数,该函数返回 wb.document</p>
+
+<p>如果页面未成功创建文档对象,该函数返回null,调用该函数以前必须调用 <a href="wait.html#wait" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/std/web/form/wait.html#wait">wb.wait()</a> 等待网页下载完毕.<br>
+而使用 <a href="wait.html#waitDoc" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/std/web/form/wait.html#waitDoc">wb.waitDoc()</a> 则实现等待该节点下载并返回该节点的功能,而无须等待整个网页下载完.</p></li>
+</ol>
+
+<h2>wb.body</h2>
+
+<p>wb.body是网页上所有可见元素的根节点,这是一个element对象,可以使用com.DumpTypeInfo函数列出该对象的成员</p>
+
+<pre><code class="aardio language-aardio">import console; 
+console.dump( wb.body );
+console.pause();
+</code></pre>
+
+<h2>wb.getEle</h2>
+
+<ol>
+<li><p>函数原型：   </p>
+
+<p><code>ele = wb.getEle( HTML节点的ID名name, 框架名 )</code></p></li>
+<li><p>函数说明：   </p>
+
+<p>该函数查找并返回页面上的 element 节点对象,<br>
+该对象同样是一个 COM 对象,可以使用 com.DumpTypeInfo  或 console.dump 函数列出该对象的成员.</p>
+
+<p>可以通过第二个参数指定框架窗口，该参数可以省略。 </p>
+
+<p>调用 wb.getEle 之前必须调用 <a href="wait.html#wait" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/std/web/form/wait.html#wait">wb.wait()</a> 等待网页下载完毕.<br>
+而使用 <a href="wait.html#waitEle" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/std/web/form/wait.html#waitEle">wb.waitEle()</a> 则实现等待该节点下载并返回该节点的功能,而无须等待整个网页下载完.  </p></li>
+</ol>
+
+<h2>wb.fromPoint</h2>
+
+<ol>
+<li><p>函数原型：   </p>
+
+<p><code>ele = wb.fromPoint( x坐标,y坐标, 框架名 )</code></p></li>
+<li><p>函数说明：   </p>
+
+<p>自指定的窗口坐标获取节点,</p>
+
+<p>可以通过第三个参数指定框架窗口,该参数可以省略.  </p></li>
+</ol>
+
+<h2>wb.getEles</h2>
+
+<ol>
+<li><p>函数原型：   </p>
+
+<p><code>tele = wb.getEles( HTML节点的name属性, 框架名 )</code></p></li>
+<li><p>函数说明：   </p>
+
+<p>该函数返回网页上所有name属性相同的同名节点.返回值为一个com数组.注意com数组使用()括号读取成员而不是使用索引操作符<code>[]</code>  </p>
+
+<p>可以通过第二个参数指定框架窗口,该参数可以省略.</p></li>
+<li><p>调用示例：   </p>
+
+<pre><code class="aardio language-aardio">//....省略创建 Web 窗体的代码 
+
+tele = wb.getEles( HTML节点的name属性, 框架名 )
+tele(1).setAttribute(&quot;属性名字&quot;, &quot;修改第一个节点属性值&quot;)
+</code></pre></li>
+</ol>
+
+<h2>wb.eachAll</h2>
+
+<ol>
+<li><p>函数原型：   </p>
+
+<pre><code class="aardio language-aardio">for(k,ele in wb.eachAll( HTML标记,框加名) ){
+
+}
+</code></pre></li>
+<li><p>函数说明：   </p>
+
+<p>wb.eachAll创建一个用于for...in语句的迭代器,用以遍历页面上指定的节点.  </p>
+
+<p>参数一指定 HTML 标记 可以通过第二个参数指定框架窗口,该参数可以省略.</p></li>
+<li><p>调用示例：   </p>
+
+<pre><code class="aardio language-aardio">//....省略创建 Web 窗体的代码 
+
+import console;
+for(k,ele in wb.eachAll( &quot;a&quot; ) ){
+
+    console.log( ele.innerHTML ) //输出页面上所有的超链接包含的HTML
+}
+</code></pre></li>
+</ol>
+
+<h2>wb.eachLinks</h2>
+
+<ol>
+<li><p>函数原型：   </p>
+
+<pre><code class="aardio language-aardio">for(k,ele in wb.eachLinks( 框架名) ){
+
+}
+</code></pre></li>
+<li><p>函数说明：   </p>
+
+<p>此函数类似 wb.eachAll ,无需指定HTML标记,默认列出页面上所有的超链接.</p></li>
+<li><p>调用示例：   </p>
+
+<pre><code class="aardio language-aardio">//....省略创建 Web 窗体的代码 
+
+import console;
+for(k,ele in wb.eachLinks() ){
+
+    console.log( ele.innerHTML ) //输出页面上所有的超链接包含的HTML
+}
+</code></pre></li>
+</ol>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-guide/std/web/form/getele.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-guide/std/web/form/getele.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/std/web/form/getele.md">Markdown 格式</a></p>
+
+</body> 
+</html>

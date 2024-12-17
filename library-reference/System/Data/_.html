@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - System.Data 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - System.Data 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>System.Data 库模块帮助文档</h1>
+
+<p><a id="System.Data"></a></p>
+
+<h2>System.Data 成员列表</h2>
+
+<p>.NET System.Data 名字空间  </p>
+
+<p><a href="../../dotNet/appDomain.html#dotNetNameSpaceObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/dotNet/appDomain.html#dotNetNameSpaceObject">返回对象:dotNetNameSpaceObject</a></p>
+
+<p><a id="System.Data.DataTable"></a></p>
+
+<h3>System.Data.DataTable()</h3>
+
+<p>创建表格，可在参数 @1 使用字符串指定表格名称。<br>
+其他参数用法请参考 .NET 文档。</p>
+
+<p><a href="#sysDataDataTableObject">返回对象:sysDataDataTableObject</a></p>
+
+<p><a id="sysDataDataTableObject"></a></p>
+
+<h2>sysDataDataTableObject 成员列表</h2>
+
+<p><a id="sysDataDataTableObject.Clear"></a></p>
+
+<h3>sysDataDataTableObject.Clear()</h3>
+
+<p>清除所有数据。</p>
+
+<p><a id="sysDataDataTableObject.ExtractToArray"></a></p>
+
+<h3>sysDataDataTableObject.ExtractToArray()</h3>
+
+<p>提取所有数数据到 com.SafeArray 类型数组。<br>
+SafeArray 数组实际上就是声明了 COM 类型的普通 aardio 数组，<br>
+可以作为普通数组直接使用。  </p>
+
+<p>此函数的返回值可以作为 FillFromArray 的参数使用。</p>
+
+<p><a id="sysDataDataTableObject.FillFromArray"></a></p>
+
+<h3>sysDataDataTableObject.FillFromArray()</h3>
+
+<p>参数 @1 指定二维数组。<br>
+将二维数组一次性填充为表格数据。<br>
+可选用参数 @2 指定是否清空之前的数据，默认为 false 。<br>
+此方法避免了用 aardio 密集调用 .NET 函数，避免了不必要的交互成本。</p>
+
+<p><a id="sysDataDataTableObject.Columns"></a></p>
+
+<h2>sysDataDataTableObject.Columns 成员列表</h2>
+
+<p><a id="sysDataDataTableObject.Columns.Add"></a></p>
+
+<h3>sysDataDataTableObject.Columns.Add</h3>
+
+<p>添加列</p>
+
+<p><a id="sysDataDataTableObject.Columns.Add"></a></p>
+
+<h3>sysDataDataTableObject.Columns.Add(&quot;列名&quot;,类型)</h3>
+
+<p>参数 @2 可以直接指定 System 库导入的 System.Boolean 等类型。<br>
+或用 System.Type.GetType 获取类型。</p>
+
+<p><a id="sysDataDataTableObject.Columns.Add"></a></p>
+
+<h3>sysDataDataTableObject.Columns.Add(...)</h3>
+
+<p>添加列，其他参数用法请参考 .NET 文档</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/System/Data/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/System/Data/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/System/Data/_.md">Markdown 格式</a></p>
+
+</body> 
+</html>

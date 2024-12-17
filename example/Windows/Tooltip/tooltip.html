@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 控件提示 - 鼠标悬停在超链接上试试'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 控件提示 - 鼠标悬停在超链接上试试</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 控件提示 - 鼠标悬停在超链接上试试</h1><pre><code class="aardio language-aardio">//提示控件
+import fonts.fontAwesome;
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;控件提示 - 鼠标悬停在超链接上试试&quot;;right=492;bottom=254;bgcolor=4448391;max=false)
+winform.add(
+plus={cls=&quot;plus&quot;;text=&quot;http://www.aardio.com&quot;;left=80;top=79;right=404;bottom=107;color=15793151;font=LOGFONT(h=-24);notify=1;z=1};
+plusTracking={cls=&quot;plus&quot;;text=&quot;手动控制的汽泡提示&quot;;left=187;top=201;right=442;bottom=238;bgcolor=-5197169;font=LOGFONT(h=-16;name=&#39;FontAwesome&#39;;charset=0);notify=1;z=2}
+)
+/*}}*/
+
+import win.ui.tooltip; 
+
+//在所有者窗口 winform 上创建 tooltip 提示控件 
+var tooltipCtrl = win.ui.tooltip( winform );
+
+//添加一个自动模式的控件提示（TOOLINFO 对象，简称 tool ）
+var toolInfoPlus = tooltipCtrl.addTool(winform.plus,&quot;这是一个超链接&quot; )
+
+/*
+自动模式的提示会在鼠标放到关系控件上时自动显示，离开时自动隐藏。
+当然也可以使用下面的方法修改提示文本。
+*/
+import process;
+winform.plus.oncommand = function( id,event ){ 
+    process.openUrl(owner.text);//打开网页
+
+    //这个函数可以重复调用没有关系(会自动删除原来的控件)
+    var toolInfoPlus = tooltipCtrl.addTool(winform.plus,&quot;已经点过的超链接&quot;)
+
+    //这样写也可以改控件提示
+    toolInfoPlus.setText(&quot;已经点过的超链接&quot;)
+
+    //这样写也可以改控件提示
+    tooltipCtrl.setText(&quot;已经点过的超链接2&quot;,winform.plus);
+} 
+
+/*
+下面创建一个手动跟踪模式的提示控件
+*/
+var balloonTipCtrl = win.ui.tooltip.tracking(winform,false);
+winform.plusTracking.onMouseEnter = function(wParam,lParam){ 
+    var x,y,cx,cy = winform.plusTracking.getPos(true);
+
+    //手动显示提示
+    balloonTipCtrl.setText(&quot;手动跟踪模式的提示控件&quot;).trackPopup(true,x+20,y+cy );
+}
+
+winform.plusTracking.onMouseLeave = function(wParam,lParam){ 
+    balloonTipCtrl.trackPopup(false); //手动关闭提示
+}
+
+winform.plusTracking.skin({
+    background = {
+        default=0xFF8FB2B0;
+        hover=0xFF928BB3
+    }
+})
+
+winform.plus.skin(
+    color = {  
+        hover = 0xFFFF0000; //鼠标移上去的颜色
+        active = 0xFF00FF00; //鼠标按下去的颜色
+    }
+)
+
+winform.show() 
+win.loopMessage();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Windows/Tooltip/tooltip.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Windows/Tooltip/tooltip.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Windows/Tooltip/tooltip.md">Markdown 格式</a>
+</body> 
+</html>

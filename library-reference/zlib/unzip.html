@@ -1,0 +1,162 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - zlib.unzip 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - zlib.unzip 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>zlib.unzip 库模块帮助文档</h1>
+
+<p><a id="zlib"></a></p>
+
+<h2>zlib 成员列表</h2>
+
+<p><a id="zlib.unzip"></a></p>
+
+<h3>zlib.unzip()</h3>
+
+<p><a href="#unzipObject">返回对象:unzipObject</a></p>
+
+<p><a id="zlib.unzip"></a></p>
+
+<h3>zlib.unzip(zip路径)</h3>
+
+<p>创建解压对象<br>
+注意如果zip文件为空返回null<br>
+zip路径错误则抛出异常,调用者有责任检测路径是否正确</p>
+
+<p><a id="zlib.unzip"></a></p>
+
+<h2>zlib.unzip 成员列表</h2>
+
+<p><a id="zlib.unzip.extract"></a></p>
+
+<h3>zlib.unzip.extract(zip文件路径,解压目录,筛选函数,解压密码)</h3>
+
+<pre><code class="aardio language-aardio">zlib.unzip.extract( &quot;/my.zip&quot;,&quot;/my&quot;,  
+    function(fileName,extractPath,fileInfo,size,unitSize,unitName){  
+        if(extractPath){   
+            return true/*是否解压该文件*/;  
+        }  
+    }, ,  
+    function(numEntries){  
+
+    }  
+)
+</code></pre>
+
+<p><a id="unzFileInfoObject"></a></p>
+
+<h2>unzFileInfoObject 成员列表</h2>
+
+<p><a id="unzFileInfoObject.compressed_size"></a></p>
+
+<h3>unzFileInfoObject.compressed_size</h3>
+
+<p>压缩大小</p>
+
+<p><a id="unzFileInfoObject.compressed_size_high"></a></p>
+
+<h3>unzFileInfoObject.compressed_size_high</h3>
+
+<p>压缩大小,高位</p>
+
+<p><a id="unzFileInfoObject.crc"></a></p>
+
+<h3>unzFileInfoObject.crc</h3>
+
+<p>原始文件CRC32校验值(允许负整数)</p>
+
+<p><a id="unzFileInfoObject.dosDate"></a></p>
+
+<h3>unzFileInfoObject.dosDate</h3>
+
+<p>DOS时间格式</p>
+
+<p><a id="unzFileInfoObject.flag"></a></p>
+
+<h3>unzFileInfoObject.flag</h3>
+
+<p>选项</p>
+
+<p><a id="unzFileInfoObject.uncompressed_size"></a></p>
+
+<h3>unzFileInfoObject.uncompressed_size</h3>
+
+<p>原始大小</p>
+
+<p><a id="unzFileInfoObject.uncompressed_size_high"></a></p>
+
+<h3>unzFileInfoObject.uncompressed_size_high</h3>
+
+<p>原始大小,高位</p>
+
+<p><a id="unzipObject"></a></p>
+
+<h2>unzipObject 成员列表</h2>
+
+<p><a id="unzipObject.codepage"></a></p>
+
+<h3>unzipObject.codepage</h3>
+
+<p>指定zip文件名使用的代码页,数值</p>
+
+<p><a id="unzipObject.eachFile"></a></p>
+
+<h3>unzipObject.eachFile( )</h3>
+
+<pre><code class="aardio language-aardio">for(pos,dirName,fileName,extractPath,fileInfo in unzipObject.eachFile() ){ 
+    if( dirName ) continue;
+
+    var file = io.file( extractPath,&quot;w+b&quot; )
+    for(buffer,readSize in unzipObject.eachReadCurrentFile() ){
+        file.writeBuffer(buffer,readSize); 
+    }
+    file.close();
+}
+</code></pre>
+
+<p><a id="unzipObject.eachFile"></a></p>
+
+<h3>unzipObject.eachFile()</h3>
+
+<p><a href="#unzFileInfoObject">返回对象:unzFileInfoObject</a></p>
+
+<p><a id="unzipObject.eachReadCurrentFile"></a></p>
+
+<h3>unzipObject.eachReadCurrentFile(解压密码,缓冲区大小)</h3>
+
+<pre><code class="aardio language-aardio">for(buffer,readSize in unzipObject.eachReadCurrentFile() ){
+    file.writeBuffer(buffer,readSize); 
+}
+</code></pre>
+
+<p><a id="unzipObject.globalInfo.number_entry"></a></p>
+
+<h3>unzipObject.globalInfo.number_entry</h3>
+
+<p>文件与目录总数</p>
+
+<h3>自动完成常量</h3>
+
+<p>_UNZ_BADZIPFILE=-103<br>
+_UNZ_CRCERROR=-105<br>
+_UNZ_END_OF_LIST_OF_FILE=-100<br>
+_UNZ_EOF=0<br>
+_UNZ_ERRNO=-1<br>
+_UNZ_INTERNALERROR=-104<br>
+_UNZ_OK=0<br>
+_UNZ_PARAMERROR=-102  </p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/zlib/unzip.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/zlib/unzip.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/zlib/unzip.md">Markdown 格式</a></p>
+
+</body> 
+</html>

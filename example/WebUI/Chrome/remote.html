@@ -1,0 +1,129 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 调用chrome远程调试接口'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 调用chrome远程调试接口</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 调用chrome远程调试接口</h1><pre><code class="aardio language-aardio">//远程调试
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;调用chrome远程调试接口&quot;;right=784;bottom=557;topmost=1)
+winform.add(
+btnConnect={cls=&quot;button&quot;;text=&quot;连接chrome&quot;;left=595;top=422;right=737;bottom=467;db=1;disabled=1;dr=1;z=4};
+btnSend={cls=&quot;button&quot;;text=&quot;调用chrome打开网页&quot;;left=595;top=478;right=737;bottom=523;db=1;disabled=1;dr=1;z=3};
+btnStartChrome={cls=&quot;button&quot;;text=&quot;启动chrome调试进程&quot;;left=201;top=364;right=368;bottom=409;db=1;dr=1;z=5};
+buttonList={cls=&quot;button&quot;;text=&quot;获取可调试网页列表&quot;;left=516;top=364;right=683;bottom=409;db=1;disabled=1;dr=1;z=7};
+editPort={cls=&quot;edit&quot;;left=399;top=370;right=491;bottom=400;edge=1;multiline=1;z=6};
+txtData={cls=&quot;edit&quot;;text=&quot;http://bbs.aardio.com/forum.php?mod=viewthread&amp;tid=21977&quot;;left=32;top=481;right=585;bottom=520;db=1;dl=1;dr=1;edge=1;multiline=1;z=2};
+txtMessage={cls=&quot;richedit&quot;;left=29;top=22;right=755;bottom=352;db=1;dl=1;dr=1;dt=1;edge=1;hscroll=1;multiline=1;vscroll=1;z=1};
+txtWsUrl={cls=&quot;edit&quot;;left=35;top=425;right=588;bottom=464;edge=1;items={};z=8}
+)
+/*}}*/
+
+import web.socket.chrome;
+var ws = web.socket.chrome();
+
+//打开连接触发的事件
+ws.on(&quot;open&quot;,function(){ 
+    winform.txtMessage.print(&quot;已打开连接&quot;);
+    winform.btnSend.disabled = false;     
+})
+
+ws.on(&quot;close&quot;,function(){
+    winform.txtMessage.print(&quot;已关闭连接&quot;);  
+    winform.btnStartChrome.disabledText = false;    
+});
+
+ws.on(&quot;error&quot;,function(err){ 
+    winform.txtMessage.print(&quot;出错了&quot;,err);
+});  
+
+//监听chrome事件
+ws.on(&quot;Inspector.detached&quot;,function(param){
+    winform.txtMessage.print(&quot;chrome已主动断开连接,原因：&quot;,param);
+}) 
+
+ws.on(&quot;Network.requestWillBeSent&quot;,function(param){
+    winform.txtMessage.print(&quot;准备发送请求：&quot;,param );       
+})
+
+ws.on(&quot;Runtime.executionContextCreated&quot;,function(param){
+    winform.txtMessage.print(&quot;Javascript executionContextId&quot;,param.context.id);
+}) 
+
+//调用chrome打开一个网页
+winform.btnSend.oncommand = function(id,event){
+
+    //允许触发Runtime.executionContextCreated
+    ws.Runtime.enable();
+
+    //允许触发Network.requestWillBeSent
+    ws.Network.enable(
+            maxTotalBufferSize = 10240;
+    ).end = function(result,err){
+        winform.txtMessage.print(&quot;调用Network.enable结果:&quot;,result)
+    }   
+
+    ws.Page.navigate(
+        url = winform.txtData.text;
+    ).end = function(result,err){
+        winform.txtMessage.print(&quot;调用返回参数&quot;,result)
+    } 
+}
+
+//连接chrome
+winform.btnConnect.oncommand = function(id,event){
+    ws.connect(winform.txtWsUrl.text);
+}
+
+import chrome.remote;
+winform.btnStartChrome.oncommand = function(id,event){
+
+    var cr = chrome.remote({
+        //同一用户数据目录应当只启动一个开启远程调试端口的浏览器进程
+        [&quot;--user-data-dir&quot;] = &quot;%LocalAppData%\aardio\chrome.remote.userdata&quot;;
+    })  
+
+    winform.editPort.text = cr.remoteDebuggingPort;
+    if( cr.remoteDebuggingPort){
+         winform.buttonList.disabled = false;
+         winform.btnStartChrome.disabledText = &quot;已启动&quot;
+    }
+}
+
+winform.buttonList.oncommand = function(id,event){
+    winform.buttonList.disabled = true;
+    thread.delay(100);
+
+    var first;
+    for id,title,wsUrl,devtoolsUrl in ws.eachDebuggingPage(winform.editPort.text) {
+        winform.txtMessage.print(title);
+        winform.txtMessage.print(devtoolsUrl);
+        winform.txtMessage.print(wsUrl);
+        winform.txtMessage.print();
+
+        if(!first) {
+            first = wsUrl;
+            winform.btnConnect.disabled = false;
+        }
+    } 
+
+    winform.txtWsUrl.text = first : &quot;&quot;;
+    winform.buttonList.disabled = false;
+}
+
+winform.show() 
+win.loopMessage();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/WebUI/Chrome/remote.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/WebUI/Chrome/remote.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/WebUI/Chrome/remote.md">Markdown 格式</a>
+</body> 
+</html>

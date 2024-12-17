@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - aardio 通过 Node.js 调用 asar 包'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - aardio 通过 Node.js 调用 asar 包</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 通过 Node.js 调用 asar 包</h1><pre><code class="aardio language-aardio">//aardio 通过 Node.js 调用 asar 包
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;aardio做界面调用node.js解压asar文件&quot;;right=714;bottom=199)
+winform.add(
+btnExtractAll={cls=&quot;button&quot;;text=&quot;解包&quot;;left=423;top=113;right=587;bottom=155;z=3};
+btnOpen={cls=&quot;button&quot;;text=&quot;选择要解包的文件&quot;;left=499;top=42;right=657;bottom=85;z=2};
+button={cls=&quot;button&quot;;text=&quot;用纯 aardio  代码打包或解包&quot;;left=132;top=112;right=409;bottom=154;z=4};
+editAsarFile={cls=&quot;edit&quot;;left=55;top=45;right=494;bottom=83;edge=1;multiline=1;z=1}
+)
+/*}}*/
+
+import fsys.dlg;
+winform.btnOpen.oncommand = function(id,event){
+    winform.editAsarFile.text = fsys.dlg.open(&quot;*.asar|*.asar|&quot;,&quot;选择asar文件&quot;,,winform.hwnd)
+}
+
+winform.btnExtractAll.oncommand = function(id,event){
+    winform.btnExtractAll.disabled = true;
+
+    thread.invokeAndWait(
+        function(winform){
+            import nodeJs;  
+
+            nodeJs.startEnviron(
+                src = winform.editAsarFile.text;
+                dest = fsys.getParentDir(winform.editAsarFile.text) ++ fsys.getFileName(winform.editAsarFile.text) + &quot;_ExtractAll&quot;; 
+            )
+
+            nodeJs.require(&#39;asar&#39;);
+
+            var testjs = /***
+            var startEnviron = require(&#39;startEnviron&#39;)
+            var asar = require(&#39;asar&#39;);
+
+            asar.extractAll(startEnviron.src, startEnviron.dest )
+            ***/
+            var node = nodeJs.exec(testjs);
+        },winform
+    ) 
+
+    winform.btnExtractAll.disabled = false;
+}
+
+winform.button.oncommand = function(id,event){
+    import ide;
+    ide.openDocument(&quot;~/example/File/asar/main.aardio&quot;)
+
+}
+
+winform.show(true);
+win.loopMessage();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/nodeJs/asar.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/nodeJs/asar.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Languages/nodeJs/asar.md">Markdown 格式</a>
+</body> 
+</html>

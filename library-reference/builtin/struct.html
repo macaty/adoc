@@ -1,0 +1,372 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - builtin.struct 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - builtin.struct 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>builtin.struct 库模块帮助文档</h1>
+
+<p><a id="pointObject"></a></p>
+
+<h2>pointObject 成员列表</h2>
+
+<p>::POINT 结构体对象，包含用于表示坐标的数值字段 x,y</p>
+
+<p><a id="pointObject.x"></a></p>
+
+<h3>pointObject.x</h3>
+
+<p>x坐标</p>
+
+<p><a id="pointObject.y"></a></p>
+
+<h3>pointObject.y</h3>
+
+<p>y坐标</p>
+
+<p><a id="rectObject"></a></p>
+
+<h2>rectObject 成员列表</h2>
+
+<p>::RECT 结构体对象，包含用于表示区块位置的数值字段 left,top,right,bottom</p>
+
+<p><a id="rectObject.bottom"></a></p>
+
+<h3>rectObject.bottom</h3>
+
+<p>下</p>
+
+<p><a id="rectObject.contains"></a></p>
+
+<h3>rectObject.contains(x,y)</h3>
+
+<p>检测指定的 x,y 坐标是否位于矩形区块内</p>
+
+<p><a id="rectObject.copy"></a></p>
+
+<h3>rectObject.copy</h3>
+
+<p>复制并返回新的矩形区块结构体</p>
+
+<p><a id="rectObject.copy"></a></p>
+
+<h3>rectObject.copy()</h3>
+
+<p><a href="../global/_.html#rectObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/global/_.html#rectObject">返回对象:rectObject</a></p>
+
+<p><a id="rectObject.copy"></a></p>
+
+<h3>rectObject.copy(width,height)</h3>
+
+<p>可选在参数中指定新的宽度、高度<br>
+所有参数都可以省略</p>
+
+<p><a id="rectObject.expand"></a></p>
+
+<h3>rectObject.expand</h3>
+
+<p>扩展或缩小右下角坐标</p>
+
+<p><a id="rectObject.expand"></a></p>
+
+<h3>rectObject.expand()</h3>
+
+<p><a href="../global/_.html#rectObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/global/_.html#rectObject">返回对象:rectObject</a></p>
+
+<p><a id="rectObject.expand"></a></p>
+
+<h3>rectObject.expand(dx,dy)</h3>
+
+<p>dx指定正数扩展右边,负数缩小右边,<br>
+dy指定正数扩展底边,负数缩小底边<br>
+左上角不变,<br>
+返回自身</p>
+
+<p><a id="rectObject.float"></a></p>
+
+<h3>rectObject.float()</h3>
+
+<p>无参数时转换为 ::RECTF 结构体并返回该结构体<br>
+如果参数中指定::RECTF结构体,则使用参数更新位区块自身,<br>
+指定参数则此函数无返回值  </p>
+
+<p><a href="../gdip/core.html#rectfObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/gdip/core.html#rectfObject">返回对象:rectfObject</a></p>
+
+<p><a id="rectObject.height"></a></p>
+
+<h3>rectObject.height()</h3>
+
+<p>高度</p>
+
+<p><a id="rectObject.inflate"></a></p>
+
+<h3>rectObject.inflate</h3>
+
+<p>扩大区块并返回矩形区块自身</p>
+
+<p><a id="rectObject.inflate"></a></p>
+
+<h3>rectObject.inflate()</h3>
+
+<p><a href="../global/_.html#rectObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/global/_.html#rectObject">返回对象:rectObject</a></p>
+
+<p><a id="rectObject.inflate"></a></p>
+
+<h3>rectObject.inflate(左右单位,上下单位)</h3>
+
+<p>扩大区块并返回矩形区块自身<br>
+忽略参数请传入0,不可省略<br>
+上,下,左,右分别扩大指定的单位<br>
+负数为缩小</p>
+
+<p><a id="rectObject.intersect"></a></p>
+
+<h3>rectObject.intersect</h3>
+
+<p>检测与参数指定的矩形区块相交</p>
+
+<p><a id="rectObject.intersect"></a></p>
+
+<h3>rectObject.intersect(rc)</h3>
+
+<p>检测与参数指定的矩形区块相交<br>
+成功修改当前区块并返回自身,失败返回空</p>
+
+<p><a id="rectObject.intersectsWith"></a></p>
+
+<h3>rectObject.intersectsWith</h3>
+
+<p>检测两个矩形区块是否碰撞相交</p>
+
+<p><a id="rectObject.intersectsWith"></a></p>
+
+<h3>rectObject.intersectsWith(rc)</h3>
+
+<p>检测两个矩形区块是否碰撞相交</p>
+
+<p><a id="rectObject.left"></a></p>
+
+<h3>rectObject.left</h3>
+
+<p>左</p>
+
+<p><a id="rectObject.ltrb"></a></p>
+
+<h3>rectObject.ltrb</h3>
+
+<p>用于将 x,y,width,height 转换为 left,top,right.bottom 并返回</p>
+
+<p><a id="rectObject.ltrb"></a></p>
+
+<h3>rectObject.ltrb()</h3>
+
+<p>返回结构体的 left,top,right,bottom 等4个值</p>
+
+<p><a id="rectObject.ltrb"></a></p>
+
+<h3>rectObject.ltrb(x,y,width,height)</h3>
+
+<p>使用传入参数修改左、上坐标,以及宽度、高度,<br>
+返回结构体的left,top,right,bottom等4个值</p>
+
+<p><a id="rectObject.move"></a></p>
+
+<h3>rectObject.move</h3>
+
+<p>移动左上角坐标</p>
+
+<p><a id="rectObject.move"></a></p>
+
+<h3>rectObject.move()</h3>
+
+<p><a href="../global/_.html#rectObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/global/_.html#rectObject">返回对象:rectObject</a></p>
+
+<p><a id="rectObject.move"></a></p>
+
+<h3>rectObject.move(dx,dy)</h3>
+
+<p>使用参数指定的x,y坐标偏移量移动左上角坐标,<br>
+正数向右下移动,负数向左上移动,<br>
+右下角位置不变<br>
+返回自身<br>
+如果需要移动坐标且大小不变请改用offset函数<br>
+移动到指定坐标而不是偏移量请改用setPos函数</p>
+
+<p><a id="rectObject.offset"></a></p>
+
+<h3>rectObject.offset</h3>
+
+<p>移动矩形框并返回自身</p>
+
+<p><a id="rectObject.offset"></a></p>
+
+<h3>rectObject.offset()</h3>
+
+<p><a href="../global/_.html#rectObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/global/_.html#rectObject">返回对象:rectObject</a></p>
+
+<p><a id="rectObject.offset"></a></p>
+
+<h3>rectObject.offset(横偏移,纵偏移)</h3>
+
+<p>移动矩形框并返回自身,矩形大小不变,<br>
+左上移使用负坐标,右下移使用正坐标<br>
+忽略参数请传入0,不可省略</p>
+
+<p><a id="rectObject.right"></a></p>
+
+<h3>rectObject.right</h3>
+
+<p>右</p>
+
+<p><a id="rectObject.setPos"></a></p>
+
+<h3>rectObject.setPos</h3>
+
+<p>重新调整坐标与大小,<br>
+返回结构体自身</p>
+
+<p><a id="rectObject.setPos"></a></p>
+
+<h3>rectObject.setPos()</h3>
+
+<p><a href="../global/_.html#rectObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/global/_.html#rectObject">返回对象:rectObject</a></p>
+
+<p><a id="rectObject.setPos"></a></p>
+
+<h3>rectObject.setPos(x,y,cx,cy)</h3>
+
+<p>移动到x,y指定的坐标,<br>
+可选用cx,cy重新指定宽度和高度,<br>
+所有参数可选,不指定则保持旧值</p>
+
+<p><a id="rectObject.top"></a></p>
+
+<h3>rectObject.top</h3>
+
+<p>上</p>
+
+<p><a id="rectObject.width"></a></p>
+
+<h3>rectObject.width()</h3>
+
+<p>宽度</p>
+
+<p><a id="rectObject.xywh"></a></p>
+
+<h3>rectObject.xywh</h3>
+
+<p>用于将left,top,right.bottom转换为 x,y,width,height 并返回</p>
+
+<p><a id="rectObject.xywh"></a></p>
+
+<h3>rectObject.xywh()</h3>
+
+<p>返回结构体的左上角坐标x,y 以及宽度width,高度height等4个值</p>
+
+<p><a id="rectObject.xywh"></a></p>
+
+<h3>rectObject.xywh(left,top,right,bottom)</h3>
+
+<p>修改左、上、右、下的值,<br>
+返回结构体的左上角坐标x,y 以及宽度width,高度height等4个值</p>
+
+<p><a id="sizeObject"></a></p>
+
+<h2>sizeObject 成员列表</h2>
+
+<p>::SIZE 结构体对象，包含用于表示大小的数值字段 cx,cy</p>
+
+<p><a id="sizeObject.cx"></a></p>
+
+<h3>sizeObject.cx</h3>
+
+<p>宽</p>
+
+<p><a id="sizeObject.cy"></a></p>
+
+<h3>sizeObject.cy</h3>
+
+<p>高</p>
+
+<h3>全局常量</h3>
+
+<p><a id="::OffsetRect(rc,dx,dy)"></a></p>
+
+<h3>::OffsetRect(rc,dx,dy)</h3>
+
+<p>移动矩形框，<br>
+此函数已废弃，请直接调用 rc.offset 函数</p>
+
+<p><a id="::POINT"></a></p>
+
+<h3>::POINT</h3>
+
+<p>整型坐标结构体<br>
+此结构体通过标准库 builtin.struct 默认加载</p>
+
+<p><a id="::POINT()"></a></p>
+
+<h3>::POINT()</h3>
+
+<p><a href="#pointObject">返回对象:pointObject</a></p>
+
+<p><a id="::POINT(x,y)"></a></p>
+
+<h3>::POINT(x,y)</h3>
+
+<p>创建整型坐标结构体<br>
+可选在参数中指定 x,y 坐标初始值</p>
+
+<p><a id="::RECT"></a></p>
+
+<h3>::RECT</h3>
+
+<p>表示矩形区块的结构体<br>
+此结构体通过标准库 builtin.struct 默认加载</p>
+
+<p><a id="::RECT()"></a></p>
+
+<h3>::RECT()</h3>
+
+<p><a href="../global/_.html#rectObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/global/_.html#rectObject">返回对象:rectObject</a></p>
+
+<p><a id="::RECT(left,top,right,bottom)"></a></p>
+
+<h3>::RECT(left,top,right,bottom)</h3>
+
+<p>创建矩形区块结构体<br>
+可选在参数中指定左,上,右,下初始值</p>
+
+<p><a id="::SIZE"></a></p>
+
+<h3>::SIZE</h3>
+
+<p>整型尺寸结构体<br>
+此结构体通过标准库 builtin.struct 默认加载</p>
+
+<p><a id="::SIZE()"></a></p>
+
+<h3>::SIZE()</h3>
+
+<p><a href="#sizeObject">返回对象:sizeObject</a></p>
+
+<p><a id="::SIZE(cx,cy)"></a></p>
+
+<h3>::SIZE(cx,cy)</h3>
+
+<p>创建整型尺寸结构体<br>
+可选在参数中指定宽高 cx,cy 初始值</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/builtin/struct.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/builtin/struct.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/builtin/struct.md">Markdown 格式</a></p>
+
+</body> 
+</html>

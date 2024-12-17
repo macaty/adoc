@@ -1,0 +1,103 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 使用JS数组'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 使用JS数组</title> 
+<link rel="stylesheet" href="../../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 使用JS数组</h1><pre><code class="aardio language-aardio">//使用JS数组
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;aardio form&quot;;right=349;bottom=249;scroll=1)
+winform.add()
+/*}}*/
+
+import web.form;
+var wb = web.form( winform );
+winform.show(); 
+
+wb.write(&quot;&quot;);
+wb.wait(&quot;&quot;);
+
+import console;
+wb.external={
+    log = function(...){
+        console.log(...) 
+    }   
+    [1] = &quot;123&quot;;
+    [2] = &quot;456&quot;; 
+    item = function(index){
+        //external不能作为数组使用,
+        //所以我们需要自已实现一个接口访问数组成员
+        return owner[index+1] //注意aardio下标从1开始,而Javascript从0开始
+    } 
+ }  
+//在external中直接访问数组成员
+var js = /* 
+    external.log( external.item(1) ) 
+    */
+wb.doScript( js );
+
+//======================================================
+
+//枚举aardio对象
+var js = /* 
+    var e = new Enumerator(external);   
+
+    for   (;!e.atEnd();e.moveNext()){ 
+        k = e.item(); 
+
+        if( typeof(k)==&quot;string&quot;)
+            external.log(k,external[k]) 
+    } 
+    */
+wb.doScript( js );
+
+//======================================================
+
+//将aardio数组转换为JS数组
+wb.external.items = function(index){
+        return wb.jsArray({123;&quot;aardio数组第二个成员&quot;}) //将aardio数组转换为JS数组
+    }  
+
+var js = /*
+    var aardioArray = external.items(); 
+    external.log( aardioArray[1] ) 
+    */
+wb.doScript( js );
+
+//======================================================
+
+//在aardio中使用JS数组对象
+wb.external.testJsArray = function(jsArray){
+
+        for(i=1;jsArray.length ){
+            io.print( i, jsArray[i-1] ) 
+        }
+}  
+
+var js = /*
+    var jsArray = new Array(&#39;abc&#39;,123)
+    external.testJsArray(jsArray) 
+    */
+wb.doScript( js );
+
+//======================================================
+
+//进入消息循环
+win.loopMessage();
+io.close();//关闭控制台
+
+
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/WebUI/web.form/Script/array.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/WebUI/web.form/Script/array.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/WebUI/web.form/Script/array.md">Markdown 格式</a>
+</body> 
+</html>

@@ -1,0 +1,55 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 加解密文件'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 加解密文件</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 加解密文件</h1><pre><code class="aardio language-aardio">//加解密文件
+import console;
+import console.progress; 
+var bar = console.progress();
+
+//创建 AES 加密算法容器
+import crypt.aes;
+var aes = crypt.aes();// crypt.aes,crypt.rc4 用法相同
+
+//设置密码 
+aes.setPassword(&quot;1234567812345678&quot;);
+
+//加密文件，可选用参数 @3 指定分块大小（字节单位），默认为 1MB。
+aes.encryptFile(
+    &quot;/待加密文件.txt&quot;,//参数可传入文件路径或已打开的文件对象。
+    &quot;/加密文件.bin&quot;,//参数可传入文件路径或已打开的文件对象。
+    0x100000,//分块大小，省略则默认为 1MB
+    function(totalSize,readSize){//可选指定进度回调参数
+        bar.setProgress(readSize/totalSize *100,&quot; 正在加密&quot;);  
+    }
+)
+
+bar.reset();
+
+//解密文件，可选用参数 @3 指定分块大小（字节单位），默认为 1MB。
+aes.decryptFile(
+    &quot;/加密文件.bin&quot;,//参数可传入文件路径或已打开的文件对象。
+    &quot;/解密文件.txt&quot;,//参数可传入文件路径或已打开的文件对象。
+    0x100000,//分块大小，省略则默认为 1MB
+    function(totalSize,readSize){//可选指定进度回调参数
+        bar.setProgress(readSize/totalSize*100,&quot; 正在解密&quot;);
+    } 
+) 
+
+//如果希望速度更快，可以不指定进度回调函数，或者加大分块大小
+
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Text/Hash/file.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Text/Hash/file.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Text/Hash/file.md">Markdown 格式</a>
+</body> 
+</html>

@@ -1,0 +1,44 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - util.table 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - util.table 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>util.table 库模块帮助文档</h1>
+
+<p><a id="util.table"></a></p>
+
+<h2>util.table 成员列表</h2>
+
+<p><a id="util.table.stringify"></a></p>
+
+<h3>util.table.stringify</h3>
+
+<p>将表对象转换为源码格式。<br>
+仅转换表包含的文本、数值、布尔值、嵌套表对象,<br>
+小数精度最大为 6 位、并自动清除小数尾部多余的 0,<br>
+如果表定义了 tostring 元方法、则转换为字符串<br>
+忽略其他类型,忽略循环引用的表</p>
+
+<p><a id="util.table.stringify"></a></p>
+
+<h3>util.table.stringify(表对象,格式化选项,默认排序表)</h3>
+
+<p>格式化选项为 true 仅第一级键值添加换行,<br>
+格式化选项指定缩进字符串时,则对所有下级键值添加换行与缩进<br>
+,默认排序表为可选参数,指定一个键名排序数组<br>
+不在默认排序表中的名字按默认字典序排序输出</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/util/table.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/util/table.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/util/table.md">Markdown 格式</a></p>
+
+</body> 
+</html>

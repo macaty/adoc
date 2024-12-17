@@ -1,0 +1,104 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - PowerShell 脚本文件执行权限设置工具'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - PowerShell 脚本文件执行权限设置工具</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: PowerShell 脚本文件执行权限设置工具</h1><pre><code class="aardio language-aardio">//aardio 设置 ps1 权限工具
+import fonts.fontAwesome;
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;PowerShell 脚本文件执行权限设置工具&quot;;right=759;bottom=469;bgcolor=16777215;max=false)
+winform.add(
+btnOpenPs1={cls=&quot;plus&quot;;text=&#39;\uF07C&#39;;left=678;top=333;right=713;bottom=368;color=3947580;db=1;dr=1;font=LOGFONT(h=-15;name=&#39;FontAwesome&#39;);notify=1;z=5};
+btnOpenPsIse={cls=&quot;button&quot;;text=&quot;启动 PowerShell ISE &quot;;left=314;top=386;right=687;bottom=445;bgcolor=16777215;color=14120960;db=1;dl=1;dr=1;font=LOGFONT(h=-14);note=&quot;可选在上面指定工作目录或者 *.ps1 脚本文件路径&quot;;z=2};
+chkExecutionPolicy={cls=&quot;plus&quot;;text=&quot;已禁止执行 PowerShell 脚本文件&quot;;left=73;top=41;right=621;bottom=82;align=&quot;left&quot;;color=255;dl=1;dr=1;dt=1;font=LOGFONT(h=-19);iconStyle={align=&quot;left&quot;;font=LOGFONT(h=-27;name=&#39;FontAwesome&#39;);padding={left=9}};iconText=&#39;\uF204&#39;;notify=1;textPadding={left=49};z=1};
+edit={cls=&quot;edit&quot;;left=81;top=104;right=712;bottom=282;db=1;dl=1;dr=1;dt=1;edge=1;multiline=1;z=3};
+editPs1Path={cls=&quot;plus&quot;;left=81;top=336;right=674;bottom=362;align=&quot;right&quot;;border={bottom=1;color=-6908266};db=1;dl=1;dr=1;editable=1;font=LOGFONT(h=-13);textPadding={top=6;bottom=2};z=4}
+)
+/*}}*/
+
+winform.chkExecutionPolicy.skin({
+    text = &quot;已禁止执行 PowerShell 脚本文件&quot;;
+    iconText=&#39;\uF204&#39;;
+    color = {
+        default = 0xFFFF0000;
+    };  
+
+    checked = {
+        text=&quot;已允许 PowerShell 脚本文件&quot;; 
+        iconText=&#39;\uF205&#39;;
+        color = {
+            default = 0xFF008000; 
+        };
+    }
+});
+
+import process.popen;
+import process.admin;
+winform.chkExecutionPolicy.oncommand = function(id,event){
+
+    var ps = process.popen.ps(&quot;Set-ExecutionPolicy&quot;,&quot;-Confirm:$False&quot;,&quot;-Force&quot; 
+        ,&quot;-Scope&quot;,process.admin.isRunAs()?&quot;LocalMachine&quot;:&quot;CurrentUser&quot;
+        ,&quot;-ExecutionPolicy&quot;,winform.chkExecutionPolicy.checked?&quot;RemoteSigned&quot;:&quot;Restricted&quot;)
+
+    if(ps){
+        winform.edit.print(ps.readAll());
+        ps.close();
+    }
+}
+
+var psPolicy = process.popen.ps(&quot;Get-ExecutionPolicy&quot;,&quot;-Scope&quot;,process.admin.isRunAs()?&quot;LocalMachine&quot;:&quot;CurrentUser&quot;) 
+if(psPolicy){ 
+    winform.chkExecutionPolicy.checked = !! psPolicy.readAll(&quot;&lt;RemoteSigned&gt;|&lt;Bypass&gt;|&lt;Unrestricted&gt;&quot;);
+    psPolicy.close()
+}
+
+winform.btnOpenPs1.skin(
+    color = {
+        active=0xFF00FF00;
+        default=0xFF3C3C3C;
+        disabled=0xFF9D9D9D;
+        hover=0xFFFF0000
+    }
+)
+
+import fsys.dlg;
+winform.btnOpenPs1.oncommand = function(id,event){
+    var path = fsys.dlg.open(&quot;*.ps1|*.ps1||&quot;,&#39;请选择要打开的 ps1 文件&#39;)
+    if(path){
+        winform.editPs1Path.text = path;
+    }       
+}
+
+winform.editPs1Path.setCueBannerText(&#39;请输入 *.ps1 脚本文件路径&#39;)
+
+import process.wow64;
+winform.btnOpenPsIse.oncommand = function(id,event){
+    var path = io.fullpath(winform.editPs1Path.text);
+    if(!(io.exist(path) &amp;&amp; string.endWith(path,&quot;.ps1&quot;,true))){
+        return winform.editPs1Path.editBox.showErrorTip(&quot;请指定正确的 *.ps1 脚本文件路径&quot;);
+    }
+
+    process.wow64.execute(&quot;powershell_ise.exe&quot;,`-File &quot;`+io.fullpath(winform.editPs1Path.text)+`&quot;`,,,io.splitpath(winform.editPs1Path.text).dir)
+}
+
+winform.onDropFiles = function(files){
+    winform.editPs1Path.text = files[1];
+}
+
+winform.show();
+win.loopMessage();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/PowerShell/executionpolicy.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/PowerShell/executionpolicy.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Languages/PowerShell/executionpolicy.md">Markdown 格式</a>
+</body> 
+</html>

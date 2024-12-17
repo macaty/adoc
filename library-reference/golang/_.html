@@ -1,0 +1,302 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - golang 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - golang 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>golang 库模块帮助文档</h1>
+
+<p><details>  <summary>必读</summary>  <p>
+调用 Go 写的 DLL 请注意：</p>
+
+<p>1、 加载 Go 写的 DLL 然后迅速（几秒以内）退出，Go 程序可能会崩溃。
+这不是因为你写的代码有任何问题，而是 Go 需要额外启动运行时，无法应付这种快速退出的情况。
+这时在后面加一句 thread.delay(2000) 就可以解决。</p>
+
+<p>实际上除了写测试代码，一般也不会打开一个程序就在几秒内退出。
+所以稍加注意一下，避免这个问题并不难。</p>
+
+<p>只有 Go 写的 DLL 有这个问题，其他语言写的 DLL 没这种问题。</p>
+
+<p>2、在同一个进程内， Go 写的同一个 DLL 应当只加载一次。
+当然在 DLL 没有卸载前，反复调用 raw.loadDll() 只是增加引用计数，不会重复加载 DLL。</p>
+
+<p>如果多线程内存加载同一个 Go 写的 DLL 就会加载多个不同的副本。
+这时候务必在 raw.loadDll(&quot;go.dll&quot;,&quot;共享名称&quot;) 的第 2 个参数指定共享名称，以避免重复加载。</p>
+
+<p>3、要注意在 aardio 中 DLL 不应当作为线程参数传递，实际上也没必要这样做。
+只要用 raw.loadDll() 加载同名 DLL (或加载相同共享名称的内存 DLL) 是不会重复加载的。
+</p></details></p>
+
+<p><a id="golang"></a></p>
+
+<h2>golang 成员列表</h2>
+
+<p>调用 Go 编译器。<br>
+调用 Go 编译后的执行程序并不需要此扩展库。  </p>
+
+<p>此扩展库可自动下载配置 Go 编译器</p>
+
+<p>创建 Go 编译器调用程序</p>
+
+<p><a id="golang("Go项目目录","1.22.3")"></a></p>
+
+<h3>golang(&quot;Go项目目录&quot;,&quot;1.22.3&quot;)</h3>
+
+<p>创建 Go 编译器调用程序。<br>
+参数 @1 如果为 null ，则默认设为应用程序根目录 &quot;/&quot; 。<br>
+参数 @2 限定 Go 编译器的版本号，必须是 &quot;数值.数值.数值&quot; 格式。<br>
+如果 aardio 未安装指定版本 Go 编译器则先下载安装。<br>
+不使用系统安装的其他 Go 编译器</p>
+
+<p><a id="golang("Go项目目录","Go安装目录")"></a></p>
+
+<h3>golang(&quot;Go项目目录&quot;,&quot;Go安装目录&quot;)</h3>
+
+<p>创建 Go 编译器调用程序，所有参数可选。<br>
+Go 项目目录默认为 aardio 应用程序根目录的 &quot;/&quot; 。<br>
+如果不指定 Go 安装目录，<br>
+刚搜索可能的 Go 安装目录或环境变量 GOROOT ，找不到则安装默认版本 Go 编译器。<br>
+具体规则请查看 golang 支持库源码。</p>
+
+<p><a id="golang()"></a></p>
+
+<h3>golang()</h3>
+
+<p><a href="#golangObject">返回对象:golangObject</a></p>
+
+<p><a id="golangObject"></a></p>
+
+<h2>golangObject 成员列表</h2>
+
+<p><a id="golangObject.addPath"></a></p>
+
+<h3>golangObject.addPath()</h3>
+
+<p>添加路径到 PATH 环境变量</p>
+
+<p><a id="golangObject.binPath"></a></p>
+
+<h3>golangObject.binPath(filename)</h3>
+
+<p>返回 go install 安装的执行文件路径</p>
+
+<p><a id="golangObject.build"></a></p>
+
+<h3>golangObject.build()</h3>
+
+<p>执行 go build 命令生成 EXE 文件。<br>
+参数@1指定要编译的代码文件，可增加多个参数。<br>
+默认按第一个参数指定的 *.go 文件路径输出同名 *.exe 文件</p>
+
+<p><a id="golangObject.build64"></a></p>
+
+<h3>golangObject.build64()</h3>
+
+<p>执行 go build 命令生成 64 位 EXE 文件。<br>
+注意 aardio 里调用 64 位或 32 位 EXE 没有区别，都支持。<br>
+参数@1指定要编译的代码文件，可增加多个参数。<br>
+默认按第一个参数指定的 *.go 文件路径输出同名 *.exe 文件</p>
+
+<p><a id="golangObject.buildArchive"></a></p>
+
+<h3>golangObject.buildArchive(&quot;源文件文件路径&quot;,&quot;输出文件路径&quot;)</h3>
+
+<p>执行 go build -buildmode=c-archive 命令生成 C 静态库</p>
+
+<p><a id="golangObject.buildShared"></a></p>
+
+<h3>golangObject.buildShared</h3>
+
+<p>执行 go build 命令生成DLL动态库。<br>
+如果未找 gcc 到则自动安装 Mingw-w64</p>
+
+<p><a id="golangObject.buildShared"></a></p>
+
+<h3>golangObject.buildShared(&quot;源文件文件路径&quot;,&quot;输出文件路径&quot;)</h3>
+
+<p>执行 go build 命令生成 DLL 动态库,<br>
+参数@1必须指定要编译的代码文件,可选指定输出 DLL 文件路径,<br>
+可增加多个参数  </p>
+
+<p>编译 DLL 需要依赖 GCC,请先调用 process.gcc.check  </p>
+
+<p>注意每个Go导出函数前面都要加上 //export 要导出的函数名</p>
+
+<p><a id="golangObject.buildStrip"></a></p>
+
+<h3>golangObject.buildStrip()</h3>
+
+<p>执行 go build 命令生成体积较小的 EXE 文件。<br>
+参数@1指定要编译的代码文件，可增加多个参数。<br>
+默认按第一个参数指定的 *.go 文件路径输出同名 *.exe 文件。<br>
+默认添加编译参数 -ldflags &quot;-s -w&quot; 以移除调试信息</p>
+
+<p><a id="golangObject.buildStrip64"></a></p>
+
+<h3>golangObject.buildStrip64()</h3>
+
+<p>执行 go build 命令生成体积较小的 64 位 EXE 文件。<br>
+注意 aardio 里调用 64 位或 32 位 EXE 没有区别，都支持。<br>
+参数@1指定要编译的代码文件，可增加多个参数。<br>
+默认按第一个参数指定的 *.go 文件路径输出同名 *.exe 文件。<br>
+默认添加编译参数 -ldflags &quot;-s -w&quot; 以移除调试信息</p>
+
+<p><a id="golangObject.cmd"></a></p>
+
+<h3>golangObject.cmd()</h3>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html#processPopenObject'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html#processPopenObject">返回对象:processPopenObject</a></p>
+
+<p><a id="golangObject.cmd"></a></p>
+
+<h3>golangObject.cmd(exe,...)</h3>
+
+<p>执行  go install 安装的执行文件命令。<br>
+参数 @1 指定 EXE 文件名。<br>
+后面可以指定一个或多个参数，<br>
+可指定字符串或参数表等任何 string.args.join 支持的参数。  </p>
+
+<p>此函数返回 process.popen 对象。</p>
+
+<p><a id="golangObject.command"></a></p>
+
+<h3>golangObject.command()</h3>
+
+<p>执行 go 命令。<br>
+可指定一个或多个命令行参数。<br>
+可指定字符串或参数表等任何 string.args.join 支持的参数。</p>
+
+<p><a id="golangObject.enableCgo"></a></p>
+
+<h3>golangObject.enableCgo()</h3>
+
+<p>启用 cgo ，依赖 gcc 。<br>
+如果未找 gcc 到则自动安装 Mingw-w64</p>
+
+<p><a id="golangObject.env"></a></p>
+
+<h3>golangObject.env()</h3>
+
+<p>执行 go env 命令，显示环境变量</p>
+
+<p><a id="golangObject.generate"></a></p>
+
+<h3>golangObject.generate()</h3>
+
+<p>执行 generate 命令，可添加一个或多个命令行参数。  </p>
+
+<p>可指定字符串或参数表等任何 string.args.join 支持的参数。</p>
+
+<p><a id="golangObject.get"></a></p>
+
+<h3>golangObject.get()</h3>
+
+<p>执行 go get 命令,安装远程代码包，<br>
+可在参数 @1 中使用多行字符串指定多个远程包,<br>
+需要先安装 GIT ，如果未安装就自动安装  </p>
+
+<p>建议先调用 setProxy 函数设置代理。<br>
+并调用 process.git 的 setHttpProxy 函数设置代理</p>
+
+<p><a id="golangObject.goPath"></a></p>
+
+<h3>golangObject.goPath()</h3>
+
+<p>返回 GOPATH 路径。</p>
+
+<p><a id="golangObject.install"></a></p>
+
+<h3>golangObject.install()</h3>
+
+<p>执行 go install 命令,参数中指定要编译安装的代码。</p>
+
+<p><a id="golangObject.main"></a></p>
+
+<h3>golangObject.main</h3>
+
+<pre><code class="aardio language-aardio">golangObject.main = /**********  
+package main  
+
+import &quot;C&quot;    
+import (  
+    &quot;aardio&quot;  
+    &quot;fmt&quot;  
+)  
+
+/*如果在这里指定了 Go 码，  
+则调用 build 前缀的函数将自动覆盖参数 @1 指定的 *.go 文件。*/  
+func init() {}  
+
+func main() {}   
+**********/
+</code></pre>
+
+<p><a id="golangObject.mod"></a></p>
+
+<h3>golangObject.mod(&quot;init 模块名&quot;)</h3>
+
+<p>执行 go mod 命令，<br>
+参数可以是一个字符串，以空格分隔多个参数。<br>
+也可传入多个参数，参数用法请参考 process 启动参数说明</p>
+
+<p><a id="golangObject.run"></a></p>
+
+<h3>golangObject.run()</h3>
+
+<p>执行 go run 命令,参数中指定要编译运行的代码</p>
+
+<p><a id="golangObject.runCode"></a></p>
+
+<h3>golangObject.runCode(&quot;代码路径&quot;,&quot;Go代码&quot;)</h3>
+
+<p>保存 Go 代码并运行文件</p>
+
+<p><a id="golangObject.setGoProxy"></a></p>
+
+<h3>golangObject.setGoProxy(&quot;字符串参数&quot;)</h3>
+
+<p>设置 GOPROXY 环境变量指定的 Go 镜像服务器</p>
+
+<p><a id="golangObject.setHttpProxy"></a></p>
+
+<h3>golangObject.setHttpProxy(&quot;代理服务器地址&quot;,是否设为GIT代理)</h3>
+
+<p>设置代理服务器，<br>
+参数 @1 示例: &quot;socks5://127.0.0.1:10801&quot;，<br>
+设为 null 清除代理  </p>
+
+<p>参数 @2 可省略，<br>
+设为 true 则同时设置 GIT 的 HTTP / HTTPS 代理</p>
+
+<p><a id="golangObject.version"></a></p>
+
+<h3>golangObject.version()</h3>
+
+<p>执行 go version 命令，显示版本</p>
+
+<p><a id="golangObject.yaegiExtract"></a></p>
+
+<h3>golangObject.yaegiExtract(...)</h3>
+
+<p>执行 yaegi extract 命令导出模块符号表。<br>
+参数可以是一个或多个命令行参数，<br>
+这些参数可以是 string.args.join 支持的字符串或表参数。  </p>
+
+<p>yaegi 用法可参考 golang.excelize 扩展库的 DLL 源码。<br>
+不要看网上过时的文章，这个命令没有重定向，也不需要指定输出文件名。<br>
+直接到应用程序根目录找默认输出的文件。</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/golang/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/golang/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/golang/_.md">Markdown 格式</a></p>
+
+</body> 
+</html>

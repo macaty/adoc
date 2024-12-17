@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - aardio 调用 Go 语言 yaegi 脚本'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - aardio 调用 Go 语言 yaegi 脚本</title> 
+<link rel="stylesheet" href="../../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 调用 Go 语言 yaegi 脚本</h1><pre><code class="aardio language-aardio">//aardio 调用 Go 语言 yaegi 脚本
+
+//创建 Yaegi 解释器（同一线程底层只会创建一个解释器环境）  
+import golang.yaegi;
+var go = golang.yaegi();
+
+//直接用 Go 语法写脚本。 
+//教程: https://mp.weixin.qq.com/s/_YBW0kN2uJ_pBekNF_b0WQ
+go.eval(`
+package main
+
+//导入模块 
+import (
+    &quot;fmt&quot; 
+    &quot;os&quot;
+)
+
+//编写函数 
+func SetArgs(args ...string) {
+    os.Args = args
+}
+
+//编写函数
+func SetEnv(key, value string) error {
+    return os.Setenv(key, value)
+} 
+
+//全局变量
+var GlobaVal = &quot;这是全局变量&quot;;
+`) 
+
+//在 aardio 中调用 Go 函数 
+go.SetArgs( &quot;arg1&quot;,&quot;arg2&quot; ) 
+
+//在 aardio 中调用 Go 函数 
+go.SetEnv( &quot;TestKey2&quot;,&quot;TestValue2&quot; );
+
+//在 aardio 中修改 Go 全局常量的值
+go.GlobaVal = &quot;新的 Go 全局常量值&quot;;
+
+import console.int;
+
+//获取 Go 全局常量的值
+console.log( go.GlobaVal );
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/Go/Yaegi/yaegi.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/Go/Yaegi/yaegi.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Languages/Go/Yaegi/yaegi.md">Markdown 格式</a>
+</body> 
+</html>

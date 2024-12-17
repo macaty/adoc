@@ -1,0 +1,49 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 共享 Call'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 共享 Call</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 共享 Call</h1><pre><code class="aardio language-aardio">//共享 Call
+import console;
+
+var thrdFunc = function(a,b){
+    import console;
+    console.log(&quot;参数&quot;,owner,a,b)
+    console.log(&quot;线程变量&quot;,gThrd) //thread.set写入的变量在这里就是全局变量
+    return 1,2,a + b
+}
+
+//将一个函数写入线程共享区(通常应当在主线程中一次性写入)
+thread.set(&quot;thrdFunc&quot;, thrdFunc);
+thread.set(&quot;gThrd&quot;, 123);
+
+//打开控制台
+io.open()
+
+/*
+实际上aardio建立了一个多线程共享的变量环境。
+这个线程共享环境中的变量可以使用 thread.set() thread.get() 函数去访问。
+而这个共享环境中的函数则可以用 thread.call() 去调用执行。
+
+thread.call() 函数的参数类似 call(), invoke() 等函数
+第二个参数显式指定owner参数,后面可以是任意多个其他参数
+*/ 
+var a,b,c = thread.call(&quot;thrdFunc&quot;,&quot;owner&quot;,3,11);
+
+console.log( a,b,c ) //在控制台输出所有返回值。
+execute(&quot;pause&quot;)
+
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/aardio/Thread/04.call.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/aardio/Thread/04.call.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/aardio/Thread/04.call.md">Markdown 格式</a>
+</body> 
+</html>

@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - aardio 调用 PowerShell 之 JSON 操作'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - aardio 调用 PowerShell 之 JSON 操作</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 调用 PowerShell 之 JSON 操作</h1><pre><code class="aardio language-aardio">//aardio 调用 PowerShell 之 JSON 操作
+import console;
+import dotNet.ps;
+/*
+aardio 调用 PowerShell 教程: https://mp.weixin.qq.com/s/Sr4HNkOJ1mmAj_V52v69IA
+PowerShell 快速入门 https://learnxinyminutes.com/docs/zh-cn/powershell-cn/
+*/
+
+// ConvertTo-Json 自动兼容到 PowerShell 2.0 （Win7 自带）
+var psVersion = dotNet.ps.json(`ConvertTo-Json $PSVersionTable.PSVersion`)
+console.dumpJson(psVersion);    
+console.log(err);
+
+//也可以用下面的方法
+/*
+dotNet.ps 在当前进程运行 PowerShell，
+PowerShell 共享 aardio 创建的 .Net 应用程序域。
+所以 aardio 加载的内存程序集 Newtonsoft.Json 在 PowerShell 里也可以使用。
+*/
+import dotNet.json;
+var json = dotNet.ps( `
+    $tab = @{ Name = &quot;张三&quot;; Age = &quot;20&quot;; Array = 1,2,3 } # 哈希表(数组元素要用逗号分开)
+    [Newtonsoft.Json.JsonConvert]::SerializeObject(  $tab  )` // PowerShell 类型放在 [] 里面，并用 :: 访问类的静态成员
+    );
+var psVersion = web.json.parse(json);//解析 JSON 
+console.dumpJson(psVersion);
+
+//获取 PowerShell 版本也可以这样写
+import win.reg;
+var psVersion = win.reg.query(&quot;HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\PowerShell\3\PowerShellEngine&quot;,&quot;PowerShellVersion&quot;)
+    || win.reg.query(&quot;HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\PowerShell\1\PowerShellEngine&quot;,&quot;PowerShellVersion&quot;);
+
+console.log(&quot;PowerShell 版本:&quot;,psVersion);    
+console.pause(true);
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/PowerShell/dotNet.json.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/PowerShell/dotNet.json.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Languages/PowerShell/dotNet.json.md">Markdown 格式</a>
+</body> 
+</html>

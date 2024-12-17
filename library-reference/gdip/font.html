@@ -1,0 +1,178 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - gdip.font 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - gdip.font 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>gdip.font 库模块帮助文档</h1>
+
+<p><a id="gdip"></a></p>
+
+<h2>gdip 成员列表</h2>
+
+<p><a id="gdip.CloneFont"></a></p>
+
+<h3>gdip.CloneFont</h3>
+
+<pre><code class="aardio language-aardio">$.api(&quot;GdipCloneFont&quot;,&quot;int(POINTER curFont,pointer&amp; cloneFont)&quot;)
+</code></pre>
+
+<p><a id="gdip.CreateFontFromDC"></a></p>
+
+<h3>gdip.CreateFontFromDC</h3>
+
+<pre><code class="aardio language-aardio">$.api(&quot;GdipCreateFontFromDC&quot;,&quot;int(POINTER hDc,pointer&amp; createdfont)&quot;)
+</code></pre>
+
+<p><a id="gdip.CreateFontFromLogfont"></a></p>
+
+<h3>gdip.CreateFontFromLogfont</h3>
+
+<pre><code class="aardio language-aardio">$.api(&quot;GdipCreateFontFromLogfont&quot;,&quot;int(POINTER hDc,struct logfont,pointer&amp; createdfont)&quot;)
+</code></pre>
+
+<p><a id="gdip.GetFamily"></a></p>
+
+<h3>gdip.GetFamily</h3>
+
+<pre><code class="aardio language-aardio">$.api(&quot;GdipGetFamily&quot;,&quot;int(POINTER curFont,pointer&amp; family)&quot;)
+</code></pre>
+
+<p><a id="gdip.GetFontHeight"></a></p>
+
+<h3>gdip.GetFontHeight</h3>
+
+<pre><code class="aardio language-aardio">$.api(&quot;GdipGetFontHeight&quot;,&quot;int(POINTER curFont,pointer Graphics,float&amp; Height)&quot;)
+</code></pre>
+
+<p><a id="gdip.GetFontSize"></a></p>
+
+<h3>gdip.GetFontSize</h3>
+
+<pre><code class="aardio language-aardio">$.api(&quot;GdipGetFontSize&quot;,&quot;int(POINTER curFont,float&amp; size)&quot;)
+</code></pre>
+
+<p><a id="gdip.GetFontStyle"></a></p>
+
+<h3>gdip.GetFontStyle</h3>
+
+<pre><code class="aardio language-aardio">$.api(&quot;GdipGetFontStyle&quot;,&quot;int(POINTER curFont,int&amp; style)&quot;)
+</code></pre>
+
+<p><a id="gdip.GetFontUnit"></a></p>
+
+<h3>gdip.GetFontUnit</h3>
+
+<pre><code class="aardio language-aardio">$.api(&quot;GdipGetFontUnit&quot;,&quot;int(POINTER curFont,int&amp; unit)&quot;)
+</code></pre>
+
+<p><a id="gdip.GetLogFont"></a></p>
+
+<h3>gdip.GetLogFont</h3>
+
+<pre><code class="aardio language-aardio">$.api(&quot;GdipGetLogFont&quot;,&quot;int(POINTER curFont,pointer Graphics,struct&amp; logfont)&quot;)
+</code></pre>
+
+<p><a id="gdip.font"></a></p>
+
+<h3>gdip.font</h3>
+
+<p>指定字形风格（例如常规、粗体）的字体（font）对象</p>
+
+<p>创建字体</p>
+
+<p><a id="gdip.font"></a></p>
+
+<h3>gdip.font()</h3>
+
+<p><a href="font.html#gdipfontObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/gdip/font.html#gdipfontObject">返回对象:gdipfontObject</a></p>
+
+<p><a id="gdip.font"></a></p>
+
+<h3>gdip.font(fontFamily,emSize,style,unit)</h3>
+
+<p>创建字体,<br>
+参数@fontFamily 指定 gdip.family 对象。<br>
+参数@emSize指定大小,<br>
+可选参数@style 使用 _GdipFontStyle 前缀的常量指定字形样式，默认为 _GdipFontStyleRegular。<br>
+可选参数@unit 指定单位,默认值为_GdipUnitPixel</p>
+
+<p><a id="gdip.font"></a></p>
+
+<h3>gdip.font(hdc)</h3>
+
+<p>hdc为空则取屏幕DC</p>
+
+<p><a id="gdip.font"></a></p>
+
+<h3>gdip.font(hdc,LOGFONT字体)</h3>
+
+<p>使用LOGFONT字体创建GDI+字体对象<br>
+可自动支持fonts名字空间下已导入的自带字体<br>
+参数hdc为空则取屏幕DC</p>
+
+<p><a id="gdipfontObject"></a></p>
+
+<h2>gdipfontObject 成员列表</h2>
+
+<p><a id="gdipfontObject.clone"></a></p>
+
+<h3>gdipfontObject.clone()</h3>
+
+<p>复制字体  </p>
+
+<p><a href="font.html#gdipfontObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/gdip/font.html#gdipfontObject">返回对象:gdipfontObject</a></p>
+
+<p><a id="gdipfontObject.delete"></a></p>
+
+<h3>gdipfontObject.delete()</h3>
+
+<p>删除字体</p>
+
+<p><a id="gdipfontObject.getHeight"></a></p>
+
+<h3>gdipfontObject.getHeight(graphics)</h3>
+
+<p>显示高度<br>
+数值</p>
+
+<p><a id="gdipfontObject.getLogFont"></a></p>
+
+<h3>gdipfontObject.getLogFont(graphics)</h3>
+
+<p>返回LOGFONT字体对象</p>
+
+<p><a id="gdipfontObject.getSize"></a></p>
+
+<h3>gdipfontObject.getSize()</h3>
+
+<p>字体大小<br>
+数值</p>
+
+<p><a id="gdipfontObject.getStyle"></a></p>
+
+<h3>gdipfontObject.getStyle()</h3>
+
+<p>样式<br>
+数值</p>
+
+<p><a id="gdipfontObject.getUnit"></a></p>
+
+<h3>gdipfontObject.getUnit()</h3>
+
+<p>单位<br>
+数值</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/gdip/font.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/gdip/font.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/gdip/font.md">Markdown 格式</a></p>
+
+</body> 
+</html>

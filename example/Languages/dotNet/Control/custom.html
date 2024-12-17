@@ -1,0 +1,84 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - aardio 调用 .NET 创建自定义控件'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - aardio 调用 .NET 创建自定义控件</title> 
+<link rel="stylesheet" href="../../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 调用 .NET 创建自定义控件</h1><pre><code class="aardio language-aardio">//aardio 调用 .NET 创建自定义控件
+import dotNet;  
+var compiler = dotNet.createCompiler(&quot;C#&quot;);
+compiler.Reference(&quot;System.Drawing.dll&quot;,&quot;System.Data.dll&quot;,&quot;System.Windows.Forms.dll&quot;);
+compiler.addSource(&quot;/0.WindowsFormsApp1.cs&quot;);
+compiler.import(&quot;WindowsFormsApp1&quot;);
+
+import win.ui;
+import win.ui.ctrl.metaProperty;
+/*
+实际开发创建一个 win.ui.ctrl.netform 的库就行了
+窗口控件都在 win.ui.ctrl 名字空间下，参考教程: https://mp.weixin.qq.com/s/s95LlTis3lrVeD8EYNZD0w
+*/
+namespace win.ui.ctrl{
+
+    class netform { 
+        ctor(parent,tParam){
+
+            //创建 .NET 窗口
+            this.form = ..WindowsFormsApp1.Form1();
+
+            //作为控件嵌入 aardio 窗口
+            ..dotNet.setParent(this.form,parent,false);
+
+            //aardio 控件必须在 hwnd 属性中指定窗口句柄
+            this.hwnd = this.form.Handle;
+
+            //.NET 使用 GDI+ / ARGB 格式颜色值
+            this.form.BackColor = ..gdi.argbReverse(tParam.bgcolor);  
+
+            //添加委托回调
+            this.form.onButton1Click = function(){
+                if( this.oncommand ) this.oncommand();
+            } 
+        }
+
+        @_metaProperty; //控件元表,定义了控件的公用方法
+    }
+
+    namespace netform{
+        _metaProperty = ..win.ui.ctrl.metaProperty(
+            //添加控件函数
+            setButtonText = function(txt){
+                //类外部定义元属性时使用 owner 代替 this
+                owner.form.button1.Text = txt;
+            } 
+        );  
+    }
+}
+
+//下面在自定义控件的类名里写 &quot;netform&quot; 就可以了
+/*DSG{{*/
+var winform = win.form(text=&quot;aardio form&quot;;right=1047;bottom=634;bgcolor=10789024)
+winform.add(
+netform={cls=&quot;netform&quot;;text=&quot;自定义控件&quot;;left=26;top=23;right=799;bottom=416;bgcolor=16777215;db=1;dl=1;dr=1;dt=1;z=1}
+)
+/*}}*/
+
+winform.netform.oncommand = function(id,event){
+    winform.msgbox(&quot;点击了 C# 在 aardio 窗口里创建的按钮，在 C# 中调用 aardio 函数。&quot;);
+    winform.netform.setButtonText(&quot;点击了 C# 创建的按钮&quot;);
+}
+
+winform.show();
+win.loopMessage();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/dotNet/Control/custom.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/dotNet/Control/custom.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Languages/dotNet/Control/custom.md">Markdown 格式</a>
+</body> 
+</html>

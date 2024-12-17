@@ -1,0 +1,104 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - js 调用 aardio 自定义事件'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - js 调用 aardio 自定义事件</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: js 调用 aardio 自定义事件</h1><pre><code class="aardio language-aardio">//JS 调用本地函数 
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;js 调用 aardio 自定义事件&quot;;right=1014;bottom=523;)
+winform.add()
+/*}}*/
+
+import web.sciter;
+var sciter = web.sciter( winform );
+
+//JS 调试输出发送到到控制台，支持 JS 的 console.log()
+import web.sciter.debug;
+sciter.attachEventHandler( web.sciter.debug );
+
+//在 web.sciter.behavior 名字空间添加自定义 behavior
+namespace web.sciter.behavior.customEvent {  
+
+    //behavior 中名称不以 on 开始的函数都是自定义函数
+    testJs = function(scOwner,str,jsCallback){ 
+        import console
+        console.log(&quot;behavior里的函数 testJs 被调用了&quot;);
+        console.log(&quot;自定义函数接收到的第一个参数总是节点自身&quot;)
+        console.log(&quot;然后才是其他参数&quot;,str)
+
+        //aardio里调用behavior自定义函数的方法是一样的,提供一模一样的xcall函数
+        scOwner.xcall(&quot;testJs2&quot;,str);
+
+        //在 aardio 中能接收 Javascript 返回值的地方都支持直接返回Javascript 函数对象
+        jsCallback(&quot;在 aardio 中能接收 Javascript 返回值的地方都支持直接返回Javascript 函数对象&quot;)
+    }
+
+    testJs2 = function(scOwner,...){
+        console.log(&quot;behavior里的函数 testJs2 被调用了&quot;,...)
+        console.log(&quot;自定义函数接收到的第一个参数总是节点自身&quot;)
+        console.log(scOwner.outerHTML)
+    }
+
+    //JS 脚本中读取 value 时触发此回调，第2个返回值返回 value 的值
+    onGetValue = function( ltOwner ){
+        return true,&quot;Value:onGetValue&quot;;
+    }
+
+    //JS 脚本中使用修改 value 值时触发此回调
+    onSetValue = function(  ltOwner,value ){
+
+        return true
+    }
+}
+
+sciter.html = /**
+&lt;!doctype html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;META http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot;&gt;
+    &lt;style type=&quot;text/css&quot;&gt;
+    html,body{ height:100%; margin:50; } 
+
+    #my-button{  
+        behavior:&quot;customEvent clickable&quot;; 
+    }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt; 
+&lt;button id=&quot;my-button&quot;&gt;调用 behavior 定义的 aardio函数：testJs &lt;/button&gt; 
+&lt;br&gt; 请务必更新 web.sciter 扩展库到最新版本
+
+&lt;script&gt;
+
+var button = document.getElementById(&quot;my-button&quot;);
+button.addEventListener(&#39;click&#39;, () =&gt; { 
+
+    // 调用 aardio 函数, 请务必更新 web.sciter 扩展库到最新版本
+    button.xcall(&quot;testJs&quot;, &quot;hello&quot;,function jsCallback(argA){
+        console.log(&quot;在aardio中调用了 Javascript 回调函数&quot;,argA)
+    }); 
+})
+
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+**/
+
+winform.show(); 
+win.loopMessage();
+
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/WebUI/Sciter.JS/xcall.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/WebUI/Sciter.JS/xcall.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/WebUI/Sciter.JS/xcall.md">Markdown 格式</a>
+</body> 
+</html>

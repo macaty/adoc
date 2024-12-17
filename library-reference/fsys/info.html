@@ -1,0 +1,118 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - fsys.info 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - fsys.info 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>fsys.info 库模块帮助文档</h1>
+
+<p><a id="fsys.info"></a></p>
+
+<h2>fsys.info 成员列表</h2>
+
+<p><a id="fsys.info.get"></a></p>
+
+<h3>fsys.info.get</h3>
+
+<p>返回文件信息</p>
+
+<p><a id="fsys.info.get"></a></p>
+
+<h3>fsys.info.get(&quot;路径&quot;,SHGFI_... )</h3>
+
+<p>参数@2指定一个或多个选项,多个选项用|连接,<br>
+如果参数@2指定了_SHGFI_USEFILEATTRIBUTES,<br>
+则参数@3必须用 <em>FILE_ATTRIBUTE</em> 前缀常量指定文件属性</p>
+
+<p><a id="fsys.info.get"></a></p>
+
+<h3>fsys.info.get()</h3>
+
+<p><a href="#shFileInfoObject">返回对象:shFileInfoObject</a></p>
+
+<p><a id="fsys.info.getExeType"></a></p>
+
+<h3>fsys.info.getExeType()</h3>
+
+<p><a href="#fsysExeInfoExeTypeObject">返回对象:fsysExeInfoExeTypeObject</a></p>
+
+<p><a id="fsys.info.getExeType"></a></p>
+
+<h3>fsys.info.getExeType(文件路径)</h3>
+
+<p>检测是否EXE文件<br>
+失败返回空</p>
+
+<p><a id="fsysExeInfoExeTypeObject"></a></p>
+
+<h2>fsysExeInfoExeTypeObject 成员列表</h2>
+
+<p><a id="fsysExeInfoExeTypeObject.magic"></a></p>
+
+<h3>fsysExeInfoExeTypeObject.magic</h3>
+
+<p>DOS程序为&quot;MZ&quot;<br>
+非DOS程序为&quot;PE&quot;</p>
+
+<p><a id="fsysExeInfoExeTypeObject.winVer"></a></p>
+
+<h3>fsysExeInfoExeTypeObject.winVer</h3>
+
+<p>控制台程序为0<br>
+GUI 程序为 Windows 版本号,<br>
+Windows 版本号参考： <a href="javascript:if(confirm('https://docs.microsoft.com/en-us/windows/win32/winprog/using-the-windows-headers  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='https://docs.microsoft.com/en-us/windows/win32/winprog/using-the-windows-headers'" tppabs="https://docs.microsoft.com/en-us/windows/win32/winprog/using-the-windows-headers">https://docs.microsoft.com/en-us/windows/win32/winprog/using-the-windows-headers</a></p>
+
+<p><a id="shFileInfoObject"></a></p>
+
+<h2>shFileInfoObject 成员列表</h2>
+
+<p><a id="shFileInfoObject.dwAttributes"></a></p>
+
+<h3>shFileInfoObject.dwAttributes</h3>
+
+<p>文件属性</p>
+
+<p><a id="shFileInfoObject.hIcon"></a></p>
+
+<h3>shFileInfoObject.hIcon</h3>
+
+<p>图标句柄<br>
+如果不为空要负责释放该句柄</p>
+
+<p><a id="shFileInfoObject.iIcon"></a></p>
+
+<h3>shFileInfoObject.iIcon</h3>
+
+<p>在图像列表中的索引</p>
+
+<p><a id="shFileInfoObject.returnValue"></a></p>
+
+<h3>shFileInfoObject.returnValue</h3>
+
+<p>SHGetFileInfo的返回值</p>
+
+<p><a id="shFileInfoObject.szDisplayName"></a></p>
+
+<h3>shFileInfoObject.szDisplayName</h3>
+
+<p>文件名</p>
+
+<p><a id="shFileInfoObject.szTypeName"></a></p>
+
+<h3>shFileInfoObject.szTypeName</h3>
+
+<p>类型名</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/fsys/info.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/fsys/info.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/fsys/info.md">Markdown 格式</a></p>
+
+</body> 
+</html>

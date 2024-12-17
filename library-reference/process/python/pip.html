@@ -1,0 +1,85 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - process.python.pip 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - process.python.pip 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>process.python.pip 库模块帮助文档</h1>
+
+<p><a id="process.python.pip"></a></p>
+
+<h2>process.python.pip 成员列表</h2>
+
+<p>Python 模块安装工具。  </p>
+
+<p>如果 process.python.path 的值为 &quot;python.exe&quot; 则调用系统安装的 pip，<br>
+否则自动安装 pip 到 python.exe 所在目录的 pip 目录下,请不要改为其他名称。<br>
+在安装 pip 时会修改 python.exe 所在目录的 *._pth 文件。<br>
+如果已安装 pip 则自动跳过。  </p>
+
+<p>此工具可用于发布后的程序</p>
+
+<p><a id="process.python.pip.github"></a></p>
+
+<h3>process.python.pip.github(&quot;字符串参数&quot;)</h3>
+
+<p>自动安装 GitHub 的 Python 项目依赖模块。<br>
+参数中指定 GitHub 上 Python 项目 requirements.txt 地址。<br>
+如果网址包含 blob 或 raw 则不用指定域名</p>
+
+<p><a id="process.python.pip.require"></a></p>
+
+<h3>process.python.pip.require(&quot;字符串参数&quot;)</h3>
+
+<p>如果没有安装指定的模块，则调用 pip 安装</p>
+
+<p><a id="process.python.pip.setIndexUrl"></a></p>
+
+<h3>process.python.pip.setIndexUrl(&quot;aliyun&quot;)</h3>
+
+<p>设置镜像源。<br>
+参数指定源网址，支持常用镜像源缩写。<br>
+&quot;aliyun&quot; 表示阿里云源，<br>
+&quot;tsinghua&quot; 表示清化源，<br>
+&quot;tencent&quot; 表示腾讯源，<br>
+&quot;douban&quot; 表示豆瓣源，<br>
+参数为空恢复默认。</p>
+
+<p><a id="process.python.pip.target"></a></p>
+
+<h3>process.python.pip.target</h3>
+
+<p>指定安装模块的目录，<br>
+此目录仅用于安装，不会被添加到 process.python 的模块搜索路径</p>
+
+<p><a id="process.python"></a></p>
+
+<h2>process.python 成员列表</h2>
+
+<p><a id="process.python.pip"></a></p>
+
+<h3>process.python.pip(&quot;install&quot;,&quot;字符串参数&quot;)</h3>
+
+<p>执行 pip 命令，只能在开发环境单独运行。<br>
+可用一个字符串参数指定多个 pip 参数，空格分隔多个参数，<br>
+也可以传入多个参数由 aardio 自动合并（空格分隔参数），<br>
+合并多参数时，单参数含空格或需转义时自动加双引号并自动转义。  </p>
+
+<p>默认安装模块到 &quot;/py/site-packages&quot; 目录下  </p>
+
+<p>如果不指定任何参数，直接返回 pip 模块对象。<br>
+可用一个字符串数组指定 pip.main 函数的启动参数</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/process/python/pip.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/process/python/pip.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/process/python/pip.md">Markdown 格式</a></p>
+
+</body> 
+</html>

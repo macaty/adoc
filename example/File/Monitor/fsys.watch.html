@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 请拖动需要监视的目录到下面的文件列表内'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 请拖动需要监视的目录到下面的文件列表内</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 请拖动需要监视的目录到下面的文件列表内</h1><pre><code class="aardio language-aardio">//仅监视目录 fsys.watch
+import win.ui;
+/*DSG{{*/
+var winform = ..win.form(text=&quot;请拖动需要监视的目录到下面的文件列表内&quot;;right=599;bottom=387;max=false;)
+winform.add(
+btnWatch={cls=&quot;button&quot;;text=&quot;开始监视&quot;;left=377;top=342;right=529;bottom=379;z=1};
+lvChange={cls=&quot;listview&quot;;left=7;top=6;right=587;bottom=334;acceptfiles=1;bgcolor=16777215;edge=1;z=2}
+)
+/*}}*/
+
+import fsys.watch;   
+watchFiles = function( files ){
+    var watchObj = fsys.watch( files ) ;
+    winform.watchObj = watchObj;
+
+    watchObj.onChange = function(path) {   
+        var item = winform.lvChange.findItem(path); 
+        if( item ){
+            winform.lvChange.setItemText(&quot;改变&quot;,item,2);
+            winform.lvChange.setItemText(tostring(time.now()),item,3); 
+        }
+    } 
+    watchObj.run();
+} 
+
+winform.btnWatch.oncommand = function(id,event){
+    if( winform.btnWatch.text == &quot;开始监视&quot;){
+        winform.btnWatch.text = &quot;停止监视&quot;;
+        watchFiles( winform.files);  
+    }
+    else { 
+        winform.btnWatch.text = &quot;开始监视&quot;; 
+        winform.watchObj.stop();
+    } 
+} 
+
+import fsys;
+winform.lvChange.wndproc = {
+    [0x233/*_WM_DROPFILES*/] = function(hwnd,message,wParam,lParam){
+        var files = win.getDropFile(wParam)
+        for(i=1;#files;1){
+            if( fsys.isDir(files[i])  )
+                winform.lvChange.addItem(files[i])  
+        }
+        winform.files = table.concat(files,winform.files : {} );
+    }
+}  
+winform.lvChange.insertColumn(&quot;文件&quot;,100) 
+winform.lvChange.insertColumn(&quot;状态&quot;,100) 
+winform.lvChange.insertColumn(&quot;时间&quot;,200) 
+winform.lvChange.fillParent(1);
+
+winform.show() 
+win.loopMessage();
+
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/File/Monitor/fsys.watch.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/File/Monitor/fsys.watch.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/File/Monitor/fsys.watch.md">Markdown 格式</a>
+</body> 
+</html>

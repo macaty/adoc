@@ -1,0 +1,274 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - aardio 基本语法'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - aardio 基本语法</title> 
+<link rel="stylesheet" href="../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 基本语法</h1>
+
+<h2>数据类型</h2>
+
+<p>基本数据类型的详细说明请参考：<a href="datatype/datatype.html" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/datatype/datatype.html">数据类型</a></p>
+
+<h2>标识符</h2>
+
+<p>标识符是指 aardio 中由起标识作用的英文字母、数字或中文字符、以及下划线组成的命名符号，  一般用来标识用户或系统定义的数据或方法，例如常量名、变量名、函数名、类名、名字空间等。</p>
+
+<p>aardio 标识符基本规则：</p>
+
+<ul>
+<li>  标识符由英文字母、中文字符、数字、下划线 <code>_</code> 三种字符组成。</li>
+<li>  标识符区分大小写。</li>
+<li>  数字不允许作为首字符。</li>
+<li>  首字符为下划线且长度大于 1 个字节、小于 256 个字节的标识符表示 <a href="variables-and-constants.html#constants" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/variables-and-constants.html#constants">常量</a>，单个下划线符号仍然表示变量。</li>
+<li>  标识符包含中文时，中文字符前面不能有字母或数字。</li>
+<li>  可以使用美元符号 <code>$</code> 作为标识符的第一个字符。</li>
+</ul>
+
+<p>aardio 根据标志符查找&quot;命名对象&quot;的顺序依次为：  </p>
+
+<ol>
+<li>当前<a href="statements/blocks.html" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/statements/blocks.html">语句块</a>局部变量。 </li>
+<li>在上层语句块就近搜索<a href="variables-and-constants.html#var" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/variables-and-constants.html#var">局部变量</a>部变量。 </li>
+<li>如果有外层函数则继续向上就近搜索所有外层 <a href="function/definitions.html" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/function/definitions.html">函数</a> 的局部变量。</li>
+<li>搜索当前<a href="namespace.html" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/namespace.html">名字空间</a>( <code>self</code> )的成员变量。</li>
+</ol>
+
+<p>要特别注意：</p>
+
+<blockquote>
+<p>如果当前名字空间不是全局名字空间，aardio 默认不会到全局表查找命名对象，除非标识符指向一个全局有效的命名对象（全局常量、保留常量、保留函数名）或使用 <code>..</code> 操作符明确指定仅在全局表中查找命名对象 。</p>
+</blockquote>
+
+<h2>关键字</h2>
+
+<p>aardio 语法系统保留的关键字，关键字在代码编辑器默认显示为蓝色高亮样式。aardio全部关键字如下:  </p>
+
+<ul>
+<li>  var 用于定义局部变量<br></li>
+<li>  null 用于表示空值</li>
+<li>  and not or 逻辑运算符</li>
+<li>  false true 用于表示布尔值</li>
+<li>  if else elseif 用于条件判断语句</li>
+<li>  select case 用于条件判断语句</li>
+<li>  for in 用于循环语句</li>
+<li>  while do 用于循环语句</li>
+<li>  break continue 循环中断语句</li>
+<li>  try catch 用于捕获异常</li>
+<li>  class ctor 用于创建类</li>
+<li>  function 用于创建函数</li>
+<li>  lambda 用于创建 lambda 表达式</li>
+<li>  λ 等价于 lambda 关键字，在 aardio 中可用 <code>lambdaλ</code> 模板输入此符号</li>
+<li>  return 用于在函数内返回值</li>
+<li>  begin end  用于包含语句块</li>
+<li>  namespace 用于创建或打开名字空间</li>
+<li>  import 用于引用库</li>
+<li>  with 用于打开名字空间</li>
+<li>  this 用于在类内部表示当前实例对象</li>
+<li>  owner 用于成员函数中表示调用函数的主体对象</li>
+<li>  global 用于表示全局名字空间</li>
+<li>  self 用于表示当前名字空间</li>
+</ul>
+
+<p>通过对象的下标 <code>[]</code>、直接下标<code>[[]]</code>、成员操作符 <code>.</code> 指定的成员名字不会被解析为语法关键字，例如:  </p>
+
+<pre><code class="aardio language-aardio">io.namespace = &quot;io&quot;
+io[&quot;namespace&quot;] = &quot;io&quot;
+</code></pre>
+
+<p>上面的 <code>.namespace</code> 与 [&quot;namespace&quot;] 都不会被解析为语法关键字。</p>
+
+<p>另外 aardio 中的部分内核提供的保留函数在编辑器中也默认显示为蓝色。请参考：<a href="builtin-function/index.html" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/builtin-function/index.html">保留函数</a></p>
+
+<h2>分隔符</h2>
+
+<p>aardio 使用半角空格、制表符、回车换行、分号等作为分隔符，不允许使用全角空格(<code>&#39;\u3000&#39;</code>)或HTML空格(<code>&#39;\u00A0&#39;</code>)作为语法分隔符。在 HTML 模板语法中，还可以使用 <code>&lt;? ?&gt;</code> 作为代码分隔符。</p>
+
+<h2>注释</h2>
+
+<p>注释是被标明不是程序代码、在运行时跳过不执行的附加说明内容。  </p>
+
+<h3>1. 行注释</h3>
+
+<p>单行注释以 <code>//</code>开始，到行尾结束;</p>
+
+<h3>2. 块注释</h3>
+
+<p>块注释以 <code>/*</code>开始，到 <code>*/</code>结束，首尾的<code>*</code>字符可以有一或多个，但<code>*</code>字符的数目必须首尾匹配。</p>
+
+<p>块注释可以包含换行，可用于包含多行注释。</p>
+
+<h2>操作数(operand)</h2>
+
+<p>操作数表示由操作符操作的数据。操作数可以是常量、变量、字面量、函数返回值。</p>
+
+<h2>操作符(operator)</h2>
+
+<p>操作符（运算符）指代码中对操作数进行特定操作或运算的标点符号(不允许使用全角标点、在 aardio 编辑器中全角标点、全角空格将以红色纠错背景显示)。</p>
+
+<p>关于操作符请参考下面的链接：</p>
+
+<ul>
+<li><p><a href="operator/member-access.html" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/operator/member-access.html">成员操作符</a> </p></li>
+<li><p><a href="function/definitions.html#call" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/function/definitions.html#call">调用操作符</a></p></li>
+<li><p><a href="operator/arithmetic.html" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/operator/arithmetic.html">算术运算符</a>  </p></li>
+<li><p><a href="operator/bitwise.html" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/operator/bitwise.html">按位运算符</a></p></li>
+<li><p><a href="operator/equality.html" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/operator/equality.html">等式运算符</a></p></li>
+<li><p><a href="operator/logical.html" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/operator/logical.html">逻辑运算符</a></p></li>
+<li><p><a href="operator/comparison.html" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/operator/comparison.html">关系运算符</a></p></li>
+<li><p><a href="operator/concat.html" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/operator/concat.html">连接运算符</a></p></li>
+<li><p><a href="operator/len.html" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/operator/len.html">取长运算符</a></p></li>
+<li><p><a href="operator/precedence.html" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/operator/precedence.html">优先级</a> </p></li>
+<li><p><a href="operator/overloading.html" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/operator/overloading.html">运算符重载</a></p></li>
+</ul>
+
+<p>注意：</p>
+
+<blockquote>
+<p>字面量以及定义执行代码的对象（函数定义、类定义、lambda 表达式）不能直接在右侧写一元操作符（成员操作符、调用操作符），除非在外面加一层括号将其转换为普通表达式，例如  <code>( function(){} )()</code> 。</p>
+</blockquote>
+
+<h2>字面量（literal） <a id="literal" href="#literal">&#x23;</a></h2>
+
+<p>字面量指的是在源代码中直接表示值的标记（notation）。</p>
+
+<p>aardio 中字面量有：</p>
+
+<ul>
+<li>数值，例如 <code>123</code> 。</li>
+<li>以字面值表示的字符串：
+
+<ul>
+<li>以双引号、反引号包含的<a href="datatype/string.html#raw" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/datatype/string.html#raw">原始字符串</a> 。</li>
+<li>以单引号包含的<a href="datatype/string.html#escaped" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/datatype/string.html#escaped">转义字符串</a>。</li>
+<li>在赋值语句中用注释作为右值表示的<a href="datatype/string.html#comment" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/datatype/string.html#comment">注释字符串</a>。</li>
+</ul></li>
+<li>布尔值 <code>true</code>, <code>false</code> 。</li>
+<li>空值 <code>null</code> 。</li>
+<li>直接用 <code>{}</code> 构造的表（或数组）。</li>
+</ul>
+
+<p>字面量后面不能直接写<a href="operator/member-access.html" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/operator/member-access.html">成员操作符</a>，例如 <code>{}.name</code> 有语法错误，将字面量放在括号内写为 <code>（{}）.name</code> 才不会报语法错误。</p>
+
+<h2>表达式(expression)</h2>
+
+<p>表达式用于计算或返回数据值。</p>
+
+<ul>
+<li>单个操作数可以构成一个表达式。<br></li>
+<li>操作数、运算符可以组成表达式，使用运算符对操作数进行运算并返回一个新的值。<br></li>
+<li>一个表达式可以作为另一个表达式的操作数。<br></li>
+<li>函数返回值可以作为表达式。<br></li>
+<li>匿名函数、匿名类定义、lambda 函数都可以作为表达式。</li>
+</ul>
+
+<p>除了函数调用语句的返回值是表达式，其他独立执行的语句不能作为表达式使用，例如：</p>
+
+<ul>
+<li>赋值语句不能作为表达式。<br></li>
+<li>自增自减语句不能作为表达式。</li>
+<li>具名函数、具名类定义不能作为表达式，只能作为独立语句运行。</li>
+</ul>
+
+<h2>语句(statement) <a id="statement" href="#statement">&#x23;</a></h2>
+
+<p>我们编写的程序由语句组成，<br>
+程序中的最小指令单元称为语句。  </p>
+
+<p>基本语句由关键字、操作数、操作符、表达式等组成。<br>
+包含多个语句、或语句块的语句称为复合语句。  </p>
+
+<p>一个基本语句是由尾部的分号表示结束的逻辑行，<br>
+如果能保持语句在语义上的独立完整性，分号“;”通常可以省略。  </p>
+
+<p>语句块由一对大括号 <code>{}</code> 界定，语句块可以包含多个基本语句或者复合语句。  </p>
+
+<p>在 aardio 里允许用  <code>begin end</code> 替代  <code>{}</code> 包含语句块，但 aardio 建议大家使用简洁且风格一致的 <code>{}</code> 包含语句块，尽量减少或者避免使用 <code>begin end</code> 替代  <code>{}</code> 的写法 。aardio 支持这个语法的初衷是希望对于嵌套过深的语句块可以用不同的语句块标记让代码的结构更清晰，但实际上编码中本就应当尽量避免嵌套过深的语句块。</p>
+
+<ol>
+<li><p>基本语句:<br>
+<a href="statements/assignment.html" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/statements/assignment.html">赋值语句</a><br>
+<a href="function/definitions.html#call" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/function/definitions.html#call">函数调用语句</a><br>
+<a href="../library-guide/import.html" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/import.html">import语句</a>  </p></li>
+<li><p>语句块<br>
+<a href="statements/blocks.html" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/statements/blocks.html">语句块</a></p></li>
+<li><p>控制语句<br>
+<a href="statements/branching.html" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/statements/branching.html">条件判断语句</a><br>
+<a href="statements/looping.html" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/statements/looping.html">循环语句</a><br>
+<a href="statements/try.html" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/statements/try.html">容错语句</a>  </p></li>
+<li><p>定义语句<br>
+<a href="namespace.html" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/namespace.html">定义名字空间</a><br>
+<a href="function/definitions.html" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/function/definitions.html">定义函数</a><br>
+<a href="class/class.html" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/class/class.html">定义类</a>  </p></li>
+</ol>
+
+<h2>语句与表达式的概念区别 <a id="stat-vs-exp" href="#stat-vs-exp">&#x23;</a></h2>
+
+<p>aardio 语言严格区分表达式、语句的概念。</p>
+
+<p>表达式用于表示数据的值，而语句用于表示独立执行的代码。我们可以用分号分隔独立语句，但不能用分号分隔独立表达式。</p>
+
+<p>在 aardio 中除了函数调用可以是一个独立语句而函数的返回值可作为表达式使用，其他语句与表达式必须严格区分不能相互替代。</p>
+
+<p>正确用法与错误用法示例：</p>
+
+<ul>
+<li><code>1+1; //错误，单独的表达式不能作为语句</code> <img src="../icon/error.gif" tppabs="https://www.aardio.com/zh-cn/doc/icon/error.gif" alt=""><br></li>
+<li><code>var num = 1+1: //正确，表达式组成语句</code> <img src="../icon/ok.gif" tppabs="https://www.aardio.com/zh-cn/doc/icon/ok.gif" alt=""><br></li>
+<li><code>console.log( num ); //正确，函数调用构成独立语句</code> <img src="../icon/ok.gif" tppabs="https://www.aardio.com/zh-cn/doc/icon/ok.gif" alt=""><br></li>
+<li><code>console.log; //错误，表达式（函数对象）不能作为语句</code> <img src="../icon/error.gif" tppabs="https://www.aardio.com/zh-cn/doc/icon/error.gif" alt=""><br></li>
+<li><code>var func = console.log: //正确，函数对象可以作为操作数构成表达式</code> <img src="../icon/ok.gif" tppabs="https://www.aardio.com/zh-cn/doc/icon/ok.gif" alt=""><br></li>
+<li><code>var tfunc = type( func ); //正确，函数返回值是一个表达式</code>  <img src="../icon/ok.gif" tppabs="https://www.aardio.com/zh-cn/doc/icon/ok.gif" alt=""><br></li>
+<li><code>num++; //正确，自增赋值构成独立语句</code> <img src="../icon/ok.gif" tppabs="https://www.aardio.com/zh-cn/doc/icon/ok.gif" alt=""><br></li>
+<li><code>num = num++;//错误，自增语句不能作为表达式</code> <img src="../icon/error.gif" tppabs="https://www.aardio.com/zh-cn/doc/icon/error.gif" alt=""><br></li>
+</ul>
+
+<p>要点：</p>
+
+<ol>
+<li><p>表达式可以包含在括号里</p>
+
+<p>您可以像下面这样写:  </p>
+
+<p><code>num = ( (1+1)+2 )</code></p>
+
+<p>所有表达式都可以放在括号里。</p>
+
+<p>但是下面这样就不对了：  </p>
+
+<p><code>( print(123) ) //出错了</code> <img src="../icon/error.gif" tppabs="https://www.aardio.com/zh-cn/doc/icon/error.gif" alt=""> </p>
+
+<p>语句不能包含在括号里。  </p></li>
+<li><p>独立语句可以用分号分隔。</p>
+
+<p>你可以像下面这样写:   </p>
+
+<pre><code class="aardio language-aardio">num = ( (1+1)+2 );
+</code></pre>
+
+<p>赋值语句是一个语句，可以在独立语句后面添加分隔符。</p>
+
+<p>但是普通表达式不能用分号分隔（表达式刚好位于独立语句结尾不算）。</p>
+
+<p>例如下面这样就不对了：  </p>
+
+<p><code>num = ( (1+1); +2 ) //普通表达式不能用分号分隔</code> <img src="../icon/error.gif" tppabs="https://www.aardio.com/zh-cn/doc/icon/error.gif" alt=""> </p>
+
+<blockquote>
+<p>注意：可以在 for 循环里用分号分隔计数条件，在表或类构造器里可以用分号分隔元素。</p>
+</blockquote></li>
+</ol>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/language-reference/basic-syntax.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/language-reference/basic-syntax.md'" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/basic-syntax.md">Markdown 格式</a></p>
+
+</body> 
+</html>

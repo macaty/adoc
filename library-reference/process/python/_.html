@@ -1,0 +1,312 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - process.python 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - process.python 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>process.python 库模块帮助文档</h1>
+
+<p><details>  <summary>必读</summary>  <p>
+要特别注意如果 process.python.path 的值为 &quot;python.exe&quot;，
+则调用系统安装的 Python.exe （即使没有添加到环境变量也可以支持）。
+系统安装的Python.exe 主版本必须与 process.python.version 相同，且版本等于或大于 process.python.version 。
+如果系统未安装符合条件的 Python ，则会自动安装 process.python.version 指定版本的 Python。</p>
+
+<p>如果 process.python.path 为其他值，则表示使用嵌入版（embed）版 Python。
+嵌入版 Python 完全独立，与系统安装的 Python 不相关，也不会共用模块。
+嵌入版 Python 可方便的与 EXE 一起发布 （32位 Python 可转换并嵌入独立 EXE 文件）。</p>
+
+<p>如果嵌入版 Python.exe 存在于 process.python.path 指定的路径，
+则直接调用，不会检测 Python.exe 的版本，如果在指定路径找不到 python.exe，
+aardio 也会自动下载 process.python.version 指定版本的嵌入版 Python 。</p>
+
+<p>process.python.version 指定下载或安装 Python 时使用的版本。
+process.python.win32 指定在 64 位系统是否下载 32 位 Python。</p>
+
+<p>不是所有版本都提供嵌入发行版或者安装包，
+指定版本前请先到以下网站检查一下：
+<a href="javascript:if(confirm('https://npmmirror.com/mirrors/python/  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='https://npmmirror.com/mirrors/python/'" tppabs="https://npmmirror.com/mirrors/python/">https://npmmirror.com/mirrors/python/</a> 
+<a href="javascript:if(confirm('https://www.python.org/ftp/python  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='https://www.python.org/ftp/python'" tppabs="https://www.python.org/ftp/python">https://www.python.org/ftp/python</a>
+可使用 python.process.cdnUrl 修改默认下载地址。</p>
+
+<p>当然，如果程序自带 Python ，就不用考虑下载的问题了。
+</p></details></p>
+
+<p><a id="process"></a></p>
+
+<h2>process 成员列表</h2>
+
+<p><a id="process.python"></a></p>
+
+<h3>process.python()</h3>
+
+<p>创建 Python 进程，当前进程退出时 Python 会自动退出。<br>
+返回进程管道（ process.popen ）对象。<br>
+可以用一个字符串参数指定多个启动参数，用空格分隔多个参数，<br>
+也可以传入多个参数由 aardio 自动合并（空格分隔参数），<br>
+合并多参数时，单参数含空格或需转义时自动加双引号并自动转义</p>
+
+<p><a id="process.python"></a></p>
+
+<h2>process.python 成员列表</h2>
+
+<p>用于调用任意版本 python.exe，支持 32 位、64位 Python  </p>
+
+<p>此支持库已导入 web.json，<br>
+可直接使用返回 Python 进程的 json,jsonAll,ndjsonAll,jsonWite 等函数</p>
+
+<p><a id="process.python.cdnUrl"></a></p>
+
+<h3>process.python.cdnUrl</h3>
+
+<p>下载镜像，如果镜像失效会自动跳转到 Python 官网下载</p>
+
+<p><a id="process.python.checkPath"></a></p>
+
+<h3>process.python.checkPath()</h3>
+
+<p>检查 Python.exe 路径。<br>
+如果未找到 Python.exe 则尝试自动安装。<br>
+成功则返回 Python.exe 路径</p>
+
+<p><a id="process.python.codepage"></a></p>
+
+<h3>process.python.codepage</h3>
+
+<p>代码页，默认为 65001（UTF-8 编码）<br>
+Python 2.x 需要改为 0，Python 3.x 不用修改</p>
+
+<p><a id="process.python.command"></a></p>
+
+<h3>process.python.command</h3>
+
+<p>创建 Python 进程运行 Python 代码</p>
+
+<p><a id="process.python.command"></a></p>
+
+<h3>process.python.command()</h3>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html#processPopenObject'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html#processPopenObject">返回对象:processPopenObject</a></p>
+
+<p><a id="process.python.command"></a></p>
+
+<h3>process.python.command(code,...)</h3>
+
+<p>创建 Python 进程，当前进程退出时 Python 会自动退出。<br>
+返回进程管道（ process.popen ）对象。<br>
+@code 指定要执行的 Python 代码。<br>
+如果代码开始为 aardio 模板标记，则启用<a href="../../../language-reference/templating/syntax.html" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/templating/syntax.html">模板语法</a> 。<br>
+参数 @2 可以用一个字符串参数指定多个启动参数，空格分隔多参数，<br>
+也可以传入多个参数由 aardio 自动合并（空格分隔参数），<br>
+合并多参数时，单参数含空格或需转义时自动加双引号并自动转义</p>
+
+<p><a id="process.python.exec"></a></p>
+
+<h3>process.python.exec</h3>
+
+<p>创建 Python 进程运行 Python 代码。<br>
+此函数在写入 Python 代码以后会自动关闭 Python 标准输入。<br>
+改用 process.python.command 函数不会关闭标准输入</p>
+
+<p><a id="process.python.exec"></a></p>
+
+<h3>process.python.exec()</h3>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html#processPopenObject'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html#processPopenObject">返回对象:processPopenObject</a></p>
+
+<p><a id="process.python.exec"></a></p>
+
+<h3>process.python.exec(code,...)</h3>
+
+<p>创建 Python 进程，当前进程退出时 Python 会自动退出。<br>
+返回进程管道（ process.popen ）对象。并已关闭标准输入管道。<br>
+@code 指定要执行的 Python 代码，用进程的标准输入写入代码。<br>
+如果代码开始为 aardio 模板标记，则启用<a href="../../../language-reference/templating/syntax.html" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/templating/syntax.html">模板语法</a> 。<br>
+@code 也可以指定一个包含 *.aardio 代码文件，支持模板语法。<br>
+@code 也可以指定指定 *.py 文件。<br>
+@code 可指定资源文件，注意这是内存加载 Python 代码，<br>
+Python 并不知道文件路径。<br>
+如果希望 Python 直接加载文件，请改用 execfile 函数。<br>
+参数 @2 开始可以指定一个或多个启动参数。<br>
+参数可以是字符串、数组、参数表，由 process.joinArguments 自动合并并处理转义</p>
+
+<p><a id="process.python.execfile"></a></p>
+
+<h3>process.python.execfile</h3>
+
+<p>创建 Python 进程运行 Python 代码文件</p>
+
+<p><a id="process.python.execfile"></a></p>
+
+<h3>process.python.execfile()</h3>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html#processPopenObject'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html#processPopenObject">返回对象:processPopenObject</a></p>
+
+<p><a id="process.python.execfile"></a></p>
+
+<h3>process.python.execfile(path,...)</h3>
+
+<p>创建 Python 进程，当前进程退出时 Python 会自动退出。<br>
+返回进程管道（ process.popen ）对象。<br>
+@path 指定要执行的 Python 代码文件（*.py）路径。<br>
+参数 @2 开始可以指定一个或多个启动参数。<br>
+参数可以是字符串、数组、参数表，由 process.joinArguments 自动合并并处理转义</p>
+
+<p><a id="process.python.getInstallPath"></a></p>
+
+<h3>process.python.getInstallPath()</h3>
+
+<p>查找系统安装的 Python.exe 路径。<br>
+如果不指定参数则返回一个表，键为版本，值为路径。</p>
+
+<p><a id="process.python.getInstallPath"></a></p>
+
+<h3>process.python.getInstallPath(sysVersion,win32)</h3>
+
+<p>搜索系统安装的 系统安装的 Python，<br>
+查找等于或大于 @sysVersion 指定版本的 Python.exe 路径。  </p>
+
+<p>@sysVersion 参数至少要包含两个数值且仅使用这两个数值，例如&quot;3.8&quot;，<br>
+如果 @win32 为 true，则优先返回 32 位 Python 路径。<br>
+如果没有找到指定的版本，则返回大于指定版本的 Python.exe 路径。  </p>
+
+<p>返回 Python.exe 版本号的第一位数值必须要与参数相同。<br>
+找不到符合条件的 Python.exe 则返回 null</p>
+
+<p><a id="process.python.github"></a></p>
+
+<h3>process.python.github</h3>
+
+<p>调用 exec 函数运行 GitHub 上的 Python 代码。</p>
+
+<p><a id="process.python.github"></a></p>
+
+<h3>process.python.github()</h3>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html#processPopenObject'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html#processPopenObject">返回对象:processPopenObject</a></p>
+
+<p><a id="process.python.github"></a></p>
+
+<h3>process.python.github(url,...)</h3>
+
+<p>url 指定包含 blob,raw 的GitHub网址时可以省略域名。<br>
+创建 Python 进程，当前进程退出时 Python 会自动退出。<br>
+返回进程管道（ process.popen ）对象。并已关闭标准输入管道。参数 @2 开始可以指定一个或多个启动参数。<br>
+参数可以是字符串、数组、参数表，由 process.joinArguments 自动合并并处理转义</p>
+
+<p><a id="process.python.jsonRpc"></a></p>
+
+<h3>process.python.jsonRpc</h3>
+
+<p>创建 Python 进程运行 Python 代码，返回 JSON-RPC 客户端对象。<br>
+多次RPC 调用不需要重新创建 Python 进程，运行速度比直接调用 process.python 快很多。</p>
+
+<p><a id="process.python.jsonRpc"></a></p>
+
+<h3>process.python.jsonRpc()</h3>
+
+<p><a href="#processRpcJsonClientObject">返回对象:processRpcJsonClientObject</a></p>
+
+<p><a id="process.python.jsonRpc"></a></p>
+
+<h3>process.python.jsonRpc(code,...)</h3>
+
+<p>创建 Python 进程运行 Python 代码，返回 JSON-RPC 客户端对象。<br>
+@code 参数可以指定 *.py 文件路径、Python 模块名称、Python 代码都行。<br>
+如果指定 *.aardio 路径，则以模板语法解析并内存执行返回的 Python 代码。  </p>
+
+<p>函数执行成功返回 process.rpc.jsonClient 对象</p>
+
+<p><a id="process.python.module"></a></p>
+
+<h3>process.python.module</h3>
+
+<p>创建 Python 进程运行 Python 模块</p>
+
+<p><a id="process.python.module"></a></p>
+
+<h3>process.python.module()</h3>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html#processPopenObject'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html#processPopenObject">返回对象:processPopenObject</a></p>
+
+<p><a id="process.python.module"></a></p>
+
+<h3>process.python.module(name,...)</h3>
+
+<p>创建 Python 进程，当前进程退出时 Python 会自动退出。<br>
+返回进程管道（ process.popen ）对象。<br>
+@name 指定要执行的 Python 模块名称。<br>
+参数 @2 开始可以指定一个或多个启动参数。<br>
+参数可以是字符串、数组、参数表，由 process.joinArguments 自动合并并处理转义</p>
+
+<p><a id="process.python.path"></a></p>
+
+<h3>process.python.path</h3>
+
+<p>python.exe 路径，<br>
+默认为 &quot;/py/python.exe&quot;。<br>
+如果路径不存在会自动下载 process.python.version<br>
+指定版本号的 Python 绿色版，<br>
+64位系统默认下载 64 位 Python</p>
+
+<p><a id="process.python.test"></a></p>
+
+<h3>process.python.test(code,...)</h3>
+
+<p>执行 @code 指定的 Python 代码。<br>
+成功返回 true，否则返回 null 或 false。  </p>
+
+<p>参数 @2 可以用一个字符串参数指定多个启动参数，空格分隔多参数，<br>
+也可以传入多个参数由 aardio 自动合并（空格分隔参数），<br>
+合并多参数时，单参数含空格或需转义时自动加双引号并自动转义</p>
+
+<p><a id="process.python.userBase"></a></p>
+
+<h3>process.python.userBase</h3>
+
+<p>自定义使用 embed 版 Python 的 PYTHONUSERBASE 环境变量值，<br>
+ process.python.path 的值为 &quot;python.exe&quot; 时此属性无效</p>
+
+<p><a id="process.python.version"></a></p>
+
+<h3>process.python.version</h3>
+
+<p>默认 Python 版本。  </p>
+
+<p>如果指定 &quot;python.exe&quot;，则调用系统安装的 Python，<br>
+如果系统未安装 Python ，则会自动安装 process.python.version 指定的版本。  </p>
+
+<p>如果指定其他路径则表示 embed 嵌入版，embed 版完全独立。<br>
+如果指定的路径不存在，则会自动下载 embed 版 Python 到指定的位置。<br>
+process.python.version 指定要下载的 Python 版本。  </p>
+
+<p>此属性的默认值为 &quot;/py/python.exe&quot;<br>
+路径首字符的单个斜杆表示应用程序根目录。<br>
+aardio 工程会对 &quot;/py&quot; 目录提供优先支持。</p>
+
+<p><a id="process.python.win32"></a></p>
+
+<h3>process.python.win32</h3>
+
+<p>在 64 位系统是否也默认下载 32 位 Python。<br>
+发布时如果选择打包为独立 EXE 时可兼容 32 / 64 位 Python</p>
+
+<p><a id="process.python.workDir"></a></p>
+
+<h3>process.python.workDir</h3>
+
+<p>工作目录</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/process/python/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/process/python/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/process/python/_.md">Markdown 格式</a></p>
+
+</body> 
+</html>

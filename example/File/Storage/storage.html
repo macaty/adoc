@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 取硬盘序列号'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 取硬盘序列号</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 取硬盘序列号</h1><pre><code class="aardio language-aardio">//取硬盘序列号
+import console;
+
+//方法一：得到所有硬盘序号,分区等
+import sys.storage;
+var devices = sys.storage.getDevices()
+for(idx,drives in devices){
+    var property = sys.storage.queryProperty( idx );
+    if(!property) continue ;
+    console.log( property.productId )
+    console.log( property.serialNumber )
+    for(j=1;#drives;1){
+        console.log( drives[j] ) 
+    }  
+}
+
+//方法二：取所有分区信息、分区序列号
+import sys.volume;
+var drives = sys.volume.getLogicalDrives()
+for(i,drv in drives){
+    var info = sys.volume.getInfo( drv)  ;
+    if(info)
+          console.log( 
+            &quot;分区:&quot;+info.drive,
+            &quot;序列号&quot;+ info.serial,
+            info.serialNum,&quot;文件系统:&quot; + info.fsys, 
+            &quot;压缩:&quot; + ((info.flag &amp; 0x8000/*_FILE_VOLUME_IS_COMPRESSED*/) ? &quot;是&quot; : &quot;否&quot;) 
+            );  
+
+}
+
+import sys.hd; //需要管理权限
+console.log( &quot;物理序列号&quot;, ..sys.hd.getInfo()[[&quot;sSerialNumber&quot;]] );
+
+console.pause();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/File/Storage/storage.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/File/Storage/storage.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/File/Storage/storage.md">Markdown 格式</a>
+</body> 
+</html>

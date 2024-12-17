@@ -1,0 +1,62 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - wsock.udp.ssdpClient 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - wsock.udp.ssdpClient 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>wsock.udp.ssdpClient 库模块帮助文档</h1>
+
+<p><a id="wsock.udp"></a></p>
+
+<h2>wsock.udp 成员列表</h2>
+
+<p><a id="wsock.udp.ssdpClient"></a></p>
+
+<h3>wsock.udp.ssdpClient()</h3>
+
+<p>SSDP - 局域网简单设备发现协议客户端  </p>
+
+<p><a href="#wsockUdpSsdpClientObject">返回对象:wsockUdpSsdpClientObject</a></p>
+
+<p><a id="wsockUdpSsdpClientObject"></a></p>
+
+<h2>wsockUdpSsdpClientObject 成员列表</h2>
+
+<p><a id="wsockUdpSsdpClientObject.discover"></a></p>
+
+<h3>wsockUdpSsdpClientObject.discover(st,mx)</h3>
+
+<p>查询设备<br>
+st为要查询的设备类型,mx 为 1 到 5 的表示等待秒数的数值<br>
+所有参数都可以省略</p>
+
+<p><a id="wsockUdpSsdpClientObject.onDeviceDiscovered"></a></p>
+
+<h3>wsockUdpSsdpClientObject.onDeviceDiscovered(info)</h3>
+
+<pre><code class="aardio language-aardio">wsockUdpSsdpClientObject.onDeviceDiscovered = function(info){
+    /*info 为局域网设备应答的数据报文*/
+}
+</code></pre>
+
+<p><a id="wsockUdpSsdpClientObject.socket"></a></p>
+
+<h3>wsockUdpSsdpClientObject.socket</h3>
+
+<p>UDP套接字对象  </p>
+
+<p><a href="#udpAsynClientObject">返回对象:udpAsynClientObject</a></p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/wsock/udp/ssdpClient.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/wsock/udp/ssdpClient.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/wsock/udp/ssdpClient.md">Markdown 格式</a></p>
+
+</body> 
+</html>

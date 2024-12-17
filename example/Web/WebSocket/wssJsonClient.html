@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - WebSocket/JSON-RPC 2.0 客户端，支持 wss 协议 '>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - WebSocket/JSON-RPC 2.0 客户端，支持 wss 协议 </title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: WebSocket/JSON-RPC 2.0 客户端，支持 wss 协议 </h1><pre><code class="aardio language-aardio">//WSS-JSON-RPC客户端
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;WebSocket/JSON-RPC 2.0 客户端，支持 wss 协议 &quot;;right=770;bottom=467)
+winform.add(
+btnConnect={cls=&quot;button&quot;;text=&quot;连接WebSocket/JSON-RPC 2.0服务端&quot;;left=456;top=414;right=737;bottom=459;db=1;dr=1;z=3};
+txtMessage={cls=&quot;edit&quot;;left=29;top=22;right=741;bottom=409;db=1;dl=1;dr=1;dt=1;edge=1;multiline=1;z=1};
+txtUrl={cls=&quot;edit&quot;;text=&quot;ws://localhost:8879/jsonrpc&quot;;left=32;top=418;right=450;bottom=457;db=1;dl=1;dr=1;edge=1;z=2}
+)
+/*}}*/
+
+import web.SocketSharp.JsonClient;
+var ws = web.SocketSharp.JsonClient();
+
+//监听服务端事件
+ws.on(&quot;hello&quot;,function(param){
+    winform.txtMessage.print(&quot;来自服务端的消息：&quot;,param );
+}) 
+
+//打开连接触发的事件
+ws.on(&quot;open&quot;,function(){ 
+
+    tab = ws.$hello(&quot;你好吗&quot;)  
+
+    tab.end = function(result,err){
+         winform.txtMessage.print(result,err)
+    } 
+
+})
+
+ws.on(&quot;close&quot;,function(){
+    winform.txtMessage.print(&quot;已关闭连接&quot;)       
+});
+
+ws.on(&quot;error&quot;,function(err){ 
+    winform.txtMessage.print(&quot;出错了&quot;,err);
+});  
+
+//发布订阅模式：订阅服务器的指定频道,支持接收不定个数的参数
+ws.on(&quot;serverTime&quot;,function(param){
+    winform.txtMessage.print(&quot;服务端发布了当前时间：&quot;,param );       
+});
+
+//调查模式：应答服务器提出的调查任务,支持接收不定个数的参数
+ws.on(&quot;clientTime&quot;,function(){
+    return time()   
+});
+
+//连接chrome
+winform.btnConnect.oncommand = function(id,event){
+    ws.connect(winform.txtUrl.text);
+}
+
+winform.show() 
+win.loopMessage();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Web/WebSocket/wssJsonClient.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Web/WebSocket/wssJsonClient.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Web/WebSocket/wssJsonClient.md">Markdown 格式</a>
+</body> 
+</html>

@@ -1,0 +1,38 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - 内存 DLL'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - 内存 DLL</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>内存 DLL</h1>
+
+<p>aardio 可以直接从字符串加载内存DLL模块。</p>
+
+<p>注意不是所有 DLL 组件都支持内存加载。 越简单、独立无依赖的 DLL 越容易内存加载。 在 aardio 中使用 tcc 扩展库调用 纯 C 语言编译的 DLL 一般都可以内存加载。 Go 语言开发的 DLL 通常可以内存加载，但应指定多线程共享名称以避免重复加载。</p>
+
+<p>加载内存 DLL 的语法如下：  </p>
+
+<pre><code class="aardio language-aardio">var memDll = raw.loadDll(DLL内存数据,线程共享名,调用约定)
+</code></pre>
+
+<p>参数 @1 可指定一个 DLL 文件路径，并在 DLL 文件路径前添加包含操作符 <code>$</code> ， 以实现在编译时将 <code>$</code> 操作符后面指定的 DLL 文件编译为二进制字符串（编译或发布后不在需要源 DLL 文件）， 并在运行时加载为内存数据。  </p>
+
+<p>如果指定&quot;线程共享名&quot;，则多线程加载时可以共享已加载的内存 DLL 模块。<br>
+如果指定线程共享名时可省略参数@1 —— 表示仅查找并返回已加载的内存DLL。<br>
+否则必须指定参数@1，调用约定参数可省略。  </p>
+
+<p>注意&quot;线程共享名&quot;虽然是可选参数，但通常不应该省略此参数。有一些 DLL 在同一个进程中加载多个内存 DLL 模块时可能会出现一些奇怪的问题， 这时候指定&quot;线程共享名&quot;参数以实现跨线程共享同一个内存 DLL 模块可以解决这类问题。</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-guide/builtin/raw/memdll.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-guide/builtin/raw/memdll.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/builtin/raw/memdll.md">Markdown 格式</a></p>
+
+</body> 
+</html>

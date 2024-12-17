@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - string.glob 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - string.glob 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>string.glob 库模块帮助文档</h1>
+
+<p><a id="string"></a></p>
+
+<h2>string 成员列表</h2>
+
+<p><a id="string.glob"></a></p>
+
+<h3>string.glob</h3>
+
+<p>glob 模式匹配工具。  </p>
+
+<p>glob 模式用于匹配文件名或文件路径，主要通配符包括:  </p>
+
+<ul>
+<li><code>*</code> 匹配任意个字符(不含路径分隔符)<br></li>
+<li><code>**</code> 匹配任意层级的目录(含路径分隔符)<br></li>
+<li><code>?</code> 匹配单个字符<br>
+<code>[abc]</code> 匹配方括号中的任意单个字符<br></li>
+<li><code>[!abc]</code> 或 <code>[^abc]</code> 匹配不在方括号中的任意单个字符。<br></li>
+</ul>
+
+<p>注意：<code>\</code> 不用于转义，模式中的<code>/</code>自动转换为<code>\</code>进行匹配。</p>
+
+<p>创建 glob 模式匹配工具</p>
+
+<p><a id="string.glob"></a></p>
+
+<h3>string.glob()</h3>
+
+<p><a href="#stringGlobObject">返回对象:stringGlobObject</a></p>
+
+<p><a id="string.glob"></a></p>
+
+<h3>string.glob(pattern)</h3>
+
+<p>glob 模式匹配工具。<br>
+参数 @pattern 可指定符合 glob 语法的模式文本，或包含模式文本的数组。<br>
+可省略参数。</p>
+
+<p><a id="stringGlobObject"></a></p>
+
+<h2>stringGlobObject 成员列表</h2>
+
+<p><a id="stringGlobObject.clear"></a></p>
+
+<h3>stringGlobObject.clear()</h3>
+
+<p>清空所有 glob 模式。</p>
+
+<p><a id="stringGlobObject.load"></a></p>
+
+<h3>stringGlobObject.load(模式文件)</h3>
+
+<p>自文件加载并添加 glob 模式，不清空之前的模式。<br>
+每行文本指定一个模式,#字符开头的为注释,<br>
+忽略首尾空格，忽略空行</p>
+
+<p><a id="stringGlobObject.push"></a></p>
+
+<h3>stringGlobObject.push(模式)</h3>
+
+<p>添加 glob 模式。<br>
+参数 @1 可以是符合 glob 语法的模式文本，或包含模式文本的数组</p>
+
+<p><a id="stringGlobObject.test"></a></p>
+
+<h3>stringGlobObject.test()</h3>
+
+<p>测试一个字符串是否匹配</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/string/glob.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/string/glob.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/string/glob.md">Markdown 格式</a></p>
+
+</body> 
+</html>

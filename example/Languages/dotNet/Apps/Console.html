@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - aardio 调用 .NET 之控制台操作'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - aardio 调用 .NET 之控制台操作</title> 
+<link rel="stylesheet" href="../../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 调用 .NET 之控制台操作</h1><pre><code class="aardio language-aardio">//aardio 调用 .NET 之控制台操作
+import dotNet; 
+var compiler = dotNet.createCompiler(&quot;C#&quot;);
+
+compiler.Source = /*** 
+using System; 
+namespace CSharpLibrary  
+{  
+    public class Object  
+    {     
+        public static void Test(){    
+            System.Console.WriteLine(&quot;这是 C# 在控制台输出的内容&quot;); 
+        }
+    }   
+} 
+***/ 
+compiler.import(&quot;CSharpLibrary&quot;); 
+
+import console
+console.log(&quot;只要调用 console 库打开控制台，就会自动绑定 .NET 控制台。&quot;)
+
+/*
+console 库函数会自动调用 console.open() 打开控制台。
+如果控制台 console 库被打开，aardio 就会自动绑定 .NET 控制台。
+*/
+CSharpLibrary.Object.Test();
+
+/*
+console 打开控制台以后会向同一线程发送 &quot;afterConsoleOpen&quot; 事件。
+订阅此事件就可以绑定控制台，以下是标准库 dotNet.appDomain 中的相关代码：
+
+var reopenConsole = function(){
+
+    for(k,appDomain in __appDomainCache){
+        // ..io.utf8 用于判断R控制台是否  UTF-8 编码。
+        // aardio 在  Win10 1709 以上会将控制台默认设为 UTF-8 编码。
+        appDomain.utility.ReopenConsole(!!..io.utf8); 
+    }
+}
+if(::Kernel32.GetConsoleWindow()) reopenConsole();
+..subscribe(&quot;afterConsoleOpen&quot;,reopenConsole);
+
+当然，如果在导入 dotNet 库以前打开控制台，.Net 默认就会正确绑定。 
+这些代码主要是修正在导入 dotNet 库以后再打开控制台导致 .NET 不能在控制台输出输入的问题。
+*/
+
+console.pause();
+
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/dotNet/Apps/Console.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/dotNet/Apps/Console.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Languages/dotNet/Apps/Console.md">Markdown 格式</a>
+</body> 
+</html>

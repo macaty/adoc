@@ -1,0 +1,360 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - inet.ras 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - inet.ras 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>inet.ras 库模块帮助文档</h1>
+
+<p><a id="inet.ras"></a></p>
+
+<h2>inet.ras 成员列表</h2>
+
+<p><a id="inet.ras.dial"></a></p>
+
+<h3>inet.ras.dial(连接参数)</h3>
+
+<pre><code class="aardio language-aardio">inet.ras.dial(   
+    entryName =  &quot;拔号连接名&quot;;  
+    user =  &quot;拔号用户名&quot;;  
+    password = &quot;拔号密码&quot;  
+)
+</code></pre>
+
+<p><a id="inet.ras.eachEntry"></a></p>
+
+<h3>inet.ras.eachEntry()</h3>
+
+<pre><code class="aardio language-aardio">for name,flags,phonebook in inet.ras.eachEntry(){  
+    /*遍历拔号连接,name为连接名*/  
+}
+</code></pre>
+
+<p><a id="inet.ras.getConnection"></a></p>
+
+<h3>inet.ras.getConnection()</h3>
+
+<p>获取当前拔号连接,失败返回空,错误代码  </p>
+
+<p><a href="#rasconnObject">返回对象:rasconnObject</a></p>
+
+<p><a id="inet.ras.getEntries"></a></p>
+
+<h3>inet.ras.getEntries()</h3>
+
+<p>返回所有拔号连接</p>
+
+<p><a id="inet.ras.getEntry"></a></p>
+
+<h3>inet.ras.getEntry(参数表)</h3>
+
+<pre><code class="aardio language-aardio">inet.ras.getEntry(  
+    entryName = &quot;连接名&quot;  
+)
+</code></pre>
+
+<p><a id="inet.ras.hangUp"></a></p>
+
+<h3>inet.ras.hangUp(连接句柄)</h3>
+
+<p>挂断<br>
+省略连接句柄则获取当前活动连接</p>
+
+<p><a id="inet.ras.isAlive"></a></p>
+
+<h3>inet.ras.isAlive()</h3>
+
+<p>返回两个值: 是否存在广域网连接（WAN）,是否存在局域网连接（LAN）</p>
+
+<p><a id="inet.ras.lasterr"></a></p>
+
+<h3>inet.ras.lasterr(错误代码)</h3>
+
+<p>返回错误信息,错误代码</p>
+
+<p><a id="inet.ras.setCredentials"></a></p>
+
+<h3>inet.ras.setCredentials(登录信息)</h3>
+
+<pre><code class="aardio language-aardio">inet.ras.setCredentials(  
+    entryName = &quot;连接名&quot;;   
+    userName = &quot;用户名&quot;;   
+    password = &quot;密码&quot;;   
+)
+</code></pre>
+
+<p><a id="inet.ras.setEntry"></a></p>
+
+<h3>inet.ras.setEntry(VPN连接参数)</h3>
+
+<pre><code class="aardio language-aardio">inet.ras.setEntry(  
+    type = 2/*_RASET_Vpn*/;   
+    fOptions =  0x10/*_RASEO_RemoteDefaultGateway*/ | 0x100/*_RASEO_ModemLights*/ | 0x200/*_RASEO_SwCompression*/ | 0x800/*_RASEO_RequireMsEncryptedPw*/ | 0x1000000/*_RASEO_PreviewUserPw*/ | 0x400/*_RASEO_RequireEncryptedPw*/ | 0x20000000/*_RASEO_RequireMsCHAP2*/;  
+    fOptions2 = 0x2000000/*_RASEO2_CacheCredentials*/;  
+    ipaddrDns = &quot;8.8.8.8&quot;;  
+    ipaddrDnsAlt = &quot;1.1.1.1&quot;;  
+    vpnStrategy = 2/*_VS_PptpFirst*/;  
+    deviceType = &quot;VPN&quot;;  
+    deviceName = &quot;VPN&quot;;   
+    localPhoneNumber = &quot;服务器地址&quot;;  
+    entryName = &quot;VPN连接&quot;  
+)
+</code></pre>
+
+<p><a id="inet.ras.setEntry"></a></p>
+
+<h3>inet.ras.setEntry(宽带连接参数)</h3>
+
+<pre><code class="aardio language-aardio">inet.ras.setEntry(  
+    type = 5/*_RASET_Broadband*/;   
+    fOptions = 0x10/*_RASEO_RemoteDefaultGateway*/  
+        | 0x1000000/*_RASEO_PreviewUserPw*/  
+        | 0x4000000/*_RASEO_ShowDialingProgress*/  
+        | 0x100/*_RASEO_ModemLights*/  
+        | 0x100/*_RASEO2_ReconnectIfDropped*/ ;  
+    fOptions2 = 0x2000000/*_RASEO2_CacheCredentials*/   
+        | 4/*_RASEO2_DontNegotiateMultilink*/;  
+    deviceType = &quot;PPPoE&quot;;  
+    deviceName = &quot;WAN 微型端口 (PPPOE)&quot;;    
+    entryName = &quot;ADSL宽带连接&quot;  
+)
+</code></pre>
+
+<p><a id="inet.ras.setProxy"></a></p>
+
+<h3>inet.ras.setProxy(&quot;连接名&quot;)</h3>
+
+<p>指定连接不使用代理</p>
+
+<p><a id="inet.ras.setProxy"></a></p>
+
+<h3>inet.ras.setProxy(&quot;连接名&quot;,&quot;SOCKS=代理服务器地址:端口&quot;,&quot;绕过代理地址&quot;)</h3>
+
+<p>省略连接名表示默认连接以及所有拔号连接,<br>
+设置SOCKS4代理服务器,不支持登录<br>
+绕过代理地址可在域名或IP中使用通配符,多个以分号分隔</p>
+
+<p><a id="inet.ras.setProxy"></a></p>
+
+<h3>inet.ras.setProxy(&quot;连接名&quot;,&quot;被代理协议=代理协议://主机地址:端口号&quot;,&quot;绕过代理地址&quot;)</h3>
+
+<p>省略连接名表示默认连接以及所有拔号连接,<br>
+参数@2可以直接写代理服务器域名或IP,<br>
+省略协议则默认为HTTP,省略端口则默认为80,<br>
+绕过代理地址可在域名或IP中使用通配符,多个以分号分隔</p>
+
+<p><a id="inet.ras.setProxy"></a></p>
+
+<h3>inet.ras.setProxy()</h3>
+
+<p>默认连接以及所有拔号连接不使用代理<br>
+设置进程内代理请使用 inet.setProxy 函数</p>
+
+<p><a id="inet.ras.setProxyAutoConfig"></a></p>
+
+<h3>inet.ras.setProxyAutoConfig(&quot;连接名&quot;, &quot;HTTP://主机地址:端口号&quot;)</h3>
+
+<p>为指定连接设置自动配置代理（PAC）地址，<br>
+省略连接名表示默认连接以及所有拔号连接</p>
+
+<p><a id="inet.ras.status"></a></p>
+
+<h3>inet.ras.status()</h3>
+
+<p><a href="#rasconnstatusObject">返回对象:rasconnstatusObject</a></p>
+
+<p><a id="inet.ras.status"></a></p>
+
+<h3>inet.ras.status(连接句柄)</h3>
+
+<p>返回拔号连接状态信息<br>
+省略连接句柄则获取当前活动连接</p>
+
+<p><a id="rasconnObject"></a></p>
+
+<h2>rasconnObject 成员列表</h2>
+
+<p><a id="rasconnObject.deviceName"></a></p>
+
+<h3>rasconnObject.deviceName</h3>
+
+<p>设备名</p>
+
+<p><a id="rasconnObject.deviceType"></a></p>
+
+<h3>rasconnObject.deviceType</h3>
+
+<p>设备类型</p>
+
+<p><a id="rasconnObject.entryName"></a></p>
+
+<h3>rasconnObject.entryName</h3>
+
+<p>连接名</p>
+
+<p><a id="rasconnObject.hConn"></a></p>
+
+<h3>rasconnObject.hConn</h3>
+
+<p>连接句柄</p>
+
+<p><a id="rasconnstatusObject"></a></p>
+
+<h2>rasconnstatusObject 成员列表</h2>
+
+<p><a id="rasconnstatusObject.deviceName"></a></p>
+
+<h3>rasconnstatusObject.deviceName</h3>
+
+<p>设备名</p>
+
+<p><a id="rasconnstatusObject.deviceType"></a></p>
+
+<h3>rasconnstatusObject.deviceType</h3>
+
+<p>设备类型</p>
+
+<p><a id="rasconnstatusObject.err"></a></p>
+
+<h3>rasconnstatusObject.err</h3>
+
+<p>错误代码</p>
+
+<p><a id="rasconnstatusObject.phoneNumber"></a></p>
+
+<h3>rasconnstatusObject.phoneNumber</h3>
+
+<p>连接号码</p>
+
+<p><a id="rasconnstatusObject.state"></a></p>
+
+<h3>rasconnstatusObject.state</h3>
+
+<p><em>RASCS</em>前缀常量表示连接状态</p>
+
+<h3>自动完成常量</h3>
+
+<p>_ET_None=0<br>
+_ET_Optional=3<br>
+_ET_Require=1<br>
+_ET_RequireMax=2<br>
+_RASCM_DDMPreSharedKey=0x40<br>
+_RASCM_DefaultCreds=8<br>
+_RASCM_Domain=4<br>
+_RASCM_Password=2<br>
+_RASCM_PreSharedKey=0x10<br>
+_RASCM_ServerPreSharedKey=0x20<br>
+_RASCM_UserName=1<br>
+_RASCS_AllDevicesConnected=4<br>
+_RASCS_ApplySettings=0x18<br>
+_RASCS_AuthAck=0xC<br>
+_RASCS_AuthCallback=8<br>
+_RASCS_AuthChangePassword=9<br>
+_RASCS_AuthLinkSpeed=0xB<br>
+_RASCS_AuthNotify=6<br>
+_RASCS_AuthProject=0xA<br>
+_RASCS_AuthRetry=7<br>
+_RASCS_Authenticate=5<br>
+_RASCS_Authenticated=0xE<br>
+_RASCS_CallbackComplete=0x14<br>
+_RASCS_CallbackSetByCaller=0x1002<br>
+_RASCS_ConnectDevice=2<br>
+_RASCS_Connected=0x2000<br>
+_RASCS_DONE=0x2000<br>
+_RASCS_DeviceConnected=3<br>
+_RASCS_Disconnected=0x2001<br>
+_RASCS_Interactive=0x1000<br>
+_RASCS_InvokeEapUI=0x1004<br>
+_RASCS_LogonNetwork=0x15<br>
+_RASCS_OpenPort=0<br>
+_RASCS_PAUSED=0x1000<br>
+_RASCS_PasswordExpired=0x1003<br>
+_RASCS_PortOpened=1<br>
+_RASCS_PrepareForCallback=0xF<br>
+_RASCS_Projected=0x12<br>
+_RASCS_ReAuthenticate=0xD<br>
+_RASCS_RetryAuthentication=0x1001<br>
+_RASCS_StartAuthentication=0x13<br>
+_RASCS_SubEntryConnected=0x16<br>
+_RASCS_SubEntryDisconnected=0x17<br>
+_RASCS_WaitForCallback=0x11<br>
+_RASCS_WaitForModemReset=0x10<br>
+_RASEO2_CacheCredentials=0x2000000<br>
+_RASEO2_DisableIKENameEkuCheck=0x20000<br>
+_RASEO2_DisableNbtOverIP=0x40<br>
+_RASEO2_DontNegotiateMultilink=4<br>
+_RASEO2_DontUseRasCredentials=8<br>
+_RASEO2_IPv4ExplicitMetric=0x8000<br>
+_RASEO2_IPv6ExplicitMetric=0x10000<br>
+_RASEO2_IPv6RemoteDefaultGateway=0x1000<br>
+_RASEO2_IPv6SpecificNameServer=0x800<br>
+_RASEO2_Internet=0x20<br>
+_RASEO2_ReconnectIfDropped=0x100<br>
+_RASEO2_RegisterIpWithDNS=0x2000<br>
+_RASEO2_SecureClientForMSNet=2<br>
+_RASEO2_SecureFileAndPrint=1<br>
+_RASEO2_SecureRoutingCompartment=0x400<br>
+_RASEO2_SharePhoneNumbers=0x200<br>
+_RASEO2_UseDNSSuffixForRegistration=0x4000<br>
+_RASEO2_UseGlobalDeviceSettings=0x80<br>
+_RASEO2_UsePreSharedKey=0x10<br>
+_RASEO_Custom=0x100000<br>
+_RASEO_CustomScript=0x80000000<br>
+_RASEO_DisableLcpExtensions=0x20<br>
+_RASEO_IpHeaderCompression=8<br>
+_RASEO_ModemLights=0x100<br>
+_RASEO_NetworkLogon=0x2000<br>
+_RASEO_PreviewDomain=0x2000000<br>
+_RASEO_PreviewPhoneNumber=0x200000<br>
+_RASEO_PreviewUserPw=0x1000000<br>
+_RASEO_PromoteAlternates=0x8000<br>
+_RASEO_RemoteDefaultGateway=0x10<br>
+_RASEO_RequireCHAP=0x8000000<br>
+_RASEO_RequireDataEncryption=0x1000<br>
+_RASEO_RequireEAP=0x20000<br>
+_RASEO_RequireEncryptedPw=0x400<br>
+_RASEO_RequireMsCHAP=0x10000000<br>
+_RASEO_RequireMsCHAP2=0x20000000<br>
+_RASEO_RequireMsEncryptedPw=0x800<br>
+_RASEO_RequirePAP=0x40000<br>
+_RASEO_RequireSPAP=0x80000<br>
+_RASEO_RequireW95MSCHAP=0x40000000<br>
+_RASEO_SecureLocalFiles=0x10000<br>
+_RASEO_SharedPhoneNumbers=0x800000<br>
+_RASEO_ShowDialingProgress=0x4000000<br>
+_RASEO_SpecificIpAddr=2<br>
+_RASEO_SpecificNameServers=4<br>
+_RASEO_SwCompression=0x200<br>
+_RASEO_TerminalAfterDial=0x80<br>
+_RASEO_TerminalBeforeDial=0x40<br>
+_RASEO_UseCountryAndAreaCodes=1<br>
+_RASEO_UseLogonCredentials=0x4000<br>
+_RASET_Broadband=5<br>
+_RASET_Phone=1<br>
+_RASET_Vpn=2<br>
+_RASFP_Ppp=1<br>
+_RASFP_Ras=4<br>
+_RASFP_Slip=2<br>
+_RASNP_Ip=4<br>
+_RASNP_Ipv6=8<br>
+_RASNP_Ipx=2<br>
+_RASNP_NetBEUI=1<br>
+_VS_Default=0<br>
+_VS_L2tpFirst=4<br>
+_VS_L2tpOnly=3<br>
+_VS_PptpFirst=2<br>
+_VS_PptpOnly=1  </p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/inet/ras.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/inet/ras.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/inet/ras.md">Markdown 格式</a></p>
+
+</body> 
+</html>

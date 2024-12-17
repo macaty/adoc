@@ -1,0 +1,66 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - sqlite 库 - 加密算法'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - sqlite 库 - 加密算法</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: sqlite 库 - 加密算法</h1><pre><code class="aardio language-aardio">//sqlite 库 - 加密算法
+import console;
+import sqlite.ciphers; 
+
+//打开加密数据库（只有输入正确密钥才能读写数据库）
+var db = sqlite.ciphers(&quot;file:/sqlCiphers.DB&quot;,{
+    //参数 @1 如果是 file: 开头的 URI ，下面就可以指定 URI 参数表
+    cipher=&quot;sqlcipher&quot;;//加密算法
+    legacy=3;//SqlCiphers 兼容版本 
+    kdf_iter=4000;  
+    legacy_page_size=1024;  
+    hmac_use=0;  
+}  ) 
+
+/*
+//如果上面不指定加密配置，可以调用下面的函数：
+//加密配置: https://utelle.github.io/SQLite3MultipleCiphers/docs/ciphers/cipher_sqlcipher/
+db.config(&quot;cipher&quot;,&quot;sqlcipher&quot;); //加密算法
+db.configCipher(&quot;sqlcipher&quot;,&quot;legacy&quot;,3);//加密参数  
+*/
+
+//单独设置密码(URI 参数一般不用于指定密码)
+db.key(&quot;密码&quot;); 
+
+//创建表 
+if( not db.existsTable(&quot;film&quot;) ){  
+    db.exec( &quot;CREATE TABLE film(title, length, year, starring);&quot;)  
+}  
+
+//创建预处理命令
+var cmd = db.prepare(&quot;INSERT INTO film values (@title,@length,@year, &#39;Jodie Foster&#39;);&quot; )
+
+//提交更改
+cmd.step( {
+    &quot;title&quot;:&quot;标题&quot;;
+    &quot;length&quot;:4;
+    &quot;year&quot;:time.now();
+} );
+
+cmd.finalize(); //释放对象
+
+//迭代方式查询数据 
+for title, length, year, starring in db.each(&quot;SELECT * FROM film&quot;) {
+    console.log( title, length, year, starring  ) 
+}
+
+console.pause();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Database/sqlite/aes.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Database/sqlite/aes.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Database/sqlite/aes.md">Markdown 格式</a>
+</body> 
+</html>

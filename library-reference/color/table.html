@@ -1,0 +1,125 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - color.table 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - color.table 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>color.table 库模块帮助文档</h1>
+
+<p><a id="color"></a></p>
+
+<h2>color 成员列表</h2>
+
+<p><a id="color.table"></a></p>
+
+<h3>color.table()</h3>
+
+<p>创建色表,用于color.view,<br>
+返回常用标准色组成的数组,<br>
+每个数组成员由色彩中文名、英文名、RGB值3个元素组成</p>
+
+<p><a id="color.table"></a></p>
+
+<h2>color.table 成员列表</h2>
+
+<p><a id="color.table.analogousColor"></a></p>
+
+<h3>color.table.analogousColor(clr,gdi)</h3>
+
+<p>创建类似色表,<br>
+类似色是在色相环上邻近的颜色,会给人带来和谐、舒服的视觉效果,<br>
+参数@1使用ARGB格式颜色值指定主色,如果颜色为gdi的rgb格式请将参数@2指定为true</p>
+
+<p><a id="color.table.complementaryColor"></a></p>
+
+<h3>color.table.complementaryColor(clr,gdi)</h3>
+
+<p>创建补色表,<br>
+突出对比效果,<br>
+参数@1使用ARGB格式颜色值指定主色,如果颜色为gdi的rgb格式请将参数@2指定为true</p>
+
+<p><a id="color.table.find"></a></p>
+
+<h3>color.table.find()</h3>
+
+<p>参数@1指定一个ARGB格式颜色数值,<br>
+在色表中查找并返回色卡信息</p>
+
+<p><a id="color.table.init"></a></p>
+
+<h3>color.table.init()</h3>
+
+<p>净色彩数组转换为color.table标准格式</p>
+
+<p><a id="color.table.insert"></a></p>
+
+<h3>color.table.insert(clrTable,clrInfo,index)</h3>
+
+<p>在参数@1指定的色表中添加色卡,<br>
+clrInfo必须是一个数组,索引1放成员名,索引2放英文名,索引3放RGB格式颜色数值<br>
+可选用参数@3指定插入位置,默认添加到尾部</p>
+
+<p><a id="color.table.lightColor"></a></p>
+
+<h3>color.table.lightColor(clr,gdi)</h3>
+
+<p>创建亮度色表,<br>
+色相不变,亮度从0%到1%的变化色表,<br>
+参数@1使用ARGB格式颜色值指定主色,如果颜色为gdi的rgb格式请将参数@2指定为true</p>
+
+<p><a id="color.table.monochromaticColor"></a></p>
+
+<h3>color.table.monochromaticColor(clr,gdi)</h3>
+
+<p>创建单色调方案,<br>
+单色调是色相不变,但亮度发生变化的配色方案,<br>
+参数@1使用ARGB格式颜色值指定主色,如果颜色为gdi的rgb格式请将参数@2指定为true</p>
+
+<p><a id="color.table.splitComplementaryColor"></a></p>
+
+<h3>color.table.splitComplementaryColor(clr,gdi)</h3>
+
+<p>创建分散补色表,<br>
+对比色,但比补色降低了对比强度<br>
+即有较好的对比效果,也不会显得太突兀,<br>
+参数@1使用ARGB格式颜色值指定主色,如果颜色为gdi的rgb格式请将参数@2指定为true</p>
+
+<p><a id="color.table.squareColor"></a></p>
+
+<h3>color.table.squareColor(clr,gdi)</h3>
+
+<p>创建矩形色表,<br>
+在色相环上平均分布,并组成两对互补色,<br>
+色彩丰富,要注意选定主色,处理好色彩间的平衡<br>
+参数@1使用ARGB格式颜色值指定主色,如果颜色为gdi的rgb格式请将参数@2指定为true</p>
+
+<p><a id="color.table.tetradicColor"></a></p>
+
+<h3>color.table.tetradicColor(clr,gdi)</h3>
+
+<p>创建四色表,<br>
+由两对在色相环上的互补色组成,色彩丰富,<br>
+但要注意选定主色,处理好色彩间的平衡<br>
+参数@1使用ARGB格式颜色值指定主色,如果颜色为gdi的rgb格式请将参数@2指定为true</p>
+
+<p><a id="color.table.triadicColor"></a></p>
+
+<h3>color.table.triadicColor(clr,gdi)</h3>
+
+<p>创建三色表,<br>
+三色在色相环上平均分布,应当用一个做主色,处理好色彩间的平衡<br>
+参数@1使用ARGB格式颜色值指定主色,如果颜色为gdi的rgb格式请将参数@2指定为true</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/color/table.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/color/table.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/color/table.md">Markdown 格式</a></p>
+
+</body> 
+</html>

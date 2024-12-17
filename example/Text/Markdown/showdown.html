@@ -1,0 +1,51 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio ç¼–ç¨‹è¯­è¨€èŒƒä¾‹ - è°ƒç”¨ Showdown è§£æ Markdown ä¸º HTML'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio ç¼–ç¨‹è¯­è¨€èŒƒä¾‹ - è°ƒç”¨ Showdown è§£æ Markdown ä¸º HTML</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio ç¼–ç¨‹è¯­è¨€æ–‡æ¡£é¦–é¡µ"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio æ–‡æ¡£</span></a>
+<h1>aardio èŒƒä¾‹: è°ƒç”¨ Showdown è§£æ Markdown ä¸º HTML</h1><pre><code class="aardio language-aardio">//è°ƒç”¨ Showdown è§£æ Markdown ä¸º HTML
+import console;
+
+var text = /*
+# hello, markdown!
+
+| Syntax      | Description |
+| ----------- | -----------: |
+| Header      | Title       |
+| Paragraph   | Text        |
+
+- [x] This task is done
+- [ ] This is still pending
+
+```aardio
+print(&quot;ä½ å¥½&quot;);
+```
+*/
+
+import web.script.showdown;
+var showdown = web.script.showdown;
+
+//åˆ›å»º Markdown è§£æå™¨
+var converter = showdown.Converter({ tasklists:true });
+
+//è§£æ Markdown å¹¶è¿”å› HTML
+var html= converter.makeHtml(text);
+
+//åœ¨æ§åˆ¶å°è¾“å‡ºç»“æœ
+console.log(html);
+
+console.pause();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Text/Markdown/showdown.md  \n\n¸ÃÎÄ¼şÎŞ·¨ÓÃ Teleport Ultra ÏÂÔØ, ÒòÎª Ëü²»ÔÚÏîÄ¿ÎÄ¼şÀàĞÍ¹æ·¶ÄÚ¡£  \n\nÄãÏëÔÚ·şÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='https://www.aardio.com/zh-cn/doc/example/Text/Markdown/showdown.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Text/Markdown/showdown.md">Markdown æ ¼å¼</a>
+</body> 
+</html>

@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 网络连接'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 网络连接</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 网络连接</h1><pre><code class="aardio language-aardio">//网络连接
+import console.int;
+
+import inet.mac;
+console.log(&quot;当前联网MAC&quot;,inet.mac.getAddress(&quot;www.aardio.com&quot;) )
+
+import inet.adapterInfo;
+for adapterInfo in inet.adapterInfo.each(2/*_AF_INET*/) { 
+    console.log(adapterInfo.netConnectionId)
+    console.log(adapterInfo.description)
+    console.log(&quot;网卡是否可用&quot;,adapterInfo.operStatusUp)
+    console.log(&quot;是否无线网卡&quot;,adapterInfo.ifTypeWireless)
+
+    for addr,strAddr in adapterInfo.eachUnicastAddress(){
+        console.log(strAddr)
+    } 
+
+    if(adapterInfo.operStatusUp){
+        console.log(&quot;网卡已连接&quot;);
+    }
+    else {
+        console.log(&quot;网卡未连接&quot;);
+    }
+
+    console.more(1)
+}
+
+return;
+
+import inet.adapter;  
+for adptInfo in ..inet.adapter.each() {  
+
+    console.log(adptInfo.mac); //MAC 地址
+    console.log(adptInfo.adapterName); //GUID
+    console.log(adptInfo.description); //网卡描述
+    console.log(adptInfo.netConnectionId); //网络连接 ID
+    console.log(adptInfo.pnpInstanceId); //设备实例ID
+    console.log(adptInfo.index); //索引
+    console.log(adptInfo.type,&quot;type &quot;); //索引
+
+    if(adptInfo.type==71/*_IF_TYPE_IEEE80211*/){
+        console.log(&quot;无线网卡&quot;)
+    }
+
+    //获取所有 IP
+    for( addr,strAddr in adptInfo.eachAddress() ){
+        console.log(strAddr);
+    }  
+
+    if(adptInfo.pnpInstanceId){
+        //import process.devcon;
+
+        //启用网卡，进程需要以管理权限启动
+        //process.devcon.enable(&quot;@&quot;+adptInfo.pnpInstanceId))
+
+        //禁用网址，进程需要以管理权限启动
+        //process.devcon.disable(&quot;@&quot;+adptInfo.pnpInstanceId))
+    }
+
+    console.more(1)
+}
+
+console.pause();
+
+/*
+//调用 WMI 获取网络连接，注意 NetConnectionID 是连接名
+import com.wmi;
+for item in com.wmi.eachProperties(&quot;Win32_NetworkAdapter&quot;) {
+    console.dump(item)
+}
+*/
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Network/Manage/inet.adapter.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Network/Manage/inet.adapter.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Network/Manage/inet.adapter.md">Markdown 格式</a>
+</body> 
+</html>

@@ -1,0 +1,51 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - Java 调用 aardio'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - Java 调用 aardio</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: Java 调用 aardio</h1><pre><code class="aardio language-aardio">//Java 调用 aardio
+import console;
+import java;  
+
+//创建 Java 虚拟机
+var jvm = java(); 
+
+//导入 Java 类
+HelloworldApp = jvm.import( &quot;aardio.sample.HelloworldApp&quot;);
+
+//为 Java 提供 Native API
+//请先在 Java 类HelloworldApp 中声明 API: static native String aardio(String code);
+HelloworldApp.registerNative(
+    function(env,jobject,jstring){
+        var code = jvm.parseString(jstring) //也可以用 owner.parseString(jstring)
+        var func = loadcode(code) 
+        return jvm.string( func() )
+    },&quot;aardio&quot;,&quot;string(string)&quot;
+)
+
+/*
+创建 Java 类实例,并调用其成员方法,
+Java 会在 CLASSPATH 指定的搜索目录下使用 Java 类名(替换&#39;.&#39;为&#39;\&#39;)&quot; 去查找类，
+CLASSPATH 已默认添加 &quot;/java/&quot;以及&quot;/java/*.jar&quot;。
+
+例如 aardio.sample.HelloworldApp 对应的文件是 /java/aardio/sample/HelloworldApp.class 
+aardio.sample.HelloworldApp 与 aardio 中的库类似名字空间与实际的文件路径结构一致 
+*/
+var helloworld = HelloworldApp();
+console.log( &quot;Java 函数返回值&quot;,helloworld.test_aardio() );
+
+console.pause()
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/Java/04.aardiocall.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/Java/04.aardiocall.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Languages/Java/04.aardiocall.md">Markdown 格式</a>
+</body> 
+</html>

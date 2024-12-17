@@ -1,0 +1,92 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 模拟自动化'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 模拟自动化</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 模拟自动化</h1><pre><code class="aardio language-aardio">//模拟自动化
+//请改用微软的 WebView2（也就是 aardio 标准库里的 web.view ）
+import electron.app;
+var app = electron.app();
+
+//这是启动electron主进程的main.js
+app.jsMain =/**  
+    const aardio = require(&#39;aardio&#39;) 
+    const app = require(&#39;electron&#39;).app 
+
+    app.on(&#39;window-all-closed&#39;, () =&gt; {
+        app.quit();
+
+    }) 
+**/
+
+//这是启动主进程的网页
+app.html = /** 
+&lt;!DOCTYPE html&gt;
+&lt;html&gt; 
+  &lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;aardio嵌入electron演示&lt;/title&gt;
+  &lt;/head&gt;
+
+  &lt;body&gt;
+
+
+   &lt;webview id=&quot;view&quot;  src=&quot;http://www.so.com&quot;  autosize minwidth=&quot;576&quot; minheight=&quot;1432&quot;  style=&quot;display:inline-flex; width:100%; height:780px&quot;&gt;&lt;/webview&gt;  
+
+    &lt;script type=&quot;text/javascript&quot;&gt;    
+
+    //获取嵌入的浏览器控件（webview)
+    var webview = document.getElementById(&quot;view&quot;);
+
+    //导入aardio支持
+    aardio = require(&quot;aardio&quot;);
+    aardio.on(&quot;executeJavaScript&quot;,(js)=&gt;{
+
+        //注入JS脚本到打开的远程网页
+         webview.executeJavaScript(js);
+    })
+
+    //响应浏览器事件
+    var domReady = function() { 
+        aardio.$domReady( webview.getURL() );
+    }
+
+    //监听浏览器事件
+    webview.addEventListener(&quot;dom-ready&quot;, domReady);
+    &lt;/script&gt;
+
+&lt;/html&gt;
+**/
+
+
+app.external = { 
+
+    $domReady = function($,url){ 
+
+       //调用electron当前页面的 webview.executeJavaScript注入并执行js脚本
+       app.xcall($,&quot;executeJavaScript&quot;,`
+       document.querySelector(&quot;#input&quot;).value = &quot;https://electronjs.org/docs/api/webview-tag&quot;;
+       document.querySelector(&quot;#search-button&quot;).click();
+       `); 
+    } 
+}
+
+
+app.start( &quot;/res/main.aardio&quot; );
+
+win.loopMessage();
+
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/WebUI/Electron/webview.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/WebUI/Electron/webview.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/WebUI/Electron/webview.md">Markdown 格式</a>
+</body> 
+</html>

@@ -1,0 +1,164 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - fsys.partFile 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - fsys.partFile 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>fsys.partFile 库模块帮助文档</h1>
+
+<p><a id="fsys.partFile"></a></p>
+
+<h2>fsys.partFile 成员列表</h2>
+
+<p>分卷文件操作</p>
+
+<p><a id="fsys.partFile.group"></a></p>
+
+<h3>fsys.partFile.group(&quot;分卷文件路径&quot;)</h3>
+
+<p>自动查找关联分卷文件<br>
+并返回排序好的文件名数组<br>
+文件名数组序号最小的在数组开始<br>
+数组包含文件名到完整路径的键值映射<br>
+返回值2为去掉分卷号路径,可作为合并目标路径</p>
+
+<p><a id="fsys.partFile.join"></a></p>
+
+<h3>fsys.partFile.join(&quot;合并目标文件&quot;,待合并文件)</h3>
+
+<p>合并文件,成功返回true<br>
+待合并文件可以是一个数组或多个参数<br>
+如果未指定参数@2,则参数@1必须是一个分卷文件路径<br>
+仅指定一个分卷路径时自动设定所有参数<br>
+该函数使用追加模式,不清空目标文件<br>
+可选用 fsys.partFile.onCopyData 显示进度</p>
+
+<p><a id="fsys.partFile.joiner"></a></p>
+
+<h3>fsys.partFile.joiner(&quot;目标文件路径&quot;,&quot;w+b&quot;,读写块大小)</h3>
+
+<p>创建合并文件对象<br>
+除参数@1以外其他参数可选<br>
+参数@2为打开文件模式,默认为&quot;w+b&quot;即重建目标文件<br>
+块大小默认为10MB</p>
+
+<p><a id="fsys.partFile.joiner"></a></p>
+
+<h3>fsys.partFile.joiner()</h3>
+
+<p><a href="#partFileJoinerObject">返回对象:partFileJoinerObject</a></p>
+
+<p><a id="fsys.partFile.onCopyData"></a></p>
+
+<h3>fsys.partFile.onCopyData</h3>
+
+<pre><code class="aardio language-aardio">fsys.partFile.onCopyData = function(path,writeSize,blocks,count){
+    io.print( path,fsys.formatSize(writeSize),blocks,count )
+}
+</code></pre>
+
+<p><a id="fsys.partFile.search"></a></p>
+
+<h3>fsys.partFile.search(&quot;搜索目录&quot;,是否查找子目录)</h3>
+
+<p>查找分卷文件,<br>
+返回一个表,键为未分卷文件名,值为分卷文件路径数组,该数组已排序<br>
+除参数一以外,其他参数可选,默认不查找子目录<br>
+参数3,4请保持默认值,高级用法请查看该函数源码</p>
+
+<p><a id="fsys.partFile.split"></a></p>
+
+<h3>fsys.partFile.split(&quot;被拆分文件路径&quot;,分卷文件大小,存储目录)</h3>
+
+<p>拆分文件,成功返回true<br>
+不指定目录则取被拆分文件所在目录<br>
+可选用 fsys.partFile.onCopyData 显示进度</p>
+
+<p><a id="fsys.partFile.splitter"></a></p>
+
+<h3>fsys.partFile.splitter(&quot;拆分源文件路径&quot;,分卷文件大小,读写块大小)</h3>
+
+<p>拆分文件<br>
+读写块大小默认为10MB</p>
+
+<p><a id="fsys.partFile.splitter"></a></p>
+
+<h3>fsys.partFile.splitter()</h3>
+
+<p><a href="#partFileSplitterObject">返回对象:partFileSplitterObject</a></p>
+
+<p><a id="partFileJoinerObject"></a></p>
+
+<h2>partFileJoinerObject 成员列表</h2>
+
+<p><a id="partFileJoinerObject.append"></a></p>
+
+<h3>partFileJoinerObject.append(&quot;合并文件路径&quot;)</h3>
+
+<p>支持不定个参数指定的文件路径<br>
+或者使用一个参数传入待合并文件路径数组<br>
+将参数传入的文件读取并追加到合并目标文件<br>
+成功返回true</p>
+
+<p><a id="partFileJoinerObject.close"></a></p>
+
+<h3>partFileJoinerObject.close()</h3>
+
+<p>关闭合并目标文件</p>
+
+<p><a id="partFileJoinerObject.onCopyData"></a></p>
+
+<h3>partFileJoinerObject.onCopyData</h3>
+
+<pre><code class="aardio language-aardio">partFileJoinerObject.onCopyData = function(path,writeSize,blocks,count){
+    io.print( path,fsys.formatSize(writeSize),blocks,count )
+}
+</code></pre>
+
+<p><a id="partFileSplitterObject"></a></p>
+
+<h2>partFileSplitterObject 成员列表</h2>
+
+<p><a id="partFileSplitterObject.close"></a></p>
+
+<h3>partFileSplitterObject.close()</h3>
+
+<p>关闭源文件</p>
+
+<p><a id="partFileSplitterObject.formatName"></a></p>
+
+<h3>partFileSplitterObject.formatName</h3>
+
+<p>生成分卷文件名的格式化串<br>
+默认为 &quot;源文件名&quot; + &quot;.%03d&quot;</p>
+
+<p><a id="partFileSplitterObject.onCopyData"></a></p>
+
+<h3>partFileSplitterObject.onCopyData</h3>
+
+<pre><code class="aardio language-aardio">partFileSplitterObject.onCopyData = function(path,writeSize,blocks,count){
+    io.print( path,fsys.formatSize(writeSize),blocks,count )
+}
+</code></pre>
+
+<p><a id="partFileSplitterObject.split"></a></p>
+
+<h3>partFileSplitterObject.split(&quot;创建分卷文件目录&quot;,分卷初始序号)</h3>
+
+<p>拆分文件,所有参数可选<br>
+默认使用源文件所在目录存储分卷文件,<br>
+初始分卷序号默认为1</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/fsys/partFile.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/fsys/partFile.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/fsys/partFile.md">Markdown 格式</a></p>
+
+</body> 
+</html>

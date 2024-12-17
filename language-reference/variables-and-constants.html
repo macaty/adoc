@@ -1,0 +1,164 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - 变量、常量'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - 变量、常量</title> 
+<link rel="stylesheet" href="../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>变量、常量</h1>
+
+<p>变量、常量指代码中使用合法的标志符、字面值(数值、字符串)来表示数据的对象。</p>
+
+<h2>一、变量（ variables ）</h2>
+
+<p>在程序运行过程中，用来存储数据值并且其值能被改变的对象称为变量。变量的名称用字母、数字、中文字符、下划线等组成的<a href="basic-syntax.html" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/basic-syntax.html">合法标识符</a>来表示。  </p>
+
+<ul>
+<li>变量名开始字符不能为数字。<br></li>
+<li>变量名包含中文时，中文字符前面不能有字母或数字。<br></li>
+<li>可以使用美元符号<code>$</code>作为变量名或变量名的第一个字符。<br></li>
+</ul>
+
+<p>建议遵循就近原则(Principle of Proximity) 在第一次使用局部变量之前定义该变量，这样做的好处让代码保持清晰的结构并增强可读性。  </p>
+
+<h3>1. 名字空间变量（ namespace variable ）、全局变量( global variable )</h3>
+
+<p>名字空间变量是属于一个<a href="namespace.html" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/namespace.html">名字空间</a>的成员对象。  </p>
+
+<p>变量的默认名字空间为 global 名字空间， global 名字空间的变量为全局变量。</p>
+
+<p>可以使用 namespace 语句改变指定代码块的名字空间。</p>
+
+<p>可以使用 self 关键字访问当前名字空间。使用 <code>..</code> 操作符访问 global 名字空间。</p>
+
+<p>示例：</p>
+
+<pre><code class="aardio language-aardio">//没有用 var 语句显式声明的变量，默认就是当前名字空间的成员变量
+
+变量 = &quot;字符串:普通变量&quot;;
+变量 = &quot;变量的值是可以改变的&quot;;
+
+..varName = 123; //..varName 等价于 global.varName
+</code></pre>
+
+<h3>2. 局部变量（ local variable ） <a id="var" href="#var">&#x23;</a></h3>
+
+<p>var 声明一个局部变量，作用域为当前语句块，以及被当前语句块所包含的语句块。var 语句声明的局部变量可选指定一个初始值，不指定初始值则默认为 null 值。</p>
+
+<p>例如：</p>
+
+<pre><code class="aardio language-aardio">var 局部变量;
+局部变量 = 123;
+
+var a,b,c = 1,2,3
+console.log( a,b,c,局部变量 )
+</code></pre>
+
+<p>请参考：<a href="statements/assignment.html#var" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/statements/assignment.html#var">var 赋值语句</a> <a href="function/definitions.html#var" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/function/definitions.html#var">函数局部变量</a>  </p>
+
+<h2>二、常量（ constants ） <a id="constants" href="#constants">&#x23;</a></h2>
+
+<p>在程序运行过程中，用来存储数据值并且其值不能被改变的对象称为常量，常量赋为非 null 值以后就不能再更改值。  </p>
+
+<p>常量名使用首字符为下划线且长度大于 1 个字节、小于 256 个字节的标识符表示，单个下划线符号仍然表示变量而非常量。</p>
+
+<h3>字面常量（ literal constants ）</h3>
+
+<p>字面常量是指以数值、字符串等字面值直接表示数据的常量对象。<br>
+象<code>123</code>,<code>&quot;abc&quot;</code>这样的值被称之为字面值，并且这些值在运行时是不可更改的常量。</p>
+
+<h3>命名常量（ named constants ）<a id="named-constants" href="#named-constants">&#x23;</a></h3>
+
+<p>aardio 中的命名常量都是在运行时初始化值。如果常量的值为 null，则可以赋值为非 null 值，之后就不能再修改值。常量重复赋于相同的数字或字符串等常量值会被忽略（不会报错），修改非 null 常量的值将会抛出异常错误。  </p>
+
+<ol>
+<li><p>名字空间常量( namespace constant ) <a id="namespace-constant" href="#namespace-constant">&#x23;</a></p>
+
+<p>表对象（ table ）的成员名称如果首字符为下划线，并且长度大于 1 个字节并小于 256 个字节，则是一个只读成员（ readonly member ）。</p>
+
+<p>参考：<a href="datatype/table/_.html#readonly-member" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/datatype/table/_.html#readonly-member">表的只读成员</a> </p>
+
+<p>名字空间也是一个表对象（ table ），名字空间的只读成员我们称之为&quot;名字空间常量&quot;。</p>
+
+<p>&quot;名字空间常量&quot;与&quot;名字空间变量&quot;一样默认创建于当前名字空间 (self 名字空间 )。  </p>
+
+<p>示例：   </p>
+
+<pre><code class="aardio language-aardio">_const = 123; //初始化名字空间常量
+_const = 123; //没有修改常量，被忽略
+_const = 456; //出错，抛出异常：不能修改只读成员
+</code></pre>
+
+<p>要特别注意，名字空间或表的只读成员并不要求是合法标识符，例如： </p>
+
+<pre><code class="aardio language-aardio">self[&quot;_ (不是合法标识符)&quot;] = 1;
+self[&quot;_ (不是合法标识符)&quot;] = 1234;//报错，不能修改常量
+</code></pre>
+
+<p>在对象的元表中指定元属性 <code>_readonly = false</code> 可禁用读成员保护，这样就可以自由修改名字以下划线开头的表成员。如果在表对象的元表中不设置 <code>_readonly</code> 则默认启用只读成员保护（所有名字以下划线开头的成员禁止修改非 null 值）。  </p>
+
+<p>如果元表中设置  <code>_readonly</code>  为任何非 null 值都会被强制转换为 false,  该值一旦设置以后即不可修改，如果希望启用只读成员保护，唯一的方法就是不设置该属性。  </p>
+
+<p>全局名字空间（ global 对象 ）将元属性 <code>_readonly</code> 设置为任何值都会被忽略，global 的只读成员保护总是启用状态。  </p>
+
+<p>参考：<a href="datatype/table/meta.html#_readonly" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/datatype/table/meta.html#_readonly">_readonly 元属性</a></p></li>
+<li><p>全局常量( global constant )  <a id="global-constant" href="#global-constant">&#x23;</a></p>
+
+<p>&quot;全局常量&quot;特指全局名字空间只包含大写字母与下划线的命名常量，同样要求首字符为下划线，并且长度大于 1 个字节并小于 256 个字节。</p>
+
+<p>&quot;全局常量&quot;可以直接在任何名字空间使用，并且不需要再添加表示全局名字空间的 <code>..</code> 前缀。</p>
+
+<p>&quot;全局常量&quot;不能与普通变量、局部变量同名，且无法被覆盖。例如 <code>var _GLOBAL</code> 会报语法错误。  </p>
+
+<p>应避免滥用&quot;全局常量&quot;。 实际上滥用全局对象是不好的习惯，更好的方法是将它们放入适当的名字空间。如果理解了滥用全局对象会不知不觉增加程序的复杂度，意谓着您已经成为了一名有经验的程序员。  </p>
+
+<p>作为动态语言，大量的全局常量也会占用不必要的运行时资源。将值固定不变的全局常量改为利用智能提示的自动输入为字面常量并加上注释是一个不错的优化方案（如果可能需要调整常量值就不要这样做）。这种优化技术被用于 <code>libs\win\#DEFINE.aardio</code> (这不是一个库，放在库目录下仅仅是为了让扫描常量声明到智能提示数据库)。 </p>
+
+<p><code>libs\win\#DEFINE.aardio</code> 中的部分智能提示配置演示：</p>
+
+<pre><code>/**intellisense() 
+_TRUE=@1/*_TRUE*/
+_FALSE=@0/*_FALSE*/
+_NULL=@0/*_NULL*/
+end intellisense**/
+</code></pre>
+
+<p>aardio 开发环境里提供将全局常量自动转换为上面这种智能提示模板的工具。在智能提示配置中，提示文本的第一个字符如果为 <code>@</code> 就表示这是一个自动完成的代码模板。例如我们在 aardio 编辑器中输入 _TRUE 时，可以利用智能提示的代码补全功能将 _TRUE 自动转换为 <code>1/*_TRUE*/</code>。</p>
+
+<p>所有系统 API 用到的全局常量，在 aardio 里首字符都会多一个下划线 <code>_</code>（除非首字符已经是下划线），这些全局常量都是大写的。　</p></li>
+<li><p>保留常量  <a id="reserved-constant" href="#reserved-constant">&#x23;</a></p>
+
+<p>在合法变量名前加上 <code>::</code> 前缀，可将其转换为全局有效的保留常量。  </p>
+
+<p>保留常量的规则如下：</p>
+
+<ul>
+<li>保留常量也是全局有效的常量，属于全局名字空间的成员。</li>
+<li>保留常量一旦赋为非 null 值后同样不可修改。 </li>
+<li><code>::</code> 后面必须是合法的标识符，首个字符不能是小写字母或者下划线。</li>
+<li><code>::</code> 在编译期按编译顺序向后生效， 生效的保留常量即使省略 <code>::</code> 前缀仍然是保留常量。因为我们难以让不同文件的保持不变的加载与编译顺序，所以任何时候都不应当省略 <code>::</code> 前缀。</li>
+<li>保留常量不能与普通变量、局部变量同名，且无法被覆盖。应避免滥用保留常量，aardio 标准库只将少量的系统 DLL 模块、系统 API 函数定义为了保留常量。 </li>
+</ul>
+
+<p>常量仅能初始化赋值一次，对于相同的字符串或数值 —— 重复赋于相同的值会被自动忽略。如果是其他值则不能保证每次创建的值是相同的，为避免无意中修改常量值导致异常，可使用 <code>:=</code> 操作符赋值。  </p>
+
+<p>例如：  </p>
+
+<pre><code class="aardio language-aardio">::Kernel32 := raw.loadDll(&quot;Kernel32.dll&quot;);
+</code></pre>
+
+<p>用 <code>a := b</code> 赋值等价于写  <code>a = a : b</code> ，这里的 <code>:</code> 为&quot;逻辑或&quot;操作符，等价于写  <code>a = a or b</code>。 </p></li>
+</ol>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/language-reference/variables-and-constants.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/language-reference/variables-and-constants.md'" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/variables-and-constants.md">Markdown 格式</a></p>
+
+</body> 
+</html>

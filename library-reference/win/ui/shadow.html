@@ -1,0 +1,138 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - win.ui.shadow 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - win.ui.shadow 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>win.ui.shadow 库模块帮助文档</h1>
+
+<p><details>  <summary>关于无边框窗口</summary>  <p>
+无边框窗口：指的是在窗体设计器中将窗体的边框(border) 属性设为 &quot;none&quot;，
+这种窗口不再有边框、标题栏。</p>
+
+<p>注意隐藏标题栏、并将边框设为 &quot;resizable&quot;等不是无边框窗口，
+这种效果在不同操作系统上显示效果都很差，要么是多出一圈，要么顶上多出一块。
+不要这么做。</p>
+
+<p>无边框窗口只要使用下面的代码就可以在窗口周围添加阴影，
+并同时使用阴影实现完美的可拖动改变大小效果（即 resizable 边框 ）。</p>
+
+<p>import win.ui.shadow;
+win.ui.shadow(winform);</p>
+
+<p>尤其是嵌入浏览器组件，直接使用 win.ui.resizeBorder 添加可拖动边框可能不起作用。
+win.ui.shadow 可以通过阴影实现 win.ui.resizeBorder 的功能。</p>
+
+<p>如果只想添加阴影，不想支持可拖动边框，可以下面这样写：</p>
+
+<p>import win.ui.shadow;
+win.ui.shadow(winform).setResizeBorder(false)</p>
+
+<p>在无边框窗口上，可以自行实现标题栏按钮，调用以下函数模拟标题栏按钮消息</p>
+
+<p>winform.hitMax() //模拟点击最大化按钮
+winform.hitMin() //模拟点击最小化按钮
+winform.hitClose() //模拟点击关闭按钮</p>
+
+<p>winform.onMouseDown  = function(wParam,lParam){
+    winform.hitCaption()<br>
+}</p>
+
+<p>标准库提供了以下的类可以直接在无边框窗口上创建虚拟的标题栏以及可拖动边框:</p>
+
+<p>win.ui.simpleWindow 实现最普通的标题栏。
+win.ui.simpleWindow2 实现的标题栏没有最大化按钮。
+win.ui.simpleWindow3 标题栏使用分层窗口实现，并使用 orphanWindow 悬浮在父窗口上面。
+</p></details></p>
+
+<p><a id="win.ui"></a></p>
+
+<h2>win.ui 成员列表</h2>
+
+<p><a id="win.ui.shadow"></a></p>
+
+<h3>win.ui.shadow</h3>
+
+<p>阴影边框</p>
+
+<p>创建阴影边框<br>
+创建阴影后,窗体对象的_shadowWindow属性被设置为此对象</p>
+
+<p><a id="win.ui.shadow"></a></p>
+
+<h3>win.ui.shadow()</h3>
+
+<p><a href="#winUiShadowObject">返回对象:winUiShadowObject</a></p>
+
+<p><a id="win.ui.shadow"></a></p>
+
+<h3>win.ui.shadow(窗体对象,透明度,阴影大小,外圆角,内圆角,阻影颜色,暗部插值位置,聚焦系数)</h3>
+
+<p>除参数@1以外,其他所有参数可选<br>
+透明度默认为70,255为不透明<br>
+阴影大小默认为9像素<br>
+外圆角默认为阴影大小<br>
+内圆角默认为空<br>
+阴影颜色默认为0xFF000000,FF为透明度<br>
+暗部插值位置默认为0.15,这个值是阴影内侧暗部插值点距外边界的百分比<br>
+聚焦系数默认为15,以该系数乘以阴影大小换算为距离外边界的百分比,<br>
+加大聚焦系数会淡化阴影</p>
+
+<p><a id="winUiShadowObject"></a></p>
+
+<h2>winUiShadowObject 成员列表</h2>
+
+<p><a id="winUiShadowObject._form"></a></p>
+
+<h3>winUiShadowObject._form</h3>
+
+<p><a href="_.html#winform" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/_.html#winform">返回对象:winform</a></p>
+
+<p><a id="winUiShadowObject.onDrawShadow"></a></p>
+
+<h3>winUiShadowObject.onDrawShadow(hdc,hMemDc,hMemBitmap,width,height)</h3>
+
+<pre><code class="aardio language-aardio">winUiShadowObject.onDrawShadow = function(hdc,hMemDc,hMemBitmap,width,height){  
+    var graphics = ..gdip.graphics(hMemDc);  
+    graphics.smoothingMode = 4/*_GdipSmoothingModeAntiAlias*/;  
+
+    graphics.delete();  
+}
+</code></pre>
+
+<p><a id="winUiShadowObject.setResizeBorder"></a></p>
+
+<h3>winUiShadowObject.setResizeBorder(true)</h3>
+
+<p>允许通过拖动阴影边框改变父窗口大小<br>
+如果窗口当前已经应用win.ui.resizeBorder添加了拖动边框,<br>
+则默认启用此属性,不再需要调用此函数</p>
+
+<p><a id="winUiShadowObject.show"></a></p>
+
+<h3>winUiShadowObject.show(true)</h3>
+
+<p>暂时显示或隐藏阴影<br>
+阴影会跟随所有者窗体自动显示隐藏,此函数仅用于特殊情况</p>
+
+<p><a id="winUiShadowObject.transparent"></a></p>
+
+<h3>winUiShadowObject.transparent()</h3>
+
+<p>设置透明度,参数为0到1之间的小数<br>
+通过wiform.transprent修改窗口透明度时,<br>
+会自动调用wiform._shadowWindow.transprent函数同步透明度</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/ui/shadow.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/ui/shadow.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/shadow.md">Markdown 格式</a></p>
+
+</body> 
+</html>

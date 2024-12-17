@@ -1,0 +1,489 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - nodeJs 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - nodeJs 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>nodeJs 库模块帮助文档</h1>
+
+<p><a id="nodeJs"></a></p>
+
+<h2>nodeJs 成员列表</h2>
+
+<p>Node.js 支持库,<br>
+可选使用 nodeJs.install 函数安装独立便携的 Node.js 环境,<br>
+默认优先使用系统安装的 Node.js 环境  </p>
+
+<p>此支持库可支持 web.rpc.externalServer 创建的 RPC 服务端</p>
+
+<p><a id="nodeJs.cmd"></a></p>
+
+<h3>nodeJs.cmd(&quot;命令文件名&quot;,其他命令行参数...)</h3>
+
+<p>运行node命令,<br>
+此函数会打开控制台,  </p>
+
+<p>第一个参数指定cmd命令,可选自第二个参数开始指定命令行参数<br>
+多个命令行参数则调用 process.joinArguments 合并,<br>
+不在双引号内、且包含空白或需要转义的参数转义处理后首尾添加双引号</p>
+
+<p><a id="nodeJs.cmdget"></a></p>
+
+<h3>nodeJs.cmdget(&quot;命令文件名&quot;,其他命令行参数...)</h3>
+
+<p>运行node命令并获取输出字符串,n此函数不会打开控制台,  </p>
+
+<p>第一个参数指定cmd命令,可选自第二个参数开始指定命令行参数<br>
+多个命令行参数则调用 process.joinArguments 合并,<br>
+不在双引号内、且包含空白或需要转义的参数转义处理后首尾添加双引号</p>
+
+<p><a id="nodeJs.cnpm"></a></p>
+
+<h3>nodeJs.cnpm()</h3>
+
+<p>使用淘宝镜像执行npm命令,<br>
+此函数会打开控制台,  </p>
+
+<p>多个命令行参数则调用 process.joinArguments 合并,<br>
+不在双引号内、且包含空白或需要转义的参数转义处理后首尾添加双引号</p>
+
+<p><a id="nodeJs.cnpmSync"></a></p>
+
+<h3>nodeJs.cnpmSync()</h3>
+
+<p>参数指定包名,<br>
+淘宝镜像同步指定 Node.js 包到最新版本</p>
+
+<p><a id="nodeJs.config"></a></p>
+
+<h3>nodeJs.config()</h3>
+
+<p>npm config edit编辑值</p>
+
+<p><a id="nodeJs.config"></a></p>
+
+<h3>nodeJs.config(key)</h3>
+
+<p>npm config get获取值</p>
+
+<p><a id="nodeJs.config"></a></p>
+
+<h3>nodeJs.config(key,value)</h3>
+
+<p>npm config set设置值</p>
+
+<p><a id="nodeJs.eval"></a></p>
+
+<h3>nodeJs.eval(js)</h3>
+
+<pre><code class="aardio language-aardio">nodeJs.eval(`  
+(function(){  
+    return process.config;/*执行JS表达式并返回结果,  
+返回值如果是字符串,必须放到对象或数组中返回*/  
+})()  
+`)
+</code></pre>
+
+<p><a id="nodeJs.exec"></a></p>
+
+<h3>nodeJs.exec()</h3>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html#processPopenObject'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html#processPopenObject">返回对象:processPopenObject</a></p>
+
+<p><a id="nodeJs.exec"></a></p>
+
+<h3>nodeJs.exec(JS代码)</h3>
+
+<p>运行JS代码，返回 process.popen 对象,<br>
+如果参数@1不为空,则返回进程对象会关闭目标进程的输入流。<br>
+参数 @2 开始可以指定一个或多个命令行参数。<br>
+命令行参数可以是一个以空格分开多个参数的字符串。<br>
+或者传入多个参数、表、数组等由 string.args 自动合成为单个命令行参数。<br>
+合成命令行将按需在首尾添加双引号，并处理必要的转义。</p>
+
+<p><a id="nodeJs.execFile"></a></p>
+
+<h3>nodeJs.execFile()</h3>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html#processPopenObject'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html#processPopenObject">返回对象:processPopenObject</a></p>
+
+<p><a id="nodeJs.execFile"></a></p>
+
+<h3>nodeJs.execFile(JS代码文件,其他命令行参数...)</h3>
+
+<p>运行JS代码文件,返回process.popen对象,  </p>
+
+<p>第一个参数指定JS代码文件,可选自第二个参数开始指定命令行参数<br>
+多个命令行参数则调用 process.joinArguments 合并,<br>
+不在双引号内、且包含空白或需要转义的参数转义处理后首尾添加双引号</p>
+
+<p><a id="nodeJs.execLimit"></a></p>
+
+<h3>nodeJs.execLimit()</h3>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html#processPopenObject'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html#processPopenObject">返回对象:processPopenObject</a></p>
+
+<p><a id="nodeJs.execLimit"></a></p>
+
+<h3>nodeJs.execLimit(JS代码)</h3>
+
+<p>运行JS代码，返回 process.popen 对象,<br>
+返回进程绑定 process.job.limitKill 在退出时自动关闭,<br>
+如果参数@1不为空,则返回进程对象会关闭目标进程的输入流。<br>
+参数 @2 开始可以指定一个或多个命令行参数。<br>
+命令行参数可以是一个以空格分开多个参数的字符串。<br>
+或者传入多个参数、表、数组等由 string.args 自动合成为单个命令行参数。<br>
+合成命令行将按需在首尾添加双引号，并处理必要的转义。</p>
+
+<p><a id="nodeJs.freePort"></a></p>
+
+<h3>nodeJs.freePort()</h3>
+
+<p>分配新的服务端可用端口<br>
+在node.js中可使用process.env.PORT获取分配的端口号</p>
+
+<p><a id="nodeJs.getInstallPath"></a></p>
+
+<h3>nodeJs.getInstallPath()</h3>
+
+<p>如果系统已安装 Node.js,返回 node.exe 路径</p>
+
+<p><a id="nodeJs.install"></a></p>
+
+<h3>nodeJs.install(portable)</h3>
+
+<p>检测并安装node环境<br>
+如果portable为true或指定node版本号，则忽略系统安装的node.exe<br>
+否则优先使用系统安装的node.exe<br>
+也可以在调用此函数以前在环境变量中使用NODE_EXE设置node.exe的路径<br>
+此函数会在执行其他node命令前自动调用</p>
+
+<p><a id="nodeJs.majorVersion"></a></p>
+
+<h3>nodeJs.majorVersion</h3>
+
+<p>主版本号,数值<br>
+只有执行 nodeJs.install 函数以后才会设置此属性,<br>
+几乎所有 nodeJs 库函数执行前都会调用 nodeJs.install</p>
+
+<p><a id="nodeJs.nodeDir"></a></p>
+
+<h3>nodeJs.nodeDir</h3>
+
+<p>node.exe所在目录<br>
+只有执行 nodeJs.install 函数以后才会设置此属性,<br>
+几乎所有 nodeJs 库函数执行前都会调用 nodeJs.install</p>
+
+<p><a id="nodeJs.nodeExePath"></a></p>
+
+<h3>nodeJs.nodeExePath</h3>
+
+<p>node.exe完整路径<br>
+只有执行 nodeJs.install 函数以后才会设置此属性,<br>
+几乎所有 nodeJs 库函数执行前都会调用 nodeJs.install</p>
+
+<p><a id="nodeJs.nodeModulesPath"></a></p>
+
+<h3>nodeJs.nodeModulesPath</h3>
+
+<p>全局模块安装目录<br>
+只有执行 nodeJs.install 函数以后才会设置此属性,<br>
+几乎所有 nodeJs 库函数执行前都会调用 nodeJs.install</p>
+
+<p><a id="nodeJs.npm"></a></p>
+
+<h3>nodeJs.npm()</h3>
+
+<p>执行npm命令,<br>
+此函数会打开控制台,  </p>
+
+<p>多个命令行参数则调用 process.joinArguments 合并,<br>
+不在双引号内、且包含空白或需要转义的参数转义处理后首尾添加双引号</p>
+
+<p><a id="nodeJs.npmCliJsPath"></a></p>
+
+<h3>nodeJs.npmCliJsPath</h3>
+
+<p>npm 位置<br>
+只有执行 nodeJs.install 函数以后才会设置此属性,<br>
+几乎所有 nodeJs 库函数执行前都会调用 nodeJs.install</p>
+
+<p><a id="nodeJs.npmget"></a></p>
+
+<h3>nodeJs.npmget()</h3>
+
+<p>执行npm命令并获取输出字符串,<br>
+默认工作目录为 nodeJs.workDir<br>
+此函数不会打开控制台,  </p>
+
+<p>多个命令行参数则调用 process.joinArguments 合并,<br>
+不在双引号内、且包含空白或需要转义的参数转义处理后首尾添加双引号</p>
+
+<p><a id="nodeJs.options"></a></p>
+
+<h3>nodeJs.options</h3>
+
+<p>默认 Node.js 启动命令行选项参数。<br>
+此选项参数添加于 js 代码或路径参数之前。<br>
+可以为 null 或 string.args 支持的表、数组。</p>
+
+<p><a id="nodeJs.pcmd"></a></p>
+
+<h3>nodeJs.pcmd(&quot;命令文件名&quot;,其他命令行参数...)</h3>
+
+<p>创建进程管道运行node命令,返回 process.popen 对象,<br>
+默认工作目录为 nodeJs.workDir<br>
+此函数会打开控制台,  </p>
+
+<p>第一个参数指定cmd命令,可选自第二个参数开始指定命令行参数<br>
+多个命令行参数则调用 process.joinArguments 合并,<br>
+不在双引号内、且包含空白或需要转义的参数转义处理后首尾添加双引号</p>
+
+<p><a id="nodeJs.pcmd"></a></p>
+
+<h3>nodeJs.pcmd()</h3>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html#processPopenObject'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html#processPopenObject">返回对象:processPopenObject</a></p>
+
+<p><a id="nodeJs.pcnpm"></a></p>
+
+<h3>nodeJs.pcnpm(echo,...)</h3>
+
+<p>执行npm命令,<br>
+此函数不打开控制台,使用echo指定的回调函数输出控制台回显信息,  </p>
+
+<p>多个命令行参数则调用 process.joinArguments 合并,<br>
+不在双引号内、且包含空白或需要转义的参数转义处理后首尾添加双引号</p>
+
+<p><a id="nodeJs.pget"></a></p>
+
+<h3>nodeJs.pget()</h3>
+
+<p>以管道方式打开node进程,并返回输出值,<br>
+支持不定个数启动参数,也可以在一个字符串参数中写多个参数</p>
+
+<p><a id="nodeJs.pnpm"></a></p>
+
+<h3>nodeJs.pnpm(echo,...)</h3>
+
+<p>执行npm命令,<br>
+此函数不打开控制台,使用echo指定的回调函数输出控制台回显信息,  </p>
+
+<p>多个命令行参数则调用 process.joinArguments 合并,<br>
+不在双引号内、且包含空白或需要转义的参数转义处理后首尾添加双引号</p>
+
+<p><a id="nodeJs.popen"></a></p>
+
+<h3>nodeJs.popen()</h3>
+
+<p>以管道方式打开node进程,<br>
+支持不定个数启动参数,也可以在一个字符串参数中写多个参数</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html#processPopenObject'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html#processPopenObject">返回对象:processPopenObject</a></p>
+
+<p><a id="nodeJs.port"></a></p>
+
+<h3>nodeJs.port</h3>
+
+<p>aardio 为 Node.js 自动分配的空闲端口<br>
+调用 nodeJs.startEnviron 会自动设置此函数,<br>
+ nodeJs.install 首次执行会自动调用  nodeJs.startEnviron,<br>
+几乎所有 nodeJs 库函数都会自动调用 nodeJs.install</p>
+
+<p><a id="nodeJs.prefix"></a></p>
+
+<h3>nodeJs.prefix()</h3>
+
+<p>获取全局模块安装路径</p>
+
+<p><a id="nodeJs.prequire"></a></p>
+
+<h3>nodeJs.prequire(echo,moduleName,...)</h3>
+
+<p>如果 @moduleName 参数指定的 Node.js  模块不存在，全局安装该模块,<br>
+可添加多个 Node.js 模块名参数,<br>
+如果系统已安装了node，可能会安装到系统目录<br>
+使用nodeJs.prefix函数获取全局模块安装路径<br>
+此函数会使用 process.popen 创建管理进程,<br>
+可使用 @echo 参数自定义回显函数或回显控件,<br>
+回显函数接受一个输出文本参数,<br>
+回显控件必须拥有名为 log 的回显函数</p>
+
+<p><a id="nodeJs.prequireByJs"></a></p>
+
+<h3>nodeJs.prequireByJs(echo,javaScript)</h3>
+
+<p>自动分析 @javaScript 参数指定的 JS 代码中的 require 语句,<br>
+如果 require 的模块不存在，全局安装该模<br>
+如果系统已安装了node，可能会安装到系统目录<br>
+使用nodeJs.prefix函数获取全局模块安装路径,<br>
+可使用 @echo 参数自定义回显函数或回显控件,<br>
+回显函数接受一个输出文本参数,<br>
+回显控件必须拥有名为 log 的回显函数</p>
+
+<p><a id="nodeJs.require"></a></p>
+
+<h3>nodeJs.require()</h3>
+
+<p>参数输入一个或多个 Node.js 模块名,<br>
+如果参数指定的模块不存在，全局安装该模块名,<br>
+如果系统已安装了node，可能会安装到系统目录<br>
+使用nodeJs.prefix函数获取全局模块安装路径</p>
+
+<p><a id="nodeJs.requireByJs"></a></p>
+
+<h3>nodeJs.requireByJs()</h3>
+
+<p>自动分析输入JS代码中的 require 语句,<br>
+如果 require 的模块不存在，全局安装该模块<br>
+如果系统已安装了node，可能会安装到系统目录<br>
+使用nodeJs.prefix函数获取全局模块安装路径</p>
+
+<p><a id="nodeJs.requireResolve"></a></p>
+
+<h3>nodeJs.requireResolve()</h3>
+
+<p>参数输入 Node.js 模块名,<br>
+查找并返回该模块安装路径</p>
+
+<p><a id="nodeJs.start"></a></p>
+
+<h3>nodeJs.start</h3>
+
+<p>执行 Node.js 代码。<br>
+返回 process.popen 对象。<br>
+此函数不会关闭 Node.js 的标准输入。</p>
+
+<p><a id="nodeJs.start"></a></p>
+
+<h3>nodeJs.start()</h3>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html#processPopenObject'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html#processPopenObject">返回对象:processPopenObject</a></p>
+
+<p><a id="nodeJs.start"></a></p>
+
+<h3>nodeJs.start(code,...)</h3>
+
+<p>参数 @code 指定 Node.js 代码或代码文件。<br>
+参数 @2 开始可以指定一个或多个命令行参数。<br>
+命令行参数可以是一个以空格分开多个参数的字符串。<br>
+或者传入多个参数、表、数组等由 string.args 自动合成为单个命令行参数。<br>
+合成命令行将按需在首尾添加双引号，并处理必要的转义。</p>
+
+<p><a id="nodeJs.startEnviron"></a></p>
+
+<h3>nodeJs.startEnviron()</h3>
+
+<p><a href="#nodeJsStartEnvironObject">返回对象:nodeJsStartEnvironObject</a></p>
+
+<p><a id="nodeJs.startEnviron"></a></p>
+
+<h3>nodeJs.startEnviron(环境变量表)</h3>
+
+<pre><code class="aardio language-aardio">nodeJs.startEnviron(  
+    appPath = io.fullpath(&quot;/&quot;);  
+    /*在这里设置的启动参数对象，在node.js中使用 require(&#39;startEnviron&#39;)导入*/  
+)
+</code></pre>
+
+<p><a id="nodeJs.startLimit"></a></p>
+
+<h3>nodeJs.startLimit</h3>
+
+<p>执行 Node.js 代码，返回 process.popen 对象。<br>
+此函数不会关闭 Node.js 的标准输入。  </p>
+
+<p>当前进程退出时，Node.js 进程会自动退出。</p>
+
+<p><a id="nodeJs.startLimit"></a></p>
+
+<h3>nodeJs.startLimit()</h3>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html#processPopenObject'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html#processPopenObject">返回对象:processPopenObject</a></p>
+
+<p><a id="nodeJs.startLimit"></a></p>
+
+<h3>nodeJs.startLimit(code,...)</h3>
+
+<p>参数 @code 指定 Node.js 代码或代码文件。<br>
+参数 @2 开始可以指定一个或多个命令行参数。<br>
+命令行参数可以是一个以空格分开多个参数的字符串。<br>
+或者传入多个参数、表、数组等由 string.args 自动合成为单个命令行参数。<br>
+合成命令行将按需在首尾添加双引号，并处理必要的转义。</p>
+
+<p><a id="nodeJs.startRpc"></a></p>
+
+<h3>nodeJs.startRpc</h3>
+
+<p>启动 Node.js 的 process.rpc 兼容服务端。<br>
+在当前进程退出时，Node.js 服务端进程会自动退出。<br>
+返回 process.rpc.jsonClient 对象，可用于调用 Node.js 全局对象或函数。<br>
+全局对象指 Node.js 中 global 对象的成员。<br>
+被调用的 Node.js 函数不能是异步函数。  </p>
+
+<p>RPC 协议会占用标准输出，JS 里其他 console.log 可能失效。</p>
+
+<p><a id="nodeJs.startRpc"></a></p>
+
+<h3>nodeJs.startRpc()</h3>
+
+<p><a href="#processRpcJsonClientObject">返回对象:processRpcJsonClientObject</a></p>
+
+<p><a id="nodeJs.startRpc"></a></p>
+
+<h3>nodeJs.startRpc(code,...)</h3>
+
+<p>参数 @code 指定 Node.js 代码或代码文件。<br>
+参数 @2 开始可以指定一个或多个命令行参数。<br>
+命令行参数可以是一个以空格分开多个参数的字符串。<br>
+或者传入多个参数、表、数组等由 string.args 自动合成为单个命令行参数。<br>
+合成命令行将按需在首尾添加双引号，并处理必要的转义。  </p>
+
+<p>返回 process.rpc.jsonClient 对象，可用于调用 Node.js 全局对象或函数。</p>
+
+<p><a id="nodeJs.version"></a></p>
+
+<h3>nodeJs.version</h3>
+
+<p>node.js 运行时版本</p>
+
+<p>版本号,字符串值<br>
+只有执行 nodeJs.install 函数以后才会设置此属性,<br>
+几乎所有 nodeJs 库函数执行前都会调用 nodeJs.install</p>
+
+<p><a id="nodeJs.workDir"></a></p>
+
+<h3>nodeJs.workDir</h3>
+
+<p>设置 Node.js 的应用程序工作目录<br>
+默认已设置为 io.fullpath(&quot;/&quot;)</p>
+
+<p><a id="nodeJsStartEnvironObject"></a></p>
+
+<h2>nodeJsStartEnvironObject 成员列表</h2>
+
+<p><a id="nodeJsStartEnvironObject.?"></a></p>
+
+<h3>nodeJsStartEnvironObject.?</h3>
+
+<p>startEnviron 启动参数</p>
+
+<p><a id="nodeJsStartEnvironObject.port"></a></p>
+
+<h3>nodeJsStartEnvironObject.port</h3>
+
+<p>自动分配的端口号</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/nodeJs/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/nodeJs/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/nodeJs/_.md">Markdown 格式</a></p>
+
+</body> 
+</html>

@@ -1,0 +1,79 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - fsys.journal 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - fsys.journal 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>fsys.journal 库模块帮助文档</h1>
+
+<p><a id="fsys"></a></p>
+
+<h2>fsys 成员列表</h2>
+
+<p><a id="fsys.journal"></a></p>
+
+<h3>fsys.journal(&quot;C:&quot;)</h3>
+
+<p>创建NTFS分区USN日志对象</p>
+
+<p><a id="fsys.journal"></a></p>
+
+<h3>fsys.journal()</h3>
+
+<p><a href="#fsysJournalObject">返回对象:fsysJournalObject</a></p>
+
+<p><a id="fsysJournalObject"></a></p>
+
+<h2>fsysJournalObject 成员列表</h2>
+
+<p><a id="fsysJournalObject.delete"></a></p>
+
+<h3>fsysJournalObject.delete()</h3>
+
+<p>删除USN日志</p>
+
+<p><a id="fsysJournalObject.getFullPath"></a></p>
+
+<h3>fsysJournalObject.getFullPath(usnData,fileReferenceNumber)</h3>
+
+<p>返回完整路径</p>
+
+<p><a id="fsysJournalObject.getUsnData"></a></p>
+
+<h3>fsysJournalObject.getUsnData()</h3>
+
+<p>获取USN日志数据,此函数耗时较长,<br>
+一般可能需要数分钟</p>
+
+<h3>自动完成常量</h3>
+
+<p>_FILE_ANY_ACCESS=0<br>
+_FILE_DEVICE_FILE_SYSTEM=9<br>
+_FILE_READ_ACCESS=1<br>
+_FILE_SPECIAL_ACCESS=0<br>
+_FILE_WRITE_ACCESS=2<br>
+_FSCTL_CREATE_USN_JOURNAL=0x900E7<br>
+_FSCTL_DELETE_USN_JOURNAL=0x900F8<br>
+_FSCTL_ENUM_USN_DATA=0x900B3<br>
+_FSCTL_QUERY_USN_JOURNAL=0x900F4<br>
+_METHOD_BUFFERED=0<br>
+_METHOD_IN_DIRECT=1<br>
+_METHOD_NEITHER=3<br>
+_METHOD_OUT_DIRECT=2<br>
+_USN_DELETE_FLAG_DELETE=1<br>
+_USN_DELETE_FLAG_NOTIFY=2<br>
+_USN_DELETE_VALID_FLAGS=3  </p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/fsys/journal/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/fsys/journal/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/fsys/journal/_.md">Markdown 格式</a></p>
+
+</body> 
+</html>

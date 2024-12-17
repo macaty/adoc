@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 生成 DLL'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 生成 DLL</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 生成 DLL</h1><pre><code class="aardio language-aardio">//生成 DLL
+
+var basic  = /***
+&#39;源码使用 UTF-8 编码
+#define UNICODE 
+
+&#39;引用头文件
+#include &quot;windows.bi&quot;
+
+&#39;声明一个结构体类型，类似 aardio 里的 class
+type INFO_STRUCT
+ x as LONG
+ y as ULong 
+end type
+
+&#39;声明一个结构体指针，aardio 里结构体全部是指针，所以不需要单独声明
+type LPINFO as INFO_STRUCT ptr
+
+&#39;导出函数最好是放到 Extern &#39;C&#39; 里，不然要写 Alias 指定导出函数名是比较麻烦的。
+Extern &quot;C&quot;  
+   &#39;一个DLL里必须要有1个输出，就是在函数后面加 Export 
+   &#39;要对别注意一下 Long 在 aardio 中的类型是 int，而 ULong 在 aardio 中的类型是大写的 INT
+   Function msgboxW(ByVal longVal As Long,ByVal ulongVal As ULong,byval strVal as LPCWSTR ,ByVal structVal as LPINFO) As Long Export 
+      &#39;如果在函数名后加一个大写的W,aardio aardio 默认会传 UTF16 编码的字符串，否则会传 UTF8 编码的字符串。
+      MessageBox(0,strVal,&quot;&quot;,0)
+
+      &#39;structVal 实际上是一个结构体指针，所以要用指针操作符 -&gt; 访问结构体成员
+      structVal-&gt;x = longVal
+      structVal-&gt;y = ulongVal
+
+      return 1
+   End Function
+End Extern
+***/
+string.save(&quot;/basic.bas&quot;, basic)
+
+import console;
+import process.freeBasic;
+
+console.open();
+process.freeBasic.dll(&quot;/basic.bas&quot;).wait();
+
+/*
+FreeBASIC 的运行库基于 LGPLv2 开源许可证 - 并且额外允许静态链接，
+所以使用FreeBASIC生成独立的执行文件，无须再以GPL开源，可以自由使用。
+*/
+console.pause(,&quot;已生成DLL，按任意键退出。&quot;);
+io.remove(&quot;/libbasic.dll.a&quot;);
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/FreeBASIC/dll.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/FreeBASIC/dll.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Languages/FreeBASIC/dll.md">Markdown 格式</a>
+</body> 
+</html>

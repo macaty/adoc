@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - fsys.localfile 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - fsys.localfile 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>fsys.localfile 库模块帮助文档</h1>
+
+<p><a id="fsys"></a></p>
+
+<h2>fsys 成员列表</h2>
+
+<p><a id="fsys.localfile"></a></p>
+
+<h3>fsys.localfile</h3>
+
+<p>如果参数传入的不是硬盘文件路径,而是资源文件或内存数据<br>
+则创建临时文件以获取本地路径</p>
+
+<p><a id="fsys.localfile"></a></p>
+
+<h3>fsys.localfile(&quot;/res/...&quot;)</h3>
+
+<p>创建资源文件路径本地化对象,<br>
+该对象用于保证资源文件返回的是本地路径<br>
+路径会保持原来的文件名</p>
+
+<p><a id="fsys.localfile"></a></p>
+
+<h3>fsys.localfile()</h3>
+
+<p><a href="#fsysLocalfileObject">返回对象:fsysLocalfileObject</a></p>
+
+<p><a id="fsys.localfile"></a></p>
+
+<h3>fsys.localfile(内存数据,&quot;.默认后缀名&quot;)</h3>
+
+<p>参数@1长度大于260字节,<br>
+则使用指定的后缀名生成临时文件保存该数据</p>
+
+<p><a id="fsysLocalfileObject"></a></p>
+
+<h2>fsysLocalfileObject 成员列表</h2>
+
+<p><a id="fsysLocalfileObject.bindObject"></a></p>
+
+<h3>fsysLocalfileObject.bindObject(对象)</h3>
+
+<p>绑定使用该文件的对象</p>
+
+<p><a id="fsysLocalfileObject.free"></a></p>
+
+<h3>fsysLocalfileObject.free()</h3>
+
+<p>删除临时文件</p>
+
+<p><a id="fsysLocalfileObject.loadDll"></a></p>
+
+<h3>fsysLocalfileObject.loadDll()</h3>
+
+<p><a href="../raw/_.html#dllModuleObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/raw/_.html#dllModuleObject">返回对象:dllModuleObject</a></p>
+
+<p><a id="fsysLocalfileObject.loadDll"></a></p>
+
+<h3>fsysLocalfileObject.loadDll(调用约定)</h3>
+
+<p>加载 DLL</p>
+
+<p><a id="fsysLocalfileObject.path"></a></p>
+
+<h3>fsysLocalfileObject.path()</h3>
+
+<p>本地化的完整路径</p>
+
+<p><a id="fsysLocalfileObject.temp"></a></p>
+
+<h3>fsysLocalfileObject.temp()</h3>
+
+<p>如果创建了临时文件则返回临时目录<br>
+如果该函数返回值为空则path为普通路径</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/fsys/localfile.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/fsys/localfile.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/fsys/localfile.md">Markdown 格式</a></p>
+
+</body> 
+</html>

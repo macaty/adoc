@@ -1,0 +1,745 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - fsys 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - fsys 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>fsys 库模块帮助文档</h1>
+
+<p><a id="fsys"></a></p>
+
+<h2>fsys 成员列表</h2>
+
+<p><a id="fsys.WIN32_FIND_DATA"></a></p>
+
+<h3>fsys.WIN32_FIND_DATA</h3>
+
+<p><a href="#findDataObject">返回对象:findDataObject</a></p>
+
+<p><a id="fsys.attrib"></a></p>
+
+<h3>fsys.attrib(&quot;字符串参数&quot;)</h3>
+
+<p>返回文件属性,<br>
+以_FILE_ATTRIBUTE_前缀的常量标志各属性<br>
+注意:WIN10 新版存在设为隐藏文件后变只读的问题<br>
+参数为空字符串、null、不存在的路径都会 返回 -1</p>
+
+<p><a id="fsys.attrib"></a></p>
+
+<h3>fsys.attrib(&quot;字符串参数&quot;,/*移除*/,_FILE_ATTRIBUTE/*多个属性用 | 链接*/)</h3>
+
+<p>添加文件属性<br>
+参数一为文件路径<br>
+参数三可以用 | 操作符连接多个属性<br>
+成功返回新属性,失败返回null</p>
+
+<p><a id="fsys.attrib"></a></p>
+
+<h3>fsys.attrib(&quot;字符串参数&quot;,_FILE_ATTRIBUTE/*多个属性用 | 链接*/)</h3>
+
+<p>移除件属性<br>
+参数一为文件路径<br>
+参数二可以用 | 操作符连接多个属性<br>
+成功返回新属性,失败返回null</p>
+
+<p><a id="fsys.clear"></a></p>
+
+<h3>fsys.clear(&quot;路径&quot;,&quot;*.*&quot;)</h3>
+
+<p>清空目录但不删除目录自身。<br>
+可选用参数 @2 指定要删除的子文件或子目录通配符。  </p>
+
+<p>如果参数 @1 指定的不是目录，则忽略不操作</p>
+
+<p><a id="fsys.copy"></a></p>
+
+<h3>fsys.copy</h3>
+
+<p>复制文件或目录,<br>
+此函数失败返回 false 时可用 fsys.opError 获取错误代码  </p>
+
+<p>注意：包含不可见字符的错误路径可用「工具&gt;文本文件&gt;十六进制编辑器」<br>
+或 string.hex 函数查看</p>
+
+<p><a id="fsys.copy"></a></p>
+
+<h3>fsys.copy(源路径,目标路径,FOF选项,进度标题,父窗口句柄)</h3>
+
+<p>复制文件或目录,<br>
+源路径参数可以是多个路径组成的数组,其他参数可选。<br>
+如果目标路径已存在或源路径含通配符则复制到目标目录下面,<br>
+否则复制文件或目录到参数@2指定的目标路径。  </p>
+
+<p>如果目标路径的父目录可能不存在，请先用 io.createDir 创建该目录  </p>
+
+<p>FOF选项为 0 或 不指定该选项但 fsys.opFlags 为 0<br>
+则显示操作界面与错误信息</p>
+
+<p><a id="fsys.createDir"></a></p>
+
+<h3>fsys.createDir(&quot;目录路径&quot;,是否清空重建)</h3>
+
+<p>创建目录并返回创建成功的完整文件路径<br>
+可创建多层目录,参数二可选</p>
+
+<p><a id="fsys.createParentDir"></a></p>
+
+<h3>fsys.createParentDir(&quot;字符串参数&quot;)</h3>
+
+<p>创建指定路径的父目录.</p>
+
+<p><a id="fsys.delete"></a></p>
+
+<h3>fsys.delete</h3>
+
+<p>删除文件或目录,成功返回 true,<br>
+删除含畸形路径的目录请改用 fsys.remove 函数。<br>
+此函数失败返回 false 时可用 fsys.opError 获取错误代码</p>
+
+<p><a id="fsys.delete"></a></p>
+
+<h3>fsys.delete(&quot;路径&quot;,FOF选项,进度标题,父窗口句柄)</h3>
+
+<p>删除文件或目录,成功返回 true,<br>
+路径参数可以是多个路径组成的数组,其他参数可选<br>
+支持非空目录,文件名支持通配符  </p>
+
+<p>FOF选项为 0 或 不指定该选项但 fsys.opFlags 为 0<br>
+则显示操作界面与错误信息</p>
+
+<p><a id="fsys.deleteEx"></a></p>
+
+<h3>fsys.deleteEx</h3>
+
+<p>删除文件或目录,成功返回true,<br>
+此函数失败返回 false 时可用 fsys.opError 获取错误代码</p>
+
+<p><a id="fsys.deleteEx"></a></p>
+
+<h3>fsys.deleteEx(&quot;路径&quot;,FOF选项,进度标题,父窗口句柄)</h3>
+
+<p>删除文件或目录,成功返回true,<br>
+路径参数只能是字符串,其他参数可选<br>
+如果删除失败,则在下次系统重启时删除文件,<br>
+重启删除目录之前必须先清空目录,<br>
+重启删除文件的顺序与调用时的顺序相同</p>
+
+<p><a id="fsys.enum"></a></p>
+
+<h3>fsys.enum(目录路径,通配符,,目录回调函数)</h3>
+
+<pre><code class="aardio language-aardio">fsys.enum( &quot;/遍历目录路径&quot;, &quot;*.*&quot;,,  
+    function(dirPath,dirName){  
+        /*处理每个子目录前首先调用此函数,返回false跳过该目录*/  
+        return false;  
+    }   
+);
+</code></pre>
+
+<p><a id="fsys.enum"></a></p>
+
+<h3>fsys.enum(目录路径,通配符,回调函数,是否处理子目录)</h3>
+
+<pre><code class="aardio language-aardio">fsys.enum( &quot;/遍历目录路径&quot;, &quot;*.*&quot;,  
+    function(dir,filename,fullpath,findData){   
+        if(filename){   
+            io.print(&quot;发现文件：&quot;+filename,&quot;完整路径：&quot;+fullpath,&quot;当前目录完整路径&quot;+dir)  
+            /*可使用 return false 退出枚举文件过程*/  
+        }  
+        else{  
+            io.print( &quot;发现目录，目录名称（非完整路径）：&quot; + dir )  
+        }  
+    }   
+    ,/*如果此参数为false则忽略子目录*/  
+);
+</code></pre>
+
+<p><a id="fsys.enum"></a></p>
+
+<h3>fsys.enum(目录路径,通配符,回调函数,目录筛选函数)</h3>
+
+<pre><code class="aardio language-aardio">fsys.enum( &quot;/遍历目录路径&quot;, &quot;*.*&quot;,  
+    function(dir,filename,fullpath,findData){   
+        if(filename){   
+            io.print(&quot;发现文件：&quot;+filename,&quot;完整路径：&quot;+fullpath)/*可使用 return false退出枚举文件过程*/  
+        }  
+        else{  
+            io.print( &quot;发现目录：&quot; + dir )  
+        }  
+    },  
+    function(dirPath,dirName){  
+        /*处理每个子目录前首先调用此函数,返回false跳过该目录*/  
+        return true;  
+    }   
+);
+</code></pre>
+
+<p><a id="fsys.formatSize"></a></p>
+
+<h3>fsys.formatSize</h3>
+
+<p>该函数参数支持math.size64支持的所有参数类型</p>
+
+<p><a id="fsys.formatSize"></a></p>
+
+<h3>fsys.formatSize(字节长度)</h3>
+
+<p>转换字节长度到适合的最大单位表示的文本,<br>
+单位使用 bytes,KB,MB,GB等</p>
+
+<p><a id="fsys.formatSize"></a></p>
+
+<h3>fsys.formatSize(字节长度低位,字节长度高位)</h3>
+
+<p>转换字节长度到适合的最大单位( bytes,KB,MB,GB等 )<br>
+低位用于表示4GB以下的长度,高位以4GB为最小单位表示长度</p>
+
+<p><a id="fsys.fromFileTime"></a></p>
+
+<h3>fsys.fromFileTime</h3>
+
+<p><a href="../time/_.html#timeObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/time/_.html#timeObject">返回对象:timeObject</a></p>
+
+<p><a id="fsys.fromFileTime"></a></p>
+
+<h3>fsys.fromFileTime(FILETIME结构体)</h3>
+
+<p>将::FILETIME结构体转换为time对象</p>
+
+<p><a id="fsys.getCurDir"></a></p>
+
+<h3>fsys.getCurDir()</h3>
+
+<p>获取当前目录。  </p>
+
+<p>当前目录易被改动，导致相对路径（例如 &quot;./res/&quot;）位置变化。<br>
+路径首字符用单个斜杠或反斜杆表示「应用程序根目录」的写法更可靠，<br>
+例如：（例如 &quot;/res/&quot;）。<br>
+很多组件（例如文件对话框）都可能会悄悄改变当前目录</p>
+
+<p><a id="fsys.getDrive"></a></p>
+
+<h3>fsys.getDrive()</h3>
+
+<p>返回应用程序所在分区,以冒号结束</p>
+
+<p><a id="fsys.getExtensionName"></a></p>
+
+<h3>fsys.getExtensionName(&quot;字符串参数&quot;)</h3>
+
+<p>返回文件后缀名,转换为小写.<br>
+无后缀名则返回null空值</p>
+
+<p><a id="fsys.getFileName"></a></p>
+
+<h3>fsys.getFileName(文件路径)</h3>
+
+<p>返回路径的所指向的文件名(或目录名称)</p>
+
+<p><a id="fsys.getParentDir"></a></p>
+
+<h3>fsys.getParentDir(&quot;字符串参数&quot;)</h3>
+
+<p>返回指定路径的父目录</p>
+
+<p><a id="fsys.getSpecial"></a></p>
+
+<h3>fsys.getSpecial(_CSIDL)</h3>
+
+<p>获取特殊文件夹。<br>
+参数 @1 使用_CSIDL开头的常量指定特殊文件夹的 CSIDL 标识,<br>
+省略参数 @1 则默认值获取桌面目录。<br>
+可选参数 @2 指定是否将 PIDL 转换为路径返回,也可以是一个用于拼接的相对路径<br>
+参数@2指定为false,则返回原始 PIDL 句柄。<br>
+可选使用参数 @3 指定访问令牌，用于修改用户目录。  </p>
+
+<p>io.getSpecial 函数的功能与此函数相同，<br>
+但 io.getSpecial 可指定多个用于拼接的文件路径参数，并且不能返回 PIDL。  </p>
+
+<p>fsys.knownFolder 可用于获取更多已知的特殊文件夹</p>
+
+<p><a id="fsys.getSpecialDefault"></a></p>
+
+<h3>fsys.getSpecialDefault(_CSIDL)</h3>
+
+<p>获取默认用户的特殊文件夹,<br>
+参数@1使用_CSIDL开头的常量指定特殊文件夹的 CSIDL 标识,<br>
+参数用法同getSpecial,不同的是访问令牌默认指定为 default 用户,<br>
+注意 VISTA 以后的系统在此目录下创建文件或目录需要管理权限</p>
+
+<p><a id="fsys.getSysDir"></a></p>
+
+<h3>fsys.getSysDir()</h3>
+
+<p>返回系统目录<br>
+可选在参数中指定子路径并返回完整路径</p>
+
+<p><a id="fsys.getTempDir"></a></p>
+
+<h3>fsys.getTempDir()</h3>
+
+<p>返回临时目录,<br>
+注意拼接目录与子路径应当使用 io.joinpath 函数<br>
+获取临时文件路径应当改用 io.tmpname 函数</p>
+
+<p><a id="fsys.getWinDir"></a></p>
+
+<h3>fsys.getWinDir()</h3>
+
+<p>返回windows目录<br>
+可选在参数中指定子路径并返回完整路径</p>
+
+<p><a id="fsys.gmatch"></a></p>
+
+<h3>fsys.gmatch(文件路径,查找串)</h3>
+
+<pre><code class="aardio language-aardio">for m in fsys.gmatch( ,&quot;./*指定模式串,  
+用于在参数@1指定的文件中循环全局搜索符合条件的字符串,  
+有几个匹配分组迭代器返回几个值,  
+注意表达式不能以^开始*/&quot;) {   
+
+}
+</code></pre>
+
+<p><a id="fsys.idListFromPath"></a></p>
+
+<h3>fsys.idListFromPath(路径)</h3>
+
+<p>路径转换为名称ID(PIDL)\路径必须存在</p>
+
+<p><a id="fsys.isDir"></a></p>
+
+<h3>fsys.isDir(&quot;字符串参数&quot;)</h3>
+
+<p>参数 @1 指定的文件路径是否指向一个目录。<br>
+调用 fsys.attrib 函数检查目标路径是否具有 _FILE_ATTRIBUTE_DIRECTORY 属性<br>
+参数为空字符串或 null 返回 false  </p>
+
+<p>包含不可见字符的错误路径可用「工具&gt;文本文件&gt;十六进制编辑器」<br>
+或 string.hex 函数查看</p>
+
+<p><a id="fsys.isFile"></a></p>
+
+<h3>fsys.isFile(&quot;字符串参数&quot;)</h3>
+
+<p>参数 @1 指定的文件路径是否指向一个文件。<br>
+调用 fsys.attrib 函数检查目标路径是否存在且不具有 _FILE_ATTRIBUTE_DIRECTORY 属性<br>
+参数为空字符串或 null 返回 false  </p>
+
+<p>包含不可见字符的错误路径可用「工具&gt;文本文件&gt;十六进制编辑器」<br>
+或 string.hex 函数查看</p>
+
+<p><a id="fsys.isHidden"></a></p>
+
+<h3>fsys.isHidden(&quot;字符串参数&quot;)</h3>
+
+<p>是否隐藏文件<br>
+调用attrib检查文件是否具有_FILE_ATTRIBUTE_HIDDEN属性<br>
+注意:WIN10 新版存在设为隐藏文件后变只读的问题</p>
+
+<p><a id="fsys.isReadonly"></a></p>
+
+<h3>fsys.isReadonly(&quot;字符串参数&quot;)</h3>
+
+<p>文件是否只读<br>
+调用attrib检查文件是否具有_FILE_ATTRIBUTE_READONLY属性</p>
+
+<p><a id="fsys.isSystem"></a></p>
+
+<h3>fsys.isSystem(&quot;字符串参数&quot;)</h3>
+
+<p>是否系统文件<br>
+调用attrib检查文件是否具有_FILE_ATTRIBUTE_SYSTEM属性</p>
+
+<p><a id="fsys.joinpath"></a></p>
+
+<h3>fsys.joinpath(&quot;根目录&quot;,不定个数子路径)</h3>
+
+<p>注意根目录不可以圆点字符开始<br>
+可追加任意个子路径参数,如果子路径是绝对路径则返回子路径<br>
+拼接时可以使用空参数,但不可全部参数为空</p>
+
+<p><a id="fsys.list"></a></p>
+
+<h3>fsys.list(&quot;目录路径&quot;,&quot;模式匹配&quot;,&quot;通配符&quot;)</h3>
+
+<p>搜索当前目录下的文件，不搜索子目录下的文件,<br>
+返回匹配条件的文件名数组、子目录数组、全部子目录数组（无论是否匹配）。<br>
+注意有 3 个返回值,数组中使用文件名为键存放对应完整路径的值。<br>
+除参数@1以外其他参数可选，<br>
+参数@2使用模式匹配语法匹配文件名，模式匹配会成为第三个返回值的匹配条件,<br>
+通配符默认值是&quot;*.*&quot;,也可以传入包含多个通配符的数组,通配符对第三个返回值无效</p>
+
+<p><a id="fsys.longpath"></a></p>
+
+<h3>fsys.longpath(路径)</h3>
+
+<p>转换为完整路径,并将短文件名转换为长文件名</p>
+
+<p><a id="fsys.move"></a></p>
+
+<h3>fsys.move</h3>
+
+<p>移动文件或目录。<br>
+此函数失败返回 false 时可用 fsys.opError 获取错误代码</p>
+
+<p><a id="fsys.move"></a></p>
+
+<h3>fsys.move(源路径,目标路径,FOF选项,进度标题,父窗口句柄)</h3>
+
+<p>移动文件或目录,<br>
+源路径参数可以是多个路径组成的数组,其他参数可选。<br>
+如果目标路径已存在或源路径含通配符则移动到目标目录下面,<br>
+否则复制文件或目录到参数@2指定的目标路径。  </p>
+
+<p>如果目标路径的父目录可能不存在，请先用 io.createDir 创建该目录  </p>
+
+<p>FOF选项为 0 或 不指定该选项但 fsys.opFlags 为 0<br>
+则显示操作界面与错误信息</p>
+
+<p><a id="fsys.opError"></a></p>
+
+<h3>fsys.opError</h3>
+
+<p>fsys 库函数 copy,move,delete,deleteEx,rename<br>
+最后一次执行的错误代码，操作成功为 0。<br>
+这个值也是系统函数 SHFileOperationW 返回的错误代码，仅供调试时参考。<br>
+此错误代码可作为 lasterr 函数的参数获取错误信息，但并不完全准确。<br>
+请参考： <a href="javascript:if(confirm('https://docs.microsoft.com/en-us/windows/win32/api/shellapi/nf-shellapi-shfileoperationw  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='https://docs.microsoft.com/en-us/windows/win32/api/shellapi/nf-shellapi-shfileoperationw'" tppabs="https://docs.microsoft.com/en-us/windows/win32/api/shellapi/nf-shellapi-shfileoperationw">https://docs.microsoft.com/en-us/windows/win32/api/shellapi/nf-shellapi-shfileoperationw</a>   </p>
+
+<p>包含不可见字符的错误路径可用「工具&gt;文本文件&gt;十六进制编辑器」<br>
+或 string.hex 函数查看</p>
+
+<p><a id="fsys.opFlags"></a></p>
+
+<h3>fsys.opFlags</h3>
+
+<p>fsys 库函数 copy,move,delete,deleteEx,rename<br>
+未指定 flags 参数时使用的默认值，默认为 0x614/*_FOF_NO_UI*/<br>
+指定此值为 0 则默认显示文件操作界面与错误信息界面  </p>
+
+<p>该选项详细说明请参考 FILEOP_FLAGS 文档<br>
+ <a href="javascript:if(confirm('https://docs.microsoft.com/en-us/windows/win32/api/shellapi/ns-shellapi-shfileopstructw  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='https://docs.microsoft.com/en-us/windows/win32/api/shellapi/ns-shellapi-shfileopstructw'" tppabs="https://docs.microsoft.com/en-us/windows/win32/api/shellapi/ns-shellapi-shfileopstructw">https://docs.microsoft.com/en-us/windows/win32/api/shellapi/ns-shellapi-shfileopstructw</a></p>
+
+<p><a id="fsys.pathFromIdList"></a></p>
+
+<h3>fsys.pathFromIdList(PIDL名称ID,是否释放PIDL)</h3>
+
+<p>名称ID(PIDL)转换为路径</p>
+
+<p><a id="fsys.rename"></a></p>
+
+<h3>fsys.rename</h3>
+
+<p>重命名文件或目录,<br>
+此函数失败返回 false 时可用 fsys.opError 获取错误代码</p>
+
+<p><a id="fsys.rename"></a></p>
+
+<h3>fsys.rename(源路径,目标路径,FOF选项)</h3>
+
+<p>重命名文件或目录,其他参数可选  </p>
+
+<p>FOF选项为 0 或 不指定该选项但 fsys.opFlags 为 0<br>
+则显示操作界面与错误信息</p>
+
+<p><a id="fsys.replace"></a></p>
+
+<h3>fsys.replace(文件路径,查找串,替换串,替换次数)</h3>
+
+<p>替换文件内容,<br>
+查找串支持模式匹配,\支持所有string.replace函数支持的替换串格式,<br>
+不指定替换次数则替换所有匹配串  </p>
+
+<p>成功返回替换次数，否则返回 null</p>
+
+<p><a id="fsys.searchFile"></a></p>
+
+<h3>fsys.searchFile</h3>
+
+<p>查找文件。</p>
+
+<p><a id="fsys.searchFile"></a></p>
+
+<h3>fsys.searchFile(文件名)</h3>
+
+<p>检查程序根目录、当前工作目录、系统目录<br>
+是否包含指定文件，找到则返回文件完整路径。<br>
+不搜寻子目录，参数 @1 支持 &quot;*&quot;,&quot;?&quot; 等通配符。</p>
+
+<p><a id="fsys.searchFile"></a></p>
+
+<h3>fsys.searchFile(文件名,目录,...)</h3>
+
+<p>检查一个或多个目录下是否包含指定文件<br>
+如果存在返回完整路径,否则返回 null。<br>
+不搜寻子目录，参数 @1 支持 &quot;*&quot;,&quot;?&quot; 等通配符。</p>
+
+<p><a id="fsys.searchFile"></a></p>
+
+<h3>fsys.searchFile(文件名,目录,true)</h3>
+
+<p>在指定目录以及其子目录下搜寻指定文件，<br>
+如果存在返回完整路径,否则返回 null。  </p>
+
+<p>内部调用 fsys.enum 查找，参数 @1 支持 &quot;*&quot;,&quot;?&quot; 等通配符</p>
+
+<p><a id="fsys.setAttributes"></a></p>
+
+<h3>fsys.setAttributes(&quot;字符串参数&quot;,_FILE_ATTRIBUTE)</h3>
+
+<p>设置文件属性</p>
+
+<p><a id="fsys.setCurDir"></a></p>
+
+<h3>fsys.setCurDir(目录)</h3>
+
+<p>设置当前目录。  </p>
+
+<p>当前目录易被改动，导致相对路径（例如 &quot;./res/&quot;）位置变化。<br>
+路径首字符用单个斜杠或反斜杆表示「应用程序根目录」的写法更可靠，<br>
+例如：（例如 &quot;/res/&quot;）。<br>
+很多组件（例如文件对话框）都可能会悄悄改变当前目录</p>
+
+<p><a id="fsys.shortpath"></a></p>
+
+<h3>fsys.shortpath(路径)</h3>
+
+<p>转为符合 8.3 格式短路径。<br>
+如果文件名符合 8.3 格式且包含空格（例如目录名不超过 8 个字符），则不会去除空格。<br>
+如果文件不存在,返回空值。  </p>
+
+<p>短文件名指向会因实际文件数变更,所以不能把短路径存入数据库<br>
+且并不保证会去除空格。<br>
+创建 process 对象或调用类似函数时，<br>
+用数组或多参数指定启动参数可自动处理包含空格的路径。</p>
+
+<p><a id="global"></a></p>
+
+<h2>全局对象 成员列表</h2>
+
+<p><a id="_CSIDL_COMMON_FAVORITES"></a></p>
+
+<h3>_CSIDL_COMMON_FAVORITES</h3>
+
+<pre><code class="aardio language-aardio">0x1f
+</code></pre>
+
+<p><a id="_CSIDL_COOKIES"></a></p>
+
+<h3>_CSIDL_COOKIES</h3>
+
+<pre><code class="aardio language-aardio">0x21
+</code></pre>
+
+<p><a id="_CSIDL_HISTORY"></a></p>
+
+<h3>_CSIDL_HISTORY</h3>
+
+<pre><code class="aardio language-aardio">0x22
+</code></pre>
+
+<p><a id="_CSIDL_INTERNET_CACHE"></a></p>
+
+<h3>_CSIDL_INTERNET_CACHE</h3>
+
+<pre><code class="aardio language-aardio">0x20
+</code></pre>
+
+<p><a id="_CSIDL_TEMPLATES"></a></p>
+
+<h3>_CSIDL_TEMPLATES</h3>
+
+<pre><code class="aardio language-aardio">0x15
+</code></pre>
+
+<p><a id="findDataObject"></a></p>
+
+<h2>findDataObject 成员列表</h2>
+
+<p><a id="findDataObject.cAlternateFileName"></a></p>
+
+<h3>findDataObject.cAlternateFileName</h3>
+
+<p>8.3 格式文件名<br>
+UTF16 编码,请调用 string.fromUtf16 转换</p>
+
+<p><a id="findDataObject.cFileName"></a></p>
+
+<h3>findDataObject.cFileName</h3>
+
+<p>长文件名<br>
+UTF16编码,请调用 string.fromUtf16 转换</p>
+
+<p><a id="findDataObject.dwFileAttributes"></a></p>
+
+<h3>findDataObject.dwFileAttributes</h3>
+
+<p>以数值表示的文件属性</p>
+
+<p><a id="findDataObject.ftCreationTime"></a></p>
+
+<h3>findDataObject.ftCreationTime</h3>
+
+<p>文件创建时间<br>
+请调用 fsys.fromFileTime 转换为 time 对象</p>
+
+<p><a id="findDataObject.ftLastAccessTime"></a></p>
+
+<h3>findDataObject.ftLastAccessTime</h3>
+
+<p>文件最后一次访问时间<br>
+请调用 fsys.fromFileTime 转换为 time 对象</p>
+
+<p><a id="findDataObject.ftLastWriteTime"></a></p>
+
+<h3>findDataObject.ftLastWriteTime</h3>
+
+<p>文件最后一次修改时间<br>
+请调用 fsys.fromFileTime 转换为 time 对象</p>
+
+<p><a id="findDataObject.isDir"></a></p>
+
+<h3>findDataObject.isDir</h3>
+
+<p>是否目录，<br>
+仅在 fsys.enum 的回调参数中有效</p>
+
+<p><a id="findDataObject.nFileSizeHigh"></a></p>
+
+<h3>findDataObject.nFileSizeHigh</h3>
+
+<p>文件长度高 32 位</p>
+
+<p><a id="findDataObject.nFileSizeLow"></a></p>
+
+<h3>findDataObject.nFileSizeLow</h3>
+
+<p>件长度低 32 位</p>
+
+<h3>全局常量</h3>
+
+<p><a id="_CSIDL_COMMON_FAVORITES"></a></p>
+
+<h3>_CSIDL_COMMON_FAVORITES</h3>
+
+<pre><code class="aardio language-aardio">0x1f
+</code></pre>
+
+<p><a id="_CSIDL_COOKIES"></a></p>
+
+<h3>_CSIDL_COOKIES</h3>
+
+<pre><code class="aardio language-aardio">0x21
+</code></pre>
+
+<p><a id="_CSIDL_HISTORY"></a></p>
+
+<h3>_CSIDL_HISTORY</h3>
+
+<pre><code class="aardio language-aardio">0x22
+</code></pre>
+
+<p><a id="_CSIDL_INTERNET_CACHE"></a></p>
+
+<h3>_CSIDL_INTERNET_CACHE</h3>
+
+<pre><code class="aardio language-aardio">0x20
+</code></pre>
+
+<p><a id="_CSIDL_TEMPLATES"></a></p>
+
+<h3>_CSIDL_TEMPLATES</h3>
+
+<pre><code class="aardio language-aardio">0x15
+</code></pre>
+
+<h3>自动完成常量</h3>
+
+<p>_CSIDL_ADMINTOOLS=0x30<br>
+_CSIDL_ALTSTARTUP=0x1d<br>
+_CSIDL_APPDATA=0x1a<br>
+_CSIDL_BITBUCKET=0xa<br>
+_CSIDL_CDBURN_AREA=0x3b<br>
+_CSIDL_COMMON_ADMINTOOLS=0x2f<br>
+_CSIDL_COMMON_ALTSTARTUP=0x1e<br>
+_CSIDL_COMMON_APPDATA=0x23<br>
+_CSIDL_COMMON_DESKTOPDIRECTORY=0x19<br>
+_CSIDL_COMMON_DOCUMENTS=0x2e<br>
+_CSIDL_COMMON_MUSIC=0x35<br>
+_CSIDL_COMMON_OEM_LINKS=0x3a<br>
+_CSIDL_COMMON_PICTURES=0x36<br>
+_CSIDL_COMMON_PROGRAMS=0x17<br>
+_CSIDL_COMMON_STARTMENU=0x16<br>
+_CSIDL_COMMON_STARTUP=0x18<br>
+_CSIDL_COMMON_TEMPLATES=0x2d<br>
+_CSIDL_COMMON_VIDEO=0x37<br>
+_CSIDL_COMPUTERSNEARME=0x3d<br>
+_CSIDL_CONNECTIONS=0x31<br>
+_CSIDL_CONTROLS=3<br>
+_CSIDL_DESKTOP=0<br>
+_CSIDL_DESKTOPDIRECTORY=0x10<br>
+_CSIDL_DRIVES=0x11<br>
+_CSIDL_FAVORITES=6<br>
+_CSIDL_FLAG_CREATE=0x8000<br>
+_CSIDL_FLAG_DONT_UNEXPAND=0x2000<br>
+_CSIDL_FLAG_DONT_VERIFY=0x4000<br>
+_CSIDL_FLAG_MASK=0xFF00<br>
+_CSIDL_FLAG_NO_ALIAS=0x1000<br>
+_CSIDL_FLAG_PER_USER_INIT=0x800<br>
+_CSIDL_FONTS=0x14<br>
+_CSIDL_INTERNET=1<br>
+_CSIDL_LOCAL_APPDATA=0x1c<br>
+_CSIDL_MYDOCUMENTS=0x5<br>
+_CSIDL_MYMUSIC=0xd<br>
+_CSIDL_MYPICTURES=0x27<br>
+_CSIDL_MYVIDEO=0xe<br>
+_CSIDL_NETHOOD=0x13<br>
+_CSIDL_NETWORK=0x12<br>
+_CSIDL_PERSONAL=5<br>
+_CSIDL_PRINTERS=4<br>
+_CSIDL_PRINTHOOD=0x1b<br>
+_CSIDL_PROFILE=0x28<br>
+_CSIDL_PROGRAMS=2<br>
+_CSIDL_PROGRAM_FILES=0x26<br>
+_CSIDL_PROGRAM_FILESX86=0x2a<br>
+_CSIDL_PROGRAM_FILES_COMMON=0x2b<br>
+_CSIDL_PROGRAM_FILES_COMMONX86=0x2c<br>
+_CSIDL_RECENT=0x8<br>
+_CSIDL_RESOURCES=0x38<br>
+_CSIDL_RESOURCES_LOCALIZED=0x39<br>
+_CSIDL_SENDTO=0x9<br>
+_CSIDL_STARTMENU=0xb<br>
+_CSIDL_STARTUP=7<br>
+_CSIDL_SYSTEM=0x25<br>
+_CSIDL_SYSTEMX86=0x29<br>
+_CSIDL_WINDOWS=0x24<br>
+_FOF_ALLOWUNDO=0x40<br>
+_FOF_CONFIRMMOUSE=0x2<br>
+_FOF_FILESONLY=0x80<br>
+_FOF_NOCONFIRMATION=0x10<br>
+_FOF_NOCONFIRMMKDIR=0x200<br>
+_FOF_NOCOPYSECURITYATTRIBS=0x0800<br>
+_FOF_NOERRORUI=0x0400<br>
+_FOF_NORECURSION=0x1000<br>
+_FOF_NO_UI=0x614<br>
+_FOF_RENAMEONCOLLISION=0x8<br>
+_FOF_SILENT=0x4<br>
+_FOF_SIMPLEPROGRESS=0x100<br>
+_FOF_WANTMAPPINGHANDLE=0x20<br>
+_MAX_WPATH_BYTES=0x208  </p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/fsys/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/fsys/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/fsys/_.md">Markdown 格式</a></p>
+
+</body> 
+</html>

@@ -1,0 +1,82 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - aardio 调用 Python 创建 JSON RPC 服务端'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - aardio 调用 Python 创建 JSON RPC 服务端</title> 
+<link rel="stylesheet" href="../../../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 调用 Python 创建 JSON RPC 服务端</h1><pre><code class="aardio language-aardio">//aardio 调用 Python 创建 JSON RPC 服务端
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;JSON-RPC&quot;;right=759;bottom=469)
+winform.add(
+edit={cls=&quot;edit&quot;;left=13;top=18;right=734;bottom=444;edge=1;multiline=1;z=1}
+)
+/*}}*/
+
+import wsock;
+winform.freePort = wsock.getFreePort();
+
+/*
+启动 JSON-RPC 服务端线程( Python )
+一个线程跑 Python，别的线程就不要跑 Python。 
+Pyhton 多线程操作不慎会崩溃，而且也不能算是真的多线程，所以请避开这个坑。 
+*/
+thread.invoke( 
+    function(winform){
+        import py3;
+        import py3.lib.jsonrpclib;
+
+        //设置 Python 全局变量
+        py3.main.freePort = py3.int(winform.freePort);
+
+        var pyCode = /**
+from jsonrpclib.SimpleJSONRPCServer import SimpleJSONRPCServer
+
+# 指定 logRequests=False 就不用打开控制台，不然没有控制台会直接退出
+server = SimpleJSONRPCServer((&#39;localhost&#39;, freePort),logRequests=False)
+server.register_function(pow)
+server.register_function(lambda x,y: x+y, &#39;add&#39;)
+server.register_function(lambda x: x, &#39;ping&#39;)
+server.serve_forever()
+        **/
+
+        py3.exec(pyCode); 
+
+    },winform
+)
+
+//启动 JSON-RPC 客户端线程( aardio )
+thread.invoke( 
+    function(winform){
+        thread.delay(1000);
+
+        import web.rpc.jsonClient;
+
+        //创建JSON-RPC 2.0客户端
+        var client = web.rpc.jsonClient(&quot;http://127.0.0.1:&quot; + winform.freePort)
+
+        //调用远程对象和函数 aardio.$hello
+        var rep = client.add(12,3); 
+
+        winform.edit.print( &quot;返回值：&quot;, rep.result );
+
+        winform.edit.print( client.rpc.lastResponse() );
+    },winform
+)
+
+winform.show();
+win.loopMessage();
+
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/Python/Python 3.x/JSON-RPC/http-server.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/Python/Python 3.x/JSON-RPC/http-server.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Languages/Python/Python 3.x/JSON-RPC/http-server.md">Markdown 格式</a>
+</body> 
+</html>

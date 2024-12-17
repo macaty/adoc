@@ -1,0 +1,72 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - JSON-RPC( HTTP )'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - JSON-RPC( HTTP )</title> 
+<link rel="stylesheet" href="../../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: JSON-RPC( HTTP )</h1><pre><code class="aardio language-aardio">//JSON-RPC( HTTP )
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;JSON-RPC&quot;;right=759;bottom=469)
+winform.add(
+edit={cls=&quot;edit&quot;;left=13;top=18;right=734;bottom=444;edge=1;multiline=1;z=1}
+)
+/*}}*/
+
+//开发环境安装模块
+if(_STUDIO_INVOKED){
+    import process.python.pip;
+    process.python.pip.require(&quot;jsonrpclib&quot;)    
+}
+
+//获取空闲端口
+import wsock;
+winform.rpcServerPort = wsock.getFreePort();
+
+import process.python;  
+process.python.exec(`
+from jsonrpclib.SimpleJSONRPCServer import SimpleJSONRPCServer
+
+# 指定 logRequests=False 就不用打开控制台，不然没有控制台会直接退出
+server = SimpleJSONRPCServer((&#39;localhost&#39;, `+winform.rpcServerPort+`),logRequests=False)
+server.register_function(pow)
+server.register_function(lambda x,y: x+y, &#39;add&#39;)
+server.register_function(lambda x: x, &#39;ping&#39;)
+server.serve_forever()
+`); 
+
+//启动 JSON-RPC 客户端线程( aardio )
+thread.invoke( 
+    function(winform){
+        thread.delay(1000);
+
+        import web.rpc.jsonClient;
+
+        //创建JSON-RPC 2.0客户端
+        var client = web.rpc.jsonClient(&quot;http://127.0.0.1:&quot; + winform.rpcServerPort)
+
+        //调用远程对象和函数 aardio.$hello
+        var rep = client.add(12,3); 
+
+        winform.edit.print( &quot;返回值：&quot;, rep[[&quot;result&quot;]] );
+
+        winform.edit.print( client.rpc.lastResponse() );
+    },winform
+)
+
+winform.show();
+win.loopMessage();
+
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/Python/Python AnyVersion/jsonrpc-http.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/Python/Python AnyVersion/jsonrpc-http.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Languages/Python/Python AnyVersion/jsonrpc-http.md">Markdown 格式</a>
+</body> 
+</html>

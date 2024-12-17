@@ -1,0 +1,104 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - fiber 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - fiber 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>fiber 库模块帮助文档</h1>
+
+<p><a id="fiber"></a></p>
+
+<h2>fiber 成员列表</h2>
+
+<p><a id="fiber.create"></a></p>
+
+<h3>fiber.create(函数对象,应用程序根目录)</h3>
+
+<p>创建纤程<br>
+调用 fiber.resume 函数启动纤程,<br>
+参数2为可选参数,应用程序根目录只能设置为硬盘上实际存在的目录,<br>
+改变应用程序根目录,会同时改变用户库目录</p>
+
+<p><a id="fiber.current"></a></p>
+
+<h3>fiber.current()</h3>
+
+<p>返回当前正在运行的纤程<br>
+非纤程内调用则返回null</p>
+
+<p><a id="fiber.generator"></a></p>
+
+<h3>fiber.generator( 生成器,... )</h3>
+
+<pre><code class="aardio language-aardio">for v in fiber.generator(/*使用纤程创建迭代器。  
+参数 @1 指定纤程函数，可添加任意个纤程启动参数。  
+纤程函数内使用 fiber.yield 返回迭代值。*/,) {  
+
+}
+</code></pre>
+
+<p><a id="fiber.resume"></a></p>
+
+<h3>fiber.resume(纤程函数,启动参数...)</h3>
+
+<p>继续运行纤程。<br>
+除参数@1以外的其他参数为首次启动纤程函数的调用参数。  </p>
+
+<p>成功运行纤程则返回 true 以及纤程内调用 fiber.yield 函数时传入的参数。<br>
+错误则返回 false 以及错误信息.</p>
+
+<p><a id="fiber.status"></a></p>
+
+<h3>fiber.status(纤程)</h3>
+
+<p>获取纤程状态</p>
+
+<p><a id="fiber.yield"></a></p>
+
+<h3>fiber.yield(一个或多个返回值)</h3>
+
+<p>暂停纤程,<br>
+此函数传入参数将会作为fiber.resume()的返回值。<br>
+下次调用fiber.resume()的参数即为本次调用的返回值。</p>
+
+<p><a id="fiber.status"></a></p>
+
+<h2>fiber.status 成员列表</h2>
+
+<p><a id="fiber.status.current"></a></p>
+
+<h3>fiber.status.current</h3>
+
+<p>当前正在运行的纤程</p>
+
+<p><a id="fiber.status.dead"></a></p>
+
+<h3>fiber.status.dead</h3>
+
+<p>纤程已完成或已出错</p>
+
+<p><a id="fiber.status.running"></a></p>
+
+<h3>fiber.status.running</h3>
+
+<p>正在调用其他纤程</p>
+
+<p><a id="fiber.status.suspended"></a></p>
+
+<h3>fiber.status.suspended</h3>
+
+<p>等待中</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/fiber/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/fiber/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/fiber/_.md">Markdown 格式</a></p>
+
+</body> 
+</html>

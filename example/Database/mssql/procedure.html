@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - sqlServer 库 -  MSSQL 存储过程'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - sqlServer 库 -  MSSQL 存储过程</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: sqlServer 库 -  MSSQL 存储过程</h1><pre><code class="aardio language-aardio">//sqlServer 库 -  MSSQL 存储过程
+
+import console;
+import sqlServer;
+
+//打开数据库
+var db = sqlServer( 
+    [&quot;Data Source&quot;]= &quot;IP地址,服务端口&quot;;
+    [&quot;Database&quot;]= &quot;数据库名&quot;;
+    [&quot;User ID&quot;]  = &quot;用户名&quot;;
+    [&quot;Password&quot;]= &quot;用户密码&quot;; 
+)
+
+//创建存储过程
+if( ! db.existsProcedure(&quot;proc_aardio_test2&quot;) ){
+    db.exec(&quot;
+    CREATE PROC proc_aardio_test( @a INT OUTPUT,@b INT )    
+    AS
+    begin
+        SET @a=123
+        SELECT @a
+        SELECT @a + @b
+    end
+    &quot;);    
+}
+
+//创建命令参数对象,用于执行存储过程
+var cmd = db.createCommand( &quot;proc_aardio_test2&quot; ); 
+
+//绑定存储过程参数
+cmd.bind(
+    a = 2;
+    b = 3;
+)
+
+//执行并显示结果
+console.dump(cmd.stepQuery() )
+
+console.dump(&quot;输出参数a的值&quot;,cmd.parameters(&quot;@a&quot;).value)
+
+/*
+//多结果集查询示例
+var rs = cmd.executeRecords();
+var data = rs.stepQuery() 
+
+//下一个结果集
+rs = rs.nextRecordset();
+var data = rs.stepQuery()
+*/
+
+//关闭数据库连接
+db.close();
+
+console.pause();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Database/mssql/procedure.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Database/mssql/procedure.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Database/mssql/procedure.md">Markdown 格式</a>
+</body> 
+</html>

@@ -1,0 +1,72 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 字符串生成器'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 字符串生成器</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 字符串生成器</h1><pre><code class="aardio language-aardio">//字符串生成器
+import console; 
+import string.builder;
+
+//创建字符串生成器（内部基于动态指针）
+var bs = string.builder() //可右键点 string.builder，然后点「跳转到定义」
+
+//设置初始值
+bs.assign(&quot;  初始值&quot;)
+
+for(i=1;100;1){
+    bs.append( tostring(i) );//追加字符串
+    bs.appendf( &quot;%d&quot;,i );
+}
+
+//清除两侧空格
+bs.trim()
+
+//字符串操作函数
+console.log(&quot;右侧取3个字符&quot; ,bs.rightString(3) );
+
+//转换为字符串
+console.log(&quot;转换为字符串&quot; ,tostring(bs) );
+
+console.log(&quot;预分配内存大小&quot;,bs.capacity())
+
+console.log(&quot;实际存储内容大小&quot;,bs.size())
+
+//重新调整字符串长度
+bs.resize(10)
+
+//释放多余的内存
+bs.reserve(0);
+
+//bs对象在不使用时可自动释放，但也可以主动调用free()函数尽量释放不用的内存
+bs.free(); //在重新分配内存之前就不能再读写该内存了
+
+if( ! bs.capacity() ){
+    //但是重新分配内存又可以用了
+    bs.reserve(100);
+}
+
+bs += &quot;重新分配内存又可以用了&quot;;
+
+console.log(bs)
+
+console.log( bs.str() )
+
+//可如下与结构体连接
+bs += {BYTE x[] =&#39;dbcd\0&#39;}
+console.log( bs.toUtf16() )
+
+console.pause(true);
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/aardio/Raw/string.builder.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/aardio/Raw/string.builder.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/aardio/Raw/string.builder.md">Markdown 格式</a>
+</body> 
+</html>

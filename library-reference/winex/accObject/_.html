@@ -1,0 +1,322 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - winex.accObject 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - winex.accObject 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>winex.accObject 库模块帮助文档</h1>
+
+<p><a id="winex.accObject"></a></p>
+
+<h2>winex.accObject 成员列表</h2>
+
+<p>Microsoft Active Accessibility 自动化接口<br>
+<a href="javascript:if(confirm('https://docs.microsoft.com/en-us/windows/win32/api/oleacc/nn-oleacc-iaccessible  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='https://docs.microsoft.com/en-us/windows/win32/api/oleacc/nn-oleacc-iaccessible'" tppabs="https://docs.microsoft.com/en-us/windows/win32/api/oleacc/nn-oleacc-iaccessible">微软接口文档</a><br>
+<a href="javascript:if(confirm('http://download.aardio.com/v10.files/tool/Inspect.7z  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://download.aardio.com/v10.files/tool/Inspect.7z'" tppabs="http://download.aardio.com/v10.files/tool/Inspect.7z">ACC对象浏览工具</a></p>
+
+<p><a id="winex.accObject.focus"></a></p>
+
+<h3>winex.accObject.focus()</h3>
+
+<p>返回前台窗口输入焦点元素  </p>
+
+<p><a href="#winexAccObject">返回对象:winexAccObject</a></p>
+
+<p><a id="winex.accObject.fromPoint"></a></p>
+
+<h3>winex.accObject.fromPoint()</h3>
+
+<p><a href="#winexAccObject">返回对象:winexAccObject</a></p>
+
+<p><a id="winex.accObject.fromPoint"></a></p>
+
+<h3>winex.accObject.fromPoint(x,y)</h3>
+
+<p>自屏幕坐标返回AccessibleObject</p>
+
+<p><a id="winex.accObject.fromWindow"></a></p>
+
+<h3>winex.accObject.fromWindow()</h3>
+
+<p><a href="#winexAccObject">返回对象:winexAccObject</a></p>
+
+<p><a id="winex.accObject.fromWindow"></a></p>
+
+<h3>winex.accObject.fromWindow(hwnd,iid)</h3>
+
+<p>自hwnd窗口句柄返回AccessibleObject,<br>
+省略hwnd参数时取前台窗口句柄,<br>
+iid参数可省略</p>
+
+<p><a id="winex.accObject.getCaret"></a></p>
+
+<h3>winex.accObject.getCaret(可选指定窗口句柄)</h3>
+
+<p>获取指定参数@1指定句柄的窗口光标区块位置，<br>
+不指定参数获取前台窗口光标区块位置。<br>
+成功返回 ::RECT 结构体（添加 hwnd 成员记录光标所在窗口句柄），<br>
+失败返回 null，此函数不会抛出异常。  </p>
+
+<p>不是所有窗口都支持，<br>
+建议 winex.getCaret 函数获取光标位置失败再调用此函数</p>
+
+<p><a id="winex.accObject.version"></a></p>
+
+<h3>winex.accObject.version()</h3>
+
+<p>返回MSAA组件版本</p>
+
+<p><a id="accObject"></a></p>
+
+<h2>accObject 成员列表</h2>
+
+<p><a href="#winexAccObject">返回对象:winexAccObject</a></p>
+
+<p><a id="winexAccObject"></a></p>
+
+<h2>winexAccObject 成员列表</h2>
+
+<p><a id="winexAccObject.addSelection"></a></p>
+
+<h3>winexAccObject.addSelection()</h3>
+
+<p>添加到选区，成功返回true</p>
+
+<p><a id="winexAccObject.childCount"></a></p>
+
+<h3>winexAccObject.childCount()</h3>
+
+<p>子元素总数</p>
+
+<p><a id="winexAccObject.defaultAction"></a></p>
+
+<h3>winexAccObject.defaultAction()</h3>
+
+<p>返回描述默认元素的文本</p>
+
+<p><a id="winexAccObject.doDefaultAction"></a></p>
+
+<h3>winexAccObject.doDefaultAction()</h3>
+
+<p>执行默认操作</p>
+
+<p><a id="winexAccObject.each"></a></p>
+
+<h3>winexAccObject.each()</h3>
+
+<p><a href="#winexAccObject">返回对象:winexAccObject</a></p>
+
+<p><a id="winexAccObject.each"></a></p>
+
+<h3>winexAccObject.each(options)</h3>
+
+<pre><code class="aardio language-aardio">for accChild in winexAccObject.each(){  
+    /*遍历所有子级元素，  
+调用参数 @options 用法与 winex.accObject.find 参数@1 相同，  
+返回 accChild 为当前元素*/  
+}
+</code></pre>
+
+<p><a id="winexAccObject.enum"></a></p>
+
+<h3>winexAccObject.enum(pro,options)</h3>
+
+<pre><code class="aardio language-aardio">winexAccObject.enum(  
+    function(accChild,accParent){  
+        /*枚举所有下级元素，  
+调用参数 @options 用法与 winex.accObject.find 参数@1 相同，  
+accChild为当前元素，  
+accParent为当前元素的父元素*/  
+    }  
+)
+</code></pre>
+
+<p><a id="winexAccObject.extendSelection"></a></p>
+
+<h3>winexAccObject.extendSelection()</h3>
+
+<p>扩展到选区，成功返回true</p>
+
+<p><a id="winexAccObject.find"></a></p>
+
+<h3>winexAccObject.find()</h3>
+
+<p><a href="#winexAccObject">返回对象:winexAccObject</a></p>
+
+<p><a id="winexAccObject.find"></a></p>
+
+<h3>winexAccObject.find(options)</h3>
+
+<pre><code class="aardio language-aardio">winexAccObject.find(  
+    name = &quot;&quot;;  
+    role = &quot;/*可指定一个或多个条件属性值以查找拥有这些属性的元素，  
+值为文本时支持模式匹配表达式。  
+role,state 属性值可以为数值，也可以指定文本值。  
+number 指定要返回第几个匹配查找条件的元素*/&quot;;  
+    type = &quot;&quot;;  
+    state = &quot;&quot;;  
+    value = &quot;&quot;;  
+    shortcut = &quot;&quot;;  
+    number = 1;  
+)
+</code></pre>
+
+<p><a id="winexAccObject.focus"></a></p>
+
+<h3>winexAccObject.focus()</h3>
+
+<p>返回输入焦点元素，仅在子级查找。  </p>
+
+<p><a href="#winexAccObject">返回对象:winexAccObject</a></p>
+
+<p><a id="winexAccObject.focusElement"></a></p>
+
+<h3>winexAccObject.focusElement()</h3>
+
+<p>返回输入焦点元素  </p>
+
+<p><a href="#winexAccObject">返回对象:winexAccObject</a></p>
+
+<p><a id="winexAccObject.hitTest"></a></p>
+
+<h3>winexAccObject.hitTest()</h3>
+
+<p><a href="#winexAccObject">返回对象:winexAccObject</a></p>
+
+<p><a id="winexAccObject.hitTest"></a></p>
+
+<h3>winexAccObject.hitTest(x,y)</h3>
+
+<p>自屏幕坐标查找子元素</p>
+
+<p><a id="winexAccObject.hwnd"></a></p>
+
+<h3>winexAccObject.hwnd()</h3>
+
+<p>返回对象所在的窗口句柄</p>
+
+<p><a id="winexAccObject.keyboardShortcut"></a></p>
+
+<h3>winexAccObject.keyboardShortcut()</h3>
+
+<p>返回文本用于描述元素的快捷键</p>
+
+<p><a id="winexAccObject.location"></a></p>
+
+<h3>winexAccObject.location()</h3>
+
+<p>返回4个值x,y,cx,cy，用于描述元素的屏幕位置，<br>
+x为横坐标，y为纵坐标，cx为宽，cy为高。</p>
+
+<p><a id="winexAccObject.name"></a></p>
+
+<h3>winexAccObject.name()</h3>
+
+<p>元素的名字</p>
+
+<p><a id="winexAccObject.parent"></a></p>
+
+<h3>winexAccObject.parent()</h3>
+
+<p>返回父元素  </p>
+
+<p><a href="#winexAccObject">返回对象:winexAccObject</a></p>
+
+<p><a id="winexAccObject.release"></a></p>
+
+<h3>winexAccObject.release()</h3>
+
+<p>释放对象，<br>
+释放对象后，通过该对象获取的子节点不能再使用</p>
+
+<p><a id="winexAccObject.removeSelection"></a></p>
+
+<h3>winexAccObject.removeSelection()</h3>
+
+<p>自选区移除，成功返回true</p>
+
+<p><a id="winexAccObject.role"></a></p>
+
+<h3>winexAccObject.role()</h3>
+
+<p>返回表示角色的数值</p>
+
+<p><a id="winexAccObject.roleText"></a></p>
+
+<h3>winexAccObject.roleText()</h3>
+
+<p>返回表示角色的文本</p>
+
+<p><a id="winexAccObject.selection"></a></p>
+
+<h3>winexAccObject.selection()</h3>
+
+<p>返回包含选区元素数组  </p>
+
+<p><a href="#winexAccObject">返回对象:winexAccObject</a></p>
+
+<p><a id="winexAccObject.setName"></a></p>
+
+<h3>winexAccObject.setName(_)</h3>
+
+<p>设置元素的名字,<br>
+参数指定文本，成功返回true，<br>
+注意有些控件没有实现这个接口时会返回null</p>
+
+<p><a id="winexAccObject.setValue"></a></p>
+
+<h3>winexAccObject.setValue()</h3>
+
+<p>设置文本值,<br>
+参数指定文本，成功返回true，<br>
+注意有些控件没有实现这个接口时会返回null</p>
+
+<p><a id="winexAccObject.state"></a></p>
+
+<h3>winexAccObject.state()</h3>
+
+<p>返回表示状态的数值</p>
+
+<p><a id="winexAccObject.stateText"></a></p>
+
+<h3>winexAccObject.stateText()</h3>
+
+<p>返回表示状态的文本</p>
+
+<p><a id="winexAccObject.takeFocus"></a></p>
+
+<h3>winexAccObject.takeFocus()</h3>
+
+<p>设置为焦点</p>
+
+<p><a id="winexAccObject.takeSelection"></a></p>
+
+<h3>winexAccObject.takeSelection()</h3>
+
+<p>设置为选定，成功返回true</p>
+
+<p><a id="winexAccObject.type"></a></p>
+
+<h3>winexAccObject.type</h3>
+
+<p>节点类型，可包含子元素的容器元素返回&quot;object&quot;，否则返回&quot;element&quot;</p>
+
+<p><a id="winexAccObject.value"></a></p>
+
+<h3>winexAccObject.value()</h3>
+
+<p>元素的文本值</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/winex/accObject/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/winex/accObject/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/winex/accObject/_.md">Markdown 格式</a></p>
+
+</body> 
+</html>

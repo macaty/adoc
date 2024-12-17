@@ -1,0 +1,753 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - curl 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - curl 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>curl 库模块帮助文档</h1>
+
+<p><a id="curl"></a></p>
+
+<h2>curl 成员列表</h2>
+
+<p><a id="curl.easy"></a></p>
+
+<h3>curl.easy()</h3>
+
+<p>创建CURL客户端  </p>
+
+<p><a href="#curlEasyObject">返回对象:curlEasyObject</a></p>
+
+<p><a id="curl.form"></a></p>
+
+<h3>curl.form()</h3>
+
+<p>创建字符串列表,可选指定一个字符串参数  </p>
+
+<p><a href="#curlFormObject">返回对象:curlFormObject</a></p>
+
+<p><a id="curl.getDate"></a></p>
+
+<h3>curl.getDate(字符串)</h3>
+
+<p>解析字符串并返回GMT时间,<br>
+支持格式参考 <a href="javascript:if(confirm('http://curl.haxx.se/libcurl/c/curl_getdate.html  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://curl.haxx.se/libcurl/c/curl_getdate.html'" tppabs="http://curl.haxx.se/libcurl/c/curl_getdate.html">http://curl.haxx.se/libcurl/c/curl_getdate.html</a></p>
+
+<p><a id="curl.list"></a></p>
+
+<h3>curl.list()</h3>
+
+<p>创建字符串列表,可选指定一个字符串参数  </p>
+
+<p><a href="#curlListObject">返回对象:curlListObject</a></p>
+
+<p><a id="curl.multi"></a></p>
+
+<h3>curl.multi()</h3>
+
+<p>创建CURL批量任务管理器  </p>
+
+<p><a href="#curlMultiObject">返回对象:curlMultiObject</a></p>
+
+<p><a id="curl.easy"></a></p>
+
+<h2>curl.easy 成员列表</h2>
+
+<p><a id="curl.easy.strerr"></a></p>
+
+<h3>curl.easy.strerr()</h3>
+
+<p>根据错误代码返回错误信息<br>
+所有curl扩展库的函数如果未加特别说明，<br>
+出错时默认都是第一个返回值为null，第二个返回值为错误代码</p>
+
+<p><a id="curl.multi"></a></p>
+
+<h2>curl.multi 成员列表</h2>
+
+<p><a id="curl.multi.strerr"></a></p>
+
+<h3>curl.multi.strerr()</h3>
+
+<p>根据错误代码返回错误信息<br>
+所有curl扩展库的函数如果未加特别说明，<br>
+出错时默认都是第一个返回值为null，第二个返回值为错误代码</p>
+
+<p><a id="curlEasyObject"></a></p>
+
+<h2>curlEasyObject 成员列表</h2>
+
+<p><a id="curlEasyObject.close"></a></p>
+
+<h3>curlEasyObject.close()</h3>
+
+<p>关闭对象</p>
+
+<p><a id="curlEasyObject.exec"></a></p>
+
+<h3>curlEasyObject.exec()</h3>
+
+<p>执行请求</p>
+
+<p><a id="curlEasyObject.get"></a></p>
+
+<h3>curlEasyObject.get(url,http头,引用网址,MIME)</h3>
+
+<p>GET方法下载网页<br>
+除URL外,其他为可选参数<br>
+出错返回值为:null,错误代码<br>
+成功返回字符串对象.</p>
+
+<p><a id="curlEasyObject.getInfo"></a></p>
+
+<h3>curlEasyObject.getInfo()</h3>
+
+<p>返回HTTP信息</p>
+
+<p><a href="#curlInfoObject">返回对象:curlInfoObject</a></p>
+
+<p><a id="curlEasyObject.getInfo"></a></p>
+
+<h3>curlEasyObject.getInfo(ID,结构体)</h3>
+
+<p>参数一为 <em>CURLINFO</em> 前缀的常量,<br>
+参数2必须是对应的静态结构体</p>
+
+<p><a id="curlEasyObject.onProgress"></a></p>
+
+<h3>curlEasyObject.onProgress</h3>
+
+<pre><code class="aardio language-aardio">curlEasyObject.onProgress = function(buffer,downloadTotal,downloadNow,uploadTotal,uploadNow){
+    ..io.print( downloadTotal,downloadNow) 
+}
+</code></pre>
+
+<p><a id="curlEasyObject.onReceive"></a></p>
+
+<h3>curlEasyObject.onReceive</h3>
+
+<pre><code class="aardio language-aardio">curlEasyObject.onReceive = function(buffer,size,nmemb){
+    ..io.print( ..raw.tostring(buffer,1,nmemb) )
+    return nmemb;
+}
+</code></pre>
+
+<p><a id="curlEasyObject.onSend"></a></p>
+
+<h3>curlEasyObject.onSend</h3>
+
+<pre><code class="aardio language-aardio">curlEasyObject.onSend = function(buffer,size,nmemb){
+    ..io.print( ..raw.tostring(buffer,1,nmemb) )
+    return nmemb;
+}
+</code></pre>
+
+<p><a id="curlEasyObject.post"></a></p>
+
+<h3>curlEasyObject.post(url,post数据,http头,引用网址,MIME)</h3>
+
+<p>POST方法下载网页<br>
+post数据可以是字符串,也可以是指定表单键值对的table对象<br>
+除URL与post数据以外,其他为可选参数<br>
+出错返回值为:null,错误代码<br>
+成功返回字符串对象.</p>
+
+<p><a id="curlEasyObject.reset"></a></p>
+
+<h3>curlEasyObject.reset()</h3>
+
+<p>重置会话,清空所有状态</p>
+
+<p><a id="curlEasyObject.setCaInfo"></a></p>
+
+<h3>curlEasyObject.setCaInfo(&quot;CA证书路径&quot;)</h3>
+
+<p>= CA根证书路径,<br>
+无参数则设置为&quot;~\lib\curl.res\ca-bundle.crt&quot;</p>
+
+<p><a id="curlEasyObject.setCookieFile"></a></p>
+
+<h3>curlEasyObject.setCookieFile(Cookies目录)</h3>
+
+<p>参数为可选参数,<br>
+可以指定不存在的目录</p>
+
+<p><a id="curlEasyObject.setHttpHeader"></a></p>
+
+<h3>curlEasyObject.setHttpHeader(HTTP头)</h3>
+
+<p>设置HTTP头,可添加任意个参数,<br>
+每个参数为使用冒号分隔键值的字符串</p>
+
+<p><a id="curlEasyObject.setOpt"></a></p>
+
+<h3>curlEasyObject.setOpt( <em>CURLOPT</em> ,)</h3>
+
+<p>修改设置</p>
+
+<p><a id="curlEasyObject.setPostData"></a></p>
+
+<h3>curlEasyObject.setPostData(上传数据)</h3>
+
+<p>参数为指定上传数据的字符串<br>
+多个键使用&amp;符号分隔</p>
+
+<p><a id="curlEasyObject.setPostFields"></a></p>
+
+<h3>curlEasyObject.setPostFields(表参数,是否UTF8)</h3>
+
+<p>参数一为指定上传表单多个键值对的table对象,<br>
+参数2为可选参数</p>
+
+<p><a id="curlEasyObject.setPostForm"></a></p>
+
+<h3>curlEasyObject.setPostForm(上传表单)</h3>
+
+<p>指定以multipart/form-data方式上传文件<br>
+参数一为指定上传表单多个键值对的table对象,<br>
+文件路径前请添加&quot;@&quot;字符表示文件路径,例如<br>
+file=&quot;@\test.jpg&quot;</p>
+
+<p><a id="curlEasyObject.setVerbose"></a></p>
+
+<h3>curlEasyObject.setVerbose(true)</h3>
+
+<p>显示调试信息，<br>
+需要在import curl之前打开控制台</p>
+
+<p><a id="curlFormObject"></a></p>
+
+<h2>curlFormObject 成员列表</h2>
+
+<p><a id="curlFormObject.add"></a></p>
+
+<h3>curlFormObject.add(1/*_CURLFORM_COPYNAME*/,&quot;键名&quot;,4/*_CURLFORM_COPYCONTENTS*/,&quot;值&quot;,0x11/*_CURLFORM_END*/)</h3>
+
+<p>添加到表单</p>
+
+<p><a id="curlFormObject.add"></a></p>
+
+<h3>curlFormObject.add(上传表单)</h3>
+
+<p>n参数一为指定上传表单多个键值对的table对象<br>
+该函数成功返回对象自身,失败返回null,错误信息</p>
+
+<p><a id="curlFormObject.free"></a></p>
+
+<h3>curlFormObject.free()</h3>
+
+<p>释放对象,该函数在内存回收时自动触发</p>
+
+<p><a id="curlListObject"></a></p>
+
+<h2>curlListObject 成员列表</h2>
+
+<p><a id="curlListObject.append"></a></p>
+
+<h3>curlListObject.append(字符串)</h3>
+
+<p>添加字符串,可添加任意多个字符串参数<br>
+该函数返回对象自身</p>
+
+<p><a id="curlListObject.free"></a></p>
+
+<h3>curlListObject.free()</h3>
+
+<p>释放对象,该函数在内存回收时自动触发</p>
+
+<p><a id="curlMultiObject"></a></p>
+
+<h2>curlMultiObject 成员列表</h2>
+
+<p><a id="curlMultiObject.add"></a></p>
+
+<h3>curlMultiObject.add(CURL客户端)</h3>
+
+<p>添加一个客户端</p>
+
+<p><a id="curlMultiObject.close"></a></p>
+
+<h3>curlMultiObject.close()</h3>
+
+<p>移除所有任务并关闭对象</p>
+
+<p><a id="curlMultiObject.exec"></a></p>
+
+<h3>curlMultiObject.exec()</h3>
+
+<pre><code class="aardio language-aardio">var mrc,active  
+do {   
+    do {    
+        mrc,active = curlMultiObject.exec();    
+        sleep(100)  
+    } while ( mrc= -1/*_CURLM_CALL_MULTI_PERFORM*/)    
+
+    if( manage.select(0) == -1/*_SOCKET_ERROR*/ )  
+        break;  
+}while( mrc==0 &amp; active)
+</code></pre>
+
+<p><a id="curlMultiObject.lasterr"></a></p>
+
+<h3>curlMultiObject.lasterr()</h3>
+
+<p>读取错误信息</p>
+
+<p><a id="curlMultiObject.readInfo"></a></p>
+
+<h3>curlMultiObject.readInfo()</h3>
+
+<p>读取消息队列,<br>
+返回消息结构体,剩余消息数</p>
+
+<p><a href="#curlMsginfoObject">返回对象:curlMsginfoObject</a></p>
+
+<p><a id="curlMultiObject.remove"></a></p>
+
+<h3>curlMultiObject.remove(CURL客户端)</h3>
+
+<p>移除一个客户端</p>
+
+<p><a id="curlMultiObject.select"></a></p>
+
+<h3>curlMultiObject.select(超时秒,超时微秒)</h3>
+
+<p>当一个套接字或一组套接字有信号时返回<br>
+返回值为-1/*_SOCKET_ERROR*/表示出错<br>
+所有参数可选,<br>
+不指定超时则一直等待,<br>
+超时为0则立即返回</p>
+
+<p><a id="curl_info"></a></p>
+
+<h2>curl_info 成员列表</h2>
+
+<p><a id="curl_info.connectTime"></a></p>
+
+<h3>curl_info.connectTime</h3>
+
+<p>等待连接耗时</p>
+
+<p><a id="curl_info.contentType"></a></p>
+
+<h3>curl_info.contentType</h3>
+
+<p>内容编码</p>
+
+<p><a id="curl_info.filetime"></a></p>
+
+<h3>curl_info.filetime</h3>
+
+<p>文件创建时间</p>
+
+<p><a id="curl_info.headerSize"></a></p>
+
+<h3>curl_info.headerSize</h3>
+
+<p>header的大小</p>
+
+<p><a id="curl_info.httpCode"></a></p>
+
+<h3>curl_info.httpCode</h3>
+
+<p>代理服务器响应代码</p>
+
+<p><a id="curl_info.namelookupTime"></a></p>
+
+<h3>curl_info.namelookupTime</h3>
+
+<p>DNS查询耗时</p>
+
+<p><a id="curl_info.pretransferTime"></a></p>
+
+<h3>curl_info.pretransferTime</h3>
+
+<p>传输前准备耗时</p>
+
+<p><a id="curl_info.redirectCount"></a></p>
+
+<h3>curl_info.redirectCount</h3>
+
+<p>跳转技术</p>
+
+<p><a id="curl_info.redirectTime"></a></p>
+
+<h3>curl_info.redirectTime</h3>
+
+<p>重定向耗时</p>
+
+<p><a id="curl_info.redirectUrl"></a></p>
+
+<h3>curl_info.redirectUrl</h3>
+
+<p>重定向URL</p>
+
+<p><a id="curl_info.requestSize"></a></p>
+
+<h3>curl_info.requestSize</h3>
+
+<p>请求的大小</p>
+
+<p><a id="curl_info.responseCode"></a></p>
+
+<h3>curl_info.responseCode</h3>
+
+<p>服务器响应代码<br>
+可用于获取HTTP状态码</p>
+
+<p><a id="curl_info.sizeDownload"></a></p>
+
+<h3>curl_info.sizeDownload</h3>
+
+<p>下载数据的大小</p>
+
+<p><a id="curl_info.sizeUpload"></a></p>
+
+<h3>curl_info.sizeUpload</h3>
+
+<p>上传数据的大小</p>
+
+<p><a id="curl_info.speedDownload"></a></p>
+
+<h3>curl_info.speedDownload</h3>
+
+<p>下载速度</p>
+
+<p><a id="curl_info.speedUpload"></a></p>
+
+<h3>curl_info.speedUpload</h3>
+
+<p>上传速度</p>
+
+<p><a id="curl_info.sslVerifyResult"></a></p>
+
+<h3>curl_info.sslVerifyResult</h3>
+
+<p>SSL验证结果</p>
+
+<p><a id="curl_info.starttransferTime"></a></p>
+
+<h3>curl_info.starttransferTime</h3>
+
+<p>开始传输的时间</p>
+
+<p><a id="curl_info.totalTime"></a></p>
+
+<h3>curl_info.totalTime</h3>
+
+<p>总耗时</p>
+
+<p><a id="curl_info.upload_contentLength"></a></p>
+
+<h3>curl_info.upload_contentLength</h3>
+
+<p>上传内容的长度</p>
+
+<p><a id="curl_info.url"></a></p>
+
+<h3>curl_info.url</h3>
+
+<p>资源网络地址</p>
+
+<p><a id="curl_msginfo"></a></p>
+
+<h2>curl_msginfo 成员列表</h2>
+
+<p><a id="curl_msginfo.easy_handle"></a></p>
+
+<h3>curl_msginfo.easy_handle</h3>
+
+<p>客户端对话会话句柄</p>
+
+<p><a id="curl_msginfo.msg"></a></p>
+
+<h3>curl_msginfo.msg</h3>
+
+<p>消息ID</p>
+
+<p><a id="curl_msginfo.result"></a></p>
+
+<h3>curl_msginfo.result</h3>
+
+<p>返回代码,0为成功</p>
+
+<h3>自动完成常量</h3>
+
+<p>_CURLFORM_ARRAY=8<br>
+_CURLFORM_BUFFER=0xB<br>
+_CURLFORM_BUFFERLENGTH=0xD<br>
+_CURLFORM_BUFFERPTR=0xC<br>
+_CURLFORM_CONTENTHEADER=0xF<br>
+_CURLFORM_CONTENTSLENGTH=6<br>
+_CURLFORM_CONTENTTYPE=0xE<br>
+_CURLFORM_COPYCONTENTS=4<br>
+_CURLFORM_COPYNAME=1<br>
+_CURLFORM_END=0x11<br>
+_CURLFORM_FILE=0xA<br>
+_CURLFORM_FILECONTENT=7<br>
+_CURLFORM_FILENAME=0x10<br>
+_CURLFORM_NAMELENGTH=3<br>
+_CURLFORM_OBSOLETE=9<br>
+_CURLFORM_OBSOLETE2=0x12<br>
+_CURLFORM_PTRCONTENTS=5<br>
+_CURLFORM_PTRNAME=2<br>
+_CURLFORM_STREAM=0x13<br>
+_CURLINFO_APPCONNECT_TIME=0x300021<br>
+_CURLINFO_CERTINFO=0x400022<br>
+_CURLINFO_CONDITION_UNMET=0x200023<br>
+_CURLINFO_CONNECT_TIME=0x300005<br>
+_CURLINFO_CONTENT_LENGTH_DOWNLOAD=0x30000F<br>
+_CURLINFO_CONTENT_LENGTH_UPLOAD=0x300010<br>
+_CURLINFO_CONTENT_TYPE=0x100012<br>
+_CURLINFO_COOKIELIST=0x40001C<br>
+_CURLINFO_EFFECTIVE_URL=0x100001<br>
+_CURLINFO_FILETIME=0x20000E<br>
+_CURLINFO_FTP_ENTRY_PATH=0x10001E<br>
+_CURLINFO_HEADER_SIZE=0x20000B<br>
+_CURLINFO_HTTPAUTH_AVAIL=0x200017<br>
+_CURLINFO_HTTP_CONNECTCODE=0x200016<br>
+_CURLINFO_LASTONE=0x2A<br>
+_CURLINFO_LASTSOCKET=0x20001D<br>
+_CURLINFO_LOCAL_IP=0x100029<br>
+_CURLINFO_LOCAL_PORT=0x20002A<br>
+_CURLINFO_NAMELOOKUP_TIME=0x300004<br>
+_CURLINFO_NONE=0<br>
+_CURLINFO_NUM_CONNECTS=0x20001A<br>
+_CURLINFO_OS_ERRNO=0x200019<br>
+_CURLINFO_PRETRANSFER_TIME=0x300006<br>
+_CURLINFO_PRIMARY_IP=0x100020<br>
+_CURLINFO_PRIMARY_PORT=0x200028<br>
+_CURLINFO_PRIVATE=0x100015<br>
+_CURLINFO_PROXYAUTH_AVAIL=0x200018<br>
+_CURLINFO_REDIRECT_COUNT=0x200014<br>
+_CURLINFO_REDIRECT_TIME=0x300013<br>
+_CURLINFO_REDIRECT_URL=0x10001F<br>
+_CURLINFO_REQUEST_SIZE=0x20000C<br>
+_CURLINFO_RESPONSE_CODE=0x200002<br>
+_CURLINFO_RTSP_CLIENT_CSEQ=0x200025<br>
+_CURLINFO_RTSP_CSEQ_RECV=0x200027<br>
+_CURLINFO_RTSP_SERVER_CSEQ=0x200026<br>
+_CURLINFO_RTSP_SESSION_ID=0x100024<br>
+_CURLINFO_SIZE_DOWNLOAD=0x300008<br>
+_CURLINFO_SIZE_UPLOAD=0x300007<br>
+_CURLINFO_SPEED_DOWNLOAD=0x300009<br>
+_CURLINFO_SPEED_UPLOAD=0x30000A<br>
+_CURLINFO_SSL_ENGINES=0x40001B<br>
+_CURLINFO_SSL_VERIFYRESULT=0x20000D<br>
+_CURLINFO_STARTTRANSFER_TIME=0x300011<br>
+_CURLINFO_TOTAL_TIME=0x300003<br>
+_CURLM_CALL_MULTI_PERFORM=-1<br>
+_CURLM_OK=0<br>
+_CURLOPT_ACCEPTTIMEOUT_MS=0xD4<br>
+_CURLOPT_ACCEPT_ENCODING=0x2776<br>
+_CURLOPT_ADDRESS_SCOPE=0xAB<br>
+_CURLOPT_APPEND=0x32<br>
+_CURLOPT_AUTOREFERER=0x3A<br>
+_CURLOPT_BUFFERSIZE=0x62<br>
+_CURLOPT_CAINFO=0x2751<br>
+_CURLOPT_CAPATH=0x2771<br>
+_CURLOPT_CERTINFO=0xAC<br>
+_CURLOPT_CHUNK_BGN_FUNCTION=0x4EE6<br>
+_CURLOPT_CHUNK_DATA=0x27D9<br>
+_CURLOPT_CHUNK_END_FUNCTION=0x4EE7<br>
+_CURLOPT_CLOSEPOLICY=0x48<br>
+_CURLOPT_CLOSESOCKETDATA=0x27E1<br>
+_CURLOPT_CLOSESOCKETFUNCTION=0x4EF0<br>
+_CURLOPT_CONNECTTIMEOUT=0x4E<br>
+_CURLOPT_CONNECTTIMEOUT_MS=0x9C<br>
+_CURLOPT_CONNECT_ONLY=0x8D<br>
+_CURLOPT_CONV_FROM_NETWORK_FUNCTION=0x4EAE<br>
+_CURLOPT_CONV_FROM_UTF8_FUNCTION=0x4EB0<br>
+_CURLOPT_CONV_TO_NETWORK_FUNCTION=0x4EAF<br>
+_CURLOPT_COOKIE=0x2726<br>
+_CURLOPT_COOKIEFILE=0x272F<br>
+_CURLOPT_COOKIEJAR=0x2762<br>
+_CURLOPT_COOKIELIST=0x2797<br>
+_CURLOPT_COOKIESESSION=0x60<br>
+_CURLOPT_COPYPOSTFIELDS=0x27B5<br>
+_CURLOPT_CRLF=0x1B<br>
+_CURLOPT_CRLFILE=0x27B9<br>
+_CURLOPT_CUSTOMREQUEST=0x2734<br>
+_CURLOPT_DEBUGDATA=0x276F<br>
+_CURLOPT_DEBUGFUNCTION=0x4E7E<br>
+_CURLOPT_DIRLISTONLY=0x30<br>
+_CURLOPT_DNS_CACHE_TIMEOUT=0x5C<br>
+_CURLOPT_DNS_SERVERS=0x27E3<br>
+_CURLOPT_DNS_USE_GLOBAL_CACHE=0x5B<br>
+_CURLOPT_EGDSOCKET=0x275D<br>
+_CURLOPT_ERRORBUFFER=0x271A<br>
+_CURLOPT_FAILONERROR=0x2D<br>
+_CURLOPT_FILE=0x2711<br>
+_CURLOPT_FILETIME=0x45<br>
+_CURLOPT_FNMATCH_DATA=0x27DA<br>
+_CURLOPT_FNMATCH_FUNCTION=0x4EE8<br>
+_CURLOPT_FOLLOWLOCATION=0x34<br>
+_CURLOPT_FORBID_REUSE=0x4B<br>
+_CURLOPT_FRESH_CONNECT=0x4A<br>
+_CURLOPT_FTPPORT=0x2721<br>
+_CURLOPT_FTPSSLAUTH=0x81<br>
+_CURLOPT_FTP_ACCOUNT=0x2796<br>
+_CURLOPT_FTP_ALTERNATIVE_TO_USER=0x27A3<br>
+_CURLOPT_FTP_CREATE_MISSING_DIRS=0x6E<br>
+_CURLOPT_FTP_FILEMETHOD=0x8A<br>
+_CURLOPT_FTP_RESPONSE_TIMEOUT=0x70<br>
+_CURLOPT_FTP_SKIP_PASV_IP=0x89<br>
+_CURLOPT_FTP_SSL_CCC=0x9A<br>
+_CURLOPT_FTP_USE_EPRT=0x6A<br>
+_CURLOPT_FTP_USE_EPSV=0x55<br>
+_CURLOPT_FTP_USE_PRET=0xBC<br>
+_CURLOPT_GSSAPI_DELEGATION=0xD2<br>
+_CURLOPT_HEADER=0x2A<br>
+_CURLOPT_HEADERFUNCTION=0x4E6F<br>
+_CURLOPT_HTTP200ALIASES=0x2778<br>
+_CURLOPT_HTTPAUTH=0x6B<br>
+_CURLOPT_HTTPGET=0x50<br>
+_CURLOPT_HTTPHEADER=0x2727<br>
+_CURLOPT_HTTPPOST=0x2728<br>
+_CURLOPT_HTTPPROXYTUNNEL=0x3D<br>
+_CURLOPT_HTTP_CONTENT_DECODING=0x9E<br>
+_CURLOPT_HTTP_TRANSFER_DECODING=0x9D<br>
+_CURLOPT_HTTP_VERSION=0x54<br>
+_CURLOPT_IGNORE_CONTENT_LENGTH=0x88<br>
+_CURLOPT_INFILE=0x2719<br>
+_CURLOPT_INFILESIZE=0xE<br>
+_CURLOPT_INFILESIZE_LARGE=0x75A3<br>
+_CURLOPT_INTERFACE=0x274E<br>
+_CURLOPT_INTERLEAVEDATA=0x27D3<br>
+_CURLOPT_INTERLEAVEFUNCTION=0x4EE4<br>
+_CURLOPT_IOCTLDATA=0x2793<br>
+_CURLOPT_IOCTLFUNCTION=0x4EA2<br>
+_CURLOPT_IPRESOLVE=0x71<br>
+_CURLOPT_ISSUERCERT=0x27BA<br>
+_CURLOPT_KEYPASSWD=0x272A<br>
+_CURLOPT_KRBLEVEL=0x274F<br>
+_CURLOPT_LOCALPORT=0x8B<br>
+_CURLOPT_LOCALPORTRANGE=0x8C<br>
+_CURLOPT_LOW_SPEED_LIMIT=0x13<br>
+_CURLOPT_LOW_SPEED_TIME=0x14<br>
+_CURLOPT_MAIL_AUTH=0x27E9<br>
+_CURLOPT_MAIL_FROM=0x27CA<br>
+_CURLOPT_MAIL_RCPT=0x27CB<br>
+_CURLOPT_MAXCONNECTS=0x47<br>
+_CURLOPT_MAXFILESIZE=0x72<br>
+_CURLOPT_MAXFILESIZE_LARGE=0x75A5<br>
+_CURLOPT_MAXREDIRS=0x44<br>
+_CURLOPT_MAX_RECV_SPEED_LARGE=0x75C2<br>
+_CURLOPT_MAX_SEND_SPEED_LARGE=0x75C1<br>
+_CURLOPT_NETRC=0x33<br>
+_CURLOPT_NETRC_FILE=0x2786<br>
+_CURLOPT_NEW_DIRECTORY_PERMS=0xA0<br>
+_CURLOPT_NEW_FILE_PERMS=0x9F<br>
+_CURLOPT_NOBODY=0x2C<br>
+_CURLOPT_NOPROGRESS=0x2B<br>
+_CURLOPT_NOPROXY=0x27C1<br>
+_CURLOPT_NOSIGNAL=0x63<br>
+_CURLOPT_OPENSOCKETDATA=0x27B4<br>
+_CURLOPT_OPENSOCKETFUNCTION=0x4EC3<br>
+_CURLOPT_PASSWORD=0x27BE<br>
+_CURLOPT_PORT=3<br>
+_CURLOPT_POST=0x2F<br>
+_CURLOPT_POSTFIELDS=0x271F<br>
+_CURLOPT_POSTFIELDSIZE=0x3C<br>
+_CURLOPT_POSTFIELDSIZE_LARGE=0x75A8<br>
+_CURLOPT_POSTQUOTE=0x2737<br>
+_CURLOPT_POSTREDIR=0xA1<br>
+_CURLOPT_PREQUOTE=0x276D<br>
+_CURLOPT_PRIVATE=0x2777<br>
+_CURLOPT_PROGRESSDATA=0x2749<br>
+_CURLOPT_PROGRESSFUNCTION=0x4E58<br>
+_CURLOPT_PROTOCOLS=0xB5<br>
+_CURLOPT_PROXY=0x2714<br>
+_CURLOPT_PROXYAUTH=0x6F<br>
+_CURLOPT_PROXYPASSWORD=0x27C0<br>
+_CURLOPT_PROXYPORT=0x3B<br>
+_CURLOPT_PROXYTYPE=0x65<br>
+_CURLOPT_PROXYUSERNAME=0x27BF<br>
+_CURLOPT_PROXYUSERPWD=0x2716<br>
+_CURLOPT_PROXY_TRANSFER_MODE=0xA6<br>
+_CURLOPT_PUT=0x36<br>
+_CURLOPT_QUOTE=0x272C<br>
+_CURLOPT_RANDOM_FILE=0x275C<br>
+_CURLOPT_RANGE=0x2717<br>
+_CURLOPT_READFUNCTION=0x4E2C<br>
+_CURLOPT_REDIR_PROTOCOLS=0xB6<br>
+_CURLOPT_REFERER=0x2720<br>
+_CURLOPT_RESOLVE=0x27DB<br>
+_CURLOPT_RESUME_FROM=0x15<br>
+_CURLOPT_RESUME_FROM_LARGE=0x75A4<br>
+_CURLOPT_RTSP_CLIENT_CSEQ=0xC1<br>
+_CURLOPT_RTSP_REQUEST=0xBD<br>
+_CURLOPT_RTSP_SERVER_CSEQ=0xC2<br>
+_CURLOPT_RTSP_SESSION_ID=0x27CE<br>
+_CURLOPT_RTSP_STREAM_URI=0x27CF<br>
+_CURLOPT_RTSP_TRANSPORT=0x27D0<br>
+_CURLOPT_SEEKDATA=0x27B8<br>
+_CURLOPT_SEEKFUNCTION=0x4EC7<br>
+_CURLOPT_SHARE=0x2774<br>
+_CURLOPT_SOCKOPTDATA=0x27A5<br>
+_CURLOPT_SOCKOPTFUNCTION=0x4EB4<br>
+_CURLOPT_SOCKS5_GSSAPI_NEC=0xB4<br>
+_CURLOPT_SOCKS5_GSSAPI_SERVICE=0x27C3<br>
+_CURLOPT_SSH_AUTH_TYPES=0x97<br>
+_CURLOPT_SSH_HOST_PUBLIC_KEY_MD5=0x27B2<br>
+_CURLOPT_SSH_KEYDATA=0x27C9<br>
+_CURLOPT_SSH_KEYFUNCTION=0x4ED8<br>
+_CURLOPT_SSH_KNOWNHOSTS=0x27C7<br>
+_CURLOPT_SSH_PRIVATE_KEYFILE=0x27A9<br>
+_CURLOPT_SSH_PUBLIC_KEYFILE=0x27A8<br>
+_CURLOPT_SSLCERT=0x2729<br>
+_CURLOPT_SSLCERTTYPE=0x2766<br>
+_CURLOPT_SSLENGINE=0x2769<br>
+_CURLOPT_SSLENGINE_DEFAULT=0x5A<br>
+_CURLOPT_SSLKEY=0x2767<br>
+_CURLOPT_SSLKEYTYPE=0x2768<br>
+_CURLOPT_SSLVERSION=0x20<br>
+_CURLOPT_SSL_CIPHER_LIST=0x2763<br>
+_CURLOPT_SSL_CTX_DATA=0x277D<br>
+_CURLOPT_SSL_CTX_FUNCTION=0x4E8C<br>
+_CURLOPT_SSL_OPTIONS=0xD8<br>
+_CURLOPT_SSL_SESSIONID_CACHE=0x96<br>
+_CURLOPT_SSL_VERIFYHOST=0x51<br>
+_CURLOPT_SSL_VERIFYPEER=0x40<br>
+_CURLOPT_STDERR=0x2735<br>
+_CURLOPT_TCP_KEEPALIVE=0xD5<br>
+_CURLOPT_TCP_KEEPIDLE=0xD6<br>
+_CURLOPT_TCP_KEEPINTVL=0xD7<br>
+_CURLOPT_TCP_NODELAY=0x79<br>
+_CURLOPT_TELNETOPTIONS=0x2756<br>
+_CURLOPT_TFTP_BLKSIZE=0xB2<br>
+_CURLOPT_TIMECONDITION=0x21<br>
+_CURLOPT_TIMEOUT=0xD<br>
+_CURLOPT_TIMEOUT_MS=0x9B<br>
+_CURLOPT_TIMEVALUE=0x22<br>
+_CURLOPT_TLSAUTH_PASSWORD=0x27DD<br>
+_CURLOPT_TLSAUTH_TYPE=0x27DE<br>
+_CURLOPT_TLSAUTH_USERNAME=0x27DC<br>
+_CURLOPT_TRANSFERTEXT=0x35<br>
+_CURLOPT_TRANSFER_ENCODING=0xCF<br>
+_CURLOPT_UNRESTRICTED_AUTH=0x69<br>
+_CURLOPT_UPLOAD=0x2E<br>
+_CURLOPT_URL=0x2712<br>
+_CURLOPT_USERAGENT=0x2722<br>
+_CURLOPT_USERNAME=0x27BD<br>
+_CURLOPT_USERPWD=0x2715<br>
+_CURLOPT_USE_SSL=0x77<br>
+_CURLOPT_VERBOSE=0x29<br>
+_CURLOPT_WILDCARDMATCH=0xC5<br>
+_CURLOPT_WRITEFUNCTION=0x4E2B<br>
+_CURLOPT_WRITEHEADER=0x272D<br>
+_CURLOPT_WRITEINFO=0x2738  </p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/curl/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/curl/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/curl/_.md">Markdown 格式</a></p>
+
+</body> 
+</html>

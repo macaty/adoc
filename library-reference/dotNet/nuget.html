@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - dotNet.nuget 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - dotNet.nuget 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>dotNet.nuget 库模块帮助文档</h1>
+
+<p><a id="dotNet.nuget"></a></p>
+
+<h2>dotNet.nuget 成员列表</h2>
+
+<p>NuGet 接口操作</p>
+
+<p><a id="dotNet.nuget.download"></a></p>
+
+<h3>dotNet.nuget.download</h3>
+
+<p>下载 NuGet 包</p>
+
+<p><a id="dotNet.nuget.download"></a></p>
+
+<h3>dotNet.nuget.download(package,version,downDir,extraDir,ownerForm)</h3>
+
+<p>下载 NuGet 包。\m@package 指定包名称。<br>
+@version 指定包版本，不指定则下载最后一个版本。<br>
+@downDir 可选参数，用于指定下载目录，默认为 /download。<br>
+@extraDir 可选参数，用于指定解压目录，<br>
+不指定则在下载目录根据包名自动生成解压目录。<br>
+下载成功返回解压目录，失败返回 null</p>
+
+<p><a id="dotNet.nuget.getPackageIndex"></a></p>
+
+<h3>dotNet.nuget.getPackageIndex()</h3>
+
+<p>返回指定 Package 的版本信息。<br>
+成功返回表的 versions 字段为版本数组。<br>
+失败返回 null 与错误信息</p>
+
+<p><a id="dotNet.nuget.http"></a></p>
+
+<h3>dotNet.nuget.http</h3>
+
+<p>web.rest.jsonLiteClient 客户端。  </p>
+
+<p><a href="../web/rest/client.html#webRestClientObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/web/rest/client.html#webRestClientObject">返回对象:webRestClientObject</a></p>
+
+<p><a id="dotNet.nuget.query"></a></p>
+
+<h3>dotNet.nuget.query()</h3>
+
+<p>搜索包。<br>
+参数 @1 可选指定一个查询参数表。<br>
+参数表支持的字段：<br>
+<a href="javascript:if(confirm('https://learn.microsoft.com/nuget/api/search-query-service-resource  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='https://learn.microsoft.com/nuget/api/search-query-service-resource'" tppabs="https://learn.microsoft.com/nuget/api/search-query-service-resource">https://learn.microsoft.com/nuget/api/search-query-service-resource</a></p>
+
+<p><a id="dotNet.nuget.service"></a></p>
+
+<h3>dotNet.nuget.service()</h3>
+
+<p>返回 web.rest.jsonLiteClient 引入的 API 对象,<br>
+参数指定 NuGet 服务名，省略参数则默认为 &quot;PackageBaseAddress/3.0.0&quot;</p>
+
+<p><a href="../web/rest/client.html#webRestApiObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/web/rest/client.html#webRestApiObject">返回对象:webRestApiObject</a></p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/dotNet/nuget.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/dotNet/nuget.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/dotNet/nuget.md">Markdown 格式</a></p>
+
+</body> 
+</html>

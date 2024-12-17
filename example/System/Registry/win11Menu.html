@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 注册表操作 - Win11 右键菜单风格切换'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 注册表操作 - Win11 右键菜单风格切换</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 注册表操作 - Win11 右键菜单风格切换</h1><pre><code class="aardio language-aardio">//RUNAS//注册表操作 - Win11 右键菜单风格切换
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;Windows 11 右键菜单切换工具&quot;;right=389;bottom=166;border=&quot;dialog frame&quot;;max=false)
+winform.add(
+radioWin10={cls=&quot;radiobutton&quot;;text=&quot;Win10 风格经典右键菜单&quot;;left=44;top=46;right=217;bottom=86;z=1};
+radioWin11={cls=&quot;radiobutton&quot;;text=&quot;Win11 风格右键菜单&quot;;left=44;top=84;right=233;bottom=127;z=2}
+)
+/*}}*/
+
+import win.reg;
+import win.version;
+import process;
+winform.radioWin10.oncommand = function(id,event){
+    var reg = win.regWow64( &quot;HKEY_CURRENT_USER\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}&quot;)
+    reg.setSzValue(&quot;&quot;,&quot;&quot;)
+
+    var reg = win.regWow64( &quot;HKEY_CURRENT_USER\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32&quot;)
+    reg.setSzValue(&quot;&quot;,&quot;&quot;)
+    reg.close();
+
+    ::Shell32.SHChangeNotify(0x8000000/*_SHCNE_ASSOCCHANGED*/,0,0,0); 
+     process.kill(&quot;explorer.exe&quot;,true)
+}
+
+winform.radioWin11.oncommand = function(id,event){
+    var reg = win.regWow64(&quot;HKEY_CURRENT_USER\Software\Classes\CLSID&quot;)
+    reg.delKeyTree(&quot;{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}&quot;)
+    reg.close();
+
+    ::Shell32.SHChangeNotify(0x8000000/*_SHCNE_ASSOCCHANGED*/,0,0,0); 
+    process.kill(&quot;explorer.exe&quot;,true)
+}
+
+if(!win.version.isWin11Later){
+    win.msgboxErr(&quot;此工具仅用于 Windows 11&quot;);
+    return;
+}
+
+var reg = win.regWow64(&quot;HKEY_CURRENT_USER\Software\Classes\CLSID&quot;)
+winform.radioWin10.checked = reg.open(&quot;{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}&quot;,true);
+winform.radioWin11.checked = !winform.radioWin10.checked;
+reg.close();
+
+winform.show();
+win.loopMessage();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/System/Registry/win11Menu.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/System/Registry/win11Menu.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/System/Registry/win11Menu.md">Markdown 格式</a>
+</body> 
+</html>

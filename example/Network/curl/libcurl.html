@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 调用 API'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 调用 API</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 调用 API</h1><pre><code class="aardio language-aardio">//调用 API
+import curl;
+import console;
+
+var http = curl.easy();//创建客户端 
+
+//POST演示
+console.showLoading(&quot;正在连接网页&quot;);
+var str = http.post(&quot;http://httpbin.org/post&quot;
+        ,&quot;username=jacen&amp;password=123456&quot;);
+console.log(str);
+
+//参数也可以指定一个表
+var str = http.post(&quot;http://httpbin.org/post&quot; ,{
+    username = &quot;jacen&quot;;
+    password=&quot;123456&quot;;
+});
+console.log(str);
+
+//GET演示        
+var str = http.get(&quot;http://www.aardio.com&quot;);
+console.log(str);
+
+/*
+更多用法请参考：
+https://bbs.aardio.com/forum.php?mod=viewthread&amp;tid=9319
+
+更推荐使用 web.rest （体积小，基于系统自带组件，用法更简单）
+https://mp.weixin.qq.com/s/4mYRDnO49alwpQoBD_cILg
+
+或使用 inet.http  （体积小，基于系统自带组件，用法更简单）
+https://mp.weixin.qq.com/s/3Xp4c1LxsOQJsux5o8bhvA
+*/
+
+console.pause();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Network/curl/libcurl.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Network/curl/libcurl.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Network/curl/libcurl.md">Markdown 格式</a>
+</body> 
+</html>

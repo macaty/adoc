@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - aardio 内存调用 Rust DLL'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - aardio 内存调用 Rust DLL</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 内存调用 Rust DLL</h1><pre><code class="aardio language-aardio">//aardio 内存调用 Rust DLL
+import fsys;
+import process.rust;
+import process.vswhere;
+import console;
+
+/*
+Rust 快速入门：
+https://quickref.me/zh-CN/docs/rust.html
+https://learnxinyminutes.com/docs/zh-cn/rust-cn/
+*/
+var vswhere = process.vswhere(&quot;-latest -requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64&quot;);
+if(!#vswhere){
+    console.log(&quot;运行 Rust 编译器必须先安装 VC++ 2017 或 2019&quot;);
+    console.pause();
+
+    process.execute(&quot;https://visualstudio.microsoft.com/downloads/&quot;)
+    return;
+}
+
+process.rust.workdir = &quot;/&quot;
+
+console.open()
+if(!io.exist(&quot;/rust_dll&quot;)){
+    process.rust.createDllProject(&quot;rust_dll&quot;)
+
+    /*
+    import process.code;
+    process.code.install();
+    process.code(&quot;/rust_aardio_dll&quot;);
+    */
+} 
+
+process.rust.workDir = &quot;/rust_dll&quot;
+if(process.rust.build()){
+    console.pause(,&quot;按任意键用 aardio 调用 Rust 生成的 DLL组件&quot;)
+
+    //DLL 已经配置为不依赖 VC++ 运行库
+    //注意默认为cdecl调用约定,在DLL路径前加上$符号就是加载为内存DLL（不再需要DLL文件）
+    var dll = raw.loadDll(&quot;\rust_dll\target\i686-pc-windows-msvc\release\rust_dll.dll&quot;,,&quot;cdecl&quot;); 
+
+    //aardio 中整型大写表示无符号数
+    var info ={
+        byte i8,
+        word i16,
+        int i32,
+        long i64,
+        BYTE u8,
+        WORD u16,
+        INT u32,
+        LONG u64,
+        double f64;
+        int arr[4] = {1,2,3,4};
+    }
+
+    var buf = raw.buffer(100);
+
+    /*
+    相关文档： https://www.aardio.com/zh-cn/doc/library-guide/builtin/raw/directCall.html
+    相关范例：「 aardio 范例 / 调用其他语言 / C语言 」
+    */
+    var ret = dll.hello_rust(&quot;Hello,Rust!&quot;,buf,info);
+
+    console.dumpJson(info)
+    console.log( info.arr[4] ) // -&gt; 19 
+    console.log( &quot;buf:&quot;,buf)
+    console.log(&quot;ret:&quot;,ret)
+    console.pause() 
+}
+
+console.pause() 
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/Rust/dll.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/Rust/dll.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Languages/Rust/dll.md">Markdown 格式</a>
+</body> 
+</html>

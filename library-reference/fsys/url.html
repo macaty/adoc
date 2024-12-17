@@ -1,0 +1,164 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - fsys.url 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - fsys.url 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>fsys.url 库模块帮助文档</h1>
+
+<p><a id="fsys"></a></p>
+
+<h2>fsys 成员列表</h2>
+
+<p><a id="fsys.url"></a></p>
+
+<h3>fsys.url</h3>
+
+<p>网页快捷方式</p>
+
+<p><a id="fsys.url"></a></p>
+
+<h3>fsys.url()</h3>
+
+<p>创建URL快捷方式  </p>
+
+<p><a href="#urllnkObject">返回对象:urllnkObject</a></p>
+
+<p><a id="urllnkObject"></a></p>
+
+<h2>urllnkObject 成员列表</h2>
+
+<p><a id="urllnkObject.arguments"></a></p>
+
+<h3>urllnkObject.arguments</h3>
+
+<p>参数</p>
+
+<p><a id="urllnkObject.description"></a></p>
+
+<h3>urllnkObject.description</h3>
+
+<p>附加说明</p>
+
+<p><a id="urllnkObject.filename"></a></p>
+
+<h3>urllnkObject.filename</h3>
+
+<p>快捷方式默认文件名,可省略后缀名,<br>
+未指定则自URL中获取文件名或域名</p>
+
+<p><a id="urllnkObject.getIcon"></a></p>
+
+<h3>urllnkObject.getIcon()</h3>
+
+<p>返回图标文件路径,以及路标索引</p>
+
+<p><a id="urllnkObject.getUrl"></a></p>
+
+<h3>urllnkObject.getUrl()</h3>
+
+<p>返回网址</p>
+
+<p><a id="urllnkObject.hotkey"></a></p>
+
+<h3>urllnkObject.hotkey</h3>
+
+<p>热键</p>
+
+<p><a id="urllnkObject.invokeCommand"></a></p>
+
+<h3>urllnkObject.invokeCommand(verb,hwndParent)</h3>
+
+<p>执行指令,参数省略则打开网址<br>
+verb默认为&quot;open&quot;</p>
+
+<p><a id="urllnkObject.load"></a></p>
+
+<h3>urllnkObject.load(url文件路径)</h3>
+
+<p>载入快捷方式</p>
+
+<p><a id="urllnkObject.path"></a></p>
+
+<h3>urllnkObject.path</h3>
+
+<p>目标网址</p>
+
+<p>目标路径,设置该属性时:<br>
+如果workDir为空则设workDir为目标路径所在目录<br>
+如果description为空则设为版本信息中的文件描述</p>
+
+<p><a id="urllnkObject.pinToDesktop"></a></p>
+
+<h3>urllnkObject.pinToDesktop(true)</h3>
+
+<p>添加快捷方式到桌面</p>
+
+<p>自桌面移除快捷方式</p>
+
+<p><a id="urllnkObject.pinToPrograms"></a></p>
+
+<h3>urllnkObject.pinToPrograms(false,...)</h3>
+
+<p>自开始菜单程序组移除<br>
+可选指定多个子目录参数<br>
+如果指定了子目录则直接移除快捷方式所在父目录</p>
+
+<p><a id="urllnkObject.pinToPrograms"></a></p>
+
+<h3>urllnkObject.pinToPrograms(true,...)</h3>
+
+<p>添加到开始菜单程序组<br>
+可选指定多个子目录参数</p>
+
+<p><a id="urllnkObject.save"></a></p>
+
+<h3>urllnkObject.save(url文件存储路径)</h3>
+
+<p>保存快捷方式<br>
+如果指定了filename或path属性,参数也可以指定存储目录</p>
+
+<p><a id="urllnkObject.setIcon"></a></p>
+
+<h3>urllnkObject.setIcon(文件路径,图标索引)</h3>
+
+<p>设置图标<br>
+索引可省咯,默认为0</p>
+
+<p><a id="urllnkObject.setUrl"></a></p>
+
+<h3>urllnkObject.setUrl(&quot;网址&quot;)</h3>
+
+<p>设置网址</p>
+
+<p><a id="urllnkObject.showCmd"></a></p>
+
+<h3>urllnkObject.showCmd</h3>
+
+<p>显示参数</p>
+
+<p><a id="urllnkObject.workDir"></a></p>
+
+<h3>urllnkObject.workDir</h3>
+
+<p>工作目录</p>
+
+<h3>自动完成常量</h3>
+
+<p>_ALL_IURL_SETURL_FLAGS=3<br>
+_IURL_SETURL_FL_GUESS_PROTOCOL=1<br>
+_IURL_SETURL_FL_USE_DEFAULT_PROTOCOL=2  </p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/fsys/url.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/fsys/url.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/fsys/url.md">Markdown 格式</a></p>
+
+</body> 
+</html>

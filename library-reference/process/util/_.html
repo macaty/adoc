@@ -1,0 +1,665 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - process.util 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - process.util 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>process.util 库模块帮助文档</h1>
+
+<p><a id="process"></a></p>
+
+<h2>process 成员列表</h2>
+
+<p><a id="process.util"></a></p>
+
+<h3>process.util</h3>
+
+<p>此扩展库主要在 process 基础增强了进程模块与内存搜索功能。<br>
+可兼容 64 位、32 位目标进程，兼容 32 位、64 位操作系统。<br>
+64 位系统最低要求 Win7 ，32 位最低支持 XP 系统。</p>
+
+<p><a id="process.util"></a></p>
+
+<h3>process.util()</h3>
+
+<p>参数可指定要查找的 EXE 文件名，支持模式匹配语法。<br>
+也可以指定进程 ID，或者 process 对象。<br>
+如果指定 process 对象，则扩展其功能并返回原对象。<br>
+否则创建 process 对象并扩展其功能，然后返回该对象。</p>
+
+<p><a href="#ProcessUtilObject">返回对象:ProcessUtilObject</a></p>
+
+<p><a id="ProcessUtilObject"></a></p>
+
+<h2>ProcessUtilObject 成员列表</h2>
+
+<p><a id="ProcessUtilObject.asm"></a></p>
+
+<h3>ProcessUtilObject.asm(机器码数组,函数原型,调用约定)</h3>
+
+<p>使用table数组指定任意个机器码参数,使用分号隔开,<br>
+机器码可以是字符串,结构体,数值或指针,<br>
+函数原型可省略,调用约定默认为&quot;cdecl&quot;</p>
+
+<p><a id="ProcessUtilObject.asmCdecl"></a></p>
+
+<h3>ProcessUtilObject.asmCdecl(函数原型,任意多个机器码参数)</h3>
+
+<p>写入机器码返回函数对象<br>
+请参考:aardio工具-&gt;其他编译器-&gt;INTEL汇编语言-&gt;汇编转机器码</p>
+
+<p><a id="ProcessUtilObject.asmStdcall"></a></p>
+
+<h3>ProcessUtilObject.asmStdcall(函数原型,任意多个机器码参数)</h3>
+
+<p>写入机器码返回函数对象<br>
+请参考:aardio工具-&gt;其他编译器-&gt;INTEL汇编语言-&gt;汇编转机器码</p>
+
+<p><a id="ProcessUtilObject.asmThiscall"></a></p>
+
+<h3>ProcessUtilObject.asmThiscall(函数原型,任意多个机器码参数)</h3>
+
+<p>写入机器码返回函数对象<br>
+请参考:aardio工具-&gt;其他编译器-&gt;INTEL汇编语言-&gt;汇编转机器码</p>
+
+<p><a id="ProcessUtilObject.assignToJobObject"></a></p>
+
+<h3>ProcessUtilObject.assignToJobObject(process.job.limitKill)</h3>
+
+<p>绑定到作业对象,成功返回 true<br>
+作业对象示例请参考标准库 process.job.limitKill 的源码。<br>
+也可直接调用 killOnExit 函数绑定 process.job.limitKill</p>
+
+<p><a id="ProcessUtilObject.closeMainWindow"></a></p>
+
+<h3>ProcessUtilObject.closeMainWindow()</h3>
+
+<p>关闭进程的主窗口，忽略隐藏窗口</p>
+
+<p><a id="ProcessUtilObject.ctrlEvent"></a></p>
+
+<h3>ProcessUtilObject.ctrlEvent(0)</h3>
+
+<p>发送Ctrl+C(SIGINT信号)<br>
+信号将传递到与目标进程控制台连接的所有非分离控制台进程<br>
+64位目标进程会导致当前控制台暂时关闭</p>
+
+<p><a id="ProcessUtilObject.ctrlEvent"></a></p>
+
+<h3>ProcessUtilObject.ctrlEvent(1)</h3>
+
+<p>发送Ctrl+Break(SIGBREAK信号)<br>
+信号将传递到与目标进程控制台连接的所有非分离控制台进程<br>
+64位目标进程会导致当前控制台暂时关闭</p>
+
+<p><a id="ProcessUtilObject.emptyWorkingSet"></a></p>
+
+<h3>ProcessUtilObject.emptyWorkingSet()</h3>
+
+<p>将工作集中的内存尽可能移动到页面文件中,<br>
+应发在最小化或程序空闲内存确实暂不需要使用时调用,<br>
+不应频繁调用此函数</p>
+
+<p><a id="ProcessUtilObject.findModule"></a></p>
+
+<h3>ProcessUtilObject.findModule()</h3>
+
+<p>查找并返回模块信息。<br>
+如果参数指定模块名称，则返回单个模块信息。<br>
+否则返回所有模块信息组成的数组。<br>
+没有找到模块返回 null  </p>
+
+<p>模块信息的 path 字段为模块文件路径。<br>
+baseAddress 字段为模块基址。<br>
+size 字段为模块大小。</p>
+
+<p><a id="ProcessUtilObject.free"></a></p>
+
+<h3>ProcessUtilObject.free()</h3>
+
+<p>释放进程对象。<br>
+不是关闭进程,仅仅是释放对进程的控制句柄。</p>
+
+<p><a id="ProcessUtilObject.getExitCode"></a></p>
+
+<h3>ProcessUtilObject.getExitCode()</h3>
+
+<p>该函数调用成功有两个返回值:进程退出代码,进程是否已退出</p>
+
+<p><a id="ProcessUtilObject.getInfo"></a></p>
+
+<h3>ProcessUtilObject.getInfo</h3>
+
+<p>获取进程信息</p>
+
+<p><a id="ProcessUtilObject.getInfo"></a></p>
+
+<h3>ProcessUtilObject.getInfo()</h3>
+
+<p>获取进程信息</p>
+
+<p><a href="#ProcessInfoObject">返回对象:ProcessInfoObject</a></p>
+
+<p><a id="ProcessUtilObject.getInfo"></a></p>
+
+<h3>ProcessUtilObject.getInfo(infoClass,infoStruct)</h3>
+
+<p>如果参数 infoClass 指定非 null 数值，<br>
+并且 infoStruct 指定结构体。<br>
+在 Win8 以及之后系统获取信息到该结构体。<br>
+成功返回原结构体。  </p>
+
+<p>此用法内部调用 ::Kernel32.GetProcessInformation<br>
+细节请参考该 API 文档</p>
+
+<p><a id="ProcessUtilObject.getMainWindow"></a></p>
+
+<h3>ProcessUtilObject.getMainWindow()</h3>
+
+<p>返回进程的主窗口以及窗口进程ID，找不到则搜寻子进程主窗口。<br>
+查找时忽略隐藏窗口。  </p>
+
+<p>也可以调用 winex.mainWindows 获取主窗口。<br>
+winex.mainWindows 查找规则略有不同，请参考源码</p>
+
+<p><a id="ProcessUtilObject.getMainWindow"></a></p>
+
+<h3>ProcessUtilObject.getMainWindow(类名)</h3>
+
+<p>返回进程的指定类名的主窗口以及窗口进程ID，找不到则搜寻子进程主窗口。<br>
+类名参数支持模式匹配语法</p>
+
+<p><a id="ProcessUtilObject.getModuleBaseAddress"></a></p>
+
+<h3>ProcessUtilObject.getModuleBaseAddress(模块名)</h3>
+
+<p>返回模块基址。<br>
+模块名忽略大小写,<br>
+不指定模块名则返回应用程序基址。  </p>
+
+<p>此函数在返回数值过大时会返回 math.size64 对象，<br>
+转换方法符合 web.json 解析 10 进制数值的规则</p>
+
+<p><a id="ProcessUtilObject.getParentId"></a></p>
+
+<h3>ProcessUtilObject.getParentId()</h3>
+
+<p>获取父进程 ID</p>
+
+<p><a id="ProcessUtilObject.getPath"></a></p>
+
+<h3>ProcessUtilObject.getPath()</h3>
+
+<p>返回执行程序文件完整路径。<br>
+如果该进程以管理权限运行，<br>
+则调用函数的进程也必须以管理权限运行<br>
+才能获取到路径</p>
+
+<p><a id="ProcessUtilObject.getPriorityClass"></a></p>
+
+<h3>ProcessUtilObject.getPriorityClass()</h3>
+
+<p>返回进程优先级</p>
+
+<p><a id="ProcessUtilObject.getUiInfo"></a></p>
+
+<h3>ProcessUtilObject.getUiInfo()</h3>
+
+<p>获取UI线程窗口焦点,光标等信息  </p>
+
+<p><a href="#guithreadinfoObject">返回对象:guithreadinfoObject</a></p>
+
+<p><a id="ProcessUtilObject.handle"></a></p>
+
+<h3>ProcessUtilObject.handle</h3>
+
+<p>进程句柄</p>
+
+<p><a id="ProcessUtilObject.id"></a></p>
+
+<h3>ProcessUtilObject.id</h3>
+
+<p>进程 ID</p>
+
+<p><a id="ProcessUtilObject.isWow64"></a></p>
+
+<h3>ProcessUtilObject.isWow64()</h3>
+
+<p>进程是否在64位系统上运行的32进程</p>
+
+<p><a id="ProcessUtilObject.isX64"></a></p>
+
+<h3>ProcessUtilObject.isX64()</h3>
+
+<p>是否64位进程</p>
+
+<p><a id="ProcessUtilObject.kill"></a></p>
+
+<h3>ProcessUtilObject.kill()</h3>
+
+<p>杀除进程</p>
+
+<p><a id="ProcessUtilObject.killOnExit"></a></p>
+
+<h3>ProcessUtilObject.killOnExit()</h3>
+
+<p>主进程退出时自动退出此进程</p>
+
+<p><a id="ProcessUtilObject.malloc"></a></p>
+
+<h3>ProcessUtilObject.malloc(长度)</h3>
+
+<p>在目标进程分配内存空间</p>
+
+<p><a id="ProcessUtilObject.malloc"></a></p>
+
+<h3>ProcessUtilObject.malloc(长度,访问类型)</h3>
+
+<p>在目标进程分配内存空间</p>
+
+<p><a id="ProcessUtilObject.malloc"></a></p>
+
+<h3>ProcessUtilObject.malloc(长度,访问类型,分配类型)</h3>
+
+<p>在目标进程分配内存空间</p>
+
+<p><a id="ProcessUtilObject.mfree"></a></p>
+
+<h3>ProcessUtilObject.mfree(指针)</h3>
+
+<p>释放malloc成员函数分配的内存指针</p>
+
+<p><a id="ProcessUtilObject.mfree"></a></p>
+
+<h3>ProcessUtilObject.mfree(指针,释放长度,0x4000)</h3>
+
+<p>释放malloc成员函数分配的内存指针<br>
+不建议手工指定长度</p>
+
+<p><a id="ProcessUtilObject.protect"></a></p>
+
+<h3>ProcessUtilObject.protect(内存地址,4/*_PAGE_READWRITE*/,1)</h3>
+
+<p>修改内存保护属性,返回原来的保护属性,<br>
+第三个参数指定内存长度</p>
+
+<p><a id="ProcessUtilObject.readNumber"></a></p>
+
+<h3>ProcessUtilObject.readNumber(内存地址)</h3>
+
+<p>读取一个int整数,32位<br>
+打开进程需要指定 _PROCESS_VM_READ 权限</p>
+
+<p><a id="ProcessUtilObject.readNumber"></a></p>
+
+<h3>ProcessUtilObject.readNumber(内存地址,&quot;BYTE&quot;)</h3>
+
+<p>读取一个字节,8位无符号<br>
+打开进程需要指定 _PROCESS_VM_READ 权限</p>
+
+<p><a id="ProcessUtilObject.readNumber"></a></p>
+
+<h3>ProcessUtilObject.readNumber(内存地址,&quot;INT&quot;)</h3>
+
+<p>读取一个int整数,32位无符号<br>
+打开进程需要指定 _PROCESS_VM_READ 权限</p>
+
+<p><a id="ProcessUtilObject.readNumber"></a></p>
+
+<h3>ProcessUtilObject.readNumber(内存地址,&quot;LONG&quot;)</h3>
+
+<p>读取一个long类型整数,64位无符号<br>
+打开进程需要指定 _PROCESS_VM_READ 权限</p>
+
+<p><a id="ProcessUtilObject.readNumber"></a></p>
+
+<h3>ProcessUtilObject.readNumber(内存地址,&quot;WORD&quot;)</h3>
+
+<p>读取一个word类型整数,16位无符号<br>
+打开进程需要指定 _PROCESS_VM_READ 权限</p>
+
+<p><a id="ProcessUtilObject.readNumber"></a></p>
+
+<h3>ProcessUtilObject.readNumber(内存地址,&quot;byte&quot;)</h3>
+
+<p>读取一个字节,8位<br>
+打开进程需要指定 _PROCESS_VM_READ 权限</p>
+
+<p><a id="ProcessUtilObject.readNumber"></a></p>
+
+<h3>ProcessUtilObject.readNumber(内存地址,&quot;long&quot;)</h3>
+
+<p>读取一个long类型整数,64位<br>
+打开进程需要指定 _PROCESS_VM_READ 权限</p>
+
+<p><a id="ProcessUtilObject.readNumber"></a></p>
+
+<h3>ProcessUtilObject.readNumber(内存地址,&quot;word&quot;)</h3>
+
+<p>读取一个word类型整数,16位<br>
+打开进程需要指定 _PROCESS_VM_READ 权限</p>
+
+<p><a id="ProcessUtilObject.readNumberPtr"></a></p>
+
+<h3>ProcessUtilObject.readNumberPtr(内存地址)</h3>
+
+<p>读取 int 整数的指针，<br>
+然后用在指针指向的内存读取读取数值。<br>
+可用参数 @2 指定静态类型，用法同 readNumber 函数。</p>
+
+<p><a id="ProcessUtilObject.readPtr"></a></p>
+
+<h3>ProcessUtilObject.readPtr()</h3>
+
+<p>读取指针地址。<br>
+64 位进程读取 8 字节并返回 math.size64 对象。<br>
+32 位进程读取 4 字节并返回数值。</p>
+
+<p><a id="ProcessUtilObject.readString"></a></p>
+
+<h3>ProcessUtilObject.readString(内存地址,长度)</h3>
+
+<p>读取定长字符串<br>
+打开进程需要指定 _PROCESS_VM_READ 权限</p>
+
+<p><a id="ProcessUtilObject.readStringPtr"></a></p>
+
+<h3>ProcessUtilObject.readStringPtr(内存地址,长度)</h3>
+
+<p>在参数指定的地址读取字符串指针，<br>
+然后用在指针指向的内存读取字符串。</p>
+
+<p><a id="ProcessUtilObject.readStringUtf16"></a></p>
+
+<h3>ProcessUtilObject.readStringUtf16(内存地址,长度)</h3>
+
+<p>读取定长 Unicode 字符串，<br>
+返回字符串转换为UTF8编码。<br>
+注意长度以字符为单位<br>
+打开进程需要指定 _PROCESS_VM_READ 权限</p>
+
+<p><a id="ProcessUtilObject.readStringUtf16Ptr"></a></p>
+
+<h3>ProcessUtilObject.readStringUtf16Ptr(内存地址,长度)</h3>
+
+<p>在参数指定的地址读取字符串指针，<br>
+然后用在指针指向的内存读取定长 Unicode 字符串。<br>
+返回字符串转换为UTF8编码。<br>
+注意长度以字符为单位</p>
+
+<p><a id="ProcessUtilObject.readStruct"></a></p>
+
+<h3>ProcessUtilObject.readStruct(内存地址,结构体)</h3>
+
+<p>读取定义的结构体<br>
+打开进程需要指定 _PROCESS_VM_READ 权限</p>
+
+<p><a id="ProcessUtilObject.readStructPtr"></a></p>
+
+<h3>ProcessUtilObject.readStructPtr(内存地址,结构体)</h3>
+
+<p>在参数指定的地址读取结构体指针，<br>
+然后用在指针指向的内存读取结构体</p>
+
+<p><a id="ProcessUtilObject.remoteApi"></a></p>
+
+<h3>ProcessUtilObject.remoteApi</h3>
+
+<p>在外部进程内创建远程调用函数</p>
+
+<p><a id="ProcessUtilObject.remoteApi("void"></a></p>
+
+<h3>ProcessUtilObject.remoteApi(&quot;void()&quot;,&quot;dll名&quot;,&quot;函数名&quot;)</h3>
+
+<p>参数(函数原型,加载DLL模块名,函数名,调用约定)<br>
+不指定调用约定时默认使用stdcall调用约定<br>
+不会在API函数名字后面自动添加或移除&quot;A&quot;,&quot;W&quot;编码声明后缀,<br>
+并且要注意搜索DLL时默认搜索路径包含目标EXE所在目录,而非当前EXE目录</p>
+
+<p><a id="ProcessUtilObject.remoteApi("void"></a></p>
+
+<h3>ProcessUtilObject.remoteApi(&quot;void()&quot;,&quot;dll名&quot;,&quot;函数名&quot;,&quot;cdecl,borland&quot;)</h3>
+
+<p>参数(函数原型,加载DLL模块名,函数名,调用约定)<br>
+不会在API函数名字后面自动添加或移除&quot;A&quot;,&quot;W&quot;编码声明后缀,<br>
+并且要注意搜索DLL时默认搜索路径包含目标EXE所在目录,而非当前EXE目录</p>
+
+<p><a id="ProcessUtilObject.remoteApi("void"></a></p>
+
+<h3>ProcessUtilObject.remoteApi(&quot;void()&quot;,CALL地址,调用约定)</h3>
+
+<p>参数(函数原型,CALL地址,调用约定)<br>
+不指定调用约定在数时默认使用stdcall调用约定</p>
+
+<p><a id="ProcessUtilObject.remoteApi("void"></a></p>
+
+<h3>ProcessUtilObject.remoteApi(&quot;void(INT thisAddr)&quot;,&quot;dll名&quot;,&quot;函数名&quot;,&quot;thiscall&quot;)</h3>
+
+<p>参数(函数原型,加载DLL模块名,函数名,调用约定)<br>
+thiscall使用第一个参数指定this指针地址<br>
+不会在API函数名字后面自动添加或移除&quot;A&quot;,&quot;W&quot;编码声明后缀,<br>
+并且要注意搜索DLL时默认搜索路径包含目标EXE所在目录,而非当前EXE目录</p>
+
+<p><a id="ProcessUtilObject.resume"></a></p>
+
+<h3>ProcessUtilObject.resume()</h3>
+
+<p>恢复运行</p>
+
+<p><a id="ProcessUtilObject.searchMemory"></a></p>
+
+<h3>ProcessUtilObject.searchMemory(strRegEx,count,baseAddress,size)</h3>
+
+<p>搜寻 @baseAddress 指定基址的内存。<br>
+@baseAddress 可指定数值或 math.size64 对象。<br>
+如果不指定基址，则自动获取进程基址作为参数。<br>
+@size 指定要搜索的内存长度，不指定则搜索所有可用内存（不要这样做）。<br>
+@strRegEx 指定模搜索的字符串数据，支持正则表达式（不是模式匹配）。<br>
+@strRegEx 可省略（这样做没有意义）。  </p>
+
+<p>count 指定返回结果的数目，0 为返回所有结果，<br>
+如果 @count 为负数则查询其绝对值数目的结果，并返回最后一个匹配结果<br>
+@count 为负数时返回单个值，否则返回数组。<br>
+如果没有找到匹配，返回 null 。</p>
+
+<p><a id="ProcessUtilObject.searchModuleMemory"></a></p>
+
+<h3>ProcessUtilObject.searchModuleMemory(moduleName,strRegEx,count)</h3>
+
+<p>搜寻指定模块内存。<br>
+@moduleName 指定模块名称，忽略大小写并支持模式匹配语法。  </p>
+
+<p>strRegEx 指定模搜索的字符串数据，支持正则表达式（64位系统此参数不使用模式匹配）。<br>
+在 32 位操作系统上 @strRegEx 只能使用模式匹配与正则都支持的语法。<br>
+@strRegEx 可省略（这样做没有意义）。  </p>
+
+<p>count 指定返回结果的数目，0 为返回所有结果，<br>
+如果 @count 为负数则查询其绝对值数目的结果，并返回最后一个匹配结果<br>
+@count 为负数时返回单个值，否则返回数组。<br>
+如果没有找到匹配，返回 null 。</p>
+
+<p><a id="ProcessUtilObject.sendMessage"></a></p>
+
+<h3>ProcessUtilObject.sendMessage(hwnd,message,wParam,lParam)</h3>
+
+<p>向外部进程窗口发送消息<br>
+lParam如果是结构体则复制到目标进程内存,<br>
+结构体如果包含指针应当自行调用 process.malloc 分配内存并复制<br>
+发送消息涉及的用法太多,尤其是涉及到访问外部进程内存,<br>
+所涉及的知识量不能通过看几句函数说明获得,<br>
+普通用户请不要学习或使用此函数</p>
+
+<p><a id="ProcessUtilObject.setAffinity"></a></p>
+
+<h3>ProcessUtilObject.setAffinity(1)</h3>
+
+<p>指定进程运行的CPU内核</p>
+
+<p><a id="ProcessUtilObject.setInfo"></a></p>
+
+<h3>ProcessUtilObject.setInfo(infoClass,infoStruct)</h3>
+
+<p>设置进程信息，成功返回 true。<br>
+infoClass 指定数值，infoStruct 指定结构体。<br>
+此函数内部调用 ::Kernel32.SetProcessInformation 。<br>
+详细用法请参考 API 文档。<br>
+在低于 Win8 的系统不执行操作</p>
+
+<p><a id="ProcessUtilObject.setPriorityClass"></a></p>
+
+<h3>ProcessUtilObject.setPriorityClass(0x80/*_HIGH_PRIORITY_CLASS*/)</h3>
+
+<p>设置进程优先级</p>
+
+<p><a id="ProcessUtilObject.stillActive"></a></p>
+
+<h3>ProcessUtilObject.stillActive()</h3>
+
+<p>进程是否仍在运行</p>
+
+<p><a id="ProcessUtilObject.suspend"></a></p>
+
+<h3>ProcessUtilObject.suspend()</h3>
+
+<p>暂停进程</p>
+
+<p><a id="ProcessUtilObject.terminate"></a></p>
+
+<h3>ProcessUtilObject.terminate()</h3>
+
+<p>强行终止进程<br>
+可在参数中指定退出代码</p>
+
+<p><a id="ProcessUtilObject.tid"></a></p>
+
+<h3>ProcessUtilObject.tid</h3>
+
+<p>返回进程的主线程 ID</p>
+
+<p><a id="ProcessUtilObject.wait"></a></p>
+
+<h3>ProcessUtilObject.wait()</h3>
+
+<p>等待进程关闭,<br>
+可选使用一个毫秒值参数设定超时<br>
+超时或失败返回 false,<br>
+进程已退出则返回值1为true,返回值2为退出代码</p>
+
+<p><a id="ProcessUtilObject.waitMainWindow"></a></p>
+
+<h3>ProcessUtilObject.waitMainWindow</h3>
+
+<p>等待并返回进程主窗口以及窗口进程ID。<br>
+也可调用 winex.mainWindows 且指定参数 @2 为 true 以等待主窗口。<br>
+winex.mainWindows 查找规则略有不同，请参考源码</p>
+
+<p><a id="ProcessUtilObject.waitMainWindow"></a></p>
+
+<h3>ProcessUtilObject.waitMainWindow(类名,等待窗口句柄)</h3>
+
+<p>等待并返回进程主窗口以及窗口进程ID。<br>
+所有参数可选。<br>
+可选指定要等待的类名,类名参数支持模式匹配语法,<br>
+不指定类名时忽略隐藏窗口,<br>
+可选指定等待窗口句柄,该窗口关闭时些函数不再等待并直接返回结果</p>
+
+<p><a id="ProcessUtilObject.waitOne"></a></p>
+
+<h3>ProcessUtilObject.waitOne()</h3>
+
+<p>等待进程关闭,不阻塞UI消息循环,<br>
+可选使用一个毫秒值参数设定超时<br>
+超时或失败返回 false,<br>
+进程已退出则返回值1为true,返回值2为退出代码</p>
+
+<p><a id="ProcessUtilObject.write"></a></p>
+
+<h3>ProcessUtilObject.write(内存地址,任意个字符串或结构体参数)</h3>
+
+<p>写入数据,成功返回写入尾部内存地址,<br>
+失败返回空</p>
+
+<p><a id="ProcessUtilObject.writeNumber"></a></p>
+
+<h3>ProcessUtilObject.writeNumber(内存地址,0)</h3>
+
+<p>写入一个int整数,32位</p>
+
+<p><a id="ProcessUtilObject.writeNumber"></a></p>
+
+<h3>ProcessUtilObject.writeNumber(内存地址,0,&quot;BYTE&quot;)</h3>
+
+<p>写入一个字节,8位无符号</p>
+
+<p><a id="ProcessUtilObject.writeNumber"></a></p>
+
+<h3>ProcessUtilObject.writeNumber(内存地址,0,&quot;INT&quot;)</h3>
+
+<p>写入一个int整数,32位无符号</p>
+
+<p><a id="ProcessUtilObject.writeNumber"></a></p>
+
+<h3>ProcessUtilObject.writeNumber(内存地址,0,&quot;LONG&quot;)</h3>
+
+<p>写入一个long类型整数,64位无符号</p>
+
+<p><a id="ProcessUtilObject.writeNumber"></a></p>
+
+<h3>ProcessUtilObject.writeNumber(内存地址,0,&quot;WORD&quot;)</h3>
+
+<p>写入一个word类型整数,16位无符号</p>
+
+<p><a id="ProcessUtilObject.writeNumber"></a></p>
+
+<h3>ProcessUtilObject.writeNumber(内存地址,0,&quot;byte&quot;)</h3>
+
+<p>写入一个字节,8位</p>
+
+<p><a id="ProcessUtilObject.writeNumber"></a></p>
+
+<h3>ProcessUtilObject.writeNumber(内存地址,0,&quot;long&quot;)</h3>
+
+<p>写入一个long类型整数,64位</p>
+
+<p><a id="ProcessUtilObject.writeNumber"></a></p>
+
+<h3>ProcessUtilObject.writeNumber(内存地址,0,&quot;word&quot;)</h3>
+
+<p>写入一个word类型整数,16位</p>
+
+<p><a id="ProcessUtilObject.writeString"></a></p>
+
+<h3>ProcessUtilObject.writeString(内存地址,字符串,长度)</h3>
+
+<p>写入字符串,长度为可选参数,<br>
+省略内存地址参数则自动分配内存,<br>
+该函数返回写入内存地址,写入长度</p>
+
+<p><a id="ProcessUtilObject.writeStringUtf16"></a></p>
+
+<h3>ProcessUtilObject.writeStringUtf16(内存地址,字符串)</h3>
+
+<p>写入Unicode字符串<br>
+参数可以为默认的UTF8编码文本</p>
+
+<p><a id="ProcessUtilObject.writeStruct"></a></p>
+
+<h3>ProcessUtilObject.writeStruct(内存地址,结构体)</h3>
+
+<p>写入定义的结构体,<br>
+省略内存地址参数则自动分配内存,<br>
+该函数返回写入内存地址,写入长度</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/process/util/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/process/util/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/process/util/_.md">Markdown 格式</a></p>
+
+</body> 
+</html>

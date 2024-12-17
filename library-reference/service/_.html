@@ -1,0 +1,664 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - service 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - service 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>service 库模块帮助文档</h1>
+
+<p><a id="service"></a></p>
+
+<h2>service 成员列表</h2>
+
+<p>NT服务操作<br>
+部分操作需要管理权限</p>
+
+<p><a id="service.activeSessionId（)"></a></p>
+
+<h3>service.activeSessionId（)</h3>
+
+<p>返回操作系统活动用户会话ID,<br>
+更多会话控制请参考标准库 win.ts</p>
+
+<p><a id="service.create"></a></p>
+
+<h3>service.create(启动路径,服务名,显示全名,服务描述)</h3>
+
+<p>创建服务,<br>
+参数@1可为空,默认使用当前应用程序路径,<br>
+其他可选参数未列出请查看函数源码</p>
+
+<p><a id="service.delete"></a></p>
+
+<h3>service.delete(&quot;服务名&quot;)</h3>
+
+<p>删除服务<br>
+注意删除服务前最好关闭服务管理器</p>
+
+<p><a id="service.each"></a></p>
+
+<h3>service.each()</h3>
+
+<p><a href="#ntsrvsta2Object">返回对象:ntsrvsta2Object</a></p>
+
+<p><a id="service.each"></a></p>
+
+<h3>service.each(serviceType,serviceState,groupName)</h3>
+
+<pre><code class="aardio language-aardio">for( serviceName,displayName,svrStatusProcess in service.each()){
+    io.print(serviceName, displayName,svrStatusProcess.state) 
+}
+</code></pre>
+
+<p><a id="service.eachSession（）"></a></p>
+
+<h3>service.eachSession（）</h3>
+
+<pre><code class="aardio language-aardio">for id,station,state in service.eachSession(){
+    if( state == 0 ) return id;/*遍历操作系统所有登录用户会话，  
+id为会话ID，station为会话名,state为会话状态  
+state为0为登录激活状态,1为已连接,4为断开状态*/
+}
+</code></pre>
+
+<p><a id="service.isExist"></a></p>
+
+<h3>service.isExist(&quot;服务名&quot;)</h3>
+
+<p>是否存在指定的服务</p>
+
+<p><a id="service.isRunning"></a></p>
+
+<h3>service.isRunning(&quot;服务名&quot;)</h3>
+
+<p>服务是否正在运行</p>
+
+<p><a id="service.isStopped"></a></p>
+
+<h3>service.isStopped(&quot;服务名&quot;)</h3>
+
+<p>服务是否已停止</p>
+
+<p><a id="service.manager"></a></p>
+
+<h3>service.manager()</h3>
+
+<p><a href="#ntsrvmgrObject">返回对象:ntsrvmgrObject</a></p>
+
+<p><a id="service.manager"></a></p>
+
+<h3>service.manager(desiredAccess,machineName,databaseName)</h3>
+
+<p>创建管理器</p>
+
+<p><a id="service.msgbox"></a></p>
+
+<h3>service.msgbox(&quot;文本&quot;,&quot;标题&quot;,等待超时值,样式)</h3>
+
+<p>弹出对话框<br>
+返回用户操作ID,如果不指定超时值返回IDASYNC 32001<br>
+超时值以毫秒为单位,超时为0表示一直等待,不指定超时则不等待用户操作,<br>
+除参数一以外,其他所有参数可选<br>
+如果参数@1是表对象,自动调用table.tostring序列化为文本<br>
+其他类型调用tostring转为字符串</p>
+
+<p><a id="service.msgboxErr"></a></p>
+
+<h3>service.msgboxErr(&quot;文本&quot;,&quot;标题&quot;)</h3>
+
+<p>弹出错误对话框<br>
+所有者窗口参数可选<br>
+如果参数@1是表对象,自动调用table.tostring序列化为文本<br>
+其他类型调用tostring转为字符串</p>
+
+<p><a id="service.msgboxTest"></a></p>
+
+<h3>service.msgboxTest(&quot;文本&quot;,&quot;标题&quot;)</h3>
+
+<p>返回布尔值表示用户是否按了“确定”按钮。<br>
+标题,所有者窗口参数可选</p>
+
+<p><a id="service.pause"></a></p>
+
+<h3>service.pause(&quot;服务名&quot;)</h3>
+
+<p>暂停服务,<br>
+成功返回true,<br>
+失败请使用lasterr函数获取错误信息</p>
+
+<p><a id="service.registerCtrlThread"></a></p>
+
+<h3>service.registerCtrlThread()</h3>
+
+<p><a href="#ntsrvsta2Object">返回对象:ntsrvsta2Object</a></p>
+
+<p><a id="service.registerCtrlThread"></a></p>
+
+<h3>service.registerCtrlThread(serviceName,handle)</h3>
+
+<pre><code class="aardio language-aardio">service.registerCtrlThread( serviceName,function(control,eventType,pEventData){  
+
+    }  
+)
+</code></pre>
+
+<p><a id="service.restart"></a></p>
+
+<h3>service.restart(&quot;服务名&quot;,停止超时,启动超时)</h3>
+
+<p>重新启动服务,成功返回true,<br>
+超时以秒为单位，省略则不限时间等待操作完成<br>
+停止超时达到时间后服务未正常停止则强制中断服务进程</p>
+
+<p><a id="service.resume"></a></p>
+
+<h3>service.resume(&quot;服务名&quot;)</h3>
+
+<p>暂停状态恢复运行,<br>
+成功返回true,<br>
+失败请使用lasterr函数获取错误信息</p>
+
+<p><a id="service.serviceName"></a></p>
+
+<h3>service.serviceName</h3>
+
+<p>当前服务线程中运行的NT服务名，<br>
+主线程应自行指定</p>
+
+<p><a id="service.sessions"></a></p>
+
+<h3>service.sessions()</h3>
+
+<p>返回操作系统所有登录用户会话,<br>
+更多会话控制请参考标准库 win.ts</p>
+
+<p><a id="service.start"></a></p>
+
+<h3>service.start(&quot;服务名&quot;)</h3>
+
+<p>启动服务,<br>
+成功返回true,<br>
+失败请使用lasterr函数获取错误信息</p>
+
+<p><a id="service.startDispatchThread"></a></p>
+
+<h3>service.startDispatchThread(服务回调函数表)</h3>
+
+<pre><code class="aardio language-aardio">service.service.startDispatchThread(   
+    服务名 = function(serviceName,argv){  
+        import service;   
+        var srvStatus = service.registerCtrlThread(serviceName,function(control,eventType,pEventData){   
+            import service;   
+            if( control == 0x1/*_SERVICE_CONTROL_STOP*/ ){    
+                service.updateStatus({currentState = 0x1/*_SERVICE_STOPPED*/},owner.serviceName);   
+            }   
+        } )  
+
+        srvStatus.controlsAccepted = 0x1/*_SERVICE_ACCEPT_STOP*/  
+        srvStatus.currentState = 0x4/*_SERVICE_RUNNING*/;  
+        service.updateStatus(srvStatus,serviceName)  
+
+        /*服务运行代码*/  
+
+        srvStatus.controlsAccepted = 0;  
+        srvStatus.currentState = 0x1/*_SERVICE_STOPPED*/  
+        service.updateStatus(srvStatus,serviceName)  
+    }  
+)
+</code></pre>
+
+<p><a id="service.stop"></a></p>
+
+<h3>service.stop(&quot;服务名&quot;)</h3>
+
+<p>停止服务,<br>
+成功返回true,<br>
+失败请使用lasterr函数获取错误信息</p>
+
+<p><a id="service.stop"></a></p>
+
+<h3>service.stop(&quot;服务名&quot;,true)</h3>
+
+<p>停止服务,如果失败就强制中断服务进程,<br>
+成功返回true,<br>
+失败请使用lasterr函数获取错误信息</p>
+
+<p><a id="service.terminate"></a></p>
+
+<h3>service.terminate(&quot;服务名&quot;)</h3>
+
+<p>强制中断服务进程,<br>
+成功返回true,</p>
+
+<p><a id="service.updateStatus"></a></p>
+
+<h3>service.updateStatus(服务状态表,服务名)</h3>
+
+<p>参数@1应是registerCtrlHandler函数的返回值,<br>
+在CtrlHandler函数中指定部分需要更新的值即可</p>
+
+<p><a id="ntsrvconfigObject"></a></p>
+
+<h2>ntsrvconfigObject 成员列表</h2>
+
+<p><a id="ntsrvconfigObject.binaryPathName"></a></p>
+
+<h3>ntsrvconfigObject.binaryPathName</h3>
+
+<pre><code class="aardio language-aardio">binaryPathName
+</code></pre>
+
+<p><a id="ntsrvconfigObject.dependencies"></a></p>
+
+<h3>ntsrvconfigObject.dependencies</h3>
+
+<pre><code class="aardio language-aardio">dependencies
+</code></pre>
+
+<p><a id="ntsrvconfigObject.displayName"></a></p>
+
+<h3>ntsrvconfigObject.displayName</h3>
+
+<pre><code class="aardio language-aardio">displayName
+</code></pre>
+
+<p><a id="ntsrvconfigObject.errorControl"></a></p>
+
+<h3>ntsrvconfigObject.errorControl</h3>
+
+<pre><code class="aardio language-aardio">errorControl
+</code></pre>
+
+<p><a id="ntsrvconfigObject.loadOrderGroup"></a></p>
+
+<h3>ntsrvconfigObject.loadOrderGroup</h3>
+
+<pre><code class="aardio language-aardio">loadOrderGroup
+</code></pre>
+
+<p><a id="ntsrvconfigObject.serviceStartName"></a></p>
+
+<h3>ntsrvconfigObject.serviceStartName</h3>
+
+<pre><code class="aardio language-aardio">serviceStartName
+</code></pre>
+
+<p><a id="ntsrvconfigObject.serviceType"></a></p>
+
+<h3>ntsrvconfigObject.serviceType</h3>
+
+<pre><code class="aardio language-aardio">serviceType
+</code></pre>
+
+<p><a id="ntsrvconfigObject.startType"></a></p>
+
+<h3>ntsrvconfigObject.startType</h3>
+
+<pre><code class="aardio language-aardio">startType
+</code></pre>
+
+<p><a id="ntsrvconfigObject.tagId"></a></p>
+
+<h3>ntsrvconfigObject.tagId</h3>
+
+<pre><code class="aardio language-aardio">tagId
+</code></pre>
+
+<p><a id="ntsrvmgrObject"></a></p>
+
+<h2>ntsrvmgrObject 成员列表</h2>
+
+<p><a id="ntsrvmgrObject.changeConfig"></a></p>
+
+<h3>ntsrvmgrObject.changeConfig(serviceName,serviceType,startType)</h3>
+
+<p>修改配置,其他可选参数未列出请查看函数源码</p>
+
+<p><a id="ntsrvmgrObject.changeConfig2"></a></p>
+
+<h3>ntsrvmgrObject.changeConfig2(&quot;服务名&quot;,配置项,配置值)</h3>
+
+<p>修改配置<br>
+配置值必须是结构体</p>
+
+<p><a id="ntsrvmgrObject.changeDescription"></a></p>
+
+<h3>ntsrvmgrObject.changeDescription(&quot;服务名&quot;,&quot;说明&quot;)</h3>
+
+<p>修改服务说明</p>
+
+<p><a id="ntsrvmgrObject.close"></a></p>
+
+<h3>ntsrvmgrObject.close()</h3>
+
+<p>关闭</p>
+
+<p><a id="ntsrvmgrObject.control"></a></p>
+
+<h3>ntsrvmgrObject.control(serviceName,desiredAccess,control)</h3>
+
+<p>控制服务</p>
+
+<p><a id="ntsrvmgrObject.create"></a></p>
+
+<h3>ntsrvmgrObject.create(启动路径,服务名,显示全名)</h3>
+
+<p>创建服务,其他可选参数未列出请查看函数源码</p>
+
+<p><a id="ntsrvmgrObject.delete"></a></p>
+
+<h3>ntsrvmgrObject.delete(&quot;服务名&quot;)</h3>
+
+<p>删除服务<br>
+注意删除服务前最好关闭服务管理器</p>
+
+<p><a id="ntsrvmgrObject.eachDependent"></a></p>
+
+<h3>ntsrvmgrObject.eachDependent(&quot;服务名&quot;)</h3>
+
+<pre><code class="aardio language-aardio">for(serviceName,displayName,serviceStatus in ntsrvmgrObject.eachDependent(&quot;/*指定服务名列出依赖此服务的服务*/&quot;) ){
+
+}
+</code></pre>
+
+<p><a id="ntsrvmgrObject.eachDependent"></a></p>
+
+<h3>ntsrvmgrObject.eachDependent()</h3>
+
+<p><a href="#ntsrvsta2Object">返回对象:ntsrvsta2Object</a></p>
+
+<p><a id="ntsrvmgrObject.isExist"></a></p>
+
+<h3>ntsrvmgrObject.isExist(&quot;服务名&quot;)</h3>
+
+<p>是否存在指定的服务</p>
+
+<p><a id="ntsrvmgrObject.isRunning"></a></p>
+
+<h3>ntsrvmgrObject.isRunning(&quot;服务名&quot;)</h3>
+
+<p>服务是否正在运行</p>
+
+<p><a id="ntsrvmgrObject.isStopped"></a></p>
+
+<h3>ntsrvmgrObject.isStopped(&quot;服务名&quot;)</h3>
+
+<p>服务是否已停止</p>
+
+<p><a id="ntsrvmgrObject.open"></a></p>
+
+<h3>ntsrvmgrObject.open(serviceName,desiredAccess)</h3>
+
+<p>打开服务句柄</p>
+
+<p><a id="ntsrvmgrObject.pause"></a></p>
+
+<h3>ntsrvmgrObject.pause(&quot;服务名&quot;)</h3>
+
+<p>暂停服务,<br>
+成功返回true,<br>
+失败请使用lasterr函数获取错误信息</p>
+
+<p><a id="ntsrvmgrObject.queryBinaryPathName"></a></p>
+
+<h3>ntsrvmgrObject.queryBinaryPathName(&quot;服务名&quot;)</h3>
+
+<p>返回启动路径以及参数</p>
+
+<p><a id="ntsrvmgrObject.queryConfig"></a></p>
+
+<h3>ntsrvmgrObject.queryConfig(&quot;服务名&quot;)</h3>
+
+<p>返回配置</p>
+
+<p><a id="ntsrvmgrObject.queryConfig"></a></p>
+
+<h3>ntsrvmgrObject.queryConfig()</h3>
+
+<p><a href="#ntsrvconfigObject">返回对象:ntsrvconfigObject</a></p>
+
+<p><a id="ntsrvmgrObject.queryConfig2"></a></p>
+
+<h3>ntsrvmgrObject.queryConfig2(&quot;服务名&quot;,配置项,配置值)</h3>
+
+<p>获取配置<br>
+配置值必须是结构体</p>
+
+<p><a id="ntsrvmgrObject.queryDescription"></a></p>
+
+<h3>ntsrvmgrObject.queryDescription(&quot;服务名&quot;)</h3>
+
+<p>返回服务说明</p>
+
+<p><a id="ntsrvmgrObject.queryStatus"></a></p>
+
+<h3>ntsrvmgrObject.queryStatus(&quot;服务名&quot;)</h3>
+
+<p>成功返回一个表示服务状态的表对象</p>
+
+<p><a id="ntsrvmgrObject.queryStatus"></a></p>
+
+<h3>ntsrvmgrObject.queryStatus()</h3>
+
+<p><a href="#ntsrvsta2Object">返回对象:ntsrvsta2Object</a></p>
+
+<p><a id="ntsrvmgrObject.resume"></a></p>
+
+<h3>ntsrvmgrObject.resume(&quot;服务名&quot;)</h3>
+
+<p>暂停状态恢复运行,<br>
+成功返回true,<br>
+失败请使用lasterr函数获取错误信息</p>
+
+<p><a id="ntsrvmgrObject.start"></a></p>
+
+<h3>ntsrvmgrObject.start(&quot;服务名&quot;)</h3>
+
+<p>启动服务,<br>
+成功返回true,<br>
+失败请使用lasterr函数获取错误信息</p>
+
+<p><a id="ntsrvmgrObject.startAndWait"></a></p>
+
+<h3>ntsrvmgrObject.startAndWait(&quot;服务名&quot;,进程权限)</h3>
+
+<p>启动服务并等待服务进程切换到运行状态,<br>
+返回打开的进程对象（process 对象）,可选用参数@2指定进程访问权限</p>
+
+<p><a id="ntsrvmgrObject.startAndWait"></a></p>
+
+<h3>ntsrvmgrObject.startAndWait()</h3>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/process/_.html  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/process/_.html#processObject'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/process/_.html#processObject">返回对象:processObject</a></p>
+
+<p><a id="ntsrvmgrObject.startAutomatic"></a></p>
+
+<h3>ntsrvmgrObject.startAutomatic(&quot;服务名&quot;)</h3>
+
+<p>设置为自动启动</p>
+
+<p><a id="ntsrvmgrObject.startDelayed"></a></p>
+
+<h3>ntsrvmgrObject.startDelayed(&quot;服务名&quot;,是否延时)</h3>
+
+<p>设置为延时启动</p>
+
+<p><a id="ntsrvmgrObject.startDisabled"></a></p>
+
+<h3>ntsrvmgrObject.startDisabled(&quot;服务名&quot;)</h3>
+
+<p>设置为禁用</p>
+
+<p><a id="ntsrvmgrObject.startManual"></a></p>
+
+<h3>ntsrvmgrObject.startManual(&quot;服务名&quot;)</h3>
+
+<p>设置为手动启动</p>
+
+<p><a id="ntsrvmgrObject.stop"></a></p>
+
+<h3>ntsrvmgrObject.stop(&quot;服务名&quot;)</h3>
+
+<p>停止服务,<br>
+成功返回true,<br>
+失败请使用lasterr函数获取错误信息</p>
+
+<p><a id="ntsrvmgrObject.stop"></a></p>
+
+<h3>ntsrvmgrObject.stop(&quot;服务名&quot;,true)</h3>
+
+<p>停止服务,如果失败就强制中断服务进程,<br>
+成功返回true,<br>
+失败请使用lasterr函数获取错误信息</p>
+
+<p><a id="ntsrvmgrObject.terminate"></a></p>
+
+<h3>ntsrvmgrObject.terminate(&quot;服务名&quot;)</h3>
+
+<p>强制中断服务进程,<br>
+成功返回true,</p>
+
+<p><a id="ntsrvmgrObject.wait"></a></p>
+
+<h3>ntsrvmgrObject.wait(&quot;服务名&quot;,状态码)</h3>
+
+<p>等待服务切换到指定状态<br>
+状态码不指定时默认为 4/*_SERVICE_RUNNING*/<br>
+成功返回一个表示服务状态的表对象</p>
+
+<p><a id="ntsrvmgrObject.wait"></a></p>
+
+<h3>ntsrvmgrObject.wait()</h3>
+
+<p><a href="#ntsrvsta2Object">返回对象:ntsrvsta2Object</a></p>
+
+<p><a id="ntsrvsta2Object"></a></p>
+
+<h2>ntsrvsta2Object 成员列表</h2>
+
+<p><a id="ntsrvsta2Object.checkPoint"></a></p>
+
+<h3>ntsrvsta2Object.checkPoint</h3>
+
+<pre><code class="aardio language-aardio">checkPoint
+</code></pre>
+
+<p><a id="ntsrvsta2Object.controlsAccepted"></a></p>
+
+<h3>ntsrvsta2Object.controlsAccepted</h3>
+
+<pre><code class="aardio language-aardio">controlsAccepted
+</code></pre>
+
+<p><a id="ntsrvsta2Object.currentState"></a></p>
+
+<h3>ntsrvsta2Object.currentState</h3>
+
+<pre><code class="aardio language-aardio">currentState
+</code></pre>
+
+<p><a id="ntsrvsta2Object.processId"></a></p>
+
+<h3>ntsrvsta2Object.processId</h3>
+
+<pre><code class="aardio language-aardio">processId
+</code></pre>
+
+<p><a id="ntsrvsta2Object.serviceFlags"></a></p>
+
+<h3>ntsrvsta2Object.serviceFlags</h3>
+
+<pre><code class="aardio language-aardio">processId
+</code></pre>
+
+<p><a id="ntsrvsta2Object.serviceSpecificExitCode"></a></p>
+
+<h3>ntsrvsta2Object.serviceSpecificExitCode</h3>
+
+<pre><code class="aardio language-aardio">serviceSpecificExitCode
+</code></pre>
+
+<p><a id="ntsrvsta2Object.serviceType"></a></p>
+
+<h3>ntsrvsta2Object.serviceType</h3>
+
+<pre><code class="aardio language-aardio">serviceType
+</code></pre>
+
+<p><a id="ntsrvsta2Object.state"></a></p>
+
+<h3>ntsrvsta2Object.state</h3>
+
+<pre><code class="aardio language-aardio">state
+</code></pre>
+
+<p><a id="ntsrvsta2Object.waitHint"></a></p>
+
+<h3>ntsrvsta2Object.waitHint</h3>
+
+<pre><code class="aardio language-aardio">waitHint
+</code></pre>
+
+<p><a id="ntsrvsta2Object.win32ExitCode"></a></p>
+
+<h3>ntsrvsta2Object.win32ExitCode</h3>
+
+<pre><code class="aardio language-aardio">win32ExitCode
+</code></pre>
+
+<h3>自动完成常量</h3>
+
+<p>_SERVICE_ACCEPT_HARDWAREPROFILECHANGE=0x20<br>
+_SERVICE_ACCEPT_NETBINDCHANGE=0x10<br>
+_SERVICE_ACCEPT_PARAMCHANGE=0x8<br>
+_SERVICE_ACCEPT_PAUSE_CONTINUE=0x2<br>
+_SERVICE_ACCEPT_POWEREVENT=0x40<br>
+_SERVICE_ACCEPT_SESSIONCHANGE=0x80<br>
+_SERVICE_ACCEPT_SHUTDOWN=0x4<br>
+_SERVICE_ACCEPT_STOP=0x1<br>
+_SERVICE_ADAPTER=0x4<br>
+_SERVICE_AUTO_START=0x2<br>
+_SERVICE_BOOT_START=0x0<br>
+_SERVICE_CONTINUE_PENDING=0x5<br>
+_SERVICE_CONTROL_CONTINUE=0x3<br>
+_SERVICE_CONTROL_HARDWAREPROFILECHANGE=0xC<br>
+_SERVICE_CONTROL_NETBINDADD=0x7<br>
+_SERVICE_CONTROL_NETBINDDISABLE=0xA<br>
+_SERVICE_CONTROL_NETBINDENABLE=0x9<br>
+_SERVICE_CONTROL_NETBINDREMOVE=0x8<br>
+_SERVICE_CONTROL_PARAMCHANGE=0x6<br>
+_SERVICE_CONTROL_PAUSE=0x2<br>
+_SERVICE_CONTROL_POWEREVENT=0xD<br>
+_SERVICE_CONTROL_SESSIONCHANGE=0xE<br>
+_SERVICE_CONTROL_SHUTDOWN=0x5<br>
+_SERVICE_CONTROL_STOP=0x1<br>
+_SERVICE_DEMAND_START=0x3<br>
+_SERVICE_DISABLED=0x4<br>
+_SERVICE_FILE_SYSTEM_DRIVER=0x2<br>
+_SERVICE_KERNEL_DRIVER=0x1<br>
+_SERVICE_PAUSED=0x7<br>
+_SERVICE_PAUSE_PENDING=0x6<br>
+_SERVICE_RECOGNIZER_DRIVER=0x8<br>
+_SERVICE_RUNNING=0x4<br>
+_SERVICE_RUNS_IN_SYSTEM_PROCESS=0x1<br>
+_SERVICE_START_PENDING=0x2<br>
+_SERVICE_STOPPED=0x1<br>
+_SERVICE_STOP_PENDING=0x3<br>
+_SERVICE_SYSTEM_START=0x1<br>
+_SERVICE_WIN32=0x30<br>
+_SERVICE_WIN32_OWN_PROCESS=0x10<br>
+_SERVICE_WIN32_SHARE_PROCESS=0x20  </p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/service/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/service/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/service/_.md">Markdown 格式</a></p>
+
+</body> 
+</html>

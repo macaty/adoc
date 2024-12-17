@@ -1,0 +1,211 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - 赋值语句'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - 赋值语句</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>赋值语句</h1>
+
+<h2>一、普通赋值语句</h2>
+
+<p>赋值语句改变一个变量的值。<br>
+赋值语句不能作为表达式使用，也不能作为表达式的一部分使用。<br>
+赋值语句必须是独立的语句，普通的赋值语句（在循环语句中初始化循环变量除外）不能作为其他语句的一部分，例如 <code>v = v2 = 100</code> 的写法是错误的。  </p>
+
+<h3>赋值</h3>
+
+<p>示例: </p>
+
+<pre><code class="aardio language-aardio">a = 120;
+</code></pre>
+
+<p>赋值基本规则：</p>
+
+<ul>
+<li>如果将一个变量赋值为 null 等同删除这个变量。 </li>
+<li>table,cdata,function 类型的数据在赋值时并不会创建新的值而只是添加一个引用(即新变量仍然指向同一个对象)。</li>
+<li>将数据作为函数的参数时也会进行赋值操作，作为参数 table,cdata,function 同样是按引用传递的。</li>
+<li>相同字符串（ string 类型 ）也会引用同一块内存，但修改字符串时总是会创建新的对象，所以改动一个字符串不会影响另一个字符串。</li>
+</ul>
+
+<h3>多重赋值</h3>
+
+<p>示例: </p>
+
+<pre><code class="aardio language-aardio">a,b,c = 1,2,3;  
+</code></pre>
+
+<p>以上的写法等效于：</p>
+
+<pre><code class="aardio language-aardio">a=1;
+b=2;
+c=3;
+</code></pre>
+
+<p>多重赋值时，右边的操作数如果多于左边的变量数目则丢弃多余的，右边的操作数不足则返回 null 值。  </p>
+
+<p>示例: </p>
+
+<pre><code class="aardio language-aardio">a,b,c = 0; 
+</code></pre>
+
+<p>上面的代码执行后 a 等于 0 , 而 b,c　的值都是 null。</p>
+
+<p>如果一个函数有多个返回值时，也可以使用多重赋值的方法，例如：  </p>
+
+<p>示例: </p>
+
+<pre><code class="aardio language-aardio">var a,b,c = table.unpack( { 1 ; 2 ; 3 } )
+</code></pre>
+
+<h3>使用 var 语句定义局部变量 <a id="var" href="#var">&#x23;</a></h3>
+
+<p>使用局部变量有两个好处: </p>
+
+<ol>
+<li>避免命名冲突 </li>
+<li>访问局部变量的速度比访问全局变量（或当前名字空间变量）快。</li>
+</ol>
+
+<p>请参考： </p>
+
+<ul>
+<li><a href="../variables-and-constants.html#var" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/variables-and-constants.html#var">局部变量</a></li>
+<li><a href="../function/definitions.html#var" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/function/definitions.html#var">函数局部变量</a></li>
+</ul>
+
+<p>局部变量需要用 var 语句声明。</p>
+
+<p>示例:</p>
+
+<pre><code class="aardio language-aardio">import console;
+
+//声明一个局部变量 str
+var str = &quot;123&quot;;  
+
+//语句块开始
+{ 
+    //局部变量为块级作用域，仅在语句块内部有效
+    var str = &quot;hello&quot; /
+
+    //局部变量的值是可以改变的
+    str = &quot;Hello, World!&quot; 
+
+    //显示 &quot;Hello, World!&quot; 
+    console.log(str); 
+}
+//语句块结束 
+
+console.log(str); //显示123
+</code></pre>
+
+<p>如果 var 后面使用一对括号，则圆括号内部可以写多条 var 语句并省略前面的 var 关键字，示例：</p>
+
+<pre><code class="aardio language-aardio">var ( 
+    a = 123;
+    b = 456
+);
+</code></pre>
+
+<h3>使用赋值语句定义变量、常量</h3>
+
+<p>没有用 var 语句声明过的标识符默认为当前名字空间的常量或变量。</p>
+
+<p>一个从未赋值的常量或变量默认值为 null。</p>
+
+<p>当前名字空间的成员名称如果首字符为下划线，并且长度大于 1 个字节并小于 256 个字节，则是一个命名常量，否则为变量。</p>
+
+<p>参考: <a href="../variables-and-constants.html" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/variables-and-constants.html">变量与常量</a></p>
+
+<p>名字空间只包含大写字母与下划线的命名常量为 <a href="../variables-and-constants.html#global-constant" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/variables-and-constants.html#global-constant">全局常量</a>，全局常量在所有名字空间都可以直接使用，不需要再添加表示全局名字空间的 <code>..</code> 前缀。 </p>
+
+<p>示例：</p>
+
+<pre><code class="aardio language-aardio">//将变量声明为当前名字空间下的成员变量
+value = 100;
+
+//以下划线开始的成员常量，赋为非 null 值以后就不能再更改值。
+_value = 100; 
+
+//以下划线开始的全局常量，赋为非 null 值以后就不能再更改值。
+_VALUE = 100; 
+
+//使用::操作符定义的全局常量，只能赋值一次 
+::Value = 100;
+</code></pre>
+
+<h3>使用赋值语句删除变量</h3>
+
+<p>将一个变量赋值为 null，删除这个变量。例如：  </p>
+
+<pre><code class="aardio language-aardio">value = null;
+</code></pre>
+
+<h2>二、复合赋值语句</h2>
+
+<p><code>a = a + b</code> 可以写成 <code>a += b</code>。</p>
+
+<p>所有二元操作符都可以按上述规则书写。  </p>
+
+<p>例如：</p>
+
+<pre><code class="aardio language-aardio">a -= b;  
+a *= b;  
+</code></pre>
+
+<p>复合赋值操作符不能包含空格，如 <code>a + = b;</code> 是错误的 <img src="../../icon/error.gif" tppabs="https://www.aardio.com/zh-cn/doc/icon/error.gif" alt="">，正确的应当是 <code>a += b;</code><img src="../../icon/ok.gif" tppabs="https://www.aardio.com/zh-cn/doc/icon/ok.gif" alt="">  </p>
+
+<p>复合赋值的几个特例：</p>
+
+<ul>
+<li><p>初始化赋值</p>
+
+<p>初始化赋值使用复合赋值语句：<code>A := c</code> 。</p>
+
+<p><code>A := c</code> 等价于 <code>A = A:c</code> 。如果 <code>A</code> 为 null 空值，则将 <code>c</code> 赋值给 <code>A</code>。</p>
+
+<p>定义命名常量时，为避免重复赋值，通常使用会初始化赋值语句。  </p>
+
+<p>参考: <a href="../variables-and-constants.html#named-constants" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/variables-and-constants.html#named-constants">命名常量</a></p></li>
+<li><p>条件赋值</p>
+
+<p>示例： </p>
+
+<p><code>str ?= string.lower(str)</code></p>
+
+<p>上面的复合赋值语句等价于： </p>
+
+<p><code>str = str and string.lower(str)</code> </p>
+
+<p>如果 str 不为 null 空值，则执行后面的赋值语句。</p>
+
+<p>其语义如下：</p>
+
+<pre><code class="aardio language-aardio">if(str != null){
+  str = string.lower(str)
+}
+</code></pre>
+
+<p>这样可以避免 str 为null 空值时，string.lower 抛出错误。如果 str 为空，则等号右侧的语句根本不会执行。  </p></li>
+</ul>
+
+<h2>五、自增自减赋值</h2>
+
+<p>自增语句 <code>a++</code> 等价于 <code>a += 1</code>。<br>
+自减语句 <code>a--</code> 等价于 <code>a -= 1</code>。</p>
+
+<p>要特别注意在 aardio 中语句不是表达式，自增自减语句同样也必须是独立语句不能作为表达式使用。</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/language-reference/statements/assignment.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/language-reference/statements/assignment.md'" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/statements/assignment.md">Markdown 格式</a></p>
+
+</body> 
+</html>

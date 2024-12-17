@@ -1,0 +1,115 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - web.multipartFormData 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - web.multipartFormData 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>web.multipartFormData 库模块帮助文档</h1>
+
+<p><a id="web"></a></p>
+
+<h2>web 成员列表</h2>
+
+<p><a id="web.multipartFormData"></a></p>
+
+<h3>web.multipartFormData</h3>
+
+<p>用于构建上传文件表单</p>
+
+<p><a id="web.multipartFormData"></a></p>
+
+<h3>web.multipartFormData()</h3>
+
+<p>构建上传文件表单  </p>
+
+<p><a href="#webMultipartFormDataObject">返回对象:webMultipartFormDataObject</a></p>
+
+<p><a id="webMultipartFormDataObject"></a></p>
+
+<h2>webMultipartFormDataObject 成员列表</h2>
+
+<p><a id="webMultipartFormDataObject.add"></a></p>
+
+<h3>webMultipartFormDataObject.add(&quot;字段名&quot;,&quot;@值&quot;)</h3>
+
+<p>添加字段到上传表单中<br>
+如果值的第一个字符为&quot;@&quot;,则@后面应当是上传文件路径</p>
+
+<p><a id="webMultipartFormDataObject.addFile"></a></p>
+
+<h3>webMultipartFormDataObject.addFile(&quot;字段名&quot;,&quot;文件路径&quot;)</h3>
+
+<p>添加文件到上传表单中</p>
+
+<p><a id="webMultipartFormDataObject.addTable"></a></p>
+
+<h3>webMultipartFormDataObject.addTable(字段名值对)</h3>
+
+<pre><code class="aardio language-aardio">webMultipartFormDataObject.addTable(  
+    [&quot;&quot;] = &quot;@/*如果值的第一个字符为&quot;@&quot;,则@后面应当是上传文件路径*/&quot;;   
+    [&quot;&quot;] = &quot;&quot;;  
+);
+</code></pre>
+
+<p><a id="webMultipartFormDataObject.close"></a></p>
+
+<h3>webMultipartFormDataObject.close()</h3>
+
+<p>关闭对象<br>
+无需手动调用该函数</p>
+
+<p><a id="webMultipartFormDataObject.codePage"></a></p>
+
+<h3>webMultipartFormDataObject.codePage</h3>
+
+<p>指定服务端编码使用的代码页<br>
+数值,UTF8编码为65001,系统默认ANSI编码为0,null为默认UTF8编码</p>
+
+<p><a id="webMultipartFormDataObject.contentHeader"></a></p>
+
+<h3>webMultipartFormDataObject.contentHeader()</h3>
+
+<p>返回一个用于构建HTTP头的表,指定了Content-Type的值:<br>
+&quot;multipart/form-data; boundary=分隔符&quot;  </p>
+
+<p>可选在参数中指定多个附加表用于添加更多键值</p>
+
+<p><a id="webMultipartFormDataObject.contentType"></a></p>
+
+<h3>webMultipartFormDataObject.contentType()</h3>
+
+<p>返回请求HTTP头Content-Type的值:<br>
+&quot;multipart/form-data; boundary=分隔符&quot;</p>
+
+<p><a id="webMultipartFormDataObject.read"></a></p>
+
+<h3>webMultipartFormDataObject.read(块大小)</h3>
+
+<p>读取上传数据<br>
+应循环调用该函数,直到该函数返回空值</p>
+
+<p><a id="webMultipartFormDataObject.readAll"></a></p>
+
+<h3>webMultipartFormDataObject.readAll(块大小)</h3>
+
+<p>读取所有数据</p>
+
+<p><a id="webMultipartFormDataObject.size"></a></p>
+
+<h3>webMultipartFormDataObject.size()</h3>
+
+<p>获取上传数据总大小</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/web/multipartFormData.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/web/multipartFormData.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/web/multipartFormData.md">Markdown 格式</a></p>
+
+</body> 
+</html>

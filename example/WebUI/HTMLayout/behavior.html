@@ -1,0 +1,99 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - HTMLayout behavior用法演示'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - HTMLayout behavior用法演示</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: HTMLayout behavior用法演示</h1><pre><code class="aardio language-aardio">//behavior
+import win.ui;
+/*DSG{{*/
+winform = win.form(text=&quot;HTMLayout behavior用法演示&quot;;right=599;bottom=399;)
+winform.add()
+/*}}*/
+
+import web.layout;
+wbLayout = web.layout(winform);
+
+/* 
+添加behavior非常简单,
+只要在 web.layout.behavior 名字空间下添加库并导入当前程序,或直接添加新的名字空间都可以创建behavior 
+
+behavior也可以使用合法的aardio名字空间(该名字空间默认位于 web.layout.behavior 名字空间内部 ),
+例如  behaivor:&quot;button.command&quot; 该behavior对应 aardio中的 web.layout.behavior.button.command 名字空间。
+CSS的behaivor属性中的名字空间如果包含多级名字空间(也即包含圆点符号)则必须置于引号内部。
+
+所有HTMLayout窗体可用的事件( 函数名前缀为on....  )在 behavior 中都可以使用
+当然, 仅在CSS样式中指定了 behavior 的节点才可以触发对应的事件。
+*/  
+namespace web.layout.behavior.button.command {  
+
+    /*
+    ltOwner 参数是绑定behavior的节点,
+    实际上也就是指定了 behavior:command 的节点对象
+
+    ltTarget 通常指的是实际触发事件的节点,
+    或者根据不同的事件,ltTarget的意义有所不同 
+    */
+    onButtonClick = function (ltTarget,ltOwner,reason,behaviorParams) { 
+        ltOwner.printf(&quot;点击了按钮&quot;);
+        ltOwner.postEvent(&quot;onMyCustomEvent&quot;,2);//可以再次触发其他的事件,注意事件应为 web.layout.event.BEHAVIOR 名字空间下的事件或自定义事件
+    }
+
+    //自定义事件的参数与onApplicationEvent相同
+    onMyCustomEvent = function (ltTarget,ltOwner,reason,behaviorParams) {
+        ltOwner.printf(&quot;自定义事件onMyCustomEvent被触发,触发参数:%d&quot;,reason)
+    }
+
+    //CSS脚本中读取 self:value 时触发此回调，第2个返回值返回 value 的值
+    onGetValue = function( ltOwner ){
+        return true,&quot;Value:onGetValue&quot;;
+    }
+
+    //CSS脚本中使用 self:value 修改值时触发此回调
+    onSetValue = function(  ltOwner,value ){
+
+        return true
+    }
+
+    //所有名字不是on前缀的函数,都可以在CSS脚本中直接调用,
+    //在CSSS!调用下面的函数时,第一个实参是下面的第二个形参,第一个ltEle参数则是绑定behavior的节点对象
+    func = function(ltOwner,a,b,c){  
+        ltOwner.printf(&quot;调用了自定义函数,收到参数 a:%d b:%d c:%s &quot;,a,b,c )
+        return &quot;返回新的值&quot;
+    }
+}
+
+wbLayout.html =/***
+&lt;div id=&quot;my-button&quot; 属性=&quot;值&quot;&gt;请点击这里&lt;/div&gt; 
+***/
+
+wbLayout.css = /**
+#my-button{ 
+    /*
+    behavior名字前加波浪线表示在原来的behavior列表上追加,而不是替换behavior属性。
+    可以指定多个behavior,以空格分格,例如下面的 clickable 是一个内建behavior,表示触发 onButtonClick事件而不是 onMouseClick事件。
+    */
+    behavior:&quot;button.command clickable&quot;;
+    active-on!:/*类似behavior中的onMouseDown,也即节点切换到active状态*/
+        self.func(1,2,self:value), /*CSSS!脚本以逗号分隔语句*/
+    ; /*CSSS!脚本以分号表示语句块结束*//
+}
+**/
+
+winform.show() 
+win.loopMessage(); 
+
+
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/WebUI/HTMLayout/behavior.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/WebUI/HTMLayout/behavior.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/WebUI/HTMLayout/behavior.md">Markdown 格式</a>
+</body> 
+</html>

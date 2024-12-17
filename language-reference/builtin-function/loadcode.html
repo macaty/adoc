@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - loadcode() 函数'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - loadcode() 函数</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>loadcode() 函数</h1>
+
+<p>loadcode() 加载 aardio 代码或 aardio 代码文件，并返回加载代码创建的函数对象。</p>
+
+<ol>
+<li><p>函数原型：   </p>
+
+<p><code>函数对象,错误信息 = loadcode( codeString | filepath )</code></p></li>
+<li><p>函数说明：   </p>
+
+<p>参数 @1 可以是包含 aardio 代码的字符串值，也可以是 aardio 代码文件的路径.路径可以用斜杠作为首字符表示应用程序根目录。loadcode 函数并不立即执行代码，而是返回一个函数对象.  </p>
+
+<p>如果加载代码失败，则返回的函数对象为 null 值，并在第二个返回值中返回错误信息.  </p>
+
+<p>一个类似的函数是 <a href="loadcodex.html" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/builtin-function/loadcodex.html">loadcodex</a> 函数，loadcodex 立即运行代码并返回被调用代码的返回值。</p></li>
+<li><p>调用示例：   </p>
+
+<pre><code class="aardio language-aardio">import console; 
+
+//生成一个测试用代码文件 
+string.save(&quot;/.test.aardio&quot;,&quot; 
+var a,b,c = ...;//文件也是一个匿名函数,可以这样接收参数 
+myTestFunc = function(){ 
+    return&#39;loadcode-&gt;myFunc&#39;; 
+}&quot;); 
+
+//加载代码文件返回一个函数对象 
+var func = loadcode(&quot;/.test.aardio&quot;) 
+
+//执行代码文件 
+func(&quot;a参数&quot;,&quot;b参数&quot;,&quot;c参数&quot;)
+
+//执行该代码文件中定义的函数 
+var str = myTestFunc(); 
+
+//暂停控制台并显示 str 变量 
+console.logPause(str);
+</code></pre></li>
+</ol>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/language-reference/builtin-function/loadcode.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/language-reference/builtin-function/loadcode.md'" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/builtin-function/loadcode.md">Markdown 格式</a></p>
+
+</body> 
+</html>

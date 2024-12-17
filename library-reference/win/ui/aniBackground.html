@@ -1,0 +1,83 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - win.ui.aniBackground 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - win.ui.aniBackground 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>win.ui.aniBackground 库模块帮助文档</h1>
+
+<p><a id="win.ui"></a></p>
+
+<h2>win.ui 成员列表</h2>
+
+<p><a id="win.ui.aniBackground"></a></p>
+
+<h3>win.ui.aniBackground</h3>
+
+<p>创建动画背景窗口,<br>
+建议窗体属性中开启双缓冲优化、以避免闪烁,<br>
+使用 win.ui.layered 也可以创建分层透明窗口</p>
+
+<p><a id="win.ui.aniBackground"></a></p>
+
+<h3>win.ui.aniBackground()</h3>
+
+<p><a href="#winUiAniBackgroundObject">返回对象:winUiAniBackgroundObject</a></p>
+
+<p><a id="win.ui.aniBackground"></a></p>
+
+<h3>win.ui.aniBackground(winform,transparentColor)</h3>
+
+<p>创建动画背景窗口,<br>
+@winform 参数指定目标窗口,<br>
+可选用 @transparentColor 指定设为透明的颜色, 0xBBGGRR 格式,<br>
+使用 win.ui.layered 可直接支持图像透明度</p>
+
+<p><a id="winUiAniBackgroundObject"></a></p>
+
+<h2>winUiAniBackgroundObject 成员列表</h2>
+
+<p><a id="winUiAniBackgroundObject.add"></a></p>
+
+<h3>winUiAniBackgroundObject.add</h3>
+
+<p>添加动画帧</p>
+
+<p><a id="winUiAniBackgroundObject.add"></a></p>
+
+<h3>winUiAniBackgroundObject.add(&quot;图像&quot;,延时)</h3>
+
+<p>图像格式支持 png,bmp,jpg,gif 等<br>
+如果要指定透明颜色,应使用无损格式 png 或 bmp</p>
+
+<p><a id="winUiAniBackgroundObject.animate"></a></p>
+
+<h3>winUiAniBackgroundObject.animate()</h3>
+
+<p>播放动画</p>
+
+<p><a id="winUiAniBackgroundObject.clear"></a></p>
+
+<h3>winUiAniBackgroundObject.clear()</h3>
+
+<p>释放所有加载的图像</p>
+
+<p><a id="winUiAniBackgroundObject.next"></a></p>
+
+<h3>winUiAniBackgroundObject.next()</h3>
+
+<p>返回下一帧位图句柄,以及延时</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/ui/aniBackground.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/ui/aniBackground.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/aniBackground.md">Markdown 格式</a></p>
+
+</body> 
+</html>

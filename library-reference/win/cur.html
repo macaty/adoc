@@ -1,0 +1,102 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - win.cur 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - win.cur 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>win.cur 库模块帮助文档</h1>
+
+<p><a id="win.cur"></a></p>
+
+<h2>win.cur 成员列表</h2>
+
+<p><a id="win.cur.beginCur"></a></p>
+
+<h3>win.cur.beginCur()</h3>
+
+<p>持续设置当前鼠标指针句柄为最后一次使用load或loadfile加载的鼠标指针句柄<br>
+建议使用win.ui.waitCursor替代此函数</p>
+
+<p><a id="win.cur.beginCur"></a></p>
+
+<h3>win.cur.beginCur(hCur)</h3>
+
+<p>持续设置当前鼠标指针句柄<br>
+直到调用win.cur.endCur()<br>
+hcur为鼠标指针句柄</p>
+
+<p><a id="win.cur.beginWaitCur"></a></p>
+
+<h3>win.cur.beginWaitCur()</h3>
+
+<p>持续设置鼠标指针为等待指针,直到调用win.cur.endCur<br>
+建议使用win.ui.waitCursor替代此函数</p>
+
+<p><a id="win.cur.beginning"></a></p>
+
+<h3>win.cur.beginning</h3>
+
+<p>如果调用了beginCur或beginWaitCur<br>
+在尚未调用endCur之前beginning返回true</p>
+
+<p><a id="win.cur.endCur"></a></p>
+
+<h3>win.cur.endCur()</h3>
+
+<p>恢复默认鼠标指针<br>
+建议使用win.ui.waitCursor替代此函数</p>
+
+<p><a id="win.cur.getCur"></a></p>
+
+<h3>win.cur.getCur()</h3>
+
+<p>返回当前鼠标指针句柄</p>
+
+<p><a id="win.cur.load"></a></p>
+
+<h3>win.cur.load(id)</h3>
+
+<p>载入鼠标指针资源,返回鼠标指针句柄<br>
+id为资源ID,或资源名字</p>
+
+<p><a id="win.cur.load"></a></p>
+
+<h3>win.cur.load(id,instance)</h3>
+
+<p>载入鼠标指针资源,返回鼠标指针句柄<br>
+id为资源ID,或资源名字<br>
+instance为DLL模块句柄</p>
+
+<p><a id="win.cur.loadfile"></a></p>
+
+<h3>win.cur.loadfile(&quot;字符串参数&quot;)</h3>
+
+<p>载入鼠标指针文件,返回鼠标指针句柄</p>
+
+<p><a id="win.cur.setCur"></a></p>
+
+<h3>win.cur.setCur()</h3>
+
+<p>设置为最后一次使用load或loadfile加载的鼠标指针句柄</p>
+
+<p><a id="win.cur.setCur"></a></p>
+
+<h3>win.cur.setCur(hCur)</h3>
+
+<p>设置当前鼠标指针句柄<br>
+hcur为鼠标指针句柄<br>
+此函数一般用于回调函数中响应_WM_SETCURSOR消息</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/cur.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/cur.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/cur.md">Markdown 格式</a></p>
+
+</body> 
+</html>

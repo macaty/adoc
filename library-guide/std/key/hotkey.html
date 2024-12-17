@@ -1,0 +1,657 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - 超级热键使用指南'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - 超级热键使用指南</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>超级热键使用指南</h1>
+
+<p>标准库 key.hotkey 用于创建超级热键，超级热键是基于低级键盘钩子 <a href="../../../library-reference/key/hook.html" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/key/hook.html">key.hook</a> 实现的系统全局有效的增强热键。</p>
+
+<ul>
+<li><a href="../../../library-reference/key/hotkey/_.html" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/key/hotkey/_.html">key.hotkey 库参考</a></li>
+<li><a href="../../../example/Windows/Hotkey/key.hotkey.html" tppabs="https://www.aardio.com/zh-cn/doc/example/Windows/Hotkey/key.hotkey.html">key.hotkey 范例</a></li>
+</ul>
+
+<h2>一、检测超级热键的基本规则</h2>
+
+<ol>
+<li>如果首个按下的键不是控制键，则不需要同时按住多个键。
+如果按下的键是已注册的热键前半部分，则阻止当前按键继续发送。
+如果继续按键已不符合任何热键，则释放已捕获的按键并按原顺序重新发送。</li>
+<li>如果首次按住的是控制键（ CTRL,ALT,SHIFT,WIN 之一），则必须同时按住多个键才算已完成热键。
+如果这样同时按住的多个键是一个已完成的热键，但同时又是其他热键的前半部分，则必须放开所有键才会生效。</li>
+<li>如果注册单个控制键热键，并且加上 @ 前缀，则放开该键（且中间没有按其他键）才算完成热键。</li>
+<li>按键保持按下不放时不会触发多次超级热键。</li>
+</ol>
+
+<p>超键热键中任何键名都只表示该键名所在的单个按键，不包含上档键。例如热键 <code>~hi</code> 指连续按 3 个键，其中 <code>~</code> 不是指同时按 <code>Shift + ~</code> 这两个键。</p>
+
+<h2>二、超级热键格式说明</h2>
+
+<p>例如注册了以下 4 个热键，则对应热键格式的热键触发规则如下：</p>
+
+<ul>
+<li>热键 <code>~hi</code> 用法：连续按 3 个键，每个键都要放开。</li>
+<li>热键 <code>SHIFT+Q,Q</code> 用法：按下 <code>Shift</code> 不放，再按 2 下 <code>Q</code>。</li>
+<li>热键 <code>Ctrl+K</code> 用法：按下 <code>Ctrl</code> 不放，再按 <code>K</code>, 然后都放开。</li>
+<li>热键  <code>Ctrl+K,K</code>    用法：按下 <code>Ctrl</code> 不放，再按 2 次 <code>K</code>（因为不是其他热键的前半部分，不需要等待放开）。</li>
+</ul>
+
+<h2>三、注册超级热键</h2>
+
+<p>以下是一个最简单的超级热键程序示例：</p>
+
+<pre><code class="aardio language-aardio">import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;超级热键示例&quot;)
+winform.add(
+edit={cls=&quot;edit&quot;;left=32;top=35;right=725;bottom=414;edge=1;multiline=1}
+)
+/*}}*/
+
+import key.hotkey;
+import win.dlg.chineseNumber;
+
+var superHotkey = key.hotkey();
+superHotkey.loadTable({
+    // 按 Ctrl+ $ 键打开大写金额与中文数字输入框
+    [&quot;Ctrl+$&quot;] = function(hFocus){  
+        win.dlg.chineseNumber().show();
+    };
+})
+
+winform.show();
+win.loopMessage();
+</code></pre>
+
+<p>要注意必须在包含窗口的界面线程中才能使用 key.hotkey ， 创建 key.hotkey 对象时必须指定一个 winform 窗口对象作为参数。</p>
+
+<p>superHotkey.loadTable 函数用于批量处册热键热键，参数 @1 指定热键配置表。热配置表中每个名值对都会调用 superHotkey.regStr 函数注册为热键，键名指定超级热键，对应的键值指定热键回调函数。热键回调函数用于响应热键并执行指定的代码。</p>
+
+<p>热配置表中指定超级热键的键名可以是 <a href="../../../library-reference/key/VK.html" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/key/VK.html">key.VK 库</a> 定义的英文键名字符串，尾部可用 <code>&#39;\0&#39;</code> 表示终止键。热键不区分大小写，字符间不能有空白。如果超级热键的第一个按键是控制键并紧跟一个加号，后面所有键名都要使用逗号分开，例如 <code>Ctrl+Q,Q</code> 。</p>
+
+<p>热键回调函数返回 true 表示允许系统继续发送按键，否则取消该按键，不再继续发送。
+如果热键回调函数返回一个函数对象，则取消该按键不再发送，并在返回函数以后异步延时执行返回的函数对象。</p>
+
+<h2>四、ImTip 的超级热键</h2>
+
+<p>开源软件 <a href="javascript:if(confirm('http://imtip.aardio.com/  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://imtip.aardio.com/'" tppabs="http://imtip.aardio.com/">ImTip</a> 的超级热键基于 key.hotkey 库。</p>
+
+<p>自 ImTip 5.0 开始直接在 aardio 开发环境内运行超级热键。超级热键以 aardio 目录为 <a href="../../builtin/io/path.html#app-path" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/builtin/io/path.html#app-path">应用程序根目录</a>，可以调用 aardio 的所有库。</p>
+
+<p>ImTip 5.0 的热键配置实际就是一个普通的 aardio 代码文件（ 这个文件也是一个能单独运行的热键程序 ）。ImTip 调用 aardio 代码编辑器编辑热键配置，在 aardio 中保存热键配置文件也会在 ImTip 中同步生效（必须从 ImTip 中启动编辑才会同步）。</p>
+
+<p>注意 ImTip 超级热键配置代码中检测开发环境的代码不要删除，示例：</p>
+
+<pre><code class="aardio language-aardio">import win.ui;
+
+/*开发环境（请勿修改）{{*/
+import win.ui;
+
+//如果是在开发环境中启动，而不是由 ImTip 启动 
+if(_STUDIO_INVOKED &amp;&amp; ...!=&quot;ImTip&quot;){
+
+    //显示测试窗口
+    var winform = win.form(text=&quot;超级热键&quot;;right=759;bottom=469)
+    winform.add(
+    edit={cls=&quot;edit&quot;;left=29;top=24;right=727;bottom=420;db=1;dl=1;dr=1;dt=1;edge=1;multiline=1;z=1}
+    )
+
+    //在 ImTip 中启动热键就不必要显示这个测试窗口
+    winform.show(); 
+}
+/*}}*/
+
+import key.hotkey;
+import win.dlg.chineseNumber;
+
+var superHotkey = key.hotkey();
+superHotkey.loadTable({
+    // 按 Ctrl+ $ 键打开大写金额与中文数字输入框
+    [&quot;Ctrl+$&quot;] = function(hFocus){  
+        win.dlg.chineseNumber().show();
+    };
+})
+
+win.loopMessage();
+</code></pre>
+
+<h2>五、避免阻塞键盘消息的耗时操作</h2>
+
+<p>超级热键基于低级键盘钩子，所在线程必须调用 <code>win.loopMessage()</code> 启动消息循环。</p>
+
+<p>超级热键所在线程应避免阻塞消息循环的耗时操作，任何阻塞消息循环或热键回调函数的操作执行时间不应超过 200 毫秒。如果阻塞时间超过一秒或超过注册表限制的更小时间，系统可能会直接删除键盘钩子（导致超级热键不可用）。</p>
+
+<p><strong>如果超级热键出现异常（例如热键失效，对按键的拦截失效，本应被取消的按键发送到了目标窗口等等问题），应当首先检查超级热键所在线程是否执行了阻塞钩子消息的耗时操作。</strong></p>
+
+<p>建议用单独的线程运行超级热键，超级热键回调函数中创建新的线程执行耗时操作。请参考：<a href="../../../guide/language/thread.html" tppabs="https://www.aardio.com/zh-cn/doc/guide/language/thread.html">创建多线程</a>。</p>
+
+<h2>六、示例: 按 <code>Ctrl+I</code> 调用 AI 助手处理选区文本</h2>
+
+<p>在下面的超级热键示例中我们调用 web.rest.aiChat 创建了一个 AI 助手以处理通过 winex.selection 获取的选区文本。AI 助手需要调用远程接口，发送 HTTP 请求属于耗时操作且会阻塞消息循环，因此我们创建多线程执行这些耗时操作以避免阻塞键盘钩子消息。</p>
+
+<pre><code class="aardio language-aardio">
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;超级热键示例&quot;)
+winform.add(
+edit={cls=&quot;edit&quot;;left=32;top=35;right=725;bottom=414;edge=1;multiline=1}
+)
+/*}}*/
+
+import winex.selection;
+import key.hotkey;
+var superHotkey = key.hotkey();
+
+superHotkey.loadTable({
+    // 按 Ctrl+ I 触发热键
+    [&quot;Ctrl+I&quot;] = function(hFocus){  
+        //获取当前选区文本
+        var txt = winex.selection.get(true);
+
+        if(!#txt) { 
+            return true;
+        }
+
+        //创建多线程以执行耗时操作，以避免阻塞键盘钩子消息导致热键失效。
+        thread.invoke( 
+            function(txt){
+
+                import web.rest.aiChat;
+                import web.rest.aiChat.message;
+                import key;
+
+                var ai = web.rest.aiChat(
+                    key = &quot;sk-请修改密钥&quot;;
+                    url = &quot;https://api.deepseek.com/v1&quot;;//接口地址
+                    model = &quot;deepseek-chat&quot;;//模型名称首字符为 @ 则使用 Anthropic 接口
+                    temperature = 0.5;//温度
+                    maxTokens = 1024,//最大回复长度
+                )
+
+                //创建 AI 会话消息队列 
+                var msg = web.rest.aiChat.message();
+
+                //添加系统提示词
+                msg.system(&quot;你是一个翻译助手，如果用户输入主要为中文请翻译为英文，反之则将输入翻译为英文。&quot;)
+
+                //添加用户提示词
+                msg.prompt(txt);
+
+                var ok,err = ai.messages(msg,function(delta){
+                    //以打字方式逐步输出 AI 回复的增量文本到目标输入框。
+                    key.sendString(delta)
+                } );
+            },txt
+        )
+
+    };
+})
+
+winform.show();
+win.loopMessage();
+
+</code></pre>
+
+<h2>七、示例: 按 <code>Ctrl+I</code> 创建浏览器控件展示 AI 搜索结果</h2>
+
+<p>在下面的超级热键示例中，我们调用 web.view 创建 WebView2 浏览器控件以展示 AI 搜索结果。</p>
+
+<p>创建浏览器控件可能会有不易察觉的短暂阻塞过程。如果不使用多线程，阻塞键盘钩子消息就可能导致热键异常或失效。例如获取的选区文本非空时本应取消的 <code>Ctrl+I</code> 被发送到目标窗口，或导致后续的超级热键失效。</p>
+
+<p>下面我们在热键回调函数中用 thread.invoke 创建多线程就可以避免上述的问题。</p>
+
+<pre><code class="aardio language-aardio">import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;超级热键示例&quot;)
+winform.add(
+edit={cls=&quot;edit&quot;;left=32;top=35;right=725;bottom=414;edge=1;multiline=1}
+)
+/*}}*/
+
+import winex.selection;
+import key.hotkey;
+var superHotkey = key.hotkey();
+
+superHotkey.loadTable({
+    // 按 Ctrl+ I 触发热键
+    [&quot;Ctrl+I&quot;] = function(hFocus){  
+
+        //获取当前选区文本
+        var txt = winex.selection.get(true);
+        if(!#txt) return true;//选区文本为空，继续发送按键
+
+        //创建多线程
+        thread.invoke( 
+            function(txt){
+                import win.ui;
+                var winform = win.form(
+                    text=&quot;ImTip - AI 搜索&quot;;right=759;bottom=469;
+                    parent=win.getForeground();//前置窗口
+                    topmost=true;//窗口保持在最顶层
+                ); 
+
+                //创建浏览器
+                import web.view;
+                var wb = web.view(winform);
+                wb.go(&quot;https://metaso.cn&quot;,{q=txt});
+                winform.show();  
+
+                win.loopMessage()       
+            },txt
+        );  
+    };
+})
+
+winform.show();
+win.loopMessage();
+</code></pre>
+
+<p>这里有一个小技巧，在后台线程创建窗口时我们可以使用 <code>parent=win.getForeground();</code> 参数将父窗口指定为前景窗口以避免窗口出现在后台。而 <code>topmost=true</code> 参数让窗口保持显示在最顶层。</p>
+
+<h2>八、示例: 按 <code>Ctrl+Shift+I</code> 查单词，调用 AI 翻译</h2>
+
+<pre><code class="aardio language-aardio">import win.ui;
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;超级热键示例&quot;)
+winform.add(
+edit={cls=&quot;edit&quot;;left=32;top=35;right=725;bottom=414;edge=1;multiline=1}
+)
+/*}}*/
+
+import winex.tooltip;
+import winex.selection; 
+import winex.caret;
+import key.hotkey;
+
+superHotkey = key.hotkey();
+superHotkey.loadTable({
+
+    // 按 Ctrl + Shift + I 触发热键
+    [&quot;Ctrl+Shift+I&quot;] = function(hFocus){
+
+        //获取当前选区文本
+        var txt = winex.selection.get(true);
+        if(!#txt) return true;//选区文本为空，继续发送按键
+
+        //本地英中翻译查词
+        import string.words;
+        var cn,en = string.words(txt) 
+        if(cn){
+            var x,y = winex.caret.getPos();  
+            winex.tooltip.popup(cn,x,y - 50); 
+        }
+
+        //朗读单词
+        if(en){
+            //用 := 操作符避免重复创建控件
+            wmPlayer := com.CreateObject(&quot;WMPlayer.OCX&quot;); 
+            wmPlayer.url = &quot;https://dict.youdao.com/dictvoice?audio=&quot;+txt+&quot;&amp;type=2&quot;;
+
+            return; 
+        } 
+
+        //如果不包含空格分隔的英文单词则退出
+        if(!string.find(txt,&quot;\a+\s+\a+&quot;)){
+            return true;
+        } 
+
+        //创建多线程以执行耗时操作，以避免阻塞键盘钩子消息导致热键失效。
+        thread.invoke( 
+            function(txt){ 
+                import web.rest.aiChat;
+                import web.rest.aiChat.message;
+                import key;
+
+                var ai = web.rest.aiChat(
+                    key = &quot;sk-请修改密钥&quot;;
+                    url = &quot;https://api.deepseek.com/v1&quot;;//接口地址
+                    model = &quot;deepseek-chat&quot;;//模型名称首字符为 @ 则使用 Anthropic 接口
+                    temperature = 0.5;//温度
+                    maxTokens = 1024,//最大回复长度
+                )
+
+                //创建 AI 会话消息队列 
+                var msg = web.rest.aiChat.message();
+
+                //添加系统提示词
+                msg.system(&quot;你是一个翻译助手，如果用户输入主要为中文请翻译为英文，反之则将输入翻译为英文。&quot;)
+
+                //添加用户提示词
+                msg.prompt(&quot;请翻译:&quot;+txt);
+
+                //获取文本选区坐标
+                import winex.caret;
+                var x,y = winex.caret.getPos(,-50);
+
+                import winex.tooltip;
+                var ok,err = ai.messages(msg,function(delta){ 
+
+                    //增量显示屏幕提示
+                    if( winex.tooltip.popupDelta(delta,x,y ) ){
+                        thread.delay(3000);//已完成输出，延时避免线程退出导致提示立即关闭。
+                    } 
+                } ); 
+
+                //显示错误信息
+                if(err)winex.tooltip.popupDelta(err,x,y ) 
+            },txt
+        ) 
+    }
+})
+
+win.loopMessage();
+</code></pre>
+
+<h2>九、更多超级热键示例</h2>
+
+<p>先了解几个在自动化中较常用的发送按键与字符串的方法：</p>
+
+<pre><code class="aardio language-aardio">//发送字符串
+key.sendString(&quot;这里是要发送的字符串&quot;)
+
+//发送按键
+key.send(&quot;/&quot;)
+
+//发送按键
+key.press(&quot;ENTER&quot;)
+</code></pre>
+
+<p>下面是一些超级热键示例，ImTip 默认已经导入了下面范例中这些常用的库，也可以自行将新的 aardio 库按原路径放到 ImTip.exe 所在目录的 /lib/ 目录下，然后使用 import 语句导入。</p>
+
+<pre><code class="aardio language-aardio">/*导入库{{*/
+import fsys;
+import fsys.lnk;
+import process;
+import process.cache;
+import process.popen;
+import process.curl;
+import win.ui.ctrl.pick;
+import winex;
+import winex.mouse;
+import winex.key;
+import winex.accObject;
+import win.dlg.chineseNumber;
+import win.clip;
+import winex.tooltip;
+import winex.selection;
+import winex.caret;
+import win.reg;
+import mouse;
+import key;
+import key.ime;
+import key.hotkey;
+/*}}*/
+
+var superHotkey = key.hotkey();
+superHotkey.loadTable({
+[&quot;Ctrl+#&quot;] = function(hFocus){  
+    //打开调色器 
+    var dlg = win.ui.ctrl.pick();
+    win.setTopmost(dlg.hwnd,true); 
+    dlg.doModal();
+};
+
+//复制输入焦点所在窗口类名
+[&quot;Ctrl+F12&quot;] = function(hFocus){  
+    var cls = win.getClass(hFocus);
+    winex.tooltip.trackPopup(cls + &quot; 已复制到剪贴板!&quot;);
+    win.clip.write(cls);
+};
+
+//运行QQ
+[&quot;Ctrl+Q,Q&quot;] = function(hFocus){ 
+    var qqPath = process.cache.find(&quot;qq.exe&quot;);  
+    process.execute( qqPath )
+};
+
+[&quot;@Shift&quot;] = function(hFocus){
+    /*
+    如果 Ctrl,Shift,Alt,Win 等单控制键作为热键，显在前面加上@ 字符。
+    则仅在按下并放开该键后（中间没有按其他键）才会触发热键。
+    这通常不干扰该键原有热键（因为一般都是按下触发）。
+    */
+} 
+
+//按大写自动切换到英文输入
+[&quot;CAPSLK&quot;]  = function(hFocus){  
+    key.ime.setOpenStatus(false);
+    key.ime.setConversionMode(0); 
+
+    return true;//允许按键继续发送，不改变大小写键的默认行为
+};
+
+//按 Ctrl + .  切换到中文输入 + 中文标点 + 小写
+[&quot;Ctrl+.&quot;]  = function(hFocus){    
+    var openState,mode = key.ime.state();
+    if( openState &amp;&amp; !key.ime.capital() ) return true; //当前已经是中文输入模式，不改变默认行为
+
+    key.up(&quot;Ctrl&quot;);//先放开 Ctrl 键
+
+    //如果是大写状态，切换为小写
+    if(key.ime.capital())    key.press(&quot;CAPSLK&quot;) 
+
+    //英文直接切中文 + 中文标点
+    key.ime.setOpenStatus(true); //打开输入法
+    key.ime.setConversionMode(1|0x400); //切换到中文状态，这一步不能省略
+
+    //再次尝试用键盘切换中文标点，这一步不能省略
+    key.combine(&quot;CTRL&quot;,&quot;.&quot;);
+
+    //现在再次检测中文标点状态
+    var openState,mode = key.ime.state();
+    if(mode!=3/*_IME_SYMBOLMODE_SYMBOL*/){
+        //说明切换到了英文标点，再切换回去
+            key.combine(&quot;CTRL&quot;,&quot;.&quot;)
+    }  
+};
+
+//改键演示
+[&quot;Ctrl+.&quot;] = function(hFocus){  
+    key.up(&quot;Ctrl&quot;); //先把已经按下的键弹起来
+    key.combine(&quot;CTRL&quot;,&quot;A&quot;); //换成别的键，具体看 aardio 库函数文档
+    return false; //阻止按键事件
+};
+
+//叠字键演示
+[&quot;`&quot;]  = function(hFocus){  
+    var openState,mode = key.ime.state();//用法请查看 aardio 文档
+    if(!openState 
+            ||  mode !=3 || key.getState(&quot;Shift&quot;)  
+            || key.getState(&quot;Ctrl&quot;)  
+            || key.getState(&quot;CAPSLK&quot;)  ) {
+            return true; //允许此按键继续发送
+    }
+
+    key.combine(&quot;SHIFT&quot;,&quot;LEFT&quot;); //向后选一个字
+    key.combine(&quot;CTRL&quot;,&quot;C&quot;); //复制
+    key.press(&quot;RIGHT&quot;); //取消选中
+    key.combine(&quot;CTRL&quot;,&quot;V&quot;); //粘贴
+};
+
+//取消次选键
+[&quot;;&quot;] = function(hFocus){
+    if( winex.msCandidate.isVisible() ){
+        key.send(&quot; ;&quot;) 
+    } 
+    else return true;
+};
+
+//按 shift + back 变 ctrl + z
+[&quot;SHIFT+BACK&quot;] = function(hFocus){
+    key.up(&quot;SHIFT&quot;); //先把已经按下的键弹起来
+    key.combine(&quot;CTRL&quot;,&quot;Z&quot;)
+};
+
+//把斜杠“/”改为顿号
+[&quot;/&quot;] = function(hFocus){
+    var openState,mode = key.ime.state();//
+    if( !openState /*&amp;&amp;(mode==3) */ ) return true; 
+    key.sendString(&quot;、&quot;)
+};
+
+//切换鼠标左右键，经常换左右手耍鼠标是好习惯
+[&quot;Ctrl+SHIFT+RIGHT&quot;] = function(hFocus){  
+    ::User32.SwapMouseButton(!::User32.GetSystemMetrics(23));
+}
+
+//按 Shift + Back 变 Ctrl + Z，因为这时候 Shift 是按下状态，所以可以先发一个 key.up(&quot;SHIFT&quot;) 弹起shift键
+[&quot;SHIFT+BACK&quot;] = function(hFocus){
+    key.up(&quot;SHIFT&quot;)
+    key.combine(&quot;CTRL&quot;,&quot;Z&quot;)
+};
+
+//引号配对
+[`SHIFT+&quot;`] = function(hFocus){  
+    var o,s = key.ime.state();
+    key.sendString(s==3 ? `“”` : `&quot;&quot;`); 
+
+    //与目标窗口共享输入状态
+    winex.attach(hFocus,true);
+
+    //设置LSHIFT,RSHIFT 为弹起状态
+    key.up(&quot;RSHIFT&quot;,&quot;LSHIFT&quot;,&quot;SHIFT&quot;);
+    key.setState(false,&quot;RSHIFT&quot;,&quot;LSHIFT&quot;,&quot;SHIFT&quot;); 
+
+    //移动光标
+    key.press(&quot;LEFT&quot;);
+
+    //取消共享输入状态
+    winex.attach(hFocus,false);
+} 
+
+//括号配对
+[`SHIFT+(`] = function(hFocus){  
+    key.sendString(`()`);
+    key.up(&quot;SHIFT&quot;); 
+    key.press(&quot;LEFT&quot;);
+}
+
+//右 SHIFT 键切换为英文
+[&quot;RSHIFT&quot;]  = function(hFocus){  
+    key.ime.setOpenStatus(false);
+    key.ime.setConversionMode(0); 
+};
+
+//左 SHIFT 键切换为中文
+[&quot;LSHIFT&quot;]  = function(hFocus){    
+    var openState,mode = key.ime.state();
+    if( openState &amp;&amp; !key.ime.capital() ) return true; //当前已经是中文输入模式，不改变默认行为
+
+    key.up(&quot;SHIFT&quot;);//先放开 SHIFT 键
+
+    //如果是大写状态，切换为小写
+    if(key.ime.capital())    key.press(&quot;CAPSLK&quot;) 
+
+    //英文直接切中文 + 中文标点
+    key.ime.setOpenStatus(true); //打开输入法
+    key.ime.setConversionMode(1|0x400); //切换到中文状态，这一步不能省略
+
+    //再次尝试用键盘切换中文标点，这一步不能省略
+    key.combine(&quot;CTRL&quot;,&quot;.&quot;);
+
+    //现在再次检测中文标点状态
+    var openState,mode = key.ime.state();
+    if(mode!=3/*_IME_SYMBOLMODE_SYMBOL*/){
+        //说明切换到了英文标点，再切换回去
+        key.combine(&quot;CTRL&quot;,&quot;.&quot;)
+    }  
+};
+
+//按 `date 输入大写的当前日期
+[&quot;~date&quot;] = function(hFocus){ 
+    var zh = string.chineseNumber(&#39;〇一二三四五六七八九&#39;);
+    key.sendString(zh.date()); //改为 zh.time() 输出大写的当前时间
+}; 
+
+//增加音量
+[&quot;Ctrl+F6&quot;] = function(hFocus){
+    key.press(&quot;VOLUME_UP&quot;);
+}
+
+//降低音量
+[&quot;Ctrl+F7&quot;] = function(hFocus){
+    key.press(&quot;VOLUME_DOWN&quot;);
+}
+
+//切换静音
+[&quot;Ctrl+F8&quot;] = function(){
+    key.press(&quot;VOLUME_MUTE&quot;);
+}
+
+//运行计算器
+[&quot;~calc&quot;] = function(hFocus){
+    process.execute(&quot;calc.exe&quot;)
+};
+
+//运行word
+[&quot;~word&quot;] = function(hFocus){
+    var word = com.CreateObject(&quot;Word.Application&quot;)
+    if(word)word.Visible = true; 
+};
+
+//微软五笔打开或关闭拼音混输
+[&quot;Ctrl+,&quot;] = function(hFocus){
+    var reg = win.reg(&quot;HKEY_CURRENT_USER\Software\Microsoft\InputMethod\Settings\CHS&quot;);
+    var mode = !reg.queryValue(&quot;PinyinMixEnable&quot;) ? 1 : 0
+    reg.setDwValue(&quot;PinyinMixEnable&quot;,mode)  
+
+    key.ime.changeRequest(0x4090409)
+    key.ime.changeRequest(0x8040804)
+};
+
+//不可直接在上述键盘回调函数中执行耗时操作，这会导致操作系统禁用热键。
+//如果有耗时操作必须如下返回一个异步函数，将异步执行该函数，并取消已按键不再执行默认操作
+[`SHIFT+&quot;`] = function(hFocus){  
+    return function(){
+        key.waitUp(&quot;SHIFT&quot;)
+        key.sendString(`&quot;`);
+        key.press(&quot;LEFT&quot;);
+    } ; 
+}
+
+//禁用/启用 ImTip 提示快捷键
+[&quot;Ctrl+F1&quot;] = function(){  
+    imeBar.imeWatch(!!..imeBar.paused);
+};
+
+//用立即执行函数在 ImTip 中屏蔽指定的程序窗口
+(function(){
+    var lastFocus,lastPath,lastClass;
+    checkImeProcess = function(hFocus,exeFile){
+        if(lastFocus != hFocus){
+            lastClass = win.getClass(hFocus);
+            var tid,pid = win.getThreadProcessId(hFocus);
+            lastPath = process.getPath(pid);
+            lastFocus = hFocus
+        }
+
+        return (lastPath &amp;&amp; io.splitpath(lastPath).file == exeFile )
+    }   
+
+    //显示提示窗口前触发下面的事件
+    imeBar.onImeStateChange = function(hFocus,imeX,imeY,openNative,symbolMode,text,iconText){
+        if( !checkImeProcess(hFocus,&quot;Code.exe&quot;) ){
+            return true;//允许提示
+        }
+    }
+})();
+
+};
+</code></pre>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-guide/std/key/hotkey.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-guide/std/key/hotkey.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/std/key/hotkey.md">Markdown 格式</a></p>
+
+</body> 
+</html>

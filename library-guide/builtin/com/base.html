@@ -1,0 +1,155 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - COM 基础知识'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - COM 基础知识</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>COM 基础知识</h1>
+
+<p>COM 具有与语言，平台无关的特性，aardio 提供 com 库对 COM 组件提供支持。</p>
+
+<h2>一、COM 组件</h2>
+
+<p>COM(Component Object Model 组件对象模型 )是开发软件组件的一种方法。COM 组件实际上是一些小的二进制可执行程序，它们可以给应用程序，操作系统以及其他组件提供服务。在 COM 构架下，人们可以开发出各种各样的功能专一的组件，然后将它们按照需要组合起来，构成复杂的应用系统。可以在多个应用系统中重复利用同一个组件；可以方便地将应用系统扩展到网络环境下；COM具有与语言，平台无关的特性，aardio 提供 com 库对 COM 组件提供支持。</p>
+
+<h2>二、CLSID 与 ProgID <a id="id" href="#id">&#x23;</a></h2>
+
+<p>每个COM接口和组件类都有一个全球唯一的标识符GUID，接口的标识符叫做IID，组件类的标识符叫CLSID(其实都是GUID)，组件类还可以用一个别名ProgID来标识，ProgID由类名+工程名组成,例如flash控件的ProgID: &quot;ShockwaveFlash.ShockwaveFlash&quot;</p>
+
+<p>aardio标准库中有一个win.guid库,可以创建转换guid,下面是一个将ProgID转换为GUID的示例:</p>
+
+<pre><code class="aardio language-aardio">import win;
+import win.guid
+
+guid = win.guid.fromString(&quot;ShockwaveFlash.ShockwaveFlash&quot;)
+win.msgbox(guid)
+</code></pre>
+
+<p>下面是将CLSID转换为ProgID的示例:</p>
+
+<pre><code class="aardio language-aardio">import win;
+import win.guid 
+
+str = win.guid.toProgId(&quot;{d27cdb6e-ae6d-11cf-96b8-444553540000}&quot;) 
+win.msgbox( str )
+</code></pre>
+
+<h2>三、动态接口、原生接口 <a id="interface" href="#interface">&#x23;</a></h2>
+
+<p>COM 对象有两种类型的接口,一种是动态语言用到的 IDispatch 接口,一种是静态语言用到的原生接口。在 aardio 中可同时支持双接口,在 aardio 中我们将 IDispatch 接口称为动态接口,而非 IDispatch 类接口称为原生接口。</p>
+
+<h3>1. 动态接口对象 <a id="IDispatch" href="#IDispatch">&#x23;</a></h3>
+
+<p>IDispatch 接口对象使用一个封装接口指针的 table 对象表示。</p>
+
+<p>这种对象的元类型为 com.IDispatch，所以我们也称为 com.IDispatch 对象。</p>
+
+<p>aardio 中提到的 &quot;COM 对象&quot;都是特指这种 IDispatch 对象。使用 com.IsObject 函数可以判断一个对象是否 IDispatch 对象.  </p>
+
+<p>使用以下函数可以创建 IDispatch 对象：</p>
+
+<ul>
+<li><a href="com.html#CreateObject" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/builtin/com/com.html#CreateObject">com.GetObject</a> </li>
+<li><a href="com.html#GetObject" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/builtin/com/com.html#GetObject">com.CreateObject</a> </li>
+<li><a href="com.html#QueryObject" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/builtin/com/com.html#QueryObject">com.QueryObject</a> </li>
+</ul>
+
+<p>com 库还提供了一些基于以上函数封装的对象可以创建 COM 对象：</p>
+
+<ul>
+<li>com.TryCreateObject 函数，创建 COM 对象失败返回 null 还不是报错。</li>
+<li>com.GetOrCreateObject() 获取已打开的 COM 对象，获取失败就尝试创建对象，失败返回 null 还不是报错。</li>
+</ul>
+
+<p>创建 COM 对象示例：</p>
+
+<pre><code class="aardio language-aardio">import com;
+import console;
+
+//创建 COM 对象，注意 COM 有关的函数通常首字母大写
+var fs = com.CreateObject(&quot;Scripting.FileSystemObject&quot;);
+
+//使用 COM 对象
+var dir = fs.GetFolder( io.fullpath(&quot;~/&quot;) ); 
+
+//遍历COM对象成员
+for index,file in com.each(dir.Files) {
+    console.log(file.path);
+}
+
+console.pause();
+</code></pre>
+
+<p>可以嵌入窗口的 COM 控件对象也是  IDispatch 对象。</p>
+
+<p>我们可以使用窗口或控件对象提供的 createEmbed 或 createEmbedEx 函数创建这种嵌入窗口的 COM 控件对象。</p>
+
+<p>示例：</p>
+
+<pre><code class="aardio language-aardio">import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;嵌入COM控件&quot;;right=759;bottom=469)
+/*}}*/
+
+//嵌入 COM 控件，宿主窗口这里指定为 winform
+var embedObject= winform.createEmbedEx(&quot;Shell.Explorer.2&quot;); 
+
+//通过控件容器调用 COM 对象打开指定的网页
+embedObject.Navigate(&quot;about:这是一个网页&quot;);
+
+
+winform.show();
+win.loopMessage();
+</code></pre>
+
+<h3>2. 原生接口对象 <a id="IUnknown" href="#IUnknown">&#x23;</a></h3>
+
+<ul>
+<li><p>COM 对象指针</p>
+
+<p>注意 COM 对象可以实现多个接口，也就是说可以同时实现 IDispatch 接口或其他原生接口。</p>
+
+<p>如果要通过非 IDispatch 接口去访问 COM 对象则需要使用 COM 对象指针。</p>
+
+<p>在 aardio 里有两种 COM 对象指针：</p>
+
+<ul>
+<li>pointer 类型的原生裸指针，COM 指针的引用计数与管理相对较复杂，直接操作这种指针较为麻烦，如果没有小心遵守复杂的 COM 规则可能会直接导致程序崩溃。</li>
+<li>由 aardio 内核对象封装的 IUnknown 指针，aardio 数据类型为 cdata，元类型为 &quot;com.IUnknown&quot; 。IUnknown 指针会按 COM 规则自动管理引用计数，不再使用时可自动回收释放，也可以调用  com.Release() 显式释放。 </li>
+</ul>
+
+<p>有关的库函数：</p>
+
+<ul>
+<li>使用<a href="com.html#topointer" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/builtin/com/com.html#topointer">com.GetPointer</a> 可以获取一个 com.IDispatch 对象的 IUnknown 接口原生指针.<br></li>
+<li>也可以使用<a href="com.html#GetIUnknown" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/builtin/com/com.html#GetIUnknown">com.GetIUnknown</a> 函数获取 com.IDispatch 对象的 com.IUnknown 内核对象.<br></li>
+<li>com.IUnknown 内核对象可自动释放,或调用.而 pointer 类型 IUnknown 原生指针则必须手工调用 com.Release() 显式释放<br></li>
+<li>使用<a href="com.html#GetIUnknown" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/builtin/com/com.html#GetIUnknown">com.GetIUnknown</a>函数也可以将一个 poineter 指针转换为com.IUnknown 内核对象.<br></li>
+<li>使用 com.IsIUnknown 数可以判断一个对象是否 com.IUnknown 内核对象.</li>
+</ul></li>
+<li><p>COM 原生接口对象</p>
+
+<p>aardio 支持 COM 原生接口。</p>
+
+<p>COM 原生接口是基于指定的原生接口定义对 COM 指针进行操作的对象。</p>
+
+<p>在标准库的 com.interface 名字空间下可找到很多这类原生接口，可查看源码了解如何定义 COM 原生接口。</p>
+
+<p>COM 原生接口使用的参数的数据类型与调用原生 API 相类似，参考 raw 库 <a href="../raw/datatype.html" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/builtin/raw/datatype.html">相关文档</a> 即可。</p>
+
+<p>在 aardio 中使用 COM 原生接口的情况其实很罕见，一般不必要学习。</p></li>
+</ul>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-guide/builtin/com/base.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-guide/builtin/com/base.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/builtin/com/base.md">Markdown 格式</a></p>
+
+</body> 
+</html>

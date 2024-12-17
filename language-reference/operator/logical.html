@@ -1,0 +1,165 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - 逻辑操作符'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - 逻辑操作符</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>逻辑操作符</h1>
+
+<p>逻辑操作符将其操作数视为条件表达式( 可理解为与布尔值 true 比较的等式，请参考：<a href="equality.html" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/operator/equality.html">等式运算符</a> )，首先将操作数求值，并转换为逻辑值( boolean 值 )，0, null 转换为false，而所有非零、非 false、非 null 值转换为 true，如果结果为 false 则条件为假，结果为 true 则条件为真。</p>
+
+<blockquote>
+<p>布尔值（ boolean ）是只有 true, false 两种值的逻辑数据类型。true 表示真，false 表示假。布尔值通常用在条件表达式中。通俗一点说，true 表示是、符合条件，false 表示不是、不符合条件。 </p>
+</blockquote>
+
+<h2>一、逻辑操作符</h2>
+
+<ol>
+<li><p>逻辑非</p>
+
+<p>逻辑非运算符首先取得操作数的布尔值( boolean )，然后取反比较。如要操作数为 true 则返回 false,如果操作数为 false 则返回 true.也就是反过来取值的意思。  </p>
+
+<table><thead>
+<tr>
+<th>运算符</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>!</code></td>
+<td>逻辑非</td>
+</tr>
+<tr>
+<td>not</td>
+<td>逻辑非</td>
+</tr>
+</tbody></table>
+
+<p>在 aardio 中逻辑操作符有 <code>!</code> 与 <code>not</code> 两种，作用相同。</p></li>
+<li><p>逻辑或</p>
+
+<p>逻辑或要求两个操作数其中之一为真( true ),如果第一个操作数为真则直接返回第一个操作数，否则返回第二个操作数。表达式会直接返回操作数的原值（不是转换为逻辑值的true或false）</p>
+
+<table><thead>
+<tr>
+<th>运算符</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>&#x7c;&#x7c;</td>
+<td>逻辑或</td>
+</tr>
+<tr>
+<td><code>or</code></td>
+<td>逻辑或</td>
+</tr>
+<tr>
+<td><code>:</code></td>
+<td>逻辑或，注意当  <code>:</code>  号作为用作表构造器中的键值对分隔符时不表示逻辑或。</td>
+</tr>
+</tbody></table>
+
+<p><code>||</code> 与 <code>or</code> 是完全等价的，优先级也相同。而 <code>:</code> 的优先级略低。 </p>
+
+<p>注意在表构造器中，<code>:</code> 可以替代 <code>=</code> 用作键值对分隔符。 </p></li>
+<li><p>逻辑与</p>
+
+<p>逻辑与要求两个操作数取布尔值后都为true,如果第一个操作数为真则返回第二个操作数，如果第一个操作数为假则返回第一个操作数(注意返回的是操作数原值，而不是转换后的布尔值)。  </p>
+
+<table><thead>
+<tr>
+<th>运算符</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&amp;&amp;</code></td>
+<td>逻辑与</td>
+</tr>
+<tr>
+<td><code>and</code></td>
+<td>逻辑与</td>
+</tr>
+<tr>
+<td><code>?</code></td>
+<td>逻辑与</td>
+</tr>
+</tbody></table>
+
+<p><code>&amp;&amp;</code> 与 <code>and</code> 是完全等价的，优先级也相同。而 <code>?</code> 的优先级略低。 </p></li>
+</ol>
+
+<h2>二、惰性求值</h2>
+
+<p>逻辑与、逻辑或运算符支持惰性求值，当取得第一个操作数的值并满足条件时，即不再计算第二个表达式的值。</p>
+
+<p>示例：</p>
+
+<pre><code class="aardio language-aardio">import console; 
+
+a = true || console.log(&quot;偷懒成功,第一个操作数已经能确定返回值了&quot;) 
+a = false &amp;&amp; console.log(&quot;偷懒成功,第一个操作数已经能确定返回值了&quot;) 
+a = true &amp;&amp; console.log(&quot;偷懒失败,第一个操作数不能确定返回值&quot;) 
+
+console.pause();
+</code></pre>
+
+<h2>三、条件取值</h2>
+
+<p>逻辑或、逻辑运算符返回的不是转换后的布尔值，而是操作的原值。利用此特性，可以有条件的取得操作数的值。  </p>
+
+<pre><code class="aardio language-aardio">import console; 
+
+console.log( true ? 123 ) //显示123
+console.log( false ? 123 ) //显示false
+console.log( 0 : 123 ) //显示123
+console.log( 1 : 123 ) //显示1 
+
+console.log( false ? 2 : 3 ) //显示3
+console.log( true ? 2 : 3 ) //显示2 
+console.log( true ? false : 3 ) //显示3
+console.log( true &amp;&amp; false || 3 ) //同上
+
+console.pause();
+</code></pre>
+
+<p><img src="../../icon/info.gif" tppabs="https://www.aardio.com/zh-cn/doc/icon/info.gif" alt=""> 使用逻辑操作符构建 <code>a?b:c</code> 的三元表达式时，如果 a 为真但是 b 为false，返回的仍然是 c 的原值， 这一点与其他编程语言的三元操作符不同，请注意区分。</p>
+
+<h2>四、条件赋值</h2>
+
+<p>逻辑或、逻辑与操作符可以用于赋值语句，进行有条件赋值。  </p>
+
+<p>示例：</p>
+
+<pre><code class="aardio language-aardio">a = a : 123;//如果a为false、null、0时赋值为123
+a := 123; //等价于上面的语句，通常用于常量赋值，以避免重复赋值。
+</code></pre>
+
+<p><code>a := b</code> 是复合赋值语句，等价于 <code>a = a : b</code> ，也就相当于 <code>a = a or b</code>。  </p>
+
+<p>示例：</p>
+
+<pre><code class="aardio language-aardio">import console; 
+str = &quot;abcdefg&quot;
+str ?= string.left(str,3); //如果str为null，则不赋值，以避免string.left抛出错误
+console.log( str )
+</code></pre>
+
+<p><code>a ?= b(a)</code> 等价于 <code>a = a ? b(a)</code> ，也就相当于 <code>a = a and b(a)</code>。这样就实现了如果 <code>a</code> 为真则会调用 <code>b(a)</code>。</p>
+
+<p>对于代码 <code>string.left(str,3)</code> ，如果 str 为 null 就会出错。使用 <code>str ?= string.left(str,3)</code> 就可以实现只有 str 为真（ 自然也就不可能是 null 值了 ）才会执行这句代码。</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/language-reference/operator/logical.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/language-reference/operator/logical.md'" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/operator/logical.md">Markdown 格式</a></p>
+
+</body> 
+</html>

@@ -1,0 +1,298 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - inet.ftp 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - inet.ftp 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>inet.ftp 库模块帮助文档</h1>
+
+<p><a id="inet"></a></p>
+
+<h2>inet 成员列表</h2>
+
+<p><a id="inet.ftp"></a></p>
+
+<h3>inet.ftp()</h3>
+
+<p><a href="#inetFtpObject">返回对象:inetFtpObject</a></p>
+
+<p><a id="inet.ftp"></a></p>
+
+<h3>inet.ftp(主机,用户名,密码,端口号,是否被动模式,UserAgent,代理,绕过代理,选项)</h3>
+
+<p>除第一个参数以外,其他参数可选</p>
+
+<p><a id="inet.ftp"></a></p>
+
+<h2>inet.ftp 成员列表</h2>
+
+<p>FTP文件传输支持库</p>
+
+<p><a id="inet.ftp.getParentDir"></a></p>
+
+<h3>inet.ftp.getParentDir(路径)</h3>
+
+<p>返回父目录</p>
+
+<p><a id="ftpFileObject"></a></p>
+
+<h2>ftpFileObject 成员列表</h2>
+
+<p><a id="ftpFileObject.close"></a></p>
+
+<h3>ftpFileObject.close()</h3>
+
+<p>关闭FTP文件</p>
+
+<p><a id="ftpFileObject.eachRead"></a></p>
+
+<h3>ftpFileObject.eachRead(缓冲区长度)</h3>
+
+<pre><code class="aardio language-aardio">for(str in ftpFileObject.eachRead() ){
+
+}
+</code></pre>
+
+<p><a id="ftpFileObject.eachReadBuffer"></a></p>
+
+<h3>ftpFileObject.eachReadBuffer</h3>
+
+<pre><code class="aardio language-aardio">var buffer = ..raw.buffer( 1024 * 10 );  
+for( size in ftpFileObject.eachReadBuffer( buffer ) ){ 
+    table.push(,str ) ; 
+}
+</code></pre>
+
+<p><a id="ftpFileObject.read"></a></p>
+
+<h3>ftpFileObject.read()</h3>
+
+<p>读文件,返回文件数据,<br>
+可选指定缓冲区长度</p>
+
+<p><a id="ftpFileObject.read"></a></p>
+
+<h3>ftpFileObject.read(-1)</h3>
+
+<p>读取所有数据</p>
+
+<p><a id="ftpFileObject.readBuffer"></a></p>
+
+<h3>ftpFileObject.readBuffer(buffer,写入长度)</h3>
+
+<p>下载文件数据<br>
+参数一必须是使用 buffer 对象<br>
+长度参数可选,默认为缓冲区长度.</p>
+
+<p><a id="ftpFileObject.size"></a></p>
+
+<h3>ftpFileObject.size()</h3>
+
+<p>返回文件大小</p>
+
+<p><a id="ftpFileObject.size64"></a></p>
+
+<h3>ftpFileObject.size64()</h3>
+
+<p>返回文件大小<br>
+返回文件大小<br>
+返回值为math.size64长整数对象  </p>
+
+<p><a href="../math/_.html#mathSize64Object" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/math/_.html#mathSize64Object">返回对象:mathSize64Object</a></p>
+
+<p><a id="ftpFileObject.write"></a></p>
+
+<h3>ftpFileObject.write(写入字符串,不定个数字符串)</h3>
+
+<p>写文件,支持多参数,<br>
+返回写入数据的总长度,失败返回空或0</p>
+
+<p><a id="ftpFileObject.writeBuffer"></a></p>
+
+<h3>ftpFileObject.writeBuffer(buffer,写入长度)</h3>
+
+<p>上传文件数据<br>
+参数一必须是使用 buffer 对象<br>
+长度参数可选,默认为缓冲区长度.</p>
+
+<p><a id="inetFtpObject"></a></p>
+
+<h2>inetFtpObject 成员列表</h2>
+
+<p><a id="inetFtpObject.close"></a></p>
+
+<h3>inetFtpObject.close()</h3>
+
+<p>关闭连接</p>
+
+<p><a id="inetFtpObject.command"></a></p>
+
+<h3>inetFtpObject.command(&quot;OPTS UTF8 off&quot;)</h3>
+
+<p>发送命令通知服务器关闭UTF8编码模式<br>
+可解决中文文件名乱码问题</p>
+
+<p><a id="inetFtpObject.command"></a></p>
+
+<h3>inetFtpObject.command(命令,选项,是否返回句柄)</h3>
+
+<p>仅指定第一个参数即可,<br>
+参数2指定传送模式,默认为BINARY模式<br>
+也可指定为_INTERNET_FLAG_TRANSFER_ASCII<br>
+参数3默认为false,如果为true则第二个返回值为返回句柄</p>
+
+<p><a id="inetFtpObject.createDir"></a></p>
+
+<h3>inetFtpObject.createDir(目录)</h3>
+
+<p>创建目录,支持创建多级目录<br>
+可以斜杠开头的的路径表示相对于根目录的完整路径<br>
+也可使用setCurDir()设定当前目录</p>
+
+<p><a id="inetFtpObject.createParentDir"></a></p>
+
+<h3>inetFtpObject.createParentDir(目录)</h3>
+
+<p>创建指定路径的父目录</p>
+
+<p><a id="inetFtpObject.delete"></a></p>
+
+<h3>inetFtpObject.delete(文件)</h3>
+
+<p>删除文件</p>
+
+<p><a id="inetFtpObject.deleteDir"></a></p>
+
+<h3>inetFtpObject.deleteDir(目录)</h3>
+
+<p>删除目录</p>
+
+<p><a id="inetFtpObject.download"></a></p>
+
+<h3>inetFtpObject.download(&quot;/本地路径&quot;,&quot;/远程路径&quot;)</h3>
+
+<p>下载前可使用setCurDir()设定当前目录<br>
+也可以斜杠开头的的路径表示相对于根目录的完整路径</p>
+
+<p><a id="inetFtpObject.download"></a></p>
+
+<h3>inetFtpObject.download(loadfile,remotefile,1/*_INTERNET_FLAG_TRANSFER_ASCII*/)</h3>
+
+<p>ASCII模式下载</p>
+
+<p><a id="inetFtpObject.download"></a></p>
+
+<h3>inetFtpObject.download(loadfile,remotefile,2/*_INTERNET_FLAG_TRANSFER_BINARY*/)</h3>
+
+<p>BINARY模式下载</p>
+
+<p><a id="inetFtpObject.eachDir"></a></p>
+
+<h3>inetFtpObject.eachDir</h3>
+
+<pre><code class="aardio language-aardio">for(dirName,fileName,findData,curDir in inetFtpObject.eachDir(&quot;\&quot;)){
+     if( !fileName ){
+        io.print(&quot;目录名&quot;,dirName);
+     }
+     else{
+        io.print(&quot;文件名&quot;,fileName);
+     }
+     /*curDir为当前目录  
+如果当前是一个文件请忽略dirName参数  
+如果当前是一个目录,fileName为空*/
+}
+</code></pre>
+
+<p><a id="inetFtpObject.enumDir"></a></p>
+
+<h3>inetFtpObject.enumDir(目录,通配符,回调函数)</h3>
+
+<pre><code class="aardio language-aardio">inetFtpObject.enumDir(&quot;\&quot;,&quot;*.*&quot;,  
+    function(dir,fileName,fullpath,findData ){  
+        io.print( fileName?&quot;文件&quot;:&quot;目录&quot;,fullpath )  
+        return true;/*返回false停止*/  
+    }   
+);
+</code></pre>
+
+<p><a id="inetFtpObject.getCurDir"></a></p>
+
+<h3>inetFtpObject.getCurDir()</h3>
+
+<p>返回服务器上的当前目录,该函数保证返回的目录尾部是斜杠</p>
+
+<p><a id="inetFtpObject.open"></a></p>
+
+<h3>inetFtpObject.open(&quot;/目录/文件路径&quot;,&quot;rb&quot;)</h3>
+
+<p>二进制只读模式打开ftp文件流<br>
+参数2为&quot;rt&quot;则使用文本模式,<br>
+打开文件后仅允许读文件,其他所有FTP操作被禁用,<br>
+直到调用close()关闭文件</p>
+
+<p><a id="inetFtpObject.open"></a></p>
+
+<h3>inetFtpObject.open(&quot;/目录/文件路径&quot;,&quot;wb&quot;)</h3>
+
+<p>二进制只写模式打开ftp文件流<br>
+参数2为&quot;wt&quot;则使用文本模式,<br>
+打开文件后仅允许写文件,其他所有FTP操作被禁用,<br>
+直到调用close()关闭文件</p>
+
+<p><a id="inetFtpObject.open"></a></p>
+
+<h3>inetFtpObject.open()</h3>
+
+<p><a href="#ftpFileObject">返回对象:ftpFileObject</a></p>
+
+<p><a id="inetFtpObject.rename"></a></p>
+
+<h3>inetFtpObject.rename(文件名,新名字)</h3>
+
+<p>文件改名</p>
+
+<p><a id="inetFtpObject.setCurDir"></a></p>
+
+<h3>inetFtpObject.setCurDir(目录)</h3>
+
+<p>设置服务器上的当前目录</p>
+
+<p><a id="inetFtpObject.upload"></a></p>
+
+<h3>inetFtpObject.upload(&quot;/本地路径&quot;,&quot;远程路径&quot;)</h3>
+
+<p>上传前可使用setCurDir()设定当前目录<br>
+也可以斜杠开头的的路径表示相对于根目录的完整路径</p>
+
+<p><a id="inetFtpObject.upload"></a></p>
+
+<h3>inetFtpObject.upload(formfile,todir,1/*_INTERNET_FLAG_TRANSFER_ASCII*/)</h3>
+
+<p>ASCII模式上传</p>
+
+<p><a id="inetFtpObject.upload"></a></p>
+
+<h3>inetFtpObject.upload(formfile,todir,2/*_INTERNET_FLAG_TRANSFER_BINARY*/)</h3>
+
+<p>BINARY模式上传</p>
+
+<h3>自动完成常量</h3>
+
+<p>_FTP_TRANSFER_TYPE_ASCII=1<br>
+_FTP_TRANSFER_TYPE_BINARY=2<br>
+_INTERNET_FLAG_TRANSFER_ASCII=1<br>
+_INTERNET_FLAG_TRANSFER_BINARY=2  </p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/inet/ftp.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/inet/ftp.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/inet/ftp.md">Markdown 格式</a></p>
+
+</body> 
+</html>

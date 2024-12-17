@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - aardio 调用 C 语言之 main 函数'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - aardio 调用 C 语言之 main 函数</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 调用 C 语言之 main 函数</h1><pre><code class="aardio language-aardio">//aardio 调用 C 语言之 main 函数
+import console;
+import tcc; 
+
+var c = tcc(); 
+c.enableIoPrintf();
+
+c.code = /**
+    #include &lt;stdio.h&gt; 
+
+    int main (int argc, char *argv[])     
+    {   
+        int i = 0; 
+        for( i=1;i&lt;argc;i++){
+            io_printf( &quot;%s \n&quot; , argv[i] );
+        }
+
+        return 0; 
+    }
+**/
+
+//直接运行 main() 入口函数
+var ret = c.run(&quot;測試命令參數&quot;,&quot;測試命令參數2&quot;,&quot;支持任意多個參數&quot;);
+console.print( ret )
+
+c.close(); 
+console.pause();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/C/run_main.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/C/run_main.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Languages/C/run_main.md">Markdown 格式</a>
+</body> 
+</html>

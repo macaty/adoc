@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 创建 curl 进程'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 创建 curl 进程</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 创建 curl 进程</h1><pre><code class="aardio language-aardio">//创建 curl 进程
+import console;  
+
+//如果打开控制台，curl.exe 会自动附加到当前控制台 。
+console.open();
+
+//默认调用 Win10 1803 及之后系统自带的 curl 。
+//改为 import process.curl.7.81 可兼容到 XP 系统。
+import process.curl;
+
+//创建进程对象，显示控制台窗口与操作进度
+var prcs = process.curl.open(&quot;-o test.json http://httpbin.org/anything/test&quot;);
+
+//等待 curl 进程退出
+prcs.waitOne();
+
+/*
+下面创建进程管道，返回 process.popen 对象。
+不显示 curl 自带的控制台窗口，不显示 curl 操作进度。
+*/
+
+var prcs = process.curl.popen(&quot;http://httpbin.org/anything/test&quot;);
+
+//等待 curl 进程退出，返回进程输出，进程错误输出，进程退出代码
+var out,err,exitCode = prcs.readAll();
+
+console.log(out);
+console.pause(true);
+
+/*
+curl 文档：
+https://curl.se/docs/manual.html
+https://curl.se/docs/manpage.html
+*/
+
+/*
+更推荐使用 web.rest （体积小，基于系统自带组件，用法更简单）
+https://mp.weixin.qq.com/s/4mYRDnO49alwpQoBD_cILg
+
+或使用 inet.http  （体积小，基于系统自带组件，用法更简单）
+https://mp.weixin.qq.com/s/3Xp4c1LxsOQJsux5o8bhvA
+*/
+
+
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Network/curl/process.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Network/curl/process.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Network/curl/process.md">Markdown 格式</a>
+</body> 
+</html>

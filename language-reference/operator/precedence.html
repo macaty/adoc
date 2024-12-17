@@ -1,0 +1,249 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - 操作符优先级'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - 操作符优先级</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>操作符优先级</h1>
+
+<p>aardio 操作符优先级与 C系语言基本兼容，唯一的区别是：位运算符优先级略高于等式、不等式运算符。从而保证各组运算符的优先级更加有序、并容易记忆。  </p>
+
+<p><img src="../../icon/info.gif" tppabs="https://www.aardio.com/zh-cn/doc/icon/info.gif" alt=""> 试图记住所有的运算符优先级是不必要的，建议在易于混淆优先级的位置用括号明确标明优先级。</p>
+
+<h3>一、成员符、括号、乘方</h3>
+
+<table><thead>
+<tr>
+<th>操作符</th>
+<th>优先级</th>
+<th>结合</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>..</code></td>
+<td>0(最高)</td>
+<td>左向右</td>
+<td>访问全局变量，<br>等价于 <code>global.</code></td>
+</tr>
+<tr>
+<td><code>::</code></td>
+<td>0(最高)</td>
+<td>左向右</td>
+<td>访问全局常量</td>
+</tr>
+<tr>
+<td>成员操作符<code>.</code><br>下标操作符 <code>[]</code> <br>直接下标 <code>[[]]</code><br>调用操作符 <code>()</code> <br>元表操作符 <code>@</code></td>
+<td>1</td>
+<td>左向右</td>
+<td><code>.</code> 、<code>[]</code>、 <code>[[]]</code> <br>都是用于访问对象成员的操作符。<br><br>调用操作符用于调用函数<br>或类构造函数，例如 <br><code>print(&quot;参数&quot;)</code> 。</td>
+</tr>
+<tr>
+<td>()</td>
+<td>2</td>
+<td>左向右</td>
+<td>用于组合表达式并改变优先级。</td>
+</tr>
+<tr>
+<td><code>**</code></td>
+<td>3</td>
+<td>右向左</td>
+<td>乘方运算</td>
+</tr>
+</tbody></table>
+
+<h3>二、单目运算符</h3>
+
+<table><thead>
+<tr>
+<th>操作符</th>
+<th>优先级</th>
+<th>结合</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>!</code></td>
+<td>4</td>
+<td>左向右</td>
+<td>逻辑非</td>
+</tr>
+<tr>
+<td>not</td>
+<td>5</td>
+<td>左向右</td>
+<td>逻辑非</td>
+</tr>
+<tr>
+<td><code>-</code></td>
+<td>6</td>
+<td>左向右</td>
+<td>取负</td>
+</tr>
+<tr>
+<td><code>~</code></td>
+<td>7</td>
+<td>左向右</td>
+<td><code>~</code> 按位取反</td>
+</tr>
+</tbody></table>
+
+<h3>三、算术运算符</h3>
+
+<table><thead>
+<tr>
+<th>操作符</th>
+<th>优先级</th>
+<th>结合</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>*</code>乘 <code>/</code>除 <code>%</code>取模</td>
+<td>8</td>
+<td>左向右</td>
+<td></td>
+</tr>
+<tr>
+<td><code>+</code>加 <code>-</code>减</td>
+<td>9</td>
+<td>左向右</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<h3>四、按位运算符</h3>
+
+<table><thead>
+<tr>
+<th>操作符</th>
+<th>优先级</th>
+<th>结合</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;&lt;</code> 按位左移 <br><code>&gt;&gt;</code> 按位右移 <br><code>&gt;&gt;&gt;</code>无符号右移</td>
+<td>10</td>
+<td>左向右</td>
+<td></td>
+</tr>
+<tr>
+<td><code>&amp;</code>按位与 <br><code>^</code>按位异或 <br>&#x7c; 按位或</td>
+<td>11</td>
+<td>左向右</td>
+<td>C 语言中位运算符的优先级<br>低于<code>==</code>、<code>!=</code></td>
+</tr>
+</tbody></table>
+
+<h3>五、连接运算符</h3>
+
+<table><thead>
+<tr>
+<th>操作符</th>
+<th>优先级</th>
+<th>结合</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>++</code></td>
+<td>12</td>
+<td>右向左</td>
+<td>连接运算符</td>
+</tr>
+</tbody></table>
+
+<h3>六、关系运算符</h3>
+
+<table><thead>
+<tr>
+<th>操作符</th>
+<th>优先级</th>
+<th>结合</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;</code>小于 <br><code>&lt;=</code>小于等于 <br><code>&gt;=</code>大于等于 <br><code>&gt;</code>大于</td>
+<td>13</td>
+<td>左向右</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<h3>七、逻辑运算符</h3>
+
+<table><thead>
+<tr>
+<th>操作符</th>
+<th>优先级</th>
+<th>结合</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>==</code> <br><code>!=</code> <br><code>===</code> <br><code>!==</code></td>
+<td>14</td>
+<td>左向右</td>
+<td>等于、不等于、恒等、非恒等于</td>
+</tr>
+<tr>
+<td><code>&amp;&amp;</code> and</td>
+<td>15</td>
+<td>左向右</td>
+<td>逻辑与</td>
+</tr>
+<tr>
+<td>&#x7c;&#x7c; <br>or</td>
+<td>16</td>
+<td>左向右</td>
+<td>逻辑或</td>
+</tr>
+<tr>
+<td><code>?</code></td>
+<td>17</td>
+<td>左向右</td>
+<td>逻辑与、该运算符类似于and但优先级更低</td>
+</tr>
+<tr>
+<td><code>:</code></td>
+<td>18</td>
+<td>左向右</td>
+<td>逻辑或、该运算符类似于or但优先级更低</td>
+</tr>
+</tbody></table>
+
+<h3>八、赋值操作符</h3>
+
+<table><thead>
+<tr>
+<th>操作符</th>
+<th>优先级</th>
+<th>结合</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>=</code> <br><code>+=</code> <br><code>-=</code> <br><code>*=</code> <br><code>/=</code> <br> <code>&amp;=</code> <code>^=</code> <br>&#x7c;= <br><code>&lt;&lt;=</code> <br><code>&gt;&gt;=</code></td>
+<td>最低优先级</td>
+<td>由右向左</td>
+<td>aardio中赋值操作符不能用于表达式并返回值,只能用于独立的赋值语句</td>
+</tr>
+</tbody></table>
+
+<p><img src="../../icon/info.gif" tppabs="https://www.aardio.com/zh-cn/doc/icon/info.gif" alt=""> 除了<code>**</code>和<code>++</code>外所有的二元运算符都是左连接的.</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/language-reference/operator/precedence.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/language-reference/operator/precedence.md'" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/operator/precedence.md">Markdown 格式</a></p>
+
+</body> 
+</html>

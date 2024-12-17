@@ -1,0 +1,120 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - win.util.tray 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - win.util.tray 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>win.util.tray 库模块帮助文档</h1>
+
+<p><a id="win.util"></a></p>
+
+<h2>win.util 成员列表</h2>
+
+<p><a id="win.util.tray"></a></p>
+
+<h3>win.util.tray</h3>
+
+<p>创建托盘图标</p>
+
+<p><a id="win.util.tray"></a></p>
+
+<h3>win.util.tray()</h3>
+
+<p><a href="#winUtilTrayObject">返回对象:winUtilTrayObject</a></p>
+
+<p><a id="win.util.tray"></a></p>
+
+<h3>win.util.tray(主窗体,图标,提示信息)</h3>
+
+<p>创建托盘图标,必须指定窗体对象。<br>
+图标参数可指定图标ID、句柄、图标数据或图标路径，默认为窗体图标。<br>
+提示信息：鼠标移到托盘图标上提示的信息,省略则没有提示信息</p>
+
+<p><a id="winUtilTrayObject"></a></p>
+
+<h2>winUtilTrayObject 成员列表</h2>
+
+<p><a id="winUtilTrayObject.delete"></a></p>
+
+<h3>winUtilTrayObject.delete()</h3>
+
+<p>删除托盘图标<br>
+如果指定了图标数据或路径则必须在不需要托盘图标时调用delete函数释放</p>
+
+<p><a id="winUtilTrayObject.icon"></a></p>
+
+<h3>winUtilTrayObject.icon</h3>
+
+<p>用于设置托盘图标,只写属性。<br>
+属性值可以是图标ID、句柄、图标数据或图标路径,<br>
+32位图标,最好同时提供 16x16、32x32 的复合图标  </p>
+
+<p>如果传入的是需要释放的图标句柄请改用 setIcon 函数</p>
+
+<p><a id="winUtilTrayObject.message"></a></p>
+
+<h3>winUtilTrayObject.message</h3>
+
+<p>指定回调消息<br>
+当用户点击托盘图标时、向主窗体发送此消息</p>
+
+<p><a id="winUtilTrayObject.pop"></a></p>
+
+<h3>winUtilTrayObject.pop</h3>
+
+<p>发送托盘消息通知。<br>
+Win10 以下显示为汽泡提示，<br>
+Win10 开始由操作系统的『专注』、应用程序的『通知』等设置决定是否显示模幅提示或折叠消息到通知区。<br>
+Win10/11 获取通知消息可使用 dotNet.toastListener 扩展库。</p>
+
+<p><a id="winUtilTrayObject.pop"></a></p>
+
+<h3>winUtilTrayObject.pop(提示信息,标题,图标ID,显示超时)</h3>
+
+<p>发送托盘消息通知。<br>
+图标 ID 可省略，警告图标设为2,错误图标设为3<br>
+显示超时以秒为单位</p>
+
+<p><a id="winUtilTrayObject.reset"></a></p>
+
+<h3>winUtilTrayObject.reset()</h3>
+
+<p>重置并恢复托盘图标</p>
+
+<p><a id="winUtilTrayObject.setIcon"></a></p>
+
+<h3>winUtilTrayObject.setIcon()</h3>
+
+<p>设置托盘的图标,<br>
+参数@1可以是图标ID、句柄、图标数据或图标路径,<br>
+32位图标,最好同时提供 16x16、32x32 的复合图标  </p>
+
+<p>如果指定需要释放的图标句柄，参数@2 应设为 true</p>
+
+<p><a id="winUtilTrayObject.tip"></a></p>
+
+<h3>winUtilTrayObject.tip</h3>
+
+<p>设置鼠标提示信息</p>
+
+<h3>自动完成常量</h3>
+
+<p>_NIIF_ERROR=3<br>
+_NIIF_ICON_MASK=0xF<br>
+_NIIF_INFO=1<br>
+_NIIF_NOSOUND=0x10<br>
+_NIIF_WARNING=2  </p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/util/tray.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/util/tray.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/util/tray.md">Markdown 格式</a></p>
+
+</body> 
+</html>

@@ -1,0 +1,509 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - py3 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - py3 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>py3 库模块帮助文档</h1>
+
+<p><a id="py3"></a></p>
+
+<h2>py3 成员列表</h2>
+
+<p>Python 3 扩展库,<br>
+已自带绿色便携运行时,不用额外安装VC运行库。<br>
+导入库时可指定小版本号，例如 py3,py3.4,py3.6,py3.10 等。  </p>
+
+<p>py3 扩展库默认 Python 版本为 3.8.10。<br>
+Python 不同版本通常并不完全兼容,不建议随意更换运行时,<br>
+添加 Python 模块时也应使用相同版本运行时下安装的版本  </p>
+
+<p>如果需要在 Python 中使用 print 函数输出到控制台<br>
+请在导入库以前打开控制台</p>
+
+<p><a id="py3.DecRef"></a></p>
+
+<h3>py3.DecRef(指针)</h3>
+
+<p>减少引用计数</p>
+
+<p><a id="py3.IncRef"></a></p>
+
+<h3>py3.IncRef(指针)</h3>
+
+<p>增加引用计数</p>
+
+<p><a id="py3.addModule"></a></p>
+
+<h3>py3.addModule(&quot;字符串参数&quot;)</h3>
+
+<p>如果不存在指定名字的模块就创建新模块<br>
+返回模块对象</p>
+
+<p><a id="py3.addModule"></a></p>
+
+<h3>py3.addModule()</h3>
+
+<p><a href="#py3ModuleObject">返回对象:py3ModuleObject</a></p>
+
+<p><a id="py3.addSiteDir"></a></p>
+
+<h3>py3.addSiteDir()</h3>
+
+<p>添加 site-packages 站点目录，<br>
+Python 也会在站点目录下查找模块，且支持该目录下的 *.pth 。<br>
+ 默认已添加安装模块的默认目录 &quot;\py\site-packages&quot;，<br>
+site.USER_BASE 默认设为工程下的 /py 目录，不允许修改</p>
+
+<p><a id="py3.appendPath"></a></p>
+
+<h3>py3.appendPath</h3>
+
+<p>添加 Python 模块搜索目录，<br>
+也就是追加目录到 Python 中的 sys.path。  </p>
+
+<p>默认的模块搜索目录为『应用程序根目录』下的 /py 目录</p>
+
+<p><a id="py3.appendPath"></a></p>
+
+<h3>py3.appendPath(&quot;搜索路径&quot;)</h3>
+
+<p>添加 Python 模块搜索目录，<br>
+也就是追加目录到 Python 中的 sys.path 支持多个参数。<br>
+支持多参数指定多个要添加的路径</p>
+
+<p><a id="py3.builtin"></a></p>
+
+<h3>py3.builtin</h3>
+
+<p>builtin 模块提供 Python 内置函数  </p>
+
+<p><a href="#py3DictObject">返回对象:py3DictObject</a></p>
+
+<p><a id="py3.compile"></a></p>
+
+<h3>py3.compile(&quot;字符串参数&quot;)</h3>
+
+<p>编译字符串或py文件<br>
+返回代码对象<br>
+可选增加第二个参数<br>
+可选增加第二个PyCompilerFlags参数</p>
+
+<p><a id="py3.compile"></a></p>
+
+<h3>py3.compile()</h3>
+
+<p><a href="#py3CodeObject">返回对象:py3CodeObject</a></p>
+
+<p><a id="py3.eval"></a></p>
+
+<h3>py3.eval(&quot;python表达式&quot;)</h3>
+
+<p>在 <strong>main</strong> 模块中计算表达式的值</p>
+
+<p><a id="py3.eval"></a></p>
+
+<h3>py3.eval()</h3>
+
+<p><a href="object.html#py3Object" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/py3/object.html#py3Object">返回对象:py3Object</a></p>
+
+<p><a id="py3.exec"></a></p>
+
+<h3>py3.exec</h3>
+
+<p>运行 Python 代码,<br>
+参数也可以指定内嵌资源文件路径<br>
+注意需要引用的 Python 模块应当放在 /py 目录下,<br>
+aardio 路径以斜杠或反斜杆开始则表示应用程序根目录下的路径,<br>
+应用程序根目录开发时为 aardio 工程目录,发布后为 EXE 文件所在目录</p>
+
+<p><a id="py3.exec"></a></p>
+
+<h3>py3.exec(&quot;Python代码&quot;,flags,...)</h3>
+
+<p>在默认的__main__名字空间运行 Python 代码，成功返回 true。<br>
+在导入 py3 扩展库前调用 console.open 可查看 Python 错误信息。  </p>
+
+<p>参数@1如果首字符为单个斜杠或反斜杆开始的文件路径：<br>
+└── 可支持工程资源目录下的文件。<br>
+└── 如果文件后缀为 &quot;.aardio&quot; 则支持 aardio 模板语法。  </p>
+
+<p>可选使用参数 @2 设置 PyCompilerFlags 参数,<br>
+参数@2不必指定,用法参考 Python 文档。  </p>
+
+<p>参数@3 开始可选指定一个或多个启动参数，<br>
+注意不必像 py3.setArgv 函数那样在首个参数中指定启动程序路径</p>
+
+<p><a id="py3.execf"></a></p>
+
+<h3>py3.execf</h3>
+
+<p>首先调用 string.format 格式化代码<br>
+然后执行格式化后的代码</p>
+
+<p><a id="py3.execf"></a></p>
+
+<h3>py3.execf(&quot;Python代码&quot;,...)</h3>
+
+<p>首先调用 string.format 格式化参数并生成代码,<br>
+然后执行格式化后的代码。  </p>
+
+<p>详细用法请参考<br>
+<a href="../../library-guide/builtin/string/format.html" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/builtin/string/format.html">格式化字符串</a></p>
+
+<p><a id="py3.execfile"></a></p>
+
+<h3>py3.execfile</h3>
+
+<p>运行 *.py 文件<br>
+注意需要引用的 Python 模块应当放在 /py 目录下,<br>
+aardio 以斜杠或反斜杆开始则表示应用程序根目录下的路径,<br>
+应用程序根目录开发时为 aardio 工程目录,发布后为 EXE 文件所在目录</p>
+
+<p><a id="py3.execfile"></a></p>
+
+<h3>py3.execfile(&quot;Python文件路径&quot;,flags,...)</h3>
+
+<p>运行 *.py 文件,成功返回true,<br>
+参数@1如果以斜杠或反斜杆开始则表示应用程序根目录下的路径,<br>
+应用程序根目录开发时为 aardio 工程目录,发布后为 EXE 文件所在目录,<br>
+可选用 参数@2 设置 PyCompilerFlags 参数,<br>
+可选增加任意个启动参数,即 sys.argv 参数</p>
+
+<p><a id="py3.export"></a></p>
+
+<h3>py3.export()</h3>
+
+<p>参数应指定 aardio 对象,<br>
+table、cdata、class、function 类型参数转换为 Python 代理对象,<br>
+支持导出 aardio 迭代器,注意迭代器返回 tuple 元组,<br>
+其他类型参数直接返回不作转换。  </p>
+
+<p>py3.export 创建的代理对象会绑定原始的 aardio 对象,<br>
+在 Python 中调用代理对象时都会转发调用到 aardio 对象，<br>
+对返回代理对象的所有调用也会同样经过 py3.export 处理。  </p>
+
+<p>未经 py3.export 处理的 aardio 对象传入 Python 时,<br>
+只会复制可能复制的值为纯 Python 对象,且不再关联原始对象</p>
+
+<p><a href="object.html#py3Object" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/py3/object.html#py3Object">返回对象:py3Object</a></p>
+
+<p><a id="py3.float"></a></p>
+
+<h3>py3.float()</h3>
+
+<p>调用 Python 的 float 函数,<br>
+参数可指定 aardio 或 Python 中可转为浮点数的对象,<br>
+创建 Python 浮点数并返回 py.object 对象,<br>
+返回的 Python 对象支持 +,-,*,/,%,&lt;,&gt;,&lt;=,&gt;=,== 等运算符</p>
+
+<p><a href="object.html#py3Object" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/py3/object.html#py3Object">返回对象:py3Object</a></p>
+
+<p><a id="py3.getDict"></a></p>
+
+<h3>py3.getDict(模块指针)</h3>
+
+<p>相当于Python模块对象的__dict__ 属性，得到模块名称空间下的字典对象</p>
+
+<p><a id="py3.getPath"></a></p>
+
+<h3>py3.getPath()</h3>
+
+<p>返回默认搜索路径<br>
+以分号隔开</p>
+
+<p><a id="py3.getProgramName"></a></p>
+
+<h3>py3.getProgramName()</h3>
+
+<p>返回程序名</p>
+
+<p><a id="py3.getPythonHome"></a></p>
+
+<h3>py3.getPythonHome()</h3>
+
+<p>返回python目录</p>
+
+<p><a id="py3.globals"></a></p>
+
+<h3>py3.globals()</h3>
+
+<p>全局名字空间  </p>
+
+<p><a href="#py3DictObject">返回对象:py3DictObject</a></p>
+
+<p><a id="py3.import"></a></p>
+
+<h3>py3.import(&quot;字符串参数&quot;)</h3>
+
+<p>导入模块，相当于Python内建函数__import__()<br>
+返回模块指针</p>
+
+<p><a id="py3.import"></a></p>
+
+<h3>py3.import()</h3>
+
+<p><a href="#py3ModuleObject">返回对象:py3ModuleObject</a></p>
+
+<p><a id="py3.int"></a></p>
+
+<h3>py3.int()</h3>
+
+<p>调用 Python 的 int 函数,<br>
+参数可指定 aardio 或 Python 中可转为整型数值的对象,<br>
+创建 Python 整型数并返回 py.object 对象,<br>
+返回的 Python 对象支持 +,-,*,/,%,&lt;,&gt;,&lt;=,&gt;=,== 等运算符,<br>
+aardio 数值默认会转换为 Python 中的浮点数,<br>
+如果参数需要用到整型数,可使用此函数创建整型数,<br>
+也可以在 Python 代码中调用 int 函数转换</p>
+
+<p><a href="object.html#py3Object" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/py3/object.html#py3Object">返回对象:py3Object</a></p>
+
+<p><a id="py3.json"></a></p>
+
+<h3>py3.json</h3>
+
+<p>Python的json模块  </p>
+
+<p><a href="#py3ModuleObject">返回对象:py3ModuleObject</a></p>
+
+<p><a id="py3.lasterr"></a></p>
+
+<h3>py3.lasterr()</h3>
+
+<p>如果 Python 已发生异常,<br>
+返回错误信息,以及异常类名称,<br>
+调用此函数会清除异常  </p>
+
+<p>有些 Python 输出到控制台的错误信息这个函数获取不到。<br>
+必须在导入 py3 扩展库以前调用 console.open 才能看到</p>
+
+<p><a id="py3.locals"></a></p>
+
+<h3>py3.locals()</h3>
+
+<p>局部名字空间  </p>
+
+<p><a href="#py3DictObject">返回对象:py3DictObject</a></p>
+
+<p><a id="py3.lock"></a></p>
+
+<h3>py3.lock( 回调函数,... )</h3>
+
+<pre><code class="aardio language-aardio">py3.lock( 回调函数,...lock(  
+    function(){  
+        /*释放GIL以后所有调用python代码必须写到这里*/     
+    }  
+)
+</code></pre>
+
+<p><a id="py3.main"></a></p>
+
+<h3>py3.main</h3>
+
+<p>Python的__main__模块  </p>
+
+<p><a href="#py3ModuleObject">返回对象:py3ModuleObject</a></p>
+
+<p><a id="py3.mainThread"></a></p>
+
+<h3>py3.mainThread</h3>
+
+<p>当前是否 Python 主线程<br>
+Python 有全局锁所以无法实现真正的多线程,<br>
+为避免不必要的麻烦,建议尽量在单线程里使用 Python</p>
+
+<p><a id="py3.occurred"></a></p>
+
+<h3>py3.occurred()</h3>
+
+<p>Python 是否发生异常</p>
+
+<p><a id="py3.releaseThread"></a></p>
+
+<h3>py3.releaseThread()</h3>
+
+<p>释放GIL线程锁<br>
+调用此函数以后,所有调用python的代码必须在py3.lock中运行<br>
+否则将导致进程异常退出,请小心使用,<br>
+python没有真正多线程,尽可能不要使用此函数以带来不必要的麻烦</p>
+
+<p><a id="py3.run"></a></p>
+
+<h3>py3.run(...)</h3>
+
+<p>直接输入启动参数启动 Python 解释器<br>
+类似调用 python.exe  </p>
+
+<p>注意 py3.10 扩展库会在执行此函数时重置 sys.path<br>
+低于 py3.10 版本不会重置 sys.path</p>
+
+<p><a id="py3.set"></a></p>
+
+<h3>py3.set()</h3>
+
+<p>调用 Python 的 set 函数,<br>
+参数可指定 aardio 或 Python 中可转为集合的对象,<br>
+创建 Python 集合并返回 py.object 对象</p>
+
+<p><a href="object.html#py3Object" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/py3/object.html#py3Object">返回对象:py3Object</a></p>
+
+<p><a id="py3.setArgv"></a></p>
+
+<h3>py3.setArgv(&quot;启动参数&quot;)</h3>
+
+<p>设置sys.argv启动参数,<br>
+参数可以是任意个字符串参数，<br>
+也可传入一个字符串数组。  </p>
+
+<p>注意第 1 个参数应当指定启动程序路径，<br>
+Python 从第 2 个参数开始取实际参数</p>
+
+<p><a id="py3.setPath"></a></p>
+
+<h3>py3.setPath()</h3>
+
+<p>设置默认搜索路径<br>
+以分号隔开</p>
+
+<p><a id="py3.setProgramName"></a></p>
+
+<h3>py3.setProgramName(&quot;字符串参数&quot;)</h3>
+
+<p>修改程序名</p>
+
+<p><a id="py3.setPythonHome"></a></p>
+
+<h3>py3.setPythonHome(&quot;字符串参数&quot;)</h3>
+
+<p>改变python应用程序目录</p>
+
+<p><a id="py3.str"></a></p>
+
+<h3>py3.str()</h3>
+
+<p>调用 Python 的 str 函数,<br>
+参数可指定 aardio 或 Python 中可转为字符串的对象,<br>
+创建 Python 整型数并返回 py.object 对象,<br>
+py.object 对象都提供 toString 函数可转为 aardio 字符串,<br>
+也可以在 aardio 中使作为 tostring 函数的参数转为普通字符串</p>
+
+<p><a href="object.html#py3Object" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/py3/object.html#py3Object">返回对象:py3Object</a></p>
+
+<p><a id="py3.sysObject"></a></p>
+
+<h3>py3.sysObject(&quot;名字&quot;)</h3>
+
+<p>获取sys对象</p>
+
+<p><a id="py3.sysObject"></a></p>
+
+<h3>py3.sysObject()</h3>
+
+<p><a href="object.html#py3Object" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/py3/object.html#py3Object">返回对象:py3Object</a></p>
+
+<p><a id="py3.toString"></a></p>
+
+<h3>py3.toString()</h3>
+
+<p>参数指定 py.object 对象或 pyObject 原生指针,<br>
+调用 Python 内置函数 str 转换为字符串对象,<br>
+最后转换并返回为 aardio 字符串<br>
+失败返回null  </p>
+
+<p>此函数不会检查参数类型是否正确,<br>
+参数如果不是 py.object 对象或 pyObject 指针则会导致异常或崩溃</p>
+
+<p><a id="py3.version"></a></p>
+
+<h3>py3.version</h3>
+
+<p>返回python内核版本<br>
+字符串值</p>
+
+<p><a id="::Python3"></a></p>
+
+<h2>::Python3 成员列表</h2>
+
+<p><a id="::Python3.?"></a></p>
+
+<h3>::Python3.?</h3>
+
+<p>可输入API函数名并直接调用</p>
+
+<p><a id="::Python3.api("Py输入函数名字","void"></a></p>
+
+<h3>::Python3.api(&quot;Py输入函数名字&quot;,&quot;void()&quot; )</h3>
+
+<p>声明加载的Python3 API函数</p>
+
+<p><a id="py3.export"></a></p>
+
+<h2>py3.export 成员列表</h2>
+
+<p>注意只能在 Python 启动线程中使用此功能,<br>
+export 作为名字空间使用时,<br>
+export 名字空间的 aardio 成员对象,<br>
+可在 Python 中使用 import 语句导入  </p>
+
+<p>export 作为类构造函数使用时,<br>
+可导出 aardio 对象为 Python 代理对象,<br>
+调用 Python 代理对象会转发到 aardio</p>
+
+<p><a id="py3.export.?"></a></p>
+
+<h3>py3.export.?</h3>
+
+<p>{
+        __/*这里定义的成员函数可在 Python 中调用*/
+}</p>
+
+<p><a id="py3CodeObject"></a></p>
+
+<h2>py3CodeObject 成员列表</h2>
+
+<p><a id="py3CodeObject.eval"></a></p>
+
+<h3>py3CodeObject.eval()</h3>
+
+<p>运行python代码并返回值<br>
+可选增加两个参数,指定全局名字空间,局部名字空间<br>
+名字空间必须是py3.dict()字典对象  </p>
+
+<p><a href="object.html#py3Object" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/py3/object.html#py3Object">返回对象:py3Object</a></p>
+
+<p><a id="py3CodeObject.exec"></a></p>
+
+<h3>py3CodeObject.exec(&quot;字符串参数&quot;)</h3>
+
+<p>运行python代码并返回模块对象  </p>
+
+<p><a href="#py3ModuleObject">返回对象:py3ModuleObject</a></p>
+
+<h3>全局常量</h3>
+
+<p><a id="::Python3"></a></p>
+
+<h3>::Python3</h3>
+
+<p>加载的Python3.DLL模块</p>
+
+<h3>自动完成常量</h3>
+
+<p>_Py_eval_input=258<br>
+_Py_file_input=257<br>
+_Py_single_input=256  </p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/py3/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/py3/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/py3/_.md">Markdown 格式</a></p>
+
+</body> 
+</html>

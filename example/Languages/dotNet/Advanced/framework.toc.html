@@ -1,0 +1,129 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - .NET 名字空间分析工具'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - .NET 名字空间分析工具</title> 
+<link rel="stylesheet" href="../../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: .NET 名字空间分析工具</h1><pre><code class="aardio language-aardio">//.NET 名字空间分析工具
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;.NET 名字空间分析工具&quot;;right=830;bottom=469)
+winform.add(
+button={cls=&quot;button&quot;;text=&quot;分析&quot;;left=673;top=7;right=820;bottom=43;dr=1;dt=1;z=3};
+edit={cls=&quot;edit&quot;;left=15;top=54;right=816;bottom=456;db=1;dl=1;dr=1;dt=1;edge=1;hscroll=1;multiline=1;vscroll=1;z=1};
+editNameSpace={cls=&quot;edit&quot;;left=177;top=12;right=546;bottom=41;dl=1;dr=1;dt=1;edge=1;multiline=1;z=2};
+editNetVersion={cls=&quot;edit&quot;;text=&quot;4.0&quot;;left=599;top=12;right=654;bottom=41;edge=1;z=5};
+static={cls=&quot;static&quot;;text=&quot;.NET Framework 名字空间：&quot;;left=12;top=10;right=169;bottom=35;align=&quot;right&quot;;center=1;dl=1;dt=1;transparent=1;z=4};
+static2={cls=&quot;static&quot;;text=&quot;版本：&quot;;left=549;top=10;right=597;bottom=35;align=&quot;right&quot;;center=1;transparent=1;z=6}
+)
+/*}}*/
+
+winform.edit.limit = -1;
+winform.button.oncommand = function(id,event){
+    if(!#winform.editNameSpace.text){
+        return winform.editNameSpace.showErrorTip(&quot;请输入 .NET 名字空间&quot;)
+    }
+    winform.edit.text = &quot;&quot;;
+
+    thread.invoke( 
+        function(winform,netNamespace,netVersion){
+            winform.button.disabledText = {&quot;✶&quot;;&quot;✸&quot;;&quot;✹&quot;;&quot;✺&quot;;&quot;✹&quot;;&quot;✷&quot;} 
+
+            //创建 HTML + HTTP 客户端
+            import web.rest.htmlClient;
+            var htmlClient = web.rest.htmlClient();
+
+            //创建 JSON + HTTP 客户端
+            import web.rest.jsonClient; 
+            var jsonClient = web.rest.jsonClient();  
+
+            //声明远程 API
+            var apiUrl = &quot;https://learn.microsoft.com/en-us/dotnet/api/_splitted/{namespace}/toc.json?view=netframework-&quot;+netVersion;
+            var tocApi = jsonClient.api(apiUrl);    
+
+            //抓取 JSON 并自动解析
+            var tocInfo = tocApi[netNamespace].get(); 
+            if(!tocInfo){
+                winform.button.disabledText = null;
+                winform.msgboxErr(&quot;获取数据失败&quot;);
+                return;
+            }
+
+            var map = {} 
+            for(i,item in tocInfo.items[1][[&quot;children&quot;]] ){ 
+                var apiName = item.uid;
+                var url = inet.url.joinpath(apiUrl,item.href);
+                url = inet.url.canonicalize(url) 
+
+                //抓取 HTML 并解析
+                var htmlDoc = htmlClient.get( url,{view=&quot;netframework-&quot;+netVersion}); 
+
+                //查找程序集名称
+                var assembly;
+                for ele in htmlDoc.eachQuery(tagName=&quot;dl&quot;){
+
+                    var moniker = ele[&quot;data-moniker&quot;]; 
+                    if( moniker &amp;&amp; string.find(moniker,&quot;netframework-&quot;+netVersion)){
+                        if(ele.dd[1]){
+                            assembly = ele.dd[1].innerText() 
+                            if(..string.endWith(assembly,&quot;.dll&quot;)){
+                                break;
+                            } 
+                        }
+                    }
+                }
+
+                if(!assembly) continue;
+
+                winform.edit.print(apiName,assembly) 
+
+                if(!map[assembly]){
+                    map[assembly] = {}  
+                }
+
+                table.push(map[assembly],apiName);
+            }
+
+            import web.json;
+            winform.edit.text = web.json.stringify(map,true);
+            winform.button.disabledText = null;
+
+        },winform,winform.editNameSpace.text,winform.editNetVersion.text
+    )
+}
+
+winform.edit.text = /***************** 
+//aardio 导入 .NET 名字空间示例
+import dotNet;
+
+//导入 System，下级名字如果在同一程序集内，那么在使用时按需自动导入。
+dotNet.import(&quot;System&quot;); 
+
+//如果下级名字空间不在同一程序集内，必须用哪个导入哪个，不会覆盖已存在的父名字空间。
+dotNet.import(&quot;System.Security.Cryptography&quot;,&quot;mscorlib&quot;);
+
+//不会自动导入或替换上级名字空间，例如下面的代码不能替代 dotNet.import(&quot;System&quot;); 
+dotNet.import(&quot;System.Security.Cryptography.X509Certificates&quot;,&quot;System&quot;); 
+
+/*
+.NET 很多自带的名字空间在不同的 DLL 实现。
+所以我们需要用这个工具，分析一个名字空间在哪个 DLL 里的成员最多。
+就用该 DLL 导入该名字空间，可以少写 dotNet.import 语句。
+*/
+*****************/
+
+winform.show();
+win.loopMessage();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/dotNet/Advanced/framework.toc.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/dotNet/Advanced/framework.toc.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Languages/dotNet/Advanced/framework.toc.md">Markdown 格式</a>
+</body> 
+</html>

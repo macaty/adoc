@@ -1,0 +1,889 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - FlaUI 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - FlaUI 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>FlaUI 库模块帮助文档</h1>
+
+<p><details>  <summary>入门教程</summary>  <p>
+<a href="javascript:if(confirm('https://mp.weixin.qq.com/s/uEJSete63SQgJYEHw2PacQ  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='https://mp.weixin.qq.com/s/uEJSete63SQgJYEHw2PacQ'" tppabs="https://mp.weixin.qq.com/s/uEJSete63SQgJYEHw2PacQ">入门教程</a>
+</p></details></p>
+
+<p><a id="FlaUI"></a></p>
+
+<h2>FlaUI 成员列表</h2>
+
+<p>.NET 组件 FlaUI。<br>
+在 aardio 中 FlaUI 与 FlaUI.Core 指向同一名字空间。<br>
+注意首字母大写常用于 .NET 名字空间，而 aardio 名字空间通常小写首字母。  </p>
+
+<p>此组件库已自动导入 key,mouse 库</p>
+
+<p><a id="FlaUI.As"></a></p>
+
+<h3>FlaUI.As(&quot;Button&quot;,)</h3>
+
+<p>转换为指定类型的控件对象。<br>
+参数 @1 指定控件类名，参数 @2 指定界面节点对象</p>
+
+<p><a id="FlaUI.AsButton"></a></p>
+
+<h3>FlaUI.AsButton()</h3>
+
+<p>将参数 @1 指定的 UIA 节点转换为 FlaUI.AutomationElements.Button控件。<br>
+返回控件的属性与方法请参考 FlaUI 文档或源码</p>
+
+<p><a href="#FlaUIButtonObject">返回对象:FlaUIButtonObject</a></p>
+
+<p><a id="FlaUI.AsCalendar"></a></p>
+
+<h3>FlaUI.AsCalendar()</h3>
+
+<p>将参数 @1 指定的 UIA 节点转换为 FlaUI.AutomationElements.Calendar控件。<br>
+返回控件的属性与方法请参考 FlaUI 文档或源码</p>
+
+<p><a id="FlaUI.AsCheckBox"></a></p>
+
+<h3>FlaUI.AsCheckBox()</h3>
+
+<p>将参数 @1 指定的 UIA 节点转换为 FlaUI.AutomationElements.CheckBox控件。<br>
+返回控件的属性与方法请参考 FlaUI 文档或源码</p>
+
+<p><a href="#FlaUICheckBoxObject">返回对象:FlaUICheckBoxObject</a></p>
+
+<p><a id="FlaUI.AsComboBox"></a></p>
+
+<h3>FlaUI.AsComboBox()</h3>
+
+<p>将参数 @1 指定的 UIA 节点转换为 FlaUI.AutomationElements.ComboBox控件。<br>
+返回控件的属性与方法请参考 FlaUI 文档或源码</p>
+
+<p><a id="FlaUI.AsDataGridView"></a></p>
+
+<h3>FlaUI.AsDataGridView()</h3>
+
+<p>将参数 @1 指定的 UIA 节点转换为 FlaUI.AutomationElements.DataGridView控件。<br>
+返回控件的属性与方法请参考 FlaUI 文档或源码</p>
+
+<p><a id="FlaUI.AsDateTimePicker"></a></p>
+
+<h3>FlaUI.AsDateTimePicker()</h3>
+
+<p>将参数 @1 指定的 UIA 节点转换为 FlaUI.AutomationElements.DateTimePicker控件。<br>
+返回控件的属性与方法请参考 FlaUI 文档或源码</p>
+
+<p><a id="FlaUI.AsGrid"></a></p>
+
+<h3>FlaUI.AsGrid()</h3>
+
+<p>将参数 @1 指定的 UIA 节点转换为 FlaUI.AutomationElements.Grid控件。<br>
+返回控件的属性与方法请参考 FlaUI 文档或源码</p>
+
+<p><a id="FlaUI.AsGridCell"></a></p>
+
+<h3>FlaUI.AsGridCell()</h3>
+
+<p>将参数 @1 指定的 UIA 节点转换为 FlaUI.AutomationElements.GridCell控件。<br>
+返回控件的属性与方法请参考 FlaUI 文档或源码</p>
+
+<p><a id="FlaUI.AsGridHeader"></a></p>
+
+<h3>FlaUI.AsGridHeader()</h3>
+
+<p>将参数 @1 指定的 UIA 节点转换为 FlaUI.AutomationElements.GridHeader控件。<br>
+返回控件的属性与方法请参考 FlaUI 文档或源码</p>
+
+<p><a id="FlaUI.AsGridHeaderItem"></a></p>
+
+<h3>FlaUI.AsGridHeaderItem()</h3>
+
+<p>将参数 @1 指定的 UIA 节点转换为 FlaUI.AutomationElements.GridHeaderItem控件。<br>
+返回控件的属性与方法请参考 FlaUI 文档或源码</p>
+
+<p><a id="FlaUI.AsGridRow"></a></p>
+
+<h3>FlaUI.AsGridRow()</h3>
+
+<p>将参数 @1 指定的 UIA 节点转换为 FlaUI.AutomationElements.GridRow控件。<br>
+返回控件的属性与方法请参考 FlaUI 文档或源码</p>
+
+<p><a id="FlaUI.AsHorizontalScrollBar"></a></p>
+
+<h3>FlaUI.AsHorizontalScrollBar()</h3>
+
+<p>将参数 @1 指定的 UIA 节点转换为 FlaUI.AutomationElements.HorizontalScrollBar控件。<br>
+返回控件的属性与方法请参考 FlaUI 文档或源码</p>
+
+<p><a id="FlaUI.AsLabel"></a></p>
+
+<h3>FlaUI.AsLabel()</h3>
+
+<p>将参数 @1 指定的 UIA 节点转换为 FlaUI.AutomationElements.Label控件。<br>
+返回控件的属性与方法请参考 FlaUI 文档或源码</p>
+
+<p><a href="#FlaUILabelObject">返回对象:FlaUILabelObject</a></p>
+
+<p><a id="FlaUI.AsListBox"></a></p>
+
+<h3>FlaUI.AsListBox()</h3>
+
+<p>将参数 @1 指定的 UIA 节点转换为 FlaUI.AutomationElements.ListBox控件。<br>
+返回控件的属性与方法请参考 FlaUI 文档或源码</p>
+
+<p><a id="FlaUI.AsListBoxItem"></a></p>
+
+<h3>FlaUI.AsListBoxItem()</h3>
+
+<p>将参数 @1 指定的 UIA 节点转换为 FlaUI.AutomationElements.ListBoxItem控件。<br>
+返回控件的属性与方法请参考 FlaUI 文档或源码</p>
+
+<p><a id="FlaUI.AsMenu"></a></p>
+
+<h3>FlaUI.AsMenu()</h3>
+
+<p>将参数 @1 指定的 UIA 节点转换为 FlaUI.AutomationElements.Menu控件。<br>
+返回控件的属性与方法请参考 FlaUI 文档或源码</p>
+
+<p><a id="FlaUI.AsMenuItem"></a></p>
+
+<h3>FlaUI.AsMenuItem()</h3>
+
+<p>将参数 @1 指定的 UIA 节点转换为 FlaUI.AutomationElements.MenuItem控件。<br>
+返回控件的属性与方法请参考 FlaUI 文档或源码</p>
+
+<p><a id="FlaUI.AsProgressBar"></a></p>
+
+<h3>FlaUI.AsProgressBar()</h3>
+
+<p>将参数 @1 指定的 UIA 节点转换为 FlaUI.AutomationElements.ProgressBar控件。<br>
+返回控件的属性与方法请参考 FlaUI 文档或源码</p>
+
+<p><a id="FlaUI.AsRadioButton"></a></p>
+
+<h3>FlaUI.AsRadioButton()</h3>
+
+<p>将参数 @1 指定的 UIA 节点转换为 FlaUI.AutomationElements.RadioButton控件。<br>
+返回控件的属性与方法请参考 FlaUI 文档或源码</p>
+
+<p><a href="#FlaUIRadioButtonObject">返回对象:FlaUIRadioButtonObject</a></p>
+
+<p><a id="FlaUI.AsSlider"></a></p>
+
+<h3>FlaUI.AsSlider()</h3>
+
+<p>将参数 @1 指定的 UIA 节点转换为 FlaUI.AutomationElements.Slider控件。<br>
+返回控件的属性与方法请参考 FlaUI 文档或源码</p>
+
+<p><a id="FlaUI.AsSpinner"></a></p>
+
+<h3>FlaUI.AsSpinner()</h3>
+
+<p>将参数 @1 指定的 UIA 节点转换为 FlaUI.AutomationElements.Spinner控件。<br>
+返回控件的属性与方法请参考 FlaUI 文档或源码</p>
+
+<p><a id="FlaUI.AsTab"></a></p>
+
+<h3>FlaUI.AsTab()</h3>
+
+<p>将参数 @1 指定的 UIA 节点转换为 FlaUI.AutomationElements.Tab控件。<br>
+返回控件的属性与方法请参考 FlaUI 文档或源码</p>
+
+<p><a id="FlaUI.AsTabItem"></a></p>
+
+<h3>FlaUI.AsTabItem()</h3>
+
+<p>将参数 @1 指定的 UIA 节点转换为 FlaUI.AutomationElements.TabItem控件。<br>
+返回控件的属性与方法请参考 FlaUI 文档或源码</p>
+
+<p><a id="FlaUI.AsTextBox"></a></p>
+
+<h3>FlaUI.AsTextBox()</h3>
+
+<p>将参数 @1 指定的 UIA 节点转换为 FlaUI.AutomationElements.TextBox控件。<br>
+返回控件的属性与方法请参考 FlaUI 文档或源码</p>
+
+<p><a href="#FlaUITextBoxObject">返回对象:FlaUITextBoxObject</a></p>
+
+<p><a id="FlaUI.AsThumb"></a></p>
+
+<h3>FlaUI.AsThumb()</h3>
+
+<p>将参数 @1 指定的 UIA 节点转换为 FlaUI.AutomationElements.Thumb控件。<br>
+返回控件的属性与方法请参考 FlaUI 文档或源码</p>
+
+<p><a id="FlaUI.AsTitleBar"></a></p>
+
+<h3>FlaUI.AsTitleBar()</h3>
+
+<p>将参数 @1 指定的 UIA 节点转换为 FlaUI.AutomationElements.TitleBar控件。<br>
+返回控件的属性与方法请参考 FlaUI 文档或源码</p>
+
+<p><a id="FlaUI.AsToggleButton"></a></p>
+
+<h3>FlaUI.AsToggleButton()</h3>
+
+<p>将参数 @1 指定的 UIA 节点转换为 FlaUI.AutomationElements.ToggleButton控件。<br>
+返回控件的属性与方法请参考 FlaUI 文档或源码</p>
+
+<p><a id="FlaUI.AsTree"></a></p>
+
+<h3>FlaUI.AsTree()</h3>
+
+<p>将参数 @1 指定的 UIA 节点转换为 FlaUI.AutomationElements.Tree控件。<br>
+返回控件的属性与方法请参考 FlaUI 文档或源码</p>
+
+<p><a id="FlaUI.AsTreeItem"></a></p>
+
+<h3>FlaUI.AsTreeItem()</h3>
+
+<p>将参数 @1 指定的 UIA 节点转换为 FlaUI.AutomationElements.TreeItem控件。<br>
+返回控件的属性与方法请参考 FlaUI 文档或源码</p>
+
+<p><a id="FlaUI.AsVerticalScrollBar"></a></p>
+
+<h3>FlaUI.AsVerticalScrollBar()</h3>
+
+<p>将参数 @1 指定的 UIA 节点转换为 FlaUI.AutomationElements.VerticalScrollBar控件。<br>
+返回控件的属性与方法请参考 FlaUI 文档或源码</p>
+
+<p><a id="FlaUI.AsWindow"></a></p>
+
+<h3>FlaUI.AsWindow()</h3>
+
+<p>将参数 @1 指定的 UIA 节点转换为 FlaUI.AutomationElements.Window控件。<br>
+返回控件的属性与方法请参考 FlaUI 文档或源码</p>
+
+<p><a id="FlaUI.Attach"></a></p>
+
+<h3>FlaUI.Attach()</h3>
+
+<p>绑定已运行的进程， FlaUI.Application 对象。<br>
+参数@1可以用字符串指定执行文件名，也可以用数值指定进程 ID。<br>
+此函数等价于 FlaUI.Application.Attach 函数</p>
+
+<p><a href="#FlaUIAppObject">返回对象:FlaUIAppObject</a></p>
+
+<p><a href="#FlaUIAppObject">返回对象:FlaUIAppObject</a></p>
+
+<p><a id="FlaUI.Definitions"></a></p>
+
+<h3>FlaUI.Definitions</h3>
+
+<p>类型定义。<br>
+参考 <a href="javascript:if(confirm('https://github.com/FlaUI/FlaUI/tree/master/src/FlaUI.Core/Definitions  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='https://github.com/FlaUI/FlaUI/tree/master/src/FlaUI.Core/Definitions'" tppabs="https://github.com/FlaUI/FlaUI/tree/master/src/FlaUI.Core/Definitions">https://github.com/FlaUI/FlaUI/tree/master/src/FlaUI.Core/Definitions</a></p>
+
+<p><a id="FlaUI.DrawHighlight"></a></p>
+
+<h3>FlaUI.DrawHighlight()</h3>
+
+<p>高亮参数@1指定的界面节点对象。<br>
+这个函数很卡，建议改用 aardio 提供的 win.ui.mask</p>
+
+<p><a id="FlaUI.FromPoint"></a></p>
+
+<h3>FlaUI.FromPoint()</h3>
+
+<p><a href="#FlaUIElementObject">返回对象:FlaUIElementObject</a></p>
+
+<p><a id="FlaUI.FromPoint"></a></p>
+
+<h3>FlaUI.FromPoint(parentNode,x,y)</h3>
+
+<p>自 @x,@y 参数指定的坐标查找并返回节点。<br>
+@parentNode 参数指定父节点或 FlaUI.GetMainWindow 等函数返回的窗口对象</p>
+
+<p><a id="FlaUI.Launch"></a></p>
+
+<h3>FlaUI.Launch</h3>
+
+<p>运行进程并返回 FlaUI.Application 对象</p>
+
+<p><a id="FlaUI.Launch"></a></p>
+
+<h3>FlaUI.Launch()</h3>
+
+<p><a href="#FlaUIAppObject">返回对象:FlaUIAppObject</a></p>
+
+<p><a href="#FlaUIAppObject">返回对象:FlaUIAppObject</a></p>
+
+<p><a id="FlaUI.Launch"></a></p>
+
+<h3>FlaUI.Launch(executable,arguments)</h3>
+
+<p>字符串参数 @executable 指定执行程序路径。<br>
+可选用字符串 @arguments 指定启动参数。<br>
+如果参数 @1 为字符串，此函数调用 aardio 标准库 procsss 启动进程。<br>
+可传入更多 process 支持的构造参数</p>
+
+<p><a id="FlaUI.Launch"></a></p>
+
+<h3>FlaUI.Launch(startInfo)</h3>
+
+<p>参数 @startInfo 可指定 System.Diagnostics.ProcessStartInfo 对象</p>
+
+<p><a id="FlaUI.LaunchStoreApp"></a></p>
+
+<h3>FlaUI.LaunchStoreApp(appUserModelId,arguments)</h3>
+
+<p>运行 UWP 应用。<br>
+此函数等价于 FlaUI.Application.LaunchStoreApp 函数</p>
+
+<p><a id="FlaUI.enum"></a></p>
+
+<h3>FlaUI.enum</h3>
+
+<pre><code class="aardio language-aardio">FlaUI.enum(parentNode,function(flaUiNode,flaUiParent,index,level){
+    /*枚举 @parentNode 节点下面的所有后代节点。  
+返回 true 继续枚举子节点，返回 false 忽略子节点。  
+返回 null 退出枚举*/
+}
+</code></pre>
+
+<p><a id="FlaUI.ControlType"></a></p>
+
+<h2>FlaUI.ControlType 成员列表</h2>
+
+<p>控件类型。<br>
+参考 <a href="javascript:if(confirm('https://github.com/FlaUI/FlaUI/blob/master/src/FlaUI.Core/Definitions/ControlType.cs  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='https://github.com/FlaUI/FlaUI/blob/master/src/FlaUI.Core/Definitions/ControlType.cs'" tppabs="https://github.com/FlaUI/FlaUI/blob/master/src/FlaUI.Core/Definitions/ControlType.cs">https://github.com/FlaUI/FlaUI/blob/master/src/FlaUI.Core/Definitions/ControlType.cs</a></p>
+
+<p><a id="FlaUI.ControlType.Button"></a></p>
+
+<h3>FlaUI.ControlType.Button</h3>
+
+<p>按钮</p>
+
+<p><a id="FlaUI.ControlType.Edit"></a></p>
+
+<h3>FlaUI.ControlType.Edit</h3>
+
+<p>文本框</p>
+
+<p><a id="FlaUI.Debug"></a></p>
+
+<h2>FlaUI.Debug 成员列表</h2>
+
+<p><a id="FlaUI.Debug.GetXPathToElement"></a></p>
+
+<h3>FlaUI.Debug.GetXPathToElement</h3>
+
+<p>获取节点的 XPath 路径</p>
+
+<p><a id="FlaUI.Debug.GetXPathToElement"></a></p>
+
+<h3>FlaUI.Debug.GetXPathToElement(node,root)</h3>
+
+<p>参数@node 指定当前节点。<br>
+可选用 @root 参数指定根节点</p>
+
+<p><a id="FlaUI.Input.Mouse"></a></p>
+
+<h2>FlaUI.Input.Mouse 成员列表</h2>
+
+<p><a id="FlaUI.Input.Mouse.Position"></a></p>
+
+<h3>FlaUI.Input.Mouse.Position</h3>
+
+<p>当前鼠标位置。<br>
+System.Drawing.Point 对象</p>
+
+<p><a id="FlaUI.UIA"></a></p>
+
+<h2>FlaUI.UIA 成员列表</h2>
+
+<p>如果导入 FlaUI.UIA3 则指向 FlaUI.UIA3。<br>
+如果未导入 FlaUI.UIA3 ，但导入 FlaUI.UIA2 ，则指向 FlaUI.UIA2</p>
+
+<p>如果导入 FlaUI.UIA3 则指向 FlaUI.UIA3。<br>
+如果未导入 FlaUI.UIA3 ，但导入 FlaUI.UIA2 ，则指向 FlaUI.UIA2</p>
+
+<p><a id="FlaUI.UIA.UIAAutomation"></a></p>
+
+<h3>FlaUI.UIA.UIAAutomation</h3>
+
+<p>如果导入 FlaUI.UIA3 则此函数实际指向 FlaUI.UIA3.UIA3Automation。<br>
+如果未导入 FlaUI.UIA3 ，但导入 FlaUI.UIA2 ，则指向 FlaUI.UIA2.UIA2Automation。</p>
+
+<p><a id="FlaUI.UIA.UIAAutomation"></a></p>
+
+<h3>FlaUI.UIA.UIAAutomation()</h3>
+
+<p>创建 UIAAutomation 对象。  </p>
+
+<p><a href="#FlaUIA3AutomationObject">返回对象:FlaUIA3AutomationObject</a></p>
+
+<p><a id="FlaUIAppObject"></a></p>
+
+<h2>FlaUIAppObject 成员列表</h2>
+
+<p><a id="FlaUIAppObject.Close"></a></p>
+
+<h3>FlaUIAppObject.Close()</h3>
+
+<p>关闭进程。<br>
+如果参数 @1 为 true ，则在关闭失败时杀除进程</p>
+
+<p><a id="FlaUIAppObject.CloseTimeout"></a></p>
+
+<h3>FlaUIAppObject.CloseTimeout</h3>
+
+<p>关闭超时。<br>
+System.TimeSpan 对象</p>
+
+<p><a id="FlaUIAppObject.ExitCode"></a></p>
+
+<h3>FlaUIAppObject.ExitCode</h3>
+
+<p>退出代码</p>
+
+<p><a id="FlaUIAppObject.GetAllTopLevelWindows"></a></p>
+
+<h3>FlaUIAppObject.GetAllTopLevelWindows()</h3>
+
+<p>获取包含该进程内所有顶层窗口节点的数组。<br>
+参数@1应指定 FlaUI.UIA3.UIA3Automation 或 FlaUI.UIA2.UIA2Automation 创建的对象</p>
+
+<p><a id="FlaUIAppObject.GetMainWindow"></a></p>
+
+<h3>FlaUIAppObject.GetMainWindow</h3>
+
+<p>获取主窗口节点。</p>
+
+<p><a id="FlaUIAppObject.GetMainWindow"></a></p>
+
+<h3>FlaUIAppObject.GetMainWindow()</h3>
+
+<p><a href="#FlaUIElementObject">返回对象:FlaUIElementObject</a></p>
+
+<p><a id="FlaUIAppObject.GetMainWindow"></a></p>
+
+<h3>FlaUIAppObject.GetMainWindow(automation,waitTimeout)</h3>
+
+<p>获取主窗口节点。<br>
+参数@1应指定 FlaUI.UIA3.UIA3Automation 或 FlaUI.UIA2.UIA2Automation 创建的对象。<br>
+参数 @waitTimeout 可选用一个 System.TimeSpan 对象指定等待时间</p>
+
+<p><a id="FlaUIAppObject.HasExited"></a></p>
+
+<h3>FlaUIAppObject.HasExited</h3>
+
+<p>是否已退出</p>
+
+<p><a id="FlaUIAppObject.IsStoreApp"></a></p>
+
+<h3>FlaUIAppObject.IsStoreApp</h3>
+
+<p>是否 UWP 应用</p>
+
+<p><a id="FlaUIAppObject.Kill"></a></p>
+
+<h3>FlaUIAppObject.Kill()</h3>
+
+<p>杀除进程</p>
+
+<p><a id="FlaUIAppObject.MainWindowHandle"></a></p>
+
+<h3>FlaUIAppObject.MainWindowHandle</h3>
+
+<p>主窗口句柄</p>
+
+<p><a id="FlaUIAppObject.Name"></a></p>
+
+<h3>FlaUIAppObject.Name</h3>
+
+<p>进程名称</p>
+
+<p><a id="FlaUIAppObject.ProcessId"></a></p>
+
+<h3>FlaUIAppObject.ProcessId</h3>
+
+<p>进程 ID</p>
+
+<p><a id="FlaUIAppObject.WaitWhileBusy"></a></p>
+
+<h3>FlaUIAppObject.WaitWhileBusy()</h3>
+
+<p>如果进程忙则等待。<br>
+可选用参数 @1 可选用一个 System.TimeSpan 对象指定等待时间</p>
+
+<p><a id="FlaUIAppObject.WaitWhileMainHandleIsMissing"></a></p>
+
+<h3>FlaUIAppObject.WaitWhileMainHandleIsMissing()</h3>
+
+<p>等待创建主窗口。<br>
+可选用参数 @1 可选用一个 System.TimeSpan 对象指定等待时间</p>
+
+<p><a id="FlaUIButtonObject"></a></p>
+
+<h2>FlaUIButtonObject 成员列表</h2>
+
+<p><a id="FlaUIButtonObject.Invoke"></a></p>
+
+<h3>FlaUIButtonObject.Invoke()</h3>
+
+<p>默认方法</p>
+
+<p><a id="FlaUIButtonObject.Text"></a></p>
+
+<h3>FlaUIButtonObject.Text</h3>
+
+<p>获取文本</p>
+
+<p><a id="FlaUICheckBoxObject"></a></p>
+
+<h2>FlaUICheckBoxObject 成员列表</h2>
+
+<p><a id="FlaUICheckBoxObject.IsChecked"></a></p>
+
+<h3>FlaUICheckBoxObject.IsChecked</h3>
+
+<p>是否选中</p>
+
+<p><a id="FlaUICheckBoxObject.Text"></a></p>
+
+<h3>FlaUICheckBoxObject.Text</h3>
+
+<p>获取文本</p>
+
+<p><a id="FlaUIElementObject"></a></p>
+
+<h2>FlaUIElementObject 成员列表</h2>
+
+<p><a id="FlaUIElementObject.?"></a></p>
+
+<h3>FlaUIElementObject.?</h3>
+
+<p><a href="#FlaUIElementObject">返回对象:FlaUIElementObject</a></p>
+
+<p><a id="FlaUIElementObject.ActualHeight"></a></p>
+
+<h3>FlaUIElementObject.ActualHeight</h3>
+
+<p>高度</p>
+
+<p><a id="FlaUIElementObject.ActualWidth"></a></p>
+
+<h3>FlaUIElementObject.ActualWidth</h3>
+
+<p>宽度</p>
+
+<p><a id="FlaUIElementObject.AutomationId"></a></p>
+
+<h3>FlaUIElementObject.AutomationId</h3>
+
+<p>自动化 ID</p>
+
+<p><a id="FlaUIElementObject.BoundingRectangle"></a></p>
+
+<h3>FlaUIElementObject.BoundingRectangle</h3>
+
+<p>节点所在的区块。<br>
+注意所有 mouse 库函数都支持以此结构体转换为区块中点坐标</p>
+
+<p><a id="FlaUIElementObject.Capture"></a></p>
+
+<h3>FlaUIElementObject.Capture()</h3>
+
+<p>截图并返回 System.Drawing.Bitmap 对象</p>
+
+<p><a id="FlaUIElementObject.CaptureToFile"></a></p>
+
+<h3>FlaUIElementObject.CaptureToFile()</h3>
+
+<p>截图到文件。<br>
+参数指定文件路径。<br>
+如果路径使用了 aardio 规则，可用 io.fullpath 先转换一下</p>
+
+<p><a id="FlaUIElementObject.ClassName"></a></p>
+
+<h3>FlaUIElementObject.ClassName</h3>
+
+<p>类名</p>
+
+<p><a id="FlaUIElementObject.ControlType"></a></p>
+
+<h3>FlaUIElementObject.ControlType</h3>
+
+<p>控件类型，这个属型这是一个枚举数值。  </p>
+
+<p>改用 Properties.ControlType ，并将其传入 tostring 函数<br>
+可得到英文字符串表示的控件类型</p>
+
+<p><a id="FlaUIElementObject.FindAllByXPath"></a></p>
+
+<h3>FlaUIElementObject.FindAllByXPath(&quot;字符串参数&quot;)</h3>
+
+<p>使用参数 @1 指定的 XPath 表达式查找并返回找到的节点数组。<br>
+调用 FindAllByXPath 函数的元素为 XPath 根元素。  </p>
+
+<p>获取所有子节点可使用 FindAllChildren 函数</p>
+
+<p><a id="FlaUIElementObject.FindAllByXPath"></a></p>
+
+<h3>FlaUIElementObject.FindAllByXPath()</h3>
+
+<p><a href="#FlaUIElementObject">返回对象:FlaUIElementObject</a></p>
+
+<p><a id="FlaUIElementObject.FindAllChildren"></a></p>
+
+<h3>FlaUIElementObject.FindAllChildren()</h3>
+
+<p>返回包含所有子节点的数组</p>
+
+<p><a id="FlaUIElementObject.FindFirstByXPath"></a></p>
+
+<h3>FlaUIElementObject.FindFirstByXPath(&quot;字符串参数&quot;)</h3>
+
+<p>使用参数 @1 指定的 XPath 表达式查找并返回找到的第一个节点。<br>
+调用 FindFirstByXPath 函数的元素为 XPath 根元素。</p>
+
+<p><a id="FlaUIElementObject.FindFirstByXPath"></a></p>
+
+<h3>FlaUIElementObject.FindFirstByXPath()</h3>
+
+<p><a href="#FlaUIElementObject">返回对象:FlaUIElementObject</a></p>
+
+<p><a id="FlaUIElementObject.FindFirstDescendant"></a></p>
+
+<h3>FlaUIElementObject.FindFirstDescendant()</h3>
+
+<p><a href="#FlaUIElementObject">返回对象:FlaUIElementObject</a></p>
+
+<p><a id="FlaUIElementObject.FindFirstDescendant"></a></p>
+
+<h3>FlaUIElementObject.FindFirstDescendant(condition)</h3>
+
+<pre><code class="aardio language-aardio">FlaUIElementObject.FindFirstDescendant(   
+    automation.By( Name = &quot;输入&quot;;ControlType=&quot;Edit&quot;)/*查找后代节点。  
+automation 请更换为当前使用的 FlaUI.UIA3.UIA3Automation 或 FlaUI.UIA2.UIA2Automation 对象*/  
+)
+</code></pre>
+
+<p><a id="FlaUIElementObject.Focus"></a></p>
+
+<h3>FlaUIElementObject.Focus()</h3>
+
+<p>如果是窗口调用 SetForeground 函数前置，<br>
+否则调用 FocusNative 设为输入焦点</p>
+
+<p><a id="FlaUIElementObject.FocusNative"></a></p>
+
+<h3>FlaUIElementObject.FocusNative()</h3>
+
+<p>设为输入焦点</p>
+
+<p><a id="FlaUIElementObject.HelpText"></a></p>
+
+<h3>FlaUIElementObject.HelpText</h3>
+
+<p>帮助文本</p>
+
+<p><a id="FlaUIElementObject.IsEnabled"></a></p>
+
+<h3>FlaUIElementObject.IsEnabled</h3>
+
+<p>是否启用</p>
+
+<p><a id="FlaUIElementObject.ItemStatus"></a></p>
+
+<h3>FlaUIElementObject.ItemStatus</h3>
+
+<p>状态，字符串</p>
+
+<p><a id="FlaUIElementObject.Name"></a></p>
+
+<h3>FlaUIElementObject.Name</h3>
+
+<p>名称</p>
+
+<p><a id="FlaUIElementObject.Parent"></a></p>
+
+<h3>FlaUIElementObject.Parent</h3>
+
+<p>父节点  </p>
+
+<p><a href="#FlaUIElementObject">返回对象:FlaUIElementObject</a></p>
+
+<p><a id="FlaUIElementObject.Patterns"></a></p>
+
+<h3>FlaUIElementObject.Patterns</h3>
+
+<p>在 aardio 中无法直接使用此接口。<br>
+可参考 FlaUI.UIA3.Caret 源码通过 C&num; 调用 Patterns 接口。<br>
+或者用 FlaUI.As 系列函数转换为控件以后再直接调用相关属性方法。</p>
+
+<p><a id="FlaUIElementObject.Properties"></a></p>
+
+<h3>FlaUIElementObject.Properties</h3>
+
+<p>元素属性。<br>
+可用属性参考: <a href="javascript:if(confirm('https://github.com/FlaUI/FlaUI/blob/master/src/FlaUI.Core/FrameworkAutomationElementBase.Properties.cs  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='https://github.com/FlaUI/FlaUI/blob/master/src/FlaUI.Core/FrameworkAutomationElementBase.Properties.cs#L77'" tppabs="https://github.com/FlaUI/FlaUI/blob/master/src/FlaUI.Core/FrameworkAutomationElementBase.Properties.cs#L77">https://github.com/FlaUI/FlaUI/blob/master/src/FlaUI.Core/FrameworkAutomationElementBase.Properties.cs#L77</a>   </p>
+
+<p><a href="#FlaUiPropertyObject">返回对象:FlaUiPropertyObject</a></p>
+
+<p><a id="FlaUIElementObject.SetForeground"></a></p>
+
+<h3>FlaUIElementObject.SetForeground()</h3>
+
+<p>前置窗口</p>
+
+<p><a id="FlaUIRadioButtonObject"></a></p>
+
+<h2>FlaUIRadioButtonObject 成员列表</h2>
+
+<p><a id="FlaUIRadioButtonObject.IsChecked"></a></p>
+
+<h3>FlaUIRadioButtonObject.IsChecked</h3>
+
+<p>是否选中</p>
+
+<p><a id="FlaUITextBoxObject"></a></p>
+
+<h2>FlaUITextBoxObject 成员列表</h2>
+
+<p><a id="FlaUITextBoxObject.Enter"></a></p>
+
+<h3>FlaUITextBoxObject.Enter()</h3>
+
+<p>输入文本</p>
+
+<p><a id="FlaUITextBoxObject.IsReadOnly"></a></p>
+
+<h3>FlaUITextBoxObject.IsReadOnly</h3>
+
+<p>是否只读</p>
+
+<p><a id="FlaUITextBoxObject.Text"></a></p>
+
+<h3>FlaUITextBoxObject.Text</h3>
+
+<p>获取文本</p>
+
+<p><a id="FlaUiPropertyObject"></a></p>
+
+<h2>FlaUiPropertyObject 成员列表</h2>
+
+<p><a id="FlaUiPropertyObject.ControlType"></a></p>
+
+<h3>FlaUiPropertyObject.ControlType</h3>
+
+<p>控件类型，这是一个对象。<br>
+此对象可传入 tostring 函数转换为英文字符串。<br>
+也可用对象的 Value 成员返回枚举数值</p>
+
+<p><a id="FlaUiPropertyObject.IsOffscreen"></a></p>
+
+<h3>FlaUiPropertyObject.IsOffscreen</h3>
+
+<p>在屏幕上是否不可见。<br>
+此对象需用 Value 字段返回布尔值。</p>
+
+<p><a id="FlaUiPropertyObject.IsContentElement"></a></p>
+
+<h2>FlaUiPropertyObject.IsContentElement 成员列表</h2>
+
+<p>是否内容展示元素 。<br>
+此对象需用 Value 字段返回布尔值。</p>
+
+<p><a id="FlaUiPropertyObject.IsContentElement.Value"></a></p>
+
+<h3>FlaUiPropertyObject.IsContentElement.Value</h3>
+
+<p>是否密码输入框</p>
+
+<p><a id="FlaUiPropertyObject.IsControlElement"></a></p>
+
+<h2>FlaUiPropertyObject.IsControlElement 成员列表</h2>
+
+<p>是否控件。<br>
+此对象需用 Value 字段返回布尔值。</p>
+
+<p><a id="FlaUiPropertyObject.IsControlElement.Value"></a></p>
+
+<h3>FlaUiPropertyObject.IsControlElement.Value</h3>
+
+<p>是否密码输入框</p>
+
+<p><a id="FlaUiPropertyObject.IsPassword"></a></p>
+
+<h2>FlaUiPropertyObject.IsPassword 成员列表</h2>
+
+<p>是否密码输入框。<br>
+此对象需用 Value 字段返回布尔值。</p>
+
+<p><a id="FlaUiPropertyObject.IsPassword.Value"></a></p>
+
+<h3>FlaUiPropertyObject.IsPassword.Value</h3>
+
+<p>在屏幕上是否不可见，不可见为 true</p>
+
+<p>是否密码输入框</p>
+
+<p><a id="FlaUiPropertyObject.IsPeripheral"></a></p>
+
+<h2>FlaUiPropertyObject.IsPeripheral 成员列表</h2>
+
+<p>是否外围 UI 组件，例如菜单或浮动通知。<br>
+此对象需用 Value 字段返回布尔值。</p>
+
+<p><a id="FlaUiPropertyObject.IsPeripheral.Value"></a></p>
+
+<h3>FlaUiPropertyObject.IsPeripheral.Value</h3>
+
+<p>是否外围 UI 组件</p>
+
+<p><a id="FlaUiPropertyObject.LocalizedControlType"></a></p>
+
+<h2>FlaUiPropertyObject.LocalizedControlType 成员列表</h2>
+
+<p>本地化的控件类型，中文字符串。<br>
+此对象可传入 tostring 函数转换为字符串。<br>
+也可用对象的 Value 成员返回字符串值</p>
+
+<p><a id="FlaUiPropertyObject.LocalizedControlType.Value"></a></p>
+
+<h3>FlaUiPropertyObject.LocalizedControlType.Value</h3>
+
+<p>本地化的控件类型（字符串值）</p>
+
+<p><a id="FlaUiPropertyObject.NativeWindowHandle"></a></p>
+
+<h2>FlaUiPropertyObject.NativeWindowHandle 成员列表</h2>
+
+<p>原生窗口句柄。<br>
+此对象可传入 tonumber 函数转换为数值。<br>
+也可用对象的 Value 成员返回数值</p>
+
+<p><a id="FlaUiPropertyObject.NativeWindowHandle.Value"></a></p>
+
+<h3>FlaUiPropertyObject.NativeWindowHandle.Value</h3>
+
+<p>原生窗口句柄（数值）</p>
+
+<p><a id="FlaUiPropertyObject.ProcessId"></a></p>
+
+<h2>FlaUiPropertyObject.ProcessId 成员列表</h2>
+
+<p>进程 ID。<br>
+此对象可传入 tonumber 函数转换为数值。<br>
+也可用对象的 Value 成员返回数值</p>
+
+<p><a id="FlaUiPropertyObject.ProcessId.Value"></a></p>
+
+<h3>FlaUiPropertyObject.ProcessId.Value</h3>
+
+<p>进程 ID（数值）</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/FlaUI/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/FlaUI/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/FlaUI/_.md">Markdown 格式</a></p>
+
+</body> 
+</html>

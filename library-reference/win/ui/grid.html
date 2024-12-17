@@ -1,0 +1,284 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - win.ui.grid 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - win.ui.grid 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>win.ui.grid 库模块帮助文档</h1>
+
+<p><a id="win.ui"></a></p>
+
+<h2>win.ui 成员列表</h2>
+
+<p><a id="win.ui.grid"></a></p>
+
+<h3>win.ui.grid()</h3>
+
+<p>参数必须指定一个listview控件对象<br>
+返回一个可编辑单元格的列表视图对象,  </p>
+
+<p>鼠标左键单击单元格、或者按空格键开始编辑,<br>
+回车完成编辑,ESC键撤消编辑,回车+上下方向键快速移动到其他项,<br>
+用户完成编辑后会触发onEditChanged事件.  </p>
+
+<p><a href="ctrl/listview.html#listviewObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/listview.html#listviewObject">返回对象:listviewObject</a></p>
+
+<p><a href="#winUiGridObject">返回对象:winUiGridObject</a></p>
+
+<p><a id="winUiGridObject"></a></p>
+
+<h2>winUiGridObject 成员列表</h2>
+
+<p><a id="winUiGridObject.beginEdit"></a></p>
+
+<h3>winUiGridObject.beginEdit(行,列)</h3>
+
+<p>切换到编辑状态</p>
+
+<p><a id="winUiGridObject.clear"></a></p>
+
+<h3>winUiGridObject.clear()</h3>
+
+<p>清空所有行</p>
+
+<p><a id="winUiGridObject.clear"></a></p>
+
+<h3>winUiGridObject.clear(true)</h3>
+
+<p>清空所有行,并且清空所有列</p>
+
+<p><a id="winUiGridObject.columnCount"></a></p>
+
+<h3>winUiGridObject.columnCount</h3>
+
+<p>列总数</p>
+
+<p><a id="winUiGridObject.delColumn"></a></p>
+
+<h3>winUiGridObject.delColumn()</h3>
+
+<p>删除指定列</p>
+
+<p><a id="winUiGridObject.editBox"></a></p>
+
+<h3>winUiGridObject.editBox</h3>
+
+<p>实现编辑功能的edit控件<br>
+此功能需要扩展listview并实现了编辑功能的的控件才能支持  </p>
+
+<p><a href="ctrl/edit.html#editObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/edit.html#editObject">返回对象:editObject</a></p>
+
+<p><a id="winUiGridObject.getColumnText"></a></p>
+
+<h3>winUiGridObject.getColumnText()</h3>
+
+<p>取指定列文本</p>
+
+<p><a id="winUiGridObject.getTable"></a></p>
+
+<h3>winUiGridObject.getTable()</h3>
+
+<p>返回数据表。<br>
+如果参数 @1 指定列名数组（被复制为返回表的 fields 字段），<br>
+则返回的每行数据都是名值对，否则返回的每行数据都是文本数组。  </p>
+
+<p>如果参数 @1 为 true，则返回的文本数组第一行为列标题文本数组。</p>
+
+<p><a id="winUiGridObject.onCheckedChanged"></a></p>
+
+<h3>winUiGridObject.onCheckedChanged</h3>
+
+<pre><code class="aardio language-aardio">winUiGridObject.onCheckedChanged = function(checked,item){
+    /*勾选状态变更触发此事件。  
+checked 为是否勾选，item 为变更项序号*/
+}
+</code></pre>
+
+<p><a id="winUiGridObject.onClick"></a></p>
+
+<h3>winUiGridObject.onClick</h3>
+
+<pre><code class="aardio language-aardio">winUiGridObject.onClick = functionitem,subItem,nmListView){
+    /*左键单击项目触发此事件。  
+item 为变更为焦点的项序号，subItem 为列序号，nmListView 为 NMLISTVIEW 结构体*/
+}
+</code></pre>
+
+<p><a id="winUiGridObject.onDoubleClick"></a></p>
+
+<h3>winUiGridObject.onDoubleClick</h3>
+
+<pre><code class="aardio language-aardio">winUiGridObject.onDoubleClick = function(item,subItem,nmListView){
+    /*左键双击项目触发此事件。  
+item 为变更为焦点的项序号，subItem 为列序号，nmListView 为 NMLISTVIEW 结构体*/
+}
+</code></pre>
+
+<p><a id="winUiGridObject.onEditChanged"></a></p>
+
+<h3>winUiGridObject.onEditChanged(text,iItem,iSubItem)</h3>
+
+<pre><code class="aardio language-aardio">winUiGridObject.onEditChanged = function(text,iItem,iSubItem){
+    /*控件完成编辑,并且文本已变更,  
+text为改变后的文本,iItem为行号,iSubItem为列号  
+此功能需要扩展listview并实现了编辑功能的的控件才能支持  
+返回false可中止更新显示文本*/
+}
+</code></pre>
+
+<p><a id="winUiGridObject.onEditEnd"></a></p>
+
+<h3>winUiGridObject.onEditEnd(iItem,iSubItem)</h3>
+
+<pre><code class="aardio language-aardio">winUiGridObject.onEditChanged = function(iItem,iSubItem){
+    /*控件完成编辑*/
+}
+</code></pre>
+
+<p><a id="winUiGridObject.onFocusedChanged"></a></p>
+
+<h3>winUiGridObject.onFocusedChanged</h3>
+
+<pre><code class="aardio language-aardio">winUiGridObject.onFocusedChanged = function(item,subItem,nmListView){
+    /*焦点项变更触发此事件。  
+item 为变更为焦点的项序号，subItem 为列序号，nmListView 为 NMLISTVIEW 结构体*/
+}
+</code></pre>
+
+<p><a id="winUiGridObject.onGetDispItem"></a></p>
+
+<h3>winUiGridObject.onGetDispItem</h3>
+
+<pre><code class="aardio language-aardio">winUiGridObject.onGetDispItem = function(item,row,col){
+    /*处理 _LVN_GETDISPINFOW 通知消息  
+参数 @item 为 LVITEM 结构体,@row 为当前行号,@col 为当前列号,  
+返回 item 或包含 item 部分字段则更新 LVITEM 结构体*/
+    return {text=&quot;要显示的文本&quot;}; 
+}
+</code></pre>
+
+<p><a id="winUiGridObject.onItemChanged"></a></p>
+
+<h3>winUiGridObject.onItemChanged</h3>
+
+<pre><code class="aardio language-aardio">winUiGridObject.onItemChanged = function(item,subItem,nmListView){
+    /*项目变更触发此事件。  
+item 为变更为焦点的项序号，subItem 为列序号，nmListView 为 NMLISTVIEW 结构体*/
+}
+</code></pre>
+
+<p><a id="winUiGridObject.onRightClick"></a></p>
+
+<h3>winUiGridObject.onRightClick</h3>
+
+<pre><code class="aardio language-aardio">winUiGridObject.onRightClick = function(item,subItem,nmListView){
+    /*右键点击项目触发此事件。  
+item 为变更为焦点的项序号，subItem 为列序号，nmListView 为 NMLISTVIEW 结构体*/
+}
+</code></pre>
+
+<p><a id="winUiGridObject.onSelChanged"></a></p>
+
+<h3>winUiGridObject.onSelChanged</h3>
+
+<pre><code class="aardio language-aardio">winUiGridObject.onSelChanged = function(selected,item,subItem,nmListView){
+    /*选中项更触发此事件。  
+selected 为是否选中，item 为变更项序号，  
+subItem 为列序号，nmListView 为 NMLISTVIEW 结构体*/
+}
+</code></pre>
+
+<p><a id="winUiGridObject.onSortColumn"></a></p>
+
+<h3>winUiGridObject.onSortColumn(column,desc)</h3>
+
+<pre><code class="aardio language-aardio">winUiGridObject.onSortColumn = function(column,desc){
+    /*点击列排序时回调此函数  
+@column参数为列序号，1为首列，@desc参数指定是否倒序  
+返回true排序，否则不排序*/
+    return true;
+}
+</code></pre>
+
+<p><a id="winUiGridObject.setColumn"></a></p>
+
+<h3>winUiGridObject.setColumn({cx=100},列序号)</h3>
+
+<p>改变列宽，参数@1必须是个表对象</p>
+
+<p><a id="winUiGridObject.setColumn"></a></p>
+
+<h3>winUiGridObject.setColumn(列参数表,列序号)</h3>
+
+<p>参数一指定 wLVCOLUMN 结构体成员键值的参数表,<br>
+也可以是LVCOLUMN结构体对象,自动设置掩码参数.</p>
+
+<p><a id="winUiGridObject.setColumnText"></a></p>
+
+<h3>winUiGridObject.setColumnText(位置,文本)</h3>
+
+<p>设置指定列文本</p>
+
+<p><a id="winUiGridObject.setColumnWidth"></a></p>
+
+<h3>winUiGridObject.setColumnWidth(列宽,列序号,...)</h3>
+
+<p>设置列宽，可指定一个或多个列序号。<br>
+这里不能指定宽度为  -1 。</p>
+
+<p><a id="winUiGridObject.setColumns"></a></p>
+
+<h3>winUiGridObject.setColumns()</h3>
+
+<p>用一个字符串数组指定要显示的列<br>
+如果参数为空则清空所有列</p>
+
+<p><a id="winUiGridObject.setReadonlyColumns"></a></p>
+
+<h3>winUiGridObject.setReadonlyColumns()</h3>
+
+<p>可以使用一个或多个参数指定要禁止编辑的列序号，<br>
+也可以用一个数组参数指定多个列序号。  </p>
+
+<p>如果参数为 -1，则禁止编辑所有列</p>
+
+<p><a id="winUiGridObject.setTable"></a></p>
+
+<h3>winUiGridObject.setTable</h3>
+
+<p>用 listview 控件显示数据表（包含名值对的对象或数组组成的数组）。<br>
+此函数会自动清空控件之前的所有项。<br>
+如果没有创建任何列，则自动创建标题列。<br>
+如果要重新创建列，请先调用 clear 函数并指定参数为 true 以清空原来的列。</p>
+
+<p><a id="winUiGridObject.setTable"></a></p>
+
+<h3>winUiGridObject.setTable(dataTable)</h3>
+
+<p>参数 @dataTable 指定要加载的数据表。<br>
+数据表应当包含行组成的数组。<br>
+数据行可以是数组，也可以是名值，值用 tostring 转为文本显示。<br>
+可选通过数据表的 fields 字段指定要显示的索引数组（键名或索引数值）。  </p>
+
+<p>如果视图控件的标题列为空，则用显示键名（或数组值）创建标题列。<br>
+如果数据行为数组，第一行填充到标题列以后，默认从第二行加载数据。  </p>
+
+<p>可用 startIndex 属性或元属性自定义要加载的起始行。<br>
+可用 length 属性自定义要加载的行数，默认加载所有行。  </p>
+
+<p>sqlite,access,sqlServer 等数据库对象，<br>
+提供的 getTable 函数可获取通过 fields 字段指定列名数组的数据表。</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/ui/grid.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/ui/grid.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/grid.md">Markdown 格式</a></p>
+
+</body> 
+</html>

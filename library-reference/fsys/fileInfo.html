@@ -1,0 +1,119 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - fsys.fileInfo 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - fsys.fileInfo 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>fsys.fileInfo 库模块帮助文档</h1>
+
+<p><a id="fsys"></a></p>
+
+<h2>fsys 成员列表</h2>
+
+<p><a id="fsys.fileInfo"></a></p>
+
+<h3>fsys.fileInfo()</h3>
+
+<p><a href="#fsysfileinfoObject">返回对象:fsysfileinfoObject</a></p>
+
+<p><a id="fsys.fileInfo"></a></p>
+
+<h3>fsys.fileInfo(文件或目录路径)</h3>
+
+<p>获取文件信息,唯一ID，<br>
+即使传入空路径，或不存在的路径,都会返回对象(但id属性为空),<br>
+可用于判断文件路径是否指向同一真实文件</p>
+
+<p><a id="fsys.fileInfo"></a></p>
+
+<h2>fsys.fileInfo 成员列表</h2>
+
+<p>获取文件信息(包含唯一ID)</p>
+
+<p><a id="fsys.fileInfo.same"></a></p>
+
+<h3>fsys.fileInfo.same(文件路径,文件路径2)</h3>
+
+<p>检测两个文件路径是否指向同一真实文件</p>
+
+<p><a id="fsysfileinfoObject"></a></p>
+
+<h2>fsysfileinfoObject 成员列表</h2>
+
+<p><a id="fsysfileinfoObject.accessTime"></a></p>
+
+<h3>fsysfileinfoObject.accessTime</h3>
+
+<p>文件最后访问时间<br>
+!filefiletimes.;</p>
+
+<p><a id="fsysfileinfoObject.attributes"></a></p>
+
+<h3>fsysfileinfoObject.attributes</h3>
+
+<p>文件属性，数值</p>
+
+<p><a id="fsysfileinfoObject.creationTime"></a></p>
+
+<h3>fsysfileinfoObject.creationTime</h3>
+
+<p>文件创建时间  </p>
+
+<p><a href="#filefiletimesObject">返回对象:filefiletimesObject</a></p>
+
+<p><a id="fsysfileinfoObject.id"></a></p>
+
+<h3>fsysfileinfoObject.id</h3>
+
+<p>文件唯一ID，字符串值<br>
+可用于唯一标识一个硬盘文件</p>
+
+<p><a id="fsysfileinfoObject.index"></a></p>
+
+<h3>fsysfileinfoObject.index</h3>
+
+<p>文件索引,math.size64对象  </p>
+
+<p><a href="../math/_.html#mathSize64Object" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/math/_.html#mathSize64Object">返回对象:mathSize64Object</a></p>
+
+<p><a id="fsysfileinfoObject.numberOfLinks"></a></p>
+
+<h3>fsysfileinfoObject.numberOfLinks</h3>
+
+<p>链接数</p>
+
+<p><a id="fsysfileinfoObject.size"></a></p>
+
+<h3>fsysfileinfoObject.size</h3>
+
+<p>文件大小,math.size64对象  </p>
+
+<p><a href="../math/_.html#mathSize64Object" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/math/_.html#mathSize64Object">返回对象:mathSize64Object</a></p>
+
+<p><a id="fsysfileinfoObject.volumeSerial"></a></p>
+
+<h3>fsysfileinfoObject.volumeSerial</h3>
+
+<p>所在分区序列号</p>
+
+<p><a id="fsysfileinfoObject.writeTime"></a></p>
+
+<h3>fsysfileinfoObject.writeTime</h3>
+
+<p>文件最后修改时间  </p>
+
+<p><a href="#filefiletimesObject">返回对象:filefiletimesObject</a></p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/fsys/fileInfo.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/fsys/fileInfo.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/fsys/fileInfo.md">Markdown 格式</a></p>
+
+</body> 
+</html>

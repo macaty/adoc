@@ -1,0 +1,62 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - wsock.networkChange 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - wsock.networkChange 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>wsock.networkChange 库模块帮助文档</h1>
+
+<p><a id="wsock.networkChange"></a></p>
+
+<h2>wsock.networkChange 成员列表</h2>
+
+<p>检测网络变更，例如启用或禁用网卡</p>
+
+<p><a id="wsock.networkChange.wait"></a></p>
+
+<h3>wsock.networkChange.wait()</h3>
+
+<p>等待网络变更，例如启用或禁用网卡。  </p>
+
+<p>此函数不能用于获取网络连接状态,<br>
+可使用 inet.http.isAlive,inet.ras.isAlive 等检测网络连接状态  </p>
+
+<p><a href="#wsockNetworkChangeObject">返回对象:wsockNetworkChangeObject</a></p>
+
+<p><a id="wsock.networkChange.wait"></a></p>
+
+<h3>wsock.networkChange.wait(winform)</h3>
+
+<p>等待网络变更，例如启用或禁用网卡。  </p>
+
+<p>参数可指定回调窗口或控件对象,<br>
+网络变更时回调窗口或控件的成员函数 onNetworkChanged<br>
+此函数返回参数@1</p>
+
+<p><a id="wsockNetworkChangeObject"></a></p>
+
+<h2>wsockNetworkChangeObject 成员列表</h2>
+
+<p><a id="wsockNetworkChangeObject.onNetworkChanged"></a></p>
+
+<h3>wsockNetworkChangeObject.onNetworkChanged</h3>
+
+<pre><code class="aardio language-aardio">wsockNetworkChangeObject.onNetworkChanged = function(){
+    var ip = wsock.tcp.client.test(); /*网络已变更，  
+获取上网卡 IP 成功则为连接网络，否则为断开网络*/   
+}
+</code></pre>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/wsock/networkChange.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/wsock/networkChange.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/wsock/networkChange.md">Markdown 格式</a></p>
+
+</body> 
+</html>

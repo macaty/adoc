@@ -1,0 +1,98 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 文件名批理替换程序'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 文件名批理替换程序</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 文件名批理替换程序</h1><pre><code class="aardio language-aardio">//批量重命名
+import fonts.fontAwesome;
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;文件名批理替换程序&quot;;right=619;bottom=381;acceptfiles=1)
+winform.add(
+btnOpenDir={cls=&quot;plus&quot;;text=&quot;选择目录&quot;;left=482;top=42;right=600;bottom=72;align=&quot;left&quot;;color=3947580;dr=1;dt=1;font=LOGFONT(h=-13);iconStyle={align=&quot;left&quot;;font=LOGFONT(h=-13;name=&#39;FontAwesome&#39;);padding={left=8}};iconText=&#39;\uF07C&#39;;notify=1;textPadding={left=25};z=12};
+btnReplace={cls=&quot;button&quot;;text=&quot;开始替换文件名&quot;;left=155;top=329;right=361;bottom=367;db=1;dr=1;z=9};
+chkSubDir={cls=&quot;checkbox&quot;;text=&quot;递归处理子目录&quot;;left=156;top=281;right=272;bottom=297;checked=1;db=1;dr=1;z=10};
+lbDir={cls=&quot;static&quot;;text=&quot;可拖动目录本程序中:&quot;;left=41;top=18;right=206;bottom=37;dl=1;dt=1;transparent=1;z=2};
+lbExt={cls=&quot;static&quot;;text=&quot;后缀名:&quot;;left=39;top=83;right=146;bottom=102;align=&quot;right&quot;;dl=1;dt=1;transparent=1;z=7};
+lbPattern={cls=&quot;static&quot;;text=&quot;文件名模式匹配规则:&quot;;left=6;top=117;right=146;bottom=136;align=&quot;right&quot;;dl=1;dt=1;transparent=1;z=4};
+lbReplace={cls=&quot;static&quot;;text=&quot;替换函数:&quot;;left=42;top=159;right=149;bottom=182;align=&quot;right&quot;;dl=1;dt=1;transparent=1;z=5};
+progress={cls=&quot;progress&quot;;left=156;top=308;right=536;bottom=318;db=1;dr=1;edge=1;hide=1;max=100;min=0;z=11};
+txtDir={cls=&quot;edit&quot;;left=40;top=44;right=476;bottom=73;dl=1;dr=1;dt=1;edge=1;z=1};
+txtExt={cls=&quot;edit&quot;;text=&quot;*.jpg|*.bmp&quot;;left=156;top=78;right=336;bottom=107;dl=1;dt=1;edge=1;multiline=1;z=6};
+txtPattern={cls=&quot;edit&quot;;text=&quot;(\a+)(\d+)(\.\w+)&quot;;left=156;top=112;right=336;bottom=141;dl=1;dt=1;edge=1;multiline=1;z=3};
+txtReplace={cls=&quot;edit&quot;;left=155;top=151;right=536;bottom=272;db=1;dl=1;dr=1;dt=1;edge=1;multiline=1;z=8}
+)
+/*}}*/
+
+winform.txtReplace.text = /**
+//参数请在上面的模式匹配中用圆括号指定
+function($1,$2,$3) {
+    return $1 ++ string.format(&quot;%06d&quot;,tonumber($2,10) ) 
+        ++ $3;
+}
+**/
+
+import fsys;
+winform.btnReplace.oncommand = function(id,event){
+    if( ! fsys.isDir( winform.txtDir.text ) ){
+        return winform.txtDir.showErrorTip(&quot;请指定正确的目录&quot;,&quot;文件名批理替换程序&quot;);
+    }
+
+    winform.progress.hide = false;
+    winform.btnReplace.disabled = true;
+
+    var files = {};
+    var callback = eval(winform.txtReplace.text)
+
+    var pattern = winform.txtPattern.text;
+    fsys.enum( winform.txtDir.text , string.split(winform.txtExt.text,&quot;|&quot;),
+        function(dir,filename,fullpath,findData){  
+            if(filename){ 
+                files[fullpath] = io.joinpath( dir,string.replace( filename,pattern,callback), )
+                winform.progress.stepIt()
+            } 
+        },winform.chkSubDir.checked 
+    );
+
+    for( p,np in files){
+        winform.progress.stepIt()
+        fsys.rename( p,np); 
+    }  
+
+    winform.progress.hide = true;
+    winform.btnReplace.disabled = false;
+}
+
+winform.onDropFiles = function(files){
+    winform.txtDir.text = files[1]; 
+} 
+
+import fsys.dlg.dir;
+winform.btnOpenDir.oncommand = function(id,event){
+    winform.txtDir.text = fsys.dlg.dir(,winform,&#39;请选择要批量改名的目录&#39;)
+}
+winform.btnOpenDir.skin({
+    color={
+        active=0xFF00FF00;
+        default=0xFF3C3C3C;
+        disabled=0xFF6D6D6D;
+        hover=0xFFFF0000
+    }
+})
+
+winform.show();
+win.loopMessage();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/File/Batch/rename.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/File/Batch/rename.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/File/Batch/rename.md">Markdown 格式</a>
+</body> 
+</html>

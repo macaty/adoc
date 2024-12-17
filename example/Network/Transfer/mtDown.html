@@ -1,0 +1,125 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 多线程多文件断点续传下载'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 多线程多文件断点续传下载</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 多线程多文件断点续传下载</h1><pre><code class="aardio language-aardio">//多线程多任务
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;多线程多文件断点续传下载&quot;;right=765;bottom=399)
+winform.add(
+button={cls=&quot;button&quot;;text=&quot;多线程多文件断点续传下载&quot;;left=478;top=356;right=703;bottom=392;db=1;dr=1;z=2};
+listview={cls=&quot;listview&quot;;left=10;top=16;right=757;bottom=346;bgcolor=16777215;db=1;dl=1;dr=1;dt=1;edge=1;z=1}
+)
+/*}}*/
+
+//初始化listview控件
+winform.listview.insertColumn(&quot;网址&quot;,180);
+winform.listview.insertColumn(&quot;文件名&quot;,180);
+winform.listview.insertColumn(&quot;状态&quot;,100);
+winform.listview.insertColumn(&quot;大小&quot;,80);
+winform.listview.insertColumn(&quot;速度&quot;,80);
+winform.listview.insertColumn(&quot;已下载&quot;,120);
+winform.listview.adjust = function(cx,cy){
+    winform.listview.fillParent(1);
+}
+
+//创建下载线程管理器
+import thread.dlManager;
+var dlmgr = thread.dlManager(5/*最多允许五个线程同时下载*/);
+
+//下载开始触发
+dlmgr.onReceiveBegin = function(id,url,filename,statusText,httpStatusCode,totalSize,downSize){
+    winform.listview.setItemText( {url;filename;statusText;fsys.formatSize(totalSize);fsys.formatSize(downSize) },id )
+}
+
+//正在下载触发
+dlmgr.onReceive = function(id,sizePs,downSize){
+    winform.listview.setItemText( fsys.formatSize(downSize),id,6);
+    winform.listview.setItemText( fsys.formatSize(sizePs) + &quot;/s&quot; ,id,5); 
+}
+
+//下载停止触发
+dlmgr.onEnd = function(id,savepath,resumePath,contentLength){ 
+    if( savepath ){ 
+        winform.listview.setItemText(  &quot;已完成&quot;  ,id,3);
+        winform.listview.setItemText( fsys.formatSize(contentLength),id,4);
+    }
+    else {
+        winform.listview.setItemText(  &quot;已停止&quot;  ,id,3);
+    }
+
+    winform.listview.setItemText(  &quot;0KB/s&quot;  ,id,5);
+    winform.listview.setItemText( &quot;&quot;,id,6); 
+    //fsys.delete(resumePath)
+}
+
+//下载出错触发
+dlmgr.onError = function(id,err){
+    winform.listview.setItemText( err,id,3);
+}
+
+//开始下载
+winform.button.oncommand = function(id,event){  
+
+    //添加下载任务非常简单,push下载参数就可以了
+    //注意这里为了简化示例,任务 id 使用了 listview 控件的行号,
+    //如果需要删除行则需要使用一个表保持 id 与行号的映射关系
+    dlmgr.push( 
+        id = winform.listview.addItem( &quot;http://ide.update.aardio.com/releases/aardio.7z&quot; );
+        url = &quot;http://ide.update.aardio.com/releases/aardio.7z&quot;;
+        filename=&quot;aardio.7z&quot;; //文件名可以省略
+        savedir = &quot;/download/&quot;; 
+    )
+
+    dlmgr.push( 
+        id = winform.listview.addItem( &quot;http://wubi.aardio.com/update/wubiLex.7z&quot; );
+        url = &quot;http://wubi.aardio.com/update/wubiLex.7z&quot;; 
+        savedir = &quot;/download/&quot;; //文件名可以省略
+    )
+
+    winform.button.disabled = true; 
+}
+
+//下载任务右键管理菜单
+import win.ui.menu;
+winform.listview.onnotify = function(id,code,ptr){  
+      if( code = 0xFFFFFFFB/*_NM_RCLICK*/ ){
+
+          var x,y = win.getMessagePos();  
+          var nmListView = winform.listview.getNotifyMessage(code,ptr);
+
+          //创建弹出菜单
+        var popmenu = win.ui.popmenu(winform); 
+        popmenu.add(&#39;取消&#39;,function(id){ 
+            dlmgr.cancel( nmListView.iItem )
+        } )
+        popmenu.popup(x,y,true);
+        popmenu.close();
+      }
+}
+
+//关闭窗体时停止所有下载
+import thread.event;
+winform.onClose = function(hwnd,message,wParam,lParam){
+    winform.text = &quot;正在等待关闭&quot;; 
+    dlmgr.quit();
+}
+
+//显示主窗体
+winform.show(); 
+win.loopMessage();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Network/Transfer/mtDown.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Network/Transfer/mtDown.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Network/Transfer/mtDown.md">Markdown 格式</a>
+</body> 
+</html>

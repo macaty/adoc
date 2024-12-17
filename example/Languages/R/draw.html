@@ -1,0 +1,85 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - aardio 调用 R 语言 - 窗口绘图'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - aardio 调用 R 语言 - 窗口绘图</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 调用 R 语言 - 窗口绘图</h1><pre><code class="aardio language-aardio">//aardio 调用 R 语言 - 窗口绘图
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;aardio 窗口显示 R 绘图&quot;;right=759;bottom=469;border=&quot;dialog frame&quot;;max=false;min=false)
+winform.add(
+button={cls=&quot;button&quot;;text=&quot;点这里调用 R 绘图&quot;;left=472;top=414;right=680;bottom=456;z=2};
+plus={cls=&quot;plus&quot;;left=18;top=15;right=739;bottom=397;bgcolor=16777215;z=1}
+)
+/*}}*/
+
+//R 语言代码
+var rCode = /*
+draw_sine_wave &lt;- function(filename, phase_shift = 0, amplitude = 1) {
+  png(filename, width = 800, height = 600)
+  x &lt;- seq(0, 2 * pi, length.out = 1000) 
+  y &lt;- amplitude * sin(x + phase_shift)
+
+  # 绘制图形
+  plot(x, y, type = &quot;l&quot;, col = &quot;blue&quot;, lwd = 2,
+       main = paste(&quot;Dynamic Sine Wave, Amplitude:&quot;, round(amplitude, 2)),
+       xlab = &quot;X Axis&quot;, ylab = &quot;Y Axis&quot;,
+       xlim = c(0, 2 * pi), ylim = c(-2, 2))
+
+  # 关闭设备
+  dev.off()
+
+  new_phase_shift &lt;- phase_shift + pi / 20
+  new_amplitude &lt;- 1 + sin(phase_shift)
+
+  return(list(phase_shift = new_phase_shift, amplitude = new_amplitude))
+}
+*/
+
+import process.r;
+
+//启动 R 
+var r = process.r.startRpc(rCode);
+
+winform.button.oncommand = function(id,event){
+
+    //设置绘图初始变量
+    var params = {
+        phase_shift = 0;
+        amplitude = 1
+    } 
+
+    //创建定时器
+    winform.setInterval( 
+        function(){ 
+
+            //调用 R 函数
+            params,err  = r.draw_sine_wave(io.fullpath(&quot;/test2.png&quot;), params.phase_shift,params.amplitude)
+
+            params = params.result;
+
+            //显示图像，先读取到内存，不占用文件，让 R 函数可以自由写文件。 
+            winform.plus.background = string.load(&quot;/test2.png&quot;); 
+
+        },80
+    )
+
+    winform.button.disabledText = {&quot;✶&quot;;&quot;✸&quot;;&quot;✹&quot;;&quot;✺&quot;;&quot;✹&quot;;&quot;✷&quot;} 
+}
+
+winform.show();
+win.loopMessage();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/R/draw.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/R/draw.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Languages/R/draw.md">Markdown 格式</a>
+</body> 
+</html>

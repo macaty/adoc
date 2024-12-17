@@ -1,0 +1,199 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - fsys.pdfium 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - fsys.pdfium 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>fsys.pdfium 库模块帮助文档</h1>
+
+<p><details>  <summary>项目主页</summary>  <p>
+<a href="javascript:if(confirm('https://github.com/xuncv/PDFium-aardio  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='https://github.com/xuncv/PDFium-aardio'" tppabs="https://github.com/xuncv/PDFium-aardio">https://github.com/xuncv/PDFium-aardio</a>
+</p></details></p>
+
+<p><a id="fsys"></a></p>
+
+<h2>fsys 成员列表</h2>
+
+<p><a id="fsys.pdfium"></a></p>
+
+<h3>fsys.pdfium()</h3>
+
+<p><a href="#fsysPdfiumObject">返回对象:fsysPdfiumObject</a></p>
+
+<p><a id="fsys.pdfium"></a></p>
+
+<h3>fsys.pdfium(PDF路径或数据,PDF密码)</h3>
+
+<p>创建或打开 PDF 解析文档对象。<br>
+参数 @1 可指定 PDF 文件路径或数据。<br>
+如果事先导入 inet.http，参数 @1 也可以指定 PDF 文件网址。<br>
+指定网址且下载 PDF 时不卡界面</p>
+
+<p><a id="fsys.pdfium"></a></p>
+
+<h2>fsys.pdfium 成员列表</h2>
+
+<p>基于 Google 开源组件 PDFium 封装的 PDF 解析库</p>
+
+<p><a id="fsys.pdfium.init"></a></p>
+
+<h3>fsys.pdfium.init()</h3>
+
+<p>可选调用此函数初始化 PDFium 组件，<br>
+用法请参考函数源码与 PDFium 文档。<br>
+一般不必主动调用此函数</p>
+
+<p><a id="fsys.pdfium.lasterr"></a></p>
+
+<h3>fsys.pdfium.lasterr()</h3>
+
+<p>返回错误信息。<br>
+如果最后一次操作成功则返回 null</p>
+
+<p><a id="fsysPdfiumObject"></a></p>
+
+<h2>fsysPdfiumObject 成员列表</h2>
+
+<p><a id="fsysPdfiumObject.asBitmap"></a></p>
+
+<h3>fsysPdfiumObject.asBitmap()</h3>
+
+<p>当前页转换为 gdip.bitmap 对象</p>
+
+<p><a id="fsysPdfiumObject.copyViewerPreferences"></a></p>
+
+<h3>fsysPdfiumObject.copyViewerPreferences(srcPdf)</h3>
+
+<p>导入 PDF 设置。<br>
+srcPdf 指定要导入的 fsys.pdfium 对象，也可指定 PDF 路径或数据</p>
+
+<p><a id="fsysPdfiumObject.createPage"></a></p>
+
+<h3>fsysPdfiumObject.createPage(index,width,height)</h3>
+
+<p>创建页面。<br>
+@index 指定页码，@width 指定宽，@height 指定高</p>
+
+<p><a id="fsysPdfiumObject.deletePage"></a></p>
+
+<h3>fsysPdfiumObject.deletePage()</h3>
+
+<p>删除参数 @1 指定页码的页面，起始页码为 1。<br>
+如果删除 pageNum 指定的页码则关闭当前页，且 pageNum 设为 0</p>
+
+<p><a id="fsysPdfiumObject.destroy"></a></p>
+
+<h3>fsysPdfiumObject.destroy()</h3>
+
+<p>释放对象</p>
+
+<p><a id="fsysPdfiumObject.eachTextRect"></a></p>
+
+<h3>fsysPdfiumObject.eachTextRect()</h3>
+
+<p>遍历当前页文本块</p>
+
+<pre><code class="aardio language-aardio">for left,top,right,bottom,text in fsysPdfiumObject.eachTextRect(){
+    /*遍历当前页文本区块。  
+left,top,right,bottom 分别为左上右下位置。  
+text 为文本*/
+}
+</code></pre>
+
+<p><a id="fsysPdfiumObject.extractBookmarks"></a></p>
+
+<h3>fsysPdfiumObject.extractBookmarks()</h3>
+
+<p>提取目录,返回 fsys.pdfium.bookmark 对象</p>
+
+<p><a id="fsysPdfiumObject.extractText"></a></p>
+
+<h3>fsysPdfiumObject.extractText()</h3>
+
+<p>提取当前页文本</p>
+
+<p><a id="fsysPdfiumObject.getMeta"></a></p>
+
+<h3>fsysPdfiumObject.getMeta()</h3>
+
+<p>获取pdf属性表</p>
+
+<p><a id="fsysPdfiumObject.importPages"></a></p>
+
+<h3>fsysPdfiumObject.importPages(srcPdf,index,pageIndicesOrRange)</h3>
+
+<p>导入并合并 PDF。<br>
+srcPdf 指定要导入的 fsys.pdfium 对象，也可指定 PDF 路径或数据。<br>
+@index 指定要插入的页码，不指定则添加到尾部。<br>
+@pageIndicesOrRange 可以指定页码数组，<br>
+也可以用字符串指定区间，示例：&quot;1,3,5-7&quot;。<br>
+省略 @pageIndicesOrRange 则导入所有页面</p>
+
+<p><a id="fsysPdfiumObject.pageNum"></a></p>
+
+<h3>fsysPdfiumObject.pageNum</h3>
+
+<p>读取或设置当前活动页码，页码自 1 开始</p>
+
+<p><a id="fsysPdfiumObject.render"></a></p>
+
+<h3>fsysPdfiumObject.render</h3>
+
+<p>窗口绘图</p>
+
+<p><a id="fsysPdfiumObject.render"></a></p>
+
+<h3>fsysPdfiumObject.render(hdcOrGraphics,x,y,cx,cy,rotate,flags)</h3>
+
+<p>参数 @hdcOrGraphics 可指定 hdc 或 graphics 对象，<br>
+@x,@y 指定 x,y 坐标，@cx 指定宽，@cy 指定高。<br>
+@rotate 为 1 顺时针转 90 度，设为 2 转 180 度，设为 3 为逆时针转 90 度<br>
+@rotate 与 @flags 一般不必指定</p>
+
+<p><a id="fsysPdfiumObject.save"></a></p>
+
+<h3>fsysPdfiumObject.save</h3>
+
+<p>保存 PDF 文件</p>
+
+<p><a id="fsysPdfiumObject.save"></a></p>
+
+<h3>fsysPdfiumObject.save(path,fileVersion,flags)</h3>
+
+<p>保存 PDF 到文件，成功返回 true。<br>
+@path 指定文件路径。<br>
+可选用 @fileVersion 指定文件版本，15 表示版本 1.5。<br>
+@flags 为可选参数，一般不用指定，用法请参考 PDFium 文档</p>
+
+<p><a id="fsysPdfiumObject.saveAsCopy"></a></p>
+
+<h3>fsysPdfiumObject.saveAsCopy(callback,fileVersion,flags)</h3>
+
+<pre><code class="aardio language-aardio">fsysPdfiumObject.saveAsCopy( function(pWriter,pData,size){  
+    /*保存 PDF 回调函数，其他为可选调用参数（不用管）。  
+回调参数 pData 为要写入的内存指针，回调参数 size 为待写入长度。  
+保存成功请返回非零数值，出错返回 0*/  
+})
+</code></pre>
+
+<h3>自动完成常量</h3>
+
+<p>_FPDFBitmap_BGR=2<br>
+_FPDFBitmap_BGRA=4<br>
+_FPDFBitmap_BGRx=3<br>
+_FPDFBitmap_Gray=1<br>
+_FPDFBitmap_Unknown=0  </p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/fsys/pdfium/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/fsys/pdfium/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/fsys/pdfium/_.md">Markdown 格式</a></p>
+
+</body> 
+</html>

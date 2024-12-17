@@ -1,0 +1,1117 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - win.ui.ctrl.button 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - win.ui.ctrl.button 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>win.ui.ctrl.button 库模块帮助文档</h1>
+
+<p><a id="win.ui.ctrl"></a></p>
+
+<h2>win.ui.ctrl 成员列表</h2>
+
+<p><a id="win.ui.ctrl.button"></a></p>
+
+<h3>win.ui.ctrl.button()</h3>
+
+<p>控钮控件<br>
+checkbox.radiobutton 等控件继承自 button 控件,<br>
+button 控件默认会忽略背景色、字体颜色属性,<br>
+在创建参数中指定 note 属性时会切换为「命令链接」样式  </p>
+
+<p><a href="#buttonObject">返回对象:buttonObject</a></p>
+
+<p><a id="win.ui.ctrl.checkbox"></a></p>
+
+<h3>win.ui.ctrl.checkbox()</h3>
+
+<p>复选控钮控件  </p>
+
+<p><a href="#checkboxObject">返回对象:checkboxObject</a></p>
+
+<p><a id="win.ui.ctrl.groupbox"></a></p>
+
+<h3>win.ui.ctrl.groupbox()</h3>
+
+<p>控钮控件  </p>
+
+<p><a href="static.html#staticObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/static.html#staticObject">返回对象:staticObject</a></p>
+
+<p><a id="win.ui.ctrl.radiobutton"></a></p>
+
+<h3>win.ui.ctrl.radiobutton()</h3>
+
+<p>单选控钮控件  </p>
+
+<p><a href="#radiobuttonObject">返回对象:radiobuttonObject</a></p>
+
+<p><a id="buttonObject"></a></p>
+
+<h2>buttonObject 成员列表</h2>
+
+<p><a id="buttonObject._defWindowProc"></a></p>
+
+<h3>buttonObject._defWindowProc(hwnd,message,wParam,lParam)</h3>
+
+<p>用于在 wndproc 回调中提前调用默认消息回调函数,<br>
+所有窗口和控件定义了 wndproc 回调以后会自动创建这个函数,<br>
+调用此函数以后,wndproc 必须指定非 null 返回值,<br>
+以避免再次重复调用默认回调函数</p>
+
+<p><a id="buttonObject._parentForm"></a></p>
+
+<h3>buttonObject._parentForm</h3>
+
+<p>创建该控件的父窗口（win.form对象）,<br>
+设计时窗体容器是所有拖放在窗体上的控件的 _parentForm,  </p>
+
+<p>即使窗口移除子窗口样式、更改父子关系，或以 orphanWindow显示,<br>
+控件的 _parentForm 始终都不会改变  </p>
+
+<p><a href="../_.html#winform" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/_.html#winform">返回对象:winform</a></p>
+
+<p><a id="buttonObject.bottom"></a></p>
+
+<h3>buttonObject.bottom</h3>
+
+<p>底部坐标</p>
+
+<p><a id="buttonObject.capture"></a></p>
+
+<h3>buttonObject.capture</h3>
+
+<p>是否捕获全局鼠标消息</p>
+
+<p><a id="buttonObject.className"></a></p>
+
+<h3>buttonObject.className</h3>
+
+<p>运行时类名</p>
+
+<p><a id="buttonObject.close"></a></p>
+
+<h3>buttonObject.close()</h3>
+
+<p>关闭控件窗口</p>
+
+<p><a id="buttonObject.cls"></a></p>
+
+<h3>buttonObject.cls</h3>
+
+<p>设计时类名</p>
+
+<p><a id="buttonObject.disabled"></a></p>
+
+<h3>buttonObject.disabled</h3>
+
+<p>是否禁用</p>
+
+<p><a id="buttonObject.disabledText"></a></p>
+
+<h3>buttonObject.disabledText</h3>
+
+<pre><code class="aardio language-aardio">buttonObject.disabledText = {&quot;✶&quot;;&quot;✸&quot;;&quot;✹&quot;;&quot;✺&quot;;&quot;✹&quot;;&quot;✷&quot;}/*disabledText 属性指定为文本时，禁用此控件并显示指定文本。  
+指定为数组时,创建动画并在原控件文本前面循环显示数组中的字符串。  
+数组内可选用 text 属性指定按钮禁用状态按钮主文本。  
+disabledText 属性指定为 null 时，启用此控件并恢复控件之前的正常文本。*/
+</code></pre>
+
+<p><a id="buttonObject.dpiScaleX"></a></p>
+
+<h3>buttonObject.dpiScaleX</h3>
+
+<p>窗口当前使用的DPI横坐标缩放系数,<br>
+该值由界面系统自动维护，任何情况下都不应手动修改,  </p>
+
+<p>这是一个以小数表示百分比的数，例如 1.25 表示 125%,<br>
+窗口未使用缩放或未完成缩放初始化时，值可能为 null，<br>
+如果要获取屏幕缩放设置应改用 gdi.getDpiScale 函数</p>
+
+<p><a id="buttonObject.dpiScaleY"></a></p>
+
+<h3>buttonObject.dpiScaleY</h3>
+
+<p>窗口当前使用的DPI纵坐标缩放系数,<br>
+该值由界面系统自动维护，任何情况下都不应手动修改,  </p>
+
+<p>这是一个以小数表示百分比的数，例如 1.25 表示 125%,<br>
+窗口未使用缩放或未完成缩放初始化时，值可能为 null，<br>
+如果要获取屏幕缩放设置应改用 gdi.getDpiScale 函数</p>
+
+<p><a id="buttonObject.font"></a></p>
+
+<h3>buttonObject.font</h3>
+
+<p>控件字体（LOGFONT 结构体），<br>
+注意获取该属性总是返回新的 LOGFONT 对象，<br>
+修改返回字体并不会更新控件字体，<br>
+除非重新赋值。  </p>
+
+<p>建议尽量优先使用 getFont 或 setFont 函数，<br>
+以增强代码可读性  </p>
+
+<p>字体会根据控件设置自动处理 DPI 缩放，不需要事先缩放字体大小</p>
+
+<p><a id="buttonObject.getClientRect"></a></p>
+
+<h3>buttonObject.getClientRect()</h3>
+
+<p>控件客户区块位置(::RECT结构体)  </p>
+
+<p><a href="../../../global/_.html#rectObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/global/_.html#rectObject">返回对象:rectObject</a></p>
+
+<p><a id="buttonObject.getFont"></a></p>
+
+<h3>buttonObject.getFont()</h3>
+
+<p>返回控件 LOGFONT 字体，<br>
+返回对象的 h 值会按控件的 DPI 缩放设置自动还原为缩放前大小。  </p>
+
+<p><a href="#logfontObject">返回对象:logfontObject</a></p>
+
+<p><a id="buttonObject.getFont"></a></p>
+
+<h3>buttonObject.getFont(true)</h3>
+
+<p>返回控件 LOGFONT 字体，<br>
+返回对象的 h 值为字体实际大小，不会按控件 DPI 设置还原。<br>
+返回字体会设置 noScale 属性为 true,<br>
+使用控件的 setFont 函数或赋值 font 属性时，<br>
+noScale 属性为 true 的字体同样不会进行自动 DPI 缩放  </p>
+
+<p><a href="#logfontObject">返回对象:logfontObject</a></p>
+
+<p><a id="buttonObject.getParent"></a></p>
+
+<h3>buttonObject.getParent()</h3>
+
+<p>返回父窗口  </p>
+
+<p><a href="static.html#staticObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/static.html#staticObject">返回对象:staticObject</a></p>
+
+<p><a id="buttonObject.getPos"></a></p>
+
+<h3>buttonObject.getPos()</h3>
+
+<p>返回相对坐标,宽,高<br>
+x,y,cx,cy=win.getPos(hwnd)</p>
+
+<p><a id="buttonObject.getRect"></a></p>
+
+<h3>buttonObject.getRect()</h3>
+
+<p>控件区块位置(::RECT结构体)</p>
+
+<p><a id="buttonObject.getRect"></a></p>
+
+<h3>buttonObject.getRect(true)</h3>
+
+<p>控件屏幕区块位置(::RECT结构体)</p>
+
+<p><a id="buttonObject.height"></a></p>
+
+<h3>buttonObject.height</h3>
+
+<p>高度</p>
+
+<p><a id="buttonObject.hide"></a></p>
+
+<h3>buttonObject.hide</h3>
+
+<p>当前控件窗口是否隐藏。<br>
+仅检查当前窗口的可见性样式（窗口 是否移除了 _WS_VISIBLE 样式）。<br>
+不考虑父窗口是否可见，不考虑是否被其他窗口遮挡。<br>
+如果需要同时判断父窗口的可见性，应改用 win.isVisible 函数。</p>
+
+<p><a id="buttonObject.hwnd"></a></p>
+
+<h3>buttonObject.hwnd</h3>
+
+<p>控件句柄</p>
+
+<p><a id="buttonObject.id"></a></p>
+
+<h3>buttonObject.id</h3>
+
+<p>控件ID</p>
+
+<p><a id="buttonObject.image"></a></p>
+
+<h3>buttonObject.image</h3>
+
+<p>按钮图片或图标<br>
+赋值必须是图片文件路径或数据<br>
+位图句柄由窗体负责销毁<br>
+取值时返回位图句柄</p>
+
+<p><a id="buttonObject.invalidate(/*可选使用::RECT"></a></p>
+
+<h3>buttonObject.invalidate(/*可选使用::RECT()对象指定客户区*/)</h3>
+
+<p>使窗口绘图区无效</p>
+
+<p><a id="buttonObject.invalidate(/*可选使用::RECT"></a></p>
+
+<h3>buttonObject.invalidate(/*可选使用::RECT()对象指定客户区*/,0)</h3>
+
+<p>使窗口绘图区无效<br>
+不刷新背景</p>
+
+<p><a id="buttonObject.left"></a></p>
+
+<h3>buttonObject.left</h3>
+
+<p>左侧坐标</p>
+
+<p><a id="buttonObject.modifyStyle"></a></p>
+
+<h3>buttonObject.modifyStyle(remove,add,swpFlags)</h3>
+
+<p>修改窗口样式,所有参数都是可选参数,<br>
+@remove 用数值指定要移除的样式,可使用 <em>WS</em> 前缀的常量<br>
+@add 用数值指定要添加的样式,可使用 <em>WS</em> 前缀的常量<br>
+@swpFlags 可选用数值指定调整窗口选项,可使用 <em>SWP</em> 前缀的常量<br>
+如果指定了 @swpFlag ,则使用该参数调用::SetWindowPos<br>
+细节请参考 win.modifyStyle 函数源码</p>
+
+<p><a id="buttonObject.modifyStyleEx"></a></p>
+
+<h3>buttonObject.modifyStyleEx(remove,add,swpFlags)</h3>
+
+<p>修改窗口扩展样式,所有参数都是可选参数,<br>
+@remove 用数值指定要移除的样式,可使用 <em>WS_EX</em> 前缀的常量<br>
+@add 用数值指定要添加的样式,可使用 <em>WS_EX</em> 前缀的常量<br>
+@swpFlags 可选用数值指定调整窗口选项,可使用 <em>SWP</em> 前缀的常量<br>
+如果指定了 @swpFlag ,则使用该参数调用::SetWindowPos<br>
+细节请参考 win.modifyStyle 函数源码</p>
+
+<p><a id="buttonObject.note"></a></p>
+
+<h3>buttonObject.note</h3>
+
+<p>设置按钮附注<br>
+必须在创建控件的初始化参数中也指定该属性,  </p>
+
+<p>指定该属性会切换为「命令链接」样式,<br>
+支持Vista,Win7 以及之后的系统,不支持 XP 系统<br>
+「命令链接」样式忽略控件的字体设置，但支持背景色属性</p>
+
+<p><a id="buttonObject.onDrawItem"></a></p>
+
+<h3>buttonObject.onDrawItem(drawItem,dpiScaleX,dpiScaleY)</h3>
+
+<pre><code class="aardio language-aardio">buttonObject.onDrawItem = function(drawItem){
+    /*控件属性里指定 ownerDraw 为 true 触发此事件  
+在这里自绘控件项*/  
+}
+</code></pre>
+
+<p><a id="buttonObject.onMeasureItem"></a></p>
+
+<h3>buttonObject.onMeasureItem(measureItem,dpiScaleX,dpiScaleY)</h3>
+
+<pre><code class="aardio language-aardio">buttonObject.onMeasureItem = function(measureItem){
+    measureItem.itemHeight = 51;  
+    /*控件属性里指定 ownerDraw 为 true 触发此事件  
+在这里配置自绘控件项参数*/
+}
+</code></pre>
+
+<p><a id="buttonObject.orphanWindow"></a></p>
+
+<h3>buttonObject.orphanWindow(transparent,hwndBuddy,borderless)</h3>
+
+<p>创建悬浮窗口。<br>
+悬浮窗口是模仿子窗口外观效果的独立窗口，父窗口可自动调整子窗口到设定位置。<br>
+可选参数 @transparent 为 true 则转换为分层透明窗口。<br>
+可选利用 @hwndBuddy 参数指定外部进程窗口句柄的并附加在内部控件上以实现相同的效果。<br>
+伙伴窗口总是会保持在悬浮窗口前面，并保持相同的大小、位置。<br>
+可重复调用此函数更换伙伴窗口，旧的伙伴窗口必须自行关闭。<br>
+可选指定 @borderless 参数 为 true 以移除 @hwndBuddy  的窗口边框。</p>
+
+<p><a id="buttonObject.postMessage"></a></p>
+
+<h3>buttonObject.postMessage(msg,wParam,lParam)</h3>
+
+<p>投递窗口消息到消息队列中<br>
+此函数用法请参考 ::User32.PostMessage</p>
+
+<p><a id="buttonObject.publish"></a></p>
+
+<h3>buttonObject.publish(&quot;字符串参数&quot;,)</h3>
+
+<p>在窗口所在界面线程发布消息,<br>
+运行界面线程所有所有调用subscribe函数订阅此消息的函数,<br>
+可添加任意个触发参数</p>
+
+<p><a id="buttonObject.redraw"></a></p>
+
+<h3>buttonObject.redraw()</h3>
+
+<p>刷新</p>
+
+<p><a id="buttonObject.reloadScale"></a></p>
+
+<h3>buttonObject.reloadScale()</h3>
+
+<p>按设计时位置参数、重新调整控件位置以适应窗口当前缩放比例。<br>
+父窗口缩放时会自动执行此操作。<br>
+默认在启动窗口消息循环时会自适应调整所有控件。<br>
+所以在启动消息循环前添加控件不必调用此函数。</p>
+
+<p><a id="buttonObject.right"></a></p>
+
+<h3>buttonObject.right</h3>
+
+<p>右侧坐标</p>
+
+<p><a id="buttonObject.saveScale"></a></p>
+
+<h3>buttonObject.saveScale()</h3>
+
+<p>根据控件当前位置、缩放比例，更新控件的设计时位置参数。<br>
+以避免下次窗口缩放自适应调整控件当前位置更改被清除，<br>
+控件所有调整位置的属性或成员函数已自动调用此函数。</p>
+
+<p><a id="buttonObject.sendMessage"></a></p>
+
+<h3>buttonObject.sendMessage(msg,wParam,lParam)</h3>
+
+<p>发送窗口消息<br>
+此函数用法请参考 ::User32.SendMessage</p>
+
+<p><a id="buttonObject.setFocus"></a></p>
+
+<h3>buttonObject.setFocus()</h3>
+
+<p>设置焦点</p>
+
+<p><a id="buttonObject.setFont"></a></p>
+
+<h3>buttonObject.setFont(指定字体)</h3>
+
+<p>指定 LOGFONT 字体对象,或逻辑字体句柄<br>
+如果不指定 point 值并指定 h 值，字体会按控件的 DPI 缩放设置自动缩放。</p>
+
+<p><a id="buttonObject.setFont"></a></p>
+
+<h3>buttonObject.setFont(混入字体属性)</h3>
+
+<pre><code class="aardio language-aardio">buttonObject.setFont(h=-12;name=&quot;Tahoma&quot;);
+</code></pre>
+
+<p><a id="buttonObject.setIcon"></a></p>
+
+<h3>buttonObject.setIcon(图标句柄)</h3>
+
+<p>设置图标<br>
+成功返回true,自动销毁原来的位图</p>
+
+<p><a id="buttonObject.setIcon"></a></p>
+
+<h3>buttonObject.setIcon(图标句柄,false)</h3>
+
+<p>设置图标<br>
+成功返回控件原来的位图句柄,<br>
+必须调用::DeleteObject()函数销毁该句柄</p>
+
+<p><a id="buttonObject.setImage"></a></p>
+
+<h3>buttonObject.setImage(图片句柄)</h3>
+
+<p>设置图片<br>
+成功返回true,自动销毁原来的位图</p>
+
+<p><a id="buttonObject.setImage"></a></p>
+
+<h3>buttonObject.setImage(图片句柄,false)</h3>
+
+<p>设置图片<br>
+成功返回控件原来的位图句柄,<br>
+必须调用::DeleteObject()函数销毁该句柄</p>
+
+<p><a id="buttonObject.setParent"></a></p>
+
+<h3>buttonObject.setParent(控件对象)</h3>
+
+<p>改变父窗口</p>
+
+<p><a id="buttonObject.setPos"></a></p>
+
+<h3>buttonObject.setPos(x坐标,y坐标,宽,高,插入位置,参数)</h3>
+
+<p>调整窗口位置或排序,所有参数可选<br>
+同时指定x,y坐标则移动位置<br>
+同时指定宽高则改变大小<br>
+指定插入位置(句柄或_HWND前缀常量)则调整Z序</p>
+
+<p><a id="buttonObject.setRect"></a></p>
+
+<h3>buttonObject.setRect(rc)</h3>
+
+<p>设置控件区块位置(::RECT结构体)</p>
+
+<p><a id="buttonObject.setRect"></a></p>
+
+<h3>buttonObject.setRect(rc,true)</h3>
+
+<p>设置控件屏幕区块位置(::RECT结构体)</p>
+
+<p><a id="buttonObject.show"></a></p>
+
+<h3>buttonObject.show(true)</h3>
+
+<p>显示控件</p>
+
+<p><a id="buttonObject.text"></a></p>
+
+<h3>buttonObject.text</h3>
+
+<p>按钮文本属性</p>
+
+<p><a id="buttonObject.theme"></a></p>
+
+<h3>buttonObject.theme</h3>
+
+<p>外观主题,例如<br>
+winform.button.theme = &quot;Explorer&quot;<br>
+winform.button.theme = false</p>
+
+<p><a id="buttonObject.threadCallable"></a></p>
+
+<h3>buttonObject.threadCallable()</h3>
+
+<p>开启此控件的跨线程调用功能</p>
+
+<p><a id="buttonObject.top"></a></p>
+
+<h3>buttonObject.top</h3>
+
+<p>顶部坐标</p>
+
+<p><a id="buttonObject.translateCommand"></a></p>
+
+<h3>buttonObject.translateCommand()</h3>
+
+<p>允许转发转发子窗口的命令（_WM_COMMAND）与通知（_WM_NOTIFY）消息，<br>
+避免子窗口 oncommand，onnotify 等回调失效。<br>
+同时会处理子窗口的 _WM_CTLCOLORSTATIC 等消息，<br>
+以避免部分外观属性失效</p>
+
+<p><a id="buttonObject.update"></a></p>
+
+<h3>buttonObject.update()</h3>
+
+<p>重绘invalidate函数指定的区块</p>
+
+<p><a id="buttonObject.valid"></a></p>
+
+<h3>buttonObject.valid</h3>
+
+<p>窗口是否有效，<br>
+窗口未关闭返回 true ，<br>
+窗口已关闭或正在关闭返回 false</p>
+
+<p><a id="buttonObject.width"></a></p>
+
+<h3>buttonObject.width</h3>
+
+<p>宽度</p>
+
+<p><a id="checkboxObject"></a></p>
+
+<h2>checkboxObject 成员列表</h2>
+
+<p><a id="checkboxObject._defWindowProc"></a></p>
+
+<h3>checkboxObject._defWindowProc(hwnd,message,wParam,lParam)</h3>
+
+<p>用于在 wndproc 回调中提前调用默认消息回调函数,<br>
+所有窗口和控件定义了 wndproc 回调以后会自动创建这个函数,<br>
+调用此函数以后,wndproc 必须指定非 null 返回值,<br>
+以避免再次重复调用默认回调函数</p>
+
+<p><a id="checkboxObject._parentForm"></a></p>
+
+<h3>checkboxObject._parentForm</h3>
+
+<p>创建该控件的父窗口（win.form对象）,<br>
+设计时窗体容器是所有拖放在窗体上的控件的 _parentForm,  </p>
+
+<p>即使窗口移除子窗口样式、更改父子关系，或以 orphanWindow显示,<br>
+控件的 _parentForm 始终都不会改变  </p>
+
+<p><a href="../_.html#winform" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/_.html#winform">返回对象:winform</a></p>
+
+<p><a id="checkboxObject.bottom"></a></p>
+
+<h3>checkboxObject.bottom</h3>
+
+<p>底部坐标</p>
+
+<p><a id="checkboxObject.capture"></a></p>
+
+<h3>checkboxObject.capture</h3>
+
+<p>是否捕获全局鼠标消息</p>
+
+<p><a id="checkboxObject.checked"></a></p>
+
+<h3>checkboxObject.checked</h3>
+
+<p>复选框是否选中状态</p>
+
+<p><a id="checkboxObject.close"></a></p>
+
+<h3>checkboxObject.close()</h3>
+
+<p>关闭控件窗口</p>
+
+<p><a id="checkboxObject.disabled"></a></p>
+
+<h3>checkboxObject.disabled</h3>
+
+<p>是否禁用</p>
+
+<p><a id="checkboxObject.getClientRect"></a></p>
+
+<h3>checkboxObject.getClientRect()</h3>
+
+<p>控件客户区块位置(::RECT结构体)  </p>
+
+<p><a href="../../../global/_.html#rectObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/global/_.html#rectObject">返回对象:rectObject</a></p>
+
+<p><a id="checkboxObject.getFont"></a></p>
+
+<h3>checkboxObject.getFont()</h3>
+
+<p>控件字体(::LOGFONT结构体)<br>
+!logfont  </p>
+
+<p><a href="#logfontObject">返回对象:logfontObject</a></p>
+
+<p><a id="checkboxObject.getParent"></a></p>
+
+<h3>checkboxObject.getParent()</h3>
+
+<p>返回父窗口  </p>
+
+<p><a href="static.html#staticObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/static.html#staticObject">返回对象:staticObject</a></p>
+
+<p><a id="checkboxObject.getPos"></a></p>
+
+<h3>checkboxObject.getPos()</h3>
+
+<p>返回相对坐标,宽,高<br>
+x,y,cx,cy=win.getPos(hwnd)</p>
+
+<p><a id="checkboxObject.getRect"></a></p>
+
+<h3>checkboxObject.getRect()</h3>
+
+<p>控件区块位置(::RECT结构体)</p>
+
+<p><a id="checkboxObject.getRect"></a></p>
+
+<h3>checkboxObject.getRect(true)</h3>
+
+<p>控件屏幕区块位置(::RECT结构体)</p>
+
+<p><a id="checkboxObject.height"></a></p>
+
+<h3>checkboxObject.height</h3>
+
+<p>高度</p>
+
+<p><a id="checkboxObject.hide"></a></p>
+
+<h3>checkboxObject.hide</h3>
+
+<p>控件是否隐藏</p>
+
+<p><a id="checkboxObject.hwnd"></a></p>
+
+<h3>checkboxObject.hwnd</h3>
+
+<p>控件句柄</p>
+
+<p><a id="checkboxObject.id"></a></p>
+
+<h3>checkboxObject.id</h3>
+
+<p>控件ID</p>
+
+<p><a id="checkboxObject.invalidate(/*可选使用::RECT"></a></p>
+
+<h3>checkboxObject.invalidate(/*可选使用::RECT()对象指定客户区*/)</h3>
+
+<p>使窗口绘图区无效</p>
+
+<p><a id="checkboxObject.invalidate(/*可选使用::RECT"></a></p>
+
+<h3>checkboxObject.invalidate(/*可选使用::RECT()对象指定客户区*/,0)</h3>
+
+<p>使窗口绘图区无效<br>
+不刷新背景</p>
+
+<p><a id="checkboxObject.left"></a></p>
+
+<h3>checkboxObject.left</h3>
+
+<p>左侧坐标</p>
+
+<p><a id="checkboxObject.modifyStyle"></a></p>
+
+<h3>checkboxObject.modifyStyle(remove,add,swpFlags)</h3>
+
+<p>修改窗口样式,所有参数都是可选参数,<br>
+@remove 用数值指定要移除的样式,可使用 <em>WS</em> 前缀的常量<br>
+@add 用数值指定要添加的样式,可使用 <em>WS</em> 前缀的常量<br>
+@swpFlags 可选用数值指定调整窗口选项,可使用 <em>SWP</em> 前缀的常量<br>
+如果指定了 @swpFlag ,则使用该参数调用::SetWindowPos<br>
+细节请参考 win.modifyStyle 函数源码</p>
+
+<p><a id="checkboxObject.modifyStyleEx"></a></p>
+
+<h3>checkboxObject.modifyStyleEx(remove,add,swpFlags)</h3>
+
+<p>修改窗口扩展样式,所有参数都是可选参数,<br>
+@remove 用数值指定要移除的样式,可使用 <em>WS_EX</em> 前缀的常量<br>
+@add 用数值指定要添加的样式,可使用 <em>WS_EX</em> 前缀的常量<br>
+@swpFlags 可选用数值指定调整窗口选项,可使用 <em>SWP</em> 前缀的常量<br>
+如果指定了 @swpFlag ,则使用该参数调用::SetWindowPos<br>
+细节请参考 win.modifyStyle 函数源码</p>
+
+<p><a id="checkboxObject.onDrawItem"></a></p>
+
+<h3>checkboxObject.onDrawItem(drawItem)</h3>
+
+<pre><code class="aardio language-aardio">checkboxObject.onDrawItem = function(drawItem){
+
+}
+</code></pre>
+
+<p><a id="checkboxObject.onMeasureItem"></a></p>
+
+<h3>checkboxObject.onMeasureItem(measureItem)</h3>
+
+<pre><code class="aardio language-aardio">checkboxObject.onMeasureItem = function(measureItem){
+    measureItem.itemHeight = 51;  
+}
+</code></pre>
+
+<p><a id="checkboxObject.postMessage"></a></p>
+
+<h3>checkboxObject.postMessage(msg,wParam,lParam)</h3>
+
+<p>投递窗口消息到消息队列中<br>
+此函数用法请参考 ::User32.PostMessage</p>
+
+<p><a id="checkboxObject.redraw"></a></p>
+
+<h3>checkboxObject.redraw()</h3>
+
+<p>刷新</p>
+
+<p><a id="checkboxObject.right"></a></p>
+
+<h3>checkboxObject.right</h3>
+
+<p>右侧坐标</p>
+
+<p><a id="checkboxObject.sendMessage"></a></p>
+
+<h3>checkboxObject.sendMessage(msg,wParam,lParam)</h3>
+
+<p>发送窗口消息<br>
+此函数用法请参考 ::User32.SendMessage</p>
+
+<p><a id="checkboxObject.setFocus"></a></p>
+
+<h3>checkboxObject.setFocus()</h3>
+
+<p>设置焦点</p>
+
+<p><a id="checkboxObject.setFont"></a></p>
+
+<h3>checkboxObject.setFont(指定字体)</h3>
+
+<p>指定LOGFONT字体对象,或逻辑字体句柄</p>
+
+<p><a id="checkboxObject.setFont"></a></p>
+
+<h3>checkboxObject.setFont(混入字体属性)</h3>
+
+<pre><code class="aardio language-aardio">checkboxObject.setFont(point=10;name=&quot;宋体&quot;);
+</code></pre>
+
+<p><a id="checkboxObject.setParent"></a></p>
+
+<h3>checkboxObject.setParent(控件对象)</h3>
+
+<p>改变父窗口</p>
+
+<p><a id="checkboxObject.setPos"></a></p>
+
+<h3>checkboxObject.setPos(x坐标,y坐标,宽,高,插入位置,参数)</h3>
+
+<p>调整窗口位置或排序,所有参数可选<br>
+同时指定x,y坐标则移动位置<br>
+同时指定宽高则改变大小<br>
+指定插入位置(句柄或_HWND前缀常量)则调整Z序</p>
+
+<p><a id="checkboxObject.setRect"></a></p>
+
+<h3>checkboxObject.setRect(rc)</h3>
+
+<p>设置控件区块位置(::RECT结构体)</p>
+
+<p><a id="checkboxObject.setRect"></a></p>
+
+<h3>checkboxObject.setRect(rc,true)</h3>
+
+<p>设置控件屏幕区块位置(::RECT结构体)</p>
+
+<p><a id="checkboxObject.show"></a></p>
+
+<h3>checkboxObject.show(true)</h3>
+
+<p>显示控件</p>
+
+<p><a id="checkboxObject.theme"></a></p>
+
+<h3>checkboxObject.theme</h3>
+
+<p>外观主题,例如<br>
+winform.button.theme = &quot;Explorer&quot;<br>
+winform.button.theme = false</p>
+
+<p><a id="checkboxObject.threadCallable"></a></p>
+
+<h3>checkboxObject.threadCallable()</h3>
+
+<p>开启此控件的跨线程调用功能</p>
+
+<p><a id="checkboxObject.top"></a></p>
+
+<h3>checkboxObject.top</h3>
+
+<p>顶部坐标</p>
+
+<p><a id="checkboxObject.update"></a></p>
+
+<h3>checkboxObject.update()</h3>
+
+<p>重绘invalidate函数指定的区块</p>
+
+<p><a id="checkboxObject.width"></a></p>
+
+<h3>checkboxObject.width</h3>
+
+<p>宽度</p>
+
+<p><a id="radiobuttonObject"></a></p>
+
+<h2>radiobuttonObject 成员列表</h2>
+
+<p><a id="radiobuttonObject._defWindowProc"></a></p>
+
+<h3>radiobuttonObject._defWindowProc(hwnd,message,wParam,lParam)</h3>
+
+<p>用于在 wndproc 回调中提前调用默认消息回调函数,<br>
+所有窗口和控件定义了 wndproc 回调以后会自动创建这个函数,<br>
+调用此函数以后,wndproc 必须指定非 null 返回值,<br>
+以避免再次重复调用默认回调函数</p>
+
+<p><a id="radiobuttonObject._parentForm"></a></p>
+
+<h3>radiobuttonObject._parentForm</h3>
+
+<p>创建该控件的父窗口（win.form对象）,<br>
+设计时窗体容器是所有拖放在窗体上的控件的 _parentForm,  </p>
+
+<p>即使窗口移除子窗口样式、更改父子关系，或以 orphanWindow显示,<br>
+控件的 _parentForm 始终都不会改变  </p>
+
+<p><a href="../_.html#winform" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/_.html#winform">返回对象:winform</a></p>
+
+<p><a id="radiobuttonObject.bottom"></a></p>
+
+<h3>radiobuttonObject.bottom</h3>
+
+<p>底部坐标</p>
+
+<p><a id="radiobuttonObject.capture"></a></p>
+
+<h3>radiobuttonObject.capture</h3>
+
+<p>是否捕获全局鼠标消息</p>
+
+<p><a id="radiobuttonObject.checked"></a></p>
+
+<h3>radiobuttonObject.checked</h3>
+
+<p>单选按钮否选中状态</p>
+
+<p><a id="radiobuttonObject.close"></a></p>
+
+<h3>radiobuttonObject.close()</h3>
+
+<p>关闭控件窗</p>
+
+<p><a id="radiobuttonObject.disabled"></a></p>
+
+<h3>radiobuttonObject.disabled</h3>
+
+<p>是否禁用</p>
+
+<p><a id="radiobuttonObject.getClientRect"></a></p>
+
+<h3>radiobuttonObject.getClientRect()</h3>
+
+<p>控件客户区块位置(::RECT结构体)  </p>
+
+<p><a href="../../../global/_.html#rectObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/global/_.html#rectObject">返回对象:rectObject</a></p>
+
+<p><a id="radiobuttonObject.getFont"></a></p>
+
+<h3>radiobuttonObject.getFont()</h3>
+
+<p>控件字体(::LOGFONT结构体)<br>
+!logfont  </p>
+
+<p><a href="#logfontObject">返回对象:logfontObject</a></p>
+
+<p><a id="radiobuttonObject.getParent"></a></p>
+
+<h3>radiobuttonObject.getParent()</h3>
+
+<p>返回父窗口  </p>
+
+<p><a href="static.html#staticObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/static.html#staticObject">返回对象:staticObject</a></p>
+
+<p><a id="radiobuttonObject.getPos"></a></p>
+
+<h3>radiobuttonObject.getPos()</h3>
+
+<p>返回相对坐标,宽,高<br>
+x,y,cx,cy=win.getPos(hwnd)</p>
+
+<p><a id="radiobuttonObject.getRect"></a></p>
+
+<h3>radiobuttonObject.getRect()</h3>
+
+<p>控件区块位置(::RECT结构体)</p>
+
+<p><a id="radiobuttonObject.getRect"></a></p>
+
+<h3>radiobuttonObject.getRect(true)</h3>
+
+<p>控件屏幕区块位置(::RECT结构体)</p>
+
+<p><a id="radiobuttonObject.height"></a></p>
+
+<h3>radiobuttonObject.height</h3>
+
+<p>高度</p>
+
+<p><a id="radiobuttonObject.hide"></a></p>
+
+<h3>radiobuttonObject.hide</h3>
+
+<p>控件是否隐藏</p>
+
+<p><a id="radiobuttonObject.hwnd"></a></p>
+
+<h3>radiobuttonObject.hwnd</h3>
+
+<p>控件句柄</p>
+
+<p><a id="radiobuttonObject.id"></a></p>
+
+<h3>radiobuttonObject.id</h3>
+
+<p>控件ID</p>
+
+<p><a id="radiobuttonObject.invalidate(/*可选使用::RECT"></a></p>
+
+<h3>radiobuttonObject.invalidate(/*可选使用::RECT()对象指定客户区*/)</h3>
+
+<p>使窗口绘图区无效</p>
+
+<p><a id="radiobuttonObject.invalidate(/*可选使用::RECT"></a></p>
+
+<h3>radiobuttonObject.invalidate(/*可选使用::RECT()对象指定客户区*/,0)</h3>
+
+<p>使窗口绘图区无效<br>
+不刷新背景</p>
+
+<p><a id="radiobuttonObject.left"></a></p>
+
+<h3>radiobuttonObject.left</h3>
+
+<p>左侧坐标</p>
+
+<p><a id="radiobuttonObject.modifyStyle"></a></p>
+
+<h3>radiobuttonObject.modifyStyle(remove,add,swpFlags)</h3>
+
+<p>修改窗口样式,所有参数都是可选参数,<br>
+@remove 用数值指定要移除的样式,可使用 <em>WS</em> 前缀的常量<br>
+@add 用数值指定要添加的样式,可使用 <em>WS</em> 前缀的常量<br>
+@swpFlags 可选用数值指定调整窗口选项,可使用 <em>SWP</em> 前缀的常量<br>
+如果指定了 @swpFlag ,则使用该参数调用::SetWindowPos<br>
+细节请参考 win.modifyStyle 函数源码</p>
+
+<p><a id="radiobuttonObject.modifyStyleEx"></a></p>
+
+<h3>radiobuttonObject.modifyStyleEx(remove,add,swpFlags)</h3>
+
+<p>修改窗口扩展样式,所有参数都是可选参数,<br>
+@remove 用数值指定要移除的样式,可使用 <em>WS_EX</em> 前缀的常量<br>
+@add 用数值指定要添加的样式,可使用 <em>WS_EX</em> 前缀的常量<br>
+@swpFlags 可选用数值指定调整窗口选项,可使用 <em>SWP</em> 前缀的常量<br>
+如果指定了 @swpFlag ,则使用该参数调用::SetWindowPos<br>
+细节请参考 win.modifyStyle 函数源码</p>
+
+<p><a id="radiobuttonObject.onDrawItem"></a></p>
+
+<h3>radiobuttonObject.onDrawItem(drawItem)</h3>
+
+<pre><code class="aardio language-aardio">radiobuttonObject.onDrawItem = function(drawItem){
+
+}
+</code></pre>
+
+<p><a id="radiobuttonObject.onMeasureItem"></a></p>
+
+<h3>radiobuttonObject.onMeasureItem(measureItem)</h3>
+
+<pre><code class="aardio language-aardio">radiobuttonObject.onMeasureItem = function(measureItem){
+    measureItem.itemHeight = 51;  
+}
+</code></pre>
+
+<p><a id="radiobuttonObject.postMessage"></a></p>
+
+<h3>radiobuttonObject.postMessage(msg,wParam,lParam)</h3>
+
+<p>投递窗口消息到消息队列中<br>
+此函数用法请参考 ::User32.PostMessage</p>
+
+<p><a id="radiobuttonObject.redraw"></a></p>
+
+<h3>radiobuttonObject.redraw()</h3>
+
+<p>刷新</p>
+
+<p><a id="radiobuttonObject.right"></a></p>
+
+<h3>radiobuttonObject.right</h3>
+
+<p>右侧坐标</p>
+
+<p><a id="radiobuttonObject.sendMessage"></a></p>
+
+<h3>radiobuttonObject.sendMessage(msg,wParam,lParam)</h3>
+
+<p>发送窗口消息<br>
+此函数用法请参考 ::User32.SendMessage</p>
+
+<p><a id="radiobuttonObject.setFocus"></a></p>
+
+<h3>radiobuttonObject.setFocus()</h3>
+
+<p>设置焦点</p>
+
+<p><a id="radiobuttonObject.setFont"></a></p>
+
+<h3>radiobuttonObject.setFont(指定字体)</h3>
+
+<p>指定LOGFONT字体对象,或逻辑字体句柄</p>
+
+<p><a id="radiobuttonObject.setFont"></a></p>
+
+<h3>radiobuttonObject.setFont(混入字体属性)</h3>
+
+<pre><code class="aardio language-aardio">radiobuttonObject.setFont(point=10;name=&quot;宋体&quot;);
+</code></pre>
+
+<p><a id="radiobuttonObject.setParent"></a></p>
+
+<h3>radiobuttonObject.setParent(控件对象)</h3>
+
+<p>改变父窗口</p>
+
+<p><a id="radiobuttonObject.setPos"></a></p>
+
+<h3>radiobuttonObject.setPos(x坐标,y坐标,宽,高,插入位置,参数)</h3>
+
+<p>调整窗口位置或排序,所有参数可选<br>
+同时指定x,y坐标则移动位置<br>
+同时指定宽高则改变大小<br>
+指定插入位置(句柄或_HWND前缀常量)则调整Z序</p>
+
+<p><a id="radiobuttonObject.setRect"></a></p>
+
+<h3>radiobuttonObject.setRect(rc)</h3>
+
+<p>设置控件区块位置(::RECT结构体)</p>
+
+<p><a id="radiobuttonObject.setRect"></a></p>
+
+<h3>radiobuttonObject.setRect(rc,true)</h3>
+
+<p>设置控件屏幕区块位置(::RECT结构体)</p>
+
+<p><a id="radiobuttonObject.show"></a></p>
+
+<h3>radiobuttonObject.show(true)</h3>
+
+<p>显示控件</p>
+
+<p><a id="radiobuttonObject.theme"></a></p>
+
+<h3>radiobuttonObject.theme</h3>
+
+<p>外观主题,例如<br>
+winform.button.theme = &quot;Explorer&quot;<br>
+winform.button.theme = false</p>
+
+<p><a id="radiobuttonObject.threadCallable"></a></p>
+
+<h3>radiobuttonObject.threadCallable()</h3>
+
+<p>开启此控件的跨线程调用功能</p>
+
+<p><a id="radiobuttonObject.top"></a></p>
+
+<h3>radiobuttonObject.top</h3>
+
+<p>顶部坐标</p>
+
+<p><a id="radiobuttonObject.update"></a></p>
+
+<h3>radiobuttonObject.update()</h3>
+
+<p>重绘invalidate函数指定的区块</p>
+
+<p><a id="radiobuttonObject.width"></a></p>
+
+<h3>radiobuttonObject.width</h3>
+
+<p>宽度</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/button.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/button.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/button.md">Markdown 格式</a></p>
+
+</body> 
+</html>

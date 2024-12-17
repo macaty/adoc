@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 修改网站页面'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 修改网站页面</title> 
+<link rel="stylesheet" href="../../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 修改网站页面</h1><pre><code class="aardio language-aardio">//修改网站页面
+import win.ui;
+import web.form;
+/*DSG{{*/
+var winform = win.form(text=&quot;aardio form&quot;;right=713;bottom=477;scroll=1)
+winform.add()
+/*}}*/
+
+//创建web窗体
+var wb = web.form( winform  );
+wb.noScriptErr=true;
+
+wb.BeforeNavigate2=function( pDisp, url, Flags, TargetFrameName, PostData, Headers, Cancel ) { 
+
+    //隐藏wb窗口 也可以考虑将网页放在框架中,在载入时将框架隐藏,修改完成后显示框架
+    winform.bgcolor = 0xFFFFFF
+    win.show(wb.hwndEmbedding,false) 
+
+    //创建异步延时函数(这样可以先退出BeforeNavigate2,再执行下面的代码)
+    winform.setTimeout(  
+        function(){  
+            var qEle = wb.waitQueryEles( { src = &quot;aardio.*\.png&quot; },3000);
+            qEle.style.display = &quot;none&quot; 
+            qEle.outerHTML = &quot;&quot;
+            win.show(wb.hwndEmbedding,true)
+        },1
+    )   
+} 
+
+wb.go(&quot;http://bbs.aardio.com/&quot;) 
+winform.show()  
+
+win.loopMessage(); 
+
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/WebUI/web.form/Automation/embedWebsite.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/WebUI/web.form/Automation/embedWebsite.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/WebUI/web.form/Automation/embedWebsite.md">Markdown 格式</a>
+</body> 
+</html>

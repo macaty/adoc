@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - .NET 程序集调试指南'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - .NET 程序集调试指南</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>.NET 程序集调试指南</h1>
+
+<h2>一、dotNet.loadFile 函数：</h2>
+
+<p><code>dotNet.loadFile(dll,pdbPath)</code>
+此函数可用于加载程序集，主要作用是用于加载 DLL 的同时加载调试 pdb 文件。</p>
+
+<ol>
+<li><p>参数 <code>dll</code> 指定程序集路径时不能省略文件后缀 &quot;.dll&quot; ，不像 dotNet.load 函数指定的是程序集名称 —— 不需要写 &quot;.dll&quot; 后缀。</p>
+
+<p>虽然也可以用 <code>dll</code> 参数指定 DLL 的内存数据实现内存加载 DLL。 但并没有 dotNet.load,dotNet.reference 函数那样将内存程序集绑定程序集名称的作用。</p></li>
+<li><p>可选用参数 <code>pdbPath</code> 指定用于调试的 <code>*.pdb</code> 文件路径。</p></li>
+</ol>
+
+<h2>二、附加调试步骤：</h2>
+
+<ol>
+<li><p>首先在 VS 中生成 Debug 版本 DLL 与 pdb 文件，然后在 aardio 中用下面的代码加载程序集：</p>
+
+<pre><code class="aardio language-aardio">var assembly = dotNet.loadFile(&quot;\Debug\CSNET2ClassLibrary.dll&quot;,&quot;\Debug\CSNET2ClassLibrary.pdb&quot;);
+</code></pre></li>
+<li><p>用 VS 打开 DLL 的源码工程，然后用下面的代码附加调试进程。 </p>
+
+<pre><code class="aardio language-aardio">import com.dte;
+com.dte().AttachProcesses();
+</code></pre></li>
+</ol>
+
+<p>C# 的断点经常会失效，不要误以为是代码没执行，这时候可以在 C# 代码里加上 <code>System.Diagnostics.Debug.WriteLine()</code> 打印到调试输出窗口来辅助调试。</p>
+
+<h2>三、打开 C# 项目常见问题：</h2>
+
+<p>注意 VS 打开一些 C# 项目会出现一个 BUG：选择 .NET 目标版本选项为灰色禁用状态。可能网上各种解决方案都不起作用，这里提供一个方法大家可以试试：</p>
+
+<p>在 VS 里直接双击编辑 * csproj 文件.找到设置 .NET 版本的配置,例如:
+<code>&lt;TargetFrameworks&gt;netcoreapp3.0;net40&lt;/TargetFrameworks&gt;</code></p>
+
+<p>然后将其修改为所需版本,例如:
+<code>&lt;TargetFrameworks&gt;net40&lt;/TargetFrameworks&gt;</code>
+不用管 VS 里那个版本选项仍然是灰色，版本实际已经切换过去了。</p>
+
+<p>如果你不想写个几十 KB 的 DLL 带上一百多 MB 的运行时，
+那么请选择 .NET 2 ~ 4.x ，这些版本主流桌面系统都自带了，aardio 可以自动兼容。</p>
+
+<p>另外 VS 里可能一些项目依赖会出现黄色警告，这时候你点恢复包什么的可能没有用。如果新版本 VS 就试试打开项目耐心等待一会再看看，如果等了不行，关掉或打开代理服务器再重新打开试一试。</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-guide/std/dotNet/debug.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-guide/std/dotNet/debug.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/std/dotNet/debug.md">Markdown 格式</a></p>
+
+</body> 
+</html>

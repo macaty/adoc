@@ -1,0 +1,182 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - fsys.update.dlMgr 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - fsys.update.dlMgr 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>fsys.update.dlMgr 库模块帮助文档</h1>
+
+<p><a id="fsys.update"></a></p>
+
+<h2>fsys.update 成员列表</h2>
+
+<p><a id="fsys.update.dlMgr"></a></p>
+
+<h3>fsys.update.dlMgr</h3>
+
+<p>更新/修复应用程序文件下载管理器</p>
+
+<p><a id="fsys.update.dlMgr"></a></p>
+
+<h3>fsys.update.dlMgr()</h3>
+
+<p><a href="#fsysUpdateDlmgrObject">返回对象:fsysUpdateDlmgrObject</a></p>
+
+<p><a id="fsys.update.dlMgr"></a></p>
+
+<h3>fsys.update.dlMgr(updateUrl,saveDir,appVersion,appDir)</h3>
+
+<p>updateUrl:版本文件version.txt的网址,也可以指定包含多个网址的数组,<br>
+更新文件存储目录<br>
+appVersion:应用程序版本号,不指定自动获取EXE产品版本<br>
+appDir:应用程序目录,不指定则为当前EXE目录</p>
+
+<p><a id="fsysUpdateDlmgrObject"></a></p>
+
+<h2>fsysUpdateDlmgrObject 成员列表</h2>
+
+<p><a id="fsysUpdateDlmgrObject.httpHeaders"></a></p>
+
+<h3>fsysUpdateDlmgrObject.httpHeaders</h3>
+
+<p>可选使用此属性指定HTTP请求头,<br>
+http头可以是web.joinHeaders支持的字符串、键值对、数组等格式</p>
+
+<p><a id="fsysUpdateDlmgrObject.onChecksum"></a></p>
+
+<h3>fsysUpdateDlmgrObject.onChecksum</h3>
+
+<pre><code class="aardio language-aardio">fsysUpdateDlmgrObject.onChecksum = function(count,total){
+    io.stdout.write(&quot;已校检文件&quot;, count,&#39;\r&#39;)
+}
+</code></pre>
+
+<p><a id="fsysUpdateDlmgrObject.onChecksumBegin"></a></p>
+
+<h3>fsysUpdateDlmgrObject.onChecksumBegin</h3>
+
+<pre><code class="aardio language-aardio">fsysUpdateDlmgrObject.onChecksumBegin = function(total){
+    io.print(&quot;开始检验,文件总数：&quot;, total)
+}
+</code></pre>
+
+<p><a id="fsysUpdateDlmgrObject.onConfirmDownload"></a></p>
+
+<h3>fsysUpdateDlmgrObject.onConfirmDownload</h3>
+
+<pre><code class="aardio language-aardio">fsysUpdateDlmgrObject.onConfirmDownload = function(isUpdated,appVersion,latestVersion,description){ 
+    return !isUpdated; /*检测版本完成触发此函数,  
+@isUpdated参数表示是否更新,  
+@appVersion参数为当前版本,  
+@latestVersion参数为更新的版本号,  
+@description为更新说明  
+返回真继续下载更新文件  
+不指定此事件时默认返回@isUpdated参数*/
+}
+</code></pre>
+
+<p><a id="fsysUpdateDlmgrObject.onDownloadBegin"></a></p>
+
+<h3>fsysUpdateDlmgrObject.onDownloadBegin</h3>
+
+<pre><code class="aardio language-aardio">fsysUpdateDlmgrObject.onDownloadBegin = function(totalSize,fileTotal){
+    io.print(&quot;开始下载更新文件&quot;, ..fsys.formatSize(totalSize),fileTotal)
+}
+</code></pre>
+
+<p><a id="fsysUpdateDlmgrObject.onDownloadFile"></a></p>
+
+<h3>fsysUpdateDlmgrObject.onDownloadFile</h3>
+
+<pre><code class="aardio language-aardio">fsysUpdateDlmgrObject.onDownloadFile = function(path,contentLength,fileSize){
+    io.print(&quot;正在下文件&quot;, path)   
+}
+</code></pre>
+
+<p><a id="fsysUpdateDlmgrObject.onDownloadReceive"></a></p>
+
+<h3>fsysUpdateDlmgrObject.onDownloadReceive</h3>
+
+<pre><code class="aardio language-aardio">fsysUpdateDlmgrObject.onDownloadReceive = function(sizePs,downTotalSize,fileCount){
+    io.print(&quot;已下载文件数:&quot; + fileCount, ..fsys.formatSize(downTotalSize) )
+}
+</code></pre>
+
+<p><a id="fsysUpdateDlmgrObject.onEnd"></a></p>
+
+<h3>fsysUpdateDlmgrObject.onEnd</h3>
+
+<pre><code class="aardio language-aardio">fsysUpdateDlmgrObject.onEnd = function(updater,saveDir,appDir,mainPath,updateFilesCount){
+    /*更新文件已准备就绪,  
+以下参数中的路径已经转换为绝对路径:  
+
+updater 执行文件更新的EXE路径  
+saveDir 下载升级包的存储目录  
+appDir 需要更新的应用程序目录  
+mainPath 此应用程序的启动EXE路径  
+updateFilesCount 更新的文件数*/
+}
+</code></pre>
+
+<p><a id="fsysUpdateDlmgrObject.onError"></a></p>
+
+<h3>fsysUpdateDlmgrObject.onError</h3>
+
+<pre><code class="aardio language-aardio">fsysUpdateDlmgrObject.onError = function(err,filename){
+    io.print(&quot;更新遇到错误:&quot;,err,filename/*导致错误的文件路径或URL  
+该值可能为空*/ )
+}
+</code></pre>
+
+<p><a id="fsysUpdateDlmgrObject.onUnCompress"></a></p>
+
+<h3>fsysUpdateDlmgrObject.onUnCompress</h3>
+
+<pre><code class="aardio language-aardio">fsysUpdateDlmgrObject.onUnCompress = function(fileCount,path){
+    io.print(&quot;已解压&quot;, fileCount, path)
+}
+</code></pre>
+
+<p><a id="fsysUpdateDlmgrObject.onUnCompressBegin"></a></p>
+
+<h3>fsysUpdateDlmgrObject.onUnCompressBegin</h3>
+
+<pre><code class="aardio language-aardio">fsysUpdateDlmgrObject.onUnCompressBegin = function(fileTotal){
+    io.print(&quot;开始解压,文件总数：&quot;, fileTotal)
+}
+</code></pre>
+
+<p><a id="fsysUpdateDlmgrObject.prepareUpdate"></a></p>
+
+<h3>fsysUpdateDlmgrObject.prepareUpdate(启动下载延时)</h3>
+
+<p>启动「检测更新/下载文件」线程，<br>
+延时参数以毫秒为单位,为可选参数</p>
+
+<p><a id="fsysUpdateDlmgrObject.startUpdate"></a></p>
+
+<h3>fsysUpdateDlmgrObject.startUpdate</h3>
+
+<p>如果之前已下载新版本完成，启动自动更新，成功返回true，<br>
+否则调用prepareUpdate函数启动「检测更新/下载文件」线程</p>
+
+<p><a id="fsysUpdateDlmgrObject.startUpdate"></a></p>
+
+<h3>fsysUpdateDlmgrObject.startUpdate(启动下载延时)</h3>
+
+<p>可选使用参数@1指定启动时延后下载更新文件以提升启动速度,<br>
+延时参数以毫秒为单位</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/fsys/update/dlMgr.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/fsys/update/dlMgr.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/fsys/update/dlMgr.md">Markdown 格式</a></p>
+
+</body> 
+</html>

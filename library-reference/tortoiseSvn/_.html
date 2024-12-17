@@ -1,0 +1,455 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - tortoiseSvn 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - tortoiseSvn 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>tortoiseSvn 库模块帮助文档</h1>
+
+<p><a id="tortoiseSvn"></a></p>
+
+<h2>tortoiseSvn 成员列表</h2>
+
+<p><a id="tortoiseSvn.add"></a></p>
+
+<h3>tortoiseSvn.add</h3>
+
+<pre><code class="aardio language-aardio">tortoiseSvn.add(  
+    path = &quot;添加到版本控制路径&quot;;    
+)
+</code></pre>
+
+<p><a id="tortoiseSvn.blame"></a></p>
+
+<h3>tortoiseSvn.blame</h3>
+
+<pre><code class="aardio language-aardio">tortoiseSvn.blame(  
+    path = &quot;&quot;;  
+)
+</code></pre>
+
+<p><a id="tortoiseSvn.cat"></a></p>
+
+<h3>tortoiseSvn.cat</h3>
+
+<pre><code class="aardio language-aardio">tortoiseSvn.cat(  
+    path = &quot;&quot;;  
+)
+</code></pre>
+
+<p><a id="tortoiseSvn.checkout"></a></p>
+
+<h3>tortoiseSvn.checkout</h3>
+
+<pre><code class="aardio language-aardio">tortoiseSvn.checkout(  
+    path = &quot;检出路径&quot;;  
+    url = &quot;检出网址&quot;;  
+)
+</code></pre>
+
+<p><a id="tortoiseSvn.cleanup"></a></p>
+
+<h3>tortoiseSvn.cleanup</h3>
+
+<pre><code class="aardio language-aardio">tortoiseSvn.cleanup(  
+    path = &quot;清理解锁目录&quot;;    
+)
+</code></pre>
+
+<pre><code class="aardio language-aardio">tortoiseSvn.cleanup(  
+    path = &quot;&quot;;  
+)
+</code></pre>
+
+<p><a id="tortoiseSvn.commit"></a></p>
+
+<h3>tortoiseSvn.commit</h3>
+
+<pre><code class="aardio language-aardio">tortoiseSvn.commit(  
+    path = &quot;目标路径或需要提交的文件列表&quot;;   
+    logmsgfile = &quot;日志文件&quot;;  
+    bugid = &quot;the bug id here&quot;;  
+)
+</code></pre>
+
+<p><a id="tortoiseSvn.conflicteditor"></a></p>
+
+<h3>tortoiseSvn.conflicteditor</h3>
+
+<pre><code class="aardio language-aardio">tortoiseSvn.conflicteditor(  
+    path = &quot;&quot;;  
+)
+</code></pre>
+
+<p><a id="tortoiseSvn.copy"></a></p>
+
+<h3>tortoiseSvn.copy</h3>
+
+<pre><code class="aardio language-aardio">tortoiseSvn.copy(  
+    path = &quot;&quot;;  
+)
+</code></pre>
+
+<p><a id="tortoiseSvn.createpatch"></a></p>
+
+<h3>tortoiseSvn.createpatch</h3>
+
+<pre><code class="aardio language-aardio">tortoiseSvn.createpatch(  
+    path = &quot;&quot;;  
+)
+</code></pre>
+
+<p><a id="tortoiseSvn.diff"></a></p>
+
+<h3>tortoiseSvn.diff</h3>
+
+<pre><code class="aardio language-aardio">tortoiseSvn.diff(  
+    path = &quot;&quot;;  
+)
+</code></pre>
+
+<p><a id="tortoiseSvn.export"></a></p>
+
+<h3>tortoiseSvn.export</h3>
+
+<pre><code class="aardio language-aardio">tortoiseSvn.export(  
+    path = &quot;&quot;;  
+)
+</code></pre>
+
+<p><a id="tortoiseSvn.getProcPath"></a></p>
+
+<h3>tortoiseSvn.getProcPath()</h3>
+
+<p>返回TortoiseProc.exe安装路径<br>
+未安装返回空值</p>
+
+<p><a id="tortoiseSvn.getWcInfo"></a></p>
+
+<h3>tortoiseSvn.getWcInfo()</h3>
+
+<p><a href="#SubWCRevobject">返回对象:SubWCRevobject</a></p>
+
+<p><a id="tortoiseSvn.getWcInfo"></a></p>
+
+<h3>tortoiseSvn.getWcInfo(path,subPath,externals)</h3>
+
+<p>返回版本信息</p>
+
+<p><a id="tortoiseSvn.help"></a></p>
+
+<h3>tortoiseSvn.help</h3>
+
+<pre><code class="aardio language-aardio">tortoiseSvn.help(  
+    path = &quot;&quot;;  
+)
+</code></pre>
+
+<p><a id="tortoiseSvn.ignore"></a></p>
+
+<h3>tortoiseSvn.ignore</h3>
+
+<pre><code class="aardio language-aardio">tortoiseSvn.ignore(  
+    path = &quot;&quot;;  
+)
+</code></pre>
+
+<p><a id="tortoiseSvn.import"></a></p>
+
+<h3>tortoiseSvn.import</h3>
+
+<pre><code class="aardio language-aardio">tortoiseSvn.import(  
+    path = &quot;数据导入路径&quot;;   
+)
+</code></pre>
+
+<p><a id="tortoiseSvn.lock"></a></p>
+
+<h3>tortoiseSvn.lock</h3>
+
+<pre><code class="aardio language-aardio">tortoiseSvn.lock(  
+    path = &quot;&quot;;  
+)
+</code></pre>
+
+<p><a id="tortoiseSvn.log"></a></p>
+
+<h3>tortoiseSvn.log</h3>
+
+<pre><code class="aardio language-aardio">tortoiseSvn.log(  
+    path = &quot;显示日志的文件或目录&quot;;   
+    startrev = startrev;  
+    endrev = endrev;  
+    strict = &quot;&quot;;  
+)
+</code></pre>
+
+<p><a id="tortoiseSvn.merge"></a></p>
+
+<h3>tortoiseSvn.merge</h3>
+
+<pre><code class="aardio language-aardio">tortoiseSvn.merge(  
+    path = &quot;&quot;;  
+)
+</code></pre>
+
+<p><a id="tortoiseSvn.mergeall"></a></p>
+
+<h3>tortoiseSvn.mergeall</h3>
+
+<pre><code class="aardio language-aardio">tortoiseSvn.mergeall(  
+    path = &quot;&quot;;  
+)
+</code></pre>
+
+<p><a id="tortoiseSvn.properties"></a></p>
+
+<h3>tortoiseSvn.properties</h3>
+
+<pre><code class="aardio language-aardio">tortoiseSvn.properties(  
+    path = &quot;&quot;;  
+)
+</code></pre>
+
+<p><a id="tortoiseSvn.rebuildiconcache"></a></p>
+
+<h3>tortoiseSvn.rebuildiconcache</h3>
+
+<pre><code class="aardio language-aardio">tortoiseSvn.rebuildiconcache(  
+    path = &quot;&quot;;  
+)
+</code></pre>
+
+<p><a id="tortoiseSvn.relocate"></a></p>
+
+<h3>tortoiseSvn.relocate</h3>
+
+<pre><code class="aardio language-aardio">tortoiseSvn.relocate(  
+    path = &quot;&quot;;  
+)
+</code></pre>
+
+<p><a id="tortoiseSvn.remove"></a></p>
+
+<h3>tortoiseSvn.remove</h3>
+
+<pre><code class="aardio language-aardio">tortoiseSvn.remove(  
+    path = &quot;移除条目&quot;;    
+)
+</code></pre>
+
+<p><a id="tortoiseSvn.rename"></a></p>
+
+<h3>tortoiseSvn.rename</h3>
+
+<pre><code class="aardio language-aardio">tortoiseSvn.rename(  
+    path = &quot;&quot;;  
+)
+</code></pre>
+
+<p><a id="tortoiseSvn.repobrowser"></a></p>
+
+<h3>tortoiseSvn.repobrowser</h3>
+
+<pre><code class="aardio language-aardio">tortoiseSvn.repobrowser(  
+    path = &quot;&quot;;  
+)
+</code></pre>
+
+<p><a id="tortoiseSvn.repocreate"></a></p>
+
+<h3>tortoiseSvn.repocreate</h3>
+
+<pre><code class="aardio language-aardio">tortoiseSvn.repocreate(  
+    path = &quot;创建为版本库的目录&quot;;    
+)
+</code></pre>
+
+<pre><code class="aardio language-aardio">tortoiseSvn.repocreate(  
+    path = &quot;&quot;;  
+)
+</code></pre>
+
+<p><a id="tortoiseSvn.repostatus"></a></p>
+
+<h3>tortoiseSvn.repostatus</h3>
+
+<pre><code class="aardio language-aardio">tortoiseSvn.repostatus(  
+    path = &quot;&quot;;  
+)
+</code></pre>
+
+<p><a id="tortoiseSvn.revert"></a></p>
+
+<h3>tortoiseSvn.revert</h3>
+
+<pre><code class="aardio language-aardio">tortoiseSvn.revert(  
+    path = &quot;恢复条目&quot;;    
+)
+</code></pre>
+
+<pre><code class="aardio language-aardio">tortoiseSvn.revert(  
+    path = &quot;恢复条目&quot;;    
+)
+</code></pre>
+
+<p><a id="tortoiseSvn.revisiongraph"></a></p>
+
+<h3>tortoiseSvn.revisiongraph</h3>
+
+<pre><code class="aardio language-aardio">tortoiseSvn.revisiongraph(  
+    path = &quot;&quot;;  
+)
+</code></pre>
+
+<p><a id="tortoiseSvn.settings"></a></p>
+
+<h3>tortoiseSvn.settings</h3>
+
+<pre><code class="aardio language-aardio">tortoiseSvn.settings(  
+    path = &quot;&quot;;  
+)
+</code></pre>
+
+<p><a id="tortoiseSvn.showcompare"></a></p>
+
+<h3>tortoiseSvn.showcompare</h3>
+
+<pre><code class="aardio language-aardio">tortoiseSvn.showcompare(  
+    path = &quot;&quot;;  
+)
+</code></pre>
+
+<p><a id="tortoiseSvn.switch"></a></p>
+
+<h3>tortoiseSvn.switch</h3>
+
+<pre><code class="aardio language-aardio">tortoiseSvn.switch(  
+    path = &quot;&quot;;  
+)
+</code></pre>
+
+<p><a id="tortoiseSvn.unlock"></a></p>
+
+<h3>tortoiseSvn.unlock</h3>
+
+<pre><code class="aardio language-aardio">tortoiseSvn.unlock(  
+    path = &quot;&quot;;  
+)
+</code></pre>
+
+<p><a id="tortoiseSvn.update"></a></p>
+
+<h3>tortoiseSvn.update</h3>
+
+<pre><code class="aardio language-aardio">tortoiseSvn.update(  
+    path = &quot;数据导入路径&quot;;   
+    rev = &quot;&quot;;  
+    nonrecursive = null;  
+    ignoreexternals = &quot;&quot;;  
+)
+</code></pre>
+
+<p><a id="SubWCRevobject"></a></p>
+
+<h2>SubWCRevobject 成员列表</h2>
+
+<p><a id="SubWCRevobject.author"></a></p>
+
+<h3>SubWCRevobject.author</h3>
+
+<p>最后一个提交变更的作者</p>
+
+<p><a id="SubWCRevobject.date"></a></p>
+
+<h3>SubWCRevobject.date</h3>
+
+<p>提交时间 $WCDATE$.</p>
+
+<p><a id="SubWCRevobject.hasModifications"></a></p>
+
+<h3>SubWCRevobject.hasModifications</h3>
+
+<p>是否修改</p>
+
+<p><a id="SubWCRevobject.hasUnversioned"></a></p>
+
+<h3>SubWCRevobject.hasUnversioned</h3>
+
+<p>是否包含未版本化文件</p>
+
+<p><a id="SubWCRevobject.isLocked"></a></p>
+
+<h3>SubWCRevobject.isLocked</h3>
+
+<p>是否锁定</p>
+
+<p><a id="SubWCRevobject.isSvnItem"></a></p>
+
+<h3>SubWCRevobject.isSvnItem</h3>
+
+<p>是否SVN版本管理的目录<br>
+这个值好象不准</p>
+
+<p><a id="SubWCRevobject.lockComment"></a></p>
+
+<h3>SubWCRevobject.lockComment</h3>
+
+<p>锁定说明</p>
+
+<p><a id="SubWCRevobject.lockCreationDate"></a></p>
+
+<h3>SubWCRevobject.lockCreationDate</h3>
+
+<p>字符串格式锁定时间</p>
+
+<p><a id="SubWCRevobject.lockOwner"></a></p>
+
+<h3>SubWCRevobject.lockOwner</h3>
+
+<p>空字符串表示未锁定</p>
+
+<p><a id="SubWCRevobject.maxRev"></a></p>
+
+<h3>SubWCRevobject.maxRev</h3>
+
+<p>最大修订号 $WCRANGE$</p>
+
+<p><a id="SubWCRevobject.minRev"></a></p>
+
+<h3>SubWCRevobject.minRev</h3>
+
+<p>最小修订号 $WCRANGE$</p>
+
+<p><a id="SubWCRevobject.needsLocking"></a></p>
+
+<h3>SubWCRevobject.needsLocking</h3>
+
+<p>是否需要锁定</p>
+
+<p><a id="SubWCRevobject.revision"></a></p>
+
+<h3>SubWCRevobject.revision</h3>
+
+<p>修订号 $WCREV$<br>
+返回0为未版本化目录</p>
+
+<p><a id="SubWCRevobject.url"></a></p>
+
+<h3>SubWCRevobject.url</h3>
+
+<p>版本库网址 $WCURL$.</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/tortoiseSvn/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/tortoiseSvn/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/tortoiseSvn/_.md">Markdown 格式</a></p>
+
+</body> 
+</html>

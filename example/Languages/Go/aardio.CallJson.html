@@ -1,0 +1,72 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - aardio 调用 Go 语言 - aardio.CallJson'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - aardio 调用 Go 语言 - aardio.CallJson</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 调用 Go 语言 - aardio.CallJson</h1><pre><code class="aardio language-aardio">//aardio 调用 Go 语言 - aardio.CallJson
+import golang;
+var go = golang();//创建 Go 编译器（ 仅调用编译的 DLL 不需要此扩展库 ）
+
+//Go 与 aardio 一样，源码与字符串默认为 UTF-8 编码
+go.main = /**********
+package main
+
+import &quot;C&quot; 
+import &quot;aardio&quot; //源文件: ~\lib\golang\.res\aardio\aardio.go
+
+//export TestCallBack 
+func TestCallBack(fnCallback uintptr) int{
+
+    var s = &quot;字符串&quot;
+
+    /*
+    回调 aardio 用 raw.jsonCall 创建的函数指针。
+    支持可变参数（使用 JSON 自动转换参数），aardio 函数返回 null 或 int 类型整数值 。
+    aardio.CallJson() 返回类型为 (int,error)。
+
+    注意：aardio 与 Go 导出函数所在的默认 goroutine 之间的互调属于同一线程（这里不用考虑多线程）。
+    */
+    var r,_ = aardio.CallJson(fnCallback,s,123,map[string]int{&quot;id&quot;: 1, &quot;id2&quot;: 2} )
+
+    return r
+}
+
+func main() {} 
+**********/
+
+//上面的 go.main 会自动保存到文件，然后编译 Go 源码生成同名 DLL 文件
+go.buildShared(&quot;/.go/CallJson.go&quot;);
+
+//------------------下面调用 DLL-----------------------
+
+import console.int;
+
+//加载 Go 编译的 DLL，注意要指定 cdecl 调用约定
+var goDll = raw.loadDll(&quot;/.go/CallJson.dll&quot;,,&quot;cdecl&quot;);
+
+import  raw.jsonCall;
+
+//创建回调函数指针， 在 Go 中必须用 aardio.CallJson 调用。
+var callback = raw.jsonCall(
+    function(a,b,c){ 
+        console.log(&quot;回调参数:&quot;,a,b) 
+        console.dumpJson(c);
+        return 123;
+    } );
+
+var ret  = goDll.TestCallBack( callback )
+console.log(ret);
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/Go/aardio.CallJson.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/Go/aardio.CallJson.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Languages/Go/aardio.CallJson.md">Markdown 格式</a>
+</body> 
+</html>

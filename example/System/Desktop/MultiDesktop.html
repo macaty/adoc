@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio ç¼–ç¨‹è¯­è¨€èŒƒä¾‹ - å¤šæ¡Œé¢'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio ç¼–ç¨‹è¯­è¨€èŒƒä¾‹ - å¤šæ¡Œé¢</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio ç¼–ç¨‹è¯­è¨€æ–‡æ¡£é¦–é¡µ"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio æ–‡æ¡£</span></a>
+<h1>aardio èŒƒä¾‹: å¤šæ¡Œé¢</h1><pre><code class="aardio language-aardio">//å¤šæ¡Œé¢
+import win.ui;
+import win.util.desktop;
+/*DSG{{*/
+var winform = win.form(text=&quot;aardio form&quot;;right=262;bottom=179;)
+winform.add(
+btnDefault={cls=&quot;button&quot;;text=&quot;åˆ‡æ¢åˆ°é»˜è®¤æ¡Œé¢&quot;;left=53;top=110;right=202;bottom=143;font=LOGFONT(name=&#39;Microsoft Sans Serif&#39;);z=3};
+btnToMyDesktop={cls=&quot;button&quot;;text=&quot;åˆ‡æ¢åˆ°myDesktop&quot;;left=53;top=64;right=202;bottom=97;font=LOGFONT(name=&#39;Microsoft Sans Serif&#39;);z=2};
+static={cls=&quot;static&quot;;text=&quot;ctrl + D è¯•è¯•&quot;;left=59;top=27;right=229;bottom=62;color=255;font=LOGFONT(h=-21;name=&#39;å®‹ä½“&#39;);transparent=1;z=1}
+)
+/*}}*/
+
+var virDesktp = win.util.desktop();
+virDesktp.create(&quot;myDesktop&quot;) //åˆ›å»ºæ¡Œé¢ 
+
+hkid = winform.reghotkey(function(id,mod,vk){
+    virDesktp.switch( ) //åˆ‡æ¢æ¡Œé¢   
+},2/*_MOD_CONTROL*/,&#39;D&#39;#); 
+
+winform.btnDefault.oncommand = function(id,event){
+    virDesktp.switch(&quot;Default&quot; ) 
+} 
+
+winform.btnToMyDesktop.oncommand = function(id,event){
+    virDesktp.switch(&quot;myDesktop&quot; ) //åˆ‡æ¢æ¡Œé¢
+}
+
+winform.show() 
+win.loopMessage();
+
+
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/System/Desktop/MultiDesktop.md  \n\n¸ÃÎÄ¼şÎŞ·¨ÓÃ Teleport Ultra ÏÂÔØ, ÒòÎª Ëü²»ÔÚÏîÄ¿ÎÄ¼şÀàĞÍ¹æ·¶ÄÚ¡£  \n\nÄãÏëÔÚ·şÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='https://www.aardio.com/zh-cn/doc/example/System/Desktop/MultiDesktop.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/System/Desktop/MultiDesktop.md">Markdown æ ¼å¼</a>
+</body> 
+</html>

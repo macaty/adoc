@@ -1,0 +1,83 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 剪贴板图像'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 剪贴板图像</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 剪贴板图像</h1><pre><code class="aardio language-aardio">//剪贴板图像
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;aardio form&quot;;right=637;bottom=450;)
+winform.add(
+btnRead={cls=&quot;button&quot;;text=&quot;读取剪贴板图像&quot;;left=249;top=379;right=404;bottom=419;db=1;dr=1;z=3};
+btnWrite={cls=&quot;button&quot;;text=&quot;截屏并写入剪贴板&quot;;left=428;top=379;right=598;bottom=419;db=1;dr=1;z=2};
+picturebox={cls=&quot;plus&quot;;left=21;top=16;right=617;bottom=360;db=1;dl=1;dr=1;dt=1;edge=1;repeat=&quot;scale&quot;;transparent=1;z=1}
+)
+/*}}*/
+
+import win.clip;
+import process.imageView;
+import gdip.bitmap;
+
+winform.btnRead.oncommand = function(id,event){
+    var hBmp = win.clip.readBitmap()
+    if(!hBmp){
+        return winform.msgboxErr(&quot;剪贴板没有图像&quot;);
+    }
+
+    //存为图像文件
+    com.picture.fromBitmap(hBmp).Save(&quot;/clip.jpg&quot;)
+
+    //转换为 GDI+ 图像
+    var bmp = gdip.bitmap(hBmp);
+    winform.picturebox.background = bmp;
+
+    //存为图像文件
+    bmp.save(&quot;/clip.jpg&quot;)
+
+    //存为 16 位 BMP 文件
+    var bmp16 = bmp.clone(,,,,0x21005/*_PixelFormat16bppRGB555*/);
+    bmp16.save(&quot;/16.bmp&quot;);
+
+    //预览图像
+    process.imageView(&quot;/clip.jpg&quot;)
+}
+
+import gdip.snap;
+winform.btnWrite.oncommand = function(id,event){
+
+    //截屏
+    var bmp = gdip.snap();
+
+    //显示图像
+    winform.picturebox.background = bmp;
+
+    //获取位图句柄
+    var hBmp = bmp.copyHandle();
+
+    //写入剪贴板
+    win.clip.writeBitmap(
+        hBmp, //位图句柄
+        true, //让剪贴板接管位图，也就不用再复制，也不用再释放 hBmp 了
+        true //清空剪贴板中其他格式数据
+    );
+
+    //如果上面的参数 @2 不是 true，就要用下面的代码释放位图
+    //::DeleteObject(hBmp);
+}
+
+winform.show(); 
+win.loopMessage();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Graphics/clip.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Graphics/clip.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Graphics/clip.md">Markdown 格式</a>
+</body> 
+</html>

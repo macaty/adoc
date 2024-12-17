@@ -1,0 +1,51 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - RUNAS//启用禁用网卡'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - RUNAS//启用禁用网卡</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: RUNAS//启用禁用网卡</h1><pre><code class="aardio language-aardio">//RUNAS//启用禁用网卡
+import process
+import console;
+if(_WINXP) return console.logPause(&quot;本程序不支持 XP 系统&quot;);
+
+/*
+也可以使用扩展库 process.devcon 启用禁用网卡驱动。
+例如 USB 无线网卡出问题无法启用时，可以用 process.devcon 启用禁用网卡驱动进行修复。
+参考 process.devcon 扩展库范例（ 扩展库管理器双击 process.devcon 可打开范例）
+*/
+import com.wmi;
+for index,networkAdapter in com.wmi.each(&quot;SELECT * FROM Win32_NetworkAdapter WHERE NetConnectionId IS NOT NULL&quot;) {
+
+    console.log(networkAdapter.GUID) //网卡 GUID
+    console.log(networkAdapter.PNPDeviceID)  //网卡设备实例 ID，前面加一个@字符可作为 process.devcon 的参数禁用设备
+    console.log(networkAdapter.NetEnabled) //网卡是否启用
+    console.log(networkAdapter.ProductName)  //网卡名
+    console.log(networkAdapter.NetConnectionId ) //网卡连接名
+
+    networkAdapter.Disable(); //禁用网卡
+    console.log( networkAdapter.NetConnectionId + &quot; Disabled&quot;)
+}
+
+process.explore(&quot;shell:::{7007ACC7-3202-11D1-AAD2-00805FC1270E}&quot;);
+console.pause();
+
+for index,networkAdapter in com.wmi.each(&quot;SELECT * FROM Win32_NetworkAdapter WHERE NetConnectionId IS NOT NULL&quot;) {
+    networkAdapter.Enable();
+    console.log( networkAdapter.NetConnectionId + &quot; Enabled&quot;)
+}
+
+console.pause();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Network/Manage/wmi.network.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Network/Manage/wmi.network.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Network/Manage/wmi.network.md">Markdown 格式</a>
+</body> 
+</html>

@@ -1,0 +1,76 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - API 钩子'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - API 钩子</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: API 钩子</h1><pre><code class="aardio language-aardio">//API 钩子
+//API 钩子就像插队，大家都插队这世界就乱套了，请不要滥用。
+
+//当前线程 API 钩子
+import raw.apiHook; 
+var hookMessageBoxW = raw.apiHook(
+    &quot;user32.dll&quot;,
+    &quot;MessageBoxW&quot;,
+    &quot;int(int,ustring,ustring,int)&quot;, 
+    function(hwnd,text,caption,flag){
+        //可选用 owner.callApi 调用原始的 API 函数。
+        owner.callApi(hwnd, text, &quot;API Hook: &quot; + caption, flag)  
+        return true;
+    }
+).install(); 
+
+//调用 API
+::User32.MessageBox(0,&quot;内容&quot;,&quot;标题&quot;,0);
+
+//卸载钩子，不卸载就好比插完队还不肯让出来。
+hookMessageBoxW.unInstall();
+
+//多线程 API 钩子
+import thread.apiHook;
+var hookGetCursorPos = thread.apiHook(
+    &quot;user32.dll&quot;,
+    &quot;GetCursorPos&quot;,
+    &quot;bool(pointer lpPoint )&quot;, 
+    function( lpPoint ){
+        //可选用 owner.callApi 调用原始的 API 函数。
+        owner.callApi(lpPoint); 
+
+        //猜一猜去掉下面这句，结果有什么不同？！
+        return true;
+
+        //钩子中结构体指针参数应当直接传指针 
+        //可用 raw.mixin 向结构体结针复制数据而不改变原来的指针地址。
+        raw.mixin( lpPoint,{
+                int x = 123; 
+                int y = 456 
+        } );
+
+
+        return true;
+    }
+).install();
+
+//调用 API
+var point = ::POINT();
+::User32.GetCursorPos(point);
+
+import win.dlg.message;
+win.dlg.message().info( &quot;x=%d,y=%d&quot;,,point.x,point.y );
+
+//卸载钩子，不卸载就好比插完队还不肯让出来
+hookGetCursorPos.unInstall();
+
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/aardio/Raw/raw.apiHook.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/aardio/Raw/raw.apiHook.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/aardio/Raw/raw.apiHook.md">Markdown 格式</a>
+</body> 
+</html>

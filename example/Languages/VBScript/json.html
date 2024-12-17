@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio ç¼–ç¨‹è¯­è¨€èŒƒä¾‹ - JSON æ‰©å±•'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio ç¼–ç¨‹è¯­è¨€èŒƒä¾‹ - JSON æ‰©å±•</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio ç¼–ç¨‹è¯­è¨€æ–‡æ¡£é¦–é¡µ"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio æ–‡æ¡£</span></a>
+<h1>aardio èŒƒä¾‹: JSON æ‰©å±•</h1><pre><code class="aardio language-aardio">//JSON æ‰©å±•
+import console;
+import web.script.json;
+var vm = web.script(&quot;VBScript&quot;);
+
+vm.external = {
+    log = function(...){
+        console.log(...);
+    }; 
+}
+
+vm.script = /*
+Function TestFunction() 
+
+    &#39;è°ƒç”¨ aardio å…¼å®¹JSONï¼ŒJSONPï¼ŒJSON5ï¼Œéƒ¨åˆ†ç±» YAML è¯­æ³•çš„ web.json.parse() å‡½æ•°
+    Set jObject = JSON.parse(&quot;{name:{a:123:b:456,c:[1,2,3]}}&quot; ) 
+    jObject.newKey = &quot;æµ‹è¯•&quot;
+
+    arr = jObject.name.c
+    arr(0) = &quot;æµ‹è¯•&quot;
+
+    &#39;éå† JSON æ•°ç»„
+    For Each item In arr
+         external.log item
+    Next
+
+    TestFunction =  arr(0) 
+End Function
+*/ 
+
+//é€šè¿‡ vm.script.å‡½æ•°å() è°ƒç”¨ VBScript å‡½æ•°ã€‚
+var ret = vm.script.TestFunction();
+console.dump(ret);
+console.pause();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/VBScript/json.md  \n\n¸ÃÎÄ¼şÎŞ·¨ÓÃ Teleport Ultra ÏÂÔØ, ÒòÎª Ëü²»ÔÚÏîÄ¿ÎÄ¼şÀàĞÍ¹æ·¶ÄÚ¡£  \n\nÄãÏëÔÚ·şÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/VBScript/json.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Languages/VBScript/json.md">Markdown æ ¼å¼</a>
+</body> 
+</html>

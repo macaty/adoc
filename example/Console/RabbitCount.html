@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 控制台程序范例 - 兔子总数为多少'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 控制台程序范例 - 兔子总数为多少</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 控制台程序范例 - 兔子总数为多少</h1><pre><code class="aardio language-aardio">//控制台程序范例 - 兔子总数为多少
+import console;   
+
+console.log(&quot;问题：兔子出生两月以后就有繁殖能力，一对兔子每月能生出一对小兔子。
+现有一对有繁殖能力的兔子，如果所有兔子都不死，请问14个月后可繁殖多少对兔子？
+&quot;); 
+
+var f1,f2=1,1;
+for( i=1;14) {
+    f1,f2=f1+f2,f1;//前两个月加起来(f1=f1+f2)赋值给第三个月,f2再与上个月交换值(f2=f1)
+    console.printf(&#39;共有兔子 %12.0f对(经过%d月)&#39;,f1,i);  
+}; 
+
+console.log(&quot;
+兔子的规律为斐波那契数列：f[0]=0 f[1]=1 如果i&gt;=2 f[i] = f[i-1]+f[i-2]
+----------------------------------------------------------
+&quot;)
+
+var f1,f2=1,1;
+for( i=1;16 )  {
+    var str = string.format(&#39;%12d&#39;,f1);
+    io.stdout.write(str);
+
+    //如果i能整除4(4的倍数)即输入一个换行,io.print(&#39;&#39;)函数可自动添加换行
+    if( i % 4 ==0 ) { io.print( &quot;&quot;  ) };
+    f1,f2 = f2,f1+f2; 
+}; 
+
+console.pause();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Console/RabbitCount.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Console/RabbitCount.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Console/RabbitCount.md">Markdown 格式</a>
+</body> 
+</html>

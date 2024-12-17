@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 对话框默认快捷键 ESC、Enter等'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 对话框默认快捷键 ESC、Enter等</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 对话框默认快捷键 ESC、Enter等</h1><pre><code class="aardio language-aardio">//ESC、Enter
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;对话框默认快捷键 ESC、Enter等&quot;;right=759;bottom=469)
+winform.add()
+/*}}*/
+
+winform.onCancel = function(){
+    winform.msgbox(&quot;你按了ESC&quot;);
+    winform.close();
+}
+
+winform.onOk = function(){
+    winform.msgbox(&quot;你按了Enter&quot;);     
+}
+
+/*
+窗口会自动检测默认的对话框快捷键，
+默认Enter会触发onOk事件，ESC键会触发onCancel事件，
+可选如下自定义检测对话框快捷键函数 winform.isDialogMessage
+*/
+winform.isDialogMessage = function(hwnd,msg){
+    if( msg.message == 0x100/*_WM_KEYDOWN*/){
+
+        if(  msg.wParam == 0xD/*_VK_RETURN*/ ){ 
+            //return true;//告诉消息处理函数这是一个快捷键,阻止按键消息继续分发
+        }
+
+        if( msg.wParam == 0x1B/*_VK_ESC*/ ){
+            //return true;//告诉消息处理函数这是一个快捷键,阻止按键消息继续分发
+        } 
+    }
+
+    //检测并响应默认快捷键
+    return win.isDialogMessage(hwnd,msg);
+}
+
+winform.show() 
+win.loopMessage();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Windows/Hotkey/isDialogMessage.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Windows/Hotkey/isDialogMessage.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Windows/Hotkey/isDialogMessage.md">Markdown 格式</a>
+</body> 
+</html>

@@ -1,0 +1,494 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - thread 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - thread 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>thread 库模块帮助文档</h1>
+
+<p><a id="thread"></a></p>
+
+<h2>thread 成员列表</h2>
+
+<p>线程函数库,<br>
+这是自动导入的内置库</p>
+
+<p><a id="thread._callableSerialize"></a></p>
+
+<h3>thread._callableSerialize</h3>
+
+<p>界面线程内非窗口对象 _serialize 元方法设定为此函数,可支持跨线程调用,<br>
+绑定此元方法后，对象传入其他线程后所有成员调用都将回到界面线程执行</p>
+
+<p><a id="thread.add"></a></p>
+
+<h3>thread.add(k,v)</h3>
+
+<p>对参数k指定线程共享变量名称的数值增加参数v指定的计数<br>
+参数v可以使用负数执行减操作</p>
+
+<p><a id="thread.applyCallWnd"></a></p>
+
+<h3>thread.applyCallWnd(this,wParam,lParam)</h3>
+
+<p>在窗口_WM_THREAD_CALLWND消息回调中响应:<br>
+thread.callWnd,thread.getWnd thread.setWnd调用<br>
+win.form对象默认已应用此函数</p>
+
+<p><a id="thread.call"></a></p>
+
+<h3>thread.call(&quot;函数&quot;,&quot;owner&quot;, )</h3>
+
+<p>在线程安全模式下执行线程共享区函数<br>
+可以指定一个线程函数，或者用thread.set预加载到共享区的函数名,<br>
+可增加任意个调用参数</p>
+
+<p><a id="thread.callWnd"></a></p>
+
+<h3>thread.callWnd(hwnd,&quot;成员函数名&quot;,... )</h3>
+
+<p>调用UI线程窗体对象的成员函数<br>
+调用同一线程中的目标窗口函数时，此函数忽略不操作<br>
+参数@1必须指定win.form对象的hwnd句柄<br>
+参数@2指定要调用的成员函数名，支持get元方法ownerCall特性<br>
+可添加不定个数的调用参数</p>
+
+<p><a id="thread.callWndMeta"></a></p>
+
+<h3>thread.callWndMeta</h3>
+
+<p>跨线程传输的窗口对象元表,用于支持跨线程调用</p>
+
+<p><a id="thread.callable"></a></p>
+
+<h3>thread.callable()</h3>
+
+<p>开启界面线程非窗口对象的多线程界面回调功能。<br>
+此函数会将对象的_serialize 元方法指定为 thread._callableSerialize,<br>
+用于在界面线程内启用对象跨线程调用支持,注意启用后无法撤消,<br>
+启用此特性后,对象传入其他线程后所有成员调用都将回到界面线程执行,  </p>
+
+<p>参数指定 talbe 类型对象<br>
+如果成功、或者对象已支持跨线程调用返回 true<br>
+失败返回null或false</p>
+
+<p><a id="thread.callbackInitialize"></a></p>
+
+<h3>thread.callbackInitialize()</h3>
+
+<p>初始化COM套间<br>
+调用此函数以后，创建线程的外部组件应在线程退出前回调 thread.callbackUninitialize  </p>
+
+<p>此函数只能用于：<br>
+thread.tocdecl，tostdcall，tofastcall 等创建的多线程原生回调函数，<br>
+并且只会在第一次成功执行时返回 true，多次调用忽略不执行并返回 null 空值</p>
+
+<p><a id="thread.callbackUninitialize"></a></p>
+
+<h3>thread.callbackUninitialize</h3>
+
+<p>原生回调函数指针，<br>
+函数原型为 void __stdcall callbackUninitialize(DWORD dwThreadId)，  </p>
+
+<p>如果dwThreadId参数不是当前线程ID，此函数忽略不执行，<br>
+否则aardio执行一系列资源释放操作，如果之前调用了thread.callbackInitialize 函数，<br>
+那么此函数会负责释放 COM 套间。  </p>
+
+<p>此函数只能用于：<br>
+thread.tocdecl，tostdcall，tofastcall 等创建的多线程原生回调函数，<br>
+如果线程没有调用过 thread.callbackInitialize，不必要调用此函数  </p>
+
+<p>如果没有使用此回调函数释放资源<br>
+aardio 将在线程退出后逐渐回收该线程环境</p>
+
+<p><a id="thread.create"></a></p>
+
+<h3>thread.create</h3>
+
+<p>创建线程,返回句柄、线程ID<br>
+线程句柄不再使用时,应调用raw.closehandle 函数关闭。<br>
+第一个参数是启动线程的函数,其余参数传递给线程函数。  </p>
+
+<p>注意线程函数有独立的全局变量环境,线程引用的库应当在线程函数内 import</p>
+
+<p><a id="thread.create"></a></p>
+
+<h3>thread.create(aardio文件路径,调用参数)</h3>
+
+<p>创建线程运行 *.aardio 文件,<br>
+该文件所在目录将被设定为此线程的应用程序根目录,<br>
+该目录下的&quot;/lib/&quot;目录将被设定为用户库目录,<br>
+在线程文件内可使用owner参数获取这里传入的首个调用参数</p>
+
+<p><a id="thread.create"></a></p>
+
+<h3>thread.create(线程函数,调用参数)</h3>
+
+<pre><code class="aardio language-aardio">
+    function( ... ){  
+        import win; //线程需要独立引用库  
+
+
+    },  
+    /*传入线程函数的实参写到这里  
+线程函数的 owner 参数总是为空*/  
+)
+</code></pre>
+
+<p><a id="thread.createSuspended"></a></p>
+
+<h3>thread.createSuspended(suspended,cb)</h3>
+
+<p>suspended参数指定thread.create函数创建的线程是否为暂停状态<br>
+如果@cb参数指定了线程函数,则执行线程函数后恢复原来的设置<br>
+其他参数作为回调函数的参数,线程函数的返回值为此函数的返回值  </p>
+
+<p>注意线程函数有独立的全局变量环境,线程引用的库应当在线程函数内 import</p>
+
+<p><a id="thread.delay"></a></p>
+
+<h3>thread.delay()</h3>
+
+<p>参数指定延时值,单位毫秒,参数不可省略,<br>
+导入 win 库的界面线程内会执行 win.delay，<br>
+否则执行 sleep 函数。  </p>
+
+<p>如果当前线程导入了 win 库则退出消息循环返回null,否则返回true<br>
+否则调用 sleep 函数并总是返回 true</p>
+
+<p><a id="thread.get"></a></p>
+
+<h3>thread.get(&quot;标志键&quot;)</h3>
+
+<p>从进程共享内存区读取一个值<br>
+此函数禁止在任何元方法中使用<br>
+标志键可以是数值、字符串或pointer类型指针<br>
+此函数禁止在任何元方法中使用</p>
+
+<p><a id="thread.getExitCode"></a></p>
+
+<h3>thread.getExitCode(线程句柄)</h3>
+
+<p>获取线程函数返回代码</p>
+
+<p><a id="thread.getHandle"></a></p>
+
+<h3>thread.getHandle()</h3>
+
+<p>返回当前线程伪句柄<br>
+该句柄仅可在当前线程使用、可复制</p>
+
+<p><a id="thread.getId"></a></p>
+
+<h3>thread.getId()</h3>
+
+<p>返回当前线程ID。<br>
+将线程句柄转换为线程 ID 请使用 ::Kernel32.GetThreadId 函数。</p>
+
+<p><a id="thread.getMainId"></a></p>
+
+<h3>thread.getMainId()</h3>
+
+<p>返回当前进程主线程ID<br>
+开发环境中返回IDE主线程</p>
+
+<p><a id="thread.getWnd"></a></p>
+
+<h3>thread.getWnd(hwnd,&quot;属性名&quot;)</h3>
+
+<p>获取UI线程窗体对象的属性,<br>
+调用同一线程中的目标窗口函数时，此函数忽略不操作</p>
+
+<p><a id="thread.init"></a></p>
+
+<h3>thread.init(k,v)</h3>
+
+<p>如果参数k指定名称的线程共享变量为空值,<br>
+则初始化该变量值为参数v指定的值</p>
+
+<p><a id="thread.invoke"></a></p>
+
+<h3>thread.invoke</h3>
+
+<p>创建线程但不返回线程句柄，线程句柄已自动关闭。</p>
+
+<p><a id="thread.invoke"></a></p>
+
+<h3>thread.invoke(aardio文件路径,调用参数)</h3>
+
+<p>创建线程运行 *.aardio 文件，不返回线程句柄。<br>
+该文件所在目录将被设定为此线程的应用程序根目录,<br>
+该目录下的&quot;/lib/&quot;目录将被设定为用户库目录,<br>
+在线程文件内可使用owner参数获取这里传入的首个调用参数。</p>
+
+<p><a id="thread.invoke"></a></p>
+
+<h3>thread.invoke(线程函数,其他调用参数)</h3>
+
+<pre><code class="aardio language-aardio">thread.invoke(   
+    function(){  
+        /*创建线程但不返回线程句柄。  
+注意线程函数有独立的全局变量环境,线程引用的库应当在线程函数内 import*/  
+    }  
+)
+</code></pre>
+
+<p><a id="thread.invokeAndWait"></a></p>
+
+<h3>thread.invokeAndWait(func,...)</h3>
+
+<pre><code class="aardio language-aardio">thread.invokeAndWait(func,...invokeAndWait(  
+    function(){  
+        import win;  
+        /*创建工作线程执行参数@1指定的线程函数,  
+参数@1之后的其他可选参数会作为调用线程函数的参数。  
+调用并等待线程函数执行完毕,然后获取此线程函数的返回值,  
+在界面线程等待时界面仍可响应用户操作，线程函数的返回值会返回给调用线程,  
+线程函数拥有独立的全局变量，并应遵守多线程调用规则*/  
+    }   
+)
+</code></pre>
+
+<p><a id="thread.invokeEx"></a></p>
+
+<h3>thread.invokeEx(线程函数,其他参数)</h3>
+
+<pre><code class="aardio language-aardio">thread.invokeEx(   
+    function(){  
+        /*创建线程并等待线程执行完成,然后自动关闭线程句柄。  
+可用于原生多线程回调函数中创建独立线程以启用 COM 接口,  
+注意线程函数有独立的全局变量环境,线程引用的库应当在线程函数内 import*/  
+    }  
+)
+</code></pre>
+
+<p><a id="thread.lock"></a></p>
+
+<h3>thread.lock(&quot;临界区名称&quot;)</h3>
+
+<p>请求锁定并进入临界区<br>
+一个线程进入指定名字临界区,其他线程必须等待,<br>
+直到当前进入临界区的代码调用thread.unlock解锁</p>
+
+<p><a id="thread.lock"></a></p>
+
+<h3>thread.lock(&quot;临界区名称&quot;,执行函数)</h3>
+
+<pre><code class="aardio language-aardio">thread.lock(&quot;临界区名称&quot;,function(){  
+    /*退出函数自动解锁临界区,返回此函数的返回值*/  
+})
+</code></pre>
+
+<p><a id="thread.main"></a></p>
+
+<h3>thread.main()</h3>
+
+<p>当前线程是否 主线程。</p>
+
+<p><a id="thread.open"></a></p>
+
+<h3>thread.open</h3>
+
+<p>传入线程 ID 并返回打开的线程句柄。<br>
+将线程句柄转换为线程 ID 请使用 ::Kernel32.GetThreadId 函数。</p>
+
+<p><a id="thread.open"></a></p>
+
+<h3>thread.open(线程ID,权限,句柄是否可继承)</h3>
+
+<p>打开线程句柄，失败请使用 ..lasterr() 获取错误信息.<br>
+参数二可省略，默认为_THREAD_ALL_ACCESS<br>
+参数三默认为false<br>
+返回的句柄必须使用 raw.closehandle()关闭</p>
+
+<p><a id="thread.resume"></a></p>
+
+<h3>thread.resume(线程句柄)</h3>
+
+<p>继续执行</p>
+
+<p><a id="thread.set"></a></p>
+
+<h3>thread.set(&quot;标志键&quot;, )</h3>
+
+<p>写入一个值到进程共享内存区<br>
+标志键可以是数值、字符串或pointer类型指针、赋值为null则删除该共享键值对<br>
+此函数禁止在任何元方法中使用</p>
+
+<p><a id="thread.setAffinity"></a></p>
+
+<h3>thread.setAffinity(1,)</h3>
+
+<p>指定线程在哪个CPU上运行,成功返回原CPU序号,失败返回0,<br>
+参数@1指定CPU,参数@2指定线程句柄<br>
+省略参数@2在设置当前线程</p>
+
+<p><a id="thread.setWnd"></a></p>
+
+<h3>thread.setWnd(hwnd,&quot;属性名&quot;,属性值)</h3>
+
+<p>设置UI线程窗体对象的属性,<br>
+调用同一线程中的目标窗口函数时，此函数忽略不操作</p>
+
+<p><a id="thread.stillActive"></a></p>
+
+<h3>thread.stillActive()</h3>
+
+<p>线程是否未退出,参数为线程句柄</p>
+
+<p><a id="thread.stop"></a></p>
+
+<h3>thread.stop(退出代码)</h3>
+
+<p>终止当前线程。</p>
+
+<p><a id="thread.suspend"></a></p>
+
+<h3>thread.suspend(线程句柄)</h3>
+
+<p>暂停执行<br>
+注意线程是否正在使用互斥锁</p>
+
+<p><a id="thread.terminate"></a></p>
+
+<h3>thread.terminate(线程句柄,0)</h3>
+
+<p>强制终制线程,不推荐使用<br>
+参数二设定返回值,可通过thread.getExitCode获取。</p>
+
+<p><a id="thread.tocdecl(函数对象,"int"></a></p>
+
+<h3>thread.tocdecl(函数对象,&quot;int()&quot;,owner)</h3>
+
+<p>创建多线程回调函数,使用 cdecl 调用约定<br>
+回调线程不是当前线程应使用此函数替换 raw.tocdecl<br>
+回调函数使用独立的线程环境,所有 import 语句必须放在函数体内部<br>
+回调函数在同一线程触发时将复用已创建的线程环境<br>
+可选用参数@3指定回调 owner 参数,该参数必须符合跨线程传递规则<br>
+如果在回调线程内未调用 thread.callbackInitialize,则不能使用 COM 对象  </p>
+
+<p>其他参数、返回值规则与 raw 名字空间下同名函数相同</p>
+
+<p><a id="thread.tofastcall(函数对象,"int"></a></p>
+
+<h3>thread.tofastcall(函数对象,&quot;int()&quot;,owner)</h3>
+
+<p>创建多线程回调函数,使用 ms-fastcall 调用约定<br>
+回调线程不是当前线程应使用此函数替换 raw.tostdcall<br>
+回调函数使用独立的线程环境,所有 import 语句必须放在函数体内部<br>
+回调函数在同一线程触发时将复用已创建的线程环境<br>
+可选用参数@3指定回调 owner 参数,该参数必须符合跨线程传递规则<br>
+如果在回调线程内未调用 thread.callbackInitialize,则不能使用 COM 对象  </p>
+
+<p>其他参数、返回值规则与 raw 名字空间下同名函数相同</p>
+
+<p><a id="thread.tostdcall(函数对象,"int"></a></p>
+
+<h3>thread.tostdcall(函数对象,&quot;int()&quot;,owner)</h3>
+
+<p>创建多线程回调函数,使用 stdcall 调用约定<br>
+回调线程不是当前线程应使用此函数替换 raw.tostdcall<br>
+回调函数使用独立的线程环境,所有 import 语句必须放在函数体内部<br>
+回调函数在同一线程触发时将复用已创建的线程环境<br>
+可选用参数@3指定回调 owner 参数,该参数必须符合跨线程传递规则<br>
+如果在回调线程内未调用 thread.callbackInitialize,则不能使用 COM 对象  </p>
+
+<p>其他参数、返回值规则与 raw 名字空间下同名函数相同</p>
+
+<p><a id="thread.unlock"></a></p>
+
+<h3>thread.unlock(&quot;临界区名称&quot;)</h3>
+
+<p>解锁释放当前占用的临界区,<br>
+调用thread.lock且指定了执行函数时不需要调用此函数解锁</p>
+
+<p><a id="thread.unlock"></a></p>
+
+<h3>thread.unlock()</h3>
+
+<p>解锁<br>
+等效于thread.unlock(&quot;default&quot;)</p>
+
+<p><a id="thread.var"></a></p>
+
+<h3>thread.var</h3>
+
+<p>创建线程共享变量 - 可直接作为调用参数传入其他线程</p>
+
+<p><a id="thread.var"></a></p>
+
+<h3>thread.var()</h3>
+
+<p><a href="#threadvarObject">返回对象:threadvarObject</a></p>
+
+<p><a id="thread.var"></a></p>
+
+<h3>thread.var(name,value)</h3>
+
+<p>可选用参数@1指定共享变量名称,可选在参数@2中指定初始化值,<br>
+如果不指定共享变量名，则自动分配共享变量名,  </p>
+
+<p>线程共享变量不会自动释放,调用 set 函数设为 null 可删除线程变量,<br>
+如果确认没有线程再使用该变量，可调用 relase 函数释放共享变量名,<br>
+thread.var以及 thread.table 自动分配的线程共享变量名上限为<br>
+:0x3FFFFFFFFFFFFC0000000000000 个。<br>
+应及时调用返回对象的 release 函数释放不需要的线程共享变量</p>
+
+<p><a id="thread.wait"></a></p>
+
+<h3>thread.wait()</h3>
+
+<p>等待一个线程句柄返回<br>
+可选使用第二个参数指定超时值（单位毫秒）<br>
+成功返回true,超时返回false;</p>
+
+<p><a id="thread.waitAll"></a></p>
+
+<h3>thread.waitAll()</h3>
+
+<p>等待一个或多个线程返回<br>
+参数可以是多个线程句柄,或包含多个线程句柄的数组<br>
+可选使用最后一个参数指定超时值（单位毫秒）<br>
+成功返回值为真,失败返回空,<br>
+返回值2为错误类型,该值为字符串&quot;timeout&quot;表示超时</p>
+
+<p><a id="thread.waitClose"></a></p>
+
+<h3>thread.waitClose()</h3>
+
+<p>等待一个或多个线程返回,并释放所有线程句柄<br>
+参数可以是多个线程句柄,或包含多个线程句柄的数组</p>
+
+<p><a id="thread.waitOne"></a></p>
+
+<h3>thread.waitOne</h3>
+
+<p>等待一个或多个线程其中一个返回<br>
+如果在界面线程中调用这个函数，会在等待过程中响应用户输入消息。</p>
+
+<p><a id="thread.waitOne"></a></p>
+
+<h3>thread.waitOne(...,timeout)</h3>
+
+<p>等待一个或多个线程其中一个返回，参数可以是多个线程句柄，<br>
+也可以用参数@1指定一个包含多个线程句柄的数组，<br>
+注意线程句柄总数不能大于64个。  </p>
+
+<p>可选使用最后一个 @timeout 参数指定超时值（单位毫秒）  </p>
+
+<p>成功返回值为完成的句柄在数组中的索引,失败返回空,<br>
+返回值2为错误类型,该值为字符串&quot;timeout&quot;表示超时</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/thread/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/thread/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/thread/_.md">Markdown 格式</a></p>
+
+</body> 
+</html>

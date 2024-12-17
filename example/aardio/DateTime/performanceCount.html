@@ -1,0 +1,62 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 高精度计时'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 高精度计时</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 高精度计时</h1><pre><code class="aardio language-aardio">//高精度计时
+import console;
+import time.performance;
+import time.period;
+
+/*
+计时器有关的函数，
+参数虽以毫秒为单位或返回毫秒值，但实际上并非真的以毫秒为精度。
+存在十几毫秒的误差是正常的。
+
+对于分时操作限制，这种设计本身是合理而且必要的。
+默认允许一定的计时精度误差有利于提升性能的稳定性、性能并降低功耗。
+任何地方都有限制，任何东西都不可能十全完美。
+*/
+
+//得到高精度计时，以毫秒为单位（千分之一秒），精度为微秒（千分之一毫秒）
+var tick = time.performance.tick;
+var tk = tick();
+
+//高精度延时，占用 CPU，而 sleep 函数则可以释放 CPU（ 存在精度误差 ）。
+time.performance.delay(1);
+
+var tk = tick() - tk;
+
+console.log( tk / 1000 ,&quot;秒&quot; );
+
+/*
+临时修改 sleep 函数精度。
+Win10 2004 前会影响系统全局设置，Win11 之后窗口不可见时不保证提升精度。
+*/
+time.period(1,function(){
+
+    var tk = tick()
+
+    sleep(1)
+
+    var tk2 = tick()
+
+    console.log(&quot;sleep 精度&quot; ,(tk2-tk)/ 1000 ,&quot;秒&quot; );    
+})
+
+console.pause();
+
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/aardio/DateTime/performanceCount.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/aardio/DateTime/performanceCount.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/aardio/DateTime/performanceCount.md">Markdown 格式</a>
+</body> 
+</html>

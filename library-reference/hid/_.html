@@ -1,0 +1,205 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - hid 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - hid 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>hid 库模块帮助文档</h1>
+
+<p><a id="hid"></a></p>
+
+<h2>hid 成员列表</h2>
+
+<p>USB HID 通信接口</p>
+
+<p><a id="hid.device"></a></p>
+
+<h3>hid.device()</h3>
+
+<p><a href="#hiddeviceObject">返回对象:hiddeviceObject</a></p>
+
+<p><a id="hid.device"></a></p>
+
+<h3>hid.device(path)</h3>
+
+<p>打开设备返回句柄,参数为each迭代器返回的deviceInfo.path</p>
+
+<p><a id="hid.device"></a></p>
+
+<h3>hid.device(vendorId,productId,serialNumber)</h3>
+
+<p>打开设备返回句柄</p>
+
+<p><a id="hid.device"></a></p>
+
+<h2>hid.device 成员列表</h2>
+
+<p><a id="hid.device.each"></a></p>
+
+<h3>hid.device.each()</h3>
+
+<p><a href="#hidapideviceInfoObject">返回对象:hidapideviceInfoObject</a></p>
+
+<p><a id="hid.device.each"></a></p>
+
+<h3>hid.device.each(vid,pid)</h3>
+
+<pre><code class="aardio language-aardio">for deviceInfo in hid.device.each() {
+
+}
+</code></pre>
+
+<p><a id="hidapideviceInfoObject"></a></p>
+
+<h2>hidapideviceInfoObject 成员列表</h2>
+
+<p><a id="hidapideviceInfoObject.interfaceNumber"></a></p>
+
+<h3>hidapideviceInfoObject.interfaceNumber</h3>
+
+<p>接口编号</p>
+
+<p><a id="hidapideviceInfoObject.manufacturerString"></a></p>
+
+<h3>hidapideviceInfoObject.manufacturerString</h3>
+
+<p>制造商,字符串</p>
+
+<p><a id="hidapideviceInfoObject.path"></a></p>
+
+<h3>hidapideviceInfoObject.path</h3>
+
+<p>设备路径</p>
+
+<p><a id="hidapideviceInfoObject.productId"></a></p>
+
+<h3>hidapideviceInfoObject.productId</h3>
+
+<p>产品ID</p>
+
+<p><a id="hidapideviceInfoObject.productString"></a></p>
+
+<h3>hidapideviceInfoObject.productString</h3>
+
+<p>产品,字符串</p>
+
+<p><a id="hidapideviceInfoObject.releaseNumber"></a></p>
+
+<h3>hidapideviceInfoObject.releaseNumber</h3>
+
+<p>设备版本号</p>
+
+<p><a id="hidapideviceInfoObject.serialNumber"></a></p>
+
+<h3>hidapideviceInfoObject.serialNumber</h3>
+
+<p>序列号</p>
+
+<p><a id="hidapideviceInfoObject.usage"></a></p>
+
+<h3>hidapideviceInfoObject.usage</h3>
+
+<p>使用ID</p>
+
+<p><a id="hidapideviceInfoObject.usagePage"></a></p>
+
+<h3>hidapideviceInfoObject.usagePage</h3>
+
+<p>使用页</p>
+
+<p><a id="hidapideviceInfoObject.vendorId"></a></p>
+
+<h3>hidapideviceInfoObject.vendorId</h3>
+
+<p>厂商ID</p>
+
+<p><a id="hiddeviceObject"></a></p>
+
+<h2>hiddeviceObject 成员列表</h2>
+
+<p><a id="hiddeviceObject.close"></a></p>
+
+<h3>hiddeviceObject.close()</h3>
+
+<p>关闭对象</p>
+
+<p><a id="hiddeviceObject.errorMessage"></a></p>
+
+<h3>hiddeviceObject.errorMessage()</h3>
+
+<p>返回错误信息</p>
+
+<p><a id="hiddeviceObject.getFeatureReport"></a></p>
+
+<h3>hiddeviceObject.getFeatureReport()</h3>
+
+<p>读功能报告,可选使用参数@1指定缓冲区长度</p>
+
+<p><a id="hiddeviceObject.getIndexedString"></a></p>
+
+<h3>hiddeviceObject.getIndexedString()</h3>
+
+<p>获取索引字符串,可选使用参数@1指定缓冲区长度</p>
+
+<p><a id="hiddeviceObject.getManufacturerString"></a></p>
+
+<h3>hiddeviceObject.getManufacturerString()</h3>
+
+<p>读制造商字符串,可选使用参数@1指定缓冲区长度</p>
+
+<p><a id="hiddeviceObject.getProductString"></a></p>
+
+<h3>hiddeviceObject.getProductString()</h3>
+
+<p>获取产品字符串,可选使用参数@1指定缓冲区长度</p>
+
+<p><a id="hiddeviceObject.getSerialNumberString"></a></p>
+
+<h3>hiddeviceObject.getSerialNumberString()</h3>
+
+<p>获取序列号字符串,可选使用参数@1指定缓冲区长度</p>
+
+<p><a id="hiddeviceObject.read"></a></p>
+
+<h3>hiddeviceObject.read()</h3>
+
+<p>读数据,可选使用参数@1指定缓冲区长度</p>
+
+<p><a id="hiddeviceObject.readTimeout"></a></p>
+
+<h3>hiddeviceObject.readTimeout()</h3>
+
+<p>读数据,参数@1指定毫秒单位的超时值,<br>
+可选使用参数@1指定缓冲区长度</p>
+
+<p><a id="hiddeviceObject.sendFeatureReport"></a></p>
+
+<h3>hiddeviceObject.sendFeatureReport(数据,长度,报告ID)</h3>
+
+<p>写功能报告,除参数@1以外其他参数为可选参数</p>
+
+<p><a id="hiddeviceObject.setNonblocking"></a></p>
+
+<h3>hiddeviceObject.setNonblocking(true)</h3>
+
+<p>启用非阻塞模式</p>
+
+<p><a id="hiddeviceObject.write"></a></p>
+
+<h3>hiddeviceObject.write(数据,长度,报告ID)</h3>
+
+<p>写数据,除参数@1以外其他参数为可选参数</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/hid/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/hid/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/hid/_.md">Markdown 格式</a></p>
+
+</body> 
+</html>

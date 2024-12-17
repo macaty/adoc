@@ -1,0 +1,303 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - aardio 常见陷阱'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - aardio 常见陷阱</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 常见陷阱</h1>
+
+<p>每一个编程语言都无法避免地存在各种各样的陷阱，
+如果我们事先了解它们就可以善用这些语法特性并且避免问题。</p>
+
+<h2>▶ 多返回值与不定参数 <a id="multiple-values" href="#multiple-values">&#x23;</a></h2>
+
+<p>在函数实参尾部调用有多个返回值的函数时，会增加多个调用参数。</p>
+
+<p>示例：</p>
+
+<pre><code class="aardio language-aardio">import console;
+
+var tab = {}
+
+table.push( tab,tonumber(&quot;1&quot;) );
+table.push( tab,tonumber(&quot;123&quot;) );
+
+console.log(&quot;你觉得tab应当有两个成员吗,下面我们看看 tab 里面是什么:&quot;)
+
+// tab 里面实际有四个元素,超出了我们的预期,这是怎么回事?
+console.varDump( tab )
+</code></pre>
+
+<p>aardio 支持多个返回值，也支持不定参数,
+当这些好用的功能在你没有准备的时候碰到一起，就制造了一个可能的陷阱。</p>
+
+<p><code>tonumber()</code> 转换字符串为数值，成功则返回两个值，一个是转换后的数值, 一个是该数值在字符串中的字节长度。例如 <code>tonumber(&quot;123&quot;)</code> 返回 <code>123,3</code> 。</p>
+
+<p>而 table.push() 函数接受不定个数的参数，它会将所有参数添加到数组的尾部。</p>
+
+<p>看: <code>table.push( tab,tonumber(&quot;123&quot;) );</code><br>
+在执行时就变成了这样： <code>table.push( tab,123,3 );</code></p>
+
+<p>那么如何解决这个问题呢?<br>
+很简单, 向下面这样加一对圆括号就可以：</p>
+
+<p><code>table.push( tab,( tonumber(&quot;123&quot;) ) );</code> </p>
+
+<p>圆括号建立的单值表达式只会返回一个值。</p>
+
+<p>参考：<a href="../../library-guide/builtin/table/_.html#push" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/builtin/table/_.html#push">table.push</a></p>
+
+<h2>▶ <code>return</code> 语句后面被忽略的代码 <a id="return" href="#return">&#x23;</a></h2>
+
+<p>在 aardio 中，
+return 语句后面的代码会被解释为注释语句。</p>
+
+<p>例如：</p>
+
+<pre><code class="aardio language-aardio">import console; 
+
+console.log(
+    function(){
+        return (123) )))))
+    }
+)
+console.pause();
+</code></pre>
+
+<p>上面的代码看起来似乎存在语句错误，但实际上是正确的。虽然这不会出什么问题，但应当避免这样写代码。</p>
+
+<p>参考：<a href="../../language-reference/function/result.html" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/function/result.html">return 语句</a></p>
+
+<h2>▶ 数组 <a id="array" href="#array">&#x23;</a></h2>
+
+<p>aardio 数组的起始索引为 1 而不是 0，这一点要特别注意。</p>
+
+<p>aardio 数组非常灵活，可以包含任意类型的数据，也可以嵌套，甚至可以包含非数组成员。</p>
+
+<p>在 aardio 中哈希表与数组都是表（ table ）, 表可以包含这两种类型的成员。</p>
+
+<p>基本规则：</p>
+
+<ul>
+<li>在 aardio 中数组默认指的是有序数组，有序数组的索引自 1 开始并且连续不断。</li>
+<li>数组不应包含 null 值 。</li>
+</ul>
+
+<p>aardio 中的数组操作函数，取数组长度的 <code>#</code> 操作符都只能用于有序数组。如果有序数组中包含 null 值，仍然作为有序数组操作则 aardio 并不保证数组的有效范围包含或不包含 null 值。</p>
+
+<p>正确的方法是避免将类似 <code>{1,null,null,null,null,5,6}</code> 这样的稀疏数组作为有序数组进行操作，例如应当使用 table.range 函数获取稀疏数组的索引范围而不是使用  <code>#</code> 操作符去获取有序数组长度。</p>
+
+<p>参考：</p>
+
+<ul>
+<li><a href="../../language-reference/datatype/table/_.html#sparse-array" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/datatype/table/_.html#sparse-array">稀疏数组</a></li>
+<li><a href="../../example/aardio/Array/sparse-array.html" tppabs="https://www.aardio.com/zh-cn/doc/example/aardio/Array/sparse-array.html">范例 - 含 null 数组</a></li>
+</ul>
+
+<h2>▶ 字符串连接与数值加运算 <a id="concat" href="#concat">&#x23;</a></h2>
+
+<p>数值加运算符为  <code>+</code><br>
+字符串连接操作符为 <code>++</code>  </p>
+
+<p>算术加与字符串连接是完全不同的操作，应当明确区分。</p>
+
+<p>当 <code>+</code> 运算符的两个操作数都是字符串，且任一操作数无法转换为数值时则转换为字符串连接。不应依赖此规则做字符串连接，以避免误操作与不必要的转换。</p>
+
+<p>引号（双引号、单引号、反引号）前后的 <code>+</code> 运算符将自动转换为字符串连接运算符 <code>++</code>。例如 <code>str + &quot;&quot;</code> 等价于  <code>str ++ &quot;&quot;</code> 。这种写法不会有歧义，在 aardio 中也很常见。</p>
+
+<p>但不能因为经常看到  <code>str + &quot;&quot;</code> 这样的代码，就认为使用 <code>str1 + str2</code> 适合用于连接字符串。</p>
+
+<p>实际上，如果  <code>str1 + str2</code> 的两个操作符都是字符串，且任一字符串不能转换为数值，就会转换为字符串连接。这会让我们更容易误以为  <code>str1 + str2</code> 的写法是正确的，直到有一天其中一个操作数可以转换为数值，bug 就来了。</p>
+
+<p>举例：</p>
+
+<pre><code class="aardio language-aardio">var str = &quot;&quot;
+
+var str2 = 2;
+
+
+/*
+两个字符串相加，如果其中一个字符串可以转换为数值，
+则执行算术加运算而非连接操作。
+
+因为 str 之前存储的空字符串能自动转换为数值 0，
+所以下面的 str 在与 str2 自动做算术加运算以后变成了数值 2。
+*/
+str += str2;
+
+var str3 = &quot;abc&quot;
+
+//报错，字符串 &quot;abc&quot; 不能与数值相加。
+str += str3;
+</code></pre>
+
+<p>参考：<a href="../../language-reference/datatype/datatype.html#type-coercion" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/datatype/datatype.html#type-coercion">自动类型转换</a> <a href="../../language-reference/operator/arithmetic.html#add" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/operator/arithmetic.html#add">+ 运算符</a></p>
+
+<p>正确写法是明确地用 <code>++</code> 连接字符串：</p>
+
+<pre><code class="aardio language-aardio">var str = &quot;&quot;;
+var str2 = 2;
+var str3 = &quot;abc&quot;;
+
+str ++= str2;
+str ++= str3
+</code></pre>
+
+<p>参考： <a href="../../language-reference/operator/concat.html" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/operator/concat.html">++ 操作符</a></p>
+
+<h2>▶ 等式判断与逻辑值转换 <a id="eq" href="#eq">&#x23;</a></h2>
+
+<p>aardio 的等式判断与逻辑值转换规则是比较容易掌握的。</p>
+
+<p>最主要的规则：</p>
+
+<ul>
+<li>任意值与 true,false 比较则先转换为布尔值，非 0. 非 null、非 false 为 true，反之为 false。 </li>
+<li>非布尔值与数值比较，则先转换为数值，然后比较数值是否相等。<br></li>
+</ul>
+
+<h3>1. 逻辑值比较</h3>
+
+<p>根据前述原则： </p>
+
+<p><code>false == 0</code> 的结果为 true　。<br>
+<code>true == &quot;&quot;</code>的结果也为 true　。  </p>
+
+<p>因为以上等式中有一个操作数是布尔值，所以全部操作数都会转换为逻辑值以后再比较。</p>
+
+<h3>2. 数值比较</h3>
+
+<p>当我们将 <code>0 == &quot;&quot;</code> 比较时结果也是 true。</p>
+
+<p>这是因为当操作数中没有布尔值且存在数值时，会转换为数值进行比较。<code>&quot;&quot;</code> 转换为数值则为 <code>0</code>，所以与 0 是相等的。</p>
+
+<p><strong>当等式或不等式的操作数中只有数值而没有出现布尔值，就不应当错误地根据布尔值转换规则去推导结果。</strong></p>
+
+<h2>▶ <code>try catch</code> 只能用 <code>return</code> 语句退出自身 <a id="try" href="#try">&#x23;</a></h2>
+
+<p>参考：<a href="../../language-reference/statements/try.html" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/statements/try.html">try catch</a></p>
+
+<p>在 aardio 中 <code>try catch</code> 的行为更像一个立即执行的匿名函数。</p>
+
+<p>在  <code>try catch</code> 内部的  <code>return</code> 语句只会中断并退出 <code>try catch</code> 自身，而不会退出包含  <code>try catch</code> 的函数。</p>
+
+<p>而且也只能用 <code>return</code> 中断并退出 <code>try catch</code> 语句，不能对包含  <code>try catch</code> 的外部循环使用 <code>break</code> 或 <code>continue</code> 语句。</p>
+
+<p>如果需要在退出 try catch 语句以后退出函数，
+那么需要在 try catch 语句中使用一个额外的错误标记，然后在 try catch 语句结束后检查该标记并退出函数。</p>
+
+<p>示例：</p>
+
+<pre><code class="aardio language-aardio">var func = function(){
+
+    var err;
+    try {
+        error(&quot;出错了&quot;)
+        return 123;
+    }
+    catch( e ){
+        err = e;
+    }
+
+    if( err ){
+        return null,err;
+    }
+
+    return 456;
+}
+</code></pre>
+
+<p>这的确带来一点小麻烦，但是如果擅于运用这个特性也会带来好处。</p>
+
+<p>例如：</p>
+
+<pre><code class="aardio language-aardio">try {
+
+    if( 条件1 ){
+        return;
+    }
+
+    if( 条件2 ){
+        return;
+    }
+
+    if( 条件3 ){
+        return;
+    }  
+
+}  
+</code></pre>
+
+<p>任何特性用不好就是陷阱，用好了也就不是陷阱了。</p>
+
+<h2>▶ 隐蔽的 _WM_QUIT <a id="wm_quit" href="#wm_quit">&#x23;</a></h2>
+
+<p>在窗口程序中，<code>win.loopMessage()</code>　负责启动消息循环。</p>
+
+<p>消息循环实际上是一个 <code>while</code> 循环，它就象公司的前台，不断的接待各种用户操作请求，然后分发给窗体回调函数。</p>
+
+<p>参考：<a href="../../library-guide/std/win/_.html#loopMessage" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/std/win/_.html#loopMessage">win.loopMessage</a></p>
+
+<p>在 aardio 中开发窗口程序非常简单，我们不需要显式地指定应用程序主窗体。当所有窗口退出，会自动退出 win.quitMessage() ， 所有事会自动地帮你处理得妥妥当当。</p>
+
+<p>但是这又导致了一个新的问题。</p>
+
+<p>我们看下面的代码。</p>
+
+<pre><code class="aardio language-aardio">import win.ui;
+/*DSG{{*/
+var winform = ..win.form( scroll=1;bottom=399;parent=...;text=&quot;aardio Form&quot;;right=599 )
+winform.add(  )
+/*}}*/
+
+winform.show(); //显示窗体
+winform.close() //关闭窗体
+
+/*
+所有窗体退出了, 看起来消息循环也不需要了?
+win.loopMessage() 看来也可以省略掉了!?
+*/
+
+//下面我们制造一个程序异常,理论上我们应当看到IDE弹出错误信息
+error(&quot;出错&quot;)
+</code></pre>
+
+<p>怎么回事？
+我们并没有看到错误信息 !
+也就是说这后面的代码要是出错了，我们将看不到任何提示。</p>
+
+<p>呃，窗口程序的机制可不是想象的那么简单。
+<code>win.loopMessage()</code> 还做了很多其他的事，例如在所有窗口退出以后，负责打扫卫生 - 清除所有的 _WM_QUIT 退出消息。</p>
+
+<p>解决办法是加上 <code>win.loopMessage()</code>。如果你忘记了这件事，那这些到处乱跑的 _WM_QUIT 会“帮助”你关掉你的错误对话框。</p>
+
+<p>正确代码如下：</p>
+
+<pre><code class="aardio language-aardio">import win.ui;
+/*DSG{{*/
+var winform = ..win.form( scroll=1;bottom=399;parent=...;text=&quot;aardio Form&quot;;right=599 )
+winform.add(  )
+/*}}*/
+
+winform.show();
+winform.close();
+
+//窗口程序不能缺少下面这句
+win.loopMessage();
+
+error(&quot;出错&quot;);
+</code></pre>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/guide/language/gotchas.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/guide/language/gotchas.md'" tppabs="https://www.aardio.com/zh-cn/doc/guide/language/gotchas.md">Markdown 格式</a></p>
+
+</body> 
+</html>

@@ -1,0 +1,175 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio ç¼–ç¨‹è¯­è¨€æ–‡æ¡£ - sys.cpu åº“æ¨¡å—å¸®åŠ©æ–‡æ¡£'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio ç¼–ç¨‹è¯­è¨€æ–‡æ¡£ - sys.cpu åº“æ¨¡å—å¸®åŠ©æ–‡æ¡£</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio ç¼–ç¨‹è¯­è¨€æ–‡æ¡£é¦–é¡µ"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio æ–‡æ¡£</span></a>
+<h1>sys.cpu åº“æ¨¡å—å¸®åŠ©æ–‡æ¡£</h1>
+
+<p><a id="sys.cpu"></a></p>
+
+<h2>sys.cpu æˆå‘˜åˆ—è¡¨</h2>
+
+<p><a id="sys.cpu.getBrand"></a></p>
+
+<h3>sys.cpu.getBrand()</h3>
+
+<p>è¿”å›CPUå•†æ ‡ä¿¡æ¯</p>
+
+<p><a id="sys.cpu.getFrequence"></a></p>
+
+<h3>sys.cpu.getFrequence()</h3>
+
+<p>è¿”å›è¡¨ç¤º CPU é¢‘ç‡çš„æ•°å€¼,ä»¥ MHz ä¸ºå•ä½</p>
+
+<p><a id="sys.cpu.getFrequence"></a></p>
+
+<h3>sys.cpu.getFrequence(true)</h3>
+
+<p>è¿”å›è¡¨ç¤º CPU é¢‘ç‡çš„å‹å¥½æ ¼å¼çš„å­—ç¬¦ä¸²,<br>
+å•ä½: GHz å°æ•°ä½æ•°ï¼š1</p>
+
+<p><a id="sys.cpu.getInfo"></a></p>
+
+<h3>sys.cpu.getInfo</h3>
+
+<pre><code class="aardio language-aardio">sys.cpu.getInfo(1/*æŸ¥è¯¢ç´¢å¼•*/,{ INT eax;INT ebx;INT ecx;INT edx } )
+</code></pre>
+
+<p><a id="sys.cpu.getInfo"></a></p>
+
+<h3>sys.cpu.getInfo()</h3>
+
+<p><a href="#sysCpuInfoObject">è¿”å›å¯¹è±¡:sysCpuInfoObject</a></p>
+
+<p><a id="sys.cpu.getInfoByWmi"></a></p>
+
+<h3>sys.cpu.getInfoByWmi()</h3>
+
+<p>ä½¿ç”¨ WMI æ¥å£ç±» win32_processor æŸ¥è¯¢å¤„ç†å™¨ä¿¡æ¯<br>
+å‚è€ƒ <a href="javascript:if(confirm('https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/win32-processor  \n\n¸ÃÎÄ¼şÎŞ·¨ÓÃ Teleport Ultra ÏÂÔØ, ÒòÎª ËüÊÇÒ»¸öÓò»òÂ·¾¶Íâ²¿±»ÉèÖÃÎªËüµÄÆôÊ¼µØÖ·µÄµØÖ·¡£  \n\nÄãÏëÔÚ·şÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/win32-processor'" tppabs="https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/win32-processor">https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/win32-processor</a>   </p>
+
+<p><a href="#sysCpuWmiInfoObject">è¿”å›å¯¹è±¡:sysCpuWmiInfoObject</a></p>
+
+<p><a id="sys.cpu.getMaxExtFunction"></a></p>
+
+<h3>sys.cpu.getMaxExtFunction()</h3>
+
+<p>CPUçš„æ‰©å±•ä¿¡æ¯æœ€å¤§æŸ¥è¯¢ç´¢å¼•</p>
+
+<p><a id="sys.cpu.getVender"></a></p>
+
+<h3>sys.cpu.getVender()</h3>
+
+<p>è¿”å›åˆ¶é€ å•†ä¿¡æ¯,ä»¥åŠCPUåŸºç¡€ä¿¡æ¯æœ€å¤§æŸ¥è¯¢ç´¢å¼•<br>
+Intelä¼šè¿”å›&quot;GenuineIntel&quot;,<br>
+AMDä¼šè¿”å›&quot;AuthenticAMD&quot;</p>
+
+<p><a id="sysCpuInfoObject"></a></p>
+
+<h2>sysCpuInfoObject æˆå‘˜åˆ—è¡¨</h2>
+
+<p><a id="sysCpuInfoObject.eax"></a></p>
+
+<h3>sysCpuInfoObject.eax</h3>
+
+<p>æ•´æ•°</p>
+
+<p><a id="sysCpuInfoObject.ebx"></a></p>
+
+<h3>sysCpuInfoObject.ebx</h3>
+
+<p>æ•´æ•°</p>
+
+<p><a id="sysCpuInfoObject.ecx"></a></p>
+
+<h3>sysCpuInfoObject.ecx</h3>
+
+<p>æ•´æ•°</p>
+
+<p><a id="sysCpuInfoObject.edx"></a></p>
+
+<h3>sysCpuInfoObject.edx</h3>
+
+<p>æ•´æ•°</p>
+
+<p><a id="sysCpuWmiInfoObject"></a></p>
+
+<h2>sysCpuWmiInfoObject æˆå‘˜åˆ—è¡¨</h2>
+
+<p><a id="sysCpuWmiInfoObject.?"></a></p>
+
+<h3>sysCpuWmiInfoObject.?</h3>
+
+<p>å‚è€ƒ <a href="javascript:if(confirm('https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/win32-processor  \n\n¸ÃÎÄ¼şÎŞ·¨ÓÃ Teleport Ultra ÏÂÔØ, ÒòÎª ËüÊÇÒ»¸öÓò»òÂ·¾¶Íâ²¿±»ÉèÖÃÎªËüµÄÆôÊ¼µØÖ·µÄµØÖ·¡£  \n\nÄãÏëÔÚ·şÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/win32-processor'" tppabs="https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/win32-processor">https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/win32-processor</a></p>
+
+<p><a id="sysCpuWmiInfoObject.AddressWidth"></a></p>
+
+<h3>sysCpuWmiInfoObject.AddressWidth</h3>
+
+<p>CPU ä½å®½,å€¼ä¸º 32 æˆ– 64</p>
+
+<p><a id="sysCpuWmiInfoObject.Architecture"></a></p>
+
+<h3>sysCpuWmiInfoObject.Architecture</h3>
+
+<p>æŒ‡ä»¤é›†æ¶æ„,x86 å€¼ä¸º 0,x64 å€¼ä¸º 9</p>
+
+<p><a id="sysCpuWmiInfoObject.CurrentClockSpeed"></a></p>
+
+<h3>sysCpuWmiInfoObject.CurrentClockSpeed</h3>
+
+<p>CPU å½“å‰é€Ÿåº¦,å•ä½ MHz,<br>
+è¯¥å€¼é™¤ 1000 å¯æ¢ç®—ä¸ºå•ä½ GHz<br>
+ä½¿ç”¨ math.round å¯ä»¥é™å®šå°æ•°ä½æ•°</p>
+
+<p><a id="sysCpuWmiInfoObject.DeviceID"></a></p>
+
+<h3>sysCpuWmiInfoObject.DeviceID</h3>
+
+<p>è®¾å¤‡ ID</p>
+
+<p><a id="sysCpuWmiInfoObject.Manufacturer"></a></p>
+
+<h3>sysCpuWmiInfoObject.Manufacturer</h3>
+
+<p>ç”Ÿäº§å‚å•†,ä¾‹å¦‚&quot;GenuineIntel&quot;</p>
+
+<p><a id="sysCpuWmiInfoObject.MaxClockSpeed"></a></p>
+
+<h3>sysCpuWmiInfoObject.MaxClockSpeed</h3>
+
+<p>CPU æœ€å¤§é€Ÿåº¦,å•ä½ MHz,<br>
+è¯¥å€¼é™¤ 1000 å¯æ¢ç®—ä¸ºå•ä½ GHz</p>
+
+<p><a id="sysCpuWmiInfoObject.Name"></a></p>
+
+<h3>sysCpuWmiInfoObject.Name</h3>
+
+<p>è®¾å¤‡å</p>
+
+<p><a id="sysCpuWmiInfoObject.NumberOfCores"></a></p>
+
+<h3>sysCpuWmiInfoObject.NumberOfCores</h3>
+
+<p>CPU æ ¸å¿ƒæ•°</p>
+
+<p><a id="sysCpuWmiInfoObject.NumberOfLogicalProcessors"></a></p>
+
+<h3>sysCpuWmiInfoObject.NumberOfLogicalProcessors</h3>
+
+<p>CPU é€»è¾‘æ ¸å¿ƒæ•°</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/sys/cpu.md  \n\n¸ÃÎÄ¼şÎŞ·¨ÓÃ Teleport Ultra ÏÂÔØ, ÒòÎª Ëü²»ÔÚÏîÄ¿ÎÄ¼şÀàĞÍ¹æ·¶ÄÚ¡£  \n\nÄãÏëÔÚ·şÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/sys/cpu.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/sys/cpu.md">Markdown æ ¼å¼</a></p>
+
+</body> 
+</html>

@@ -1,0 +1,160 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - time.zone 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - time.zone 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>time.zone 库模块帮助文档</h1>
+
+<p><a id="time.zone"></a></p>
+
+<h2>time.zone 成员列表</h2>
+
+<p><a id="time.zone.getInfo"></a></p>
+
+<h3>time.zone.getInfo()</h3>
+
+<p>返回当前时区信息  </p>
+
+<p><a href="#timeZoneInfoObject">返回对象:timeZoneInfoObject</a></p>
+
+<p><a id="time.zone.setInfo"></a></p>
+
+<h3>time.zone.setInfo(zoneInfo)</h3>
+
+<pre><code class="aardio language-aardio">time.zone.setInfo( bias = -480 )
+</code></pre>
+
+<p><a id="time.zone.toLocal"></a></p>
+
+<h3>time.zone.toLocal()</h3>
+
+<p><a href="_.html#timeObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/time/_.html#timeObject">返回对象:timeObject</a></p>
+
+<p><a id="time.zone.toLocal"></a></p>
+
+<h3>time.zone.toLocal(时间对象,时差)</h3>
+
+<p>参数一为time对象,<br>
+时差以分钟为单位,默认取当前时区时差<br>
+应用ISO 8601格式</p>
+
+<p><a id="time.zone.toUtc"></a></p>
+
+<h3>time.zone.toUtc()</h3>
+
+<p><a href="_.html#timeObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/time/_.html#timeObject">返回对象:timeObject</a></p>
+
+<p><a id="time.zone.toUtc"></a></p>
+
+<h3>time.zone.toUtc(时间对象,时差)</h3>
+
+<p>参数一为time对象,<br>
+时差以分钟为单位,默认取当前时区时差<br>
+应用ISO 8601格式</p>
+
+<p><a id="timeZoneInfoObject."></a></p>
+
+<h2>timeZoneInfoObject. 成员列表</h2>
+
+<p><a id="timeZoneInfoObject..bias"></a></p>
+
+<h3>timeZoneInfoObject..bias</h3>
+
+<p>时差</p>
+
+<p><a id="timeZoneInfoObject..daylightBias"></a></p>
+
+<h3>timeZoneInfoObject..daylightBias</h3>
+
+<p>夏令时差</p>
+
+<p><a id="timeZoneInfoObject..daylightDate"></a></p>
+
+<h3>timeZoneInfoObject..daylightDate</h3>
+
+<p>夏令时  </p>
+
+<p><a href="_.html#timeObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/time/_.html#timeObject">返回对象:timeObject</a></p>
+
+<p><a id="timeZoneInfoObject..daylightName"></a></p>
+
+<h3>timeZoneInfoObject..daylightName</h3>
+
+<p>夏令时区名</p>
+
+<p><a id="timeZoneInfoObject..formatBias"></a></p>
+
+<h3>timeZoneInfoObject..formatBias()</h3>
+
+<p>格式化如：+08:00</p>
+
+<p><a id="timeZoneInfoObject..now"></a></p>
+
+<h3>timeZoneInfoObject..now()</h3>
+
+<p>当前时间  </p>
+
+<p><a href="_.html#timeObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/time/_.html#timeObject">返回对象:timeObject</a></p>
+
+<p><a id="timeZoneInfoObject..standardBias"></a></p>
+
+<h3>timeZoneInfoObject..standardBias</h3>
+
+<p>标准时差</p>
+
+<p><a id="timeZoneInfoObject..standardDate"></a></p>
+
+<h3>timeZoneInfoObject..standardDate</h3>
+
+<p>当前时间  </p>
+
+<p><a href="_.html#timeObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/time/_.html#timeObject">返回对象:timeObject</a></p>
+
+<p><a id="timeZoneInfoObject..standardName"></a></p>
+
+<h3>timeZoneInfoObject..standardName</h3>
+
+<p>时区名</p>
+
+<p><a id="timeZoneInfoObject..toLocal"></a></p>
+
+<h3>timeZoneInfoObject..toLocal()</h3>
+
+<p><a href="_.html#timeObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/time/_.html#timeObject">返回对象:timeObject</a></p>
+
+<p><a id="timeZoneInfoObject..toLocal"></a></p>
+
+<h3>timeZoneInfoObject..toLocal(时间对象)</h3>
+
+<p>UTC时间转换为区域时间<br>
+省略参数则使用当前时间<br>
+应用ISO 8601格式</p>
+
+<p><a id="timeZoneInfoObject..toUtc"></a></p>
+
+<h3>timeZoneInfoObject..toUtc()</h3>
+
+<p><a href="_.html#timeObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/time/_.html#timeObject">返回对象:timeObject</a></p>
+
+<p><a id="timeZoneInfoObject..toUtc"></a></p>
+
+<h3>timeZoneInfoObject..toUtc(时间对象)</h3>
+
+<p>区域时间转换为UTC时间<br>
+省略参数则使用当前时间<br>
+应用ISO 8601格式</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/time/zone.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/time/zone.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/time/zone.md">Markdown 格式</a></p>
+
+</body> 
+</html>

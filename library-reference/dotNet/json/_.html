@@ -1,0 +1,110 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - dotNet.json 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - dotNet.json 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>dotNet.json 库模块帮助文档</h1>
+
+<p><details>  <summary>说明</summary>  <p>
+此扩展库基于开源的 Newtonsoft.Json： 
+<a href="javascript:if(confirm('https://github.com/JamesNK/Newtonsoft.Json  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='https://github.com/JamesNK/Newtonsoft.Json'" tppabs="https://github.com/JamesNK/Newtonsoft.Json">https://github.com/JamesNK/Newtonsoft.Json</a></p>
+
+<p>JObject 用法：
+<a href="javascript:if(confirm('https://www.newtonsoft.com/json/help/html/t_newtonsoft_json_linq_jobject.htm  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='https://www.newtonsoft.com/json/help/html/t_newtonsoft_json_linq_jobject.htm'" tppabs="https://www.newtonsoft.com/json/help/html/t_newtonsoft_json_linq_jobject.htm">https://www.newtonsoft.com/json/help/html/t_newtonsoft_json_linq_jobject.htm</a>
+</p></details></p>
+
+<p><a id="dotNet.json"></a></p>
+
+<h2>dotNet.json 成员列表</h2>
+
+<p>指向 .NET 名字空间 Newtonsoft.Json。  </p>
+
+<p>导入此扩展库，则所有 aardio 导入的 .NET 对象（dotNet.object）<br>
+自动支持 web.json.stringify 函数。<br>
+dotNet.createArrayList 返回的原生 .NET 对象除外  </p>
+
+<p>此扩展自动注册内存程序集 Newtonsoft.Json.dll<br>
+自动创建 Newtonsoft.Json 名字空间</p>
+
+<p><a id="dotNet.json.DeserializeObject"></a></p>
+
+<h3>dotNet.json.DeserializeObject()</h3>
+
+<p>将参数指定的 JSON 转为 .Net 对象。<br>
+参数 @1 指定 JSON，参数 @2 指定 .NET 类型。<br>
+参数 @2 可直指定 dotNet.import 导入的类，例如 System.Data.DataTable。<br>
+或调用 .NET 对象的 GetType 函数获取类型</p>
+
+<p><a id="dotNet.json.SerializeObject"></a></p>
+
+<h3>dotNet.json.SerializeObject()</h3>
+
+<p>将参数指定的 .Net 对象转为 JSON<br>
+如果参数@2指定为1，则添加缩进格式</p>
+
+<p><a id="Newtonsoft"></a></p>
+
+<h2>Newtonsoft 成员列表</h2>
+
+<p><a id="Newtonsoft.Json"></a></p>
+
+<h3>Newtonsoft.Json</h3>
+
+<pre><code class="aardio language-aardio">dotNet.json
+</code></pre>
+
+<p><a id="NewtonsoftLinqJObject"></a></p>
+
+<h2>NewtonsoftLinqJObject 成员列表</h2>
+
+<p><a id="NewtonsoftLinqJObject.SelectToken"></a></p>
+
+<h3>NewtonsoftLinqJObject.SelectToken()</h3>
+
+<p>用字符串参数 @1 指定的 JSON Path 查询 JSON。<br>
+返回值为 JToken 对象，可用 tostring 函数转换为 JSON</p>
+
+<p><a href="#NewtonsoftLinqJTokenObject">返回对象:NewtonsoftLinqJTokenObject</a></p>
+
+<p><a id="NewtonsoftLinqJTokenObject"></a></p>
+
+<h2>NewtonsoftLinqJTokenObject 成员列表</h2>
+
+<p><a id="NewtonsoftLinqJTokenObject.SelectToken"></a></p>
+
+<h3>NewtonsoftLinqJTokenObject.SelectToken()</h3>
+
+<p>用字符串参数 @1 指定的 JSON Path 查询 JSON。<br>
+返回值为 JToken 对象，可用 tostring 函数转换为 JSON</p>
+
+<p><a href="#NewtonsoftLinqJTokenObject">返回对象:NewtonsoftLinqJTokenObject</a></p>
+
+<p><a id="dotNet.json.Linq.JObject"></a></p>
+
+<h2>dotNet.json.Linq.JObject 成员列表</h2>
+
+<p>JSON 对象。<br>
+提供了一种灵活、高效的方式来处理 JSON 数据，允许开发者解析、查询、修改和生成 JSON</p>
+
+<p><a id="dotNet.json.Linq.JObject.Parse"></a></p>
+
+<h3>dotNet.json.Linq.JObject.Parse()</h3>
+
+<p>解析字符串参数 @1 指定的 JSON。</p>
+
+<p><a href="#NewtonsoftLinqJObject">返回对象:NewtonsoftLinqJObject</a></p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/dotNet/json/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/dotNet/json/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/dotNet/json/_.md">Markdown 格式</a></p>
+
+</body> 
+</html>

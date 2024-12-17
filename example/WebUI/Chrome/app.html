@@ -1,0 +1,95 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - app 应用 '>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - app 应用 </title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: app 应用 </h1><pre><code class="aardio language-aardio">//app 应用 
+import chrome.app;
+
+//调用系统 Edge（Chromium）、Chrome、Supermium 等 Chromium 内核浏览器写软件界面
+//XP、Win7 系统可使用 Supermium  以支持新 Chromium 内核。
+var theApp  = chrome.app();
+
+//指定允许chrome中使用JS直接调用的函数
+theApp.external = {
+
+    test = function(){
+       theApp.msgbox(&quot;页面js调用了aardio函数&quot;);
+    } 
+
+    //如果函数名第一个字符是$，则第一个回调参数$用于表示当前客户端,可作为xcall的参数使用
+    $test = function($){
+        theApp.xcall($,&quot;js函数&quot;)
+    }
+
+    tag = function(strs,...){
+        var args = {...}
+        for(i=#args;1;-1){
+            table.insert(strs,args[i],i+1);
+        }
+
+        strs = string.join(strs);
+        return strs;
+    }
+}
+
+//虚拟一个服务端页面，如果在﻿工程里直接添加一个文件到﻿工程就可以了
+//因为 /res/ 已设为 theApp.http.documentBase，这里不用再写 &quot;/res/index.aardio&quot;
+theApp.httpHandler[&quot;/index.aardio&quot; ] = /***
+    &lt;script src=&quot;/aardio.js&quot;&gt;&lt;/script&gt;
+    &lt;title&gt;aardio调用chrome&lt;/title&gt;
+    &lt;body&gt;
+        &lt;button onclick=&quot;aardio.test()&quot;&gt;调用aardio函数&lt;/button&gt;
+
+        &lt;pre&gt;
+        如果使用webpack等构建前端项目。
+        前端﻿工程中直接执行 npm i aardio 安装aardio.js即可。
+        然后JS中直接调用 import aardio from &#39;aardio&#39; 引入aardi.js
+        即可使用aardio对象( 已经做好了智能提示，可在d.ts中添加更多external接口函数 )
+
+        chrome.app支持系统已安装的Chrome、或其他兼容Chrome启动参数的浏览器，
+        并且可以支持即将成为WIN7,WIN10默认系统浏览器的Edge(Chromium版)
+        &lt;/pre&gt;
+
+        &lt;script&gt;
+        let $ = aardio.tag;
+        $`abc${123}ddd${456}`.then( v=&gt; document.body.insertAdjacentHTML(&quot;beforeEnd&quot;,&quot;aardio 解析的 JS 模板字符串:&quot;+v)  )
+        &lt;/script&gt;
+    &lt;body&gt;
+***/
+
+//此函数参数指定的回调函数会在网页端准备就绪后执行
+theApp.indexReady(
+    function($){ //参数 $ 表示当前连接到 aardio 的网页客户端
+        theApp.doScript($,`
+        alert(&quot;在 aardio 里执行了 JavaScript 代码&quot;)
+        `)
+    } 
+)
+
+//可选在调用 start 函数前用 theApp.setPos 或 theApp.center 调整窗口位置
+theApp.center();
+
+/*
+正式启动 Chrome 进程，
+如果文件名为 index.html 或 index.aardio，目录 &quot;/res/&quot; 会自动设为 theApp.http.documentBase。
+之后网页访问 &quot;/index.aardio&quot; 会自动转为 &quot;/res/index.aardio&quot; 。
+*/
+theApp.start(&quot;/res/index.aardio&quot;);
+
+//网页中可以调用 aardio.quit() 退出,也可以直接关闭 Chrome 窗口退出
+win.loopMessage();
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/WebUI/Chrome/app.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/WebUI/Chrome/app.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/WebUI/Chrome/app.md">Markdown 格式</a>
+</body> 
+</html>

@@ -1,0 +1,119 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - win.clip 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - win.clip 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>win.clip 库模块帮助文档</h1>
+
+<p><a id="win.clip"></a></p>
+
+<h2>win.clip 成员列表</h2>
+
+<p><a id="win.clip.eachFormat"></a></p>
+
+<h3>win.clip.eachFormat()</h3>
+
+<pre><code class="aardio language-aardio">for id,name in win.clip.eachFormat(){
+    /*遍历剪贴板的格式 ID，格式名称（name）  
+ID 小于 0x02FF (CF_PRIVATELAST) 为系统预定义的格式。  
+ID 自 0xC000 到 0xFFFF 为注册的自定义剪贴板格式。  
+
+ID 小于 0xC000 的 格式 name 返回友好名称或 &quot;Unknown&quot;，  
+其余返回注册的格式名。*/
+}
+</code></pre>
+
+<p><a id="win.clip.formats"></a></p>
+
+<h3>win.clip.formats()</h3>
+
+<p>获取剪贴板所有可用类型。<br>
+位置越靠前优先级越高，应优先使用。<br>
+返回值为数组,数组元素为表示格式的数值,例如 _CF_UNICODETEXT</p>
+
+<p><a id="win.clip.getFormatName"></a></p>
+
+<h3>win.clip.getFormatName</h3>
+
+<p>自剪贴板获取格式名称</p>
+
+<p><a id="win.clip.getFormatName"></a></p>
+
+<h3>win.clip.getFormatName(formatId,friendly)</h3>
+
+<p>自剪贴板获取格式名称。<br>
+参数 @formatId 指定剪贴板格式 ID。  </p>
+
+<p>如果 @friendly 为 true 则预定义格式返回友好名称。<br>
+否则仅返回 ::User32.RegisterClipboardFormat 注册的名称。  </p>
+
+<p>请注意 win.clip.eachFormat 迭代器始终返回友好名称</p>
+
+<p><a id="win.clip.read"></a></p>
+
+<h3>win.clip.read()</h3>
+
+<p>读取剪贴板文本</p>
+
+<p><a id="win.clip.readBitmap"></a></p>
+
+<h3>win.clip.readBitmap()</h3>
+
+<p>读取剪贴板位图句柄，<br>
+返回的位图句柄用完要自行销毁。<br>
+读取失败返回 null 。<br>
+└── 请谨慎处理位图释放责任。  </p>
+
+<p>可使用 com.picture.fromBitmap 将位图句柄转换为 com.picture 对象。<br>
+可使用 gdip.bitmap 构造函数将位图句柄转换为 gdip.bitmap 对象</p>
+
+<p><a id="win.clip.readUtf16"></a></p>
+
+<h3>win.clip.readUtf16()</h3>
+
+<p>读取剪贴板 UTF16 编码字符串</p>
+
+<p><a id="win.clip.test"></a></p>
+
+<h3>win.clip.test(formats...)</h3>
+
+<p>检测剪贴板是否存在参数指定的任意一个剪贴板类型。<br>
+@formats 可指定数值数组，也可以指 定一个或多个表示剪贴板类型的数值</p>
+
+<p><a id="win.clip.write"></a></p>
+
+<h3>win.clip.write()</h3>
+
+<p>调用 tostring 转换参数 @1 为文本并写入剪贴板。<br>
+可选使用参数 @2 指定在复制前是否清空剪贴板，默认清空。<br>
+成功返回剪贴板数据句柄。</p>
+
+<p><a id="win.clip.writeBitmap"></a></p>
+
+<h3>win.clip.writeBitmap</h3>
+
+<p>写入位图到剪贴板，<br>
+成功返回剪贴板数据句柄。</p>
+
+<p><a id="win.clip.writeBitmap"></a></p>
+
+<h3>win.clip.writeBitmap(位图句柄,接管位图,清空剪贴板)</h3>
+
+<p>写入位图到剪贴板  </p>
+
+<p>除位图句柄以外其他参数为可选参数。</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/clip/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/clip/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/clip/_.md">Markdown 格式</a></p>
+
+</body> 
+</html>

@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - sqlite 库 - 加密算法（命令行）'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - sqlite 库 - 加密算法（命令行）</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: sqlite 库 - 加密算法（命令行）</h1><pre><code class="aardio language-aardio">//sqlite 库 - 加密算法（命令行）
+import console.int;
+import process.sqlCipher;
+
+//数据库文件可指定中文路径、相对路径、URI 路径。指定 &quot;--help&quot; 参数列出所有可用参数
+var db = process.sqlCipher(&quot;sqlCiphers.DB&quot;,{csv=true});
+
+//写入 SQL 指令并关闭输入
+db.writeClose(`
+PRAGMA cipher_compatibility = 3;
+PRAGMA key = &#39;密码&#39;; 
+PRAGMA cipher_use_hmac = OFF;
+PRAGMA cipher_page_size = 1024;
+PRAGMA kdf_iter = 4000;
+SELECT * FROM film;
+`)
+
+//回显输出
+db.logResponse(); 
+
+/*
+
+//读取所有输出，要去掉前面的 db.logResponse();
+var csv = db.readAll();
+
+//解析 CSV 
+import string.database;
+var tab = string.database(&quot;,&quot;).parse( csv ); 
+console.dumpJson(tab);
+
+*/
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Database/sqlite/process.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Database/sqlite/process.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Database/sqlite/process.md">Markdown 格式</a>
+</body> 
+</html>

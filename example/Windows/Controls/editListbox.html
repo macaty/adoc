@@ -1,0 +1,66 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 缂栫▼璇█鑼冧緥 - 缂栬緫listbox'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 缂栫▼璇█鑼冧緥 - 缂栬緫listbox</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 缂栫▼璇█鏂囨。棣栭〉"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 鏂囨。</span></a>
+<h1>aardio 鑼冧緥: 缂栬緫listbox</h1><pre><code class="aardio language-aardio">//缂栬緫listbox
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;aardio form&quot;;right=349;bottom=249 )
+winform.add( 
+listbox={ bgcolor=16777215;bottom=192;right=284;left=75;top=36;
+items={ &quot;ddddddddddd&quot;;&quot;cccc&quot;;&quot;鍙屽嚮缂栬緫&quot; };z=1;text=&quot;listbox&quot;;edge=1;cls=&quot;listbox&quot; }
+)
+/*}}*/
+
+var lstEdit = winform.listbox.addCtrl(
+    edit = { 
+        cls=&quot;edit&quot;;
+        left=0;top=0;right=50;bottom=50;
+        autoResize=false ;
+        hide=1;
+        edge=1;  
+        wndproc = function(hwnd,message,wparam,lparam){ 
+            if( message == 0x8/*_WM_KILLFOCUS*/ 
+                || (message==0x101/*_WM_KEYUP*/ &amp;&amp; wparam == 0xD/*_VK_ENTER*/) ) {
+                if( owner.selIndex){
+                    winform.listbox.add(owner.text,owner.selIndex)
+                    winform.listbox.delete(owner.selIndex+1)
+                    owner.hide = true;
+                    winform.listbox.redraw()
+                }
+            }
+        };
+    }
+).edit
+
+winform.listbox.oncommand = function(id,event){
+    if( event ==  0x2/*_LBN_DBLCLK*/ ){
+
+        var rc = owner.getItemRect( owner.selIndex )
+        rc.bottom += 5;
+        lstEdit.setRect(rc) 
+
+        lstEdit.hide = false; 
+        lstEdit.text = winform.listbox.selText; 
+        lstEdit.selIndex = owner.selIndex ; 
+    }    
+}
+
+winform.show() 
+win.loopMessage();
+
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Windows/Controls/editListbox.md  \n\n该文件无法用 Teleport Ultra 下载, 因为 它不在项目文件类型规范内。  \n\n你想在服务器上打开它?'))window.location='https://www.aardio.com/zh-cn/doc/example/Windows/Controls/editListbox.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Windows/Controls/editListbox.md">Markdown 鏍煎紡</a>
+</body> 
+</html>

@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - aardio 调用 R 语言 - JSON'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - aardio 调用 R 语言 - JSON</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 调用 R 语言 - JSON</h1><pre><code class="aardio language-aardio">//aardio 调用 R 语言 - JSON
+import console;  
+import process.r;
+
+//安装 R 包，如果已安装忽略不操作
+process.r.require(&quot;jsonlite&quot;)
+
+//如果返回值为 JSON，则自动解析 JSON 并返回对象。
+ var obj = process.r.json( `
+library(&quot;jsonlite&quot;) # 载入 jsonlite 包
+
+args &lt;- commandArgs(T);
+tab &lt;- fromJSON(args[1], simplifyVector=FALSE,simplifyDataFrame=TRUE);
+
+#不要用 print ，cat 不会加一堆不必要的东西
+cat( toJSON(tab,auto_unbox=TRUE) )
+`, {
+  name1 = &quot;测试一下，传对象给 R 语言&quot;;
+  name2 = &quot;这是一个 aardio 对象&quot;
+})
+
+console.dumpJson(obj); 
+console.pause();
+
+/*
+https://cran.r-project.org/web/packages/jsonlite/jsonlite.pdf
+https://cran.r-project.org/web/packages/jsonlite/vignettes/json-aaquickstart.html
+
+R 里面单个值是原子向量，相当于别的语言里长度为 1 的数组。
+正常的单个值传给 R，给 R 的 jsonlite 转来转去就变成了 1 个元素的数组。
+
+要避免这个问题，toJSON 要加上 auto_unbox=TRUE 参数以自动解包为单个值。
+jsonlite 提供 unbox 函数，不过 unbox 用到非原子向量就会报错，所以还是用 auto_unbox。
+
+如果 toJSON 设置了 auto_unbox=TRUE 。
+那么 fromJSON 就要设置 simplifyVector=FALSE 以避免将长度为 1 的数组转换为原子向量。
+因为原子向量会被 unbox 为单个元素，要避免长度为 1的数组被 unbox 为单个值。
+
+simplifyDataFrame=TRUE 是指将符合条件的对象数组自动转换为 R 的数据帧。
+*/
+</code></pre>
+<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/R/json.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/R/json.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Languages/R/json.md">Markdown 格式</a>
+</body> 
+</html>

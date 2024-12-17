@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言文档 - process.job.limitKill 库模块帮助文档'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言文档 - process.job.limitKill 库模块帮助文档</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>process.job.limitKill 库模块帮助文档</h1>
+
+<p><a id="process.job"></a></p>
+
+<h2>process.job 成员列表</h2>
+
+<p><a id="process.job.limitKill"></a></p>
+
+<h3>process.job.limitKill</h3>
+
+<p>使用子进程对象的 assignToJobObject 函数绑定此对象,<br>
+则进程退出时子进程自动终止  </p>
+
+<p><a href="#processJobLimitKillObject">返回对象:processJobLimitKillObject</a></p>
+
+<p>创建新的 process.job.limitKill 作业对象</p>
+
+<p><a id="process.job.limitKill"></a></p>
+
+<h3>process.job.limitKill()</h3>
+
+<p><a href="#processJobLimitKillObject">返回对象:processJobLimitKillObject</a></p>
+
+<p><a id="process.job.limitKill"></a></p>
+
+<h3>process.job.limitKill(limitFlags)</h3>
+
+<p>创建新的 process.job.limitKill 作业对象。<br>
+limitFlags 可指定以下值：<br>
+_JOB_OBJECT_LIMIT_SILENT_BREAKAWAY_OK 下级进程不自动继承作业对象<br>
+_JOB_OBJECT_LIMIT_BREAKAWAY_O 允许创建下级进程时指定 CREATE_BREAKAWAY_FROM_JOB</p>
+
+<p><a id="processJobLimitKillObject"></a></p>
+
+<h2>processJobLimitKillObject 成员列表</h2>
+
+<p><a id="processJobLimitKillObject.assignProcess"></a></p>
+
+<h3>processJobLimitKillObject.assignProcess(processId)</h3>
+
+<p>将参数指定的进程绑定当前作业对象,<br>
+参数可以指定使用数值指定进程ID，或使用指针指定进程句柄,<br>
+也可以传入 process 或 process.popen 对象</p>
+
+<p><a id="processJobLimitKillObject.isIn"></a></p>
+
+<h3>processJobLimitKillObject.isIn(processId)</h3>
+
+<p>判断参数指定的进程是否属于当前作业对象,<br>
+参数可以指定使用数值指定进程ID，或使用指针指定进程句柄,<br>
+也可以传入 process 或 process.popen 对象</p>
+
+<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/process/job/limitKill.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/process/job/limitKill.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/process/job/limitKill.md">Markdown 格式</a></p>
+
+</body> 
+</html>
