@@ -9,8 +9,8 @@ import fonts.fontAwesome;
 var winform = win.form(text="aardio - AI 鑱婂ぉ鍔╂墜";right=759;bottom=607)
 winform.add(
 btnClear={cls="plus";text="娓呴櫎";left=589;top=572;right=655;bottom=602;align="left";color=3947580;db=1;dr=1;font=LOGFONT(h=-13);iconStyle={align="left";font=LOGFONT(h=-13;name='FontAwesome');padding={left=8}};iconText='\uF014';notify=1;textPadding={left=25};z=6};
-btnCopy={cls="plus";text="澶嶅埗";left=202;top=572;right=269;bottom=602;align="left";color=3947580;db=1;disabled=1;dr=1;font=LOGFONT(h=-13);iconStyle={align="left";font=LOGFONT(h=-13;name='FontAwesome');padding={left=8}};iconText='\uF0EA';notify=1;textPadding={left=25};z=11};
-btnSend={cls="plus";text="闂?AI";left=660;top=572;right=732;bottom=602;align="left";color=3947580;db=1;dr=1;font=LOGFONT(h=-13);iconStyle={align="left";font=LOGFONT(h=-13;name='FontAwesome');padding={left=8}};iconText='\uF007';notify=1;textPadding={left=25};z=5};
+btnCopy={cls="plus";text="澶嶅埗";left=202;top=572;right=269;bottom=602;align="left";color=3947580;db=1;disabled=1;dr=1;font=LOGFONT(h=-13);iconStyle={align="left";font=LOGFONT(h=-13;name='FontAwesome');padding={left=8}};iconText='\uF0C5';notify=1;textPadding={left=25};z=11};
+btnSend={cls="plus";text="闂?AI";left=660;top=572;right=732;bottom=602;align="left";color=3947580;db=1;dr=1;font=LOGFONT(h=-13);iconStyle={align="left";font=LOGFONT(h=-13;name='FontAwesome');padding={left=8}};iconText='\uF0AA';notify=1;textPadding={left=25};z=5};
 btnSetting={cls="plus";text="璁剧疆";left=513;top=572;right=580;bottom=602;align="left";color=3947580;db=1;dr=1;font=LOGFONT(h=-13);iconStyle={align="left";font=LOGFONT(h=-13;name='FontAwesome');padding={left=8}};iconText='\uF013';notify=1;textPadding={left=25};z=7};
 chkFix={cls="plus";text="鏇存";left=276;top=572;right=336;bottom=603;align="left";db=1;dr=1;font=LOGFONT(h=-13);iconStyle={align="left";font=LOGFONT(h=-14;name='FontAwesome')};iconText='\uF0C8 ';notify=1;textPadding={left=24};z=12};
 editMaxTokens={cls="edit";left=427;top=577;right=470;bottom=600;align="right";db=1;dr=1;edge=1;z=9};
@@ -170,6 +170,12 @@ winform.btnClear.oncommand = function(id,event){
 
 //鍝嶅簲鎸夐敭浜嬩欢锛岃緭鍏ョ敤鎴锋彁绀鸿瘝
 winform.btnSend.oncommand = function(id,event){
+    var prompt = winform.editPrompt.text;
+    if(!#prompt){
+        winform.msgboxErr("璇峰湪涓婇潰杈撳叆闂銆?);
+        winform.editPrompt.setFocus();
+        return;
+    }
 
     //鎸夐挳鏄剧ず绛夊緟鍔ㄧ敾
     winform.btnSend.disabledText = {'\uF254';'\uF251';'\uF252';'\uF253';'\uF250'}
@@ -184,8 +190,6 @@ winform.btnSend.oncommand = function(id,event){
         //Few-shot Learning
         assistantMsg.content = ide.aifix.markdown(assistantMsg.content,true);
     }
-
-    var prompt = winform.editPrompt.text;
 
     var knowledge = ""
     prompt = string.replace(prompt,"(https?\://<www\.>?aardio\.com/zh\-cn/doc/\S+)\.<html>|<md>",
@@ -210,6 +214,7 @@ winform.btnSend.oncommand = function(id,event){
     }
 
     //杈撳叆 AI 鎻愮ず璇?    wb.prompt( prompt );
+    winform.editPrompt.text = "";
 
     config.maxTokens = winform.spinMaxTokens.pos;
 
@@ -262,6 +267,7 @@ wb.onWriteEnd = function(){
     winform.btnClear.disabled = false;
     winform.btnCopy.disabled = false;
     winform.chkFix.disabled = false;
+    winform.editPrompt.setFocus();
 }
 
 //鍦?AI 鍥炲缁撴潫浠ュ墠鍥炶皟姝ゅ嚱鏁帮紝鑷姩淇 aardio 浠ｇ爜鍧椾腑鐨勫父瑙佸够瑙夐敊璇?import ide.aifix;
@@ -359,7 +365,7 @@ winform.btnCopy.oncommand = function(id,event){
             frmSetting.editModel.text = "gemini-2.0-flash-exp"
         }
         elseif(url=="https://api.x.ai/v1"){
-            frmSetting.editModel.text = "grok-beta"
+            frmSetting.editModel.text = "grok-2-1212"
         }
         elseif(url=="https://api.openai.com/v1"){
             frmSetting.editModel.text = "chatgpt-4o-latest"
@@ -635,6 +641,9 @@ winform.editPrompt.enablePopMenu(function(){
         { "鎻掑叆 鑷畾涔夋帶浠朵娇鐢ㄦ寚鍗楋紙鐣岄潰妯″潡鍖栵級";  function(id){
             winform.editPrompt.selText = " [鑷畾涔夋帶浠朵娇鐢ㄦ寚鍗梋(https://www.aardio.com/zh-cn/doc/library-guide/std/win/ui/ctrl/custom.html) "
         }; 0};
+        { "鎻掑叆 璋冪敤 Python 鏂囨。";  function(id){
+            winform.editPrompt.selText = " [aardio 璋冪敤 Python 鍏ラ棬鎸囧崡](https://www.aardio.com/zh-cn/doc/library-guide/ext/python/_.html) "
+        }; 0};
         { "鎻掑叆 瓒呯骇鐑敭鏂囨。";  function(id){
             winform.editPrompt.selText = " [瓒呯骇鐑敭浣跨敤鎸囧崡](https://www.aardio.com/zh-cn/doc/library-guide/std/key/hotkey.html) "
         }; 0};
@@ -743,5 +752,5 @@ win.loopMessage();
 
 ```````
 
-[Markdown 鏍煎紡](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Web/REST/aiChat.md  \n\n该文件无法用 Teleport Ultra 下载, 因为 它不在项目文件类型规范内。  \n\n你想在服务器上打开它?'))window.location='https://www.aardio.com/zh-cn/doc/example/Web/REST/aiChat.md')
+[Markdown 鏍煎紡](https://www.aardio.com/zh-cn/doc/example/Web/REST/aiChat.md)
 

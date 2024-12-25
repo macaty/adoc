@@ -62,5 +62,5 @@ MIME类型
 
 较大文件应使用save函数转存文件
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/fsys/multipartFormData.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/fsys/multipartFormData.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/fsys/multipartFormData.md)
 

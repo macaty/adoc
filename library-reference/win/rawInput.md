@@ -5,7 +5,7 @@
 
 原始输入（RAW INPUT）钩子�?
 相比 key.hook，RAW INPUT 支持的输入设备更多一些，例如游戏手柄，触摸屏........等等�?
-[参考文档](javascript:if(confirm('https://learn.microsoft.com/en-us/windows/win32/inputdev/about-raw-input?redirectedfrom=MSDN  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ������·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ�����?'))window.location='https://learn.microsoft.com/en-us/windows/win32/inputdev/about-raw-input?redirectedfrom=MSDN')
+[参考文档](https://learn.microsoft.com/en-us/windows/win32/inputdev/about-raw-input?redirectedfrom=MSDN)
 
 ### win.rawInput.getData()
 
@@ -118,5 +118,5 @@ Y坐标移动�?
 
 \_RIM\_TYPEMOUSE=0
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/rawInput.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/rawInput.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/win/rawInput.md)
 

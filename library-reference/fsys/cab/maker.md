@@ -17,5 +17,5 @@
 
 该对象必须有 log �?write 成员函数用于输出信息
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/fsys/cab/maker.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/fsys/cab/maker.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/fsys/cab/maker.md)
 

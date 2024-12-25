@@ -8,7 +8,7 @@
 1. 界面线程(一般也是主线程)的主消息循环�?win.loopMessage 启动,
    窗口应用程序有且只能有一�?win.loopMessage()，使�?win.loadForm() 或�?winform.loadForm() 加载�?   窗体代码文件时会自动忽略重复启动消息循环�?win.loopMessage() 调用�?
 2. 所有非模态、非 MessageOnly 的独立窗口（ �?mainForm 窗口 ）都关闭后，
-   将会自动调用 win.quitMessage() 终止 win.loopMessage 创建的消息循环（通常也就是退出界面线程）�?
+   将会自动调用 `win.quitMessage()` 终止 `win.loopMessage` 创建的消息循环（通常也就是退出界面线程）�?   如果显式指定 `win.autoQuitMessage` 的值为 `false` 则禁止当前线程在关闭上述窗口时自动调�?`win.quitMessage()` 。如果窗口对象自身的 `autoQuitMessage` 的属性值为 `false` 也会禁止在关闭该窗口时自动调�?`win.quitMessage()` �?
 3. 使用 winform.doModal() 创建模态窗�? 模态窗口会禁用所有者窗口（也就是背景窗口）直到模态窗口关闭�?   模态窗口不能是子窗口（禁用父窗口就是禁用自己）。模态窗口创建独立的消息循环阻塞调用代码继续向后执行
    直到模态窗口退�?而调�?winform.show() 显示的非模态窗口不会阻塞调用代码向后执行�?
 
@@ -59,5 +59,5 @@ child 样式的嵌入式子窗口不能显示为模态窗口，这样既没意�
    使用 import 语句导入自定义的控件类，拖动 custom 控件到界面上并且把类名改为对应的自定义控件类名就可以了�?
 ### 四、使用窗口类库加载窗�?
 这种窗口类使�?import 导入，通过类构造函数创建窗口�?标准库中�?win.inputBox 就是这样的窗口类�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-guide/std/win/ui/basic.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-guide/std/win/ui/basic.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-guide/std/win/ui/basic.md)
 

@@ -42,7 +42,7 @@ buffer 类与 node.js 中的 Buffer 类相�?转换结果示例�?{"data":\[230,
 
 发布日期�?020-12-27
 
-JSON 字符串化时完全符�?JSON 官方标准( [https://json.org/json-zh.html](javascript:if(confirm('https://json.org/json-zh.html  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ������·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ�����?'))window.location='https://json.org/json-zh.html') )�?JSON 解析时完全支�?JSON，JSONP，并使用宽松的原则兼容JSON5，兼容部分类 YAML 语法�?
+JSON 字符串化时完全符�?JSON 官方标准( [https://json.org/json-zh.html](https://json.org/json-zh.html) )�?JSON 解析时完全支�?JSON，JSONP，并使用宽松的原则兼容JSON5，兼容部分类 YAML 语法�?
 aardio-json 以“宽进严出、简洁高效”为基本原则�?解析时规则尽可能宽松容错，生�?JSON 字符串则严格遵守标准JSON规则�?为了让解析器尽可能做到简洁高效，所�?aardio-json 不支持变量，
 真正简洁高效的配置文件不应当出现重复的内容，JSON 的目标也不是成为编程语言�?
 一、可省略和替换的格式标记
@@ -158,5 +158,5 @@ web.json.strip 兼容 Python 对象�?
 parse函数遇到JSON语法错误时抛出异�?
 而tryParse遇到错误时返�?null,错误信息
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/web/json.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/web/json.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/web/json.md)
 

@@ -47,5 +47,5 @@ aardio 中的标准输入输出对象如下�?
 
 此函数功能类�?io.stdin.read() ，但控制台的编码环境较为复杂，使�?io.getText() 读取控制台文本可以更好地支持 Unicode 字符�?
 如果导入�?console 库，建议使用基于 io.getText 实现�?console.getText 函数。console.getText 可以指定输入提示文本，也可以自动打开控制台，�?io.getText 并不提供这些功能�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-guide/builtin/io/console.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ �������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-guide/builtin/io/console.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-guide/builtin/io/console.md)
 

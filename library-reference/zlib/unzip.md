@@ -117,5 +117,5 @@ for(buffer,readSize in unzipObject.eachReadCurrentFile() ){
 
 \_UNZ\_PARAMERROR=-102
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/zlib/unzip.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/zlib/unzip.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/zlib/unzip.md)
 

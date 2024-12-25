@@ -61,7 +61,7 @@ dy指定正数扩展底边,负数缩小底边
 如果参数中指�?:RECTF结构�?则使用参数更新位区块自身,
 
 指定参数则此函数无返回�?
-[返回对象:rectfObject](../gdip/core.html#rectfObject)
+[返回对象:rectfObject](https://www.aardio.com/zh-cn/doc/library-reference/gdip/core.html#rectfObject)
 
 ### rectObject.height()
 
@@ -240,5 +240,5 @@ dy指定正数扩展底边,负数缩小底边
 
 创建整型尺寸结构�?
 可选在参数中指定宽�?cx,cy 初始�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/builtin/struct.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/builtin/struct.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/builtin/struct.md)
 

@@ -19,5 +19,5 @@
 所�?.NET 对象提供 GetType 函数可获取对象类型�?
 System 库也自动导入了常用的 .NET 基础数据类型�?
 aardio 中导入的 .NET 类也可直接作�?System.Type 类型的调用参数使�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/System/Type.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ �������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/System/Type.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/System/Type.md)
 

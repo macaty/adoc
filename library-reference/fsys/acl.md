@@ -106,5 +106,5 @@ fsys.acl.temp(/*指定目标文件路径�?执行 icacls 命令备份权限后�
 
 ```
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/fsys/acl.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/fsys/acl.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/fsys/acl.md)
 

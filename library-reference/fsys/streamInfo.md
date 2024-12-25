@@ -44,5 +44,5 @@ NTFS 文件系统支持 Alternate Data Streams 特�?
 其他所有参数与 fsys.file 相同,
 
 一般不必指定这些参�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/fsys/streamInfo.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/fsys/streamInfo.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/fsys/streamInfo.md)
 

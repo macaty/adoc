@@ -148,5 +148,5 @@ winDeviceNotificationObject.onVolumeRemoveComplete = function(devData,pDevData){
 
 \_WM\_DEVICECHANGE=0x0219
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/util/deviceNotification.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/util/deviceNotification.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/win/util/deviceNotification.md)
 

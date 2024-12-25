@@ -202,5 +202,5 @@ systemIoSerialPortObject.ErrorReceived = function(sender,e){
 ### systemIoSerialPortObject.WriteTimeout
 
 获取或设置写操作未完成时发生超时之前的毫秒数�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/System/IO/Ports.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ �������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/System/IO/Ports.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/System/IO/Ports.md)
 

@@ -88,5 +88,5 @@ action�?_FILE\_NOTIFY\_CHANGE_ 前缀的常量标�?
 
 \_FILE\_ACTION\_RENAMED\_OLD\_NAME=4
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/fsys/dirWatcher.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/fsys/dirWatcher.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/fsys/dirWatcher.md)
 

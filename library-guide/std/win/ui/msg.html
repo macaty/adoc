@@ -53,7 +53,7 @@
 
 <p>&quot;消息循环&quot;实际也就是窗口程序的主循环，win.loopMessage 退出则窗口程序终止。</p>
 
-<p>应用程序可以通过调用 win.quitMessage() 退出消息循环。在 aardio 中当所有非模态、非 MessageOnly 的独立窗口（ 或 mainForm 窗口 ）都关闭后，将会自动调用 win.quitMessage()  并终止消息循环退出界面线程。</p>
+<p>应用程序可以通过调用 <code>win.quitMessage()</code> 退出消息循环。在 aardio 中当界面线程的所有非模态、非 MessageOnly 的独立窗口（ 或 mainForm 窗口 ）都关闭后，将会自动调用 <code>win.quitMessage()</code>  并终止消息循环（之后如果没有执行其他代码就会退出界面线程）。如果显式指定 <code>win.autoQuitMessage</code> 的值为 <code>false</code> 则禁止当前线程在关闭前述窗口时自动调用 <code>win.quitMessage()</code> 。如果窗口对象自身的 <code>autoQuitMessage</code> 的属性值为 <code>false</code> 也会禁止在关闭该窗口时自动调用 <code>win.quitMessage()</code> 。</p>
 
 <p>请参考： <a href="../_.html#loopMessage" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/std/win/_.html#loopMessage">启动与退出窗口消息循环</a></p>
 
@@ -174,7 +174,7 @@ winform.hitClose()
 winform.hitCaption()
 </code></pre>
 
-<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-guide/std/win/ui/msg.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-guide/std/win/ui/msg.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/std/win/ui/msg.md">Markdown 格式</a></p>
+<p><a href="https://www.aardio.com/zh-cn/doc/library-guide/std/win/ui/msg.md">Markdown 格式</a></p>
 
 </body> 
 </html>

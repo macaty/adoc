@@ -146,5 +146,5 @@ return files,dirs;
 ### winUiExplorerObject.wildcard
 
 用于匹配要显示的文件名通配�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/ui/explorer.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/ui/explorer.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/win/ui/explorer.md)
 

@@ -200,5 +200,5 @@ thread.var以及 thread.table 自动分配的线程共享变量名上限�?
 
 除非调用release函数释放该变量名
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/builtin/thread.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/builtin/thread.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/builtin/thread.md)
 

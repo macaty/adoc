@@ -21,5 +21,5 @@ Media Access Control
 
 返回硬件MAC - OID\_802\_3\_PERMANENT\_ADDRESS
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/inet/mac.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/inet/mac.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/inet/mac.md)
 

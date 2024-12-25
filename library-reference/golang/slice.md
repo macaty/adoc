@@ -20,5 +20,5 @@ Go 函数的参数类型必须声明为相同原生类型的数组指针�?
 ### GoSliceObject.value
 
 返回或设置原生数组的�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/golang/slice.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/golang/slice.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/golang/slice.md)
 

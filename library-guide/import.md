@@ -118,5 +118,5 @@ import time.ole //将外部库 time.ole 导入当前名字空间
    如果导入名字空间成功，则导入当前名字空间( self 名字空间 )�?
    �?aardio 中库一定要自行创建与路径相同的名字空间�?   如果未创建一致的名字空间，则导入库失败�?
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-guide/import.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ �������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-guide/import.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-guide/import.md)
 

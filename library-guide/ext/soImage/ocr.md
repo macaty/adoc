@@ -10,7 +10,7 @@ soImage �?aardio 中常用的图像处理扩展库。使�?soImage 也可以实
 ## �? 使用简�?OCR 代码生成�?
 �?aardio 的范例中提供了专门为 soImage 扩展库生成字库与 OCR 范例的工具：
 
-[简�?OCR 生成器](../../../example/Automation/ComputerVision/soImage.ocr.html)
+[简�?OCR 生成器](https://www.aardio.com/zh-cn/doc/example/Automation/ComputerVision/soImage.ocr.html)
 
 �?aardio 中运行上面的简�?OCR 生成器�?
 1. 输入验证码图像下载网址�?2. 点击『获取下一个图像』按钮�?3. 首先人工识别并输入图像上的文本，并继续点击『获取下一个图像』按钮以生成自动识别图像的样本数据�?
@@ -46,5 +46,5 @@ img.loadUrl("https://www.******.com/***.php")
 
 ```
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-guide/ext/soImage/ocr.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-guide/ext/soImage/ocr.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-guide/ext/soImage/ocr.md)
 

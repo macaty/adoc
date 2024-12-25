@@ -51,5 +51,5 @@
 如果创建了临时文件则返回临时目录
 
 如果该函数返回值为空则path为普通路�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/fsys/localfile.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/fsys/localfile.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/fsys/localfile.md)
 

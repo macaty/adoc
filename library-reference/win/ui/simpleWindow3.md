@@ -92,5 +92,5 @@ winUiSimpleWindow3Object.skin(
 如果窗体设置了禁用最小化按钮则不创建此控�?
 [返回对象:uiCtrlPlusObject](ctrl/plus.html#uiCtrlPlusObject)
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/ui/simpleWindow3.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/ui/simpleWindow3.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/win/ui/simpleWindow3.md)
 

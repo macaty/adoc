@@ -8,7 +8,7 @@ inet.whttp 并非�?inet.http 那样可以获取 IE 的默认代理设�?也不�
 inet.whttp 的默认代理需要使用函�?WinHttpSetDefaultProxyConfiguration 修改,而调用这�?API 则需要管理权�?
 您可以在创建 inet.whttp 对象时指定代理服务器参数�?IE",aardio 将自动获取IE代理设置�?
 WinHTTP 错误代码说明
-[https://docs.microsoft.com/zh-cn/windows/win32/winhttp/error-messages](javascript:if(confirm('https://docs.microsoft.com/zh-cn/windows/win32/winhttp/error-messages  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ������·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ�����?'))window.location='https://docs.microsoft.com/zh-cn/windows/win32/winhttp/error-messages')
+[https://docs.microsoft.com/zh-cn/windows/win32/winhttp/error-messages](https://docs.microsoft.com/zh-cn/windows/win32/winhttp/error-messages)
 
 ## inet 成员列表
 
@@ -879,5 +879,5 @@ rangeHeaderInfo使用readHeaderRange()函数读取,
 
 \_WINHTTP\_OPTION\_WRITE\_BUFFER\_SIZE=0xD
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/inet/whttp.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/inet/whttp.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/inet/whttp.md)
 

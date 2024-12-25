@@ -50,5 +50,5 @@ var next = myFunc();
 ## 迭代�?
 迭代器是闭包的主要应用之一，请参考： [泛型 for 与迭代器](../statements/iterator.html)
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/language-reference/function/closure.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/language-reference/function/closure.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/language-reference/function/closure.md)
 

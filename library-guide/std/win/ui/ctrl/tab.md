@@ -48,5 +48,5 @@ win.loopMessage();
 
 如果希望界面更漂亮一些，可以使用『高级选项卡』，具体请参�? [高级选项卡使用指南](../tabs/_.html)
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-guide/std/win/ui/ctrl/tab.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-guide/std/win/ui/ctrl/tab.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-guide/std/win/ui/ctrl/tab.md)
 

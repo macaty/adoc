@@ -30,5 +30,5 @@ bar.reset();
 //濡傛灉甯屾湜閫熷害鏇村揩锛屽彲浠ヤ笉鎸囧畾杩涘害鍥炶皟鍑芥暟锛屾垨鑰呭姞澶у垎鍧楀ぇ灏?
 ```
 
-[Markdown 鏍煎紡](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Text/Hash/file.md  \n\n该文件无法用 Teleport Ultra 下载, 因为 它不在项目文件类型规范内。  \n\n你想在服务器上打开它?'))window.location='https://www.aardio.com/zh-cn/doc/example/Text/Hash/file.md')
+[Markdown 鏍煎紡](https://www.aardio.com/zh-cn/doc/example/Text/Hash/file.md)
 

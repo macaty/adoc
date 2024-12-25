@@ -42,5 +42,5 @@ text为更新后的文�?selIndex为行�?返回false取消编辑*/
 
 ```
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/ui/listEdit.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/ui/listEdit.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/win/ui/listEdit.md)
 

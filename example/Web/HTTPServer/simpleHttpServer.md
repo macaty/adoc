@@ -54,5 +54,5 @@ jQuery Ajax 璺ㄥ煙璋冪敤鏂规硶,鍙疄鐜版祻瑙堝櫒涓庢湰鍦板簲鐢ㄤ氦浜?$.ajax({
 
 ```
 
-[Markdown 鏍煎紡](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Web/HTTPServer/simpleHttpServer.md  \n\n该文件无法用 Teleport Ultra 下载, 因为 它不在项目文件类型规范内。  \n\n你想在服务器上打开它?'))window.location='https://www.aardio.com/zh-cn/doc/example/Web/HTTPServer/simpleHttpServer.md')
+[Markdown 鏍煎紡](https://www.aardio.com/zh-cn/doc/example/Web/HTTPServer/simpleHttpServer.md)
 

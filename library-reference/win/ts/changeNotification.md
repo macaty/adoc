@@ -47,5 +47,5 @@ wtsChangeNotificationObject.onSessionChange = function(sessionId,statusText,stat
 
 \_NOTIFY\_FOR\_THIS\_SESSION=0
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/ts/changeNotification.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/ts/changeNotification.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/win/ts/changeNotification.md)
 

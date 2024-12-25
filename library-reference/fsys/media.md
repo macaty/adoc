@@ -136,7 +136,7 @@ fsys.media 对像在析构时，会自动关闭声音，所以在声音播放时
 
 使用$PATH表示打开的媒体文件路�?不要加引�?
 如果传入多个参数则使用string.format格式�?
-[所有可用指令](javascript:if(confirm('https://docs.microsoft.com/en-us/windows/desktop/Multimedia/multimedia-command-strings  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ������·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ�����?'))window.location='https://docs.microsoft.com/en-us/windows/desktop/Multimedia/multimedia-command-strings')
+[所有可用指令](https://docs.microsoft.com/en-us/windows/desktop/Multimedia/multimedia-command-strings)
 
 ### fsysMediaObject.step(-1)
 
@@ -149,5 +149,5 @@ fsys.media 对像在析构时，会自动关闭声音，所以在声音播放时
 
 无参数获取音�?
 指定数值参数设置音�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/fsys/media.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/fsys/media.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/fsys/media.md)
 

@@ -28,5 +28,5 @@ Win7 安装 Chrome 109，XP 安装 Chrome 49
 @path 批定子路径�?
 @userDataDir 指定用户数据根目录�?
 如果返回的文件路径（拼接 @path 以后）不存在则返�?null �?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/chrome/path.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/chrome/path.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/chrome/path.md)
 

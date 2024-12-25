@@ -56,5 +56,5 @@ console.pause(true);
 
 ```
 
-[Markdown 鏍煎紡](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/PowerShell/AppDomain.md  \n\n该文件无法用 Teleport Ultra 下载, 因为 它不在项目文件类型规范内。  \n\n你想在服务器上打开它?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/PowerShell/AppDomain.md')
+[Markdown 鏍煎紡](https://www.aardio.com/zh-cn/doc/example/Languages/PowerShell/AppDomain.md)
 

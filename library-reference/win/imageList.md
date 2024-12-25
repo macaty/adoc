@@ -175,5 +175,5 @@
 
 \_SHIL\_SYSSMALL=3
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/imageList.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/imageList.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/win/imageList.md)
 

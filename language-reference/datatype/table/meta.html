@@ -141,11 +141,11 @@ tab@ = {};
 </tr>
 <tr>
 <td><code>_get = function(k,ownerCall) {&lt;br&gt; &lt;br&gt; }</code></td>
-<td>成员（属性）操作符 <code>.</code> <br>索引（下标）操作符 <code>[]</code> <br><br>如果用 <a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/language-reference/operator/member-access.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/language-reference/operator/member-access.md'" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/operator/member-access.md">属性（.）操作符或下标操作符（[]）</a>读取表中不存在的键会触发 <code>_get</code> 元方法并返回值。<br> <br>注意：使用 <code>owner[[member]]</code> 形式的直接下标以及 namespace 语句打开新的名字空间不会触发元方法。with 语句打开新的名字空间则会触发元方法。在 aardio 中.NET 名字空间 依赖元方法自动导入下级名字空间的 ，所以 namespace 只能用于打开已导入的 .NET 名空字间（否则应改用 with 语句）。<br><br><code>_get</code> 不但可以是一个函数,也可以指定一个 table 对象(找不到成员就到 <code>_get</code> 指定的 table 里找)。<br><br>如果是 <code>_get</code> 元方法是一个函数，则调用参数 k 为键名。<br><br>使用 <code>owner[member]</code> 形式的下标操作符触发 owner 对象的 <code>_get</code> 元方法时 ownerCall 参数的值为 null 。<br><br>使用 owner.method() 形式的成员函数触发 owner 对象的 <code>_get</code> 元方法时 ownerCall 参数的值为 true 。ownerCall 参数如果为 true 则应当返回一个函数对象。 <br><br>其他方式访问表的成员触发对象的 <code>_get</code> 元方法时 ownerCall 参数的值为 false。<br></td>
+<td>成员（属性）操作符 <code>.</code> <br>索引（下标）操作符 <code>[]</code> <br><br>如果用 <a href="https://www.aardio.com/zh-cn/doc/language-reference/operator/member-access.md">属性（.）操作符或下标操作符（[]）</a>读取表中不存在的键会触发 <code>_get</code> 元方法并返回值。<br> <br>注意：使用 <code>owner[[member]]</code> 形式的直接下标以及 namespace 语句打开新的名字空间不会触发元方法。with 语句打开新的名字空间则会触发元方法。在 aardio 中.NET 名字空间 依赖元方法自动导入下级名字空间的 ，所以 namespace 只能用于打开已导入的 .NET 名空字间（否则应改用 with 语句）。<br><br><code>_get</code> 不但可以是一个函数,也可以指定一个 table 对象(找不到成员就到 <code>_get</code> 指定的 table 里找)。<br><br>如果是 <code>_get</code> 元方法是一个函数，则调用参数 k 为键名。<br><br>使用 <code>owner[member]</code> 形式的下标操作符触发 owner 对象的 <code>_get</code> 元方法时 ownerCall 参数的值为 null 。<br><br>使用 owner.method() 形式的成员函数触发 owner 对象的 <code>_get</code> 元方法时 ownerCall 参数的值为 true 。ownerCall 参数如果为 true 则应当返回一个函数对象。 <br><br>其他方式访问表的成员触发对象的 <code>_get</code> 元方法时 ownerCall 参数的值为 false。<br></td>
 </tr>
 <tr>
 <td><code>_set = function(k,v,ownerAttr) { }</code></td>
-<td>成员（属性）操作符 <code>.</code> <br> 索引（下标）操作符 <code>[]</code> <br><br> 如果用 <a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/language-reference/operator/member-access.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/language-reference/operator/member-access.md'" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/operator/member-access.md">. 或 [] 操作符</a>给表中不存在的键赋值会触发 <code>_set</code> 元方法。<br> <br> 注意：使用 <code>owner[[member]]</code> 形式的直接下标赋值不会触发元方法。<br> <br> <code>_set</code> 元方法的 k 参数为新的键，v 参数为新的值 。<br><br> 在赋值语句中使用 <code>owner[member] = value</code>形式的下标操作符赋值触发 owner 对象的 <code>_set</code> 元方法时 ownerAttr 参数的值为 false，其他任何方式触发对象的 <code>_set</code> 元方法时 ownerAttr 参数的值为 true 。<br> <br> 使用形如 <code>{ [&quot;key&quot;] = value}</code> 的格式在表内使用下标定义键名时如果触发 <code>_set</code> 元方法 ownerAttr 的值仍然为 true。<br> <br> 只有 <code>owner[member] = value</code> 的形式 ownerAttr 参数才会为 false，也就是说下标操作符前面必须有一个 owner 对象。</td>
+<td>成员（属性）操作符 <code>.</code> <br> 索引（下标）操作符 <code>[]</code> <br><br> 如果用 <a href="https://www.aardio.com/zh-cn/doc/language-reference/operator/member-access.md">. 或 [] 操作符</a>给表中不存在的键赋值会触发 <code>_set</code> 元方法。<br> <br> 注意：使用 <code>owner[[member]]</code> 形式的直接下标赋值不会触发元方法。<br> <br> <code>_set</code> 元方法的 k 参数为新的键，v 参数为新的值 。<br><br> 在赋值语句中使用 <code>owner[member] = value</code>形式的下标操作符赋值触发 owner 对象的 <code>_set</code> 元方法时 ownerAttr 参数的值为 false，其他任何方式触发对象的 <code>_set</code> 元方法时 ownerAttr 参数的值为 true 。<br> <br> 使用形如 <code>{ [&quot;key&quot;] = value}</code> 的格式在表内使用下标定义键名时如果触发 <code>_set</code> 元方法 ownerAttr 的值仍然为 true。<br> <br> 只有 <code>owner[member] = value</code> 的形式 ownerAttr 参数才会为 false，也就是说下标操作符前面必须有一个 owner 对象。</td>
 </tr>
 <tr>
 <td><code>_tostring = function(...) { }</code></td>
@@ -276,7 +276,7 @@ console.pause()
 <ul>
 <li>在元方法中使用 owner 对象访问自身。</li>
 <li>在 <code>_get</code> 元方法中不需要再去重复读取 owner 对象的同名成员，因为只有读取不存在的成员时才会触发 <code>_get</code> 元方法。如果要拦截所有成员，那么更好的方法是用另一个表保存实际的数据。如果要改名读取自身的其他成员，要使用直接下标操作符 <code>[[]]</code> 以避免重复触发  <code>_get</code> 元方法，例如：
-<code>aardio  
+<code>aardio
 tab@ = { 
     _get = function(k) {
         if(type.isString(k)) {
@@ -364,7 +364,7 @@ console.pause();
 
 <p>如果是写库文件，通常会用类（ class ）来做类似的事。因为 class 本身也可以作为名字空间使用，写库比较方便。参考： <a href="../../class/class.html" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/class/class.html">class</a></p>
 
-<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/language-reference/datatype/table/meta.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/language-reference/datatype/table/meta.md'" tppabs="https://www.aardio.com/zh-cn/doc/language-reference/datatype/table/meta.md">Markdown 格式</a></p>
+<p><a href="https://www.aardio.com/zh-cn/doc/language-reference/datatype/table/meta.md">Markdown 格式</a></p>
 
 </body> 
 </html>

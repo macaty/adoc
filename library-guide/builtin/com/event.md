@@ -143,5 +143,5 @@ aardio 可以利用元表轻松地将一个表代理到另一个表、或建立�
 实际上我们很少需要自己绑定事件并使用 com.Connect() 这些函数�?aardio 中嵌入窗口控件的 winform.createEmbed(),winform.createEmbedEx() 已经自动绑定返回�?COM 容器对象作为事件监听器，
 这几个函数虽有前述的循环引用，但是已经在宿主窗口销毁前
 自动解除事件监听并释放对象，所以能正常释放�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-guide/builtin/com/event.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ �������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-guide/builtin/com/event.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-guide/builtin/com/event.md)
 

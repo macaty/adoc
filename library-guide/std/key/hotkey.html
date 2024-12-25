@@ -17,12 +17,9 @@
 
 <p>标准库 key.hotkey 用于创建超级热键，超级热键是基于低级键盘钩子 <a href="../../../library-reference/key/hook.html" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/key/hook.html">key.hook</a> 实现的系统全局有效的增强热键。</p>
 
-<ul>
-<li><a href="../../../library-reference/key/hotkey/_.html" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/key/hotkey/_.html">key.hotkey 库参考</a></li>
-<li><a href="../../../example/Windows/Hotkey/key.hotkey.html" tppabs="https://www.aardio.com/zh-cn/doc/example/Windows/Hotkey/key.hotkey.html">key.hotkey 范例</a></li>
-</ul>
+<p>相关文档： <a href="../../../library-reference/key/hotkey/_.html" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/key/hotkey/_.html">key.hotkey 库参考</a>  | <a href="https://www.aardio.com/zh-cn/doc/example/Windows/Hotkey/key.hotkey.html">超级热键范例</a> | <a href="imeState.html" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/std/key/imeState.html">输入法与键盘状态检测</a></p>
 
-<h2>一、检测超级热键的基本规则</h2>
+<h2>▶ 检测超级热键的基本规则</h2>
 
 <ol>
 <li>如果首个按下的键不是控制键，则不需要同时按住多个键。
@@ -36,7 +33,7 @@
 
 <p>超键热键中任何键名都只表示该键名所在的单个按键，不包含上档键。例如热键 <code>~hi</code> 指连续按 3 个键，其中 <code>~</code> 不是指同时按 <code>Shift + ~</code> 这两个键。</p>
 
-<h2>二、超级热键格式说明</h2>
+<h2>▶ 超级热键格式说明</h2>
 
 <p>例如注册了以下 4 个热键，则对应热键格式的热键触发规则如下：</p>
 
@@ -47,7 +44,7 @@
 <li>热键  <code>Ctrl+K,K</code>    用法：按下 <code>Ctrl</code> 不放，再按 2 次 <code>K</code>（因为不是其他热键的前半部分，不需要等待放开）。</li>
 </ul>
 
-<h2>三、注册超级热键</h2>
+<h2>▶ 注册超级热键</h2>
 
 <p>以下是一个最简单的超级热键程序示例：</p>
 
@@ -62,7 +59,7 @@ edit={cls=&quot;edit&quot;;left=32;top=35;right=725;bottom=414;edge=1;multiline=
 import key.hotkey;
 import win.dlg.chineseNumber;
 
-var superHotkey = key.hotkey();
+superHotkey = key.hotkey();
 superHotkey.loadTable({
     // 按 Ctrl+ $ 键打开大写金额与中文数字输入框
     [&quot;Ctrl+$&quot;] = function(hFocus){  
@@ -83,15 +80,19 @@ win.loopMessage();
 <p>热键回调函数返回 true 表示允许系统继续发送按键，否则取消该按键，不再继续发送。
 如果热键回调函数返回一个函数对象，则取消该按键不再发送，并在返回函数以后异步延时执行返回的函数对象。</p>
 
-<h2>四、ImTip 的超级热键</h2>
+<h2>▶ ImTip 的超级热键 <a id="imtip" href="#imtip">&#x23;</a></h2>
 
-<p>开源软件 <a href="javascript:if(confirm('http://imtip.aardio.com/  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://imtip.aardio.com/'" tppabs="http://imtip.aardio.com/">ImTip</a> 的超级热键基于 key.hotkey 库。</p>
+<p>开源软件 <a href="http://imtip.aardio.com/">ImTip</a> 的超级热键基于 key.hotkey 库。</p>
 
-<p>自 ImTip 5.0 开始直接在 aardio 开发环境内运行超级热键。超级热键以 aardio 目录为 <a href="../../builtin/io/path.html#app-path" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/builtin/io/path.html#app-path">应用程序根目录</a>，可以调用 aardio 的所有库。</p>
+<p>在 ImTip 中点击『编辑超级热键』按钮就可以调用 aardio 编辑器打开 ImTip 热键配置代码（ 文件路径为 <code>%LocalAppData%\aardio\std\ImTip\.hotkey\hotkey.aardio</code> ）。 </p>
 
-<p>ImTip 5.0 的热键配置实际就是一个普通的 aardio 代码文件（ 这个文件也是一个能单独运行的热键程序 ）。ImTip 调用 aardio 代码编辑器编辑热键配置，在 aardio 中保存热键配置文件也会在 ImTip 中同步生效（必须从 ImTip 中启动编辑才会同步）。</p>
+<p><img src="../../../../../../imtip.aardio.com/screenshots/hotkey.jpg" tppabs="https://imtip.aardio.com//screenshots/hotkey.jpg" alt="ImTip 超级超键"></p>
 
-<p>注意 ImTip 超级热键配置代码中检测开发环境的代码不要删除，示例：</p>
+<p>只要是从 ImTip 中点击『编辑超级热键』按钮打开 hotkey.aardio ，那么在 aardio 中保存对 hotkey.aardio 的修改时新的热键配置就会在 ImTip 中立即生效。</p>
+
+<p>ImTip 运行超级热键时会自动查找 aardio 开发环境，并以 aardio 目录作为运行超级热键的 <a href="../../builtin/io/path.html#app-path" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/builtin/io/path.html#app-path">应用程序根目录</a>，因此超级热键可以调用 aardio 开发环境的所有库。</p>
+
+<p>示例：</p>
 
 <pre><code class="aardio language-aardio">import win.ui;
 
@@ -115,7 +116,7 @@ if(_STUDIO_INVOKED &amp;&amp; ...!=&quot;ImTip&quot;){
 import key.hotkey;
 import win.dlg.chineseNumber;
 
-var superHotkey = key.hotkey();
+superHotkey = key.hotkey();
 superHotkey.loadTable({
     // 按 Ctrl+ $ 键打开大写金额与中文数字输入框
     [&quot;Ctrl+$&quot;] = function(hFocus){  
@@ -126,7 +127,11 @@ superHotkey.loadTable({
 win.loopMessage();
 </code></pre>
 
-<h2>五、避免阻塞键盘消息的耗时操作</h2>
+<p>注意不要删除上面的 hotkey.aardio 代码中检测 aardio 开发环境与 ImTip 运行环境的代码。</p>
+
+<p>ImTip 创建独立的工作线程运行超级热键（ hotkey.aardio ），每次更新超级热键配置都会退出原来的超级热键线程并且创建新的线程。在超级热键中可调用 <a href="https://www.aardio.com/zh-cn/doc/language-reference/process/imTip/_.html">processs.imTip</a> 库向 ImTip 主程序或主窗口发送指令。</p>
+
+<h2>▶ 避免阻塞键盘消息的耗时操作 <a id="thread" href="#thread">&#x23;</a></h2>
 
 <p>超级热键基于低级键盘钩子，所在线程必须调用 <code>win.loopMessage()</code> 启动消息循环。</p>
 
@@ -136,7 +141,7 @@ win.loopMessage();
 
 <p>建议用单独的线程运行超级热键，超级热键回调函数中创建新的线程执行耗时操作。请参考：<a href="../../../guide/language/thread.html" tppabs="https://www.aardio.com/zh-cn/doc/guide/language/thread.html">创建多线程</a>。</p>
 
-<h2>六、示例: 按 <code>Ctrl+I</code> 调用 AI 助手处理选区文本</h2>
+<h2>▶ 示例: 按 <code>Ctrl+I</code> 调用 AI 助手处理选区文本 <a id="ai" href="#ai">&#x23;</a></h2>
 
 <p>在下面的超级热键示例中我们调用 web.rest.aiChat 创建了一个 AI 助手以处理通过 winex.selection 获取的选区文本。AI 助手需要调用远程接口，发送 HTTP 请求属于耗时操作且会阻塞消息循环，因此我们创建多线程执行这些耗时操作以避免阻塞键盘钩子消息。</p>
 
@@ -151,7 +156,7 @@ edit={cls=&quot;edit&quot;;left=32;top=35;right=725;bottom=414;edge=1;multiline=
 
 import winex.selection;
 import key.hotkey;
-var superHotkey = key.hotkey();
+superHotkey = key.hotkey();
 
 superHotkey.loadTable({
     // 按 Ctrl+ I 触发热键
@@ -203,7 +208,7 @@ win.loopMessage();
 
 </code></pre>
 
-<h2>七、示例: 按 <code>Ctrl+I</code> 创建浏览器控件展示 AI 搜索结果</h2>
+<h2>▶ 示例: 按 <code>Ctrl+I</code> 创建浏览器控件展示 AI 搜索结果</h2>
 
 <p>在下面的超级热键示例中，我们调用 web.view 创建 WebView2 浏览器控件以展示 AI 搜索结果。</p>
 
@@ -221,7 +226,7 @@ edit={cls=&quot;edit&quot;;left=32;top=35;right=725;bottom=414;edge=1;multiline=
 
 import winex.selection;
 import key.hotkey;
-var superHotkey = key.hotkey();
+superHotkey = key.hotkey();
 
 superHotkey.loadTable({
     // 按 Ctrl+ I 触发热键
@@ -259,7 +264,7 @@ win.loopMessage();
 
 <p>这里有一个小技巧，在后台线程创建窗口时我们可以使用 <code>parent=win.getForeground();</code> 参数将父窗口指定为前景窗口以避免窗口出现在后台。而 <code>topmost=true</code> 参数让窗口保持显示在最顶层。</p>
 
-<h2>八、示例: 按 <code>Ctrl+Shift+I</code> 查单词，调用 AI 翻译</h2>
+<h2>▶ 示例: 按 <code>Ctrl+Shift+I</code> 查单词，调用 AI 翻译</h2>
 
 <pre><code class="aardio language-aardio">import win.ui;
 import win.ui;
@@ -354,7 +359,57 @@ superHotkey.loadTable({
 win.loopMessage();
 </code></pre>
 
-<h2>九、更多超级热键示例</h2>
+<h2>▶ 调用 ImTip 聊天助手 <a id="imtip-ai-chat" href="#imtip-ai-chat">&#x23;</a></h2>
+
+<p>如果不需要会话界面，可参考前面的范例：<a href="#ai">自动输入回复文本到目标窗口</a> 。</p>
+
+<p>使用 <a href="../../../library-reference/process/imTip/_.html" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/process/imTip/_.html">process.imTip</a> 库可自动打开 ImTip 的 AI 聊天助手会话界面，通过 chat 参数自动选择指定 AI 助手配置名称，并且自动发送 q 参数指定的问题。</p>
+
+<p>示例：</p>
+
+<pre><code class="aardio language-aardio">import win.ui;
+/*DSG{{*/
+var winform = win.form(text=&quot;超级热键示例&quot;)
+winform.add(
+edit={cls=&quot;edit&quot;;left=32;top=35;right=725;bottom=414;edge=1;multiline=1}
+)
+/*}}*/
+
+import process.imTip;
+import winex.selection;
+import key.hotkey;
+superHotkey = key.hotkey();
+
+superHotkey.loadTable({
+    // 按 Ctrl+ I 触发热键
+    [&quot;Ctrl+I&quot;] = function(hFocus){  
+
+        //获取当前选区文本
+        var txt = winex.selection.get(true);
+        if(!#txt) return true;//选区文本为空，继续发送按键
+
+        process.imTip(
+            chat = &quot;&quot;,//可指定 ImTip 的 AI 助手配置名，也可指定空字符串
+            q = txt //指定要发送的问题
+        )  
+    };
+})
+
+winform.show();
+win.loopMessage();
+</code></pre>
+
+<p>ImTip 增加 AI 助手配置图解：</p>
+
+<p><img src="../../../../../../imtip.aardio.com/screenshots/aiChat-setting.gif" tppabs="https://imtip.aardio.com//screenshots/aiChat-setting.gif" alt="ImTip 增加或修改 AI 配置"></p>
+
+<p>我们还可以调用 process.imTip 向 ImTip 发送其他指令，例如自动禁用或启用输入法状态提示：</p>
+
+<pre><code class="aardio language-aardio">import process.imTip;
+process.imTip.imeSwitch();
+</code></pre>
+
+<h2>▶ 更多超级热键示例</h2>
 
 <p>先了解几个在自动化中较常用的发送按键与字符串的方法：</p>
 
@@ -394,7 +449,7 @@ import key.ime;
 import key.hotkey;
 /*}}*/
 
-var superHotkey = key.hotkey();
+superHotkey = key.hotkey();
 superHotkey.loadTable({
 [&quot;Ctrl+#&quot;] = function(hFocus){  
     //打开调色器 
@@ -619,39 +674,105 @@ superHotkey.loadTable({
         key.sendString(`&quot;`);
         key.press(&quot;LEFT&quot;);
     } ; 
-}
-
-//禁用/启用 ImTip 提示快捷键
-[&quot;Ctrl+F1&quot;] = function(){  
-    imeBar.imeWatch(!!..imeBar.paused);
-};
-
-//用立即执行函数在 ImTip 中屏蔽指定的程序窗口
-(function(){
-    var lastFocus,lastPath,lastClass;
-    checkImeProcess = function(hFocus,exeFile){
-        if(lastFocus != hFocus){
-            lastClass = win.getClass(hFocus);
-            var tid,pid = win.getThreadProcessId(hFocus);
-            lastPath = process.getPath(pid);
-            lastFocus = hFocus
-        }
-
-        return (lastPath &amp;&amp; io.splitpath(lastPath).file == exeFile )
-    }   
-
-    //显示提示窗口前触发下面的事件
-    imeBar.onImeStateChange = function(hFocus,imeX,imeY,openNative,symbolMode,text,iconText){
-        if( !checkImeProcess(hFocus,&quot;Code.exe&quot;) ){
-            return true;//允许提示
-        }
-    }
-})();
+} 
 
 };
 </code></pre>
 
-<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-guide/std/key/hotkey.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-guide/std/key/hotkey.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/std/key/hotkey.md">Markdown 格式</a></p>
+<h2>▶ onKeyDown,onKeyUp 事件 <a id="event" href="#event">&#x23;</a></h2>
+
+<p>超级热键（ key.hotkey 对象）允许自定义 onKeyDown,onKeyUp 事件。</p>
+
+<pre><code class="aardio language-aardio">import key.hotkey; 
+superHotkey = key.hotkey();
+
+//按键时触发，此事件在检测超级热键规则前触发
+superHotkey.onKeyDown = function(vk){
+
+    //vk 参数为虚拟键码
+
+    //返回 true 阻止按键继续发送，也会取消相关的超级热键。
+    return true; 
+
+}
+
+//释放按键时触发，此事件在检测超级热键规则之后触发
+superHotkey.onKeyUp = function(vk){ 
+
+    //vk 参数为虚拟键码
+
+    //返回 true 阻止按键继续发送。
+    return true; 
+
+} 
+
+win.loopMessage();
+</code></pre>
+
+<p>下面的热键热键示例通过 superHotkey.onKeyDown 事件实现在中文输入模式下，输入数字后自动支持  <code>.,_:</code>  等常用数值分隔符，避免将小数点等数值分隔符输入为中文句号。</p>
+
+<pre><code class="aardio language-aardio">import winex.candidate;
+import key.number;
+import key.hotkey; 
+superHotkey = key.hotkey();
+
+//按键时回调此函数，vk 为虚拟键码
+superHotkey.onKeyDown = function(vk){
+
+    //按下 CTRL,ALT 时忽略
+    if(key.getStateX(&quot;CTRL&quot;) || key.getStateX(&quot;ALT&quot;) ) return; 
+
+    //输入法候选列表窗口正在显示时忽略
+    if( winex.candidate.visible() ) {
+        superHotkey.prevKeyCode = null;
+        return;
+    } 
+
+    //当前输入是否数值分隔答
+    var sep = key.number.getSeparator(vk);
+
+    if(sep){ 
+
+        //在此之前是否输入了数字
+        if( key.number.is(superHotkey.prevKeyCode)){
+
+            //发送数值分隔符到目标窗口
+            key.sendString( sep ); 
+
+            //取消原按键事件
+            return true;
+        }   
+    } 
+
+    //记录上次的按键，但不记录 Shift 键
+    if(vk!=0xA0/*_VK_LSHIFT*/ &amp;&amp; vk!=0xA1/*_VK_RSHIFT*/){
+        superHotkey.prevKeyCode = vk;   
+    } 
+}
+
+win.loopMessage();
+</code></pre>
+
+<h2>▶ 使用虚拟键码与键名获取按键状态</h2>
+
+<p>可调用 key.getName(vk) 函数将虚拟键码转换为字符串类型的键名，
+也可调用 key.getCode(keyName) 函数将键名转换为数值类型的虚拟键码，此函数传入键码则直接返回。</p>
+
+<p>全部键名与键码在 <a href="../../../library-reference/key/VK.html" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/key/VK.html">key.VK</a> 库中定义。</p>
+
+<p>aardio 中与键盘操作有关的函数多允许以键名或键码作为参数指定按键，例如获取按键状态的 key.getState(),key.getStateX() 都支持以键名或键码作为参数。</p>
+
+<p>鼠标按键较为特殊：</p>
+
+<ul>
+<li>使用 mouse.state() 函数获取鼠标左键是否按下。</li>
+<li>使用 mouse.rb.state() 函数获取鼠标右键是否按下。</li>
+<li>使用 mouse.mb.state() 函数获取鼠标中键是否按下。</li>
+</ul>
+
+<p>如果不想引入 mouse 库也可以直接调用 API，例如使用 <code>::User32.GetAsyncKeyState(1/*_VK_LBUTTON*/) &amp; 0x8000</code> 可判断鼠标左键是否按下。</p>
+
+<p><a href="https://www.aardio.com/zh-cn/doc/library-guide/std/key/hotkey.md">Markdown 格式</a></p>
 
 </body> 
 </html>

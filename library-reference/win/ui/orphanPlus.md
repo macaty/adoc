@@ -24,5 +24,5 @@
 
 param 传入 plus 控件创建参数
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/ui/orphanPlus.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/ui/orphanPlus.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/win/ui/orphanPlus.md)
 

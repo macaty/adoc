@@ -1,7 +1,7 @@
 [aardio 文档](../../../../index.htm "aardio 编程语言文档首页")
 
 # win.ui.ctrl.tab 库模块帮助文�?
-[简单选项卡使用指南](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-guide/std/win/ui/ctrl/tab.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-guide/std/win/ui/ctrl/tab.md')
+[简单选项卡使用指南](https://www.aardio.com/zh-cn/doc/library-guide/std/win/ui/ctrl/tab.md)
 
 ## win.ui.ctrl 成员列表
 
@@ -401,5 +401,5 @@ uiTabObject.wndproc = function(hwnd,message,wParam,lParam){
 
 \_TCS\_VERTICAL=0x80
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/tab.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/tab.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/tab.md)
 

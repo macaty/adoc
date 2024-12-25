@@ -63,5 +63,5 @@ aardio 有多种表示字符串的方法，而这些表示方法都有预定义�
   ```
 
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/language-reference/datatype/newline.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/language-reference/datatype/newline.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/language-reference/datatype/newline.md)
 

@@ -3,7 +3,7 @@
 # chrome.driver 库模块帮助文�?
 说明
 
-[WebDriver 协议](javascript:if(confirm('https://w3c.github.io/webdriver  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ������·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ�����?'))window.location='https://w3c.github.io/webdriver') [JSON wire protocol 协议](javascript:if(confirm('https://www.selenium.dev/documentation/legacy/json_wire_protocol  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ������·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ�����?'))window.location='https://www.selenium.dev/documentation/legacy/json_wire_protocol')
+[WebDriver 协议](https://w3c.github.io/webdriver) [JSON wire protocol 协议](https://www.selenium.dev/documentation/legacy/json_wire_protocol)
 JSON wire protocol 仅供参考，�?WebDriver 文档为准�?
 此支持库会优先使用系统自带的 Edge（Chromium）浏览器�?不同版本浏览器需要下载不同版本的 chromedriver.exe （Edge 则为 msedgedriver.exe）�?
 如果 chrome.exe 所在目录已经存�?chromedriver.exe 则直接使用该路径�?否则 aardio 会自动检测并下载匹配版本�?msedgedriver.exe�?
@@ -82,7 +82,7 @@ chromedriver.exe �?msedgedriver.exe 路径
 
 对象负责转换为资源请求URL
 
-[返回对象:webRestApiObject](../web/rest/client.html#webRestApiObject)
+[返回对象:webRestApiObject](https://www.aardio.com/zh-cn/doc/library-reference/web/rest/client.html#webRestApiObject)
 
 ### chromeDriverEleObject.attribute
 
@@ -106,7 +106,7 @@ DELETE方法提交请求,删除资源
 
 请求参数可以指定表或字符�?如果是表请求前会转换为字符串
 
-[返回对象:webRestApiObject](../web/rest/client.html#webRestApiObject)
+[返回对象:webRestApiObject](https://www.aardio.com/zh-cn/doc/library-reference/web/rest/client.html#webRestApiObject)
 
 ### chromeDriverEleObject.get
 
@@ -116,7 +116,7 @@ GET方法提交请求,获取资源
 
 请求参数可以指定表或字符�?如果是表请求前会转换为字符串
 
-[返回对象:webRestApiObject](../web/rest/client.html#webRestApiObject)
+[返回对象:webRestApiObject](https://www.aardio.com/zh-cn/doc/library-reference/web/rest/client.html#webRestApiObject)
 
 ### chromeDriverEleObject.getAttribute()
 
@@ -173,7 +173,7 @@ PATCH方法提交请求,更新资源
 
 请求参数可以指定表或字符�?如果是表请求前会转换为字符串
 
-[返回对象:webRestApiObject](../web/rest/client.html#webRestApiObject)
+[返回对象:webRestApiObject](https://www.aardio.com/zh-cn/doc/library-reference/web/rest/client.html#webRestApiObject)
 
 ### chromeDriverEleObject.post
 
@@ -182,7 +182,7 @@ POST方法提交请求,新增或修改资�?
 
 请求参数可以指定表或字符�?如果是表请求前会转换为字符串
 
-[返回对象:webRestApiObject](../web/rest/client.html#webRestApiObject)
+[返回对象:webRestApiObject](https://www.aardio.com/zh-cn/doc/library-reference/web/rest/client.html#webRestApiObject)
 
 ### chromeDriverEleObject.property
 
@@ -197,7 +197,7 @@ PUT方法提交请求,替换或更新资�?
 
 请求参数可以指定表或字符�?如果是表请求前会转换为字符串
 
-[返回对象:webRestApiObject](../web/rest/client.html#webRestApiObject)
+[返回对象:webRestApiObject](https://www.aardio.com/zh-cn/doc/library-reference/web/rest/client.html#webRestApiObject)
 
 ### chromeDriverEleObject.query()
 
@@ -302,7 +302,7 @@ HTTP接口：GET /session/{session id}/element/{element id}/selected
 
 注意参数中不必要使用引号,多个参数应分开写不要拼接成一个参�?
 每个启动参数都是使用两个横杠开始的字符�?
-[chrome启动参数大全](javascript:if(confirm('https://peter.sh/experiments/chromium-command-line-switches/  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ������·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ�����?'))window.location='https://peter.sh/experiments/chromium-command-line-switches/')
+[chrome启动参数大全](https://peter.sh/experiments/chromium-command-line-switches/)
 
 ### chromeDriverObject.attach()
 
@@ -321,16 +321,16 @@ HTTP接口：GET /session/{session id}/element/{element id}/selected
 
 WebDriver API
 
-[返回对象:webRestClientObject](../web/rest/client.html#webRestClientObject)
+[返回对象:webRestClientObject](https://www.aardio.com/zh-cn/doc/library-reference/web/rest/client.html#webRestClientObject)
 
 web.rest.jsonClient客户端对�?
-[返回对象:webRestClientObject](../web/rest/client.html#webRestClientObject)
+[返回对象:webRestClientObject](https://www.aardio.com/zh-cn/doc/library-reference/web/rest/client.html#webRestClientObject)
 
 ### chromeDriverObject.clientApi
 
 WebDriver API
 
-[返回对象:webRestApiObject](../web/rest/client.html#webRestApiObject)
+[返回对象:webRestApiObject](https://www.aardio.com/zh-cn/doc/library-reference/web/rest/client.html#webRestApiObject)
 
 ### chromeDriverObject.close()
 
@@ -388,13 +388,13 @@ Chrome Driver将直接附加到该浏览器实例
 
 服务端进�?process.poen 对象
 
-[返回对象:processPopenObject](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ �������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html#processPopenObject')
+[返回对象:processPopenObject](https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html#processPopenObject)
 
 ### chromeDriverObject.setOptions()
 
 设置Chrome启动选项,参数应当是键值对组成的表
 
-[ChromeDriver选项文档](javascript:if(confirm('http://chromedriver.chromium.org/capabilities  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ������·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ�����?'))window.location='http://chromedriver.chromium.org/capabilities')
+[ChromeDriver选项文档](http://chromedriver.chromium.org/capabilities)
 
 ### chromeDriverObject.setProxy(代理配置)
 
@@ -440,14 +440,14 @@ url指定要打开的网址,其他参数为可选参�?
 参数可�?aardio自动添加必要的默认参�?
 
 参数用法参考文�?
-[Chrome选项文档](javascript:if(confirm('http://chromedriver.chromium.org/capabilities  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ������·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ�����?'))window.location='http://chromedriver.chromium.org/capabilities')
+[Chrome选项文档](http://chromedriver.chromium.org/capabilities)
 
 ### chromeDriverObject.startServer
 
 启动ChromeDriver服务�?
 ### chromeDriverObject.startServer()
 
-[返回对象:processPopenObject](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ �������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html#processPopenObject')
+[返回对象:processPopenObject](https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html#processPopenObject)
 
 ### chromeDriverObject.startServer(端口,其他启动参数)
 
@@ -466,7 +466,7 @@ url指定要打开的网址,其他参数为可选参�?
 
 对象负责转换为资源请求URL
 
-[返回对象:webRestApiObject](../web/rest/client.html#webRestApiObject)
+[返回对象:webRestApiObject](https://www.aardio.com/zh-cn/doc/library-reference/web/rest/client.html#webRestApiObject)
 
 ### chromeDriverSesObject.actions()
 
@@ -515,7 +515,7 @@ DELETE方法提交请求,删除资源
 
 请求参数可以指定表或字符�?如果是表请求前会转换为字符串
 
-[返回对象:webRestApiObject](../web/rest/client.html#webRestApiObject)
+[返回对象:webRestApiObject](https://www.aardio.com/zh-cn/doc/library-reference/web/rest/client.html#webRestApiObject)
 
 ### chromeDriverSesObject.delete()
 
@@ -579,7 +579,7 @@ GET方法提交请求,获取资源
 
 请求参数可以指定表或字符�?如果是表请求前会转换为字符串
 
-[返回对象:webRestApiObject](../web/rest/client.html#webRestApiObject)
+[返回对象:webRestApiObject](https://www.aardio.com/zh-cn/doc/library-reference/web/rest/client.html#webRestApiObject)
 
 ### chromeDriverSesObject.getCurrentTitle()
 
@@ -639,7 +639,7 @@ PATCH方法提交请求,更新资源
 
 请求参数可以指定表或字符�?如果是表请求前会转换为字符串
 
-[返回对象:webRestApiObject](../web/rest/client.html#webRestApiObject)
+[返回对象:webRestApiObject](https://www.aardio.com/zh-cn/doc/library-reference/web/rest/client.html#webRestApiObject)
 
 ### chromeDriverSesObject.post
 
@@ -648,7 +648,7 @@ POST方法提交请求,新增或修改资�?
 
 请求参数可以指定表或字符�?如果是表请求前会转换为字符串
 
-[返回对象:webRestApiObject](../web/rest/client.html#webRestApiObject)
+[返回对象:webRestApiObject](https://www.aardio.com/zh-cn/doc/library-reference/web/rest/client.html#webRestApiObject)
 
 ### chromeDriverSesObject.put
 
@@ -657,7 +657,7 @@ PUT方法提交请求,替换或更新资�?
 
 请求参数可以指定表或字符�?如果是表请求前会转换为字符串
 
-[返回对象:webRestApiObject](../web/rest/client.html#webRestApiObject)
+[返回对象:webRestApiObject](https://www.aardio.com/zh-cn/doc/library-reference/web/rest/client.html#webRestApiObject)
 
 ### chromeDriverSesObject.query()
 
@@ -973,5 +973,5 @@ HTTP接口：GET /session/{session id}/window/handles
 
 HTTP接口：GET /session/{session id}/window/rect
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/chrome/driver.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/chrome/driver.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/chrome/driver.md)
 

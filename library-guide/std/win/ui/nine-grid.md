@@ -22,5 +22,5 @@
 
 
 当然，九宫格中的每一个格子，如果加载的不是控件而是子窗�?\- 那么任何一个格子又可以再次成为另外一个九宫格�?这在aardio中非常简单，拖一个custom控件到界面上，使�?winform.custome.loadForm 就可以加载一个子窗口到界面上了），所以我们把复杂的问题简单化：只要懂得如何实现一个最简单的九宫格就行了�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-guide/std/win/ui/nine-grid.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-guide/std/win/ui/nine-grid.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-guide/std/win/ui/nine-grid.md)
 

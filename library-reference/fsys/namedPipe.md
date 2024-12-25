@@ -157,5 +157,5 @@
 如果是指针则必须指定写入长度,否则长度参数可�?
 成功返回写入长度
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/fsys/namedPipe.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/fsys/namedPipe.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/fsys/namedPipe.md)
 

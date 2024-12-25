@@ -43,7 +43,15 @@
 
 <h3>process.gcc.check()</h3>
 
-<p>搜索并返回 gcc.exe 路径，自动设置 GCC 环境变量。<br>
+<p>搜索并返回  32 位 gcc.exe 路径，自动设置 GCC 环境变量。<br>
+如果找不到 gcc.exe，自动安装 Mingw-w64 并返回 gcc.exe 路径。<br>
+失败返回 null</p>
+
+<p><a id="process.gcc.check64"></a></p>
+
+<h3>process.gcc.check64()</h3>
+
+<p>搜索并返回 64 位 gcc.exe 路径，自动设置 GCC 环境变量。<br>
 如果找不到 gcc.exe，自动安装 Mingw-w64 并返回 gcc.exe 路径。<br>
 失败返回 null</p>
 
@@ -61,7 +69,14 @@
 
 <h3>process.gcc.install()</h3>
 
-<p>安装 Mingw-w64<br>
+<p>安装 Mingw-w64 32 位程序编译工具。<br>
+可选在参数中指定 Mingw-w64 离线安装包下载地址</p>
+
+<p><a id="process.gcc.install64"></a></p>
+
+<h3>process.gcc.install64()</h3>
+
+<p>安装 Mingw-w64 64 位程序编译工具。<br>
 可选在参数中指定 Mingw-w64 离线安装包下载地址</p>
 
 <p><a id="process.gcc.match"></a></p>
@@ -83,7 +98,7 @@ process.gcc.match( &quot;__cplusplus\s+(\d+)&quot;,&quot;-dM -E -x c++ NUL&quot;
 
 <h3>process.gcc.path</h3>
 
-<p>调用 check 函数并返回 true 以后可会返回 gcc.exe 路径</p>
+<p>调用 check 或 check64 函数并返回 true 以后此路径返回 gcc.exe 路径</p>
 
 <p><a id="processGccObject"></a></p>
 
@@ -111,7 +126,7 @@ process.gcc.match( &quot;__cplusplus\s+(\d+)&quot;,&quot;-dM -E -x c++ NUL&quot;
 
 <h3>processGccObject.popen()</h3>
 
-<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html#processPopenObject'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html#processPopenObject">返回对象:processPopenObject</a></p>
+<p><a href="https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html#processPopenObject">返回对象:processPopenObject</a></p>
 
 <p><a id="processGccObject.popen"></a></p>
 
@@ -120,7 +135,7 @@ process.gcc.match( &quot;__cplusplus\s+(\d+)&quot;,&quot;-dM -E -x c++ NUL&quot;
 <pre><code class="aardio language-aardio">processGccObject.popen(&quot;main.c -o main.dll -shared -s -municode -m32 -O2 -static -lgcc -lstdc++&quot;)
 </code></pre>
 
-<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/process/gcc/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/process/gcc/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/process/gcc/_.md">Markdown 格式</a></p>
+<p><a href="https://www.aardio.com/zh-cn/doc/library-reference/process/gcc/_.md">Markdown 格式</a></p>
 
 </body> 
 </html>

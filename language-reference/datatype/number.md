@@ -85,5 +85,5 @@ console.logPause(
 
 将数值转换为字符串的 tostring() 函数,以及将字符串转换为数值的 tonumber() 函数,都可选使用第二个参数指定应用于转换的进制(2�?6之间).
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/language-reference/datatype/number.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/language-reference/datatype/number.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/language-reference/datatype/number.md)
 

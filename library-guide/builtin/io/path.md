@@ -115,5 +115,5 @@ aardio 自带的文件操作函数基本都会自动调�?io.fullpath 转换参�
 ## io.\_exefile
 
 只读属性，返回启动主程序的 exe 文件�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-guide/builtin/io/path.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ �������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-guide/builtin/io/path.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-guide/builtin/io/path.md)
 

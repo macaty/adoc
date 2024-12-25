@@ -112,5 +112,5 @@ console.print(b);
 可以通过右移 0 位将有符号数强制转换为无符号数�?
 例如 `-1 >>> 0` 的值为 0xFFFFFFFF —�?其作用等价于 `raw.convert( {int value = -1},{INT value}).value`�?
 [不声明调用原�?API](../../library-guide/builtin/raw/directCall.html) 默认会返�?32 位有符号整数，如果原 API 返回的是 32 位无符号整数，那么只要简单的将返回�?`>>> 0` 就可以得到原来的无符号数值了�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/language-reference/operator/bitwise.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/language-reference/operator/bitwise.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/language-reference/operator/bitwise.md)
 

@@ -88,13 +88,36 @@
 <h3>win.appBar.message(_ABM,{} )</h3>
 
 <p>发送任务栏命令,<br>
-可选在第二个参数中使用表对象指定APPBARDATA属性</p>
+可选在第二个参数中使用一个表对象指定 APPBARDATA 的部分字段。<br>
+函数会自动创建 APPBARDATA 结构体，并且合并参数 @2 指定的字段值。</p>
+
+<p><a id="win.appBar.regist"></a></p>
+
+<h3>win.appBar.regist</h3>
+
+<p>将窗口注册接收任务栏通知消息。<br>
+相关范例: <a href="https://www.aardio.com/zh-cn/doc/example/System/Desktop/appBarMsg.html">https://www.aardio.com/zh-cn/doc/example/System/Desktop/appBarMsg.html</a></p>
 
 <p><a id="win.appBar.regist"></a></p>
 
 <h3>win.appBar.regist(窗口句柄,自定义回调消息ID)</h3>
 
-<p>将窗口注册接收任务栏通知消息,例如 _ABN_FULLSCREENAPP</p>
+<p>将窗口注册接收任务栏通知消息。<br>
+请在参数 @1 指定的窗口接收参数 @2 指定的消息 ID。<br>
+wParam 为通知代码，例如应用全屏事件通知代码为 _ABN_FULLSCREENAPP<br>
+lParam 为通知参数，对于 _ABN_FULLSCREENAPP 表示是否全屏</p>
+
+<p><a id="win.appBar.regist"></a></p>
+
+<h3>win.appBar.regist(窗口对象,通知回调函数)</h3>
+
+<pre><code class="aardio language-aardio">win.appBar.regist(winform,function(code,param){  
+    if(code == 2/*_ABN_FULLSCREENAPP*/){  
+        /*code 为通知代码，param 为通知参数。  
+对于 _ABN_FULLSCREENAPP 通知消息 ，param 为是否有全屏窗口*/  
+    }  
+})
+</code></pre>
 
 <p><a id="win.appBar.setAutoHideBar"></a></p>
 
@@ -179,14 +202,14 @@ _ABM_SETAUTOHIDEBAR=0x8<br>
 _ABM_SETPOS=0x3<br>
 _ABM_SETSTATE=0xA<br>
 _ABM_WINDOWPOSCHANGED=0x9<br>
-_ABN_FULLSCREENAPP=0x2<br>
-_ABN_POSCHANGED=0x1<br>
-_ABN_STATECHANGE=0x0<br>
-_ABN_WINDOWARRANGE=0x3<br>
+_ABN_FULLSCREENAPP=2<br>
+_ABN_POSCHANGED=1<br>
+_ABN_STATECHANGE=0<br>
+_ABN_WINDOWARRANGE=3<br>
 _ABS_ALWAYSONTOP=0x2<br>
 _ABS_AUTOHIDE=0x1  </p>
 
-<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/appBar.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/appBar.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/appBar.md">Markdown 格式</a></p>
+<p><a href="https://www.aardio.com/zh-cn/doc/library-reference/win/appBar.md">Markdown 格式</a></p>
 
 </body> 
 </html>

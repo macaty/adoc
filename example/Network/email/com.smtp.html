@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - com.smtp 发送邮件'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - com.smtp 发送邮件</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: com.smtp 发送邮件</h1><pre><code class="aardio language-aardio">//com.smtp 发送邮件
+import console;
+import com.smtp;
+
+var smtp = com.smtp();
+
+smtp.from=&quot;1000@qq.com&quot; //发件人
+smtp.to=&quot;1000@qq.com&quot; //收件人
+smtp.ssl = true; 
+
+smtp.server=&quot;smtp.qq.com&quot; //邮件服务器
+smtp.username=&quot;1000@qq.com&quot; //用户名
+smtp.password = &quot;1000100010001000&quot; //密码
+smtp.subject=&quot;标题&quot; //邮件标题
+smtp.html=&quot;邮件内容&quot; //邮件内容
+
+io.open()
+try{
+    console.log(&quot;正在发送邮件...&quot;)
+    smtp.send();//发送邮件 
+}
+catch(e){
+    console.log(&quot;出错了,请正确设置smtp服务器登录信息,如密码等.&quot;,e)
+}
+
+console.pause();
+</code></pre>
+<a href="https://www.aardio.com/zh-cn/doc/example/Network/email/com.smtp.md">Markdown 格式</a>
+</body> 
+</html>

@@ -25,14 +25,14 @@ NuGet 接口操作
 ### dotNet.nuget.http
 
 web.rest.jsonLiteClient 客户端�?
-[返回对象:webRestClientObject](../web/rest/client.html#webRestClientObject)
+[返回对象:webRestClientObject](https://www.aardio.com/zh-cn/doc/library-reference/web/rest/client.html#webRestClientObject)
 
 ### dotNet.nuget.query()
 
 搜索包�?
 参数 @1 可选指定一个查询参数表�?
 参数表支持的字段�?
-[https://learn.microsoft.com/nuget/api/search-query-service-resource](javascript:if(confirm('https://learn.microsoft.com/nuget/api/search-query-service-resource  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ������·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ�����?'))window.location='https://learn.microsoft.com/nuget/api/search-query-service-resource')
+[https://learn.microsoft.com/nuget/api/search-query-service-resource](https://learn.microsoft.com/nuget/api/search-query-service-resource)
 
 ### dotNet.nuget.service()
 
@@ -40,7 +40,7 @@ web.rest.jsonLiteClient 客户端�?
 
 参数指定 NuGet 服务名，省略参数则默认为 "PackageBaseAddress/3.0.0"
 
-[返回对象:webRestApiObject](../web/rest/client.html#webRestApiObject)
+[返回对象:webRestApiObject](https://www.aardio.com/zh-cn/doc/library-reference/web/rest/client.html#webRestApiObject)
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/dotNet/nuget.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/dotNet/nuget.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/dotNet/nuget.md)
 

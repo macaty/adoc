@@ -153,5 +153,5 @@
 
 \_BIF\_VALIDATE=0x20
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/fsys/dlg.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/fsys/dlg.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/fsys/dlg.md)
 

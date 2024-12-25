@@ -294,7 +294,7 @@
 
 ,
 
-提示文本中嵌入超链接格式 [超链接](javascript:if(confirm('https://www.aardio.com/  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ������·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/'),
+提示文本中嵌入超链接格式 [超链接](https://www.aardio.com/),
 
 @flags为可选参�?可用\_TTF\_前缀常量组合
 
@@ -587,7 +587,7 @@ winUiTooltipObject.setFont(point=10;name="宋体");
 
 addTrackingTool 函数创建的提示支持超链接,
 
-提示文本中嵌入超链接格式 [超链接](javascript:if(confirm('https://www.aardio.com/  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ������·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/'),
+提示文本中嵌入超链接格式 [超链接](https://www.aardio.com/),
 
 可选用参数@ctrlOrToolInfo指定控件或TOOLINFO结构�?
 
@@ -744,5 +744,5 @@ winUiTooltipObject.wndproc = function(hwnd,message,wParam,lParam){
 
 \_TTS\_NOPREFIX=2
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/ui/tooltip.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/ui/tooltip.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/win/ui/tooltip.md)
 

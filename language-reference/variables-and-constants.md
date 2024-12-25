@@ -115,5 +115,5 @@ aardio 中的命名常量都是在运行时初始化值。如果常量的值为 
 ```
 
 �?`a := b` 赋值等价于�?`a = a : b` ，这里的 `:` �?逻辑�?操作符，等价于写 `a = a or b`�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/language-reference/variables-and-constants.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/language-reference/variables-and-constants.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/language-reference/variables-and-constants.md)
 

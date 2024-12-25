@@ -97,5 +97,5 @@ fsysUpdateAppObject.onProcessFailed = function(paths){
 
 更新的软件版本号
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/fsys/update/app.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/fsys/update/app.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/fsys/update/app.md)
 

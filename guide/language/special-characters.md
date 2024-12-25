@@ -388,5 +388,5 @@ win.loopMessage();
 ```
 
 �?aardio 开发环境中打开 \*.aardio 源文件时�?aardio 会搜�?`/*DSG{{*/` �?`/*}}*/` 的创建窗体与控件的代码块，并可以在窗体设计器中呈现并修改生成窗体�?aardio 代码�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/guide/language/special-characters.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/guide/language/special-characters.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/guide/language/special-characters.md)
 

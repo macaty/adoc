@@ -38,5 +38,5 @@ C# 的断点经常会失效，不要误以为是代码没执行，这时候可�
 不用�?VS 里那个版本选项仍然是灰色，版本实际已经切换过去了�?
 如果你不想写个几�?KB �?DLL 带上一百多 MB 的运行时�?那么请选择 .NET 2 ~ 4.x ，这些版本主流桌面系统都自带了，aardio 可以自动兼容�?
 另外 VS 里可能一些项目依赖会出现黄色警告，这时候你点恢复包什么的可能没有用。如果新版本 VS 就试试打开项目耐心等待一会再看看，如果等了不行，关掉或打开代理服务器再重新打开试一试�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-guide/std/dotNet/debug.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-guide/std/dotNet/debug.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-guide/std/dotNet/debug.md)
 

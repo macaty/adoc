@@ -30,5 +30,5 @@ utilpopupObject.countdown=function(remaintime){
 移动速度:每次向上移动显示的间�?以毫秒为单位
 
 移动步进:每次向上移动的距�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/util/popup.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/util/popup.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/win/util/popup.md)
 

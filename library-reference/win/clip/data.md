@@ -39,5 +39,5 @@
 �?UTF-8 编码文本转换�?Unicode（UTF-16）编码写入剪贴板�?
 不清空剪贴板原来的数据�?
 成功返回剪贴板数据句�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/clip/data.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/clip/data.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/win/clip/data.md)
 

@@ -13,7 +13,7 @@
 区分大小写返�?true，不区分返回 false�?
 发生错误返回 null,错误代码
 
-错误代码参�?错误代码参�?[https://docs.microsoft.com/en-us/openspecs/windows\_protocols/ms-erref/596a1078-e883-4972-9bbc-49e60bebca55](javascript:if(confirm('https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-erref/596a1078-e883-4972-9bbc-49e60bebca55  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ������·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ�����?'))window.location='https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-erref/596a1078-e883-4972-9bbc-49e60bebca55')
+错误代码参�?错误代码参�?[https://docs.microsoft.com/en-us/openspecs/windows\_protocols/ms-erref/596a1078-e883-4972-9bbc-49e60bebca55](https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-erref/596a1078-e883-4972-9bbc-49e60bebca55)
 
 ### fsys.caseSensitivity.get(dirPath,enabled)
 
@@ -32,5 +32,5 @@
 参数支持文件搜索通配符（�?fsys.enum 相同）�?
 此函数不需要系统安�?WSL
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/fsys/caseSensitivity.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/fsys/caseSensitivity.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/fsys/caseSensitivity.md)
 

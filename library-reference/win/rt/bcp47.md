@@ -76,5 +76,5 @@ Windows Vista 及以后版本，采用 RFC 4646 作为语言标签�?
 
 [返回对象:dllModuleObject](../../raw/_.html#dllModuleObject)
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/rt/bcp47.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/rt/bcp47.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/win/rt/bcp47.md)
 

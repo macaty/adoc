@@ -91,7 +91,7 @@
 - fiber 纤程
 
   调用 fiber.create() 创建并返回纤程对象�?纤程类似线程，但不是线程。纤程有独立的运行堆栈，并且也可以暂停或继续运行，但是纤程并不会创建新的线程，也不能同时运行多个纤程�?
-  请参考《库函数文档》： [《内置库 / 纤程》](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/fible/md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ļ�δ�ҵ���  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/fible/md')
+  请参考《库函数文档》： [《内置库 / 纤程》](https://www.aardio.com/zh-cn/doc/library-reference/fible/md)
 
 - cdata 内核对象
 
@@ -147,7 +147,7 @@ var num = !!0;
 aardio 也允许数据类型自动转换，规则如下:
 
 1. 在逻辑运算中，�?0\. �?null、非 false 值为 true，反之为 false�?
-2. 使用 [等式运算符](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/language-reference/datatype/..operatorequality.html  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ļ�δ�ҵ���  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/language-reference/datatype/..operatorequality.html') 比较 2 个值时�?
+2. 使用 [等式运算符](https://www.aardio.com/zh-cn/doc/language-reference/datatype/..operatorequality.html) 比较 2 个值时�?
    - 任意值与 true,false 比较则先转换为布尔值�?
    - 非布尔值与数值比较，则先转换为数值，然后比较数值是否相等�?
      例如 `null == 0` 就属于非布尔值与数值比较，�?null 转换为数值还�?null，null �?0 不是相等的数值。所�?`null == 0` 会返�?false �?
@@ -271,5 +271,5 @@ aardio 也允许数据类型自动转换，规则如下:
    ```
 
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/language-reference/datatype/datatype.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/language-reference/datatype/datatype.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/language-reference/datatype/datatype.md)
 

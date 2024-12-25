@@ -37,5 +37,5 @@ aardio 可以支持真多线程�?也提供了 py3.lock 简化了 Python 全局�
 使用 py3.mainThread 也可以检测是�?Python 主线程，
 
 其实 Python 因为有全局�?—�?无法实现真正的多线程�?调用 process.python 创建多进程来替代多线程可能更方便一些�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/py3/export.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/py3/export.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/py3/export.md)
 

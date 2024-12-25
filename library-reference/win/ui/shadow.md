@@ -92,5 +92,5 @@ winUiShadowObject.onDrawShadow = function(hdc,hMemDc,hMemBitmap,width,height){
 通过wiform.transprent修改窗口透明度时,
 
 会自动调用wiform.\_shadowWindow.transprent函数同步透明�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/ui/shadow.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/ui/shadow.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/win/ui/shadow.md)
 

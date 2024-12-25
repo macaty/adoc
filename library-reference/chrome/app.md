@@ -66,7 +66,7 @@ Win7 则自动安�?Chrome 109，XP 自动安装 Chrome 49
 
 注意参数中不必要使用引号,多个参数应分开写不要拼接成一个参�?
 每个启动参数都是使用两个横杠开始的字符�?
-[chrome启动参数大全](javascript:if(confirm('https://peter.sh/experiments/chromium-command-line-switches/  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ������·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ�����?'))window.location='https://peter.sh/experiments/chromium-command-line-switches/')
+[chrome启动参数大全](https://peter.sh/experiments/chromium-command-line-switches/)
 
 ### processchromeappObject.callback(name,callback)
 
@@ -420,5 +420,5 @@ RPC服务端远程回调函数名首字符为$�?第一个回�?参数即为当�
 添加允许aardio调用的js回调函数.
 
 可选使用callback函数指定一个同名回调函数按收本次调用chrome的返回�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/chrome/app.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/chrome/app.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/chrome/app.md)
 

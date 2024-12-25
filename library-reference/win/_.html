@@ -32,6 +32,14 @@
 
 <p>处理消息函数原始版本,慎用</p>
 
+<p><a id="win.autoQuitMessage"></a></p>
+
+<h3>win.autoQuitMessage</h3>
+
+<p>如果显式指定此属性值为 false ，<br>
+则禁止当前线程在关闭最后一个非模态、非 MessageOnly 的独立窗口（ 或 mainForm 窗口 ）<br>
+时自动调用 win.quitMessage 函数退出消息循环。</p>
+
 <p><a id="win.center"></a></p>
 
 <h3>win.center(窗口句柄,目标窗口句柄)</h3>
@@ -737,32 +745,33 @@ aardio 创建的所有控件都有 valid 属性（不一定会出现在提示中
 
 <h3>win.msgbox</h3>
 
-<p>弹出对话框</p>
+<p>弹出消息框。<br>
+显示系统级别模态消息请改用 winex.msgbox 。</p>
 
 <p><a id="win.msgbox"></a></p>
 
 <h3>win.msgbox(&quot;文本&quot;,&quot;标题&quot;,样式,所有者窗口句柄,显示时间)</h3>
 
-<p>弹出对话框<br>
+<p>弹出消息框。<br>
 除 参数@1 以外,所有参数可选<br>
 如果 参数@1 是表对象,自动调用 table.tostring 序列化为文本<br>
 其他类型调用 tostring 转为字符串。<br>
 可选用参数@5限定显示时间，以毫秒为单位，超时自动关闭。  </p>
 
-<p>一般不必指定对话框样式，不必了解该参数用法</p>
+<p>一般不必指定消息框样式，不必了解该参数用法</p>
 
 <p><a id="win.msgboxErr"></a></p>
 
 <h3>win.msgboxErr</h3>
 
-<p>弹出错误对话框</p>
+<p>弹出错误消息框</p>
 
 <p><a id="win.msgboxErr"></a></p>
 
-<h3>win.msgboxErr(&quot;文本&quot;,&quot;标题&quot;,所有者窗口)</h3>
+<h3>win.msgboxErr(&quot;文本&quot;,&quot;标题&quot;,所有者窗口句柄)</h3>
 
-<p>弹出错误对话框<br>
-所有者窗口参数可选<br>
+<p>弹出错误消息框。<br>
+参数 @3 可选指定所有者窗口句柄。<br>
 如果参数@1是表对象,自动调用 table.tostring 序列化为文本<br>
 其他类型调用 tostring 转为字符串</p>
 
@@ -770,13 +779,13 @@ aardio 创建的所有控件都有 valid 属性（不一定会出现在提示中
 
 <h3>win.msgboxTest</h3>
 
-<p>弹出确认对话框</p>
+<p>弹出确认消息框</p>
 
 <p><a id="win.msgboxTest"></a></p>
 
-<h3>win.msgboxTest(&quot;文本&quot;,&quot;标题&quot;,所有者窗口)</h3>
+<h3>win.msgboxTest(&quot;文本&quot;,&quot;标题&quot;,所有者窗口句柄)</h3>
 
-<p>弹出确认对话框，<br>
+<p>弹出确认消息框，<br>
 返回布尔值表示用户是否按了“确定”按钮。<br>
 标题,所有者窗口参数可选<br>
 如果参数@1是表对象,自动调用 table.tostring 序列化为文本<br>
@@ -786,13 +795,13 @@ aardio 创建的所有控件都有 valid 属性（不一定会出现在提示中
 
 <h3>win.msgboxTimeout(&quot;文本&quot;,&quot;标题&quot;,超时值,样式,所有者窗口句柄)</h3>
 
-<p>弹出对话框,超时自动关闭<br>
+<p>弹出消息框，超时自动关闭。<br>
 超时值以毫秒为单位(可选参数),<br>
 除参数@1以外,其他所有参数可选。<br>
 如果参数@1是表对象,自动调用 table.tostring 序列化为文本<br>
 其他类型调用 tostring 转为字符串  </p>
 
-<p>一般不必指定对话框样式，不必了解该参数用法</p>
+<p>一般不必指定消息框样式，不必了解该参数用法</p>
 
 <p><a id="win.parseMessage"></a></p>
 
@@ -868,7 +877,7 @@ top,topleft,topright,bottom,bottomleft,bottomright</p>
 <h3>win.quitMessage()</h3>
 
 <p>退出消息循环<br>
-可在参数中指定loopMessage退出代码</p>
+可在参数中指定 win.loopMessage 退出代码。</p>
 
 <p><a id="win.registerClassEx"></a></p>
 
@@ -1242,32 +1251,28 @@ top,topleft,topright,bottom,bottomleft,bottomright</p>
     int x;
     int y;
 }
-</code></pre>
+```
 
-<p><a id="::NMHDR"></a></p>
-
-<h3>::NMHDR</h3>
-
-<pre><code class="aardio language-aardio">class {
+&lt;a id=&quot;::NMHDR&quot;&gt;&lt;/a&gt;
+### ::NMHDR 
+ ```aardio
+class {
     addr hwndFrom;
     ADDR idFrom;
     INT code;
 }
-</code></pre>
+```
 
-<p><a id="::NMHDR()"></a></p>
+&lt;a id=&quot;::NMHDR()&quot;&gt;&lt;/a&gt;
+### ::NMHDR() 
+ 通知消息结构体  
 
-<h3>::NMHDR()</h3>
+[返回对象:nmhdrObject](#nmhdrObject)
 
-<p>通知消息结构体  </p>
-
-<p><a href="#nmhdrObject">返回对象:nmhdrObject</a></p>
-
-<p><a id="::WNDCLASSEX"></a></p>
-
-<h3>::WNDCLASSEX</h3>
-
-<pre><code class="aardio language-aardio">class{ 
+&lt;a id=&quot;::WNDCLASSEX&quot;&gt;&lt;/a&gt;
+### ::WNDCLASSEX 
+ ```aardio
+class{ 
     INT cbSize = 48; 
     INT style = 0xB;//_CS_HREDRAW | _CS_VREDRAW | _CS_DBLCLKS;
     pointer lpfnWndProc;
@@ -1281,9 +1286,11 @@ top,topleft,topright,bottom,bottomleft,bottomright</p>
     ustring lpszClassName;
     pointer hIconSm;
 }
-</code></pre>
+```
 
-<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/_.md">Markdown 格式</a></p>
+
+[Markdown 格式](_.md)
+</code></pre>
 
 </body> 
 </html>

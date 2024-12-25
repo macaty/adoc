@@ -80,5 +80,5 @@ createInfo函数生成的asar文件目录
 ### fsysAsarWriterObject.treeData()
 
 对已添加的文件生成可在treeview控件中显示的数据�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/fsys/asar/writer.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/fsys/asar/writer.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/fsys/asar/writer.md)
 

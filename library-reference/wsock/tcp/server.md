@@ -93,5 +93,5 @@ WsockTcpServerObject.forever(
 
 49152-65535为私有或动态分配的临时端口
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/wsock/tcp/server.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/wsock/tcp/server.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/wsock/tcp/server.md)
 

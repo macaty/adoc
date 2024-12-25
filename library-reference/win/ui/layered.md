@@ -53,5 +53,5 @@ winuilayeredObject.onDrawBackground = function(graphics,left,top,width,height){
 
 重绘窗口,不要在onDrawBackground里调用此函数
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/ui/layered.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/ui/layered.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/win/ui/layered.md)
 

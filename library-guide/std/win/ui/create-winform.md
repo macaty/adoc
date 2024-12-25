@@ -1,14 +1,15 @@
 [aardio 文档](../../../../index.htm "aardio 编程语言文档首页")
 
 # win.form 使用指南 - 如何创建窗口并添加控�?
-## 一. 窗体设计�?
+## 一. 窗体设计�?[\#](\#new)
+
 �?aardio 中创建窗口有以下方法�?
 - 在开发环境左上角点击"创建窗体设计�?的快捷图标，或者直接按 `Ctrl + Shift + N` 快捷键，可新建一个空白窗体�?- 打开工程向导，选择窗口程序，然后任务一个窗口工程模板，点击创建工程�?  在创建工程以后，右键点选一个工程目录，点击"新建文件 / 新建窗体设计�?就可以创建窗口�?
 默认将在窗体设计器中�?设计视图"打开窗体�?
 我们可以在开发环境左下方�?界面控件"选择和拖放控件到窗体上�?
 点击窗体或控件，在右侧属性面板可以设置控件的属性�?
 我们可以点击"代码视图"切换到代码编辑器模式，也可以直接按相同的 `Ctrl + U` 快捷键来回切换视图模式。在窗体设计器上直接双击控件也可以切换到代码模式并且为控件添加事件函数（默认会添�?oncommand 事件，不同的控件有所不同 ）�?
-## �? 窗体设计器生成的代码结构
+## �? 窗体设计器生成的代码结构 [\#](\#dsg)
 
 我们创建窗口，添加一个按钮与一个文本框，切换到代码模式，我们看到生成了以下代码�?
 ```aardio aardio
@@ -29,7 +30,8 @@ win.loopMessage();
 `/*DSG{{*/` �?`/*}}*/` 之间的代码由窗体设计器自动生成，这部分代码默认会折叠并显示为『窗体设计器生成代码(请勿修改)』，通常直接修改这部分代码是不必要的，应当通过窗体设计器修改相关属性�?
 同一个代码文件不应当包含多个 `/*DSG{{*/ ... /*}}*/` 代码块。建议使用不同的代码文件创建不同的窗口，请参�? [创建多窗口程序](multi-window.html) �?
 > 注意：win.form 类并不在 win.ui 名字空间下面，但必须使用 win.ui 库导�?win.form 类。这�?aardio 标准库中是一个特例，其他标准库导入的类或者名字空间与库路径会保持一致，例如 web.view 库会导入 web.view 类�?
-## �? 调用 win.form 类创建窗体对�?
+## �? 调用 win.form 类创建窗体对�?[\#](\#ctor)
+
 原型�?
 ```aardio aardio
 var winform = win.form(formPropertiesTable)
@@ -57,10 +59,9 @@ var winform = win.form( text="窗口标题";right=759;bottom=469 )
 
 ```
 
-注意这不是命名参数，aardio 里没有命名参数�?
-对于一般的窗口我们应当指定 formPropertiesTable �?text 属性，也就是窗体的标题。如果不指定窗口标题则窗口不会显示标题栏，没有标题栏用户就找不到窗口关闭按钮，这可能不太方便。所以通常应该指定一个标题。即使我们需要创建一个无边框无标题栏的窗口我们也应该给窗口一个合适的标题�?
-窗口的创建参数不指定 left,top 坐标时则使用默认�?-1，这会让窗口显示在屏幕居中的默认位置。这时候窗口的宽度与高度分别为 right �?�?bottom �?１。如�?left,top 为小于等�?-2 的值则表示以窗口显示在屏幕右下角以后取得的左上角坐标作为原点计数。如�?left,top 为大于等�?0 的值则表示自屏幕左上角正常计数�?
-## �? 调用 winform.add 函数添加控件
+注意上面 win.form 的参数写法不是命名参数而是省略了外�?`{}` 符号的表参数，aardio 里没有命名参数�?
+win.form 的构造参数不指定 left,top 坐标时则使用默认�?-1，这会让窗口显示在屏幕居中的默认位置。这时候窗口的宽度与高度分别为 right �?�?bottom �?１。如�?left,top 为小于等�?-2 的值则表示以窗口显示在屏幕右下角以后取得的左上角坐标作为原点计数。如�?left,top 为大于等�?0 的值则表示自屏幕左上角正常计数�?
+## �? 调用 winform.add 函数添加控件 [\#](\#add)
 
 ### 1\. 原型�?
 ```aardio aardio
@@ -121,10 +122,11 @@ winform.add 的返回值与传入参数的结构相同，如果传入的是 cont
 
 win.form 构造参数与 winform.add 有一些不常见的用法与隐藏参数，用于解决一些不太常见的需求。关于这些参数在 aardio 自带�?范例 / Windowns 窗口 / 基础知识" 内有详细的演示与注释说明，也可以查看库参考手册，作为入门指南这里不多讲�?
 范例�?
-- [创建窗口隐藏参数](../../../../example/Windows/Basics/win.form.html)
-- [动态创建控件](../../../../example/Windows/Basics/win.form.add.html)
+- [创建窗口隐藏参数](https://www.aardio.com/zh-cn/doc/example/Windows/Basics/win.form.html)
+- [动态创建控件](https://www.aardio.com/zh-cn/doc/example/Windows/Basics/win.form.add.html)
 
-## �? 创建窗口示例�?
+## �? 创建窗口示例 [\#](\#example)
+
 ```aardio aardio
 //�?win.ui 库中导入 win.form 窗口�?import win.ui;
 
@@ -164,7 +166,61 @@ win.loopMessage();
 ```
 
 这个代码示例首先�?`win.ui` 库导入了 `win.form` 类，然后创建了一个带有指定标题的 winform 窗口。接着，它在该窗口上添加了一个按钮和一个文本框。当按钮被点击时，会�?1 循环�?10 的数字，每个数字后跟一个换行符，然后输出到文本框中。最后，显示窗口并进入消息循环，以便响应用户的操作�?
-用户在点击按钮时会回�?winform.button1.oncommand 事件函数，请参�?[aardio 范例：响应控件命令](../../../../example/Windows/Basics/command.html)
+用户在点击按钮时会回�?winform.button1.oncommand 事件函数，请参�?[aardio 范例：响应控件命令](https://www.aardio.com/zh-cn/doc/example/Windows/Basics/command.html)
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-guide/std/win/ui/create-winform.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ �������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-guide/std/win/ui/create-winform.md')
+## �? 无边框窗�?[\#](\#frameless)
+
+win.form 的构造参数可使用 border 字段指定边框，示例：
+
+```aardio aardio
+var winform = win.form(text="创建无边框（无标题栏）窗�?;border="none")
+
+```
+
+border 可指定的值如下：
+
+- "none" 创建无边框窗口，无边框窗口也不会有标题栏�?- "resizable" 创建可拖动改变窗口大小的边框，这是默认设置，不需要显式指定�?- "dialog frame" 创建对话框窗口边框，不能拖动改变窗口大小。此选项仅适用于包含标题栏的窗口�?- "thin" 窗口显示细边框，不能拖动改变窗口大小。此选项仅适用于无标题栏的窗口�?
+win.form 的构造参数可以用 title 字段指定是否显示标题栏，示例�?
+```aardio aardio
+var winform = win.form(text="细边�?+ 无标题栏样式";border="thin";title=false)
+
+```
+
+title 字段仅对有边框的窗口有效（无边框的窗口一定没有标题栏），有边框的窗口 title 字段的默认值为 true 一般不需要显式指定�?
+> win.form 的构造参数如果不�?text 字段指定标题文本也会导致窗口不显示标题栏。没有标题栏就找不到原本显示在标题栏的关闭窗口按钮，用户就只能通过 `AL + F4` 关闭窗口，所以一般不建议省略创建窗口参数中的 text 字段。就算是无边框无标题栏的窗口一般也推荐给窗口指定一个合适的标题�?
+创建无边框窗口的目的通常是为了自己定制标题栏与边框，aardio 提供了一个简单的示例�?win.ui.simpleWindow �?
+用法演示�?
+```aardio aardio
+import win.ui;
+
+//创建无边框（无标题栏）窗�?var winform = win.form(text="aardio form";border="none")
+
+//添加标题栏背�?winform.add(
+bkTitleBar={cls="bk";left=0;top=0;marginRight=0;bottom=30;bgcolor=8421504;dl=1;dr=1;dt=1;z=1}
+)
+
+//添加阴影边框、标题栏�?import win.ui.simpleWindow;
+win.ui.simpleWindow(winform);
+
+winform.show();
+win.loopMessage();
+
+```
+
+可查�?win.ui.simpleWindow 库源码了解如何定制无边框窗口�?
+在无边框窗口上，调用以下函数模拟标题栏按钮消息：
+
+```aardio aardio
+winform.hitMax() //模拟点击最大化按钮
+winform.hitMin() //模拟点击最小化按钮
+winform.hitClose() //模拟点击关闭按钮
+winform.hitCaption() //拖动标题�?
+```
+
+请参考：
+
+- [无边框窗口范例](https://www.aardio.com/zh-cn/doc/example/Windows/Basics/frameless.html)
+- [web.view - 网页界面无边框窗口范例](https://www.aardio.com/zh-cn/doc/example/WebUI/web.view/frameless.html)
+
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-guide/std/win/ui/create-winform.md)
 

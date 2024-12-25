@@ -481,5 +481,5 @@ web.form �?Win7，IE8 开始支持该函数�?
 
 将字符串值写入框架网页、不允许追加
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/web/mshtml.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/web/mshtml.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/web/mshtml.md)
 

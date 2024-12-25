@@ -283,5 +283,5 @@ for i,j,group1  in string.gfind( /*查找字符�?/,"(.)") {
 键值分隔模式默认为 "\\s\*\[:=\]\\s\*"，也就是忽略前后空白的冒号或等号�?
 行分隔符默认兼容回车换行、换行、单回车等行分隔符�?
 默认不指定行首注释符，该参数仅支持字节码，例�?'#'#�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/builtin/string.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/builtin/string.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/builtin/string.md)
 

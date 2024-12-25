@@ -91,5 +91,5 @@ win.font.enum(
 
 \_TURKISH\_CHARSET=0xA2
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/font.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/font.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/win/font.md)
 

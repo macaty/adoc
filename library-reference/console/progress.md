@@ -94,5 +94,5 @@
 ### ConsoleProgressObject.setProgress(百分�?状态文�?
 
 百分比为0�?00的数值，状态文本为可选参�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/console/progress.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/console/progress.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/console/progress.md)
 

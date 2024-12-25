@@ -85,5 +85,5 @@ win.region.bitmap("/res/winform.regin.jpg").updateWindow(winform.hwnd)
 
 制作掩码图很简单，使用 Photoshop 建立图像，双击背景转换为图层并在编辑菜单中选择【填充】为白色�?
 然后按住CTRL键点击前景图层在前景图像上创建选框，删除图像并填充为黑色即可�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-guide/std/win/ui/background.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-guide/std/win/ui/background.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-guide/std/win/ui/background.md)
 

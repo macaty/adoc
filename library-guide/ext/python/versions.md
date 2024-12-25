@@ -29,5 +29,5 @@ process.python 的主要特点：
 - 兼容 32�?64�?Python 运行时�?- 可自�?Python 运行时，也可以支持系统安装的 Python 运行时�?
 请参考范例： [调用 Python 任意版本](../../../example/Languages/Python/Python AnyVersion/QuickStart-1.html)
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-guide/ext/python/versions.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-guide/ext/python/versions.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-guide/ext/python/versions.md)
 

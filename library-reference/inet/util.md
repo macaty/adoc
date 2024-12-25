@@ -9,5 +9,5 @@
 ### inet.util.getWebServer(URL)
 
 检测Web服务器版�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/inet/util.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/inet/util.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/inet/util.md)
 

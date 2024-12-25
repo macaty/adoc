@@ -41,5 +41,5 @@ chrome.remote({
 用户数据目录,
 
 如果开启远程调�?使用同一用户数据目录的chrome同时只能有一个进程实例运�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/chrome/remote.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/chrome/remote.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/chrome/remote.md)
 

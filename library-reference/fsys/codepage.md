@@ -62,5 +62,5 @@
 将参数@2指定的字符串以ANSI编码存为文件,参数@3指定输出代码�?
 可选以参数@4指定输入代码�?默认�?5001
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/fsys/codepage.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/fsys/codepage.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/fsys/codepage.md)
 

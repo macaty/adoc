@@ -46,5 +46,5 @@
 
 返回下一帧位图句�?以及延时
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/ui/aniBackground.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/ui/aniBackground.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/win/ui/aniBackground.md)
 

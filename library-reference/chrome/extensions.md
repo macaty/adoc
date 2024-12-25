@@ -50,5 +50,5 @@
 获取 Edge �?Chrome 浏览器扩展所在目录路径并打开目录�?
 @kw 可指定系统浏览器扩展 ID、或名称、描述包含的关键字（忽略大小写）�?
 @profile 指定配置，默认为 "Default"�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/chrome/extensions.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/chrome/extensions.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/chrome/extensions.md)
 

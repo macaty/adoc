@@ -211,5 +211,5 @@ table.gc = function(object,gc){
 
 ```
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-guide/builtin/raw/mem.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ �������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-guide/builtin/raw/mem.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-guide/builtin/raw/mem.md)
 

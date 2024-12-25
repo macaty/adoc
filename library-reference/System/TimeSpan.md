@@ -8,5 +8,5 @@
 .NET System.TimeSpan 结构�?
 [返回对象:dotNetNameSpaceObject](../dotNet/appDomain.html#dotNetNameSpaceObject)
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/System/TimeSpan.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ �������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/System/TimeSpan.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/System/TimeSpan.md)
 

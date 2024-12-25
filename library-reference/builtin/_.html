@@ -378,79 +378,68 @@ _SPIF_UPDATEINIFILE | _SPIF_SENDWININICHANGE<br>
 <h3>::HIBYTE</h3>
 
 <pre><code class="aardio language-aardio">function(l) {return   (l   &gt;&gt; 8) &amp; 0xff  }
+```
+
+&lt;a id=&quot;::HIWORD&quot;&gt;&lt;/a&gt;
+### ::HIWORD 
+ ```aardio
+function(l) {return  (l &gt;&gt; 16) &amp; 0xffff }
+```
+
+&lt;a id=&quot;::Kernel32&quot;&gt;&lt;/a&gt;
+### ::Kernel32 
+ 默认已加载的Kernel32.dll模块对象  
+Kernel32.dll是Windows内置库,提供很多常用API
+
+&lt;a id=&quot;::LOBYTE&quot;&gt;&lt;/a&gt;
+### ::LOBYTE 
+ ```aardio
+function(l) {return l  &amp; 0xff }
+```
+
+&lt;a id=&quot;::LOWORD&quot;&gt;&lt;/a&gt;
+### ::LOWORD 
+ ```aardio
+function(l) {return l &amp; 0xffff }
+```
+
+&lt;a id=&quot;::MAKELONG&quot;&gt;&lt;/a&gt;
+### ::MAKELONG 
+ ```aardio
+function(a,b){ return ( ( (b &amp; 0xFFFF) &lt;&lt; 16) | (a &amp; 0xFFFF) ) &amp; 0xFFFFFFFF }
+```
+
+&lt;a id=&quot;::MAKEWORD&quot;&gt;&lt;/a&gt;
+### ::MAKEWORD 
+ ```aardio
+function (a,b){ return ( ( ( b &amp; 0xFF) &lt;&lt; 8) | ( a &amp; 0xFF) ) &amp; 0xFFFF  }
+```
+
+&lt;a id=&quot;::Ntdll&quot;&gt;&lt;/a&gt;
+### ::Ntdll 
+ 默认已加载的系统DLL组件ntdll.dll  
+
+[返回对象:dllModuleObject](https://www.aardio.com/zh-cn/doc/library-reference/raw/_.html#dllModuleObject)
+
+&lt;a id=&quot;::Ucrtbase&quot;&gt;&lt;/a&gt;
+### ::Ucrtbase 
+ UCRT 运行时，  
+Windows 10 以及之后的系统已经自带了 UCRT。  
+
+加载此 DLL 的代码如下：  
+::Ucrtbase := ..raw.loadDll(&quot;ucrtbase.dll&quot;,,&quot;cdecl&quot;);  
+注意等号前必须加冒号。  
+
+[返回对象:dllModuleObject](https://www.aardio.com/zh-cn/doc/library-reference/raw/_.html#dllModuleObject)
+
+&lt;a id=&quot;::User32&quot;&gt;&lt;/a&gt;
+### ::User32 
+ 默认已加载的User32.dll模块对象  
+User32.dll提供Windows用户界面相关API
+
+
+[Markdown 格式](_.md)
 </code></pre>
-
-<p><a id="::HIWORD"></a></p>
-
-<h3>::HIWORD</h3>
-
-<pre><code class="aardio language-aardio">function(l) {return  (l &gt;&gt; 16) &amp; 0xffff }
-</code></pre>
-
-<p><a id="::Kernel32"></a></p>
-
-<h3>::Kernel32</h3>
-
-<p>默认已加载的Kernel32.dll模块对象<br>
-Kernel32.dll是Windows内置库,提供很多常用API</p>
-
-<p><a id="::LOBYTE"></a></p>
-
-<h3>::LOBYTE</h3>
-
-<pre><code class="aardio language-aardio">function(l) {return l  &amp; 0xff }
-</code></pre>
-
-<p><a id="::LOWORD"></a></p>
-
-<h3>::LOWORD</h3>
-
-<pre><code class="aardio language-aardio">function(l) {return l &amp; 0xffff }
-</code></pre>
-
-<p><a id="::MAKELONG"></a></p>
-
-<h3>::MAKELONG</h3>
-
-<pre><code class="aardio language-aardio">function(a,b){ return ( ( (b &amp; 0xFFFF) &lt;&lt; 16) | (a &amp; 0xFFFF) ) &amp; 0xFFFFFFFF }
-</code></pre>
-
-<p><a id="::MAKEWORD"></a></p>
-
-<h3>::MAKEWORD</h3>
-
-<pre><code class="aardio language-aardio">function (a,b){ return ( ( ( b &amp; 0xFF) &lt;&lt; 8) | ( a &amp; 0xFF) ) &amp; 0xFFFF  }
-</code></pre>
-
-<p><a id="::Ntdll"></a></p>
-
-<h3>::Ntdll</h3>
-
-<p>默认已加载的系统DLL组件ntdll.dll  </p>
-
-<p><a href="../raw/_.html#dllModuleObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/raw/_.html#dllModuleObject">返回对象:dllModuleObject</a></p>
-
-<p><a id="::Ucrtbase"></a></p>
-
-<h3>::Ucrtbase</h3>
-
-<p>UCRT 运行时，<br>
-Windows 10 以及之后的系统已经自带了 UCRT。  </p>
-
-<p>加载此 DLL 的代码如下：<br>
-::Ucrtbase := ..raw.loadDll(&quot;ucrtbase.dll&quot;,,&quot;cdecl&quot;);<br>
-注意等号前必须加冒号。  </p>
-
-<p><a href="../raw/_.html#dllModuleObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/raw/_.html#dllModuleObject">返回对象:dllModuleObject</a></p>
-
-<p><a id="::User32"></a></p>
-
-<h3>::User32</h3>
-
-<p>默认已加载的User32.dll模块对象<br>
-User32.dll提供Windows用户界面相关API</p>
-
-<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/builtin/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/builtin/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/builtin/_.md">Markdown 格式</a></p>
 
 </body> 
 </html>

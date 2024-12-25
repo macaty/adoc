@@ -444,5 +444,5 @@ winex 库主要扩�?win 库的功能，并提供管理外部进程窗口的函�
    区别是第一个参数需指定线程ID，而不是窗口句柄�?
    其他参�?[winex.attach](#attach) 函数�?
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-guide/std/winex/winex.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-guide/std/winex/winex.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-guide/std/winex/winex.md)
 

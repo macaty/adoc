@@ -10,5 +10,5 @@
 在限定的延时内重复调用时仅保留最后一次调�?
 延时以毫秒为单位，省略延时则默认值为300毫秒
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/debounce.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/debounce.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/win/debounce.md)
 

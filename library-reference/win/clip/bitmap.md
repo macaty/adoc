@@ -9,7 +9,7 @@
 
 读取剪贴板图像并返回 gdip.bitmap 对象�?
 可读取剪贴板中的位图、png、非远程 HTML 图像�?
-[返回对象:gdipbitmapObject](../../gdip/bitmap.html#gdipbitmapObject)
+[返回对象:gdipbitmapObject](https://www.aardio.com/zh-cn/doc/library-reference/gdip/bitmap.html#gdipbitmapObject)
 
 ### win.clip.bitmap.readDataUrl()
 
@@ -50,5 +50,5 @@
 
 复制位图到剪贴板�?
 如果事先导入标准�?inet.http,这里也可以直接传入图像网址�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/clip/bitmap.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/clip/bitmap.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/win/clip/bitmap.md)
 

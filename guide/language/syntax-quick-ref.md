@@ -758,5 +758,5 @@ namespace className{
 aardio 允许�?`call`, `callex`, `invoke` 等函数调用其他函数并改变 `owner` 参数的值�?
 请参考： [owner 参数](../../language-reference/function/owner.html)
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/guide/language/syntax-quick-ref.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/guide/language/syntax-quick-ref.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/guide/language/syntax-quick-ref.md)
 

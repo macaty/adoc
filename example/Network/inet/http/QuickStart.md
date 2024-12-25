@@ -35,5 +35,5 @@ console.pause(true);
 
 ```
 
-[Markdown 鏍煎紡](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Network/inet/http/QuickStart.md  \n\n该文件无法用 Teleport Ultra 下载, 因为 服务器报告访问的文件是隐藏的。  \n\n你想在服务器上打开它?'))window.location='https://www.aardio.com/zh-cn/doc/example/Network/inet/http/QuickStart.md')
+[Markdown 鏍煎紡](https://www.aardio.com/zh-cn/doc/example/Network/inet/http/QuickStart.md)
 

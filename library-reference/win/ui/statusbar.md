@@ -253,5 +253,5 @@ statusbarObject.wndproc = function(hwnd,message,wParam,lParam){
 
 创建一个状态栏
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/ui/statusbar.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/ui/statusbar.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/win/ui/statusbar.md)
 

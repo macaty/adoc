@@ -30,5 +30,5 @@ Go 函数的参数类型必须声明为 \*string 指针�?
 更简单的方法是直接传 2 个参数（aardio 字符串，字符串长度）
 
 代替 Go 字符串�?这种方式是传值，不是传指�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/golang/string.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/golang/string.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/golang/string.md)
 

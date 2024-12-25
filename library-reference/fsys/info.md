@@ -41,7 +41,7 @@ DOS程序�?MZ"
 
 GUI 程序�?Windows 版本�?
 
-Windows 版本号参考： [https://docs.microsoft.com/en-us/windows/win32/winprog/using-the-windows-headers](javascript:if(confirm('https://docs.microsoft.com/en-us/windows/win32/winprog/using-the-windows-headers  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ������·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ�����?'))window.location='https://docs.microsoft.com/en-us/windows/win32/winprog/using-the-windows-headers')
+Windows 版本号参考： [https://docs.microsoft.com/en-us/windows/win32/winprog/using-the-windows-headers](https://docs.microsoft.com/en-us/windows/win32/winprog/using-the-windows-headers)
 
 ## shFileInfoObject 成员列表
 
@@ -65,5 +65,5 @@ SHGetFileInfo的返回�?
 ### shFileInfoObject.szTypeName
 
 类型�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/fsys/info.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/fsys/info.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/fsys/info.md)
 

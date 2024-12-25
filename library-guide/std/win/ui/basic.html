@@ -24,7 +24,8 @@
 窗口应用程序有且只能有一个 win.loopMessage()，使用 win.loadForm() 或者 winform.loadForm() 加载。
 窗体代码文件时会自动忽略重复启动消息循环的 win.loopMessage() 调用。</p></li>
 <li><p>所有非模态、非 MessageOnly 的独立窗口（ 或 mainForm 窗口 ）都关闭后，
-将会自动调用 win.quitMessage() 终止 win.loopMessage 创建的消息循环（通常也就是退出界面线程）。</p></li>
+将会自动调用 <code>win.quitMessage()</code> 终止 <code>win.loopMessage</code> 创建的消息循环（通常也就是退出界面线程）。
+如果显式指定 <code>win.autoQuitMessage</code> 的值为 <code>false</code> 则禁止当前线程在关闭上述窗口时自动调用 <code>win.quitMessage()</code> 。如果窗口对象自身的 <code>autoQuitMessage</code> 的属性值为 <code>false</code> 也会禁止在关闭该窗口时自动调用 <code>win.quitMessage()</code> 。</p></li>
 <li><p>使用 winform.doModal() 创建模态窗口, 模态窗口会禁用所有者窗口（也就是背景窗口）直到模态窗口关闭。
 模态窗口不能是子窗口（禁用父窗口就是禁用自己）。模态窗口创建独立的消息循环阻塞调用代码继续向后执行
 直到模态窗口退出,而调用 winform.show() 显示的非模态窗口不会阻塞调用代码向后执行。</p></li>
@@ -121,7 +122,7 @@ win.ui.tabs 实现的高级选项卡可实现类似功能。</p>
 <p>这种窗口类使用 import 导入，通过类构造函数创建窗口。
 标准库中的 win.inputBox 就是这样的窗口类。</p>
 
-<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-guide/std/win/ui/basic.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-guide/std/win/ui/basic.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/std/win/ui/basic.md">Markdown 格式</a></p>
+<p><a href="https://www.aardio.com/zh-cn/doc/library-guide/std/win/ui/basic.md">Markdown 格式</a></p>
 
 </body> 
 </html>

@@ -27,5 +27,5 @@ args 用一个数组指定原始的 Julia 对象指针,
 
 并在该函数返回前禁止回收参数中的对象
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/julia/gc.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/julia/gc.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/julia/gc.md)
 

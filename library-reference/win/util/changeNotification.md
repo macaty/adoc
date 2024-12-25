@@ -311,5 +311,5 @@ wuChangeNotificationObject.onUpdateItem = function(srcPath,dstPath){
 
 \_WM\_USERDEF\_FILECHANGED=0x8F00
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/util/changeNotification.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/util/changeNotification.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/win/util/changeNotification.md)
 

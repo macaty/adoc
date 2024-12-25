@@ -105,5 +105,5 @@ win.image.queryIconFromResource(/*图标数据或路�?/,true,
 
 如果省略参数@3则同时设置大图标和小图标�?
 如果替换了小图标,返回�?为窗口原来的小图�?如果替换了大图标,返回�?为窗口原来的大图�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/image.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/image.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/win/image.md)
 

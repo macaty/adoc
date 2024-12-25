@@ -23,5 +23,5 @@
 返回结构体的 hwnd 成员为输入光标所在窗口句柄�?
 �?2 个返回值为输入焦点窗口句柄
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/FlaUI/UIA3.Caret.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/FlaUI/UIA3.Caret.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/FlaUI/UIA3.Caret.md)
 

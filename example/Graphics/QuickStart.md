@@ -55,5 +55,5 @@ aardio æä¾› gdi.colorParse() å‡½æ•°å¯è§£æç½‘é¡µå…¼å®¹çš„ã€ç”¨å­—ç¬¦ä¸²è¡¨ç
 
 ```
 
-[Markdown æ ¼å¼](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Graphics/QuickStart.md  \n\n¸ÃÎÄ¼şÎŞ·¨ÓÃ Teleport Ultra ÏÂÔØ, ÒòÎª Ëü²»ÔÚÏîÄ¿ÎÄ¼şÀàĞÍ¹æ·¶ÄÚ¡£  \n\nÄãÏëÔÚ·şÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='https://www.aardio.com/zh-cn/doc/example/Graphics/QuickStart.md')
+[Markdown æ ¼å¼](https://www.aardio.com/zh-cn/doc/example/Graphics/QuickStart.md)
 

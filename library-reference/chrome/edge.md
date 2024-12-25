@@ -24,5 +24,5 @@ Win7 必须自行安装 Edge Chromium 109 ，无法自动安�?
 
 返回Edge Chromium路径�?
 如果没有该浏览器会自动下载安�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/chrome/edge.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/chrome/edge.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/chrome/edge.md)
 

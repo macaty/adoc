@@ -16,5 +16,5 @@
 此构造函数还支持有其他可选参�?详见库源�?
 分层窗口仅支持plus,bkplus控件,其他子窗口可通过调用 orphanWindow 函数正常显示
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/ui/layeredRound.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/ui/layeredRound.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/win/ui/layeredRound.md)
 

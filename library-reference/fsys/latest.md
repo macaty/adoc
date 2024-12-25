@@ -13,5 +13,5 @@
 参数 @2 支持通配符，默认�?"\*.\*"�?
 参数 @3 指定是否搜索所有下级子目录，默认为 false
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/fsys/latest.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/fsys/latest.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/fsys/latest.md)
 

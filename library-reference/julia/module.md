@@ -38,5 +38,5 @@ Main �?Julia 主模块�?
 输入模块的全局变量名或者函数名�?
 可以直接调用模块下的函数
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/julia/module.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/julia/module.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/julia/module.md)
 

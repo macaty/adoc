@@ -98,5 +98,5 @@ console.log( dic );
 避免这个问题的方法是�?`_get` 元方法或 `_set` 元方法中使用不会触发元方法的直接下标操作�?`[[]]`，将单层中括号的"下标操作�?改为使用双层中括号的"直接下标操作�?。也就是说，�?`_get` 元方法里�?`owner[["key"]]` �?就可以避免出现上述的递归调用错误�?
 参考： [直接下标](member-access.html#raw-subscript)
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/language-reference/operator/overloading.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/language-reference/operator/overloading.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/language-reference/operator/overloading.md)
 

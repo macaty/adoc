@@ -13,7 +13,7 @@ time.performance, time.timer, time.tick, sleep
 Win10 2004 以前会影响系统全局设置�?
 Win11 开始如果拥有窗口的进程最小化或不可见，则不保证设置的精度有效�?
 关于此功能的注意事项，请查看系统 API timeBeginPeriod 的文档�?
-[https://learn.microsoft.com/zh-cn/windows/win32/api/timeapi/nf-timeapi-timebeginperiod](javascript:if(confirm('https://learn.microsoft.com/zh-cn/windows/win32/api/timeapi/nf-timeapi-timebeginperiod  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ������·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ�����?'))window.location='https://learn.microsoft.com/zh-cn/windows/win32/api/timeapi/nf-timeapi-timebeginperiod')
+[https://learn.microsoft.com/zh-cn/windows/win32/api/timeapi/nf-timeapi-timebeginperiod](https://learn.microsoft.com/zh-cn/windows/win32/api/timeapi/nf-timeapi-timebeginperiod)
 
 ### time.period(精度,调用函数,其他调用参数)
 
@@ -24,5 +24,5 @@ Win11 开始如果拥有窗口的进程最小化或不可见，则不保证设�
 此函数主要影�?sleep 函数，对 win.delay 函数作用不大�?
 应避免在界面线程使用 time.period �?sleep 函数，以防止卡界面无法处理消息�?
 如果需要高精度计时，请使用 time.performance.tick 函数�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/time/period.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/time/period.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/time/period.md)
 

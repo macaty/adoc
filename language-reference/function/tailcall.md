@@ -34,5 +34,5 @@ console.pause()
 ```
 
 如果我们�?`return recursion(a-1)` 改成 `return recursion(a-1)+1` 就不再是尾调用了，这会导致内存不断地增加直到栈溢出，然后报错无法继续运行�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/language-reference/function/tailcall.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/language-reference/function/tailcall.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/language-reference/function/tailcall.md)
 

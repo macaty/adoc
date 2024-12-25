@@ -8,5 +8,5 @@
 窗口�?
 [返回对象:winform](../../win/ui/_.html#winform)
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/process/ollama/simpleChatUi.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/process/ollama/simpleChatUi.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/process/ollama/simpleChatUi.md)
 

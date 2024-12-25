@@ -11,7 +11,7 @@
 
 没有错误则返回null
 
-[错误信息中文版](javascript:if(confirm('http://support.microsoft.com/kb/819124  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ������·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ�����?'))window.location='http://support.microsoft.com/kb/819124')
+[错误信息中文版](http://support.microsoft.com/kb/819124)
 
 ### 自动完成常量
 
@@ -107,5 +107,5 @@
 
 \_WSAVERNOTSUPPORTED=10092
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/wsock/err.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/wsock/err.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/wsock/err.md)
 

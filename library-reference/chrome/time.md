@@ -16,5 +16,5 @@
 增加了stamp函数用于重新生成WebKit/Chrome时间�?
 [返回对象:timeObject](../time/_.html#timeObject)
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/chrome/time.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/chrome/time.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/chrome/time.md)
 

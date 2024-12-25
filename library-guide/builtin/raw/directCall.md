@@ -47,7 +47,7 @@ aardio 建议使用免声明的方式调用 API 函数，直接调�?API 更方�
 9. 因为没有参数类型声明，调用代码有责任事先检查并保证参数类型正确，传入错误的参数可能导致程序异常�?
 
 ## 二、免声明调用 \- 返回值规�?
-1. 免声明直接调�?API�?返回值默认为 int 类型。如果原 API 返回的是 32 位无符号整数，那么只要简单的将返回�?[>>\> 0](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-guide/builtin/raw/......language-referenceoperatorbitwise.html  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ļ�δ�ҵ���  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-guide/builtin/raw/......language-referenceoperatorbitwise.html#unsigned-right-shift') 就可以得到原来的无符号数值了�?
+1. 免声明直接调�?API�?返回值默认为 int 类型。如果原 API 返回的是 32 位无符号整数，那么只要简单的将返回�?[>>\> 0](https://www.aardio.com/zh-cn/doc/library-guide/builtin/raw/......language-referenceoperatorbitwise.html#unsigned-right-shift) 就可以得到原来的无符号数值了�?
 2. 可以使用 **API 尾标** 改变返回值为其他类型�?
 
 ## 三、使�?API 尾标 [\#](\#api-name-suffix)
@@ -100,5 +100,5 @@ API 尾标指的�?API 函数名尾部独立大写的特定字符。使用尾标
 
   这样带来的效率提升是非常有限的，一般没必要这么做�?
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-guide/builtin/raw/directCall.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-guide/builtin/raw/directCall.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-guide/builtin/raw/directCall.md)
 

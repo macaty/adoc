@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - POP3 接收邮件'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - POP3 接收邮件</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: POP3 接收邮件</h1><pre><code class="aardio language-aardio">//POP3 接收邮件
+import console;
+import dotNet.MailKit; 
+
+//创建 POP3 客户端
+var client = MailKit.Net.Pop3.Pop3Client()
+
+//连接服务端
+client.Connect (&quot;pop.qq.com&quot;, 995, true)
+
+//登录
+client.Authenticate(&quot;*****@qq.com&quot;, &quot;授权码&quot;)
+
+//遍历邮件 
+for(i=1;client.Count;1) {
+    var message = client.GetMessage (i-1)
+    console.log(&quot;主题:&quot;, message.Subject)
+    console.log(&quot;HTML:&quot;, message.HtmlBody) 
+}
+
+//断开连接
+client.Disconnect(true)
+console.pause()
+</code></pre>
+<a href="https://www.aardio.com/zh-cn/doc/example/Network/email/pop3.md">Markdown 格式</a>
+</body> 
+</html>

@@ -15,6 +15,8 @@
 <body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
 <h1>win.util.shellhook 库模块帮助文档</h1>
 
+<p><a href="https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-registershellhookwindow">参考文档</a></p>
+
 <p><a id="win.util"></a></p>
 
 <h2>win.util 成员列表</h2>
@@ -43,8 +45,9 @@
 <pre><code class="aardio language-aardio">winUtilShellhookObject.onShellHook=function(hShell,hwnd){
     var tid,pid = win.getThreadProcessId(hwnd)
     if(tid!= thread.getId()){
-        return; /*如果不想临视本线程在这里退出*/
+        return; /*如果不想监视此线程在这里退出*/
     }
+
     select(hShell) {
         case 1/*_HSHELL_WINDOWCREATED*/ {  
             ..io.print(&quot;一个窗口创建&quot;,hwnd,&quot;进程ID：&quot; + pid + &quot;线程ID:&quot; +tid)
@@ -56,7 +59,12 @@
 }
 </code></pre>
 
-<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/util/shellhook.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/util/shellhook.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/util/shellhook.md">Markdown 格式</a></p>
+<h3>自动完成常量</h3>
+
+<p>_HSHELL_FULLSCREEN_ENTERING=0x35<br>
+_HSHELL_FULLSCREEN_LEAVING=0x36  </p>
+
+<p><a href="https://www.aardio.com/zh-cn/doc/library-reference/win/util/shellhook.md">Markdown 格式</a></p>
 
 </body> 
 </html>

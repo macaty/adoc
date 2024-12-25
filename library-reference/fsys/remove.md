@@ -18,5 +18,5 @@
 清空参数 @1 指定路径的目录，但不删除目录本身�?
 如果参数 @1 指定的不是一个存在的目录，忽略不执行任何操作
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/fsys/remove.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/fsys/remove.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/fsys/remove.md)
 

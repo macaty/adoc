@@ -42,5 +42,5 @@ limitFlags 可指定以下值：
 
 也可以传�?process �?process.popen 对象
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/process/job/limitKill.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/process/job/limitKill.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/process/job/limitKill.md)
 

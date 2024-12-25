@@ -125,5 +125,5 @@ java.openProcess,java.popenProcess 创建 Java 进程�?
 优先在该目录下搜�?JVM 用于创建 java 虚拟机对象，
 
 如该目录不符合要求则继续搜索其他合适的目录�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/java/path.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/java/path.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/java/path.md)
 

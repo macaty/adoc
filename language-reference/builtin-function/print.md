@@ -37,5 +37,5 @@ console.pause();
 
 console 库函数有自动打开控制台的功能，但退出线程时必须主动调用 `console.pause()` 才能暂停控制台。这是因�?console 库在 aardio 中被大量使用，很可能我们在创建线程或子进制时会调用到 console 库，如果默认执行 `console.pause()` 就可能导致不需要的暂停操作�?同样的原因，我们应当避免在写库时直接调用默认具有暂停控制台功能的 print 函数 ）。如果需�?console 库在退出时自动暂停（避免控制台自动关闭）则只要�?`import console` 改为 `import console.int` 就可以�?
 在正式开发的 aardio 程序中，print 函数应当总是被模板语法自动调用，不建议在用户代码中显式调�?print 函数�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/language-reference/builtin-function/print.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/language-reference/builtin-function/print.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/language-reference/builtin-function/print.md)
 

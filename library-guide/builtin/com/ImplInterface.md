@@ -62,5 +62,5 @@
 
    �?IDispatch 接口对象中可使用 [\_call 元方法](../../../language-reference/datatype/table/meta.html#_call) 定义 COM 默认调用，使�?[\_item 元方法](../../../language-reference/datatype/table/meta.html#_item) 定义 COM 枚举表或 COM 默认调用表�?
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-guide/builtin/com/ImplInterface.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ �������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-guide/builtin/com/ImplInterface.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-guide/builtin/com/ImplInterface.md)
 

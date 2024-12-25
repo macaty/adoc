@@ -13,7 +13,7 @@
 如果用于其他数据类型，则检查对象是否定义了 `_len` 元方法，如果存在 `_len` 元方法就调用 `_len` 元方法返回值，否则抛出异常�?
 请特别注意：
 
-1. table,string,null 不能重载 `_len` 元方法�?2. 多线程共享表�?[thread.table](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/thread/table.html  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/thread/table.html') 对象 ）只是线程共享资源的代理表，所�?`#` 操作符不能获取多线程共享表里数组元素的个数，应当改用 thread.table 对象提供�?len 方法�?length 属性获取多线程共享数组的长度�?3. `#` 不适用�?[稀疏数组](../datatype/table/_.html#sparse-array)�?
+1. table,string,null 不能重载 `_len` 元方法�?2. 多线程共享表�?[thread.table](https://www.aardio.com/zh-cn/doc/library-reference/thread/table.html) 对象 ）只是线程共享资源的代理表，所�?`#` 操作符不能获取多线程共享表里数组元素的个数，应当改用 thread.table 对象提供�?len 方法�?length 属性获取多线程共享数组的长度�?3. `#` 不适用�?[稀疏数组](../datatype/table/_.html#sparse-array)�?
 aardio 示例�?
 ```aardio aardio
 import console;
@@ -71,5 +71,5 @@ var sparseArray = { "值：1", null, "值：2", "值：4" }
 
 ```
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/language-reference/operator/len.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/language-reference/operator/len.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/language-reference/operator/len.md)
 

@@ -28,7 +28,7 @@
 
 对于每一个正在执行的 Windows 应用程序，操作系统为其建立一�?消息队列"，即应用程序消息队列，用来存放该程序可能创建的各种窗口的消息。在 aardio 窗口程序中，调用 win.loopMessage 启动窗口消息循环，用来从程序的消息队列中检索窗口消息并把它们分发到相应的窗口函数中�?并且触发 aardio 中的 消息回调函数 wndproc、命令回调函�?oncommand、通知回调函数 onnotify 等等�?
 "消息循环"实际也就是窗口程序的主循环，win.loopMessage 退出则窗口程序终止�?
-应用程序可以通过调用 win.quitMessage() 退出消息循环。在 aardio 中当所有非模态、非 MessageOnly 的独立窗口（ �?mainForm 窗口 ）都关闭后，将会自动调用 win.quitMessage() 并终止消息循环退出界面线程�?
+应用程序可以通过调用 `win.quitMessage()` 退出消息循环。在 aardio 中当界面线程的所有非模态、非 MessageOnly 的独立窗口（ �?mainForm 窗口 ）都关闭后，将会自动调用 `win.quitMessage()` 并终止消息循环（之后如果没有执行其他代码就会退出界面线程）。如果显式指�?`win.autoQuitMessage` 的值为 `false` 则禁止当前线程在关闭前述窗口时自动调�?`win.quitMessage()` 。如果窗口对象自身的 `autoQuitMessage` 的属性值为 `false` 也会禁止在关闭该窗口时自动调�?`win.quitMessage()` �?
 请参考： [启动与退出窗口消息循环](../_.html#loopMessage)
 
 ## 三、响应控件命令、通知消息 [\#](\#oncommand-onnotify)
@@ -132,5 +132,5 @@ winform.hitClose()
 
 ```
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-guide/std/win/ui/msg.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-guide/std/win/ui/msg.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-guide/std/win/ui/msg.md)
 

@@ -25,5 +25,5 @@ php-cgi.exe 路径默认指定�?"~\\lib\\php.dll\\php-cgi.exe";
 可选用@path参数指定请求目标文件的相对路�?
 可选使用参数@documentRoot指定网站根目�?默认�?/"
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/php/simpleHttpServer.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/php/simpleHttpServer.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/php/simpleHttpServer.md)
 

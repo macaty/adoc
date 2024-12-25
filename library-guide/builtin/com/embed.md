@@ -125,5 +125,5 @@ embedObject 已封装为�?COM 控件代理对象，访�?embedObject 的成员�
 无论�?winform.static.createEmbedEx() 还是 winform.static.createEmbed() 返回的对象都可以通过容器对象添加事件，正确写法是�?
 `embedObject.StatusTextChange = function(text) {}`
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-guide/builtin/com/embed.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ �������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-guide/builtin/com/embed.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-guide/builtin/com/embed.md)
 

@@ -2,7 +2,7 @@
 
 # py3.pip 库模块帮助文�?
 参考文�?
-[https://pip.pypa.io/en/stable/cli/pip\_install/](javascript:if(confirm('https://pip.pypa.io/en/stable/cli/pip_install/  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ������·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ�����?'))window.location='https://pip.pypa.io/en/stable/cli/pip_install/')
+[https://pip.pypa.io/en/stable/cli/pip\_install/](https://pip.pypa.io/en/stable/cli/pip_install/)
 
 ## py3 成员列表
 
@@ -74,5 +74,5 @@ aardio 自带绿色�?Python 模块安装工具�?
 "tencent" 表示腾讯源，
 
 "douban" 表示豆瓣�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/py3/pip.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/py3/pip.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/py3/pip.md)
 

@@ -48,5 +48,5 @@ Python 模块安装工具�?
 默认安装模块�?"/py/site-packages" 目录�?
 如果不指定任何参数，直接返回 pip 模块对象�?
 可用一个字符串数组指定 pip.main 函数的启动参�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/process/python/pip.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/process/python/pip.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/process/python/pip.md)
 

@@ -176,5 +176,5 @@ userAgent,proxy等可选参数用于创建http对象,参考inet.http构造函数
 
 指定下载时的请求User Agent
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/inet/downBox.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/inet/downBox.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/inet/downBox.md)
 

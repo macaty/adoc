@@ -3,7 +3,7 @@
 # win.region.round 库模块帮助文�?
 范例
 
-[范例](../../../example/Windows/Effects/round.html)
+[范例](https://www.aardio.com/zh-cn/doc/example/Windows/Effects/round.html)
 
 ## win.region 成员列表
 
@@ -33,5 +33,5 @@
 
 设置窗体最小宽�?高度
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/region/round.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/region/round.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/win/region/round.md)
 

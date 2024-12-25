@@ -47,5 +47,5 @@
 可选用 @name 参数指定环境变量�?默认值为"Path"
 
 使用此函数之前调用代码必须自行导�?win.reg �?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/path.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/path.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/win/path.md)
 

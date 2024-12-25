@@ -28,5 +28,5 @@ call() 函数用于调用一�?aardio 函数,并可自定�?owner 对象，并�
    ```
 
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/language-reference/builtin-function/call.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/language-reference/builtin-function/call.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/language-reference/builtin-function/call.md)
 

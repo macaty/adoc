@@ -210,5 +210,5 @@ winUiGridObject.onSortColumn = function(column,desc){
 可用 length 属性自定义要加载的行数，默认加载所有行�?
 sqlite,access,sqlServer 等数据库对象�?
 提供�?getTable 函数可获取通过 fields 字段指定列名数组的数据表�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/ui/grid.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/ui/grid.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/win/ui/grid.md)
 

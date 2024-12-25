@@ -64,5 +64,5 @@ console.pause()
 
 string.sentences 的参数指定一个输入文本，返回值为拆分后的句子组成的字符串数组�?
 string.sentences 的返回数组定义了 \_call 元方法，因此也可以直拉作�?for in 语句的迭代器使用�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-guide/builtin/string/segmentation.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-guide/builtin/string/segmentation.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-guide/builtin/string/segmentation.md)
 

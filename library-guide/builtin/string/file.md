@@ -19,5 +19,5 @@ string.load 有三个参数，第一个参�?@path 为文件路径�?
 `string.save(path,str,append=false)`
 
 string.save 函数将字符串参数 @str 保存到参�?@path 指定的磁盘文件，如果增加 @append 参数并且值为 true 则追加到文件尾�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-guide/builtin/string/file.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-guide/builtin/string/file.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-guide/builtin/string/file.md)
 

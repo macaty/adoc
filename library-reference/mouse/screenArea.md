@@ -53,5 +53,5 @@ MouseScreenAreaObject.onSelectionChanged = function(rc){
 ### MouseScreenAreaObject.mask.foreground
 
 设置遮罩颜色�?xAARRGGBB 格式数�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/mouse/screenArea.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/mouse/screenArea.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/mouse/screenArea.md)
 

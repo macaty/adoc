@@ -16,5 +16,5 @@ Protobuf 中所有类型都是继承自 protobuf.message�?
 Protobuf 消息对象可以�?web.json.stringify 转换�?json�?
 也可以用 web.json.strip 转换为纯 table 对象
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/protobuf/message.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/protobuf/message.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/protobuf/message.md)
 

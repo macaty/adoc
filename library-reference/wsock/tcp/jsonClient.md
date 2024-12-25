@@ -12,7 +12,7 @@ aardio 输出的请�?JSON 不包含换行并以换行符'
 服务器应�?JSON 对象�?id 字段必须与请�?id 一致，
 
 在批量请求时应答数组应当包含 id 一致的对象（不需要返回空数组�?
-[关于 JSON-RPC 2.0](javascript:if(confirm('http://www.jsonrpc.org/specification  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ������·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ�����?'))window.location='http://www.jsonrpc.org/specification')
+[关于 JSON-RPC 2.0](http://www.jsonrpc.org/specification)
 
 ### wsock.tcp.jsonClient()
 
@@ -44,7 +44,7 @@ aardio 输出的请�?JSON 不包含换行并以换行符'
 
 如果使用 process.rpc.tcpJsonClient 创建对象�?
 则此属性为 process.popen 对象，否则为空�?
-[返回对象:processPopenObject](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ �������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html#processPopenObject')
+[返回对象:processPopenObject](https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html#processPopenObject)
 
 ## wsockRpcJsonClientObject.rpc 成员列表
 
@@ -161,5 +161,5 @@ varargs �?false 时直接发送参�?
 
 则返回一个可以指�?end 成员函数的对象，服务器应答时自动回调�?end 函数
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/wsock/tcp/jsonClient.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/wsock/tcp/jsonClient.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/wsock/tcp/jsonClient.md)
 

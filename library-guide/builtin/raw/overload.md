@@ -34,7 +34,7 @@
    在调用原�?API 函数时，上述数值类型，以及表示布尔值的 bool 类型，表示指针的 pointer、POINTER 类型 �?API 函数中默认都是传值。如果在类型名后面加�?`&` 则切换为传址�?
    对于这些默认传值的类型，类型名后面加上 `&` 则切换为传址以后，目�?API 函数收到的值是完全不一样的。传值收到的是数据值，而传址收到的是存储数据值的地址�?
 2. 默认传址的原生类�?   结构�?struct) 类型无论是不是在类型名后加上 `&` 都是传相同的指针，目�?API 函数收到的值是完全一样的�?`string &` �?`struct &` 的意义仅仅是指示 aardio 要不要把 API 函数修改后的内存值取回来�?
-   字符串类型默认值址，加 `&` 后的处理请参�?[原生数据类型 \- 字符串](javascript:if(confirm('https:///  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='https:///')
+   字符串类型默认值址，加 `&` 后的处理请参�?[原生数据类型 \- 字符串](https:///)
 
 
 ## 隐式转换 [\#](\#implicit-raw-type-conversion)
@@ -81,5 +81,5 @@ aardio 允许你使�?`{}` 构建一个空�?table 对象表示结构体参数�
 ## 我们正在使用的是动态语言
 
 你可能已经被上面的指针、数值搞的晕头转向了,但是别忘�?aardio 是动态语言，虽然支持原生接口编程，但大多时候你并不需要去使用这些底层的、麻烦的功能。在 aardio 中，你可以把通过原生接口实现的功能用动态语言灵活地封装和应用，在保持原生接口开发能力的同时，享受动态语言的轻便灵活�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-guide/builtin/raw/overload.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-guide/builtin/raw/overload.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-guide/builtin/raw/overload.md)
 

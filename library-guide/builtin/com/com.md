@@ -265,5 +265,5 @@ COM 对象会自动回收，一般不必要去主动回收�?
    但如果参数是一�?pointer 类型 IUnknown 指针，那么每次调�?com.Release 函数，COM 对象指针�?COM 引用计数都会减一，你必须严格遵守 COM 引用计数规则，如果参数不是一个真正的 IUnknown 指针，或者没有正确的�?COM 规则释放都会导致问题，对这种底层指针误操作可能直接导致程序崩溃�?
    com.GetPointer(对象或指�? 的作用与 com.Release 相反。com.GetPointer 函数会返�?COM 的原生指针、并增加 COM 引用计数�?
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-guide/builtin/com/com.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ �������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-guide/builtin/com/com.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-guide/builtin/com/com.md)
 

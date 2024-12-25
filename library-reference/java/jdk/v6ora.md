@@ -15,5 +15,5 @@
 
 否则此属性值为 null
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/java/jdk/v6ora.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/java/jdk/v6ora.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/java/jdk/v6ora.md)
 

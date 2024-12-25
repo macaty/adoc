@@ -173,7 +173,7 @@ aardio 模式匹配与正则表达式一个较大的区别�?aardio 严格区分
 元序列自身作为一个子模式可以支持回溯与惰性匹配，例如 `<abc>+?` �?
 在正则表达式中与元序列具有类似特性的非捕获组与原子分组都是常见的性能优化分组，但元序列有更严格的限制，运行速度也更快。aardio 通过『元序列』限制并避免了在使用模式匹配时复杂度无限上升、并以此换取最大化的匹配速度（模式匹配比正则表达式快数十倍）与更精简更可控的匹配语法�?
 元序列的原子性（不回溯）与激进性（无惰性）不但能提供更好的性能，有时候可以解决一些复杂的匹配问题�?
-举个例子: [#](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-guide/builtin/string/atomic-group-example  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ �������������ļ�δ�ҵ���  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-guide/builtin/string/atomic-group-example')
+举个例子: [#](https://www.aardio.com/zh-cn/doc/library-guide/builtin/string/atomic-group-example)
 
 ```aardio aardio
 import console;
@@ -510,7 +510,7 @@ aardio 提供了预测断言 `(p?=` 与反预测断言 `p?!` 运算符�?类似�
 模式匹配与正则的最大匹别是正则表达式强大且复杂，模式匹配更简单、小、轻、快，并易于掌握和使用。很多时候我们要避免“正则表达式甜蜜陷阱”，避免执着于用正则表达式解决复杂问题，把正则表达式实现的过于复杂。把所有的需求试图用一个正则表达式去解决，这是一种非常原始的“写命令行”的思维，并非解决问题的最佳方案�?
 很多时候更好的解决方案是去编写代码替换复杂的模式串，在 aardio 中文本分析是非常方便的，例如标准库中 string.xml 的源码大家可以看看，里面虽然用到了模式匹配，但并非用一两个模式匹配就能搞定这种复杂的文本分析�?其它的可以看�?bencoding.decoder，string.database 等等支持库的源代码，这些里面基本没有使用或很少使用模式匹配�?
 我们经常看到新手在询问我这个文本分析的想法怎么用一个模式匹配解决？解决了以后我现在有新的更复杂的想法了，我该怎么把模式串改的更复杂以解决新的问题�?实际上当你把模式匹配越写越复杂的时候，你就要提醒自己可能掉入“正则表达式甜蜜陷阱”了�?
-当然 aardio 同样也支持正则表达式，提供了 string.regex, [preg](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/preg/_.html  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ �������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/preg/_.html') 等正则表达式支持库�?
+当然 aardio 同样也支持正则表达式，提供了 string.regex, [preg](https://www.aardio.com/zh-cn/doc/library-reference/preg/_.html) 等正则表达式支持库�?
 ## 模式�?效率优化
 
 1. 使用惰性匹配避免不必要的回溯�?
@@ -522,5 +522,5 @@ aardio 提供了预测断言 `(p?=` 与反预测断言 `p?!` 运算符�?类似�
 1. 严格限制子模式序列的开始字符可以显著提升效率，道理同上�?
 2. 不要滥用可能匹配空字符串的模式串，例�?`\a*`�?
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-guide/builtin/string/patterns.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-guide/builtin/string/patterns.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-guide/builtin/string/patterns.md)
 

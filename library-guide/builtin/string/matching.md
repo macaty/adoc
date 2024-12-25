@@ -219,7 +219,7 @@ string.replaceUnmatched �?str 参数指定要进行替换的源字符串，�?p
 函数返回�?str 为替换结果，返回�?count 为替换次数，这与 string.replace 函数也完全一样�?
 区别在于 string.replaceUnmatched 可用 keep1 �?keepN 参数使用模式匹配语法指定一个或多个需要排除部分的模式串�?
 举个例子�?
-```aardio aardio
+````aardio aardio
 var code = `
 var tab = {};
 
@@ -227,9 +227,10 @@ var tab = {};
 `
 
 code = string.replaceUnmatched(code,"tab","tab2","//\N+");
-
 ```
 
-上面的代码替�?tab �?tab2，但�?"//\\N+" 匹配的注释行将被排除在外不进行任何替换�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-guide/builtin/string/matching.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-guide/builtin/string/matching.md')
+上面的代码替�?tab �?tab2，但�?"//\N+" 匹配的注释行将被排除在外不进行任何替换�?
+[Markdown 格式](matching.md)
+
+````
 

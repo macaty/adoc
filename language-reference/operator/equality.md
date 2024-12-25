@@ -17,7 +17,7 @@
 
 "等式"�?恒等�?最大的不同�?等式"允许类型自动转换。与逻辑值有关的类型自动转换规则�?
 1. 在逻辑运算中，�?0\. �?null、非 false �?true，反之为 false�?
-2. 使用 [等式运算符](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/language-reference/operator/..operatorequality.html  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ļ�δ�ҵ���  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/language-reference/operator/..operatorequality.html') 比较 2 个值时�?
+2. 使用 [等式运算符](https://www.aardio.com/zh-cn/doc/language-reference/operator/..operatorequality.html) 比较 2 个值时�?
 
    - 任意值与 true,false 比较则先转换为布尔值�?
    - 非布尔值与数值比较，则先转换为数值，然后比较数值是否相等�?
@@ -46,5 +46,5 @@
 
 ### 4\. 其他不同类型的操作数之间的等式比较规�?
 如果数据类型不同、会尝试进行类型转换后进行比较。如果类型转换失败、也无适合�?\_eq 元方法可以调用则返回 false�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/language-reference/operator/equality.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/language-reference/operator/equality.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/language-reference/operator/equality.md)
 

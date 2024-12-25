@@ -35,5 +35,5 @@
 
 msg为preTranslateAccelerator事件的消息参�?hwnd一般应该省�?
 也可以在子窗体中响应父窗体的快捷�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/ui/accelerator.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/ui/accelerator.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/win/ui/accelerator.md)
 

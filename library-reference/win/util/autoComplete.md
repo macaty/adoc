@@ -40,5 +40,5 @@
 
 \_SHACF\_VIRTUAL\_NAMESPACE=0x40
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/util/autoComplete.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/util/autoComplete.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/win/util/autoComplete.md)
 

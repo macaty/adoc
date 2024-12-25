@@ -661,5 +661,5 @@ MCtrl 表格控件
 
 \_MC\_GS\_SINGLESEL=0x100
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/mCtrl/grid.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/mCtrl/grid.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/mCtrl/grid.md)
 

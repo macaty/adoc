@@ -527,5 +527,5 @@ console.pause();
 
 aardio 自带 web.rest 范例，范例位置： `~/example/Web/REST`
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-guide/std/web/rest/client.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ �������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-guide/std/web/rest/client.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-guide/std/web/rest/client.md)
 

@@ -32,5 +32,5 @@ assertf 的作用与 assert 基本相似，但是断言逻辑是完全相反的�
 assertf �?assert 有以下区别：
 
 - assert 断言第一个参数必须为真，assertf断言第一个参数必须为假�?- assert成功返回第一个参数（以及之后的其他参数），assertf 成功返回第二个参数（以及之后的其他参数）�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/language-reference/builtin-function/assert.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/language-reference/builtin-function/assert.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/language-reference/builtin-function/assert.md)
 

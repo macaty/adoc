@@ -6,7 +6,7 @@
 低级鼠标钩子只能用于界面线程，并且依赖界面线程创建的消息循环�?
 低级鼠标钩子所在界面线程的任何耗时操作执行时间不应超过 200 毫秒�?耗时操作可能导致遗漏部分鼠标消息，如果耗时操作阻塞鼠标钩子消息超过一秒或超过注册表限制的更小时间�?系统可能会直接删除鼠标钩子（导致超级热键不可用）�?
 建议将阻塞消息循环的耗时操作放到后台工作线程内执行，
-请参考： [创建多线程](javascript:if(confirm('https://www.aardio.com/zh-cn/guide/language/thread.html  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ������·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/guide/language/thread.html')�?
+请参考： [创建多线程](https://www.aardio.com/zh-cn/guide/language/thread.html)�?
 ## mouse 成员列表
 
 ### mouse.hook
@@ -50,5 +50,5 @@ MouseHookObject.proc = function(msg,x,y,mouseData,injected,flags,timeStamp,extra
 
 ```
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/mouse/hook.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/mouse/hook.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/mouse/hook.md)
 

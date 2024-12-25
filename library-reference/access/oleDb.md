@@ -35,5 +35,5 @@ access 库可自动检测或安装支持 _.xlsx,_.accdb 等文件的 OLEDB 驱�
 在已经有管理权限的安装向导中可自动执行，
 
 普通权限进程需要用户确�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/access/oleDb.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/access/oleDb.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/access/oleDb.md)
 

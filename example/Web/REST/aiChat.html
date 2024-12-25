@@ -19,8 +19,8 @@ import fonts.fontAwesome;
 var winform = win.form(text=&quot;aardio - AI 聊天助手&quot;;right=759;bottom=607)
 winform.add(
 btnClear={cls=&quot;plus&quot;;text=&quot;清除&quot;;left=589;top=572;right=655;bottom=602;align=&quot;left&quot;;color=3947580;db=1;dr=1;font=LOGFONT(h=-13);iconStyle={align=&quot;left&quot;;font=LOGFONT(h=-13;name=&#39;FontAwesome&#39;);padding={left=8}};iconText=&#39;\uF014&#39;;notify=1;textPadding={left=25};z=6};
-btnCopy={cls=&quot;plus&quot;;text=&quot;复制&quot;;left=202;top=572;right=269;bottom=602;align=&quot;left&quot;;color=3947580;db=1;disabled=1;dr=1;font=LOGFONT(h=-13);iconStyle={align=&quot;left&quot;;font=LOGFONT(h=-13;name=&#39;FontAwesome&#39;);padding={left=8}};iconText=&#39;\uF0EA&#39;;notify=1;textPadding={left=25};z=11};
-btnSend={cls=&quot;plus&quot;;text=&quot;问 AI&quot;;left=660;top=572;right=732;bottom=602;align=&quot;left&quot;;color=3947580;db=1;dr=1;font=LOGFONT(h=-13);iconStyle={align=&quot;left&quot;;font=LOGFONT(h=-13;name=&#39;FontAwesome&#39;);padding={left=8}};iconText=&#39;\uF007&#39;;notify=1;textPadding={left=25};z=5};
+btnCopy={cls=&quot;plus&quot;;text=&quot;复制&quot;;left=202;top=572;right=269;bottom=602;align=&quot;left&quot;;color=3947580;db=1;disabled=1;dr=1;font=LOGFONT(h=-13);iconStyle={align=&quot;left&quot;;font=LOGFONT(h=-13;name=&#39;FontAwesome&#39;);padding={left=8}};iconText=&#39;\uF0C5&#39;;notify=1;textPadding={left=25};z=11};
+btnSend={cls=&quot;plus&quot;;text=&quot;问 AI&quot;;left=660;top=572;right=732;bottom=602;align=&quot;left&quot;;color=3947580;db=1;dr=1;font=LOGFONT(h=-13);iconStyle={align=&quot;left&quot;;font=LOGFONT(h=-13;name=&#39;FontAwesome&#39;);padding={left=8}};iconText=&#39;\uF0AA&#39;;notify=1;textPadding={left=25};z=5};
 btnSetting={cls=&quot;plus&quot;;text=&quot;设置&quot;;left=513;top=572;right=580;bottom=602;align=&quot;left&quot;;color=3947580;db=1;dr=1;font=LOGFONT(h=-13);iconStyle={align=&quot;left&quot;;font=LOGFONT(h=-13;name=&#39;FontAwesome&#39;);padding={left=8}};iconText=&#39;\uF013&#39;;notify=1;textPadding={left=25};z=7};
 chkFix={cls=&quot;plus&quot;;text=&quot;更正&quot;;left=276;top=572;right=336;bottom=603;align=&quot;left&quot;;db=1;dr=1;font=LOGFONT(h=-13);iconStyle={align=&quot;left&quot;;font=LOGFONT(h=-14;name=&#39;FontAwesome&#39;)};iconText=&#39;\uF0C8 &#39;;notify=1;textPadding={left=24};z=12};
 editMaxTokens={cls=&quot;edit&quot;;left=427;top=577;right=470;bottom=600;align=&quot;right&quot;;db=1;dr=1;edge=1;z=9};
@@ -222,6 +222,12 @@ winform.btnClear.oncommand = function(id,event){
 
 //响应按键事件，输入用户提示词
 winform.btnSend.oncommand = function(id,event){
+    var prompt = winform.editPrompt.text;
+    if(!#prompt){
+        winform.msgboxErr(&quot;请在上面输入问题。&quot;); 
+        winform.editPrompt.setFocus();
+        return;
+    }
 
     //按钮显示等待动画
     winform.btnSend.disabledText = {&#39;\uF254&#39;;&#39;\uF251&#39;;&#39;\uF252&#39;;&#39;\uF253&#39;;&#39;\uF250&#39;}
@@ -236,8 +242,6 @@ winform.btnSend.oncommand = function(id,event){
         //Few-shot Learning
         assistantMsg.content = ide.aifix.markdown(assistantMsg.content,true);
     }
-
-    var prompt = winform.editPrompt.text;
 
     var knowledge = &quot;&quot;
     prompt = string.replace(prompt,&quot;(https?\://&lt;www\.&gt;?aardio\.com/zh\-cn/doc/\S+)\.&lt;html&gt;|&lt;md&gt;&quot;,
@@ -263,6 +267,7 @@ winform.btnSend.oncommand = function(id,event){
 
     //输入 AI 提示词
     wb.prompt( prompt );
+    winform.editPrompt.text = &quot;&quot;;
 
     config.maxTokens = winform.spinMaxTokens.pos;
 
@@ -319,6 +324,7 @@ wb.onWriteEnd = function(){
     winform.btnClear.disabled = false;
     winform.btnCopy.disabled = false;
     winform.chkFix.disabled = false;
+    winform.editPrompt.setFocus();
 }
 
 //在 AI 回复结束以前回调此函数，自动修正 aardio 代码块中的常见幻觉错误
@@ -419,7 +425,7 @@ winform.btnSetting.oncommand = function(id,event){
             frmSetting.editModel.text = &quot;gemini-2.0-flash-exp&quot;
         }
         elseif(url==&quot;https://api.x.ai/v1&quot;){
-            frmSetting.editModel.text = &quot;grok-beta&quot;
+            frmSetting.editModel.text = &quot;grok-2-1212&quot;
         }
         elseif(url==&quot;https://api.openai.com/v1&quot;){
             frmSetting.editModel.text = &quot;chatgpt-4o-latest&quot;
@@ -705,6 +711,9 @@ winform.editPrompt.enablePopMenu(function(){
         { &quot;插入 自定义控件使用指南（界面模块化）&quot;;  function(id){
             winform.editPrompt.selText = &quot; [自定义控件使用指南](https://www.aardio.com/zh-cn/doc/library-guide/std/win/ui/ctrl/custom.html) &quot;
         }; 0};  
+        { &quot;插入 调用 Python 文档&quot;;  function(id){
+            winform.editPrompt.selText = &quot; [aardio 调用 Python 入门指南](https://www.aardio.com/zh-cn/doc/library-guide/ext/python/_.html) &quot;
+        }; 0};
         { &quot;插入 超级热键文档&quot;;  function(id){
             winform.editPrompt.selText = &quot; [超级热键使用指南](https://www.aardio.com/zh-cn/doc/library-guide/std/key/hotkey.html) &quot;
         }; 0};  
@@ -811,6 +820,6 @@ winform.beforeDestroy = function(){
 winform.show();
 win.loopMessage();
 </code></pre>
-<a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Web/REST/aiChat.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/example/Web/REST/aiChat.md'" tppabs="https://www.aardio.com/zh-cn/doc/example/Web/REST/aiChat.md">Markdown 格式</a>
+<a href="https://www.aardio.com/zh-cn/doc/example/Web/REST/aiChat.md">Markdown 格式</a>
 </body> 
 </html>

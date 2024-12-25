@@ -37,5 +37,5 @@
 
 注意英文系统字体对话框会舍入为整点单位的十分之一
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/dlg/font.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/dlg/font.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/win/dlg/font.md)
 

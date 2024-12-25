@@ -93,11 +93,11 @@ wb.go("https://example.com");
 plus 控件放弃了那种过度追求完美的设计思想，针对最常用的方式进行了优化处理。例如【剪切背景】功能针对直接放在窗体上的控件做了背景优化：他会把自己所需要的父窗口原始的背景剪切并缓存下来，合并到自己的缓存图像中�?使两次绘图变为一次，从而去掉闪烁感�?
 这非常有用：如果你的 plus 控件上的图像会在运行时不断变换，并且透明的外形是不规则的并且会变化的（即背景会被反复破坏需要重绘），使用【剪切背景】可以使图像可以流畅地透明，透明动画效果也非常流畅�?
 当然其缺点是剪切了父窗口的背景，如果他后面有其他的控件就会被忽视并穿透，如果要避免这一点：就要把【剪切背景】设�?false，失去了这种优化你就要注意：如果图像是透明的并且会变换，那么请保持所有变换的图像有一致的外形，以避免破坏背景（注意一下很多不规则按钮的设计，他们在不同状态下外形是一致的 - 这可以在切换绘图的时获得较好的显示效果）�?
-当然，只要善于运用，缺点也可以变成优点，例如运用 plus 控件这种【剪切背景】的特性，可以轻松�?[实现漂亮的组合框效果](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/plus/groupBox.html  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ �������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/example/plus/groupBox.html') �?
+当然，只要善于运用，缺点也可以变成优点，例如运用 plus 控件这种【剪切背景】的特性，可以轻松�?[实现漂亮的组合框效果](https://www.aardio.com/zh-cn/doc/example/plus/groupBox.html) �?
 如果必须要在后面放其他的控件，并且透明图像是会变换的、外形也是会变换的，这时候可以启用【浮动透明】（即添�?\_WS\_EX\_TRANSPARENT 样式），当然 \_WS\_EX\_TRANSPAREN 会增加闪烁感，这时候可以启用窗体的双缓冲优化（即添�?\_WS\_EX\_COMPOSITED 样式 ）获得更好的显示效果�?
 ## 解决方案：使�?bk,bkplus 控件实现重叠背景贴图
 
 我们现在已经知道，传统窗口上的控件重叠是比较麻烦的，aardio 为了更好地解决这个问题，提供�?bk,bkplus 这几个纯背景贴图控件 —�?这种控件是无窗口的、静态的、虚拟的控件。bk,bkplus 控件并不会真的创建窗口，仅仅是用于在窗口背景上贴图。这种控件在窗口背景绘图的同时绘制，不会增加闪烁感。而且也像直实控件一�?—�?支持固定边距、自适应缩放等控件布局属性�?
 bk,bkplus 控件可以作为其他控件(包括 plus 控件）的背景，并且可以任意重叠组合。这比直接指定窗口背景图像更灵活。使�?bk,bkplus 控件，我们可以指定窗体背景上任何一小块背景的图像、颜色、或者布局、拉伸规则�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-guide/std/win/ui/z-order.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-guide/std/win/ui/z-order.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-guide/std/win/ui/z-order.md)
 

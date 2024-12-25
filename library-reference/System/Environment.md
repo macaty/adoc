@@ -58,5 +58,5 @@ CLR 运行时完整版本，System.Version 对象�?
 ### System.Environment.Version.Major
 
 主版本号，只会是 2 �?4 �?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/System/Environment.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ �������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/System/Environment.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/System/Environment.md)
 

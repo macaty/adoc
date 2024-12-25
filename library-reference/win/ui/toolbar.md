@@ -96,7 +96,7 @@ toolbarObject.add(
 可选传�?@tParam 参数�?可包�?style,exstyle 等样式参�?
 可用样式可参�?
 
-[https://docs.microsoft.com/en-us/windows/win32/controls/toolbar-control-and-button-styles](javascript:if(confirm('https://docs.microsoft.com/en-us/windows/win32/controls/toolbar-control-and-button-styles  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ������·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ�����?'))window.location='https://docs.microsoft.com/en-us/windows/win32/controls/toolbar-control-and-button-styles')
+[https://docs.microsoft.com/en-us/windows/win32/controls/toolbar-control-and-button-styles](https://docs.microsoft.com/en-us/windows/win32/controls/toolbar-control-and-button-styles)
 
 ### toolbarObject.disabled
 
@@ -447,5 +447,5 @@ toolbarObject.wndproc = function(hwnd,message,wParam,lParam){
 
 \_TB\_SETTOOLTIPS=0x424
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/ui/toolbar.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/ui/toolbar.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/win/ui/toolbar.md)
 

@@ -22,5 +22,5 @@
 
 ,默认排序表为可选参�?指定一个键名排序数�?
 不在默认排序表中的名字按默认字典序排序输�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/util/table.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/util/table.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/util/table.md)
 

@@ -17,7 +17,7 @@ textDoc.Selection.Font.Bold = textDoc.tomTrue  // 加粗
 
 ```
 
-[TOM 文档](javascript:if(confirm('https://learn.microsoft.com/zh-cn/windows/win32/controls/text-object-model?redirectedfrom=MSDN  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ������·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ�����?'))window.location='https://learn.microsoft.com/zh-cn/windows/win32/controls/text-object-model?redirectedfrom=MSDN')
+[TOM 文档](https://learn.microsoft.com/zh-cn/windows/win32/controls/text-object-model?redirectedfrom=MSDN)
 
 ### 使用 CHARFORMAT2 结构体设置样�?
 以下函数会用�?CHARFORMAT2（这里指的是 win.ui.ctrl.CHARFORMAT2 类） 结构体�?
@@ -41,7 +41,7 @@ CHARFORMAT2 有以下字�?
 
 ## 参考文档：
 
-[https://learn.microsoft.com/en-us/windows/win32/controls/about-rich-edit-controls](javascript:if(confirm('https://learn.microsoft.com/en-us/windows/win32/controls/about-rich-edit-controls  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ������·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ�����?'))window.location='https://learn.microsoft.com/en-us/windows/win32/controls/about-rich-edit-controls') [https://github.com/MicrosoftDocs/win32/blob/docs/desktop-src/Controls/about-rich-edit-controls.md](javascript:if(confirm('https://github.com/MicrosoftDocs/win32/blob/docs/desktop-src/Controls/about-rich-edit-controls.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ������·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ�����?'))window.location='https://github.com/MicrosoftDocs/win32/blob/docs/desktop-src/Controls/about-rich-edit-controls.md') [https://learn.microsoft.com/zh-cn/windows/win32/api/richedit/ns-richedit-charformatw](javascript:if(confirm('https://learn.microsoft.com/zh-cn/windows/win32/api/richedit/ns-richedit-charformatw  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ������·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ�����?'))window.location='https://learn.microsoft.com/zh-cn/windows/win32/api/richedit/ns-richedit-charformatw') [https://learn.microsoft.com/zh-cn/windows/win32/api/richedit/ns-richedit-charformat2w](javascript:if(confirm('https://learn.microsoft.com/zh-cn/windows/win32/api/richedit/ns-richedit-charformat2w  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ������·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ�����?'))window.location='https://learn.microsoft.com/zh-cn/windows/win32/api/richedit/ns-richedit-charformat2w')
+[https://learn.microsoft.com/en-us/windows/win32/controls/about-rich-edit-controls](https://learn.microsoft.com/en-us/windows/win32/controls/about-rich-edit-controls) [https://github.com/MicrosoftDocs/win32/blob/docs/desktop-src/Controls/about-rich-edit-controls.md](https://github.com/MicrosoftDocs/win32/blob/docs/desktop-src/Controls/about-rich-edit-controls.md) [https://learn.microsoft.com/zh-cn/windows/win32/api/richedit/ns-richedit-charformatw](https://learn.microsoft.com/zh-cn/windows/win32/api/richedit/ns-richedit-charformatw) [https://learn.microsoft.com/zh-cn/windows/win32/api/richedit/ns-richedit-charformat2w](https://learn.microsoft.com/zh-cn/windows/win32/api/richedit/ns-richedit-charformat2w)
 
 API 常量�?aardio 里需要在前面加一个下划线，然后利�?IDE 的自动完成可自动转换为实际的常量值�?
 ## win.ui.ctrl 成员列表
@@ -194,7 +194,7 @@ wParam 参数请参�?_WM_SIZE 消息参数说明,一般不用管�?
 
 ### richeditObject.createTextDocument()
 
-返回 COM 接口�?[TOM 文本对象](javascript:if(confirm('https://learn.microsoft.com/zh-cn/windows/win32/controls/text-object-model?redirectedfrom=MSDN  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ������·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ�����?'))window.location='https://learn.microsoft.com/zh-cn/windows/win32/controls/text-object-model?redirectedfrom=MSDN')
+返回 COM 接口�?[TOM 文本对象](https://learn.microsoft.com/zh-cn/windows/win32/controls/text-object-model?redirectedfrom=MSDN)
 
 [返回对象:TextDocumentObject](#TextDocumentObject)
 
@@ -1464,5 +1464,5 @@ Richedit 存在一�?BUG：如果不是左对齐,只要设置缩放 —�?包含
 
 \_SF\_UTEXT=0x11
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/richedit.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/richedit.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/richedit.md)
 

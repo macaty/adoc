@@ -116,5 +116,5 @@ tostring 函数的第 2 个参数可选指定格式化串（ 语法�?string.for
 ### fsysVersionObject.valid()
 
 版本号是否有�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/fsys/version.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/fsys/version.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/fsys/version.md)
 

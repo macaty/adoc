@@ -37,7 +37,7 @@ Windows Defender 设置�?
 
 调用 Add-MpPreference 修改 Windows Defender 设置�?
 参数 @1 指定包含配置项名值对的表，配置项名称前不必加短横线�?
-可用配置项参�?[https://docs.microsoft.com/en-us/powershell/module/defender/add-mppreference](javascript:if(confirm('https://docs.microsoft.com/en-us/powershell/module/defender/add-mppreference  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ������·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ�����?'))window.location='https://docs.microsoft.com/en-us/powershell/module/defender/add-mppreference')
+可用配置项参�?[https://docs.microsoft.com/en-us/powershell/module/defender/add-mppreference](https://docs.microsoft.com/en-us/powershell/module/defender/add-mppreference)
 
 ### sys.mpPreference.addExclusionPath()
 
@@ -87,18 +87,18 @@ Tamper Protection 只能手动关闭�?
 
 调用 Remove-MpPreference 移除 Windows Defender 设置�?
 参数 @1 指定包含配置项名值对的表，配置项名称前不必加短横线�?
-可用配置项参�?[https://docs.microsoft.com/en-us/powershell/module/defender/remove-mppreference](javascript:if(confirm('https://docs.microsoft.com/en-us/powershell/module/defender/remove-mppreference  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ������·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ�����?'))window.location='https://docs.microsoft.com/en-us/powershell/module/defender/remove-mppreference')
+可用配置项参�?[https://docs.microsoft.com/en-us/powershell/module/defender/remove-mppreference](https://docs.microsoft.com/en-us/powershell/module/defender/remove-mppreference)
 
 ### sys.mpPreference.set()
 
 调用 Set-MpPreferenc 修改 Windows Defender 设置�?
 参数 @1 指定包含配置项名值对的表，配置项名称前不必加短横线�?
-可用配置项参�?[https://docs.microsoft.com/en-us/powershell/module/defender/set-mppreference](javascript:if(confirm('https://docs.microsoft.com/en-us/powershell/module/defender/set-mppreference  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ������·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ�����?'))window.location='https://docs.microsoft.com/en-us/powershell/module/defender/set-mppreference')
+可用配置项参�?[https://docs.microsoft.com/en-us/powershell/module/defender/set-mppreference](https://docs.microsoft.com/en-us/powershell/module/defender/set-mppreference)
 
 ### sys.mpPreference.setExclusionPaths()
 
 修改例外目录列表，参数传入路径数�?
 
 此函数自动除�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/sys/mpPreference.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/sys/mpPreference.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/sys/mpPreference.md)
 

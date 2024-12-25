@@ -113,5 +113,5 @@ win.loopMessage();
   COM 原生接口使用的参数的数据类型与调用原�?API 相类似，参�?raw �?[相关文档](../raw/datatype.html) 即可�?
   �?aardio 中使�?COM 原生接口的情况其实很罕见，一般不必要学习�?
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-guide/builtin/com/base.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ �������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-guide/builtin/com/base.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-guide/builtin/com/base.md)
 

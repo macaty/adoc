@@ -388,5 +388,5 @@ REG\_DWORD，REG\_DWORD\_BIG\_ENDIAN类型返回数�?
 
 \_REG\_WHOLE\_HIVE\_VOLATILE=1
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/reg.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/reg.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/win/reg.md)
 

@@ -151,5 +151,5 @@ wb.go,web.post 等函数也可以自动支持 aardio 资源文件中的网页,�
    请参�? [wb.document](getele.html#document)
 
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-guide/std/web/form/control.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-guide/std/web/form/control.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-guide/std/web/form/control.md)
 

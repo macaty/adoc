@@ -9,5 +9,5 @@
 
 可检测系统内码自动对文本进行简繁体转换
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/ui/localization.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/ui/localization.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/win/ui/localization.md)
 

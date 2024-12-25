@@ -66,5 +66,5 @@ for drive in fsys.drives.eachRemovable() {
 ### fsys.drives.getRemovable()
 
 返回包含所有移动盘逻辑分区的数�?按字母排�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/fsys/drives.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/fsys/drives.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/fsys/drives.md)
 

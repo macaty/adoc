@@ -95,5 +95,5 @@ FlaUIA3AutomationObject.By(
 ### FlaUICondition3Object.Or()
 
 逻辑或，参数 @1 可指�?By 函数返回的其他搜索条件对�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/FlaUI/UIA3.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/FlaUI/UIA3.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/FlaUI/UIA3.md)
 

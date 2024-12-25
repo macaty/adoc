@@ -160,5 +160,5 @@ table.sort(array,function(next){
 
 请参考： [table.sort](../../library-guide/builtin/table/_.html#sort)
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/language-reference/function/owner.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/language-reference/function/owner.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/language-reference/function/owner.md)
 

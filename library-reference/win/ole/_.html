@@ -36,37 +36,35 @@
 <h3>::CoTaskMemFree :</h3>
 
 <pre><code class="aardio language-aardio">Ole32.api(&quot;CoTaskMemFree&quot;,&quot;void(POINTER hMem)&quot; )
+```
+
+&lt;a id=&quot;::CreateStreamOnHGlobal&quot;&gt;&lt;/a&gt;
+### ::CreateStreamOnHGlobal 
+ ```aardio
+Ole32.api(&quot;CreateStreamOnHGlobal&quot;,&quot;int(pointer hGlobal,bool deleteOnRelease,pointer &amp;ppstm)&quot;)
+```
+
+&lt;a id=&quot;::GetHGlobalFromStream&quot;&gt;&lt;/a&gt;
+### ::GetHGlobalFromStream 
+ ```aardio
+Ole32.api(&quot;GetHGlobalFromStream&quot;,&quot;int(pointer ppstm,pointer &amp;hGlobal)&quot;)
+```
+
+&lt;a id=&quot;::SysAllocString&quot;&gt;&lt;/a&gt;
+### ::SysAllocString 
+ ```aardio
+OleAut32.api(&quot;SysAllocString&quot;,&quot;pointer(ustring psz)&quot;)
+```
+
+&lt;a id=&quot;::SysFreeString&quot;&gt;&lt;/a&gt;
+### ::SysFreeString 
+ ```aardio
+OleAut32.api(&quot;SysFreeString&quot;,&quot;pointer(pointer bstr)&quot;)
+```
+
+
+[Markdown 鏍煎紡](_.md)
 </code></pre>
-
-<p><a id="::CreateStreamOnHGlobal"></a></p>
-
-<h3>::CreateStreamOnHGlobal</h3>
-
-<pre><code class="aardio language-aardio">Ole32.api(&quot;CreateStreamOnHGlobal&quot;,&quot;int(pointer hGlobal,bool deleteOnRelease,pointer &amp;ppstm)&quot;)
-</code></pre>
-
-<p><a id="::GetHGlobalFromStream"></a></p>
-
-<h3>::GetHGlobalFromStream</h3>
-
-<pre><code class="aardio language-aardio">Ole32.api(&quot;GetHGlobalFromStream&quot;,&quot;int(pointer ppstm,pointer &amp;hGlobal)&quot;)
-</code></pre>
-
-<p><a id="::SysAllocString"></a></p>
-
-<h3>::SysAllocString</h3>
-
-<pre><code class="aardio language-aardio">OleAut32.api(&quot;SysAllocString&quot;,&quot;pointer(ustring psz)&quot;)
-</code></pre>
-
-<p><a id="::SysFreeString"></a></p>
-
-<h3>::SysFreeString</h3>
-
-<pre><code class="aardio language-aardio">OleAut32.api(&quot;SysFreeString&quot;,&quot;pointer(pointer bstr)&quot;)
-</code></pre>
-
-<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/ole/_.md  \n\n该文件无法用 Teleport Ultra 下载, 因为 它不在项目文件类型规范内。  \n\n你想在服务器上打开它?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/ole/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/ole/_.md">Markdown 鏍煎紡</a></p>
 
 </body> 
 </html>

@@ -128,5 +128,5 @@ asar中所有文件的大小,不包含asar文件头大�?
 ### fsysUnasarReaderObject.this.header
 
 文件�?fsys.unasar.header结构�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/fsys/asar/reader.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/fsys/asar/reader.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/fsys/asar/reader.md)
 

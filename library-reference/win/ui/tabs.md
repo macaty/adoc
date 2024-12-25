@@ -1,7 +1,7 @@
 [aardio 文档](../../../index.htm "aardio 编程语言文档首页")
 
 # win.ui.tabs 库模块帮助文�?
-[高级选项卡使用指南](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-guide/std/win/ui/tabs/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ �������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-guide/std/win/ui/tabs/_.md')
+[高级选项卡使用指南](https://www.aardio.com/zh-cn/doc/library-guide/std/win/ui/tabs/_.md)
 
 ## win.ui.tabs 成员列表
 
@@ -669,5 +669,5 @@ AA为透明�?RR为红色分�?GG为绿色分�?BB为蓝色分�?/
 所有选项卡按钮都�?plus 控件（win.ui.ctrl.plus 控件）�?
 [返回对象:uiCtrlPlusObject](ctrl/plus.html#uiCtrlPlusObject)
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/ui/tabs.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/ui/tabs.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/win/ui/tabs.md)
 

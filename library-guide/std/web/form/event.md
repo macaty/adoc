@@ -383,5 +383,5 @@ return url,target,statusCode,cancel
    如果参数 IsChildWindow 为真,该窗口为网页脚本创建的子窗口.
 
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-guide/std/web/form/event.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-guide/std/web/form/event.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-guide/std/web/form/event.md)
 

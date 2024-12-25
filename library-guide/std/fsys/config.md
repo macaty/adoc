@@ -100,5 +100,5 @@ win.loopMessage();
 ```
 
 绑定 fsys.table 配置文件的窗口在销毁时将自动同步控件的指定值到配置文件�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-guide/std/fsys/config.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-guide/std/fsys/config.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-guide/std/fsys/config.md)
 

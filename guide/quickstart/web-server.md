@@ -97,5 +97,5 @@ CGI 服务端应先生�?EXE 文件、并�?Web 服务器上注册�?FastCGI 模
 5. 注意在编写网站时，有必要请输出日志文件来排查错误
 
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/guide/quickstart/web-server.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ �������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/guide/quickstart/web-server.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/guide/quickstart/web-server.md)
 

@@ -39,5 +39,5 @@ aardio å¯ä»¥è‡ªåŠ¨å…¼å®¹ CLR 2.0 / CLR 4.0 ç¼–å†™çš„ç¨‹åºé›†ã€?aardio + .NET å
 
 ```
 
-[Markdown æ ¼å¼](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/dotNet/QuickStart.md  \n\n¸ÃÎÄ¼şÎŞ·¨ÓÃ Teleport Ultra ÏÂÔØ, ÒòÎª Ëü²»ÔÚÏîÄ¿ÎÄ¼şÀàĞÍ¹æ·¶ÄÚ¡£  \n\nÄãÏëÔÚ·şÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/dotNet/QuickStart.md')
+[Markdown æ ¼å¼](https://www.aardio.com/zh-cn/doc/example/Languages/dotNet/QuickStart.md)
 

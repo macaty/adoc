@@ -490,5 +490,5 @@ winform.button.theme = false
 
 \_CBN\_SETFOCUS=3
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/combobox.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/combobox.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/combobox.md)
 

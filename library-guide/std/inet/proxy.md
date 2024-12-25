@@ -89,7 +89,7 @@ var ret = api.get();
   ```
 
 - web.view�?WebView2 ）以�?Edge,Chrome �?Chromium 内核的浏览器应用设置代理的方法都差不多�?  你只要知道怎么指定浏览器启动参数就可以了�?
-  Chromium 的代理服务器使用�?WinInet 类似的格式，所以用法基本一样�?  [Proxy support in Chrome](javascript:if(confirm('https://chromium.googlesource.com/chromium/src/+/HEAD/net/docs/proxy.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='https://chromium.googlesource.com/chromium/src/+/HEAD/net/docs/proxy.md')
+  Chromium 的代理服务器使用�?WinInet 类似的格式，所以用法基本一样�?  [Proxy support in Chrome](https://chromium.googlesource.com/chromium/src/+/HEAD/net/docs/proxy.md)
 
   下面�?web.view 设置代理的示例：
 
@@ -131,7 +131,7 @@ var ret = api.get();
 
 ## 二、代理服务器格式说明
 
-代理服务器的写法格式一般是 WinINet 规定的格式�?Chromium 内核的浏览器做了一些小的改动，参�?[Proxy support in Chrome](javascript:if(confirm('https://chromium.googlesource.com/chromium/src/+/HEAD/net/docs/proxy.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ������·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ�����?'))window.location='https://chromium.googlesource.com/chromium/src/+/HEAD/net/docs/proxy.md')
+代理服务器的写法格式一般是 WinINet 规定的格式�?Chromium 内核的浏览器做了一些小的改动，参�?[Proxy support in Chrome](https://chromium.googlesource.com/chromium/src/+/HEAD/net/docs/proxy.md)
 
 设置单个完整的代理服务器格式是这样：
 `"客户端被代理协议=代理服务器协�?//主机地址:端口�?`
@@ -172,5 +172,5 @@ else raw.execute("control.exe","inetcpl.cpl,,4");
 
 ```
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-guide/std/inet/proxy.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-guide/std/inet/proxy.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-guide/std/inet/proxy.md)
 

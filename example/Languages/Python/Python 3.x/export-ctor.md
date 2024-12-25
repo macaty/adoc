@@ -65,5 +65,5 @@ aardio å¯ä»¥æ”¯æŒçœŸå¤šçº¿ç¨‹ï¼?ä¹Ÿæä¾›äº† py3.lock ç®€åŒ–äº† Python å…¨å±€é
 
 ```
 
-[Markdown æ ¼å¼](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Languages/Python/Python 3.x/export-ctor.md  \n\n¸ÃÎÄ¼şÎŞ·¨ÓÃ Teleport Ultra ÏÂÔØ, ÒòÎª Ëü²»ÔÚÏîÄ¿ÎÄ¼şÀàĞÍ¹æ·¶ÄÚ¡£  \n\nÄãÏëÔÚ·şÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='https://www.aardio.com/zh-cn/doc/example/Languages/Python/Python 3.x/export-ctor.md')
+[Markdown æ ¼å¼](https://www.aardio.com/zh-cn/doc/example/Languages/Python/Python 3.x/export-ctor.md)
 

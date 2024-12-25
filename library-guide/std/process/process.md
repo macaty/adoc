@@ -57,7 +57,7 @@ process库提供进程管理函数�?
 
 在本文档�?使用 prcs 表示 process 类构造的进程实例�?
 ## 进程对象属�?
-更多进程属性请参�?[�?process 库参�?》](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/process/_.html  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ �������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/process/_.html#processObject')
+更多进程属性请参�?[�?process 库参�?》](https://www.aardio.com/zh-cn/doc/library-reference/process/_.html#processObject)
 
 - prcs.id 表示进程ID
 - prcs.handle 表示进程句柄
@@ -328,5 +328,5 @@ process库提供进程管理函数�?
    ```
 
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-guide/std/process/process.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-guide/std/process/process.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-guide/std/process/process.md)
 

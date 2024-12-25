@@ -48,5 +48,5 @@
 用户阻止安装程序以管理权限启动返回false,成功启动并关闭返回true
 
 返回true并不表明安装过程中没有出�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/zlib/installer.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/zlib/installer.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/zlib/installer.md)
 

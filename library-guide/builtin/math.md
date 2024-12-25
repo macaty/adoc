@@ -201,5 +201,5 @@ math.sin(x)正弦函数math.sin(math.rad(35))余割(cosec) 是正�?sin)的倒�
  sec(x) == 1/math.cos(x)math.acos(x)反余弦函数math.acos(0.5)math.cosh(x)双曲线余弦函数math.cosh(0.5)math.tan(x)正切函数math.tan(0.6)math.atan(x)反正切函数math.atan(0.5)余切(cot) 是正�?tan)的倒数�?
  cot(x) == 1/math.tan(x)math.atan2(y,x)x / y的反正切值math.atan2(45,25)math.tanh(x)双曲线正切函数math.tanh(0.6)
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-guide/builtin/math.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ �������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-guide/builtin/math.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-guide/builtin/math.md)
 

@@ -28,7 +28,7 @@
 
 MIDI 音乐输出设备操作
 
-[教程链接](javascript:if(confirm('https://mp.weixin.qq.com/s/Feq3dT7r7G6F0cXlpXpRZQ  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ������·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ�����?'))window.location='https://mp.weixin.qq.com/s/Feq3dT7r7G6F0cXlpXpRZQ')
+[教程链接](https://mp.weixin.qq.com/s/Feq3dT7r7G6F0cXlpXpRZQ)
 
 打开 MIDI 音乐输出设备�?
 成功返回设备对象，失败返�?null,错误信息�?
@@ -288,5 +288,5 @@ xcall,play 函数默认按键速度（音量）�?
 指定上述参数函数返回 true，指定其他数值返�?null�?
 参数为其他数据类型会报错
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/sys/midiOut.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/sys/midiOut.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/sys/midiOut.md)
 

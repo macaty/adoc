@@ -9,5 +9,5 @@ console.wine 模拟了部�?console 的函�?
 用于�?Wine 环境下创建简单的控制台窗�?
 不支持标准输入输出流
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/console/wine.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/console/wine.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/console/wine.md)
 

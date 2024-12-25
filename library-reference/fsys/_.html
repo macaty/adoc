@@ -415,7 +415,7 @@
 最后一次执行的错误代码，操作成功为 0。<br>
 这个值也是系统函数 SHFileOperationW 返回的错误代码，仅供调试时参考。<br>
 此错误代码可作为 lasterr 函数的参数获取错误信息，但并不完全准确。<br>
-请参考： <a href="javascript:if(confirm('https://docs.microsoft.com/en-us/windows/win32/api/shellapi/nf-shellapi-shfileoperationw  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='https://docs.microsoft.com/en-us/windows/win32/api/shellapi/nf-shellapi-shfileoperationw'" tppabs="https://docs.microsoft.com/en-us/windows/win32/api/shellapi/nf-shellapi-shfileoperationw">https://docs.microsoft.com/en-us/windows/win32/api/shellapi/nf-shellapi-shfileoperationw</a>   </p>
+请参考： <a href="https://docs.microsoft.com/en-us/windows/win32/api/shellapi/nf-shellapi-shfileoperationw">https://docs.microsoft.com/en-us/windows/win32/api/shellapi/nf-shellapi-shfileoperationw</a>   </p>
 
 <p>包含不可见字符的错误路径可用「工具&gt;文本文件&gt;十六进制编辑器」<br>
 或 string.hex 函数查看</p>
@@ -429,7 +429,7 @@
 指定此值为 0 则默认显示文件操作界面与错误信息界面  </p>
 
 <p>该选项详细说明请参考 FILEOP_FLAGS 文档<br>
- <a href="javascript:if(confirm('https://docs.microsoft.com/en-us/windows/win32/api/shellapi/ns-shellapi-shfileopstructw  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='https://docs.microsoft.com/en-us/windows/win32/api/shellapi/ns-shellapi-shfileopstructw'" tppabs="https://docs.microsoft.com/en-us/windows/win32/api/shellapi/ns-shellapi-shfileopstructw">https://docs.microsoft.com/en-us/windows/win32/api/shellapi/ns-shellapi-shfileopstructw</a></p>
+ <a href="https://docs.microsoft.com/en-us/windows/win32/api/shellapi/ns-shellapi-shfileopstructw">https://docs.microsoft.com/en-us/windows/win32/api/shellapi/ns-shellapi-shfileopstructw</a></p>
 
 <p><a id="fsys.pathFromIdList"></a></p>
 
@@ -634,112 +634,110 @@ UTF16编码,请调用 string.fromUtf16 转换</p>
 <h3>_CSIDL_COMMON_FAVORITES</h3>
 
 <pre><code class="aardio language-aardio">0x1f
+```
+
+&lt;a id=&quot;_CSIDL_COOKIES&quot;&gt;&lt;/a&gt;
+### _CSIDL_COOKIES 
+ ```aardio
+0x21
+```
+
+&lt;a id=&quot;_CSIDL_HISTORY&quot;&gt;&lt;/a&gt;
+### _CSIDL_HISTORY 
+ ```aardio
+0x22
+```
+
+&lt;a id=&quot;_CSIDL_INTERNET_CACHE&quot;&gt;&lt;/a&gt;
+### _CSIDL_INTERNET_CACHE 
+ ```aardio
+0x20
+```
+
+&lt;a id=&quot;_CSIDL_TEMPLATES&quot;&gt;&lt;/a&gt;
+### _CSIDL_TEMPLATES 
+ ```aardio
+0x15
+```
+
+
+### 自动完成常量
+_CSIDL_ADMINTOOLS=0x30  
+_CSIDL_ALTSTARTUP=0x1d  
+_CSIDL_APPDATA=0x1a  
+_CSIDL_BITBUCKET=0xa  
+_CSIDL_CDBURN_AREA=0x3b  
+_CSIDL_COMMON_ADMINTOOLS=0x2f  
+_CSIDL_COMMON_ALTSTARTUP=0x1e  
+_CSIDL_COMMON_APPDATA=0x23  
+_CSIDL_COMMON_DESKTOPDIRECTORY=0x19  
+_CSIDL_COMMON_DOCUMENTS=0x2e  
+_CSIDL_COMMON_MUSIC=0x35  
+_CSIDL_COMMON_OEM_LINKS=0x3a  
+_CSIDL_COMMON_PICTURES=0x36  
+_CSIDL_COMMON_PROGRAMS=0x17  
+_CSIDL_COMMON_STARTMENU=0x16  
+_CSIDL_COMMON_STARTUP=0x18  
+_CSIDL_COMMON_TEMPLATES=0x2d  
+_CSIDL_COMMON_VIDEO=0x37  
+_CSIDL_COMPUTERSNEARME=0x3d  
+_CSIDL_CONNECTIONS=0x31  
+_CSIDL_CONTROLS=3  
+_CSIDL_DESKTOP=0  
+_CSIDL_DESKTOPDIRECTORY=0x10  
+_CSIDL_DRIVES=0x11  
+_CSIDL_FAVORITES=6  
+_CSIDL_FLAG_CREATE=0x8000  
+_CSIDL_FLAG_DONT_UNEXPAND=0x2000  
+_CSIDL_FLAG_DONT_VERIFY=0x4000  
+_CSIDL_FLAG_MASK=0xFF00  
+_CSIDL_FLAG_NO_ALIAS=0x1000  
+_CSIDL_FLAG_PER_USER_INIT=0x800  
+_CSIDL_FONTS=0x14  
+_CSIDL_INTERNET=1  
+_CSIDL_LOCAL_APPDATA=0x1c  
+_CSIDL_MYDOCUMENTS=0x5  
+_CSIDL_MYMUSIC=0xd  
+_CSIDL_MYPICTURES=0x27  
+_CSIDL_MYVIDEO=0xe  
+_CSIDL_NETHOOD=0x13  
+_CSIDL_NETWORK=0x12  
+_CSIDL_PERSONAL=5  
+_CSIDL_PRINTERS=4  
+_CSIDL_PRINTHOOD=0x1b  
+_CSIDL_PROFILE=0x28  
+_CSIDL_PROGRAMS=2  
+_CSIDL_PROGRAM_FILES=0x26  
+_CSIDL_PROGRAM_FILESX86=0x2a  
+_CSIDL_PROGRAM_FILES_COMMON=0x2b  
+_CSIDL_PROGRAM_FILES_COMMONX86=0x2c  
+_CSIDL_RECENT=0x8  
+_CSIDL_RESOURCES=0x38  
+_CSIDL_RESOURCES_LOCALIZED=0x39  
+_CSIDL_SENDTO=0x9  
+_CSIDL_STARTMENU=0xb  
+_CSIDL_STARTUP=7  
+_CSIDL_SYSTEM=0x25  
+_CSIDL_SYSTEMX86=0x29  
+_CSIDL_WINDOWS=0x24  
+_FOF_ALLOWUNDO=0x40  
+_FOF_CONFIRMMOUSE=0x2  
+_FOF_FILESONLY=0x80  
+_FOF_NOCONFIRMATION=0x10  
+_FOF_NOCONFIRMMKDIR=0x200  
+_FOF_NOCOPYSECURITYATTRIBS=0x0800  
+_FOF_NOERRORUI=0x0400  
+_FOF_NORECURSION=0x1000  
+_FOF_NO_UI=0x614  
+_FOF_RENAMEONCOLLISION=0x8  
+_FOF_SILENT=0x4  
+_FOF_SIMPLEPROGRESS=0x100  
+_FOF_WANTMAPPINGHANDLE=0x20  
+_MAX_WPATH_BYTES=0x208  
+
+
+[Markdown 格式](_.md)
 </code></pre>
-
-<p><a id="_CSIDL_COOKIES"></a></p>
-
-<h3>_CSIDL_COOKIES</h3>
-
-<pre><code class="aardio language-aardio">0x21
-</code></pre>
-
-<p><a id="_CSIDL_HISTORY"></a></p>
-
-<h3>_CSIDL_HISTORY</h3>
-
-<pre><code class="aardio language-aardio">0x22
-</code></pre>
-
-<p><a id="_CSIDL_INTERNET_CACHE"></a></p>
-
-<h3>_CSIDL_INTERNET_CACHE</h3>
-
-<pre><code class="aardio language-aardio">0x20
-</code></pre>
-
-<p><a id="_CSIDL_TEMPLATES"></a></p>
-
-<h3>_CSIDL_TEMPLATES</h3>
-
-<pre><code class="aardio language-aardio">0x15
-</code></pre>
-
-<h3>自动完成常量</h3>
-
-<p>_CSIDL_ADMINTOOLS=0x30<br>
-_CSIDL_ALTSTARTUP=0x1d<br>
-_CSIDL_APPDATA=0x1a<br>
-_CSIDL_BITBUCKET=0xa<br>
-_CSIDL_CDBURN_AREA=0x3b<br>
-_CSIDL_COMMON_ADMINTOOLS=0x2f<br>
-_CSIDL_COMMON_ALTSTARTUP=0x1e<br>
-_CSIDL_COMMON_APPDATA=0x23<br>
-_CSIDL_COMMON_DESKTOPDIRECTORY=0x19<br>
-_CSIDL_COMMON_DOCUMENTS=0x2e<br>
-_CSIDL_COMMON_MUSIC=0x35<br>
-_CSIDL_COMMON_OEM_LINKS=0x3a<br>
-_CSIDL_COMMON_PICTURES=0x36<br>
-_CSIDL_COMMON_PROGRAMS=0x17<br>
-_CSIDL_COMMON_STARTMENU=0x16<br>
-_CSIDL_COMMON_STARTUP=0x18<br>
-_CSIDL_COMMON_TEMPLATES=0x2d<br>
-_CSIDL_COMMON_VIDEO=0x37<br>
-_CSIDL_COMPUTERSNEARME=0x3d<br>
-_CSIDL_CONNECTIONS=0x31<br>
-_CSIDL_CONTROLS=3<br>
-_CSIDL_DESKTOP=0<br>
-_CSIDL_DESKTOPDIRECTORY=0x10<br>
-_CSIDL_DRIVES=0x11<br>
-_CSIDL_FAVORITES=6<br>
-_CSIDL_FLAG_CREATE=0x8000<br>
-_CSIDL_FLAG_DONT_UNEXPAND=0x2000<br>
-_CSIDL_FLAG_DONT_VERIFY=0x4000<br>
-_CSIDL_FLAG_MASK=0xFF00<br>
-_CSIDL_FLAG_NO_ALIAS=0x1000<br>
-_CSIDL_FLAG_PER_USER_INIT=0x800<br>
-_CSIDL_FONTS=0x14<br>
-_CSIDL_INTERNET=1<br>
-_CSIDL_LOCAL_APPDATA=0x1c<br>
-_CSIDL_MYDOCUMENTS=0x5<br>
-_CSIDL_MYMUSIC=0xd<br>
-_CSIDL_MYPICTURES=0x27<br>
-_CSIDL_MYVIDEO=0xe<br>
-_CSIDL_NETHOOD=0x13<br>
-_CSIDL_NETWORK=0x12<br>
-_CSIDL_PERSONAL=5<br>
-_CSIDL_PRINTERS=4<br>
-_CSIDL_PRINTHOOD=0x1b<br>
-_CSIDL_PROFILE=0x28<br>
-_CSIDL_PROGRAMS=2<br>
-_CSIDL_PROGRAM_FILES=0x26<br>
-_CSIDL_PROGRAM_FILESX86=0x2a<br>
-_CSIDL_PROGRAM_FILES_COMMON=0x2b<br>
-_CSIDL_PROGRAM_FILES_COMMONX86=0x2c<br>
-_CSIDL_RECENT=0x8<br>
-_CSIDL_RESOURCES=0x38<br>
-_CSIDL_RESOURCES_LOCALIZED=0x39<br>
-_CSIDL_SENDTO=0x9<br>
-_CSIDL_STARTMENU=0xb<br>
-_CSIDL_STARTUP=7<br>
-_CSIDL_SYSTEM=0x25<br>
-_CSIDL_SYSTEMX86=0x29<br>
-_CSIDL_WINDOWS=0x24<br>
-_FOF_ALLOWUNDO=0x40<br>
-_FOF_CONFIRMMOUSE=0x2<br>
-_FOF_FILESONLY=0x80<br>
-_FOF_NOCONFIRMATION=0x10<br>
-_FOF_NOCONFIRMMKDIR=0x200<br>
-_FOF_NOCOPYSECURITYATTRIBS=0x0800<br>
-_FOF_NOERRORUI=0x0400<br>
-_FOF_NORECURSION=0x1000<br>
-_FOF_NO_UI=0x614<br>
-_FOF_RENAMEONCOLLISION=0x8<br>
-_FOF_SILENT=0x4<br>
-_FOF_SIMPLEPROGRESS=0x100<br>
-_FOF_WANTMAPPINGHANDLE=0x20<br>
-_MAX_WPATH_BYTES=0x208  </p>
-
-<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/fsys/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/fsys/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/fsys/_.md">Markdown 格式</a></p>
 
 </body> 
 </html>

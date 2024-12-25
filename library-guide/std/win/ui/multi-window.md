@@ -91,6 +91,6 @@ win.loopMessage();
 
 ```
 
-如果希望界面更漂亮一些，可以使用高级选项卡，参�?[高级选项卡范例](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/tabs/QuickStart.html  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ �������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/example/tabs/QuickStart.html')�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-guide/std/win/ui/multi-window.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-guide/std/win/ui/multi-window.md')
+如果希望界面更漂亮一些，可以使用高级选项卡，参�?[高级选项卡范例](https://www.aardio.com/zh-cn/doc/example/tabs/QuickStart.html)�?
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-guide/std/win/ui/multi-window.md)
 

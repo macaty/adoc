@@ -295,5 +295,5 @@ winDlgMessageObject.titlebarStyle = {
 显示警告提示�?
 
 可选使用参数@2指定延时自动关闭提示框的毫秒�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/dlg/message.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/dlg/message.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/win/dlg/message.md)
 

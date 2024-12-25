@@ -37,7 +37,7 @@ fsys.wow64.disableRedirection(
 
 ### fsys.wow64.process()
 
-[返回对象:processObject](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/process/_.html  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ �������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/process/_.html#processObject')
+[返回对象:processObject](https://www.aardio.com/zh-cn/doc/library-reference/process/_.html#processObject)
 
 ### fsys.wow64.process(执行文件,参数,STARTUPINFO)
 
@@ -53,5 +53,5 @@ STARTUPINFO 参数�?process.STARTUPINFO 结构�?可选参�?
 首尾已经有引号的参数不作转义处理,
 
 命令参数最大长度为8191/0x1FFFF个字�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/fsys/wow64.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/fsys/wow64.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/fsys/wow64.md)
 

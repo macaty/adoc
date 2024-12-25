@@ -221,5 +221,5 @@ winform.button.theme = false
 
 \_MCM\_FIRST=0x1000
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/calendar.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/calendar.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/calendar.md)
 

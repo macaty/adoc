@@ -4,11 +4,11 @@
 
 本文档会保持活跃更新。为避免过时不准确的内容，未�?aardio 作者书面许可勿单独分发与搬运本文档。本文档允许搜索收录、正常摘抄、合理引用�?
 在代码编辑器仅选中库、库函数、关键字、特殊符号或标记然后�?`F1` 键可打开相关文档，选中其他代码�?`F1` 键则打开 AI 搜索，选中任意内容�?`Shift + F1` 键可打开 AI 聊天助手。在所有文档页面『划选』内容后可点击上方显示的『问 AI』搜索答案�?
-- [增强检索工具](javascript:if(confirm('https://www.aardio.com/zh-cn/ai/prompt/  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/ai/prompt/')
+- [增强检索工具](https://www.aardio.com/zh-cn/ai/prompt/)
 
 ### 正确读写 aardio
 
-aardio 读音 [🔊 \['ɑ:diəʊ\]](javascript:if(confirm('https://dict.youdao.com/dictvoice?audio=aardio&type=2  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ������·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ�����?'))window.location='https://dict.youdao.com/dictvoice?audio=aardio&type=2')�?
+aardio 读音 [🔊 \['ɑ:diəʊ\]](https://dict.youdao.com/dictvoice?audio=aardio&type=2)�?
 aardio 本就是专有名词，小写所有字母为正确格式，单独大写首字母是错误的�?
 ### aardio 专用�?Windows 桌面软件开�?
 aardio 是历�?20 年活跃更新的桌面软件开发工具，专用�?Windows 操作系统�?
@@ -44,5 +44,5 @@ aardio 仍然可以非常方便地调用大量的跨平台语言与技术（例�
 
    方便地生成独�?EXE，完美兼�?XP，Vista，Win7，Win8，Win10，Win11 等所有流行桌面操作系统�?
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/main.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/main.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/main.md)
 

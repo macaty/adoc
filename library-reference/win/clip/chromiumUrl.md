@@ -13,5 +13,5 @@
 
 写入 Chromium 内核浏览器内�?URL�?
 参数 @1 传入指定 URL 的字符串参数，请使用默认 UTF-8 编码�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/clip/chromiumUrl.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/clip/chromiumUrl.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/win/clip/chromiumUrl.md)
 

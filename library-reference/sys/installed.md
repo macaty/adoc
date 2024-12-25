@@ -36,5 +36,5 @@ MSI 安装程序可用 COM 对象 WindowsInstaller.Installer 读取更多信息
 DisplayName 为显示名�?Version 字段的版本数值可作为 fsys.version 的参数解析为版本�?
 另安装信息包�?个可选字段：DisplayVersion,InstallDate
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/sys/installed.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/sys/installed.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/sys/installed.md)
 

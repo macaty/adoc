@@ -103,5 +103,5 @@ raw.argsPointer çš„éå›è°ƒç”¨æ³•å°±æ˜¯åŸºäºè¿™ä¸ªåŸç†ï¼Œä½†ç®€åŒ–äº†åˆ†é…å
 
 ```
 
-[Markdown æ ¼å¼](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/aardio/Raw/raw.argsPointer.md  \n\n¸ÃÎÄ¼şÎŞ·¨ÓÃ Teleport Ultra ÏÂÔØ, ÒòÎª Ëü²»ÔÚÏîÄ¿ÎÄ¼şÀàĞÍ¹æ·¶ÄÚ¡£  \n\nÄãÏëÔÚ·şÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='https://www.aardio.com/zh-cn/doc/example/aardio/Raw/raw.argsPointer.md')
+[Markdown æ ¼å¼](https://www.aardio.com/zh-cn/doc/example/aardio/Raw/raw.argsPointer.md)
 

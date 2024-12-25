@@ -25,5 +25,5 @@ console.log(str);
 ```
 
 除了在引号（双引号、单引号、反引号）前后可以用 `+` 替代 `++`，其他情况下应当明确�?`++` 以避免误操作与不必要的转换过程�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/language-reference/operator/concat.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/language-reference/operator/concat.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/language-reference/operator/concat.md)
 

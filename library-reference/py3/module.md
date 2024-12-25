@@ -43,5 +43,5 @@
 ### py3ModuleObject.setItem(索引�?
 
 修改指定索引的项，也可以用索引下标操作符 \[\] 赋值�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/py3/module.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/py3/module.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/py3/module.md)
 

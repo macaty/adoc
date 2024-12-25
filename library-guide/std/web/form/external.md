@@ -57,5 +57,5 @@
    external 使用的是 IDispatch 接口,请参�? [创建IDispatch接口](../../../builtin/com/ImplInterface.html#IDispatch)
 
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-guide/std/web/form/external.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-guide/std/web/form/external.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-guide/std/web/form/external.md)
 

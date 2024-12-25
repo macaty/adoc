@@ -89,7 +89,7 @@ tab@ = {};
 
 索引（下标）操作�?`[]`
 
-如果�?[属性（.）操作符或下标操作符（\[\]）](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/language-reference/operator/member-access.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/language-reference/operator/member-access.md') 读取表中不存在的键会触发 `_get` 元方法并返回值�?
+如果�?[属性（.）操作符或下标操作符（\[\]）](https://www.aardio.com/zh-cn/doc/language-reference/operator/member-access.md) 读取表中不存在的键会触发 `_get` 元方法并返回值�?
 注意：使�?`owner[[member]]` 形式的直接下标以�?namespace 语句打开新的名字空间不会触发元方法。with 语句打开新的名字空间则会触发元方法。在 aardio �?NET 名字空间 依赖元方法自动导入下级名字空间的 ，所�?namespace 只能用于打开已导入的 .NET 名空字间（否则应改用 with 语句）�?
 `_get` 不但可以是一个函�?也可以指定一�?table 对象(找不到成员就�?`_get` 指定�?table 里找)�?
 如果�?`_get` 元方法是一个函数，则调用参�?k 为键名�?
@@ -100,7 +100,7 @@ tab@ = {};
 
  索引（下标）操作�?`[]`
 
- 如果�?[. �?\[\] 操作符](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/language-reference/operator/member-access.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/language-reference/operator/member-access.md') 给表中不存在的键赋值会触发 `_set` 元方法�?
+ 如果�?[. �?\[\] 操作符](https://www.aardio.com/zh-cn/doc/language-reference/operator/member-access.md) 给表中不存在的键赋值会触发 `_set` 元方法�?
  注意：使�?`owner[[member]]` 形式的直接下标赋值不会触发元方法�?
 `_set` 元方法的 k 参数为新的键，v 参数为新的�?�?
  在赋值语句中使用 `owner[member] = value` 形式的下标操作符赋值触�?owner 对象�?`_set` 元方法时 ownerAttr 参数的值为 false，其他任何方式触发对象的 `_set` 元方法时 ownerAttr 参数的值为 true �?
@@ -315,5 +315,5 @@ console.pause();
 这里用到�?[函数闭包](../../function/closure.html) 保存 real,proxy 这些表对象�?
 如果是写库文件，通常会用类（ class ）来做类似的事。因�?class 本身也可以作为名字空间使用，写库比较方便。参考： [class](../../class/class.html)
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/language-reference/datatype/table/meta.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/language-reference/datatype/table/meta.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/language-reference/datatype/table/meta.md)
 

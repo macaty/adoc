@@ -100,5 +100,5 @@ UTC时间转换为区域时�?
 省略参数则使用当前时�?
 应用ISO 8601格式
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/time/zone.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/time/zone.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/time/zone.md)
 

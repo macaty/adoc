@@ -130,5 +130,5 @@ aardio 支持多个返回值，也支持不定参�?
 圆括号建立的单值表达式只会返回一个值�?
 参考： [table.push](../../library-guide/builtin/table/_.html#push)
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/language-reference/function/result.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/language-reference/function/result.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/language-reference/function/result.md)
 

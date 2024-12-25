@@ -107,5 +107,5 @@ verb默认�?open"
 
 \_IURL\_SETURL\_FL\_USE\_DEFAULT\_PROTOCOL=2
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/fsys/url.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/fsys/url.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/fsys/url.md)
 

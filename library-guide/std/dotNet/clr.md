@@ -68,7 +68,7 @@ aardio 可以自动兼容 CLR 2.0 / CLR 4.0 编写的程序集�?aardio + .NET �
 - Windows 0 1809 自带 .NET 4.7.2
 - Windows 11 以及 Win10 1903 自带 .NET 4.8
 
-参考： [.NET 版本和依赖关系](javascript:if(confirm('https://learn.microsoft.com/zh-cn/dotnet/framework/migration-guide/versions-and-dependencies  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ������·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ�����?'))window.location='https://learn.microsoft.com/zh-cn/dotnet/framework/migration-guide/versions-and-dependencies')
+参考： [.NET 版本和依赖关系](https://learn.microsoft.com/zh-cn/dotnet/framework/migration-guide/versions-and-dependencies)
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-guide/std/dotNet/clr.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-guide/std/dotNet/clr.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-guide/std/dotNet/clr.md)
 

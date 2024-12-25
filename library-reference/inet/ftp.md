@@ -225,5 +225,5 @@ BINARY模式上传
 
 \_INTERNET\_FLAG\_TRANSFER\_BINARY=2
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/inet/ftp.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/inet/ftp.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/inet/ftp.md)
 

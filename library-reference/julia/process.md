@@ -11,7 +11,7 @@
 也可以传入多个参数由 aardio 自动合并（空格分隔参数）�?
 合并多参数时，单参数含空格或需转义时自动加双引号并自动转义
 
-[返回对象:processObject](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/process/_.html  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ �������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/process/_.html#processObject')
+[返回对象:processObject](https://www.aardio.com/zh-cn/doc/library-reference/process/_.html#processObject)
 
 ## julia.process 成员列表
 
@@ -32,7 +32,7 @@
 合并多参数时，单参数含空格或需转义时自动加双引号并自动转义�?
 �?Julia 代码中可以用 ARGS 获取参数
 
-[返回对象:processObject](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/process/_.html  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ �������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/process/_.html#processObject')
+[返回对象:processObject](https://www.aardio.com/zh-cn/doc/library-reference/process/_.html#processObject)
 
 ### julia.process.popen()
 
@@ -43,7 +43,7 @@
 也可以传入多个参数由 aardio 自动合并（空格分隔参数）�?
 合并多参数时，单参数含空格或需转义时自动加双引号并自动转义
 
-[返回对象:processPopenObject](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ �������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html#processPopenObject')
+[返回对象:processPopenObject](https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html#processPopenObject)
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/julia/process.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/julia/process.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/julia/process.md)
 

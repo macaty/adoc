@@ -1,7 +1,7 @@
 [aardio 文档](../../index.htm "aardio 编程语言文档首页")
 
 # key.ime.stateBar 库模块帮助文�?
-[输入法状态检测规则与原理](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-guide/std/key/imeState.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-guide/std/key/imeState.md')
+[输入法状态检测规则与原理](https://www.aardio.com/zh-cn/doc/library-guide/std/key/imeState.md)
 
 ## key.ime 成员列表
 
@@ -22,5 +22,5 @@
 
 参数 @winform 指定所有者窗体，不可省略
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/key/ime.stateBar.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/key/ime.stateBar.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/key/ime.stateBar.md)
 

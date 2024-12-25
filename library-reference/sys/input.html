@@ -46,6 +46,13 @@
 例如 &quot;0409:00000409&quot; 为英文键盘。<br>
 @disabled 参数指定是否禁用输入法，省略参数则默认值为 true</p>
 
+<p><a id="sys.input.find"></a></p>
+
+<h3>sys.input.find(输入法名称)</h3>
+
+<p>使用参数 @1 指定的输入法显示名称查找已启用的输入法信息。<br>
+参数支持部分匹配与模式匹配。</p>
+
 <p><a id="sys.input.getDescription"></a></p>
 
 <h3>sys.input.getDescription</h3>
@@ -77,12 +84,13 @@
 
 <p><a id="sys.input.getLayoutOrTips"></a></p>
 
-<h3>sys.input.getLayoutOrTips(enabled)</h3>
+<h3>sys.input.getLayoutOrTips(enabled,description)</h3>
 
-<p>返回所有键盘布局与输入法的数组，<br>
+<p>返回所有键盘布局与输入法的数组。<br>
 如果参数 @1 为 true，则不返回已禁用的元素。<br>
+如果参数 @2 为 true，则返回数组中的每个元素都包含描述（ description ）字段。<br>
 数组成员为 LAYOUTORTIPPROFILE 结构体，<br>
-详细用法请查看函数源码  </p>
+详细用法请查看函数源码。  </p>
 
 <p>一般可使用简化了的 getEnabledLayoutOrTips 函数</p>
 
@@ -101,7 +109,7 @@
 @layoutOrTip 使用字符串指定键盘布局或输入法，<br>
 例如 &quot;0409:00000409&quot; 为英文键盘。<br>
 @flags 用一个数值指定选项，1 为禁用，0 为启用，<br>
-其他可用值参考 <a href="javascript:if(confirm('https://docs.microsoft.com/en-us/windows/win32/tsf/installlayoutortip  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='https://docs.microsoft.com/en-us/windows/win32/tsf/installlayoutortip'" tppabs="https://docs.microsoft.com/en-us/windows/win32/tsf/installlayoutortip">https://docs.microsoft.com/en-us/windows/win32/tsf/installlayoutortip</a></p>
+其他可用值参考 <a href="https://docs.microsoft.com/en-us/windows/win32/tsf/installlayoutortip">https://docs.microsoft.com/en-us/windows/win32/tsf/installlayoutortip</a></p>
 
 <p><a id="sys.input.setDefault"></a></p>
 
@@ -122,7 +130,7 @@
 <p>_LOTP_INPUTPROCESSOR=1<br>
 _LOTP_KEYBOARDLAYOUT=2  </p>
 
-<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/sys/input.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/sys/input.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/sys/input.md">Markdown 格式</a></p>
+<p><a href="https://www.aardio.com/zh-cn/doc/library-reference/sys/input.md">Markdown 格式</a></p>
 
 </body> 
 </html>

@@ -13,5 +13,5 @@ orphanWindow 用法很简单：
 在传统窗体中，要让一个控件完美透明，并且完美浮动在其他控件前面，是一件比较麻烦的事�?例如 plus 控件也有一些限制，使用剪切背景等方法修正透明带来的闪烁，但是你不能把plus控件浮动在一个按钮前面且显示透明动画�?
 一个窗体的子窗口总是显示在父窗口的内部，例如要将子窗口一部分显示在父窗口外面，并且在桌面上透明，这个实现起来就很麻烦了�?
 orphanWindow 就是用来解决这些问题�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-guide/std/win/ui/orphanWindow.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-guide/std/win/ui/orphanWindow.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-guide/std/win/ui/orphanWindow.md)
 

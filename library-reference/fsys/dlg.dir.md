@@ -53,5 +53,5 @@ GUID 可以�?win.guid.valid 函数支持的参数类型（例如字符串格式
 
 取消返回 null
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/fsys/dlg.dir.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/fsys/dlg.dir.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/fsys/dlg.dir.md)
 

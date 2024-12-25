@@ -22,5 +22,5 @@ Win10 åŠä¹‹åçš„ç³»ç»Ÿé»˜è®¤æ˜¯ä¸ç”¨è®¾ç½®çš„ï¼?ä½†æœ‰äº›è½¯ä»¶åœ¨æ–°ç³»ç»Ÿä¸
 
 ```
 
-[Markdown æ ¼å¼](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/example/Network/inet/http/tls.md  \n\n¸ÃÎÄ¼şÎŞ·¨ÓÃ Teleport Ultra ÏÂÔØ, ÒòÎª ·şÎñÆ÷±¨¸æ·ÃÎÊµÄÎÄ¼şÊÇÒş²ØµÄ¡£  \n\nÄãÏëÔÚ·şÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='https://www.aardio.com/zh-cn/doc/example/Network/inet/http/tls.md')
+[Markdown æ ¼å¼](https://www.aardio.com/zh-cn/doc/example/Network/inet/http/tls.md)
 

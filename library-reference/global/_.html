@@ -1167,7 +1167,7 @@ _SPIF_UPDATEINIFILE | _SPIF_SENDWININICHANGE<br>
 网址可指定 *.tar.lzma 格式安装包或 *.aardio 格式库文件,  </p>
 
 <p>例如:<br>
-&quot;<a href="javascript:if(confirm('https://github.com/.../releases/latest/download/yourlibname.tar.lzma  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='https://github.com/.../releases/latest/download/yourlibname.tar.lzma'" tppabs="https://github.com/.../releases/latest/download/yourlibname.tar.lzma">https://github.com/.../releases/latest/download/yourlibname.tar.lzma</a>&quot;<br>
+&quot;<a href="https://github.com/.../releases/latest/download/yourlibname.tar.lzma">https://github.com/.../releases/latest/download/yourlibname.tar.lzma</a>&quot;<br>
 必须写在引用扩展库的语句之前</p>
 
 <p><a id="pointObject"></a></p>
@@ -1254,7 +1254,7 @@ dy指定正数扩展底边,负数缩小底边<br>
 如果参数中指定::RECTF结构体,则使用参数更新位区块自身,<br>
 指定参数则此函数无返回值  </p>
 
-<p><a href="../gdip/core.html#rectfObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/gdip/core.html#rectfObject">返回对象:rectfObject</a></p>
+<p><a href="https://www.aardio.com/zh-cn/doc/library-reference/gdip/core.html#rectfObject">返回对象:rectfObject</a></p>
 
 <p><a id="rectObject.height"></a></p>
 
@@ -1675,287 +1675,222 @@ type 函数检测一个对象时，可能返回一个或多个类型描述，<br
 <h3>::HIBYTE</h3>
 
 <pre><code class="aardio language-aardio">function(l) {return   (l   &gt;&gt; 8) &amp; 0xff  }
+```
+
+&lt;a id=&quot;::HIWORD&quot;&gt;&lt;/a&gt;
+### ::HIWORD 
+ ```aardio
+function(l) {return  (l &gt;&gt; 16) &amp; 0xffff }
+```
+
+&lt;a id=&quot;::Kernel32&quot;&gt;&lt;/a&gt;
+### ::Kernel32 
+ 默认已加载的Kernel32.dll模块对象  
+Kernel32.dll是Windows内置库,提供很多常用API
+
+&lt;a id=&quot;::LOBYTE&quot;&gt;&lt;/a&gt;
+### ::LOBYTE 
+ ```aardio
+function(l) {return l  &amp; 0xff }
+```
+
+&lt;a id=&quot;::LOWORD&quot;&gt;&lt;/a&gt;
+### ::LOWORD 
+ ```aardio
+function(l) {return l &amp; 0xffff }
+```
+
+&lt;a id=&quot;::MAKELONG&quot;&gt;&lt;/a&gt;
+### ::MAKELONG 
+ ```aardio
+function(a,b){ return ( ( (b &amp; 0xFFFF) &lt;&lt; 16) | (a &amp; 0xFFFF) ) &amp; 0xFFFFFFFF }
+```
+
+&lt;a id=&quot;::MAKEWORD&quot;&gt;&lt;/a&gt;
+### ::MAKEWORD 
+ ```aardio
+function (a,b){ return ( ( ( b &amp; 0xFF) &lt;&lt; 8) | ( a &amp; 0xFF) ) &amp; 0xFFFF  }
+```
+
+&lt;a id=&quot;::Ntdll&quot;&gt;&lt;/a&gt;
+### ::Ntdll 
+ 默认已加载的系统DLL组件ntdll.dll  
+
+[返回对象:dllModuleObject](https://www.aardio.com/zh-cn/doc/library-reference/raw/_.html#dllModuleObject)
+
+&lt;a id=&quot;::OffsetRect(rc,dx,dy)&quot;&gt;&lt;/a&gt;
+### ::OffsetRect(rc,dx,dy) 
+ 移动矩形框，  
+此函数已废弃，请直接调用 rc.offset 函数
+
+&lt;a id=&quot;::POINT&quot;&gt;&lt;/a&gt;
+### ::POINT 
+ 整型坐标结构体  
+此结构体通过标准库 builtin.struct 默认加载
+
+&lt;a id=&quot;::POINT()&quot;&gt;&lt;/a&gt;
+### ::POINT() 
+ [返回对象:pointObject](#pointObject)
+
+&lt;a id=&quot;::POINT(x,y)&quot;&gt;&lt;/a&gt;
+### ::POINT(x,y) 
+ 创建整型坐标结构体  
+可选在参数中指定 x,y 坐标初始值
+
+&lt;a id=&quot;::RECT&quot;&gt;&lt;/a&gt;
+### ::RECT 
+ 表示矩形区块的结构体  
+此结构体通过标准库 builtin.struct 默认加载
+
+&lt;a id=&quot;::RECT()&quot;&gt;&lt;/a&gt;
+### ::RECT() 
+ [返回对象:rectObject](https://www.aardio.com/zh-cn/doc/library-reference/global/_.html#rectObject)
+
+&lt;a id=&quot;::RECT(left,top,right,bottom)&quot;&gt;&lt;/a&gt;
+### ::RECT(left,top,right,bottom) 
+ 创建矩形区块结构体  
+可选在参数中指定左,上,右,下初始值
+
+&lt;a id=&quot;::SIZE&quot;&gt;&lt;/a&gt;
+### ::SIZE 
+ 整型尺寸结构体  
+此结构体通过标准库 builtin.struct 默认加载
+
+&lt;a id=&quot;::SIZE()&quot;&gt;&lt;/a&gt;
+### ::SIZE() 
+ [返回对象:sizeObject](#sizeObject)
+
+&lt;a id=&quot;::SIZE(cx,cy)&quot;&gt;&lt;/a&gt;
+### ::SIZE(cx,cy) 
+ 创建整型尺寸结构体  
+可选在参数中指定宽高 cx,cy 初始值
+
+&lt;a id=&quot;::Shell32&quot;&gt;&lt;/a&gt;
+### ::Shell32 
+ 默认已加载的Shell32.dll模块对象（参考标准库：peload.io），  
+提供Windows系统外壳 API
+
+&lt;a id=&quot;::Ucrtbase&quot;&gt;&lt;/a&gt;
+### ::Ucrtbase 
+ UCRT 运行时，  
+Windows 10 以及之后的系统已经自带了 UCRT。  
+
+加载此 DLL 的代码如下：  
+::Ucrtbase := ..raw.loadDll(&quot;ucrtbase.dll&quot;,,&quot;cdecl&quot;);  
+注意等号前必须加冒号。  
+
+[返回对象:dllModuleObject](https://www.aardio.com/zh-cn/doc/library-reference/raw/_.html#dllModuleObject)
+
+&lt;a id=&quot;::User32&quot;&gt;&lt;/a&gt;
+### ::User32 
+ 默认已加载的User32.dll模块对象  
+User32.dll提供Windows用户界面相关API
+
+&lt;a id=&quot;_AARDIO_VERSION&quot;&gt;&lt;/a&gt;
+### _AARDIO_VERSION 
+ aardio 内核版本号
+
+&lt;a id=&quot;_ARGV&quot;&gt;&lt;/a&gt;
+### _ARGV 
+ 解析后的进程启动参数表，已解析双引号、命令行参数转义符等并转换为数组,  
+命令行解析规则请参考标准库中 string.cmdline 的源码,  
+
+ARGV 既包含命令行参数数组,也包含按下列规则解析的键值对:  
+以斜杠或短横线开始的前导参数作为键(键名移除一个或多个相同的前导字符,区分大小写)，  
+如果前导参数包含等号,则以等号拆分为键值对,等号前后不应有空格,  
+否则检查下一参数如果没有相同的首字符则设为此键对应的值，  
+如果一个前导参数没有指定值,则默认值为空字符串（逻辑值为true）  
+
+_ARGV仅在发布后的进程启动线程中存在,开发环境中 _ARGV 为空表。  
+非主线程请改用 thread.cmdline
+
+&lt;a id=&quot;_CMDLINE&quot;&gt;&lt;/a&gt;
+### _CMDLINE 
+ 命令行参数的原始文本  
+也可以使用 _ARGV 获取解析后的命令行参数  
+_CMDLINE 仅在启动线程中存在,一般用于main.aardio,开发环境中为null  
+可使用#操作符检测参数是否为空
+
+&lt;a id=&quot;_HAPPICON&quot;&gt;&lt;/a&gt;
+### _HAPPICON 
+ 应用程序图标句柄，可在工程属性中自定义该图标，  
+图标在不再使用时会自动释放,不要手动释放该图标  
+_HAPPICON仅在启动线程中存在
+
+&lt;a id=&quot;_HINSTANSE&quot;&gt;&lt;/a&gt;
+### _HINSTANSE 
+ 当前应用程序的实例句柄
+
+&lt;a id=&quot;_IMPORTURL&quot;&gt;&lt;/a&gt;
+### _IMPORTURL 
+ 用于注册远程扩展库安装网址的表,  
+可添加新的键值，键为库名称，值为库安装文件网址,  
+网址可指定 *.tar.lzma 格式安装包或 *.aardio 格式库文件&quot;  
+必须写在引用扩展库的语句之前
+
+&lt;a id=&quot;_INVALID_HANDLE_VALUE&quot;&gt;&lt;/a&gt;
+### _INVALID_HANDLE_VALUE 
+ topointer(-1)  
+表示无效句柄
+
+&lt;a id=&quot;_STUDIO_INVOKED&quot;&gt;&lt;/a&gt;
+### _STUDIO_INVOKED 
+ 判断是否在aardio开发环境中运行aardio程序,  
+如果在IDE开发环境中运行,该值是一个描述运行模式的字符串,否则为null,  
+其值为&quot;thread&quot;时作为嵌入IDE的线程模式运行，值为&quot;process&quot;时是以独立的进程模式运行  
+在IDE开发环境中,aardio程序的启动代码首个import的库为ide时即以线程模式运行  
+以独立进程模式调试有更好的稳定性
+
+&lt;a id=&quot;_WIN10_LATER&quot;&gt;&lt;/a&gt;
+### _WIN10_LATER 
+ 当前系统是否为WIN10/Win2016或之后的版本
+
+&lt;a id=&quot;_WIN7_LATER&quot;&gt;&lt;/a&gt;
+### _WIN7_LATER 
+ 当前系统是否为WIN7/Win2008 R2或之后的版本
+
+&lt;a id=&quot;_WINE&quot;&gt;&lt;/a&gt;
+### _WINE 
+ 如果程序在 Linux(Wine、CrossOver) 环境下运行此常量包含wine版本号  
+否则为null
+
+&lt;a id=&quot;_WINXP&quot;&gt;&lt;/a&gt;
+### _WINXP 
+ 当前系统是否为WINXP或Win2003  
+否则为Vista/WIN2008或以后的版本
+
+&lt;a id=&quot;_WIN_64&quot;&gt;&lt;/a&gt;
+### _WIN_64 
+ _WIN_64 = 当前系统是否为64位
+
+&lt;a id=&quot;_WIN_VER_BUILD&quot;&gt;&lt;/a&gt;
+### _WIN_VER_BUILD 
+ Windows 构建版本号  
+Windows10 构建版本号与发行版本号的对应关系请参考 win.versionEx
+
+&lt;a id=&quot;_WIN_VER_MAJOR&quot;&gt;&lt;/a&gt;
+### _WIN_VER_MAJOR 
+ Windows 主版本号
+
+&lt;a id=&quot;_WIN_VER_MINOR&quot;&gt;&lt;/a&gt;
+### _WIN_VER_MINOR 
+ Windows 副版本号
+
+
+### 自动完成常量
+_MAX_PATH_U16=0x208  
+_MAX_PATH_U8=0x410  
+_O_BINARY=0x8000  
+_O_TEXT=0x4000  
+_SH_DENYNO=0x40  
+_SH_DENYRD=0x30  
+_SH_DENYRW=0x10  
+_SH_DENYWR=0x20  
+_SH_SECURE=0x80  
+
+
+[Markdown 格式](_.md)
 </code></pre>
-
-<p><a id="::HIWORD"></a></p>
-
-<h3>::HIWORD</h3>
-
-<pre><code class="aardio language-aardio">function(l) {return  (l &gt;&gt; 16) &amp; 0xffff }
-</code></pre>
-
-<p><a id="::Kernel32"></a></p>
-
-<h3>::Kernel32</h3>
-
-<p>默认已加载的Kernel32.dll模块对象<br>
-Kernel32.dll是Windows内置库,提供很多常用API</p>
-
-<p><a id="::LOBYTE"></a></p>
-
-<h3>::LOBYTE</h3>
-
-<pre><code class="aardio language-aardio">function(l) {return l  &amp; 0xff }
-</code></pre>
-
-<p><a id="::LOWORD"></a></p>
-
-<h3>::LOWORD</h3>
-
-<pre><code class="aardio language-aardio">function(l) {return l &amp; 0xffff }
-</code></pre>
-
-<p><a id="::MAKELONG"></a></p>
-
-<h3>::MAKELONG</h3>
-
-<pre><code class="aardio language-aardio">function(a,b){ return ( ( (b &amp; 0xFFFF) &lt;&lt; 16) | (a &amp; 0xFFFF) ) &amp; 0xFFFFFFFF }
-</code></pre>
-
-<p><a id="::MAKEWORD"></a></p>
-
-<h3>::MAKEWORD</h3>
-
-<pre><code class="aardio language-aardio">function (a,b){ return ( ( ( b &amp; 0xFF) &lt;&lt; 8) | ( a &amp; 0xFF) ) &amp; 0xFFFF  }
-</code></pre>
-
-<p><a id="::Ntdll"></a></p>
-
-<h3>::Ntdll</h3>
-
-<p>默认已加载的系统DLL组件ntdll.dll  </p>
-
-<p><a href="../raw/_.html#dllModuleObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/raw/_.html#dllModuleObject">返回对象:dllModuleObject</a></p>
-
-<p><a id="::OffsetRect(rc,dx,dy)"></a></p>
-
-<h3>::OffsetRect(rc,dx,dy)</h3>
-
-<p>移动矩形框，<br>
-此函数已废弃，请直接调用 rc.offset 函数</p>
-
-<p><a id="::POINT"></a></p>
-
-<h3>::POINT</h3>
-
-<p>整型坐标结构体<br>
-此结构体通过标准库 builtin.struct 默认加载</p>
-
-<p><a id="::POINT()"></a></p>
-
-<h3>::POINT()</h3>
-
-<p><a href="#pointObject">返回对象:pointObject</a></p>
-
-<p><a id="::POINT(x,y)"></a></p>
-
-<h3>::POINT(x,y)</h3>
-
-<p>创建整型坐标结构体<br>
-可选在参数中指定 x,y 坐标初始值</p>
-
-<p><a id="::RECT"></a></p>
-
-<h3>::RECT</h3>
-
-<p>表示矩形区块的结构体<br>
-此结构体通过标准库 builtin.struct 默认加载</p>
-
-<p><a id="::RECT()"></a></p>
-
-<h3>::RECT()</h3>
-
-<p><a href="_.html#rectObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/global/_.html#rectObject">返回对象:rectObject</a></p>
-
-<p><a id="::RECT(left,top,right,bottom)"></a></p>
-
-<h3>::RECT(left,top,right,bottom)</h3>
-
-<p>创建矩形区块结构体<br>
-可选在参数中指定左,上,右,下初始值</p>
-
-<p><a id="::SIZE"></a></p>
-
-<h3>::SIZE</h3>
-
-<p>整型尺寸结构体<br>
-此结构体通过标准库 builtin.struct 默认加载</p>
-
-<p><a id="::SIZE()"></a></p>
-
-<h3>::SIZE()</h3>
-
-<p><a href="#sizeObject">返回对象:sizeObject</a></p>
-
-<p><a id="::SIZE(cx,cy)"></a></p>
-
-<h3>::SIZE(cx,cy)</h3>
-
-<p>创建整型尺寸结构体<br>
-可选在参数中指定宽高 cx,cy 初始值</p>
-
-<p><a id="::Shell32"></a></p>
-
-<h3>::Shell32</h3>
-
-<p>默认已加载的Shell32.dll模块对象（参考标准库：peload.io），<br>
-提供Windows系统外壳 API</p>
-
-<p><a id="::Ucrtbase"></a></p>
-
-<h3>::Ucrtbase</h3>
-
-<p>UCRT 运行时，<br>
-Windows 10 以及之后的系统已经自带了 UCRT。  </p>
-
-<p>加载此 DLL 的代码如下：<br>
-::Ucrtbase := ..raw.loadDll(&quot;ucrtbase.dll&quot;,,&quot;cdecl&quot;);<br>
-注意等号前必须加冒号。  </p>
-
-<p><a href="../raw/_.html#dllModuleObject" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/raw/_.html#dllModuleObject">返回对象:dllModuleObject</a></p>
-
-<p><a id="::User32"></a></p>
-
-<h3>::User32</h3>
-
-<p>默认已加载的User32.dll模块对象<br>
-User32.dll提供Windows用户界面相关API</p>
-
-<p><a id="_AARDIO_VERSION"></a></p>
-
-<h3>_AARDIO_VERSION</h3>
-
-<p>aardio 内核版本号</p>
-
-<p><a id="_ARGV"></a></p>
-
-<h3>_ARGV</h3>
-
-<p>解析后的进程启动参数表，已解析双引号、命令行参数转义符等并转换为数组,<br>
-命令行解析规则请参考标准库中 string.cmdline 的源码,  </p>
-
-<p>ARGV 既包含命令行参数数组,也包含按下列规则解析的键值对:<br>
-以斜杠或短横线开始的前导参数作为键(键名移除一个或多个相同的前导字符,区分大小写)，<br>
-如果前导参数包含等号,则以等号拆分为键值对,等号前后不应有空格,<br>
-否则检查下一参数如果没有相同的首字符则设为此键对应的值，<br>
-如果一个前导参数没有指定值,则默认值为空字符串（逻辑值为true）  </p>
-
-<p>_ARGV仅在发布后的进程启动线程中存在,开发环境中 _ARGV 为空表。<br>
-非主线程请改用 thread.cmdline</p>
-
-<p><a id="_CMDLINE"></a></p>
-
-<h3>_CMDLINE</h3>
-
-<p>命令行参数的原始文本<br>
-也可以使用 _ARGV 获取解析后的命令行参数<br>
-_CMDLINE 仅在启动线程中存在,一般用于main.aardio,开发环境中为null<br>
-可使用#操作符检测参数是否为空</p>
-
-<p><a id="_HAPPICON"></a></p>
-
-<h3>_HAPPICON</h3>
-
-<p>应用程序图标句柄，可在工程属性中自定义该图标，<br>
-图标在不再使用时会自动释放,不要手动释放该图标<br>
-_HAPPICON仅在启动线程中存在</p>
-
-<p><a id="_HINSTANSE"></a></p>
-
-<h3>_HINSTANSE</h3>
-
-<p>当前应用程序的实例句柄</p>
-
-<p><a id="_IMPORTURL"></a></p>
-
-<h3>_IMPORTURL</h3>
-
-<p>用于注册远程扩展库安装网址的表,<br>
-可添加新的键值，键为库名称，值为库安装文件网址,<br>
-网址可指定 *.tar.lzma 格式安装包或 *.aardio 格式库文件&quot;<br>
-必须写在引用扩展库的语句之前</p>
-
-<p><a id="_INVALID_HANDLE_VALUE"></a></p>
-
-<h3>_INVALID_HANDLE_VALUE</h3>
-
-<p>topointer(-1)<br>
-表示无效句柄</p>
-
-<p><a id="_STUDIO_INVOKED"></a></p>
-
-<h3>_STUDIO_INVOKED</h3>
-
-<p>判断是否在aardio开发环境中运行aardio程序,<br>
-如果在IDE开发环境中运行,该值是一个描述运行模式的字符串,否则为null,<br>
-其值为&quot;thread&quot;时作为嵌入IDE的线程模式运行，值为&quot;process&quot;时是以独立的进程模式运行<br>
-在IDE开发环境中,aardio程序的启动代码首个import的库为ide时即以线程模式运行<br>
-以独立进程模式调试有更好的稳定性</p>
-
-<p><a id="_WIN10_LATER"></a></p>
-
-<h3>_WIN10_LATER</h3>
-
-<p>当前系统是否为WIN10/Win2016或之后的版本</p>
-
-<p><a id="_WIN7_LATER"></a></p>
-
-<h3>_WIN7_LATER</h3>
-
-<p>当前系统是否为WIN7/Win2008 R2或之后的版本</p>
-
-<p><a id="_WINE"></a></p>
-
-<h3>_WINE</h3>
-
-<p>如果程序在 Linux(Wine、CrossOver) 环境下运行此常量包含wine版本号<br>
-否则为null</p>
-
-<p><a id="_WINXP"></a></p>
-
-<h3>_WINXP</h3>
-
-<p>当前系统是否为WINXP或Win2003<br>
-否则为Vista/WIN2008或以后的版本</p>
-
-<p><a id="_WIN_64"></a></p>
-
-<h3>_WIN_64</h3>
-
-<p>_WIN_64 = 当前系统是否为64位</p>
-
-<p><a id="_WIN_VER_BUILD"></a></p>
-
-<h3>_WIN_VER_BUILD</h3>
-
-<p>Windows 构建版本号<br>
-Windows10 构建版本号与发行版本号的对应关系请参考 win.versionEx</p>
-
-<p><a id="_WIN_VER_MAJOR"></a></p>
-
-<h3>_WIN_VER_MAJOR</h3>
-
-<p>Windows 主版本号</p>
-
-<p><a id="_WIN_VER_MINOR"></a></p>
-
-<h3>_WIN_VER_MINOR</h3>
-
-<p>Windows 副版本号</p>
-
-<h3>自动完成常量</h3>
-
-<p>_MAX_PATH_U16=0x208<br>
-_MAX_PATH_U8=0x410<br>
-_O_BINARY=0x8000<br>
-_O_TEXT=0x4000<br>
-_SH_DENYNO=0x40<br>
-_SH_DENYRD=0x30<br>
-_SH_DENYRW=0x10<br>
-_SH_DENYWR=0x20<br>
-_SH_SECURE=0x80  </p>
-
-<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/global/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/global/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/global/_.md">Markdown 格式</a></p>
 
 </body> 
 </html>

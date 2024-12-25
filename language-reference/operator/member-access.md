@@ -99,5 +99,5 @@ console.pause(true);
 ```
 
 �?Unicode(UTF-16) 字符�?`wstr` 使用下标�?例如 `wstr[1]` ）返回的是双字节表示�?16 位宽字节码（索引按字符计数），使用直接下标（ 例如 `wstr[[1]]` ）返回的是双字节表示�?16 位宽字符（索引按字符计数）�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/language-reference/operator/member-access.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/language-reference/operator/member-access.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/language-reference/operator/member-access.md)
 

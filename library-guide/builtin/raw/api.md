@@ -213,5 +213,5 @@ fastcall,regparm(n) 调用约定( 也就是寄存器传参方式 ) 详解:
    ```
 
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-guide/builtin/raw/api.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-guide/builtin/raw/api.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-guide/builtin/raw/api.md)
 

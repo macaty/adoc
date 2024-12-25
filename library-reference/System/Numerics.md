@@ -110,5 +110,5 @@ tostring �?2 个参数为 "x"�?X"时返�?16 进制字符串�?
 ### sysNumericsComplex.byRef(true)
 
 传参方式设为传址（用于引用或输出参数�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/System/Numerics.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ �������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/System/Numerics.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/System/Numerics.md)
 

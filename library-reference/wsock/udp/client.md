@@ -143,5 +143,5 @@ UDP 客户�?
 创建 UDP 客户�?
 [返回对象:udpClientObject](#udpClientObject)
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/wsock/udp/client.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/wsock/udp/client.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/wsock/udp/client.md)
 

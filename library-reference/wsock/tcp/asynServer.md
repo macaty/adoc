@@ -218,5 +218,5 @@ tcpasynServerObject.onStop = function(err){
 创建单线程异步TCP服务�?
 [返回对象:tcpasynServerObject](#tcpasynServerObject)
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/wsock/tcp/asynServer.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/wsock/tcp/asynServer.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/wsock/tcp/asynServer.md)
 

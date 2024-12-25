@@ -71,5 +71,5 @@ select( a ) {
 ```
 
 select case 语句也可以嵌套使用，�?select case 语句嵌套写的可读性不是很好，一般应当避免�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/language-reference/statements/branching.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/language-reference/statements/branching.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/language-reference/statements/branching.md)
 

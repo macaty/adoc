@@ -360,5 +360,5 @@ var pt = Point();
 > aardio 默认已经定义了所有字母大写的保留常量 `::POINT` 用于表示坐标�?
 参考： [原生数据类型 \- 结构体](../../library-guide/builtin/raw/datatype.html#struct)
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/language-reference/class/class.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/language-reference/class/class.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/language-reference/class/class.md)
 

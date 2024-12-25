@@ -882,5 +882,5 @@ aardio 函数或表参数会自动转换为所需类型�?.NET 委托
 导入�?.NET 名字空间的程序集对象�?
 [返回对象:dotNetCrlAssemblyObject](#dotNetCrlAssemblyObject)
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/dotNet/appDomain.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/dotNet/appDomain.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/dotNet/appDomain.md)
 

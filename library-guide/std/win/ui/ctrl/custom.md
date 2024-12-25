@@ -108,7 +108,7 @@ custom 控件与其他控件的主要区别是：控件的类名可以修改为�
 
    原来 custom 控件自己啥都没干，默认只是调�?win.form 创建了一个子窗口，并且把自己直接赋值为这个创建的子窗口。当然这个子窗口符合条件，winform �?hwnd 属性那肯定是有效的窗口句柄�?
    其实产这个最简单原始的空白 custom 控件也不是真的那么简单。custom 控件扩展了一些功能。例如在高级选项卡里，我们可以使用这样的 custom 控件作为多标签页的子窗体容器，用来管理并切换选项卡的内容区域�?
-   请参考： [aardio 范例：自定义控件类](../../../../../example/Windows/Custom/cls.html)
+   请参考： [aardio 范例：自定义控件类](https://www.aardio.com/zh-cn/doc/example/Windows/Custom/cls.html)
 
 3. 无句柄的贴图控件
 
@@ -224,5 +224,5 @@ win.loopMessage();
 
 ```
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-guide/std/win/ui/ctrl/custom.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-guide/std/win/ui/ctrl/custom.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-guide/std/win/ui/ctrl/custom.md)
 

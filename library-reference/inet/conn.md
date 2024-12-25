@@ -37,5 +37,5 @@
 
 为指定连接设置自动配置代理（PAC）地址�?
 省略连接名表示默认连�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/inet/conn.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/inet/conn.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/inet/conn.md)
 

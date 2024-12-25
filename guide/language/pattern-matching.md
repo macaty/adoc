@@ -93,26 +93,29 @@ var str = string.match("12345678","<1230-9>")
 
 - `p{2,3}` 表示子模�?p 出现 2 �?3�?
 
-```aardio aardio
-//匹配结果�?12345
-var str = string.match("12345678","\d{2,5}")
+  ```aardio aardio
+  //匹配结果�?12345
+  var str = string.match("12345678","\d{2,5}")
 
-```
+  ```
 
 - `p+`  表示子模�?p 出现 1 次到任意次数，等价于 `p{1,}`
 
-```aardio aardio
-//匹配结果�?12345678
-var str = string.match("12345678","\d+")
 
-```
+  ```aardio aardio
+  //匹配结果�?12345678
+  var str = string.match("12345678","\d+")
+
+  ```
 
 - p\* 表示a出现0次到任意次数，等价于 `p{0,}`
 
-```aardio aardio
-//匹配结果还是 12345678
-var str = string.match("12345678","\d+\s*") //这里�?\s*"匹配零个或多个空�?
-```
+
+  ```aardio aardio
+  //匹配结果还是 12345678
+  var str = string.match("12345678","\d+\s*") //这里�?\s*"匹配零个或多个空�?
+  ```
+
 
 其他运算符请参考： [模式语法 \- 运算符](../../library-guide/builtin/string/patterns.html#operators)
 
@@ -203,5 +206,5 @@ var str = string.match("12345678","\d+\s*") //这里�?\s*"匹配零个或多个
 - [模式匹配函数](../../library-guide/builtin/string/matching.html)
 
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/guide/language/pattern-matching.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ �������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/guide/language/pattern-matching.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/guide/language/pattern-matching.md)
 

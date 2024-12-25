@@ -1,6 +1,8 @@
 [aardio 文档](../../../../index.htm "aardio 编程语言文档首页")
 
 # win.ui.ctrl.syslink 库模块帮助文�?
+[范例](https://www.aardio.com/zh-cn/doc/example/Windows/Controls/syslink.html)
+
 ## win.ui.ctrl 成员列表
 
 ### win.ui.ctrl.syslink
@@ -248,7 +250,7 @@ syslinkObject.setInterval(回调函数,延时毫秒�?...setInterval(
 
 控件文本�?
 此控件的文本属性支�?HTML 的超链接语法，也就是 a 标签�?
-可选使�?href 属性设置超链接，可选使�?id 属性指定链�?ID�?
+超链接可选使�?href 属性设置超链接，可选使�?id 属性指定链�?ID�?
 一个控件可以指定多个普通文本或者超链接，使用超链接索引区分�?
 不支持其�?HTML 语法，例如换行应当直接换行而不是使�?`<br>` 换行�?
 可使�?link 属性获取或设置第一个超链接地址�?
@@ -304,5 +306,5 @@ syslinkObject.translateAccelerator = function(msg){
 ### syslinklitemObject.url
 
 超链接的 URL 属性�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/syslink.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/syslink.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/syslink.md)
 

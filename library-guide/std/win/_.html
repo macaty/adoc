@@ -40,7 +40,7 @@
 <p>win.loopMessage 启动界面线程的窗口消息循环。</p>
 
 <blockquote>
-<p>win.quitMessage() 则用于退出消息循环，可选在参数中用一个数值指定退出代码。当所有非模态、非 MessageOnly 的独立窗口（ 或 mainForm 窗口 ）都关闭后，将会自动调用 win.quitMessage() 。</p>
+<p><code>win.quitMessage()</code> 则用于退出消息循环，可选在参数中用一个数值指定退出代码。当所有非模态、非 MessageOnly 的独立窗口（ 或 mainForm 窗口 ）都关闭后，将会自动调用 <code>win.quitMessage()</code> 。如果显式指定 <code>win.autoQuitMessage</code> 的值为 <code>false</code> 则禁止当前线程在关闭前述窗口时自动调用 <code>win.quitMessage()</code> 。如果窗口对象自身的 <code>autoQuitMessage</code> 的属性值为 <code>false</code> 也会禁止在关闭该窗口时自动调用 <code>win.quitMessage()</code> 。</p>
 </blockquote>
 
 <p>在一个GUI线程(窗口线程) 中只能启动一次 win.loopMessage 循环，重复调用 win.loopMessage 不会执行任何操作。 </p>
@@ -59,7 +59,7 @@
 
 <p>应用程序可以通过调用 win.quitMessage() 退出消息循环。在 aardio 中当所有非模态、非 MessageOnly 的独立窗口（ 或 mainForm 窗口 ）都关闭后，将会自动调用 win.quitMessage()  并终止 win.loopMessage 创建的消息循环（通常也就是退出界面线程）。因为关闭消息是异步处理，所以即使是在调用 win.loopMessage 前关闭窗口，仍然可能导致退出消息循环。</p>
 
-<p>每个窗口程序都必须调用 win.loopMessage，但 win.quitMessage() 很手需要手动调用。</p>
+<p>每个窗口程序都必须调用 win.loopMessage，但 win.quitMessage() 很少需要手动调用。</p>
 
 <p>请参考：<a href="ui/msg.html" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/std/win/ui/msg.html">窗口消息处理</a></p></li>
 <li><p>调用示例： </p>
@@ -453,7 +453,7 @@ win.enable( hwnd , 0 ) //禁用窗口
 <p>启用或禁用指定窗口</p></li>
 </ol>
 
-<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-guide/std/win/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-guide/std/win/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/std/win/_.md">Markdown 格式</a></p>
+<p><a href="https://www.aardio.com/zh-cn/doc/library-guide/std/win/_.md">Markdown 格式</a></p>
 
 </body> 
 </html>

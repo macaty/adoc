@@ -22,5 +22,5 @@
 默认移动到父窗口前面并覆盖客户区,可选使用上,�?�?左等参数指定边距
 
 可调用moveToWindow函数移动到其他窗�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/ui/mask.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/ui/mask.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/win/ui/mask.md)
 

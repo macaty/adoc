@@ -22,5 +22,5 @@
 
 如果参数不是字符串返�?null �?
 如果参数�?Data URL，返回解析后的数据与 MIME。\\如果数据�?base64 编码则自动解码�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/inet/urlData.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/inet/urlData.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/inet/urlData.md)
 

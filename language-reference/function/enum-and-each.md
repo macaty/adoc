@@ -75,5 +75,5 @@ console.pause();
 * * *
 
 - 枚举函数使用 enum 作为名字前缀�?- 遍历函数使用 each 作为名字前缀�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/language-reference/function/enum-and-each.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/language-reference/function/enum-and-each.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/language-reference/function/enum-and-each.md)
 

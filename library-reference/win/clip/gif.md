@@ -12,5 +12,5 @@
 剪贴板虽没有 GIF 专有格式,但是此函数创建的复合格式拥有良好的兼容性�?
 开源录屏软�?Gif123 使用此函数复�?GIF 动画
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/clip/gif.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/clip/gif.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/win/clip/gif.md)
 

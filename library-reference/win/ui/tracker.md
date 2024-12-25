@@ -269,5 +269,5 @@ winUiTrackerObject.onSysKeyUp = function(keyCode,lParam){
 鼠标是否在控件上�?
 悬停超过预设时间后触发onMouseHover事件
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/ui/tracker.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/ui/tracker.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/win/ui/tracker.md)
 

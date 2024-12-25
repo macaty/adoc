@@ -111,5 +111,5 @@ import console.int;
 3. 要注意在 aardio �?DLL 不应当作为线程参数传递，实际上也没必要这样做�?
    只要�?raw.loadDll() 加载同名 DLL (或加载相同共享名称的内存 DLL) 是不会重复加载的�?
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-guide/std/golang/type-conversion.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-guide/std/golang/type-conversion.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-guide/std/golang/type-conversion.md)
 

@@ -64,5 +64,5 @@
 除第一个参数以�?其他参数可�?
 默认最小为当前窗口大小,最大为最大化大小
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/ui/minmax.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/ui/minmax.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/win/ui/minmax.md)
 

@@ -19,5 +19,5 @@
 可选自定义 Windows.winmd 路径，不指定则自动搜索最新版�?
 生成的DLL程序集不再需�?Windows.winmd 文件
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/dotNet/uwpCompiler.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/dotNet/uwpCompiler.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/dotNet/uwpCompiler.md)
 

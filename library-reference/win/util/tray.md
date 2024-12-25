@@ -79,5 +79,5 @@ Win10/11 获取通知消息可使�?dotNet.toastListener 扩展库�?
 
 \_NIIF\_WARNING=2
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/util/tray.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/util/tray.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/win/util/tray.md)
 

@@ -97,7 +97,7 @@ ARGB格式字体颜色,支持半透明
 赋值时指定一个路径或资源路径控件将自动缓存使用频繁的图像
 
 内存图像建议使用setBackground函数指定缓存�?
-[返回对象:gdipbitmapObject](../../../gdip/bitmap.html#gdipbitmapObject)
+[返回对象:gdipbitmapObject](https://www.aardio.com/zh-cn/doc/library-reference/gdip/bitmap.html#gdipbitmapObject)
 
 ### uiCtrlPlusObject.backgroundColor
 
@@ -415,7 +415,7 @@ x,y为输出坐�?如果绘图到父窗口,x,y参数可省�?
 内存图像建议使用setForeground函数指定缓存�?
 如果边框圆角设为-1,前景图或前景色会裁剪为圆形后输出,
 
-[返回对象:gdipbitmapObject](../../../gdip/bitmap.html#gdipbitmapObject)
+[返回对象:gdipbitmapObject](https://www.aardio.com/zh-cn/doc/library-reference/gdip/bitmap.html#gdipbitmapObject)
 
 ### uiCtrlPlusObject.foregroundColor
 
@@ -433,7 +433,7 @@ x,y为输出坐�?如果绘图到父窗口,x,y参数可省�?
 
 如果不存在背景图像返回null
 
-[返回对象:gdipbitmapObject](../../../gdip/bitmap.html#gdipbitmapObject)
+[返回对象:gdipbitmapObject](https://www.aardio.com/zh-cn/doc/library-reference/gdip/bitmap.html#gdipbitmapObject)
 
 ### uiCtrlPlusObject.getClientRect()
 
@@ -464,7 +464,7 @@ noScale 属性为 true 的字体同样不会进行自�?DPI 缩放
 
 注意字体生命期由控件管理
 
-[返回对象:gdipfontObject](../../../gdip/font.html#gdipfontObject)
+[返回对象:gdipfontObject](https://www.aardio.com/zh-cn/doc/library-reference/gdip/font.html#gdipfontObject)
 
 ### uiCtrlPlusObject.getForeground()
 
@@ -474,7 +474,7 @@ noScale 属性为 true 的字体同样不会进行自�?DPI 缩放
 
 如果不存在前景图像返回null
 
-[返回对象:gdipbitmapObject](../../../gdip/bitmap.html#gdipbitmapObject)
+[返回对象:gdipbitmapObject](https://www.aardio.com/zh-cn/doc/library-reference/gdip/bitmap.html#gdipbitmapObject)
 
 ### uiCtrlPlusObject.getForm()
 
@@ -644,7 +644,7 @@ uiCtrlPlusObject.isDialogMessage = function(hParent,msg){/*在控件范围内替
 
 可选在参数中指定要输出的文�?不指定则取当前显示文�?
 
-[返回对象:rectfObject](../../../gdip/core.html#rectfObject)
+[返回对象:rectfObject](https://www.aardio.com/zh-cn/doc/library-reference/gdip/core.html#rectfObject)
 
 ### uiCtrlPlusObject.messageOnly()
 
@@ -1179,7 +1179,7 @@ uiCtrlPlusObject.reduce(
 
 ### uiCtrlPlusObject.setBackground()
 
-[返回对象:gdipbitmapObject](../../../gdip/bitmap.html#gdipbitmapObject)
+[返回对象:gdipbitmapObject](https://www.aardio.com/zh-cn/doc/library-reference/gdip/bitmap.html#gdipbitmapObject)
 
 ### uiCtrlPlusObject.setBackground(背景图像,false)
 
@@ -1250,7 +1250,7 @@ uiCtrlPlusObject.setFont(h=-12;name="Tahoma");
 
 ### uiCtrlPlusObject.setForeground()
 
-[返回对象:gdipbitmapObject](../../../gdip/bitmap.html#gdipbitmapObject)
+[返回对象:gdipbitmapObject](https://www.aardio.com/zh-cn/doc/library-reference/gdip/bitmap.html#gdipbitmapObject)
 
 ### uiCtrlPlusObject.setForeground(前景图像,缓存�?刷新重绘)
 
@@ -1636,5 +1636,5 @@ createEmbedEx 返回的容器已添加默认代理以直接访�?COM 对象
 鼠标是否在控件上�?
 注意直接修改该状态控件不负责重绘
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/plus.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/plus.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/win/ui/ctrl/plus.md)
 

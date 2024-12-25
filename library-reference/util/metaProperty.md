@@ -1,7 +1,7 @@
 [aardio 文档](../../index.htm "aardio 编程语言文档首页")
 
 # util.metaProperty 库模块帮助文�?
-[关于元表](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/language-reference/datatype/table/meta.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/language-reference/datatype/table/meta.md')
+[关于元表](https://www.aardio.com/zh-cn/doc/language-reference/datatype/table/meta.md)
 
 ## util 成员列表
 
@@ -63,5 +63,5 @@ for(k,v in util.metaProperty.each(/*对象*/) ){
 
 判断对象是否由指定的类创�?
 类必须是使用属性表定义的类,并符合标准规�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/util/metaProperty.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/util/metaProperty.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/util/metaProperty.md)
 

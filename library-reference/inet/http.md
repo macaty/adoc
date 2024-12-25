@@ -58,7 +58,7 @@ inet.http 错误代码请参考库 inet.errorMessage
 
 网址尾部的文件名必须�?扩展库名字空�? \+ ".aardio" 结尾
 
-例如: inet.http.import(" [http://download.aardio.com/inetlib/remote.test.aardio"](javascript:if(confirm('http://download.aardio.com/inetlib/remote.test.aardio%22  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ������·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ�����?'))window.location='http://download.aardio.com/inetlib/remote.test.aardio%22'))
+例如: inet.http.import(" [http://download.aardio.com/inetlib/remote.test.aardio"](http://download.aardio.com/inetlib/remote.test.aardio%22))
 
 远程库代码里只能导入执行文件已经自带的库
 
@@ -791,5 +791,5 @@ rangeHeaderInfo使用readHeaderRange()函数读取,
 
 \_INTERNET\_FLAG\_SECURE=0x800000
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/inet/http.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/inet/http.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/inet/http.md)
 

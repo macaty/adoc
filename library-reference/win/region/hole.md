@@ -25,5 +25,5 @@
 ### winRegionHoleObject.enable()
 
 参数可使�?true �?false 指定是否挖空控件窗口所在区�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/region/hole.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/region/hole.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/win/region/hole.md)
 

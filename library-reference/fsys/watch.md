@@ -54,5 +54,5 @@ return false; /*停止监视*/
 
 \_FILE\_NOTIFY\_CHANGE\_SIZE=0x8
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/fsys/watch.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/fsys/watch.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/fsys/watch.md)
 

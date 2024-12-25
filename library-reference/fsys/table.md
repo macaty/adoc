@@ -84,5 +84,5 @@ fsysTableObject.mix(
 在线程退出时也会自动调用该函�?
 [返回对象:fsysTableObject](table.html#fsysTableObject)
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/fsys/table.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/fsys/table.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/fsys/table.md)
 

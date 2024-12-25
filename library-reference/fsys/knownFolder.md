@@ -28,5 +28,5 @@ GUID 可以�?16 字节的字符串，也可以�?win.guid 支持的格式�?
 
 参数用法�?fsys.knownFolder 相同
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/fsys/knownFolder.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/fsys/knownFolder.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/fsys/knownFolder.md)
 

@@ -20,5 +20,5 @@
 可选使用参数@2指定在复制前是否清空剪贴�?默认清空,
 
 成功返回剪贴板数据句�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/clip/png.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/clip/png.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/win/clip/png.md)
 

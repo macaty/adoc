@@ -10,5 +10,5 @@
 参数@2为真则返回图标数�?
 
 失败返回空�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/inet/favicon.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/inet/favicon.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/inet/favicon.md)
 

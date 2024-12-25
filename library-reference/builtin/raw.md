@@ -226,5 +226,5 @@ process.execute 函数提供类似的功能，区别可参考函数源�?
 ### rawNumberObject.value
 
 对象存储的数�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/builtin/raw.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/builtin/raw.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/builtin/raw.md)
 

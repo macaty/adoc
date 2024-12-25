@@ -133,5 +133,5 @@ steal references
 
 返回类型名字
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/py3/dict.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/py3/dict.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/py3/dict.md)
 

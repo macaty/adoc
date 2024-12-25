@@ -336,5 +336,5 @@ asynHttpServerObject.run(
 创建单线程异�?HTTP 服务�?
 [返回对象:asynHttpServerObject](asynHttpServer.html#asynHttpServerObject)
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/wsock/tcp/asynHttpServer.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/wsock/tcp/asynHttpServer.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/wsock/tcp/asynHttpServer.md)
 

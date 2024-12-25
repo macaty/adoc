@@ -201,5 +201,5 @@ aardio 语言严格区分表达式、语句的概念�?
 
    > 注意：可以在 for 循环里用分号分隔计数条件，在表或类构造器里可以用分号分隔元素�?
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/language-reference/basic-syntax.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/language-reference/basic-syntax.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/language-reference/basic-syntax.md)
 

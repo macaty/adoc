@@ -16,5 +16,5 @@ var memDll = raw.loadDll(DLL内存数据,线程共享�?调用约定)
 如果指定线程共享名时可省略参数@1 —�?表示仅查找并返回已加载的内存DLL�?
 否则必须指定参数@1，调用约定参数可省略�?
 注意"线程共享�?虽然是可选参数，但通常不应该省略此参数。有一�?DLL 在同一个进程中加载多个内存 DLL 模块时可能会出现一些奇怪的问题�?这时候指�?线程共享�?参数以实现跨线程共享同一个内�?DLL 模块可以解决这类问题�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-guide/builtin/raw/memdll.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-guide/builtin/raw/memdll.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-guide/builtin/raw/memdll.md)
 

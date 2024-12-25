@@ -30,7 +30,7 @@ sys.cpu.getInfo(1/*查询索引*/,{ INT eax;INT ebx;INT ecx;INT edx } )
 ### sys.cpu.getInfoByWmi()
 
 使用 WMI 接口�?win32\_processor 查询处理器信�?
-参�?[https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/win32-processor](javascript:if(confirm('https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/win32-processor  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ������·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ�����?'))window.location='https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/win32-processor')
+参�?[https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/win32-processor](https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/win32-processor)
 
 [返回对象:sysCpuWmiInfoObject](#sysCpuWmiInfoObject)
 
@@ -66,7 +66,7 @@ AMD会返�?AuthenticAMD"
 
 ### sysCpuWmiInfoObject.?
 
-参�?[https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/win32-processor](javascript:if(confirm('https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/win32-processor  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ������·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ�����?'))window.location='https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/win32-processor')
+参�?[https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/win32-processor](https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/win32-processor)
 
 ### sysCpuWmiInfoObject.AddressWidth
 
@@ -107,5 +107,5 @@ CPU 核心�?
 ### sysCpuWmiInfoObject.NumberOfLogicalProcessors
 
 CPU 逻辑核心�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/sys/cpu.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/sys/cpu.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/sys/cpu.md)
 

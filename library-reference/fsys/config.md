@@ -55,5 +55,5 @@ fsys.config 对象用不以下划线开始的名字获取成员会返�?fsys.tab
 ### fsysConfigObject.saveAll()
 
 写入所有成�?fsys.table 对象到配置文�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/fsys/config.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/fsys/config.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/fsys/config.md)
 

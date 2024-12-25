@@ -109,7 +109,8 @@ key.char(65)</p>
 
 <h3>key.getState()</h3>
 
-<p>自当前线程消息队列中检测指定按键的是否按下，不一定是物理按键的真实状态。<br>
+<p>参数 @1 指定键名或键码。<br>
+自当前线程消息队列中检测指定按键的是否按下，不一定是物理按键的真实状态。<br>
 仅可用于 U I线程，即使线徎或进程不是前台焦点，函数仍然可以工作，<br>
 对于 NumLk,CapsLk,ScrLk 返回按键的开关状态。</p>
 
@@ -117,7 +118,8 @@ key.char(65)</p>
 
 <h3>key.getStateX()</h3>
 
-<p>返回指定物理按键的的真实按下弹起状态。<br>
+<p>参数 @1 指定键名或键码。<br>
+返回指定物理按键的真实按下弹起状态。<br>
 物理按键状态并不一定等于特定界面线程中的按键状态。  </p>
 
 <p>此函数忽略键盘映射，可用于非 UI 线程，<br>
@@ -127,7 +129,7 @@ key.char(65)</p>
 
 <h3>key.isCapsLk()</h3>
 
-<p>判断Caps Lock键是否打开大写状态</p>
+<p>判断 Caps Lock 键是否打开大写状态</p>
 
 <p><a id="key.nmLk"></a></p>
 
@@ -283,7 +285,7 @@ NumLk,CapsLk,ScrLk等键则置为开启状态。<br>
 最高位表示指定按键是否按下,最低位表示 NumLk,CapsLk,ScrLk 是否按下<br>
 用法请参考 key.getState 函数源码</p>
 
-<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/key/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/key/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/key/_.md">Markdown 格式</a></p>
+<p><a href="https://www.aardio.com/zh-cn/doc/library-reference/key/_.md">Markdown 格式</a></p>
 
 </body> 
 </html>

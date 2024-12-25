@@ -84,5 +84,5 @@ tar 文件名是否使�?UTF8 编码�?
 
 设为 null 则自动检测�?
 目前 tar 文件一般使�?UTF-8 编码文件名，使用 ANSI 编码不常见�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/fsys/untar.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/fsys/untar.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/fsys/untar.md)
 

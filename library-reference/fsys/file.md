@@ -429,5 +429,5 @@ math.size64 对象主要用于格式化为适合单位表示的文本�?
 
 \_FILE\_VOLUME\_IS\_COMPRESSED=0x8000
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/fsys/file.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/fsys/file.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/fsys/file.md)
 

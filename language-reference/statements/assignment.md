@@ -164,5 +164,5 @@ a *= b;
 自增语句 `a++` 等价�?`a += 1`�?
 自减语句 `a--` 等价�?`a -= 1`�?
 要特别注意在 aardio 中语句不是表达式，自增自减语句同样也必须是独立语句不能作为表达式使用�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/language-reference/statements/assignment.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/language-reference/statements/assignment.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/language-reference/statements/assignment.md)
 

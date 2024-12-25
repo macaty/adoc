@@ -9,5 +9,5 @@
 @folder 指定包含 manifest.json 文件的扩展目录�?
 可选用 @pemPath 指定私钥 pem 文件路径�?
 不指�?@pemPath 则在扩展父目录自动生成私�?pem 文件�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/fsys/crx/pack.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/fsys/crx/pack.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/fsys/crx/pack.md)
 

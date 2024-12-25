@@ -61,5 +61,5 @@ aardio 可以自适应不同的版本，
 
 是否已安装大于等�?v4.8.1 版本�?.NET Framework
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/dotNet/version.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/dotNet/version.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/dotNet/version.md)
 

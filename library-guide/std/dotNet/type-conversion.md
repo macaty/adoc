@@ -73,5 +73,5 @@ com.NETObject 又分为：
   将参�?@value 指定的数值或数组转换�?64 位浮点数值。@byRef 参数值为 true 则支�?NET 输出或引用参数�?
 
 以上函数会将所有对应的参数值存�?.NET 对象 DispatchableObject 以后�?再封包为 aardio 中的 dotNet.object 对象。即使简单的值类型使用上面的函数也可以封装转换为 dotNet.object 对象，这不但可以�?aardio 直接引用 .NET 中的对象，也可以方便地实�?.NET �?ref,out 的引用与输出参数�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-guide/std/dotNet/type-conversion.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-guide/std/dotNet/type-conversion.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-guide/std/dotNet/type-conversion.md)
 

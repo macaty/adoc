@@ -28,5 +28,5 @@
 
 不在双引号内、且包含空白或需要转义的参数转义处理后首尾添加双引号
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/process/rpc/tcpJsonClient.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/process/rpc/tcpJsonClient.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/process/rpc/tcpJsonClient.md)
 

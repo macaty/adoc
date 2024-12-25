@@ -28,5 +28,5 @@ aardio 还提供了以下未设置为保留函数的普通全局函数�?
 - print 模板输出函数
 
 这几个函数并非全局对象，在非全局名字空间使用时要加上 `..` 前缀，例�?`..lasterr()`�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/language-reference/builtin-function/index.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/language-reference/builtin-function/index.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/language-reference/builtin-function/index.md)
 

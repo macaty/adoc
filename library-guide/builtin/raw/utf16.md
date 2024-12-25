@@ -74,5 +74,5 @@ aardio原生 APIstring�?UTF-8 编码�?双向自动转换>ustring( UTF-16 编�
 ```
 
 上面的结构体占用 6 个字节�?上面的结构体，原�?API 看到的总是 `'abc'u` 这样�?UTF-16 字符串（ustring），一个字符占 2 个字节。但是在 aardio 里看到的就是 "abc" 这样�?UTF-8 字符串，英文字母�?1 个字节�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-guide/builtin/raw/utf16.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-guide/builtin/raw/utf16.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-guide/builtin/raw/utf16.md)
 

@@ -16,7 +16,7 @@
 3、服务端在发送每�?JSON-RPC 响应对象不会包含换行且在尾部添加换行�?
 
 '�?
-[关于JSON-RPC 2.0](javascript:if(confirm('http://www.jsonrpc.org/specification  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ������·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ�����?'))window.location='http://www.jsonrpc.org/specification')
+[关于JSON-RPC 2.0](http://www.jsonrpc.org/specification)
 
 ### process.rpc.jsonServer()
 
@@ -39,7 +39,7 @@
 
 错误对象可以是数值，字符串、或符合JSON-RPC2.0协议的表对象,
 
-[返回对象:webRpcJsonClientObject](../../web/rpc/jsonClient.html#webRpcJsonClientObject)
+[返回对象:webRpcJsonClientObject](https://www.aardio.com/zh-cn/doc/library-reference/web/rpc/jsonClient.html#webRpcJsonClientObject)
 
 ## processRpcJsonServerObject.rpc 成员列表
 
@@ -51,7 +51,7 @@
 
 如果客户端请求的方法名为"?"�?返回此属�?
 
-[关于aasdl](javascript:if(confirm('https://github.com/aardio/aardio-js/blob/master/AASDL.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ������·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ�����?'))window.location='https://github.com/aardio/aardio-js/blob/master/AASDL.md')
+[关于aasdl](https://github.com/aardio/aardio-js/blob/master/AASDL.md)
 
 ### processRpcJsonServerObject.rpc.afterJsonStringify
 
@@ -107,5 +107,5 @@ requestData为客户端发送的请求数据*/
 
 \_JSONRPC\_PARSE\_ERROR=-32700
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/process/rpc/jsonServer.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/process/rpc/jsonServer.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/process/rpc/jsonServer.md)
 

@@ -238,5 +238,5 @@ onwer 参数可能指向不同的对象�?
 在调用一个类构造实例对象时，如果实例对象的成员函数不改变所有者，则调用实例对象的成员函数时，owner 默认指向类的实例对象 - 也就是类主体内的 [this](../class/class.html#this) 对象。区别在�?this 无法在外部改变，�?owner 可以在外部改变的�?
 �?[元方法](../datatype/table/meta.html) �?owner 表示左操作数�?
 �?[数组排序](../../library-guide/builtin/table/_.html#sort) 序时，owner 参数表示将要与下一个参数比较的元素�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/language-reference/function/parameter.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/language-reference/function/parameter.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/language-reference/function/parameter.md)
 

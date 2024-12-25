@@ -85,38 +85,26 @@ fsys.res.enum(
 
 ### \_RT\_TYPELIB
 
-```aardio aardio
+````aardio aardio
 "TYPELIB"
-
 ```
 
 ### 自动完成常量
+_RT_ACCELERATOR=0x9
+_RT_BITMAP=0x2
+_RT_CURSOR=0x1
+_RT_DIALOG=0x5
+_RT_FONT=0x8
+_RT_FONTDIR=0x7
+_RT_GROUP_ICON=0xE
+_RT_ICON=0x3
+_RT_MENU=0x4
+_RT_RCDATA=0xA
+_RT_STRING=0x6
+_RT_VERSION=0x10
+_VS_VERSION_INFO=0x1
 
-\_RT\_ACCELERATOR=0x9
+[Markdown 格式](res.md)
 
-\_RT\_BITMAP=0x2
-
-\_RT\_CURSOR=0x1
-
-\_RT\_DIALOG=0x5
-
-\_RT\_FONT=0x8
-
-\_RT\_FONTDIR=0x7
-
-\_RT\_GROUP\_ICON=0xE
-
-\_RT\_ICON=0x3
-
-\_RT\_MENU=0x4
-
-\_RT\_RCDATA=0xA
-
-\_RT\_STRING=0x6
-
-\_RT\_VERSION=0x10
-
-\_VS\_VERSION\_INFO=0x1
-
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/fsys/res.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/fsys/res.md')
+````
 

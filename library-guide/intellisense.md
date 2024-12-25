@@ -159,5 +159,5 @@ winform.add()
 ```
 
 如果移除 `/*DSG{{*/` �?`/*}}*/` �?aardio 只会将其作为普通代码打开，也不会提供窗口控件的智能提示�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-guide/intellisense.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ �������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-guide/intellisense.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-guide/intellisense.md)
 

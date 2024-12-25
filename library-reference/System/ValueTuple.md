@@ -23,5 +23,5 @@
 导入�?.NET 名字空间的程序集对象�?
 [返回对象:dotNetCrlAssemblyObject](#dotNetCrlAssemblyObject)
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/System/ValueTuple.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ �������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/System/ValueTuple.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/System/ValueTuple.md)
 

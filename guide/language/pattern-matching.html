@@ -118,28 +118,22 @@ var str = string.match(&quot;12345678&quot;,&quot;&lt;1230-9&gt;&quot;)
 <h3>量词</h3>
 
 <ul>
-<li><code>p{2,3}</code> 表示子模式 p 出现 2 到 3次<br></li>
-</ul>
+<li><p><code>p{2,3}</code> 表示子模式 p 出现 2 到 3次  </p>
 
 <pre><code class="aardio language-aardio">//匹配结果为 12345 
 var str = string.match(&quot;12345678&quot;,&quot;\d{2,5}&quot;)   
-</code></pre>
-
-<ul>
-<li><code>p+</code>  表示子模式 p 出现 1 次到任意次数，等价于 <code>p{1,}</code></li>
-</ul>
+</code></pre></li>
+<li><p><code>p+</code>  表示子模式 p 出现 1 次到任意次数，等价于 <code>p{1,}</code></p>
 
 <pre><code class="aardio language-aardio">//匹配结果为 12345678 
 var str = string.match(&quot;12345678&quot;,&quot;\d+&quot;)   
-</code></pre>
-
-<ul>
-<li> p* 表示a出现0次到任意次数，等价于 <code>p{0,}</code></li>
-</ul>
+</code></pre></li>
+<li><p>p* 表示a出现0次到任意次数，等价于 <code>p{0,}</code></p>
 
 <pre><code class="aardio language-aardio">//匹配结果还是 12345678 
 var str = string.match(&quot;12345678&quot;,&quot;\d+\s*&quot;) //这里的&quot;\s*&quot;匹配零个或多个空格   
-</code></pre>
+</code></pre></li>
+</ul>
 
 <p>其他运算符请参考：<a href="../../library-guide/builtin/string/patterns.html#operators" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/builtin/string/patterns.html#operators">模式语法 - 运算符</a></p>
 
@@ -241,7 +235,7 @@ console.pause(true);
 <li><p><a href="../../library-guide/builtin/string/matching.html" tppabs="https://www.aardio.com/zh-cn/doc/library-guide/builtin/string/matching.html">模式匹配函数</a> </p></li>
 </ul>
 
-<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/guide/language/pattern-matching.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/guide/language/pattern-matching.md'" tppabs="https://www.aardio.com/zh-cn/doc/guide/language/pattern-matching.md">Markdown 格式</a></p>
+<p><a href="https://www.aardio.com/zh-cn/doc/guide/language/pattern-matching.md">Markdown 格式</a></p>
 
 </body> 
 </html>

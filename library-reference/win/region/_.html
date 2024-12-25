@@ -40,37 +40,35 @@
 <h3>::CombineRgn :</h3>
 
 <pre><code class="aardio language-aardio">::Gdi32.api(&quot;CombineRgn&quot;, &quot;int(pointer hrg,pointer hrgnSrc1,pointer hrgnSrc12,int mode)&quot;);
+```
+
+&lt;a id=&quot;::CreateRectRgn :&quot;&gt;&lt;/a&gt;
+### ::CreateRectRgn : 
+ ```aardio
+::Gdi32.api(&quot;CreateRectRgn&quot;, &quot;pinter(int top,int top,int right,int bottom)&quot;);
+```
+
+&lt;a id=&quot;::CreateRoundRectRgn :&quot;&gt;&lt;/a&gt;
+### ::CreateRoundRectRgn : 
+ ```aardio
+::Gdi32.api( &quot;CreateRoundRectRgn&quot;, &quot;pointer(int, int, int, int, int, int)&quot; );
+```
+
+&lt;a id=&quot;::GetWindowRgn :&quot;&gt;&lt;/a&gt;
+### ::GetWindowRgn : 
+ ```aardio
+::User32.api(&quot;GetWindowRgn&quot;, &quot;int(addr hWnd, pointer hRgn)&quot;);
+```
+
+&lt;a id=&quot;::SetWindowRgn :&quot;&gt;&lt;/a&gt;
+### ::SetWindowRgn : 
+ ```aardio
+::User32.api(&quot;SetWindowRgn&quot;, &quot;bool(addr hWnd, pointer hRgn, bool bRedraw)&quot;);
+```
+
+
+[Markdown 鏍煎紡](_.md)
 </code></pre>
-
-<p><a id="::CreateRectRgn :"></a></p>
-
-<h3>::CreateRectRgn :</h3>
-
-<pre><code class="aardio language-aardio">::Gdi32.api(&quot;CreateRectRgn&quot;, &quot;pinter(int top,int top,int right,int bottom)&quot;);
-</code></pre>
-
-<p><a id="::CreateRoundRectRgn :"></a></p>
-
-<h3>::CreateRoundRectRgn :</h3>
-
-<pre><code class="aardio language-aardio">::Gdi32.api( &quot;CreateRoundRectRgn&quot;, &quot;pointer(int, int, int, int, int, int)&quot; );
-</code></pre>
-
-<p><a id="::GetWindowRgn :"></a></p>
-
-<h3>::GetWindowRgn :</h3>
-
-<pre><code class="aardio language-aardio">::User32.api(&quot;GetWindowRgn&quot;, &quot;int(addr hWnd, pointer hRgn)&quot;);
-</code></pre>
-
-<p><a id="::SetWindowRgn :"></a></p>
-
-<h3>::SetWindowRgn :</h3>
-
-<pre><code class="aardio language-aardio">::User32.api(&quot;SetWindowRgn&quot;, &quot;bool(addr hWnd, pointer hRgn, bool bRedraw)&quot;);
-</code></pre>
-
-<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/region/_.md  \n\n该文件无法用 Teleport Ultra 下载, 因为 它不在项目文件类型规范内。  \n\n你想在服务器上打开它?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/region/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/win/region/_.md">Markdown 鏍煎紡</a></p>
 
 </body> 
 </html>

@@ -25,6 +25,10 @@
 例如 "0409:00000409" 为英文键盘�?
 @disabled 参数指定是否禁用输入法，省略参数则默认值为 true
 
+### sys.input.find(输入法名�?
+
+使用参数 @1 指定的输入法显示名称查找已启用的输入法信息�?
+参数支持部分匹配与模式匹配�?
 ### sys.input.getDescription
 
 返回键盘布局或输入法描述
@@ -46,14 +50,14 @@
 ### sys.input.getLayoutOrTips
 
 返回所有键盘布局与输入法的数�?
-### sys.input.getLayoutOrTips(enabled)
+### sys.input.getLayoutOrTips(enabled,description)
 
-返回所有键盘布局与输入法的数组，
-
+返回所有键盘布局与输入法的数组�?
 如果参数 @1 �?true，则不返回已禁用的元素�?
+如果参数 @2 �?true，则返回数组中的每个元素都包含描述（ description ）字段�?
 数组成员�?LAYOUTORTIPPROFILE 结构体，
 
-详细用法请查看函数源�?
+详细用法请查看函数源码�?
 一般可使用简化了�?getEnabledLayoutOrTips 函数
 
 ### sys.input.install
@@ -69,7 +73,7 @@
 例如 "0409:00000409" 为英文键盘�?
 @flags 用一个数值指定选项�? 为禁用，0 为启用，
 
-其他可用值参�?[https://docs.microsoft.com/en-us/windows/win32/tsf/installlayoutortip](javascript:if(confirm('https://docs.microsoft.com/en-us/windows/win32/tsf/installlayoutortip  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ������·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ�����?'))window.location='https://docs.microsoft.com/en-us/windows/win32/tsf/installlayoutortip')
+其他可用值参�?[https://docs.microsoft.com/en-us/windows/win32/tsf/installlayoutortip](https://docs.microsoft.com/en-us/windows/win32/tsf/installlayoutortip)
 
 ### sys.input.setDefault(layoutOrTip,flags)
 
@@ -90,5 +94,5 @@
 
 \_LOTP\_KEYBOARDLAYOUT=2
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/sys/input.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/sys/input.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/sys/input.md)
 

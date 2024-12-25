@@ -16,5 +16,5 @@ lambda 表达式用于定义匿名函数，与普通匿名函数的区别如下�
 5. 不能�?lambda 表达式作为操作数，并直接在右侧写一元操作符（例如调用操作符）。例�?`lambda() 123()` 这样写是不对的，我们需要用括号�?lambda 转换为普通表达式，语法正确的写法�?`( lambda() 123 )()`�?
 6. 可选使用希腊字�?λ 代替 lambda 关键字�?
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/language-reference/function/lambda.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/language-reference/function/lambda.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/language-reference/function/lambda.md)
 

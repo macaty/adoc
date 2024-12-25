@@ -31,7 +31,7 @@ console.pause();
 ## 二、分行拆分文�?[\#](\#lines)
 
 我们遇到的很多需要解析的文本都以是行为单位的�?
-最常见的例�?CSV 格式，CSV 格式可以�?aardio 标准库中�?[string.database](../../../library-reference/string/database.html) 解析�?
+最常见的例�?CSV 格式，CSV 格式可以�?aardio 标准库中�?[string.database](https://www.aardio.com/zh-cn/doc/library-reference/string/database.html) 解析�?
 但是我们还会遇到很多其他格式的分行文本，这时候我们可以使�?string.lines 函数进行解析�?
 函数原型�?
 ```aardio aardio
@@ -46,7 +46,7 @@ string.lines 用于创建一个迭代器，用�?[for in](../../../language-refe
 - 参数 columnSeparator 用于指定列分隔符，支持模式匹配。如果指定了列分隔符则每次迭代返回的都是数组，否则返回的是字符串�?- 参数 maxColumns 用于限定拆分的最大列数，注意这个参数仅在指定 columnSeparator 参数时有效�?
 string.lines 实际上相当于调用并增强了 [splitEx](part.html#splitEx) 的功能，参数用法�?splitEx 是一致的，例如在分隔符中同样支持捕获组并作如下处理：
 
-- 模式串尾部有 `$` 符号，则捕获组放到上个拆分结果尾部�?- 模式串头部有 `^` 符号，则捕获组放到下个拆分结果头部�?- 模式串头部有 `^` 符号并且尾部�?`$` 符号�?则捕获组将由迭代器返回为单独的拆分结果，紧随其后的第二个返回值为 true 以表明该拆分结果是一个分隔符。调用代码格式为 `for line,isSeparator in string.lines(str,"^(分隔�?$"){ }` 这个特性被用于实现文本分句�?[string.sentences 库](../../../library-reference/string/sentences.html)�?
+- 模式串尾部有 `$` 符号，则捕获组放到上个拆分结果尾部�?- 模式串头部有 `^` 符号，则捕获组放到下个拆分结果头部�?- 模式串头部有 `^` 符号并且尾部�?`$` 符号�?则捕获组将由迭代器返回为单独的拆分结果，紧随其后的第二个返回值为 true 以表明该拆分结果是一个分隔符。调用代码格式为 `for line,isSeparator in string.lines(str,"^(分隔�?$"){ }` 这个特性被用于实现文本分句�?[string.sentences 库](https://www.aardio.com/zh-cn/doc/library-reference/string/sentences.html)�?
 下面看一个简单的调用示例�?
 ```aardio aardio
 import console;
@@ -125,7 +125,7 @@ string.table(str,nameValueSeparator,lineDelimiter,commentChar)
 string.table 仅支持以行为单位的字符串属性表。而标准库 string.list 则允许在属性值中用引号包含跨行的引用段，以及更多其他特性�?
 参考：
 
-- [string.list 库参考](../../../library-reference/string/list.html)
+- [string.list 库参考](https://www.aardio.com/zh-cn/doc/library-reference/string/list.html)
 
 - [string.list 范例](../../../example/Text/list.html)
 
@@ -133,11 +133,11 @@ string.table 仅支持以行为单位的字符串属性表。而标准库 string
 ## 四、解析更多文本格�?
 aardio 解析文本非常方便，标准库提供了很多解析各种格式的库，代码量都很少�?
 - [web.json 库参考](../../../library-reference/web/json.html) JSON 格式�?
-- [string.database 库参考](../../../library-reference/string/database.html) CSV 格式�?
-- [string.xml 库参考](../../../library-reference/string/xml.html) XML 格式�?
-- [string.html 库参考](../../../library-reference/string/html.html) HTML 格式�?
-- L [string.list 库参考](../../../library-reference/string/list.html) LIST 格式�?
+- [string.database 库参考](https://www.aardio.com/zh-cn/doc/library-reference/string/database.html) CSV 格式�?
+- [string.xml 库参考](https://www.aardio.com/zh-cn/doc/library-reference/string/xml.html) XML 格式�?
+- [string.html 库参考](https://www.aardio.com/zh-cn/doc/library-reference/string/html.html) HTML 格式�?
+- L [string.list 库参考](https://www.aardio.com/zh-cn/doc/library-reference/string/list.html) LIST 格式�?
 
 更多其他格式请查看相关库参考与范例�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-guide/builtin/string/parsing.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-guide/builtin/string/parsing.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-guide/builtin/string/parsing.md)
 

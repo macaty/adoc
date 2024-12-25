@@ -559,5 +559,5 @@ web.json使用此函数区分数组与对象，解�?JSON 时会自动指定表�
 ### table.unpackArgs(args)
 
 从索�?到最大索引返回所有元素�?包含中间的null�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/builtin/table.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/builtin/table.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/builtin/table.md)
 

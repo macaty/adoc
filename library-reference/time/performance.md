@@ -17,5 +17,5 @@ time.period, time.timer, time.tick, sleep
 
 返回高精度计时�?
 以毫秒（ms，千分之一秒）为单位，精度为微秒（us，千分之一毫秒）�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/time/performance.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/time/performance.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/time/performance.md)
 

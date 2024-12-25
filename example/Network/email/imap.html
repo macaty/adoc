@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - IMAP 接收邮件'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - IMAP 接收邮件</title> 
+<link rel="stylesheet" href="../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: IMAP 接收邮件</h1><pre><code class="aardio language-aardio">//IMAP 接收邮件
+import console;
+import dotNet.MailKit; 
+
+//创建 IMAP 客户端
+var client = MailKit.Net.Imap.ImapClient()
+
+//连接到 IMAP 服务器
+client.Connect(&quot;imap.qq.com&quot;, 993, true)
+
+//登录
+client.Authenticate(&quot;*****@qq.com&quot;, &quot;授权码&quot;)
+
+//打开收件箱
+var inbox = client.Inbox;
+inbox.Open(MailKit.FolderAccess.ReadOnly)
+
+//获取最近 10 封邮件
+for(i=inbox.Count;math.max(1,inbox.Count-9);-1){
+    var message = inbox.GetMessage(i-1);
+    console.log(&quot;主题:&quot;, message.Subject)
+
+    console.log(&quot;发件人:&quot;, message.From)
+    console.log(&quot;日期:&quot;, message.Date)
+    console.log(&quot;------------------------&quot;)
+
+    //HTML格式邮件内容
+    console.log(&quot;HTML:&quot;, message.HtmlBody) 
+
+}
+
+//断开连接
+client.Disconnect(true)
+
+console.pause()
+</code></pre>
+<a href="https://www.aardio.com/zh-cn/doc/example/Network/email/imap.md">Markdown 格式</a>
+</body> 
+</html>

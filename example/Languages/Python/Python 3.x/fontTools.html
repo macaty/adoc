@@ -1,0 +1,96 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name='description' content='aardio 编程语言范例 - 精简字体'>
+<meta http-equiv='content-language' content='zh-cn'>
+<title>aardio 编程语言范例 - 精简字体</title> 
+<link rel="stylesheet" href="../../../../css/markdown.css" tppabs="https://www.aardio.com/zh-cn/doc/css/markdown.css">
+<script src="../../../../js/prism.js" tppabs="https://www.aardio.com/zh-cn/doc/js/prism.js"></script>
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/fontawesome.min.css">
+<link rel="stylesheet" href="../../../../../../../lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css" tppabs="https://lib.baomitu.com/font-awesome/6.6.0/css/solid.min.css">
+</head>
+<body class="markdown-body"><a id="back-to-home" href="../../../../index.htm" tppabs="https://www.aardio.com/zh-cn/doc/" title="aardio 编程语言文档首页"><i class="fas fa-home" id="home-icon"></i><i class="fas fa-robot" id="ai-icon" style="display: none;"></i><span id="aardio-document-home">aardio 文档</span></a>
+<h1>aardio 范例: 精简字体</h1><pre><code class="aardio language-aardio">import console;
+import py3;
+
+//精简 FontAwesome 字体需要保留的字符，生成新的 fonts.fontAwesomeSub 库
+var fontAwesomeSub = &#39;\uF254\uF251\uF252\uF253\uF250\uE8CE\uF0F6\uF007\uF0C8\uF14a\uF019\uF0E2\uF0E2\uF013\uF014\uF0AA\uF067\uF1F8\uF044&#39;;
+
+//导入 Python 模块 fontTools.ttLib
+var ttLib = py3.import(&quot;fontTools.ttLib&quot;);
+if(!ttLib){
+    import py3.pip;
+    py3.pip.setIndexUrl(&quot;aliyun&quot;); 
+    py3.pip(&quot;install&quot;,&quot;fonttools&quot;); 
+
+    ttLib = py3.import(&quot;fontTools.ttLib&quot;);  
+}
+
+//精简 TTF 字体文件
+var subsetFont = function(srcPath, dstPath, text){
+    var font = ttLib.TTFont(io.fullpath(srcPath));
+
+    //拆分为字符数组
+    var textArray = string.split(text);
+
+    //转换为 Python 集合对象
+    pySetUnicodes = py3.builtin.set( unicodes )
+
+    //创建子集
+    var subsetter = py3.import(&quot;fontTools.subset&quot;).Subsetter();
+    subsetter.$populate( text = text );
+
+    //字体子集化
+    subsetter.subset(font);
+
+    //保存精简后的字体
+    font.save(io.fullpath(dstPath));
+}
+
+import ide;
+var projDir = ide.getProjectDir();
+if(!#projDir){
+    error(&quot;请先打开工程文件&quot;);
+}
+
+//生成导入精简字体的 aardio 库文件
+var code = /*****
+import fsys;
+import fonts;
+
+namespace fonts.fontAwesomeSub{
+
+    family = ..fonts.addFamily($&quot;/lib/fonts/.res/fontAwesomeSub.ttf&quot;,&quot;FontAwesome&quot;)
+}
+
+/**intellisense()
+fonts.fontAwesomeSub = 导入FontAwesome 图标字体用于支持GDI/GDI+，控件/plus控件等,\n所有图标请参考aardio工具-&gt;文本文件-&gt;图标字体
+fonts.fontAwesomeSub.family = GDI+字体家族,可用于plus控件,gdip等库函数,\n!gdipfamily.
+end intellisense**/
+*****/
+string.save(io.joinpath(projDir,&quot;/lib/fonts/fontAwesomeSub.aardio&quot;),code);
+
+var outPath = io.joinpath(projDir,&quot;\lib\fonts\.res\fontAwesomeSub.ttf&quot;); 
+if(io.exist(outPath)){
+    io.remove(outPath);
+    if(io.exist(outPath)){
+        error(&quot;请先退出 aardio 并删除字体文件：&quot;+outPath);
+    }
+}
+
+//精简字体
+subsetFont(
+    &quot;~\lib\fonts\.res\FontAwesome.ttf&quot;, //原字体路径, 
+    outPath, //输出路径
+    fontAwesomeSub,
+);
+
+console.log(&quot;已输出精简字体：&quot;,outPath)
+console.pause();
+</code></pre>
+<a href="https://www.aardio.com/zh-cn/doc/example/Languages/Python/Python 3.x/fontTools.md">Markdown 格式</a>
+</body> 
+</html>

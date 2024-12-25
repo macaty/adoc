@@ -10,7 +10,8 @@
 - pyObject 对象�?
   除了纯值以外的其他 Python 对象�?aardio 中存�?py3.object 对象�?简�?pyObject ）。如果是 py2 扩展库就�?py.object ，原理与用法都相同�?
 
-## 使用纯�?
+## 使用纯�?[\#](\#primitive)
+
 示例�?
 ```aardio aardio
 import console;
@@ -28,7 +29,7 @@ console.pause();
 ```
 
 非常简单�?
-## 使用 pyObject
+## 使用 pyObject [\#](\#pyObject)
 
 pyObject 也可以在 aardio 中也可以像普通对象一样使用�?可以调用 pyObject 的成员函数、读写其属性、通过下标读写索引项、并支持各种常用运算符�?
 可通过 pyObject.parseValue() 函数转换为纯 aardio 值（通过 JSON 自动转换）�?
@@ -69,5 +70,28 @@ console.pause();
 
 ```
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-guide/ext/python/conversion.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-guide/ext/python/conversion.md')
+## 转换 Python 集合对象 [\#](\#set)
+
+示例�?
+```aardio aardio
+import console.int;
+import py3;
+
+// aardio 数组转换�?Python 集合
+var pySet = py3.builtin.set({
+    1,2,3
+})
+
+//添加成员
+pySet.add(456);
+
+/*
+需要先调用 pySet.toList() 转换�?Python 列表�?然后才能调用 parseValue() 函数转换�?aardio 数组�?*/
+var arr = pySet.toList().parseValue();
+
+console.dumpTable(arr)
+
+```
+
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-guide/ext/python/conversion.md)
 

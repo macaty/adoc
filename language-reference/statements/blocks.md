@@ -35,5 +35,5 @@ aardio 根据标志符查�?命名对象"的顺序依次为�?
 要特别注意：
 
 > 如果当前名字空间不是全局名字空间，aardio 默认不会到全局表查找命名对象，除非标识符指向一个全局有效的命名对象（全局常量、保留常量、保留函数名）或使用 `..` 操作符明确指定仅在全局表中查找命名对象 �?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/language-reference/statements/blocks.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/language-reference/statements/blocks.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/language-reference/statements/blocks.md)
 

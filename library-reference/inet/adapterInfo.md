@@ -4,7 +4,7 @@
 参考文�?
 inet.adapterInfo.each(family,flags) 返回的为 IP\_ADAPTER\_ADDRESSES 结构体�?
 关于 family,flags 参数的用法与 IP\_ADAPTER\_ADDRESSES 结构体的详细说明请参考：
-[https://learn.microsoft.com/en-us/windows/win32/api/iptypes/ns-iptypes-ip\_adapter\_addresses\_lh](javascript:if(confirm('https://learn.microsoft.com/en-us/windows/win32/api/iptypes/ns-iptypes-ip_adapter_addresses_lh  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ������·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ�����?'))window.location='https://learn.microsoft.com/en-us/windows/win32/api/iptypes/ns-iptypes-ip_adapter_addresses_lh')
+[https://learn.microsoft.com/en-us/windows/win32/api/iptypes/ns-iptypes-ip\_adapter\_addresses\_lh](https://learn.microsoft.com/en-us/windows/win32/api/iptypes/ns-iptypes-ip_adapter_addresses_lh)
 
 结构体字段首字母�?aardio 中需要改为小写�?
 ## inet.adapterInfo 成员列表
@@ -135,5 +135,5 @@ MAC地址,文本格式
 ### netAdapterAddressObject.operStatusUp
 
 网卡为可用的活动状�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/inet/adapterInfo.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/inet/adapterInfo.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/inet/adapterInfo.md)
 

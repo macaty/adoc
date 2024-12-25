@@ -127,5 +127,5 @@ wininputBoxObject.setInterval(回调函数,延时毫秒�?...setInterval(
 否则设置或获取当前真实宽度�?
 可调�?dpiScale 函数获取缩放后的宽度
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/inputBox.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/inputBox.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/win/inputBox.md)
 

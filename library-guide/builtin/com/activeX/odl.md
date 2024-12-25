@@ -167,5 +167,5 @@ coclass foo {
 ```
 
 此文档精简�?ODL 语法的关键要素，便于快速入门和掌握基本写法�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-guide/builtin/com/activeX/odl.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ �������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-guide/builtin/com/activeX/odl.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-guide/builtin/com/activeX/odl.md)
 

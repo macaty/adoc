@@ -25,5 +25,5 @@ loadcodex() 函数可用于直接运�?aardio 代码�?aardio 代码文件�?
    ```
 
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/language-reference/builtin-function/loadcodex.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/language-reference/builtin-function/loadcodex.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/language-reference/builtin-function/loadcodex.md)
 

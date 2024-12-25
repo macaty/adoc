@@ -54,5 +54,5 @@ consoleIntObject.run(
 触发器可以拦截但无法阻止关闭�?
 增加延迟可增加控制台程序退出前的等待时�?
 延迟之前先设置中断状态，也不会阻止当前线程向下执�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/console/int.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/console/int.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/console/int.md)
 

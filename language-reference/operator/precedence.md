@@ -85,5 +85,5 @@ or16左向右逻辑或`?`17左向右逻辑与、该运算符类似于and但优�
 `>>=`最低优先级由右向左aardio中赋值操作符不能用于表达式并返回�?只能用于独立的赋值语�?
 ![](../../icon/info.gif) 除了 `**` �?`++` 外所有的二元运算符都是左连接�?
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/language-reference/operator/precedence.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/language-reference/operator/precedence.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/language-reference/operator/precedence.md)
 

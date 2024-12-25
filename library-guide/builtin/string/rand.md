@@ -35,5 +35,5 @@ console.log( string.random( "待选字符串","待选字符串2","待选字符�
 math.randomize 的参数可以是一个任意的数值，省略参数时，则自动生成一个安全的随机数作为随机数种子�?
 aardio 程序在启动时，主线程会以 time.tick 获得的系统启动毫秒数作为参数调用一�?math.randomize�?
 在创建新的线程时也会自动调用 math.randomize，但不会使用系统启动毫秒数作为参数，而是自动生成一个安全的随机数作为随机数种子�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-guide/builtin/string/rand.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-guide/builtin/string/rand.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-guide/builtin/string/rand.md)
 

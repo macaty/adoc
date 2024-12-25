@@ -87,5 +87,5 @@ null,0 转换为逻辑值都等价�?false
 
 保存更改到ini文件
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/fsys/ini.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/fsys/ini.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/fsys/ini.md)
 

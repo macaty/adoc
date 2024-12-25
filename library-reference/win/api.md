@@ -11,311 +11,269 @@
 
 ### ::BeginDeferWindowPos
 
-```aardio aardio
+````aardio aardio
 ::User32.api( "BeginDeferWindowPos", "ptr(int numWins)" )
-
 ```
 
+<a id="::CallWindowProc"></a>
 ### ::CallWindowProc
-
-```aardio aardio
+ ```aardio
 ::User32.api("CallWindowProc","int(ptr lpPrevWndFunc,addr hwnd,INT Msg,ADDR wParam,addr lParam)" )
-
 ```
 
+<a id="::ClientToScreen"></a>
 ### ::ClientToScreen
-
-```aardio aardio
+ ```aardio
 ::User32.api( "ClientToScreen", " int(addr hwnd,struct &lpPoint ) " )
-
 ```
 
+<a id="::CopyImage"></a>
 ### ::CopyImage
-
-```aardio aardio
+ ```aardio
 ::User32.api("CopyImageW", "ptr(ptr hlmage, INT uType,int cx,int cy,INT flags)")
-
 ```
 
+<a id="::CreateWindowEx"></a>
 ### ::CreateWindowEx
-
-```aardio aardio
+ ```aardio
 ::User32.api( "CreateWindowExW", " int(INT exStyle,ustring className,ustring windowName,INT style,int x,int y,int width,int height,addr hwndParent,addr hMenu,pointer hlnstance,ptr lpParam)" )
-
 ```
 
+<a id="::DefWindowProc"></a>
 ### ::DefWindowProc
-
-```aardio aardio
+ ```aardio
 ::User32.api( "DefWindowProc", "int(addr hwnd,INT msg,ADDR wParam,addr lParam) " );
-
 ```
 
+<a id="::DeferWindowPos"></a>
 ### ::DeferWindowPos
-
-```aardio aardio
+ ```aardio
 ::User32.api( "DeferWindowPos", "ptr(PTR hWinPo,addr hwnd,addr instAffer,int x,int y, int cx, int Cy,INT fags)" )
-
 ```
 
+<a id="::DestroyCursor"></a>
 ### ::DestroyCursor
-
-```aardio aardio
+ ```aardio
 ::User32.api("DestroyCursor","int(ptr hCursor)")
-
 ```
 
+<a id="::DestroyIcon"></a>
 ### ::DestroyIcon
-
-```aardio aardio
+ ```aardio
 ::User32.api("DestroyIcon","int(ptr hIcon)")
-
 ```
 
+<a id="::DestroyWindow"></a>
 ### ::DestroyWindow
-
-```aardio aardio
+ ```aardio
 ::User32.api( "DestroyWindow", "int(addr hwnd )" );
-
 ```
 
+<a id="::EndDeferWindowPos"></a>
 ### ::EndDeferWindowPos
-
-```aardio aardio
+ ```aardio
 ::User32.api( "EndDeferWindowPos", "bool(PTR hWinPos)" )
-
 ```
 
+<a id="::GetClassInfoEx"></a>
 ### ::GetClassInfoEx
-
-```aardio aardio
+ ```aardio
 ::User32.api("GetClassInfoEx", "int(ptr,utf16,struct&)")
-
 ```
 
+<a id="::GetClientRect"></a>
 ### ::GetClientRect
-
-```aardio aardio
+ ```aardio
 ::User32.api( "GetClientRect", " int(addr hwnd,struct &lpRect ) " )
-
 ```
 
+<a id="::GetCursor"></a>
 ### ::GetCursor
-
-```aardio aardio
+ ```aardio
 ::User32.api("GetCursor","ptr()")
-
 ```
 
+<a id="::GetSystemMetrics"></a>
 ### ::GetSystemMetrics
-
-```aardio aardio
+ ```aardio
 ::User32.api("GetSystemMetrics","int(int)")
-
 ```
 
+<a id="::GetWindowLong"></a>
 ### ::GetWindowLong
-
-```aardio aardio
+ ```aardio
 ::User32.api("GetWindowLong","int(addr hwnd,int nIndex)" )
-
 ```
 
+<a id="::GetWindowRect"></a>
 ### ::GetWindowRect
-
-```aardio aardio
+ ```aardio
 ::User32.api( "GetWindowRect", " int(addr hwnd,struct &lpRect ) " )
-
 ```
 
+<a id="::InvalidateRect"></a>
 ### ::InvalidateRect
-
-```aardio aardio
+ ```aardio
 ::User32.api( "InvalidateRect", " int(addr hwnd,struct rect,bool erase) " )
-
 ```
 
+<a id="::LoadBitmap"></a>
 ### ::LoadBitmap
-
-```aardio aardio
+ ```aardio
 ::User32.api("LoadBitmapW", "ptr(ptr,ustring)")
-
 ```
 
+<a id="::LoadCursor"></a>
 ### ::LoadCursor
-
-```aardio aardio
+ ```aardio
 ::User32.api("LoadCursorW", "ptr(ptr,ustring)")
-
 ```
 
+<a id="::LoadIcon"></a>
 ### ::LoadIcon
-
-```aardio aardio
+ ```aardio
 ::User32.api("LoadIconW", "ptr(ptr,ustring)")
-
 ```
 
+<a id="::LoadImage"></a>
 ### ::LoadImage
-
-```aardio aardio
+ ```aardio
 ::User32.api("LoadImageW", "ptr(ptr hInst,ustring name,INT uType,int cxDesired,int CyDesire,INT fuLoad)")
-
 ```
 
+<a id="::MapWindowPoints"></a>
 ### ::MapWindowPoints
-
-```aardio aardio
+ ```aardio
 ::User32.api( "MapWindowPoints", "int(addr from,addr to,struct &points,INT len)");
-
 ```
 
+<a id="::MoveWindow"></a>
 ### ::MoveWindow
-
-```aardio aardio
+ ```aardio
 ::User32.api( "MoveWindow", "int( addr hwnd, int x,int y,int w,int h,bool repaint)" )
-
 ```
 
+<a id="::PostMessage"></a>
 ### ::PostMessage
-
-```aardio aardio
+ ```aardio
 ::User32.api("PostMessageW","addr(addr hwnd,INT msg,ADDR wParam,addr lParam)")
-
 ```
 
+<a id="::PostThreadMessage"></a>
 ### ::PostThreadMessage
-
-```aardio aardio
+ ```aardio
 ::User32.api("PostThreadMessageW","addr(int idThread,INT msg,ADDR wParam,addr lParam)");
-
 ```
 
+<a id="::PtInRect"></a>
 ### ::PtInRect
-
-```aardio aardio
+ ```aardio
 ::User32.api( "PtInRect", "int(struct, int, int)" );
-
 ```
 
+<a id="::RedrawWindow"></a>
 ### ::RedrawWindow
-
-```aardio aardio
+ ```aardio
 ::User32.api("RedrawWindow","bool(addr hwnd,struct lprcUpdate,ptr hrgnUpdate,INT flags)");
-
 ```
 
+<a id="::RegisterClassEx"></a>
 ### ::RegisterClassEx
-
-```aardio aardio
+ ```aardio
 ::User32.api( "RegisterClassEx", " word(struct wc) " )
-
 ```
 
+<a id="::RegisterWindowMessage"></a>
 ### ::RegisterWindowMessage
-
-```aardio aardio
+ ```aardio
 ::User32.api("RegisterWindowMessageW","INT(ustring)");
-
 ```
 
+<a id="::ScreenToClient"></a>
 ### ::ScreenToClient
-
-```aardio aardio
+ ```aardio
 ::User32.api( "ScreenToClient", " int(addr hwnd,struct &lpPoint ) " )
-
 ```
 
+<a id="::SendMessage"></a>
 ### ::SendMessage
-
-```aardio aardio
+ ```aardio
 ::User32.api("SendMessageW","addr(addr hwnd,INT msg,ptr wParam,ptr lParam)")
-
 ```
 
+<a id="::SendMessageByInt"></a>
 ### ::SendMessageByInt
-
-```aardio aardio
+ ```aardio
 ::User32.api("SendMessageW","addr(addr hwnd,INT msg,int &wParam,int &lParam)")
-
 ```
 
+<a id="::SendMessageByStr"></a>
 ### ::SendMessageByStr
-
-```aardio aardio
+ ```aardio
 ::User32.api("SendMessageW","addr(int,INT,int,ustring &lParam)")
-
 ```
 
+<a id="::SendMessageByString"></a>
 ### ::SendMessageByString
-
-```aardio aardio
+ ```aardio
 ::User32.api("SendMessageW","addr(int,INT,int,string &lParam)")
-
 ```
 
+<a id="::SendMessageByStruct"></a>
 ### ::SendMessageByStruct
-
-```aardio aardio
+ ```aardio
 ::User32.api("SendMessageW","addr(int,INT,int,struct &lParam)")
-
 ```
 
+<a id="::SendMessageInt"></a>
 ### ::SendMessageInt
-
-```aardio aardio
+ ```aardio
 ::User32.api("SendMessageW","addr(addr hwnd,INT msg,ADDR wParam,addr lParam)")
-
 ```
 
+<a id="::SendMessageTimeout"></a>
 ### ::SendMessageTimeout
-
-```aardio aardio
+ ```aardio
 ::User32.api("SendMessageTimeoutW","addr(addr hwnd,INT msg,ptr wParam,ptr lParam,INT flags,INT timeout,int & resultult)")
-
 ```
 
+<a id="::SetCursor"></a>
 ### ::SetCursor
-
-```aardio aardio
+ ```aardio
 ::User32.api("SetCursor","int(ptr hCur)")
-
 ```
 
+<a id="::SetWindowLong"></a>
 ### ::SetWindowLong
-
-```aardio aardio
+ ```aardio
 ::User32.api("SetWindowLong","int(addr hwnd,int nIndex,int dwNewLong)" )
-
 ```
 
+<a id="::SetWindowPointer"></a>
 ### ::SetWindowPointer
-
-```aardio aardio
+ ```aardio
 ::User32.api("SetWindowLong","ptr(addr hwnd,int nIndex,ptr ptrNew)" )
-
 ```
 
+<a id="::SetWindowPos"></a>
 ### ::SetWindowPos
-
-```aardio aardio
+ ```aardio
 ::User32.api("SetWindowPos","boolean(addr hwnd,addr hwndlnsertAfter,int X,int Y,int cx,int cy,int Flags)")
-
 ```
 
+<a id="::SystemParametersInfo"></a>
 ### ::SystemParametersInfo
-
-```aardio aardio
+ ```aardio
 ::User32.api("SystemParametersInfo","int(INT act, INT param, struct& pvParam,INT winIni)");
-
 ```
 
+<a id="::UpdateWindow"></a>
 ### ::UpdateWindow
-
-```aardio aardio
+ ```aardio
 ::User32.api( "UpdateWindow", "bool(addr) " )
-
 ```
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/api.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/api.md')
+[Markdown 格式](api.md)
+
+````
 

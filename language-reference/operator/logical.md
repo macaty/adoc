@@ -66,5 +66,5 @@ console.log( str )
 
 `a ?= b(a)` 等价�?`a = a ? b(a)` ，也就相当于 `a = a and b(a)`。这样就实现了如�?`a` 为真则会调用 `b(a)`�?
 对于代码 `string.left(str,3)` ，如�?str �?null 就会出错。使�?`str ?= string.left(str,3)` 就可以实现只�?str 为真�?自然也就不可能是 null 值了 ）才会执行这句代码�?
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/language-reference/operator/logical.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/language-reference/operator/logical.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/language-reference/operator/logical.md)
 

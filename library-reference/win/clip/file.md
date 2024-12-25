@@ -48,5 +48,5 @@ win.clip.gif.write 函数调用了此函数复制文件
 
 \_DROPEFFECT\_SCROLL=0x80000000
 
-[Markdown 格式](javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/win/clip/file.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ�����?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/win/clip/file.md')
+[Markdown 格式](https://www.aardio.com/zh-cn/doc/library-reference/win/clip/file.md)
 

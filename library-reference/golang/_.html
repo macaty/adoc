@@ -95,7 +95,7 @@ Go 项目目录默认为 aardio 应用程序根目录的 &quot;/&quot; 。<br>
 <h3>golangObject.build()</h3>
 
 <p>执行 go build 命令生成 EXE 文件。<br>
-参数@1指定要编译的代码文件，可增加多个参数。<br>
+参数 @1 指定要编译的代码文件，可增加多个参数。<br>
 默认按第一个参数指定的 *.go 文件路径输出同名 *.exe 文件</p>
 
 <p><a id="golangObject.build64"></a></p>
@@ -155,7 +155,7 @@ Go 项目目录默认为 aardio 应用程序根目录的 &quot;/&quot; 。<br>
 
 <h3>golangObject.cmd()</h3>
 
-<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ʵ��ļ������صġ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html#processPopenObject'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html#processPopenObject">返回对象:processPopenObject</a></p>
+<p><a href="https://www.aardio.com/zh-cn/doc/library-reference/process/popen.html#processPopenObject">返回对象:processPopenObject</a></p>
 
 <p><a id="golangObject.cmd"></a></p>
 
@@ -180,8 +180,15 @@ Go 项目目录默认为 aardio 应用程序根目录的 &quot;/&quot; 。<br>
 
 <h3>golangObject.enableCgo()</h3>
 
-<p>启用 cgo ，依赖 gcc 。<br>
-如果未找 gcc 到则自动安装 Mingw-w64</p>
+<p>启用 32 位 cgo ，依赖 gcc 。<br>
+如果未找到 32 位 gcc 到则自动安装 Mingw-w64 32 位编译环境。</p>
+
+<p><a id="golangObject.enableCgo64"></a></p>
+
+<h3>golangObject.enableCgo64()</h3>
+
+<p>启用 64 位 cgo ，依赖 gcc 。<br>
+如果未找到 64 位  gcc 到则自动安装 Mingw-w64 64 位编译环境。</p>
 
 <p><a id="golangObject.env"></a></p>
 
@@ -296,7 +303,7 @@ func main() {}
 不要看网上过时的文章，这个命令没有重定向，也不需要指定输出文件名。<br>
 直接到应用程序根目录找默认输出的文件。</p>
 
-<p><a href="javascript:if(confirm('https://www.aardio.com/zh-cn/doc/library-reference/golang/_.md  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ��������Ŀ�ļ����͹淶�ڡ�  \n\n�����ڷ������ϴ���?'))window.location='https://www.aardio.com/zh-cn/doc/library-reference/golang/_.md'" tppabs="https://www.aardio.com/zh-cn/doc/library-reference/golang/_.md">Markdown 格式</a></p>
+<p><a href="https://www.aardio.com/zh-cn/doc/library-reference/golang/_.md">Markdown 格式</a></p>
 
 </body> 
 </html>
